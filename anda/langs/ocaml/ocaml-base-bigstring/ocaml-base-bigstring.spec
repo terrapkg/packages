@@ -34,6 +34,8 @@ BuildRequires:  ocaml-ppx-custom-printf-devel
 BuildRequires:  ocaml-ppx-bin-prot-devel
 BuildRequires:  ocaml-ppx-assert-devel
 BuildRequires:  ocaml-base-quickcheck-devel
+BuildRequires:  ocaml-bin-prot-devel
+BuildRequires:  ocaml-ppx-module-timer-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
