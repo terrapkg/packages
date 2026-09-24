@@ -1,5 +1,5 @@
 Name:           terra-scripts
-Version:        0.2.5
+Version:        0.2.6
 Release:        1%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        AGPL-3.0-or-later
@@ -12,6 +12,7 @@ Recommends:     podman
 Recommends:     /usr/bin/tar
 Recommends:     /usr/bin/which
 Recommends:     /usr/bin/grep
+Recommends:     /usr/bin/cp
 Recommends:     git
 
 %description
@@ -27,6 +28,7 @@ install -Dm 755 changelog.sh %{buildroot}%{_bindir}/changelog
 install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
 install -Dm 755 panda.sh %{buildroot}%{_bindir}/panda
 install -Dm 755 icedtea-fetch.sh %{buildroot}%{_bindir}/icedtea-fetch
+Install -Dm 644 changelog.conf %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
 
 %files
 %doc README.md
@@ -37,6 +39,7 @@ install -Dm 755 icedtea-fetch.sh %{buildroot}%{_bindir}/icedtea-fetch
 %{_bindir}/getcommit
 %{_bindir}/panda
 %{_bindir}/icedtea-fetch
+%{_sysconfdir}/xdg/terra-scripts/changelog.conf
 
 %changelog
 * Wed Sep 23 2026 Owen Zimmerman <owen@fyralabs.com>
