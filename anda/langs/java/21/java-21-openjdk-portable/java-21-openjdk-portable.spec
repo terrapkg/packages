@@ -22,7 +22,7 @@
 # $ fedpkg mockbuild --without slowdebug --without fastdebug
 
 # Enable fastdebug builds by default on relevant arches.
-%bcond_without fastdebug
+%bcond_with fastdebug
 # Enable slowdebug builds by default on relevant arches.
 %bcond_without slowdebug
 # Enable release builds by default on relevant arches.
