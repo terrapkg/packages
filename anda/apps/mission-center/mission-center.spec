@@ -1,10 +1,9 @@
 %global appid io.missioncenter.MissionCenter
 
 %global forgeurl0 https://gitlab.com/mission-center-devs/mission-center
-Version: 1.2.0
+Version:        1.2.0
 %global tag0 v%{version}
 %global commit1 a5272b3c1d853caa4044b737cf49257bfc4c86f2
-
 
 %forgemeta -a
 
@@ -47,7 +46,7 @@ Requires:   lm_sensors
 Monitor your CPU, Memory, Disk, Network and GPU usage
 
 %prep
-%git_clone %{url}.git %{tag0}
+%git_clone %{url}.git v%{version}
 ls -la
 mkdir -p ./subprojects/magpie
 pushd ./subprojects/magpie/
