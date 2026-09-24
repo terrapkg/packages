@@ -1,14 +1,14 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-download-manager
-%global commit 0939d480c72871b3270cc529e16902fd41bfdda5
-%forgemeta
 
 Name:       lomiri-download-manager
-Version:    0.3.1
+Version:    0.3.3
+
+%forgemeta
 Release:    1%{?dist}
 Summary:    Upload Download Manager for Lomiri
 License:    LGPLv3
 URL:        https://gitlab.com/ubports/development/core/lomiri-download-manager
-Source0:    %{url}/-/archive/%commit/lomiri-download-manager-%commit.tar.gz
+Source0:    %{url}/-/archive/%{version}/lomiri-download-manager-%{version}.tar.gz
 
 BuildRequires: systemd-rpm-macros
 BuildRequires: boost-devel
@@ -47,7 +47,7 @@ The %name-doc package contains documentation for
 %{name}-devel.
 
 %prep
-%autosetup -n lomiri-download-manager-%commit
+%autosetup -n lomiri-download-manager-%{version}
 sed -e "s/-Werror//g" -i CMakeLists.txt
 
 %build

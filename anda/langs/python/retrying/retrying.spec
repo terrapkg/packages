@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.4.2
-Release:		1%?dist
+Release:		2%?dist
 Summary:		General-purpose retrying library
 License:		Apache-2.0
 URL:			https://github.com/groodt/retrying

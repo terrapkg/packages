@@ -1,17 +1,17 @@
 %global libliftoff_minver 0.4.1
 
 %global _default_patch_fuzz 2
-%global build_timestamp %(date +"%Y%m%d")
-%global gamescope_commit 7c5ebe991af905c17fa26f6287704ff07dcf69ca
-%define short_commit %(echo %{gamescope_commit} | cut -c1-8)
+%global ver 3.16.28-ogc3
 
 Name:           terra-gamescope
-Version:        137.%{short_commit}
-Release:        1%?dist
-Summary:        Micro-compositor for video games on Wayland
+Version:        3.16.28^3
+Release:        1%{?dist}
+Epoch:          1
+Summary:        OGC fork of the Micro-compositor for video games on Wayland
 
-License:        BSD
+License:        BSD-2-Clause
 URL:            https://github.com/OpenGamingCollective/gamescope
+Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
 Provides:       gamescope = %{version}-%{release}
 Conflicts:      gamescope
@@ -23,11 +23,6 @@ Patch0:         Use-system-stb-glm.patch
 
 Patch1:         0001-cstdint.patch
 
-%if 0%{?fedora} >= 44
-# Fix build with libinput >= 1.27 / GCC 16 (-Werror=switch)
-Patch2:         0002-wlroots-libinput-switch-keypad-slide.patch
-%endif
-
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
@@ -38,6 +33,7 @@ BuildRequires:  libXcursor-devel
 BuildRequires:  libXmu-devel
 BuildRequires:  meson >= 0.54.0
 BuildRequires:  ninja-build
+BuildRequires:  pkgconfig(catch2-with-main)
 BuildRequires:  pkgconfig(hwdata)
 BuildRequires:  pkgconfig(libavif)
 BuildRequires:  pkgconfig(libcap)
@@ -84,9 +80,9 @@ BuildRequires:  /usr/bin/glslangValidator
 # libliftoff hasn't bumped soname, but API/ABI has changed for 0.2.0 release
 Requires:       libliftoff%{?_isa} >= %{libliftoff_minver}
 Requires:       xorg-x11-server-Xwayland
-Requires:       terra-gamescope-libs = %{version}-%{release}
+Requires:       terra-gamescope-libs = %{evr}
 %ifarch x86_64
-Requires:       terra-gamescope-libs(x86-32) = %{version}-%{release}
+Requires:       terra-gamescope-libs(x86-32) = %{evr}
 %endif
 Recommends:     mesa-dri-drivers
 Recommends:     mesa-vulkan-drivers
@@ -104,18 +100,17 @@ BuildRequires:  pkgconfig(xwayland)
 
 %description
 %{name} is the micro-compositor optimized for running video games on Wayland.
+This version is a fork by the OpenGamingCollective that improves support for
+additional hardware.
 
 %package libs
 Summary:	libs for %{name}
+Requires: terra-gamescope = %{evr}
 %description libs
 %summary
 
 %prep
-%setup -Tc
-# git clone --depth 1 --branch %%{gamescope_tag} %%{url}.git
-git clone %{url}.git $PWD
-git checkout %{gamescope_commit}
-git submodule update --init --recursive
+%git_clone %{url} %{ver}
 mkdir -p pkgconfig
 cp %{SOURCE0} pkgconfig/stb.pc
 
@@ -124,11 +119,13 @@ sed -i 's^../thirdparty/SPIRV-Headers/include/spirv/^/usr/include/spirv/^' src/m
 
 %autopatch -p1
 
-%build
+%conf
 export PKG_CONFIG_PATH=pkgconfig
 %meson \
     --auto-features=enabled \
     -Dforce_fallback_for=vkroots,wlroots,libliftoff
+
+%build
 %meson_build
 
 %install
@@ -152,5 +149,5 @@ export PKG_CONFIG_PATH=pkgconfig
 * Fri Mar 13 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Switch to OGC sources
 
-* Thu Jan 2 2025 Owen-sz <owen@fyralabs.com>
+* Thu Jan 2 2025 Owen Zimmerman <owen@fyralabs.com>
 - Package gamescope, port from Bazzite

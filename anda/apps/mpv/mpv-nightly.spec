@@ -1,9 +1,9 @@
 # Disable X11 for RHEL 10+
 %bcond x11 %[%{undefined rhel} || 0%{?rhel} < 10]
 
-%global commit 333857403f01d760d6cf6b80654cf7a734f0ece5
+%global commit 6fd80b2003873ef2bed09e78374549687a143236
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260504
+%global commit_date 20260923
 %global ver 0.41.0
 
 Name:           mpv-nightly
@@ -21,6 +21,7 @@ BuildRequires:  gcc
 BuildRequires:  libappstream-glib
 BuildRequires:  libatomic
 BuildRequires:  meson
+BuildRequires:  cmake
 BuildRequires:  python3-docutils
 
 BuildRequires:  perl(Encode)

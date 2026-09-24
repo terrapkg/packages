@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.2.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		API Rate Limit Decorator
 License:		MIT
 URL:			https://github.com/tomasbasham/ratelimit

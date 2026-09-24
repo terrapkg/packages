@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "yabs.spec"
 	}
+	labels {
+		nightly = 4
+	}
 }

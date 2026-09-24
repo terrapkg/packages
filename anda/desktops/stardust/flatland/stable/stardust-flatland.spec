@@ -2,7 +2,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-flatland
-Version:        0.51.1
+Version:        0.52.0
 Release:        1%{?dist}
 Epoch:          1
 Summary:        Flatland for Stardust XR
@@ -44,5 +44,5 @@ cp -r res/* %buildroot%_datadir/
 * Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
 - Switch to version based
 
-* Sat Sep 7 2024 Owen-sz <owen@fyralabs.com>
+* Sat Sep 7 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR Flatland

@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.2.2
-Release:		1%?dist
+Release:		2%?dist
 Summary:		An LTS port of Python's `audioop` module
 License:		PSF-2.0
 URL:			https://github.com/AbstractUmbra/audioop

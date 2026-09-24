@@ -1,15 +1,15 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-url-dispatcher
-%global commit 8aa052982ef67fdd130ee7b5d4731eb2162e4e47
-%forgemeta
 
 Name:           lomiri-url-dispatcher
-Version:        0.1.4
-Release:        1%?dist
+Version:        0.1.5
+
+%forgemeta
+Release:        1%{?dist}
 Summary:        A small library for handling URLs over dbus
 
 License:        LGPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-url-dispatcher
-Source0:        %{url}/-/archive/%commit/lomiri-url-dispatcher-%commit.tar.gz
+Source0:        %{url}/-/archive/%{version}/lomiri-url-dispatcher-%{version}.tar.gz
 
 BuildRequires: systemd-rpm-macros
 BuildRequires: cmake
@@ -44,7 +44,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 This package contains development files needed for lomiri-url-dispatcher.
 
 %prep
-%autosetup -n lomiri-url-dispatcher-%commit
+%autosetup -n lomiri-url-dispatcher-%{version}
 # Tests require static gtest library
 sed -i '/add_subdirectory(tests)/d' ./CMakeLists.txt
 

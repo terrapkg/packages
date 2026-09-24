@@ -1,0 +1,1 @@
+rpm.version(gh("rfrench3/bazzite-updater"));

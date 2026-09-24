@@ -1,5 +1,5 @@
 Name:           rom-properties
-Version:        2.7.1
+Version:        2.9
 Release:        1%{?dist}
 Summary:        File browser extension for managing video game ROM and disc images
 License:        GPL-2.0-only
@@ -135,6 +135,7 @@ KDE Plasma 6 file manager integration for rom-properties.
 %{_libdir}/qt6/plugins/kf6/overlayicon/overlayiconplugin_rom-properties-kf6.so
 %{_libdir}/qt6/plugins/kf6/propertiesdialog/rom-properties-kf6.so
 %{_libdir}/qt6/plugins/kf6/thumbcreator/RomThumbnailCreator-kf6.so
+%{_libdir}/qt6/plugins/kf6/thumbcreator/RomThumbnailCreator-kf6-dir.so
 
 %package utils
 Summary:        Utilities for rom-properties

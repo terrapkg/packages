@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Vencord Installer
+Type=Application
+GenericName=Discord Mod Installer
+Comment=Install and manage Vencord on your Discord installation
+Exec=vencord-installer
+Icon=dev.vencord.Installer
+Categories=Network;InstantMessaging;
+Keywords=discord;vencord;mod;
+StartupNotify=true

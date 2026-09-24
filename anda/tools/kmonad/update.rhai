@@ -1,1 +1,1 @@
-print(hackage("kmonad"));
+rpm.version(hackage("kmonad"));

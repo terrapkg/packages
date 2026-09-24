@@ -1,5 +1,5 @@
-%global commit 355715ce94c8fd9982d4a2c1e47f267503a5a769
-%global commit_date 20260426
+%global commit 13749b7bb11bc821956bfe115fade100e89e3925
+%global commit_date 20260922
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global pypi_name glasgow
@@ -15,7 +15,6 @@ Summary:		Scots Army Knife for electronics
 License:		0BSD AND Apache-2.0
 URL:			https://github.com/GlasgowEmbedded/glasgow
 Source0:		%url/archive/%commit/glasgow-%commit.tar.gz
-Patch0:         remove-dep-versions.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -44,7 +43,10 @@ Provides:       glasgow
 %_desc
 
 %prep
-%autosetup -p1 -n glasgow-%commit
+%autosetup -n glasgow-%commit
+
+%pyproject_patch_dependency amaranth:drop_constraints
+%pyproject_patch_dependency importlib-resources:drop_constraints
 
 %build
 export PDM_BUILD_SCM_VERSION=0.1.0

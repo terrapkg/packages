@@ -12,7 +12,7 @@
 
 # https://github.com/asdf-vm/asdf
 %global goipath         github.com/asdf-vm/asdf
-Version:                0.19.0
+Version:                0.20.2
 
 %gometa -f
 

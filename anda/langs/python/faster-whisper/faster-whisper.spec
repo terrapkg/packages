@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.2.1
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Faster Whisper transcription with CTranslate2
 License:		MIT
 URL:			https://github.com/SYSTRAN/faster-whisper

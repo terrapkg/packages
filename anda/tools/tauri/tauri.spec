@@ -1,13 +1,18 @@
 %global crate tauri-cli
 %undefine __brp_mangle_shebangs
 
+# rustix 0.37.x enables the obsolete rustc_attrs cfg when RUSTC_BOOTSTRAP=1.
+# The cargo macros set that variable for -Z avoid-dev-deps, which is not
+# needed here and is incompatible with the system compiler.
+%global __cargo_common_opts %{?_smp_mflags}
+
 Name:           rust-tauri
-Version:        2.11.0
+Version:        2.11.5
 Release:        1%{?dist}
 Summary:        Command line interface for building Tauri apps
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/create-tauri-app
-Source:         %{crates_source}
+Source:         %{terra_crates_source}
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  mold
@@ -31,10 +36,14 @@ Build smaller, faster, and more secure desktop and mobile applications with a we
 %cargo_prep_online
 
 %build
+%global __cargo /usr/bin/env CARGO_HOME=%{_cargo_home} RUSTFLAGS='%{build_rustflags}' /usr/bin/cargo
 %cargo_build
 
 %install
 install -Dpm755 target/rpm/cargo-tauri %{buildroot}%{_bindir}/tauri
+
+# cargo_license_online uses -Z avoid-dev-deps and needs bootstrap.
+%global __cargo /usr/bin/env CARGO_HOME=%{_cargo_home} RUSTC_BOOTSTRAP=1 RUSTFLAGS='%{build_rustflags}' /usr/bin/cargo
 %{cargo_license_online} > LICENSE.dependencies
 mkdir -p %{buildroot}{%{bash_completions_dir},%{fish_completions_dir},%{zsh_completions_dir}}
 

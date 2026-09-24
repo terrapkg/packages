@@ -1,0 +1,94 @@
+From c0025504abc2234f687a69a4cbbd05c800c61474 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Nicolas=20Vi=C3=A9ville?= <nicolas.vieville@uphf.fr>
+Date: Thu, 23 Jul 2026 19:27:26 +0200
+Subject: [PATCH] linux_osl.c and wl_linux.c: adapt compatibility with kernel
+ >= 7.2.x remove strncpy kernel function - Related to commit "Remove
+ strncpy()" (Kees Cook, 19 Jun 2026)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Nicolas Viéville <nicolas.vieville@uphf.fr>
+---
+ src/shared/linux_osl.c | 11 +++++++++++
+ src/wl/sys/wl_linux.c  | 14 +++++++++++++-
+ 2 files changed, 24 insertions(+), 1 deletion(-)
+
+diff --git a/src/shared/linux_osl.c b/src/shared/linux_osl.c
+index 1ac2074..bfb3622 100644
+--- a/src/shared/linux_osl.c
++++ b/src/shared/linux_osl.c
+@@ -475,8 +475,13 @@ osl_debug_malloc(osl_t *osh, uint size, int line, const char* file)
+ 	if (!basename)
+ 		basename = file;
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 2, 0)
++	// Related to commit "Remove strncpy()" (Kees Cook, 19 Jun 2026)
++	strscpy(p->file, basename, BCM_MEM_FILENAME_LEN);
++#else
+ 	strncpy(p->file, basename, BCM_MEM_FILENAME_LEN);
+ 	p->file[BCM_MEM_FILENAME_LEN - 1] = '\0';
++#endif
+ 
+ 	if (osh) {
+ 		p->prev = NULL;
+@@ -872,7 +877,13 @@ osl_strcpy(char *d, const char *s)
+ char*
+ osl_strncpy(char *d, const char *s, uint n)
+ {
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 2, 0)
++	// Related to commit "Remove strncpy()" (Kees Cook, 19 Jun 2026)
++	strscpy_pad(d, s, n);
++	return (d);
++#else
+ 	return (strncpy(d, s, n));
++#endif
+ }
+ 
+ char*
+diff --git a/src/wl/sys/wl_linux.c b/src/wl/sys/wl_linux.c
+index b0cb8b7..74c1937 100644
+--- a/src/wl/sys/wl_linux.c
++++ b/src/wl/sys/wl_linux.c
+@@ -1328,8 +1328,13 @@ wl_alloc_linux_if(wl_if_t *wlif)
+ 	bzero(dev, sizeof(struct net_device));
+ 	ether_setup(dev);
+ 
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 2, 0)
++	// Related to commit "Remove strncpy()" (Kees Cook, 19 Jun 2026)
++	strscpy(dev->name, intf_name, IFNAMSIZ);
++#else
+ 	strncpy(dev->name, intf_name, IFNAMSIZ-1);
+ 	dev->name[IFNAMSIZ-1] = '\0';
++#endif
+ 
+ 	priv_link = MALLOC(wl->osh, sizeof(priv_link_t));
+ 	if (!priv_link) {
+@@ -1550,8 +1555,13 @@ wl_get_driver_info(struct net_device *dev, struct ethtool_drvinfo *info)
+ #endif
+ 	bzero(info, sizeof(struct ethtool_drvinfo));
+ 	snprintf(info->driver, sizeof(info->driver), "wl%d", wl->pub->unit);
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(7, 2, 0)
++	// Related to commit "Remove strncpy()" (Kees Cook, 19 Jun 2026)
++	strscpy(info->version, EPI_VERSION_STR, sizeof(info->version));
++#else
+ 	strncpy(info->version, EPI_VERSION_STR, sizeof(info->version));
+ 	info->version[(sizeof(info->version))-1] = '\0';
++#endif
+ }
+ 
+ static int
+@@ -3069,7 +3079,9 @@ _wl_add_monitor_if(wl_task_t *task)
+ 	}
+ 
+ 	ASSERT(strlen(wlif->name) > 0);
+-#if __GNUC__ < 8
++#if __GNUC__ < 8 && LINUX_VERSION_CODE < KERNEL_VERSION(7, 2, 0)
++	// Test on kernel lower than 7.2 is related to commit "Remove strncpy()"
++	// (Kees Cook, 19 Jun 2026)
+ 	strncpy(wlif->dev->name, wlif->name, strlen(wlif->name));
+ #else
+ 	// Should have been:
+-- 
+2.55.0
+
