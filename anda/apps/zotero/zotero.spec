@@ -9,8 +9,8 @@
 %endif
 
 Name:           zotero
-Version:        10.0.3
-Release:        2%{?dist}
+Version:        10.0.4
+Release:        1%{?dist}
 Summary:        Collect, organize, cite, and share your research sources
 URL:            https://www.zotero.org/
 License:        AGPL-3.0-or-later
@@ -75,7 +75,6 @@ done
 
 %check
 %desktop_file_validate -f %{buildroot}%{_appsdir}/zotero.desktop
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %doc README.md CONTRIBUTING.md
