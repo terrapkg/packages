@@ -3,14 +3,14 @@ Version:        1.1
 %forgemeta
 
 Name:           fzy
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A fast, simple fuzzy text selector for the terminal
 
 License:        MIT
 URL:            %{forgeurl}
 Source0:        %{forgesource}
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  gcc
 BuildRequires:  make
@@ -35,5 +35,8 @@ scoring algorithm.
 %{_mandir}/man1/%{name}.1.*
 
 %changelog
-* Mon Mar 23 2026 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 1.1-2
+- Update packager
+
+* Mon Mar 23 2026 Olivia <git@olivia.sh>
 - Initial package

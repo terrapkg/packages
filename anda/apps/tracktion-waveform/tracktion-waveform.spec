@@ -3,7 +3,7 @@
 %global         __strip /bin/true
 
 Name:           tracktion-waveform
-Version:        13.5.13
+Version:        13.5.25
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 Release:        1%{?dist}
 Summary:        Tracktion Waveform DAW
@@ -21,7 +21,7 @@ ExclusiveArch:  x86_64 aarch64
 
 License:        Proprietary
 URL:            https://www.tracktion.com/products/waveform-free
-Source0:        https://downloads.tracktion.com/w%{majver}/%{truncated_ver}b/waveform%{majver}_%{version}_%{pkgarch}.deb
+Source0:        https://downloads.tracktion.com/w%{majver}/%{truncated_ver}/waveform%{majver}_%{version}_%{pkgarch}.deb
 
 BuildRequires:  tar
 BuildRequires:  binutils

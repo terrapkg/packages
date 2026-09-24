@@ -7,8 +7,10 @@ License:        BSD-3-Clause
 URL:            https://chromium.googlesource.com/chromiumos/platform/ec/
 
 Version:        %shortcommit
-Release:        2%{?dist}
+Release:        3%{?dist}
 Source0:        https://github.com/coreboot/chrome-ec/archive/refs/heads/release-R100-14526.B-main.tar.gz
+# fix warning in util/cbi-util.c
+Patch0:         cbi-util-compile.patch
 Conflicts:      ectool
 
 BuildRequires:  make gcc libftdi-devel libusb1-devel hostname
@@ -17,7 +19,7 @@ BuildRequires:  make gcc libftdi-devel libusb1-devel hostname
 A tool to query and send commands to ChromiumOS EC from userspace.
 
 %prep
-%autosetup -n chrome-ec-release-R100-14526.B-main
+%autosetup -n chrome-ec-release-R100-14526.B-main -p1
 
 %build
 BOARD=host %make_build utils-host

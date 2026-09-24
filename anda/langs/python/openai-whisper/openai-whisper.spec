@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		20250625
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Robust Speech Recognition via Large-Scale Weak Supervision
 License:		MIT
 URL:			https://github.com/openai/whisper

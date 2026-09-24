@@ -43,5 +43,5 @@ cp -r res/* %buildroot%_datadir/
 * Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
 - Switch to version based
 
-* Sat Sep 8 2024 Owen-sz <owen@fyralabs.com>
+* Sat Sep 8 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR black-hole

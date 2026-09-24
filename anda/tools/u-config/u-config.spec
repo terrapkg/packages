@@ -3,14 +3,14 @@ Version:        0.34.0
 %forgemeta
 
 Name:           u-config
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A smaller, simpler, portable pkg-config clone 
 
 License:        Unlicense
 URL:            %{forgeurl}
 Source0:        %{forgesource}
 
-Packager:       metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  gcc
 
@@ -41,5 +41,8 @@ install -Dm 655 u-config.1 %{buildroot}%{_mandir}/man1/u-config.1
 %{_mandir}/man1/u-config.1.*
 
 %changelog
-* Tue Mar 03 2026 metcya <metcya@gmail.com>
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.34.0-2
+- Update packager
+
+* Tue Mar 03 2026 Olivia <git@olivia.sh>
 - Initial package

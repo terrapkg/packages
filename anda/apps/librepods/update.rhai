@@ -1,4 +1,8 @@
-let tags = json_arr(get("https://api.github.com/repos/kavishdevar/librepods/tags"));
-let tag = tags.find(|t| t.name.starts_with("linux-v"));
-tag.name.crop(7);
-rpm.version(tag.name);
+let tag = gh("kavishdevar/librepods");
+if `[\d.]+-alpha.*`.find_all(tag).len == 0 && `[\d.]+-rc.*`.find_all(tag).len == 0 && `nightly-.*`.find_all(tag).len == 0 {
+  rpm.global("ver", tag);
+}
+
+if rpm.changed() {
+  rpm.release();
+}

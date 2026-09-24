@@ -1,7 +1,7 @@
 %dnl %define debug_package %{nil}
 
 %global goipath github.com/nwg-piotr/nwg-look
-Version:        1.1.0
+Version:        1.1.1
 
 %gometa -f
 

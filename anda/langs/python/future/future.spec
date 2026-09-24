@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.0.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Easy, clean, reliable Python 2/3 compatibility
 License:		MIT
 URL:			https://github.com/manrajgrover/halo

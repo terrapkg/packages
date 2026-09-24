@@ -19,8 +19,8 @@
 %endif
 
 Name:			scrcpy
-Version:		3.3.4
-Release:		1%?dist
+Version:		4.1
+Release:		1%{?dist}
 Summary:		Display and control your Android device
 License:		Apache-2.0 AND Proprietary
 URL:			https://github.com/Genymobile/scrcpy
@@ -31,7 +31,7 @@ Source10:       https://github.com/Genymobile/scrcpy/releases/download/v%{versio
 %endif
 Packager:		madonuko <mado@fyralabs.com>
 BuildRequires:	meson ninja-build cmake nasm gcc
-BuildRequires:	pkgconfig(sdl2)
+BuildRequires:	pkgconfig(sdl3)
 BuildRequires:	pkgconfig(libavcodec)
 BuildRequires:	pkgconfig(libavdevice)
 BuildRequires:	pkgconfig(libavformat)
@@ -123,6 +123,7 @@ install -Dm 644 %{SOURCE1} %{buildroot}%{_datadir}/licenses/LICENSE.android-sdk-
 %_datadir/applications/scrcpy.desktop
 %_datadir/bash-completion/completions/scrcpy
 %_iconsdir/hicolor/*/apps/scrcpy.png
+%_iconsdir/hicolor/256x256/apps/disconnected.png
 %_metainfodir/%{appid}.metainfo.xml
 %_mandir/man1/scrcpy.1.*
 

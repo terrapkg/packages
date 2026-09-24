@@ -4,6 +4,6 @@ project pkg {
 		spec = "xpad-noone.spec"
 	}
 	labels {
-	    nightly = 1
+	    nightly = 3
 	}
 }

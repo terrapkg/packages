@@ -1,0 +1,27 @@
+From d4e54e5c4c6ac4535eac193b4dfcf150d0b683a0 Mon Sep 17 00:00:00 2001
+From: Thomas Crider <gloriouseggroll@gmail.com>
+Date: Thu, 5 Jan 2023 02:30:22 -0500
+Subject: [PATCH] fix apparmor waydroid denials
+
+---
+ profiles/apparmor.d/usr.sbin.dnsmasq | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/profiles/apparmor.d/usr.sbin.dnsmasq b/profiles/apparmor.d/usr.sbin.dnsmasq
+index 9f5d8be..5aa8482 100644
+--- a/profiles/apparmor.d/usr.sbin.dnsmasq
++++ b/profiles/apparmor.d/usr.sbin.dnsmasq
+@@ -119,6 +119,10 @@ profile dnsmasq /usr/{bin,sbin}/dnsmasq flags=(attach_disconnected) {
+   # waydroid lxc-net pid file
+   @{run}/waydroid-lxc/dnsmasq.pid rw,
+ 
++  # waydroid
++  @{run}/waydroid-lxc/ r,
++  @{run}/waydroid-lxc/* rw,
++
+   profile libvirt_leaseshelper {
+     include <abstractions/base>
+ 
+-- 
+2.39.2
+
