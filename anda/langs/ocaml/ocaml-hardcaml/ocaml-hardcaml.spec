@@ -19,6 +19,7 @@ BuildRequires:  ocaml-ppx-stable-devel
 BuildRequires:  ocaml-bin-prot-devel
 BuildRequires:  ocaml-core-kernel-devel
 BuildRequires:  ocaml-ppx-log-devel
+BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
 
 ExclusiveArch:  %{ocaml_native_compiler}
 Provides:       hardcaml
