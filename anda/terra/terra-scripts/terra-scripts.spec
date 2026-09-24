@@ -28,7 +28,7 @@ install -Dm 755 changelog.sh %{buildroot}%{_bindir}/changelog
 install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
 install -Dm 755 panda.sh %{buildroot}%{_bindir}/panda
 install -Dm 755 icedtea-fetch.sh %{buildroot}%{_bindir}/icedtea-fetch
-Install -Dm 644 changelog.conf %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
+install -Dm 644 changelog.conf %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
 
 %files
 %doc README.md
