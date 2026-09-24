@@ -24,6 +24,8 @@ BuildRequires:  ocaml-ppx-expect-devel
 BuildRequires:  ocaml-typerep-devel
 BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
 BuildRequires:  ocaml-ppx-assert-devel
+BuildRequires:  ocaml-base-bigstring-devel
+BuildRequires:  ocaml-ppx-variants-conv-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
