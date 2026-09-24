@@ -20,6 +20,7 @@ BuildRequires:  ocaml-ppx-log-devel
 BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
 BuildRequires:  ocaml-ppx-variants-conv-devel
 BuildRequires:  ocaml-ppx-typerep-conv-devel
+BuildRequires:  ocaml-ppx-tydi-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
