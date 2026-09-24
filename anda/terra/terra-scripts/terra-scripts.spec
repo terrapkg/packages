@@ -2,13 +2,17 @@ Name:           terra-scripts
 Version:        0.2.3
 Release:        1%{?dist}
 Summary:        Helpful scripts for contributing to Terra
-License:        GPL-3.0-or-later
+License:        AGPL-3.0-or-later
 URL:            https://github.com/terrapkg/cli-tools
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Requires:       bash
 BuildArch:      noarch
 Packager:       Its-J <jonah@fyralabs.com>
 Recommends:     podman
+Recommends:     /usr/bin/tar
+Recommends:     /usr/bin/which
+Recommends:     /usr/bin/grep
+Recommends:     git
 
 %description
 %{summary}.
