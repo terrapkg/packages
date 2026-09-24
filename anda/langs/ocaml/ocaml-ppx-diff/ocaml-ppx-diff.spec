@@ -35,6 +35,7 @@ BuildRequires:  ocaml-ppx-disable-unused-warnings-devel
 BuildRequires:  ocaml-ppx-custom-printf-devel
 BuildRequires:  ocaml-ppx-bin-prot-devel
 BuildRequires:  ocaml-ppx-assert-devel
+BuildRequires:  ocaml-typerep-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
