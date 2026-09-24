@@ -22,6 +22,8 @@ BuildRequires:  ocaml-ppx-stable-devel
 BuildRequires:  ocaml-ppx-log-devel
 BuildRequires:  ocaml-ppx-expect-devel
 BuildRequires:  ocaml-typerep-devel
+BuildRequires:  ocaml-ppx-ignore-instrumentation-devel
+BuildRequires:  ocaml-ppx-assert-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
