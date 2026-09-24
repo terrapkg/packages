@@ -14,6 +14,7 @@ BuildRequires:  ocaml-ppxlib-devel
 BuildRequires:  ocaml-jst-config-devel
 BuildRequires:  ocaml-int-repr
 BuildRequires:  ocaml-ppx-jane-devel
+BuildRequires:  ocaml-ppx-stable-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
