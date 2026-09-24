@@ -12,6 +12,7 @@ Source0:        %{url}/archive/refs/tags/epoch-%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  cmake
+BuildRequires:  gcc-c++
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
