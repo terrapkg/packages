@@ -25,6 +25,7 @@ BuildRequires:  ocaml-ppx-typerep-conv-devel
 BuildRequires:  ocaml-ppx-tydi-devel
 BuildRequires:  ocaml-ppx-string-conv-devel
 BuildRequires:  ocaml-ppx-sexp-value-devel
+BuildRequires:  ocaml-ppx-pipebang-devel
 
 ExclusiveArch:  %{ocaml_native_compiler}
 Provides:       hardcaml
