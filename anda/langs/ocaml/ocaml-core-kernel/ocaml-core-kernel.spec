@@ -32,7 +32,7 @@ BuildRequires:  ocaml-base-devel
 BuildRequires:  ocaml-int-repr-devel
 BuildRequires:  ocaml-ppx-disable-unused-warnings-devel
 BuildRequires:  ocaml-ppx-custom-printf-devel
-
+BuildRequires:  ocaml-ppx-bin-prot-devel
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
