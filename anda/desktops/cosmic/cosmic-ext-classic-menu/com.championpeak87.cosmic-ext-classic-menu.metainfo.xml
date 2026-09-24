@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>com.championpeak87.cosmic-ext-classic-menu</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <icon type="local">/usr/share/icons/hicolor/scalable/apps/com.championpeak87.cosmic-ext-classic-menu.svg</icon>
+
+  <name>cosmic-ext-classic-menu</name>
+  <summary>A menu applet for COSMIC Desktop</summary>
+
+  <screenshots>
+    <screenshot type="default"><image>https://github.com/championpeak87/cosmic-ext-classic-menu/blob/master/screenshots/cosmic-ext-classic-menu-applet.png</image></screenshot>
+  </screenshots>
+
+  <description>
+    <p>
+        A menu applet for COSMIC Desktop.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">com.championpeak87.cosmic-ext-classic-menu</launchable>
+
+  <url type="homepage">https://github.com/championpeak87/cosmic-ext-classic-menu</url>
+
+  <keywords>
+    <keyword>Cosmic</keyword>
+  </keywords>
+</component>

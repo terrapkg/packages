@@ -4,6 +4,6 @@ project pkg {
         spec = "curl_cffi.spec"
     }
    	labels {
-      nightly = 1
+      nightly = 3
 	}
 }

@@ -2,7 +2,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-atmosphere
-Version:        0.51.1
+Version:        0.52.0
 Release:        1%{?dist}
 Epoch:          1
 Summary:        Environment, homespace, and setup client for Stardust XR
@@ -38,5 +38,5 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 * Sat Jan 10 2026 Owen Zimmerman <owen@fyralabs.com>
 - Switch to version based
 
-* Tue Sep 10 2024 Owen-sz <owen@fyralabs.com>
+* Tue Sep 10 2024 Owen Zimmerman <owen@fyralabs.com>
 - Package StardustXR atmosphere

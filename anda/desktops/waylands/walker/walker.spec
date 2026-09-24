@@ -4,12 +4,12 @@
 # prevent library files from being installed
 %global cargo_install_lib 0
 
-%global upstream_version v2.16.2
+%global upstream_version v2.17.0
 %global ver %{sub %upstream_version 2}
 
 Name:           walker
 Version:        %{gsub %{gsub %ver - ~ 1} - _}
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        Multi-Purpose Launcher with a lot of features. Highly Customizable and fast.
 
 SourceLicense:  GPL-3.0

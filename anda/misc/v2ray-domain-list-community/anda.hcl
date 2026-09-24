@@ -4,6 +4,6 @@ project pkg {
     spec = "v2ray-domain-list-community.spec"
   }
   labels {
-    nightly = 1
+    nightly = 2
   }
 }

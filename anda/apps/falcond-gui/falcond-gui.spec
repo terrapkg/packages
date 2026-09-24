@@ -1,6 +1,8 @@
+%global appid com.pikaos.falcondgui
+
 Name:           falcond-gui
-Version:        1.0.2
-Release:        1%?dist
+Version:        1.0.3
+Release:        1%{?dist}
 Summary:        A GTK4/LibAdwaita application to control and monitor the Falcond gaming optimization daemon
 SourceLicense:  MIT
 License:        (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND CC0-1.0 AND ISC AND (MIT OR Apache-2.0) AND MIT AND (Unlicense OR MIT)
@@ -30,12 +32,12 @@ falcond-gui provides a user-friendly graphical interface for managing falcond. I
 
 %install
 %cargo_install
-desktop-file-install res/%{name}.desktop
-install -Dm644 res/falcond.png -t %{buildroot}%{_hicolordir}/512x512/apps/
+%desktop_file_install res/%{appid}.desktop
+install -Dm644 res/%{appid}.png -t %{buildroot}%{_hicolordir}/512x512/apps/
 %{cargo_license_online} > LICENSE.dependencies
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
 %posttrans
 /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor/ &>/dev/null || :
@@ -44,8 +46,8 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %doc ../README.md
 %license ../LICENSE.md
 %{_bindir}/%{name}
-%{_hicolordir}/512x512/apps/falcond.png
-%{_appsdir}/%{name}.desktop
+%{_hicolordir}/512x512/apps/%{appid}.png
+%{_appsdir}/%{appid}.desktop
 
 %changelog
 * Thu Jan 1 2026 Gilver E. <roachy@fyralabs.com> - 1.0.0-1

@@ -1,14 +1,14 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-indicator-network
-%global commit 5c72fe38523e70377205cfa31c929d20fa8b29ac
-%forgemeta
 
 Name:       lomiri-indicator-network
-Version:    1.2.0
-Release:    1%?dist
+Version:    1.99.0
+
+%forgemeta
+Release:    1%{?dist}
 Summary:    The Network indicator for Ubuntu Touch
 License:    GPL-3.0 AND LGPL-3.0
 URL:        https://gitlab.com/ubports/development/core/lomiri-indicator-network
-Source0:    %{url}/-/archive/%commit/lomiri-indicator-network-%commit.tar.gz
+Source0:    %{url}/-/archive/%{version}/lomiri-indicator-network-%{version}.tar.gz
 
 BuildRequires: systemd-rpm-macros
 BuildRequires: qt-devel
@@ -52,7 +52,7 @@ BuildArch: noarch
 The %{name}-doc package contains documentation files for %{name}.
 
 %prep
-%autosetup -n lomiri-indicator-network-%commit
+%autosetup -n lomiri-indicator-network-%{version}
 
 %build
 %cmake -DENABLE_COVERAGE=OFF -DENABLE_UBUNTU_COMPAT=ON

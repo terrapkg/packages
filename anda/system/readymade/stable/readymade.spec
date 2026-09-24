@@ -1,6 +1,6 @@
 %global crate readymade
 Name:           readymade
-Version:        0.14.0
+Version:        0.14.1
 Release:        1%{?dist}
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
@@ -9,6 +9,9 @@ Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
 BuildRequires:	anda-srpm-macros rust-packaging mold
 BuildRequires:  pkgconfig(libhelium-1)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  glibc-all-langpacks
+BuildRequires:  pkgconfig(libacl)
 BuildRequires:  clang-devel
 BuildRequires:  cmake
 

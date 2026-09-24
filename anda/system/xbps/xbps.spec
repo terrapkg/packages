@@ -2,12 +2,12 @@
 
 Name:           xbps
 Version:        0.60.7
-Release:        2%?dist
+Release:        3%?dist
 License:        BSD-2-Clause AND BSD-3-Clause AND ISC
 Summary:        A binary package system designed and implemented from scratch
 URL:            https://github.com/void-linux/xbps
 Source:         %{url}/archive/refs/tags/%{version}.tar.gz
-Packager:       Metcya <metcya@gmail.com>
+Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  gcc
 BuildRequires:  make
@@ -73,8 +73,11 @@ featureful and portable as much as possible.
 /var/db/%name/keys/*.plist
 
 %changelog
-* Tue Feb 24 2026 Metcya <metcya@gmail.com> - 0.60.7-2
+* Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.60.7-3
+- Update packager
+
+* Tue Feb 24 2026 Olivia <git@olivia.sh> - 0.60.7-2
 - Fix broken dependency
 
-* Fri Dec 12 2025 Metcya <metcya@gmail.com> - 0.60.6
+* Fri Dec 12 2025 Olivia <git@olivia.sh> - 0.60.6
 - package xbps

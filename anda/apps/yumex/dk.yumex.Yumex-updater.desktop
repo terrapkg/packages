@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Yum Extender
+Exec=/usr/bin/yumex_updater
+Icon=yumex-update-symbolic
+Type=Application
+NoDisplay=true
