@@ -1,12 +1,12 @@
-%global commit 7885ea02c30bc3ff2c87aa1c51bf52f70f9f3106
-%global commit_date 20260913
+%global commit c5bf8d2043f8fb3e226b4a33b53797ba74e1e3c1
+%global commit_date 20260925
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-protostar-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Prototype application launcher for Stardust XR
 URL:            https://github.com/StardustXR/protostar
 Source0:        %url/archive/%commit/protostar-%commit.tar.gz
