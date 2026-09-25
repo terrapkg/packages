@@ -9,8 +9,8 @@ Summary:        Applet to control the brightness of external monitors
 URL:            https://github.com/cosmic-utils/cosmic-ext-applet-external-monitor-brightness
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 # Not in release
-Source1:        %{url}/blob/master/res/icons/display-symbolic.svg
-Source2:        %{url}/blob/master/res/metainfo.xml
+Source1:        %{url}/raw/master/res/icons/display-symbolic.svg
+Source2:        %{url}/raw/master/res/metainfo.xml
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  rust-xkbcommon-devel
 BuildRequires:  systemd-devel
