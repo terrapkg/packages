@@ -4,9 +4,9 @@
 
 Name:           stardust-xr-telescope-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        See the stars! Easy stardust setups to run on your computer
-SourceLicense:  MIT
+License:        MIT
 URL:            https://github.com/StardustXR/telescope
 Source0:        %url/archive/%commit.tar.gz
 Patch0:         libexec.patch
