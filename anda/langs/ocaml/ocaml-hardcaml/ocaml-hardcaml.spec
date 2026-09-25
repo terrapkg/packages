@@ -28,6 +28,7 @@ BuildRequires:  ocaml-ppx-sexp-value-devel
 BuildRequires:  ocaml-ppx-pipebang-devel
 BuildRequires:  ocaml-ppx-optional-devel
 BuildRequires:  ocaml-ppx-let-devel
+BuildRequires:  ocaml-ppx-fixed-literal-devel
 
 ExclusiveArch:  %{ocaml_native_compiler}
 Provides:       hardcaml
