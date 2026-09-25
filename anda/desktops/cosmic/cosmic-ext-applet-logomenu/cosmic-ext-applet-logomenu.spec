@@ -1,6 +1,6 @@
 %global appid dev.cappsy.CosmicExtAppletLogoMenu
 
-Name:           cosmic-ext-applet-logomenu
+Name:           cosmic-ext-classic-menu
 Version:        0.8.0
 Release:        2%{?dist}
 SourceLicense:  GPL-3.0-or-later
