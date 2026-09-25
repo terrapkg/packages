@@ -13,9 +13,9 @@ It allows you to use the Arduino Cloud to seamlessly upload code to any USB conn
 %global godocs          README.md
 
 Name:           arduino-create-agent
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Arduino Cloud Agent
-License:        AGPL-3.0
+License:        AGPL-3.0-or-later
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 URL:            %{gourl}
