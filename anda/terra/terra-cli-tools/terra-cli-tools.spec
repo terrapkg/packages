@@ -1,6 +1,6 @@
-Name:           terra-scripts
+Name:           terra-cli-tools
 Version:        0.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        AGPL-3.0-or-later
 URL:            https://github.com/terrapkg/cli-tools
@@ -14,8 +14,24 @@ Recommends:     /usr/bin/which
 Recommends:     /usr/bin/grep
 Recommends:     /usr/bin/cp
 Recommends:     git
+Obsoletes:      terra-scripts <= 0.3.0-1
 
 %description
+%{summary}.
+
+%package -n terra-maintainer-cli-tools
+Summary:    Helpful scripts for maintaining Terra and its infrastructure
+Requires:   %{name} = %{evr}
+Requires:   /usr/bin/rg
+Requires:   /usr/bin/cat
+Requires:   /usr/bin/rm
+Requires:   fish
+Requires:   subatomic-cli
+Requires:   python3
+Requires:   git
+Requires:   anda
+
+%description -n terra-maintainer-cli-tools
 %{summary}.
 
 %prep
@@ -29,6 +45,12 @@ install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
 install -Dm 755 panda.sh %{buildroot}%{_bindir}/panda
 install -Dm 755 icedtea-fetch.sh %{buildroot}%{_bindir}/icedtea-fetch
 install -Dm 644 changelog.conf %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
+install -Dm 755 satm-grepdel.fish %{buildroot}%{_bindir}/satm-grepdel
+install -Dm 755 satm-rm-stdin.sh %{buildroot}%{_bindir}/satm-rm-stdin
+install -Dm 755 sync-branches-ssh.sh %{buildroot}%{_bindir}/sync-branches-ssh
+install -Dm 755 sync-branches.sh %{buildroot}%{_bindir}/sync-branches
+install -Dm 755 terra-subtree-build.sh %{buildroot}%{_bindir}/terra-subtree-build
+install -Dm 755 terra_mass_rebuild.py %{buildroot}%{_bindir}/terra_mass_rebuild
 
 %files
 %doc README.md
@@ -41,7 +63,18 @@ install -Dm 644 changelog.conf %{buildroot}%{_sysconfdir}/xdg/terra-scripts/chan
 %{_bindir}/icedtea-fetch
 %{_sysconfdir}/xdg/terra-scripts/changelog.conf
 
+%files -n terra-maintainer-cli-tools
+%{_bindir}/satm-grepdel
+%{_bindir}/satm-rm-stdin
+%{_bindir}/sync-branches-ssh
+%{_bindir}/sync-branches
+%{_bindir}/terra-subtree-build
+%{_bindir}/terra_mass_rebuild
+
 %changelog
+* Fri Sep 25 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for 0.3.0, change name to terra-cli-tools
+
 * Wed Sep 23 2026 Owen Zimmerman <owen@fyralabs.com>
 - Update for 0.2.3
 
