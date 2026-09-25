@@ -13,6 +13,9 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
+%ifarch x86_64
+BuildRequires:  nasm
+%endif
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
