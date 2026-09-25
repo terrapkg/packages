@@ -32,6 +32,7 @@ BuildRequires:  ocaml-ppx-fixed-literal-devel
 BuildRequires:  ocaml-ppx-fields-conv-devel
 BuildRequires:  ocaml-ppx-disable-unused-warnings-devel
 BuildRequires:  ocaml-ppx-custom-printf-devel
+BuildRequires:  ocaml-ppx-bin-prot-devel
 
 ExclusiveArch:  %{ocaml_native_compiler}
 Provides:       hardcaml
