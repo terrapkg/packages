@@ -9,12 +9,12 @@
 
 Name:			python-%{pypi_name}
 Version:		%{ver}^%{commit_date}git.%{shortcommit}
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Python 3 runtime libraries for ANTLR 4
-License:		BSD
+License:		BSD-3-Clause
 URL:			https://www.antlr.org/
 Source0:		https://github.com/parrt/antlr4-python3/archive/%commit/antlr4-python3-%commit.tar.gz
-Source1:        https://github.com/s-a/license/blob/master/_licenses/bsd-3-clause.txt
+Source1:        https://github.com/s-a/license/raw/master/_licenses/bsd-3-clause.txt
 Patch0:         shebang.patch
 BuildArch:      noarch
 
