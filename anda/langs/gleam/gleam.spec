@@ -24,7 +24,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_build
 
 %install
-install -Dm755 target/rpm/gleam %{buildroot}%{_bindir}/gleam
+%crate_install_bin
 
 %{cargo_license_online} > LICENSE.dependencies
 
