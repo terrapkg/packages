@@ -6,7 +6,7 @@
 
 Name: gtk-theme-%theme_name
 Version: %{sanitized_ver}
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Orchis is a Material Design theme for GNOME/GTK based desktop environments
 License: GPL-3.0-only
 Url: https://github.com/vinceliuice/Orchis-theme/
@@ -112,6 +112,9 @@ mkdir -p %buildroot%_datadir/themes
   --tweaks dock    \
   --theme  all     \
   --dest   %buildroot%_datadir/themes
+
+%files
+%license COPYING
 
 %files common
 %_datadir/themes/%{original_theme_name}*/index.theme
