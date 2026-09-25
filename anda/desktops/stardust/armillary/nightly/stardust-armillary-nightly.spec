@@ -1,12 +1,12 @@
-%global commit f6388f05209195818418fdd9db061000b0f007af
-%global commit_date 20260320
+%global commit d807113b61a31fa9114a0c0797d8517fb9d4b604
+%global commit_date 20260925
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-armillary-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Model viewer for Stardust XR
 URL:            https://github.com/StardustXR/armillary
 Source0:        %url/archive/%commit/armillary-%commit.tar.gz
