@@ -16,6 +16,7 @@ BuildRequires:  libbpf-devel
 BuildRequires:  ninja-build
 BuildRequires:  spdlog-devel
 BuildRequires:  systemd-devel
+BuildRequires:  systemd-rpm-macros
 
 Requires:       elfutils-libelf
 Requires:       fmt
@@ -51,13 +52,13 @@ Recommends:     cachyos-ananicy-rules
 %cmake_install --component Runtime
 
 %post
-%systemd_user_post ananicy-cpp.service
+%systemd_post ananicy-cpp.service
 
 %preun
-%systemd_user_preun ananicy-cpp.service
+%systemd_preun ananicy-cpp.service
 
 %postun
-%systemd_user_postun_with_restart ananicy-cpp.service
+%systemd_postun_with_restart ananicy-cpp.service
 
 %files
 %license LICENSE
