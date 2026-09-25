@@ -19,7 +19,7 @@ BuildRequires:  gcc
 BuildRequires:  rust-udev-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
-%cargo_license_summary_online
+
 %description
 A low-budget and robust event check-in system built atop a Proxmark3 and
 set of ISO/IEC 14443-3 compliant smartcards which your attendees bring
