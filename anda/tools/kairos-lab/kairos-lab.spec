@@ -1,5 +1,5 @@
 %global goipath github.com/kairos-io/kairos-lab
-Version:        0.1.4
+Version:        0.1.5
 
 %gometa -f
 
