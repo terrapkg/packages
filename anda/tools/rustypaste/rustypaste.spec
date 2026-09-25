@@ -2,7 +2,7 @@
 
 Name:          rustypaste
 Version:       0.18.1
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       A minimal file upload/pastebin service
 License:       MIT AND Apache-2.0 AND (Apache-2.0 OR MIT) AND BSD-3-Clause AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND ISC AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT) AND (CC0-1.0 OR Artistic-2.0) AND CC0-1.0 AND ISC AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 URL:           https://github.com/orhun/rustypaste
@@ -37,13 +37,13 @@ install -Dm644 extra/systemd/rustypaste.tmpfiles %{buildroot}/usr/lib/tmpfiles.d
 %{cargo_license_online -a} > LICENSE.dependencies
 
 %post
-%systemd_post swayosd-libinput-backend.service
+%systemd_post rustypaste.service
 
 %preun
-%systemd_preun swayosd-libinput-backend.service
+%systemd_preun rustypaste.service
 
 %postun
-%systemd_postun_with_restart swayosd-libinput-backend.service
+%systemd_postun_with_restart rustypaste.service
 
 %files
 %doc README.md CHANGELOG.md RELEASE.md
