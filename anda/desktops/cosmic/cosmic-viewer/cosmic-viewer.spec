@@ -27,14 +27,13 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %build
 %cargo_build
-%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
 install -Dm0755 target/rpm/cosmic-viewer                        %{buildroot}%{_bindir}/cosmic-viewer
 install -Dm0644 res/%{appid}.desktop                            %{buildroot}%{_appsdir}/%{appid}.desktop
 install -Dm0644 res/%{appid}.metainfo.xml                       %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-install -Dm0644 res/icons/hicolor/128x128/apps/%{appid}.svg     %{buildroot}%{_scalableiconsdir}/%{appid}
+install -Dm0644 res/icons/hicolor/128x128/apps/%{appid}.svg     %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 
 %terra_appstream
 
@@ -44,7 +43,7 @@ install -Dm0644 res/icons/hicolor/128x128/apps/%{appid}.svg     %{buildroot}%{_s
 %{_bindir}/cosmic-viewer
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_scalableiconsdir}/%{appid}
+%{_scalableiconsdir}/%{appid}.svg
 
 %changelog
 * Thu Sep 24 2026 Owen Zimmerman <owen@fyralabs.com>
