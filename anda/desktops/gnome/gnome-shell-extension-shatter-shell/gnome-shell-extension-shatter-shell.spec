@@ -4,7 +4,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        2.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Advanced tiling window management extension for GNOME
 License:        GPL-3.0-only
 URL:            https://github.com/adil192/shatter-shell
@@ -17,7 +17,7 @@ Source1:        50_org.gnome.desktop.wm.keybindings.%{extension}.gschema.overrid
 Source2:        50_org.gnome.mutter.%{extension}.gschema.override
 Source3:        50_org.gnome.mutter.wayland.%{extension}.gschema.override
 Source4:        50_org.gnome.settings-daemon.plugins.media-keys.%{extension}.gschema.override
-Source5:        50_%{appid}.gschema.override
+Source5:        50_org.gnome.shell.%{extension}.gschema.override
 # downstream-only
 Patch:          0001-Remove-schema-handling-from-transpile.sh.patch
 
