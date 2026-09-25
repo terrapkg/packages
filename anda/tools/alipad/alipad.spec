@@ -19,7 +19,7 @@ BuildRequires:  gcc
 BuildRequires:  rust-udev-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
-
+%cargo_license_summary_online
 %description
 A low-budget and robust event check-in system built atop a Proxmark3 and
 set of ISO/IEC 14443-3 compliant smartcards which your attendees bring
@@ -32,13 +32,14 @@ speed-up the check-in process. To the attendees, it's faster, easier, and has a 
 
 %build
 %cargo_build
+%{cargo_license_online} > LICENSE.dependencies
 
 %install
 install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
 
 %files
 %doc README.md CHANGELOG.md
-%license LICENSE
+%license LICENSE LICENSE.dependencies
 %{_bindir}/%{name}
 
 %changelog
