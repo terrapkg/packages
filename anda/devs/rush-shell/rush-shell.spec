@@ -1,6 +1,6 @@
 Name:           rush-shell
 Version:        0.1.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fast terminal shell written in Rust
 URL:            https://github.com/isene/rush
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -23,7 +23,7 @@ completion, nick aliases, and bookmarks.
 %cargo_build
 
 %install
-install -Dm 755 target/release/rush %{buildroot}%{_bindir}/rush
+install -Dm 755 target/rpm/rush %{buildroot}%{_bindir}/rush
 %{cargo_license_online} > LICENSE.dependencies
 cp %{S:1} UNLICENSE
 
