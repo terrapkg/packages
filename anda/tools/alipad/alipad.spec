@@ -34,7 +34,6 @@ speed-up the check-in process. To the attendees, it's faster, easier, and has a 
 %cargo_build
 
 %install
-%cargo_license_summary_online
 install -Dm755 target/rpm/%{name} %{buildroot}%{_bindir}/%{name}
 
 %files
