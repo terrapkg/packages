@@ -1,6 +1,6 @@
-From a66a96e92638a71f3b054c5988d26b6a4544cd36 Mon Sep 17 00:00:00 2001
+From a2c33b718e306481bc4aacdbe2682c4df77bbf12 Mon Sep 17 00:00:00 2001
 From: Carl George <carl@george.computer>
-Date: Tue, 25 Aug 2026 16:58:07 +0100
+Date: Fri, 25 Sep 2026 20:19:38 +0100
 Subject: [PATCH] Remove schema handling from transpile.sh
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] Remove schema handling from transpile.sh
  1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/scripts/transpile.sh b/scripts/transpile.sh
-index b69450f..8630787 100755
+index 065cfd3..33a9231 100755
 --- a/scripts/transpile.sh
 +++ b/scripts/transpile.sh
 @@ -18,7 +18,6 @@ use_sass() {
@@ -16,10 +16,10 @@ index b69450f..8630787 100755
  
  echo Compiling into target/...
 -glib-compile-schemas schemas &
- for proj in ${PROJECTS}; do
-     use_tsc --p src/"${proj}"
- done
-@@ -33,7 +32,7 @@ echo
+ use_tsc
+ use_sass --no-source-map \
+     light.scss:target/light.css \
+@@ -30,7 +29,7 @@ echo
  
  echo Packing into _build/...
  rm -rf _build && mkdir _build
@@ -28,3 +28,6 @@ index b69450f..8630787 100755
  find _build -name "*.tsbuildinfo" -delete
  find _build -name "*.d.ts" -delete
  ls _build
+-- 
+2.55.0
+
