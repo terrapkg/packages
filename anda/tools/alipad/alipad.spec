@@ -6,12 +6,12 @@
 
 Name:           alipad
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Robust event check-in system
 URL:            https://git.sr.ht/~malicean/%{name}
 Source0:        %{url}/archive/%{commit}.tar.gz
 SourceLicense:  BSD-3-Clause
-License:        %{SourceLicense} AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Zlib OR Apache-2.0) AND (0BSD OR MIT OR Apache-2.0) AND Zlib AND MIT AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MPL-2.0 AND (# (MIT OR Apache-2.0) AND Unicode-3.0) AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (GPL-3.0 OR MIT) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
+License:        %{SourceLicense} AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Zlib OR Apache-2.0) AND (0BSD OR MIT OR Apache-2.0) AND Zlib AND MIT AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND MPL-2.0 AND (MIT OR Apache-2.0) AND Unicode-3.0) AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (GPL-3.0 OR MIT) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  cargo
