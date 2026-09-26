@@ -17,7 +17,7 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name}/linux-sbsa/%{name}-linux-sbsa-%{version}-archive.tar.xz
 Source3:        curand.pc
 
-Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{name}-%{major_package_version} < %{evr}
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
@@ -29,7 +29,7 @@ cores available in NVIDIA GPUs.
 
 %package devel
 Summary:        Development files for NVIDIA CUDA Random Number Generation library (cuRAND)
-Requires:       %{name}%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}%{_isa} = %{evr}
 Conflicts:      %{name}-devel-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
 
 %description devel
@@ -38,7 +38,7 @@ Generation library (cuRAND).
 
 %package static
 Summary:        Static libraries for NVIDIA CUDA Random Number Generation (cuRAND)
-Requires:       %{name}-devel%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-devel%{_isa} = %{evr}
 
 %description static
 This package contains static libraries for NVIDIA CUDA Random Number Generation
