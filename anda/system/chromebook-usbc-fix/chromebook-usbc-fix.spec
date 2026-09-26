@@ -8,9 +8,9 @@
 
 Name:           chromebook-usbc-fix
 Version:        %commit_date.%shortcommit
-Release:        2%?dist
+Release:        3%?dist
 
-License:        CCO
+License:        CCO-1.0
 Summary:        Fixes usbc on TigerLake and AlderLake Chromebooks
 URL:            https://github.com/Ultramarine-Linux/chromebook-usbc-fix
 Source:         %url/archive/%{commit}/chromebook-usbc-fix-%{commit}.tar.gz
@@ -19,16 +19,16 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{?systemd_requires}
 BuildRequires:  systemd-rpm-macros
 
-ExclusiveArch:  x86_64
+BuildArch:      noarch
 
 %description
-%summary
+%summary.
 
 %prep
 %autosetup -n chromebook-usbc-fix-%commit
 
 %install
-install -Dm755 chromebook-usbc.service %buildroot%{_unitdir}/chromebook-usbc.service
+install -Dm644 chromebook-usbc.service %buildroot%{_unitdir}/chromebook-usbc.service
 
 # These systemd services should be included in the preset file for Ultramarine Linux Chromebook images
 %post
