@@ -6,8 +6,6 @@ License:        AGPL-3.0-or-later
 URL:            https://github.com/terrapkg/cli-tools
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Requires:       bash
-Requires:       gh
-Requires:       jq
 BuildArch:      noarch
 Packager:       Its-J <jonah@fyralabs.com>
 Recommends:     podman
@@ -32,6 +30,8 @@ Requires:   subatomic-cli
 Requires:   python3
 Requires:   git
 Requires:   anda
+Requires:   gh
+Requires:   jq
 
 %description -n terra-maintainer-cli-tools
 %{summary}.
