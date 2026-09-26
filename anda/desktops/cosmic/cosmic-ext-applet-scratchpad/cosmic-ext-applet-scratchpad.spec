@@ -1,7 +1,7 @@
 %global appid io.github.hasmolam.cosmic-ext-applet-scratchpad
 
 Name:           cosmic-ext-applet-scratchpad
-Version:        0.1.1
+Version:        0.2.0
 Release:        1%{?dist}
 SourceLicense:  GPL-3.0-only
 License:        %{sourcelicense} AND Apache-2.0 AND (0BSD OR MIT OR Apache-2.0) AND (MIT OR Apache-2.0) AND (Unlicense OR MIT) AND MIT AND CC0-1.0 AND Unlicense AND BSD-2-Clause AND (Apache-2.0 OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND BSL-1.0 AND (MIT OR LGPL-3.0-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND Zlib AND MPL-2.0 AND Unicode-3.0 AND ISC AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (MIT OR Zlib OR Apache-2.0) AND (BSD-3-Clause OR Apache-2.0) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Apache-2.0 OR GPL-2.0-only) AND BSD-3-Clause AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND GPL-3.0-or-later
