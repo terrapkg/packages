@@ -28,7 +28,7 @@ Requires:      pkgconfig
 Requires:      gc-devel
 Requires:      pcre2-devel
 Recommends:    openssl-devel
-Recommends:    zlib-devel
+Recommends:    zlib-ng-compat-devel
 Recommends:    libyaml-devel
 Recommends:    libxml2-devel
 Recommends:    gmp-devel
