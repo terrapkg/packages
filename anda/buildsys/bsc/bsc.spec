@@ -3,8 +3,8 @@
 %global __requires_exclude libstp\\.so\\.1|libyices\\.so\\.2\\.6
 
 Name:           bsc
-Version:        2026.01
-Release:        2%{?dist}
+Version:        2026.07.1
+Release:        1%{?dist}
 Summary:        Bluespec Compiler (BSC)
 License:        BSD-3-Clause AND BSD-2-Clause AND MIT AND LGPL-2.0-or-later AND BSL-1.0
 URL:            https://github.com/B-Lang-org/bsc
