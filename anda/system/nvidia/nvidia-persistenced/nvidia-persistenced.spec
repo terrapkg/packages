@@ -1,6 +1,6 @@
 Name:             nvidia-persistenced
 Version:          615.71.09
-Release:          1%{?dist}
+Release:          2%{?dist}
 Summary:          A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:            3
 License:          GPL-2.0-or-later
@@ -8,6 +8,7 @@ URL:              http://www.nvidia.com/object/unix.html
 Source0:          https://download.nvidia.com/XFree86/%{name}/%{name}-%{version}.tar.bz2
 Source1:          %{name}.service
 Source2:          %{name}-sysusers.conf
+Source3:          60-%{name}.rules
 BuildRequires:    gcc
 BuildRequires:    libtirpc-devel
 BuildRequires:    m4
@@ -49,6 +50,9 @@ make %{?_smp_mflags} \
 # Systemd unit files
 install -Dpm644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
+# Udev rules
+install -Dpm644 %{SOURCE3} %{buildroot}%{_udevrulesdir}/60-nvidia-persistenced.rules
+
 # Systemd user
 install -Dpm644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
 
@@ -67,6 +71,7 @@ install -Dpm644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %{_sysusersdir}/%{name}.conf
+%{_udevrulesdir}/60-%{name}.rules
 
 %changelog
 * Mon Apr 13 2026 Gilver E. <roachy@fyralabs.com> - 3:595.58.03-2
