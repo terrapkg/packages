@@ -1,6 +1,6 @@
 Name:           terra-cli-tools
-Version:        0.3.1
-Release:        1%{?dist}
+Version:        0.3.2
+Release:        3%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        AGPL-3.0-or-later
 URL:            https://github.com/terrapkg/cli-tools
@@ -30,6 +30,8 @@ Requires:   subatomic-cli
 Requires:   python3
 Requires:   git
 Requires:   anda
+Requires:   gh
+Requires:   jq
 
 %description -n terra-maintainer-cli-tools
 %{summary}.
@@ -38,21 +40,22 @@ Requires:   anda
 %autosetup -n cli-tools-%{version}
 
 %install
-install -Dm 755 format-license.sh %{buildroot}%{_bindir}/format-license
-install -Dm 755 ldd-dnf.sh %{buildroot}%{_bindir}/ldd-dnf
-install -Dm 755 changelog.sh %{buildroot}%{_bindir}/changelog
-install -Dm 755 getcommit.sh %{buildroot}%{_bindir}/getcommit
-install -Dm 755 panda.sh %{buildroot}%{_bindir}/panda
-install -Dm 755 icedtea-fetch.sh %{buildroot}%{_bindir}/icedtea-fetch
-install -Dm 644 changelog.conf %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
+install -Dm 755 format-license.sh       %{buildroot}%{_bindir}/format-license
+install -Dm 755 ldd-dnf.sh              %{buildroot}%{_bindir}/ldd-dnf
+install -Dm 755 changelog.sh            %{buildroot}%{_bindir}/changelog
+install -Dm 755 getcommit.sh            %{buildroot}%{_bindir}/getcommit
+install -Dm 755 panda.sh                %{buildroot}%{_bindir}/panda
+install -Dm 755 icedtea-fetch.sh        %{buildroot}%{_bindir}/icedtea-fetch
+install -Dm 644 changelog.conf          %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
 
 # Maintainer scripts
-install -Dm 755 satm-grepdel.fish %{buildroot}%{_bindir}/satm-grepdel
-install -Dm 755 satm-rm-stdin.sh %{buildroot}%{_bindir}/satm-rm-stdin
-install -Dm 755 sync-branches-ssh.sh %{buildroot}%{_bindir}/sync-branches-ssh
-install -Dm 755 sync-branches.sh %{buildroot}%{_bindir}/sync-branches
-install -Dm 755 terra-subtree-build.sh %{buildroot}%{_bindir}/terra-subtree-build
-install -Dm 755 terra_mass_rebuild.py %{buildroot}%{_bindir}/terra_mass_rebuild
+install -Dm 755 satm-grepdel.fish       %{buildroot}%{_bindir}/satm-grepdel
+install -Dm 755 satm-rm-stdin.sh        %{buildroot}%{_bindir}/satm-rm-stdin
+install -Dm 755 sync-branches-ssh.sh    %{buildroot}%{_bindir}/sync-branches-ssh
+install -Dm 755 sync-branches.sh        %{buildroot}%{_bindir}/sync-branches
+install -Dm 755 terra-subtree-build.sh  %{buildroot}%{_bindir}/terra-subtree-build
+install -Dm 755 terra_mass_rebuild.py   %{buildroot}%{_bindir}/terra_mass_rebuild
+install -Dm 755 backports.sh            %{buildroot}%{_bindir}/backports
 
 %files
 %doc README.md
@@ -66,6 +69,7 @@ install -Dm 755 terra_mass_rebuild.py %{buildroot}%{_bindir}/terra_mass_rebuild
 %{_sysconfdir}/xdg/terra-scripts/changelog.conf
 
 %files -n terra-maintainer-cli-tools
+%{_bindir}/backports
 %{_bindir}/satm-grepdel
 %{_bindir}/satm-rm-stdin
 %{_bindir}/sync-branches-ssh
