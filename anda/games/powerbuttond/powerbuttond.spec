@@ -2,12 +2,13 @@
 
 Name:           powerbuttond
 Version:        4.2
-Release:        1%?dist
+Release:        2%?dist
 Summary:        Steam Deck power button daemon
 
 License:        BSD-2-clause
 URL:            https://gitlab.steamos.cloud/holo/powerbuttond
 Source:		    %{url}/-/archive/v%{version}/powerbuttond-v%{version}.tar.gz
+Patch0:         0001-wake-debounce-and-throttle.patch
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  pkgconfig(libudev)
@@ -56,5 +57,8 @@ udevadm trigger
 %{_prefix}/lib/udev/hwdb.d/70-steamos-power-button.hwdb
 
 %changelog
+* Fri Sep 25 2026 Nilesh Chakraborty <nilesh@users.noreply.github.com> - 4.2-2
+- Add post-resume debounce and press throttling to resolve sleep loop / boot lock on handhelds
+
 * Fri Jan 30 2026 madonuko <mado@fyralabs.com> - 4.0-1
 - Ported from https://copr-dist-git.fedorainfracloud.org/packages/gloriouseggroll/nobara-43/steamos-powerbuttond.git/tree/steamos-powerbuttond.spec?h=f43&id=071012e4c4b4a1eda8606753615c9f4ceef33458
