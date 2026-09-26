@@ -15,7 +15,7 @@ ExclusiveArch:  x86_64 aarch64
 Source0:        https://developer.download.nvidia.com/compute/cusparselt/redist/libcusparse_lt/linux-x86_64/libcusparse_lt-linux-x86_64-%{version}_cuda%{cuda_version}-archive.tar.xz
 Source1:        https://developer.download.nvidia.com/compute/cusparselt/redist/libcusparse_lt/linux-sbsa/libcusparse_lt-linux-sbsa-%{version}_cuda%{cuda_version}-archive.tar.xz
 
-Conflicts:      %{name}0 < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{name}0 < %{evr}
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
@@ -29,9 +29,9 @@ data types.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}%{?_isa} = %{evr}
 Requires:       cuda-devel%{?_isa}
-Conflicts:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{name}-devel < %{evr}
 
 %description    devel
 The %{name}-devel package contains libraries and header files for developing
@@ -39,7 +39,7 @@ applications that use cuSPARSELt.
 
 %package        static
 Summary:        Static libraries for %{name}
-Requires:       %{name}-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-devel%{?_isa} = %{evr}
 
 %description    static
 Static libraries for cuSPARSELt.
