@@ -1,0 +1,2 @@
+# Start NVIDIA persistenced when a GPU is present
+ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x030000|0x030200", TAG+="systemd", ENV{SYSTEMD_WANTS}+="nvidia-persistenced.service"
