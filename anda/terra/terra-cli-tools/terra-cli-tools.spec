@@ -1,6 +1,6 @@
 Name:           terra-cli-tools
-Version:        0.3.2
-Release:        3%{?dist}
+Version:        0.3.3
+Release:        1%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        AGPL-3.0-or-later
 URL:            https://github.com/terrapkg/cli-tools
