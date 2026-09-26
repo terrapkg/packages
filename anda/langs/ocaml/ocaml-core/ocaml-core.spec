@@ -40,6 +40,7 @@ BuildRequires:  ocaml-ppx-custom-printf-devel
 BuildRequires:  ocaml-ppx-bin-prot-devel
 BuildRequires:  ocaml-parsexp-devel
 BuildRequires:  ocaml-sexplib-devel
+BuildRequires:  ocaml-ppx-optcomp-devel
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 

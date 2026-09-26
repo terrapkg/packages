@@ -1,7 +1,7 @@
 Name:           ocaml-ppx-sexp-value
 Version:        0.17.0
 Release:        1%{?dist}
-Summary:        installs a ppx-jane executable
+Summary:        A ppx rewriter that simplifies building s-expressions from ocaml values
 
 License:        MIT
 URL:            https://github.com/janestreet/ppx_sexp_value
@@ -17,8 +17,7 @@ BuildRequires:  ocaml-ppx-here-devel
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-This package installs a ppx-jane executable,
-which is a ppx driver including all standard Jane Street ppx rewriters.
+%{summary}.
 
 %package        devel
 Summary:        Development files for %{name}

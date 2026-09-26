@@ -1,5 +1,5 @@
 Name:			depthcharge-tools
-Version:		0.7.0
+Version:		0.7.1
 Release:		1%{?dist}
 Summary:		Tools to manage the Chrome OS bootloader
 License:		GPL-2.0-or-later

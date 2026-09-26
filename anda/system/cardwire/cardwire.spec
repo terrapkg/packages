@@ -9,7 +9,7 @@
 
 Name:           cardwire
 Version:        0.12.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A GPU Manager for linux that uses eBPF LSM hooks to block GPUs
 URL:            https://opengamingcollective.github.io/cardwire/
 Source0:        https://github.com/OpenGamingCollective/cardwire/archive/refs/tags/v%{version}.tar.gz
@@ -113,7 +113,7 @@ install -Dm0755 target/rpm/cardwire             %{buildroot}%{_bindir}/cardwire
 install -Dm0755 target/rpm/cardwired            %{buildroot}%{_bindir}/cardwired
 install -Dm0644 assets/cardwired.service        %{buildroot}%{_unitdir}/cardwired.service
 install -Dm0644 assets/%{appid}.conf            %{buildroot}%{_datadir}/dbus-1/system.d/%{appid}.conf
-install -Dm0755 target/release/cardwire-gui     %{buildroot}%{_bindir}/cardwire-gui
+install -Dm0755 target/rpm/cardwire-gui     	%{buildroot}%{_bindir}/cardwire-gui
 install -Dm0644 assets/cardwire-gui.desktop     %{buildroot}%{_appsdir}/cardwire-gui.desktop
 install -Dm0644 assets/%{appid}.metainfo.xml    %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 for icon in assets/icons/*.svg; do

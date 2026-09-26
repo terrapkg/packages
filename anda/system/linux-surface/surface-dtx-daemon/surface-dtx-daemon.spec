@@ -5,7 +5,8 @@ Name:           surface-dtx-daemon
 Version:        %(echo %ver | sed 's/^v//;s/-/./g')
 Release:        5%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
-License:        MIT
+SourceLicense:  MIT
+License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (MIT OR Apache-2.0) AND (Unlicense OR MIT)
 URL:            https://github.com/linux-surface/surface-dtx-daemon
 Source:         %{url}/archive/refs/tags/%{ver}.tar.gz
 BuildRequires:  rust cargo dbus-devel anda-srpm-macros cargo-rpm-macros mold
@@ -51,6 +52,8 @@ install -D -m644 "target/_surface-dtx-userd" "%{buildroot}/usr/share/zsh/site-fu
 install -D -m644 "target/surface-dtx-daemon.fish" "%{buildroot}/usr/share/fish/vendor_completions.d/surface-dtx-daemon.fish"
 install -D -m644 "target/surface-dtx-userd.fish" "%{buildroot}/usr/share/fish/vendor_completions.d/surface-dtx-userd.fish"
 
+%{cargo_license_online} > LICENSE.dependencies
+
 %post
 %systemd_post surface-dtx-daemon.service
 %systemd_user_post surface-dtx-userd.service
@@ -64,6 +67,7 @@ install -D -m644 "target/surface-dtx-userd.fish" "%{buildroot}/usr/share/fish/ve
 %systemd_user_postun_with_restart surface-dtx-userd.service
 
 %files
+%license LICENSE LICENSE.dependencies
 %config /etc/dbus-1/system.d/org.surface.dtx.conf
 %config /etc/udev/rules.d/40-surface_dtx.rules
 %config(noreplace) /etc/surface-dtx/*

@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		3.5.3
-Release:		2%?dist
+Release:		3%?dist
 Summary:		A simple library and set of tools for parsing, modifying, and composing SRT files
 License:		MIT
 URL:			https://github.com/cdown/srt
@@ -50,8 +50,8 @@ Summary:        %{summary}
 %{_bindir}/srt-normalise
 %{_bindir}/srt-play
 %{_bindir}/srt-process
-%{python3_sitelib}/__pycache__/srt.cpython-314.opt-1.pyc
-%{python3_sitelib}/__pycache__/srt.cpython-314.pyc
+%{python3_sitelib}/__pycache__/srt.cpython-*.opt-1.pyc
+%{python3_sitelib}/__pycache__/srt.cpython-*.pyc
 %{python3_sitelib}/srt.py
 
 %changelog

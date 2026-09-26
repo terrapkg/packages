@@ -3,12 +3,12 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.2
-Release:		4%?dist
+Release:		5%?dist
 Summary:		Terminal Piano App
 License:		MIT
 URL:			https://github.com/eliasdorneles/upiano
 Source0:		%{pypi_source}
-Source1:        %url/blob/master/LICENSE
+Source1:        %url/raw/master/LICENSE
 BuildArch:      noarch
 
 BuildRequires:  python3-devel

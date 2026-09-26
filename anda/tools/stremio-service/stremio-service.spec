@@ -1,6 +1,6 @@
 Name:          stremio-service
 Version:       0.1.22
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Lets you run Stremio server in the background
 License:       GPL-2.0-only AND MPL-2.0 AND (Apache-2.0 OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND BSD-3-Clause AND (Unlicense OR MIT) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND CC0-1.0 AND ISC AND MIT AND (BSD-3-Clause OR MIT OR Apache-2.0) AND Apache-2.0 AND MIT AND (Apache-2.0 OR BSL-1.0) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT)
 URL:           https://github.com/Stremio/stremio-service
@@ -43,7 +43,7 @@ mkdir -p %{buildroot}%{_datadir}/stremio-service
 # This is weird but the file going into _bindir is a wrapper script for what is going into _datadir, upstream does this.
 # Also, yes all of these file permissions are correct.
 install -Dm755 resources/stremio-service                    %{buildroot}%{_bindir}/stremio-service
-install -Dm755 target/release/stremio-service               %{buildroot}%{_datadir}/stremio-service/stremio-service
+install -Dm755 target/rpm/stremio-service                   %{buildroot}%{_datadir}/stremio-service/stremio-service
 
 install -Dm755 resources/bin/linux/stremio-runtime          %{buildroot}%{_datadir}/stremio-service/stremio-runtime
 install -Dm755 resources/bin/linux/ffmpeg                   %{buildroot}%{_datadir}/stremio-service/ffmpeg

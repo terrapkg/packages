@@ -3,12 +3,12 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.0
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Simple (hopefuly useful) Proxy (as in the GoF design pattern) implementation for Python
 License:		BSD-2-clause
 URL:			https://github.com/jtushman/proxy_tools
 Source0:		%{pypi_source}
-Source1:		https://github.com/jtushman/proxy_tools/blob/master/LICENSE.txt
+Source1:		https://github.com/jtushman/proxy_tools/raw/master/LICENSE.txt
 BuildArch:      noarch
 
 BuildRequires:  python3-devel

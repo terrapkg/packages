@@ -1,7 +1,7 @@
 Name:           ocaml-ppx-jane
 Version:        0.17.0
-Release:        1%{?dist}
-Summary:        ppx rewriter that inlines the reverse application operator
+Release:        2%{?dist}
+Summary:        Standard Jane Street ppx rewriters
 
 License:        MIT
 URL:            https://github.com/janestreet/ppx_jane

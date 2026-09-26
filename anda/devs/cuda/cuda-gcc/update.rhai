@@ -10,6 +10,7 @@ let gcc = "";
 
 if releasever.starts_with("el") {
     gcc = bump::alma("gcc", "AppStream", labels.branch);
+    rpm.version(gcc);
     rpm.global("gcc_major", "%{nil}");
 } else if releasever >= "44" {
     gcc = bump::bodhi("gcc15", bump::as_bodhi_ver(labels.branch));

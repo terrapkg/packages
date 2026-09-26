@@ -17,7 +17,7 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name}/linux-sbsa/%{name}-linux-sbsa-%{version}-archive.tar.xz
 Source2:        cufile.pc
 
-Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{name}-%{major_package_version} < %{evr}
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
@@ -34,7 +34,7 @@ on the CPU.
 
 %package devel
 Summary:        Development files for NVIDIA GPUDirect Storage library (cuFile)
-Requires:       %{name}%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}%{_isa} = %{evr}
 Conflicts:      %{name}-devel-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
 
 %description devel
@@ -43,7 +43,7 @@ This package provides development files for the NVIDIA GPUDirect Storage library
 
 %package static
 Summary:        Static libraries for NVIDIA GPUDirect Storage library (cuFile)
-Requires:       %{name}-devel%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-devel%{_isa} = %{evr}
 
 %description static
 This package contains static libraries for NVIDIA GPUDirect Storage library
@@ -51,8 +51,8 @@ This package contains static libraries for NVIDIA GPUDirect Storage library
 
 %package tools
 Summary:        NVIDIA GPUDirect Storage library (cuFile) tools and samples
-Requires:       %{name}%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       gds-tools-%{major_package_version} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}%{_isa} = %{evr}
+Provides:       gds-tools-%{major_package_version} = %{evr}
 Obsoletes:      gds-tools-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
 
 %description tools
