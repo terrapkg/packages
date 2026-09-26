@@ -3,7 +3,7 @@
 
 Name:          crystal
 Version:       1.21.0
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       A general-purpose, object-oriented programming language
 License:       Apache-2.0
 Packager:      Carl Hörberg <carl@84codes.com>
@@ -27,12 +27,12 @@ Requires:      gcc
 Requires:      pkgconfig
 Requires:      gc-devel
 Requires:      pcre2-devel
-Requires:      openssl-devel
-Requires:      zlib-ng-devel
-Requires:      libyaml-devel
-Requires:      libxml2-devel
-Requires:      gmp-devel
-Suggests:      shards
+Recommends:    openssl-devel
+Recommends:    zlib-devel
+Recommends:    libyaml-devel
+Recommends:    libxml2-devel
+Recommends:    gmp-devel
+Recommends:    shards
 
 %description
 Crystal is a programming language with the following goals:
@@ -80,6 +80,10 @@ export PATH="%{_builddir}/crystal-%{bootstrap_version}-%{_arch}-alpine-linux-mus
 %{_mandir}/man1/crystal-tool-unreachable.1.gz
 
 %changelog
+* Thu Sep 24 2026 Carl Hörberg <carl@84codes.com> - 1.21.0-2
+- Make most dependencies Recommends instead of Requires, since they are only needed for certain features.
+- Depend on zlib-devel (zlib-ng-compat) instead of zlib-ng-devel, which is the native zlib-ng API and not what Crystal links against.
+
 * Thu Jul 16 2026 Owen Zimmerman <owen@fyralabs.com> - 1.21.0-1 
 - Update for 1.21.0, use %%pkg_completion
 
