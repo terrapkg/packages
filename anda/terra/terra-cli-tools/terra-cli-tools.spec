@@ -1,6 +1,6 @@
 Name:           terra-cli-tools
 Version:        0.3.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Helpful scripts for contributing to Terra
 License:        AGPL-3.0-or-later
 URL:            https://github.com/terrapkg/cli-tools
@@ -46,7 +46,6 @@ install -Dm 755 changelog.sh            %{buildroot}%{_bindir}/changelog
 install -Dm 755 getcommit.sh            %{buildroot}%{_bindir}/getcommit
 install -Dm 755 panda.sh                %{buildroot}%{_bindir}/panda
 install -Dm 755 icedtea-fetch.sh        %{buildroot}%{_bindir}/icedtea-fetch
-install -Dm 755 backports.sh            %{buildroot}%{_bindir}/backports
 install -Dm 644 changelog.conf          %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
 
 # Maintainer scripts
@@ -56,6 +55,7 @@ install -Dm 755 sync-branches-ssh.sh    %{buildroot}%{_bindir}/sync-branches-ssh
 install -Dm 755 sync-branches.sh        %{buildroot}%{_bindir}/sync-branches
 install -Dm 755 terra-subtree-build.sh  %{buildroot}%{_bindir}/terra-subtree-build
 install -Dm 755 terra_mass_rebuild.py   %{buildroot}%{_bindir}/terra_mass_rebuild
+install -Dm 755 backports.sh            %{buildroot}%{_bindir}/backports
 
 %files
 %doc README.md
