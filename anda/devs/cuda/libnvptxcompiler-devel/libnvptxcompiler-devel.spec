@@ -18,7 +18,7 @@ ExclusiveArch:  x86_64 aarch64
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-x86_64/%{real_name}-linux-x86_64-%{version}-archive.tar.xz
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 
-Conflicts:      %{real_name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{real_name}-%{major_package_version} < %{evr}
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
  
