@@ -16,10 +16,10 @@ Source0:        https://developer.download.nvidia.com/compute/nvjpeg2000/redist/
 Source1:        https://developer.download.nvidia.com/compute/nvjpeg2000/redist/libnvjpeg_2k/linux-sbsa/libnvjpeg_2k-linux-sbsa-%{version}_cuda%{cuda_version}-archive.tar.xz
 Source2:        nvjpeg2k.pc
 
-Obsoletes:      cuda-nvjpeg2k < %{?epoch:%{epoch}:}%{version}-%{release}
-Provides:       cuda-nvjpeg2k = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      cuda-nvjpeg2k < %{evr}
+Provides:       cuda-nvjpeg2k = %{evr}
 
-Conflicts:      libnvjpeg2k0 < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      libnvjpeg2k0 < %{evr}
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
@@ -32,7 +32,7 @@ GPU.
 
 %package devel
 Summary:        Development files for NVIDIA JPEG 2K decoder (nvJPEG2000)
-Requires:       %{name}%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}%{_isa} = %{evr}
 Requires:       cuda-devel%{_isa} >= 1:11
 Conflicts:      libnvjpeg2k-devel < %{?epoch:%{epoch}:}%{version}
 
@@ -42,7 +42,7 @@ This package provides development files for the NVIDIA JPEG 2K decoder (nvJPEG20
 %package static
 Summary:        Static libraries for NVIDIA JPEG 2K decoder (nvJPEG2000)
 Requires:       pkgconf-pkg-config
-Requires:       %{name}-devel%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-devel%{_isa} = %{evr}
 
 %description static
 This package contains static libraries for NVIDIA JPEG 2K decoder (nvJPEG2000).
