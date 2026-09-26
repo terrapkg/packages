@@ -18,10 +18,10 @@ Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source3:        cufft.pc
 Source4:        cufftw.pc
 
-Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{name}-%{major_package_version} < %{evr}
 # Drop in 11.7:
-Provides:       cuda-cufft = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      cuda-cufft < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       cuda-cufft = %{evr}
+Obsoletes:      cuda-cufft < %{evr}
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
@@ -33,11 +33,11 @@ GPU without having to develop your own custom GPU FFT implementation.
 
 %package devel
 Summary:        Development files for CUDA Fast Fourier Transform library (cuFFT)
-Requires:       %{name}%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}%{_isa} = %{evr}
 Conflicts:      %{name}-devel-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
 # Drop in 11.7:
-Provides:       cuda-cufft-devel = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      cuda-cufft-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       cuda-cufft-devel = %{evr}
+Obsoletes:      cuda-cufft-devel < %{evr}
 
 %description devel
 This package provides development files for the NVIDIA CUDA Fast Fourier
@@ -45,10 +45,10 @@ Transform library (cuFFT) libraries.
 
 %package static
 Summary:        Static libraries for CUDA Fast Fourier Transform library (cuFFT)
-Requires:       %{name}-devel%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-devel%{_isa} = %{evr}
 # Drop in 11.7:
-Provides:       cuda-cufft-static = %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes:      cuda-cufft-static < %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       cuda-cufft-static = %{evr}
+Obsoletes:      cuda-cufft-static < %{evr}
 
 %description static
 This package contains static libraries for CUDA Fast Fourier Transform library
