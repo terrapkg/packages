@@ -4,7 +4,7 @@
 %undefine __brp_mangle_shebangs %{python3_sitelib}/magika/cli/
 
 Name:			python-%{pypi_name}
-Version:		cli/v1.1.0
+Version:		1.1.0
 Release:		1%{?dist}
 Summary:		A tool to determine the content type of a file with deep learning
 License:		Apache-2.0
