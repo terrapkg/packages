@@ -17,7 +17,7 @@ Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{name
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{name}/linux-sbsa/%{name}-linux-sbsa-%{version}-archive.tar.xz
 Source3:        nvfatbin.pc
 
-Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{name}-%{major_package_version} < %{evr}
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
@@ -36,7 +36,7 @@ the CUDA toolkit, with the following advantages:
 
 %package devel
 Summary:        Development files for CUDA Fatbin Creator API
-Requires:       %{name}%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}%{_isa} = %{evr}
 Conflicts:      %{name}-devel-%{major_package_version} < %{?epoch:%{epoch}:}%{version}
 
 %description devel
@@ -44,7 +44,7 @@ This package provides development files for the CUDA Fatbin Creator API.
 
 %package static
 Summary:        Static libraries for CUDA Fatbin Creator API.
-Requires:       %{name}-devel%{_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       %{name}-devel%{_isa} = %{evr}
 
 %description static
 This package contains static libraries for CUDA Fatbin Creator API.
