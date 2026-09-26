@@ -67,9 +67,9 @@ install -Dm 755 backports.sh            %{buildroot}%{_bindir}/backports
 %{_bindir}/panda
 %{_bindir}/icedtea-fetch
 %{_sysconfdir}/xdg/terra-scripts/changelog.conf
-%{_bindir}/backports
 
 %files -n terra-maintainer-cli-tools
+%{_bindir}/backports
 %{_bindir}/satm-grepdel
 %{_bindir}/satm-rm-stdin
 %{_bindir}/sync-branches-ssh
