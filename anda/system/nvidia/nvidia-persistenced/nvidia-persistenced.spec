@@ -51,7 +51,7 @@ make %{?_smp_mflags} \
 install -Dpm644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
 # Udev rules
-install -Dpm644 %{SOURCE3} %{buildroot}%{_udevrulesdir}/60-nvidia-persistenced.rules
+install -Dpm644 %{SOURCE3} %{buildroot}%{_udevrulesdir}/60-%{name}.rules
 
 # Systemd user
 install -Dpm644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
