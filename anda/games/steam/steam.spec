@@ -7,7 +7,7 @@ Version:        1.0.0.87
 Release:        4%{?dist}
 Summary:        Installer for the Steam software distribution service
 # Redistribution and repackaging for Linux is allowed, see license file. udev rules are MIT.
-License:        Steam License Agreement and MIT
+License:        Steam License Agreement
 URL:            http://www.steampowered.com/
 ExclusiveArch:  x86_64
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
