@@ -46,8 +46,8 @@ install -Dm 755 changelog.sh            %{buildroot}%{_bindir}/changelog
 install -Dm 755 getcommit.sh            %{buildroot}%{_bindir}/getcommit
 install -Dm 755 panda.sh                %{buildroot}%{_bindir}/panda
 install -Dm 755 icedtea-fetch.sh        %{buildroot}%{_bindir}/icedtea-fetch
-install -Dm 644 changelog.conf          %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
 install -Dm 755 backports.sh            %{buildroot}%{_bindir}/backports
+install -Dm 644 changelog.conf          %{buildroot}%{_sysconfdir}/xdg/terra-scripts/changelog.conf
 
 # Maintainer scripts
 install -Dm 755 satm-grepdel.fish       %{buildroot}%{_bindir}/satm-grepdel
