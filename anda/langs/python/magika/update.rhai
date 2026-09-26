@@ -1,1 +1,3 @@
-rpm.version(gh("google/magika"));
+let v = gh("google/magika");
+v.crop(5);
+rpm.version(v);
