@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(upower-glib)
 BuildRequires:  pkgconfig(libnm)
+BuildRequires:  pkgconfig(enchant-2)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
