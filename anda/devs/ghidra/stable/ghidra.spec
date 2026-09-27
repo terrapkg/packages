@@ -129,6 +129,8 @@ done
 %files
 %{_bindir}/%{name}
 %{_libdir}/%{name}/
+%exclude %{_libdir}/%{name}/docs/
+%exclude %{_libdir}/%{name}/server/
 %{_appsdir}/ghidra.desktop
 %{_hicolordir}/*/apps/ghidra.png
 
