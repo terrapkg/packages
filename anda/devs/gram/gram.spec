@@ -11,7 +11,7 @@ Name:          gram
 Version:       3.3.0
 Release:       1%{?dist}
 Summary:       The Gram Code Editor
-SourceLicense: Apache-2.0 AND CC-A-SA-4.0 AND MIT AND OFL
+SourceLicense: Apache-2.0 AND CC-BY-SA-4.0 AND MIT AND OFL
 License:       FIXME
 URL:           https://gram-editor.com
 Source0:       https://codeberg.org/GramEditor/gram/archive/%{version}.tar.gz
@@ -116,5 +116,5 @@ done
 %{_libexecdir}/%{name}-editor
 
 %files doc
-%doc docs/*
 %license licenses/CC-A-SA-4.0
+%doc docs/*
