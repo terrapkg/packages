@@ -107,9 +107,6 @@ for folder in assets/themes/*; do
 done
 
 %files
-%license licenses/APACHE
-%license licenses/MIT
-%license OFL
 %license LICENSE*
 %doc README.md
 %doc CODE_OF_CONDUCT.md
@@ -118,5 +115,4 @@ done
 %{_libexecdir}/%{name}-editor
 
 %files doc
-%license licenses/CC-A-SA-4.0
 %doc docs/*
