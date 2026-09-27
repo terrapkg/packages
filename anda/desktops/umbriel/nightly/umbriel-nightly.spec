@@ -70,8 +70,18 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{_userunitdir}/umbriel.service
 %{_userunitdir}/umbriel-session.target
 %{_userunitdir}/umbriel-shutdown.target
-%dnl %{_datadir}/umbriel/shaders/reveal.glsl
-%dnl %{_datadir}/umbriel/shaders/squash.glsl
+%{_datadir}/umbriel/effects/animation/reveal/effect.toml
+%{_datadir}/umbriel/effects/animation/reveal/shader.glsl
+%{_datadir}/umbriel/effects/animation/squash/effect.toml
+%{_datadir}/umbriel/effects/animation/squash/shader.glsl
+%{_datadir}/umbriel/effects/border/pulse/effect.toml
+%{_datadir}/umbriel/effects/border/pulse/shader.glsl
+%{_datadir}/umbriel/effects/cursor/glow/effect.toml
+%{_datadir}/umbriel/effects/cursor/glow/shader.glsl
+%{_datadir}/umbriel/effects/screen/vignette/effect.toml
+%{_datadir}/umbriel/effects/screen/vignette/shader.glsl
+%{_datadir}/umbriel/effects/window/scanlines/effect.toml
+%{_datadir}/umbriel/effects/window/scanlines/shader.glsl
 
 %changelog
 * Mon Sep 07 2026 Cypress Reed <cypress@fyralabs.com>
