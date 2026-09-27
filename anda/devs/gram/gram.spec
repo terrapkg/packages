@@ -97,15 +97,17 @@ install -Dm644 crates/gram/resources/%{appid}.svg -t %{buildroot}%{_scalableicon
 
 # We love actual proper attribution, but holy hell is it a lot of licenses.
 for font in assets/fonts/*; do
-  cp assets/fonts/$font/LICENSE ./LICENSE.$font
+  cp assets/fonts/$font/LICENSE ./LICENSE.$font || :
 done
 
 for theme in assets/themes/*; do
-  cp assets/themes/$theme/LICENSE ./LICENSE.$theme
+  cp assets/themes/$theme/LICENSE ./LICENSE.$theme || :
 done
 
 %files
-%license licenses/*
+%license licenses/APACHE
+%license licenses/MIT
+%license OFL
 %license LICENSE*
 %doc README.md
 %doc CODE_OF_CONDUCT.md
@@ -115,3 +117,4 @@ done
 
 %files doc
 %doc docs/*
+%license licenses/CC-A-SA-4.0
