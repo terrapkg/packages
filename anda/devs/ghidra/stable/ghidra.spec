@@ -111,6 +111,13 @@ mkdir -p %{buildroot}/%{_libdir}/%{name}/ %{buildroot}/%{_bindir}/
 unzip %{ghidra_dir}/build/dist/ghidra_%{short_version}_DEV_%{lua: print(os.date("%Y%m%d"))}_linux*.zip
 cp -r ghidra_%{short_version}_DEV/* %{buildroot}/%{_libdir}/%{name}
 
+# Ghidra 12.1 installs the Windows and macOS builds of 7-Zip-JBinding next to
+# the Linux one; only the Linux library can load.
+# TODO: Drop this when updating to Ghidra 12.2, which removes sevenzipjbinding (GP-7095).
+pushd %{buildroot}/%{_libdir}/%{name}/Ghidra/Features/FileFormats/data/sevenzipnativelibs
+rm -r Windows-amd64 Mac-x86_64
+popd
+
 ln -s %{_libdir}/%{name}/ghidraRun %{buildroot}/%{_bindir}/%{name}
 
 ln -s %{_libdir}/%{name}/server/ghidraSvr %{buildroot}/%{_bindir}/%{name}-server
