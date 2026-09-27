@@ -40,7 +40,7 @@
 Name:           ghidra
 Version:        12.1.4
 %global         short_version %{version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        a software reverse engineering (SRE) framework
 Packager:       Jan200101 <sentrycraft123@gmail.com>
 
@@ -182,6 +182,14 @@ done
 %{_libdir}/%{name}/docs/
 
 %changelog
+* Sun Sep 27 2026 Dawid Wróbel <me@dawidwrobel.com> - 12.1.4-2
+- build for aarch64
+- use Z3 4.13.4
+- require a JDK
+- ship docs and server only in their subpackages
+- do not derive ghidra-docs dependencies from its files
+- remove the Windows and macOS 7-Zip-JBinding libraries
+
 * Sat Aug 22 2026 Jan200101 <sentrycraft123@gmail.com> - 12.1.3-2
 - fix application icons
 
