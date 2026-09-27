@@ -71,7 +71,7 @@ BuildRequires:  python-wheel0.37-wheel
 BuildRequires:  python-setuptools-wheel
 BuildRequires:  ImageMagick
 
-ExclusiveArch:  x86_64
+ExclusiveArch:  x86_64 aarch64
 
 %description
 Ghidra is a software reverse engineering (SRE) framework developed
