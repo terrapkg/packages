@@ -32,7 +32,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %install
 mkdir -p %{buildroot}%{_datadir}/%{name}/solar_sailer
 %cargo_install
-install -Dm644 res/solar_sailer/move_icon.glb %{buildroot}%{_datadir}/%{name}/solar_sailer/move_icon.glb
+install -Dm644 data/org.stardustxr.SolarSailer/move_icon.glb %{buildroot}%{_datadir}/%{name}/solar_sailer/move_icon.glb
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
