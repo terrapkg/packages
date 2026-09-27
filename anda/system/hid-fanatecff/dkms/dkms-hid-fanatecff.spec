@@ -1,6 +1,6 @@
-%global commit f7a3e1c5953035036665e0d78b527d04fde4d491
+%global commit bc2601ba230bae3bcc33f1ca51d722569b588d16
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260915
+%global commitdate 20260927
 %global ver 0.2.3
 %global debug_package %{nil}
 %global modulename hid-fanatecff
