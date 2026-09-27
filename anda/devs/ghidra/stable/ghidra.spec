@@ -34,7 +34,7 @@ Source7:        https://github.com/Z3Prover/z3/releases/download/z3-%{z3_ver}/z3
 Source8:        ghidra.desktop
 Patch0:         0001-Enabling-support-for-Python-3.15.patch
 
-Requires:       (java-%{jre_ver}-openjdk or temurin-%{jre_ver}-jdk)
+Requires:       (java-%{jre_ver}-openjdk-devel or temurin-%{jre_ver}-jdk)
 BuildRequires:  java-%{jre_ver}-openjdk-devel
 BuildRequires:  java-%{jre_ver}-openjdk-headless
 BuildRequires:  gradle
