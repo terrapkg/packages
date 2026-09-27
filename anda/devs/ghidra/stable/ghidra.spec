@@ -14,6 +14,12 @@
 
 %global         jre_ver         25
 
+# Do not generate Requires or Provides from the files in docs/, which
+# ghidra-docs ships. They include x86-64 GhidraClass exercise programs, and the
+# libraries those programs link against are not dependencies of the package.
+%global         __requires_exclude_from ^%{_libdir}/ghidra/docs/
+%global         __provides_exclude_from %{__requires_exclude_from}
+
 Name:           ghidra
 Version:        12.1.4
 %global         short_version %{version}
