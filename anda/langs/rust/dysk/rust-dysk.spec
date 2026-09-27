@@ -4,7 +4,7 @@
 %global crate dysk
 
 Name:           rust-dysk
-Version:        3.7.0
+Version:        3.7.1
 Release:        1%{?dist}
 Summary:        Give information on mounted filesystems
 
