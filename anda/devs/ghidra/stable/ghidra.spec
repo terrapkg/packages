@@ -12,7 +12,17 @@
 # (https://github.com/NationalSecurityAgency/ghidra/issues/9464).
 # TODO: Drop this override once Ghidra pins Z3 4.13.4 or later.
 %global         z3_ver          4.13.4
-%global         z3_platform     x64-glibc-2.35
+%global         z3_x64          z3-%{z3_ver}-x64-glibc-2.35
+%global         z3_arm64        z3-%{z3_ver}-arm64-glibc-2.34
+%ifarch aarch64
+%global         z3_source       9
+%global         z3_dir          %{z3_arm64}
+%global         ghidra_os       linux_arm_64
+%else
+%global         z3_source       7
+%global         z3_dir          %{z3_x64}
+%global         ghidra_os       linux_x86_64
+%endif
 
 %global         ghidra_dir      ghidra-Ghidra_%{version}_build
 %global         dep_dir         %{ghidra_dir}/dependencies
@@ -43,8 +53,9 @@ Source3:        https://sourceforge.net/projects/pydev/files/pydev/PyDev%20%{pyd
 Source4:        https://archive.eclipse.org/tools/cdt/releases/%{cdt_short_ver}/cdt-%{cdt_ver}.zip
 Source5:        https://github.com/NationalSecurityAgency/ghidra-data/raw/Ghidra_%{version}/lib/java-sarif-%{sarif_ver}-modified.jar
 Source6:        https://github.com/NationalSecurityAgency/ghidra-data/raw/Ghidra_%{version}/Debugger/dbgmodel.tlb#/dbgmodel_%{version}.tlb
-Source7:        https://github.com/Z3Prover/z3/releases/download/z3-%{z3_ver}/z3-%{z3_ver}-%{z3_platform}.zip
+Source7:        https://github.com/Z3Prover/z3/releases/download/z3-%{z3_ver}/%{z3_x64}.zip
 Source8:        ghidra.desktop
+Source9:        https://github.com/Z3Prover/z3/releases/download/z3-%{z3_ver}/%{z3_arm64}.zip
 Patch0:         0001-Enabling-support-for-Python-3.15.patch
 
 Requires:       (java-%{jre_ver}-openjdk-devel or temurin-%{jre_ver}-jdk)
@@ -84,14 +95,14 @@ Requires:       %{name}%{?_isa} = %{version}
 Ghidra Documentation
 
 %prep
-%setup -q -c %{name}-%{version} -a 3 -a 7
+%setup -q -c %{name}-%{version} -a 3 -a %{z3_source}
 
 pushd %{ghidra_dir}
 %patch -P0 -p1
 popd
 
 mkdir -p %{dep_dir}/{GhidraDev,GhidraServer,Debugger-agent-dbgeng} %{flat_repo_dir} %{fid_dir}
-mkdir -p %{dep_dir}/SymbolicSummaryZ3/os/linux_x86_64
+mkdir -p %{dep_dir}/SymbolicSummaryZ3/os/%{ghidra_os}
 
 cp "%{SOURCE1}" "%{flat_repo_dir}"
 cp "%{SOURCE2}" "%{dep_dir}/GhidraServer"
@@ -99,8 +110,8 @@ cp "%{SOURCE3}" "%{dep_dir}/GhidraDev"
 cp "%{SOURCE4}" "%{dep_dir}/GhidraDev"
 cp "%{SOURCE5}" "%{flat_repo_dir}"
 cp "%{SOURCE6}" "%{dep_dir}/Debugger-agent-dbgeng/dbgmodel.tlb"
-cp z3-%{z3_ver}-%{z3_platform}/bin/*.jar "%{flat_repo_dir}"
-cp z3-%{z3_ver}-%{z3_platform}/bin/libz3*.so "%{dep_dir}/SymbolicSummaryZ3/os/linux_x86_64"
+cp %{z3_dir}/bin/*.jar "%{flat_repo_dir}"
+cp %{z3_dir}/bin/libz3*.so "%{dep_dir}/SymbolicSummaryZ3/os/%{ghidra_os}"
 
 mkdir -p "%{dep_dir}/Debugger-rmi-trace"
 cp %{python_wheel_dir}/setuptools-*-py3-none-any.whl "%{dep_dir}/Debugger-rmi-trace"
