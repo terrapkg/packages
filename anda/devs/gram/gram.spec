@@ -96,12 +96,14 @@ install -Dm644 crates/gram/resources/%{appid}.svg -t %{buildroot}%{_scalableicon
 #cp assets/icons/LICENSE LICENSE.icons
 
 # We love actual proper attribution, but holy hell is it a lot of licenses.
-for font in assets/fonts/*; do
-  cp assets/fonts/$font/LICENSE ./LICENSE.$font || :
+for folder in assets/fonts/*; do
+  font=$(basename $folder)
+  cp $folder/LICENSE ./LICENSE.$font
 done
 
-for theme in assets/themes/*; do
-  cp assets/themes/$theme/LICENSE ./LICENSE.$theme || :
+for folder in assets/themes/*; do
+  theme=$(basename $folder)
+  cp $folder/LICENSE ./LICENSE.$theme
 done
 
 %files
