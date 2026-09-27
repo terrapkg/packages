@@ -4,8 +4,15 @@
 %global         cdt_ver         8.6.0
 %global         cdt_short_ver   %{expand:%(v=%{cdt_ver}; echo ${v%.*})}
 %global         sarif_ver       2.1
-%global         z3_ver          4.13.0
-%global         z3_glibc        2.31
+# Ghidra pins Z3 4.13.0, whose Linux arm64 release mistakenly contains x86-64
+# binaries (https://github.com/Z3Prover/z3/issues/7287). 4.13.2 fixes that,
+# 4.13.3 is the first Linux arm64 release to include the Java bindings, and
+# 4.13.4 fixes issues in those bindings. Ghidra only stays on 4.13.0 to keep
+# building with RHEL 8's pre-C++20 compiler
+# (https://github.com/NationalSecurityAgency/ghidra/issues/9464).
+# TODO: Drop this override once Ghidra pins Z3 4.13.4 or later.
+%global         z3_ver          4.13.4
+%global         z3_platform     x64-glibc-2.35
 
 %global         ghidra_dir      ghidra-Ghidra_%{version}_build
 %global         dep_dir         %{ghidra_dir}/dependencies
@@ -36,7 +43,7 @@ Source3:        https://sourceforge.net/projects/pydev/files/pydev/PyDev%20%{pyd
 Source4:        https://archive.eclipse.org/tools/cdt/releases/%{cdt_short_ver}/cdt-%{cdt_ver}.zip
 Source5:        https://github.com/NationalSecurityAgency/ghidra-data/raw/Ghidra_%{version}/lib/java-sarif-%{sarif_ver}-modified.jar
 Source6:        https://github.com/NationalSecurityAgency/ghidra-data/raw/Ghidra_%{version}/Debugger/dbgmodel.tlb#/dbgmodel_%{version}.tlb
-Source7:        https://github.com/Z3Prover/z3/releases/download/z3-%{z3_ver}/z3-%{z3_ver}-x64-glibc-%{z3_glibc}.zip
+Source7:        https://github.com/Z3Prover/z3/releases/download/z3-%{z3_ver}/z3-%{z3_ver}-%{z3_platform}.zip
 Source8:        ghidra.desktop
 Patch0:         0001-Enabling-support-for-Python-3.15.patch
 
@@ -92,8 +99,8 @@ cp "%{SOURCE3}" "%{dep_dir}/GhidraDev"
 cp "%{SOURCE4}" "%{dep_dir}/GhidraDev"
 cp "%{SOURCE5}" "%{flat_repo_dir}"
 cp "%{SOURCE6}" "%{dep_dir}/Debugger-agent-dbgeng/dbgmodel.tlb"
-cp z3-%{z3_ver}-x64-glibc-%{z3_glibc}/bin/*.jar "%{flat_repo_dir}"
-cp z3-%{z3_ver}-x64-glibc-%{z3_glibc}/bin/libz3*.so "%{dep_dir}/SymbolicSummaryZ3/os/linux_x86_64"
+cp z3-%{z3_ver}-%{z3_platform}/bin/*.jar "%{flat_repo_dir}"
+cp z3-%{z3_ver}-%{z3_platform}/bin/libz3*.so "%{dep_dir}/SymbolicSummaryZ3/os/linux_x86_64"
 
 mkdir -p "%{dep_dir}/Debugger-rmi-trace"
 cp %{python_wheel_dir}/setuptools-*-py3-none-any.whl "%{dep_dir}/Debugger-rmi-trace"
