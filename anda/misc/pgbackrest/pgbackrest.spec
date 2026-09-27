@@ -1,5 +1,5 @@
 Name:           pgbackrest
-Version:        2.59.1
+Version:        2.59.2
 Release:        1%{?dist}
 Summary:        Reliable PostgreSQL Backup & Restore
 URL:            https://github.com/pgbackrest/pgbackrest
