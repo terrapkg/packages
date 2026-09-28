@@ -26,6 +26,7 @@ BuildRequires: gcc
 BuildRequires: gcc-c++
 %endif
 BuildRequires: gettext-envsubst
+BuildRequires: libappstream-glib
 BuildRequires: libxkbcommon-x11-devel
 BuildRequires: mold
 BuildRequires: openssl-devel
@@ -54,7 +55,7 @@ export APP_CLI="gram"
 export APP="%{_libexecdir}/gram-editor"
 export APP_ARGS="%U"
 export GRAM_UPDATE_EXPLANATION="Run dnf up to update Gram from Terra."
-export GRAM_RELEASE_CHANNEL=stable
+export GRAM_RELEASE_CHANNEL="stable"
 export BRANDING_LIGHT="#e9aa6a"
 export BRANDING_DARK="#1a5fb4"
 
@@ -78,6 +79,7 @@ install -Dm755 target/rpm/cli %{buildroot}%{_bindir}/gram
 
 %desktop_file_install %{appid}.desktop
 install -Dm644 crates/gram/resources/%{appid}.svg -t %{buildroot}%{_scalableiconsdir}
+install -Dm644 %{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 
 # Funny Zed license solution
 %{__cargo} tree                                                             \
@@ -93,18 +95,30 @@ install -Dm644 crates/gram/resources/%{appid}.svg -t %{buildroot}%{_scalableicon
     | sort -u                                                               \
 > LICENSE.dependencies
 
+# All of these are currently commented because they affect the NEXT release of Gram, afterwards they have to be added. For now the commands below it are correct.
+
 #cp assets/icons/LICENSE LICENSE.icons
 
 # We love actual proper attribution, but holy hell is it a lot of licenses.
-for folder in assets/fonts/*; do
-  font=$(basename $folder)
-  cp $folder/LICENSE ./LICENSE.$font
-done
+#for folder in assets/fonts/*; do
+#  font=$(basename $folder)
+#  cp $folder/LICENSE ./LICENSE.$font
+#done
 
-for folder in assets/themes/*; do
-  theme=$(basename $folder)
-  cp $folder/LICENSE ./LICENSE.$theme
-done
+#for folder in assets/themes/*; do
+#  theme=$(basename $folder)
+#  cp $folder/LICENSE ./LICENSE.$theme
+#done
+
+# Remove next release.
+cp assets/icons/LICENSES ./LICENSE.icons
+cp assets/themes/LICENSES ./LICENSE.themes
+cp assets/fonts/fira-sans/OFL.txt ./LICENSE.fira-sans
+cp assets/fonts/myna/LICENSE ./LICENSE.myna
+
+%check
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
+%desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
 %license LICENSE*
@@ -116,3 +130,7 @@ done
 
 %files doc
 %doc docs/*
+
+%changelog
+* Sun Sep 27 2026 Gilver E. <roachy@fyralabs.com> - 3.3.0-1
+- Initial package
