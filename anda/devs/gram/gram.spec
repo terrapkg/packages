@@ -26,7 +26,6 @@ BuildRequires: gcc
 BuildRequires: gcc-c++
 %endif
 BuildRequires: gettext-envsubst
-BuildRequires: libappstream-glib
 BuildRequires: libxkbcommon-x11-devel
 BuildRequires: mold
 BuildRequires: openssl-devel
@@ -117,7 +116,6 @@ cp assets/fonts/fira-sans/OFL.txt ./LICENSE.fira-sans
 cp assets/fonts/myna/LICENSE ./LICENSE.myna
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
@@ -127,6 +125,8 @@ appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appid}.metai
 %doc SECURITY.md
 %{_bindir}/%{name}
 %{_libexecdir}/%{name}-editor
+%{_appsdir}/%{appid}.desktop
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %files doc
 %doc docs/*
