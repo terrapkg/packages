@@ -17,7 +17,7 @@ BuildRequires:  python3-pip
 BuildRequires:  python3-cython
 BuildRequires:  python3-cuda-pathfinder
 BuildRequires:  cuda-nvrtc-devel
-%dnl BuildRequires:  libnvvm-devel
+BuildRequires:  libnvvm-devel
 BuildRequires:  libcufile-devel
 BuildRequires:  cuda-profiler-devel
 BuildRequires:  cuda-cudart-devel
