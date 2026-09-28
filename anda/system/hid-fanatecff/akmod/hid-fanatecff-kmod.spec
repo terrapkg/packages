@@ -54,3 +54,4 @@ done
 %changelog
 * Thu Apr 02 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Initial package
+
