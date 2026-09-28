@@ -12,6 +12,7 @@ BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
+BuildRequires:  python3-setuptools
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
