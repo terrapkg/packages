@@ -126,6 +126,7 @@ cp assets/fonts/myna/LICENSE ./LICENSE.myna
 %{_bindir}/%{name}
 %{_libexecdir}/%{name}-editor
 %{_appsdir}/%{appid}.desktop
+%{_scalableiconsdir}/%{appid}.svg
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %files doc
