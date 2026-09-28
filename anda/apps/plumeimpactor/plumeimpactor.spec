@@ -2,7 +2,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           plumeimpactor
-Version:        2.6.3
+Version:        2.6.5
 Release:        1%{?dist}
 Summary:        Cross-platform & feature rich iOS/iPadOS/tvOS sideloading application
 URL:            https://github.com/claration/Impactor
