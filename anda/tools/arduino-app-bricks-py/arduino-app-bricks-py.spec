@@ -1,12 +1,12 @@
 %global pypi_name app-bricks-py
 %global _desc The code of the Arduino App Lab Bricks
 
-%global ver release/0.12.0
+%global ver bricks/0.13.0
 %global sanitized_ver %(echo %{ver} | sed 's|release/||')
 
 Name:			%{pypi_name}
 Version:		%sanitized_ver
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		The code of the Arduino App Lab Bricks
 License:		MPL-2.0
 URL:			https://github.com/arduino/app-bricks-py
