@@ -1,6 +1,6 @@
 Name:           powerstation
 Version:        0.8.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Daemon for controlling TDP and performance over DBus
 
 SourceLicense:  GPL-3.0-or-later
