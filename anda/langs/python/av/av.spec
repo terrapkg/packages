@@ -46,6 +46,7 @@ Summary:        %{summary}
 %doc README.md AUTHORS.rst
 %license LICENSE.txt
 %{_bindir}/pyav
+%{python3_sitearch}/av-%{version}.dist-info/licenses/__pycache__/AUTHORS.cpython-*.pyc
 
 %changelog
 * Fri Jan 16 2026 Owen Zimmerman <owen@fyralabs.com>
