@@ -37,7 +37,7 @@ done
 %{cargo_license_online} > LICENSE.dependencies
 
 %files
-%doc README.md SECURITY.md
+%doc README.md
 %license LICENSE
 %{_bindir}/plumeimpactor
 %{_hicolordir}/*x*/apps/%{appid}.png
