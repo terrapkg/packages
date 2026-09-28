@@ -7,8 +7,8 @@ Release:        1%{?dist}
 Summary:        Cross-platform & feature rich iOS/iPadOS/tvOS sideloading application
 URL:            https://github.com/claration/Impactor
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-SourceLicense:  MIT AND BSD-3-Clause
-License:        MIT AND BSD-3-Clause
+SourceLicense:  MIT AND MPL-2.0 AND Apache-2.0 AND 
+License:        %{sourcelicense} AND #fixme
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(glib-2.0)
