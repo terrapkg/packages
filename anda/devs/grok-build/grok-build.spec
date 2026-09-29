@@ -90,13 +90,8 @@ rm -f rust-toolchain.toml
 # network at build time. Use the system protoc instead (see PROTOC export in
 # %%build, protobuf-compiler).
 rm -f bin/protoc
-# Keep the snapshot's dependency lock: %%cargo_prep_online removes Cargo.lock,
-# which would float every one of the ~1200 vendored crates to the latest
-# semver-compatible release on crates.io and make builds unreproducible (the
-# license review above is pinned to the lockfile).
-cp -p Cargo.lock Cargo.lock.rpmsave
+
 %cargo_prep_online
-mv -f Cargo.lock.rpmsave Cargo.lock
 
 %build
 export PROTOC=%{_bindir}/protoc
@@ -114,7 +109,7 @@ export %{cargo_dist_env}
 # Cap parallel rustc jobs by available memory: the xai-grok-shell rustc grows
 # with the parallel LLVM threads it gets from the cargo jobserver (28 GB RSS
 # with 32 jobs), so bind it at one job per 8 GB.
-%limit_build -m 8000
+%constrain_build -m 8000
 %cargo_build -- --package xai-grok-pager-bin
 
 %install
