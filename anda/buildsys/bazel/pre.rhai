@@ -1,5 +1,3 @@
-print(sh("anda --version"));
-
 let result = sh("dnf repoquery --available --qf '%{name}' bazel 2>/dev/null | grep -qx bazel", #{
     "stdout": "null",
     "stderr": "null",
