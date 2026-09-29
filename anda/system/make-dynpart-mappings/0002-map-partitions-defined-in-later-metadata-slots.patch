@@ -1,0 +1,80 @@
+From: Armada <armada@armada-os.dev>
+Date: Mon, 15 Sep 2026 00:00:00 +0000
+Subject: [PATCH] map partitions defined in later metadata slots
+
+The retrofit check stopped after the first slot, so on a Virtual A/B
+device the slot holding the current partitions was never mapped. Skip
+names that are already mapped instead, which still keeps duplicate slots
+from being mapped twice.
+---
+ main.c | 26 ++++++++-----
+ 1 file changed, 20 insertions(+), 6 deletions(-)
+
+diff --git a/main.c b/main.c
+index 5555555..6666666 100644
+--- a/main.c
++++ b/main.c
+@@ -167,6 +167,27 @@
+  * made.
+  */
+ 
++/*
++ * Returns nonzero if a mapping by this name already exists, so that a
++ * partition defined in more than one metadata slot is only mapped once.
++ */
++int mappingExists(const char *name) {
++	struct dm_task *dmt;
++	struct dm_info info;
++	int exists = 0;
++
++	dmt = dm_task_create(DM_DEVICE_INFO);
++	if (dmt == NULL)
++		return 0;
++
++	if (dm_task_set_name(dmt, name) && dm_task_run(dmt) && dm_task_get_info(dmt, &info))
++		exists = info.exists;
++
++	dm_task_destroy(dmt);
++
++	return exists;
++}
++
+ uint64_t addExtentAsTarget(struct dm_task *dmt, LpMetadataExtent *extent, uint32_t sector, const char **blockDevices, const char *scope) {
+ 	char buf[LINEAR_PARAMS_SIZE];
+ 
+@@ -205,8 +226,6 @@
+ 		if (le32toh(parts[i].num_extents) == 0)
+ 			continue;
+ 
+-		dmt = dm_task_create(DM_DEVICE_CREATE);
+-
+ 		// Prevent out of bounds memory access when concatenating strings
+ 		strncpy(buf, parts[i].name, 36);
+ 		buf[37] = '\0';
+@@ -214,6 +233,11 @@
+ 		if (parts[i].attributes & LP_PARTITION_ATTR_SLOT_SUFFIXED)
+ 			strcat(buf, slotId);
+ 
++		// An earlier metadata slot already defined this partition.
++		if (mappingExists(buf))
++			continue;
++
++		dmt = dm_task_create(DM_DEVICE_CREATE);
+ 		dm_task_set_name(dmt, buf);
+ 
+ 		sector = 0;
+@@ -327,12 +351,6 @@
+ 		// If the user specified a slot, then only that slot should be processed
+ 		if (argc >= 3)
+ 			break;
+-
+-		// Fix for google-sargo (it has 2 super partitions, each with 2 slots with the same logical partitions)
+-		if (!(le32toh(physPart->flags) & LP_BLOCK_DEVICE_SLOT_SUFFIXED)) {
+-			fprintf(stderr, "warn: This looks like metadata for retrofit partitions. Only the first slot is mapped.\n");
+-			break;
+-		}
+ 	}
+ 
+ 	free(header);
+-- 
+2.47.0

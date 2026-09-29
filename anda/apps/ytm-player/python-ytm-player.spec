@@ -2,7 +2,7 @@
 %global _desc Terminal (TUI) YouTube Music client built with Textual.
 
 Name:			python-%{pypi_name}
-Version:		2.0.0
+Version:		2.1.0
 Release:		1%{?dist}
 Summary:		Terminal YouTube Music player with synced lyrics
 BuildArch:		noarch

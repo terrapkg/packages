@@ -3,6 +3,6 @@ project pkg {
 		spec = "stardust-black-hole-nightly.spec"
 	}
 	labels {
-	  nightly = 1
+	  nightly = 2
 	}
  }

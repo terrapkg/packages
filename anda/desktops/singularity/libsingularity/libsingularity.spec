@@ -1,5 +1,5 @@
-%global commit ee63af5c64fcc3479908769db66262bad8076f72
-%global commit_date 20260905
+%global commit b454931607437b4761c916c39d17283b30393509
+%global commit_date 20260926
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libsingularity
@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(libpulse)
 BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(upower-glib)
 BuildRequires:  pkgconfig(libnm)
+BuildRequires:  pkgconfig(enchant-2)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 

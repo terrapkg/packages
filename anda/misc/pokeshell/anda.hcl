@@ -4,6 +4,6 @@ project pkg {
 		spec = "pokeshell.spec"
 	}
 	labels {
-	    nightly = 1
+	    nightly = 3
 	}
 }

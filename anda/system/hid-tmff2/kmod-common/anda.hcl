@@ -4,6 +4,6 @@ project pkg {
 		spec = "hid-tmff2.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 4
 	}
 }

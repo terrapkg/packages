@@ -1,5 +1,5 @@
 Name:			    qt6-canvaspainter
-Version:		    6.11.1
+Version:		    6.11.2
 Release:		    1%{?dist}
 Epoch:              1
 Summary:		    Accelerated 2D painting solution for Qt Quick and QRhi-based render targets

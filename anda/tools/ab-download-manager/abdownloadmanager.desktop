@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=AB Download Manager
+Comment=Manage and organize your downloads
+GenericName=Download Manager
+Exec=/usr/bin/ABDownloadManager %U
+Icon=abdownloadmanager
+Type=Application
+Categories=Network;Utility;
+MimeType=x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=com-abdownloadmanager-desktop-AppKt

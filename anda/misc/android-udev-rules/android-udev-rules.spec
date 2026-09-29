@@ -1,6 +1,6 @@
 #? https://github.com/M0Rf30/android-udev-rules/blob/main/rpm/android-udev-rules.spec
 Name:           android-udev-rules
-Version:        20260423
+Version:        20260922
 Release:        1%{?dist}
 Summary:        Udev rules to connect Android devices to your linux box
 License:        GPL-3.0-or-later

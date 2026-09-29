@@ -3,4 +3,8 @@ project pkg {
   rpm {
     spec = "logi-wheel-gui.spec"
   }
+  labels {
+      updbranch = 1
+      mock = 1
+  }
 }

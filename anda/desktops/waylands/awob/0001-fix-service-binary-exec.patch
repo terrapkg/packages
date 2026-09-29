@@ -1,0 +1,13 @@
+diff --git a/contrib/systemd/awob.service b/contrib/systemd/awob.service
+index 70d4d27..259afad 100644
+--- a/contrib/systemd/awob.service
++++ b/contrib/systemd/awob.service
+@@ -41,7 +41,7 @@ Type=simple
+ # launch — so it's the single source of truth. No ExecStartPre
+ # needed; cleaning the socket from the unit only would leave non-
+ # systemd starts subject to the same race.
+-ExecStart=%h/.cargo/bin/awob-daemon
++ExecStart=/usr/bin/awob-daemon
+ Restart=on-failure
+ RestartSec=2
+ 

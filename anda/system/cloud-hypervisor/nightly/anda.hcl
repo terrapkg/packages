@@ -3,6 +3,6 @@ project pkg {
 		spec = "cloud-hypervisor-nightly.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }

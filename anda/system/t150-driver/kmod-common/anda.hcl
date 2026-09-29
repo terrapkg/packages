@@ -4,6 +4,6 @@ project pkg {
 		spec = "t150-driver.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }

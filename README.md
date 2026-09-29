@@ -71,6 +71,6 @@ You can also `dnf search` for all packages, or search in graphical app stores fo
 
 Feel free to reach out by joining our chats above, or opening a GitHub issue.
 
-## Support
+## Sponsoring
 
 Maintaining Terra requires a ton of infrastructure, package maintainer, submission review, and software engineering work. If you would like to financially sponsor Terra, please go to [the Fyra Labs sponsor page](https://fyralabs.com/sponsor/) for an overview of how to do this, and thank you so much for helping us out!

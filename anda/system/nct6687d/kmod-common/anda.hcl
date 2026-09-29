@@ -4,6 +4,6 @@ project pkg {
 		spec = "nct6687d.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 3
 	}
 }

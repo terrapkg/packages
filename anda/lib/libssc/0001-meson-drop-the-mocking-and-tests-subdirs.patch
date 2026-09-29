@@ -1,0 +1,22 @@
+From: Radical <radical@radical.fun>
+Date: Sun, 13 Sep 2026 00:00:00 +0000
+Subject: [PATCH] meson: drop the mocking and tests subdirs
+
+They pull in a QRTR mocking harness and installed-tests layout with no
+option to disable it, and Armada doesn't run the test suite.
+---
+ meson.build | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index cd186ad..4e7af5b 100644
+--- a/meson.build
++++ b/meson.build
+@@ -101,7 +101,5 @@ sources = files()
+ headers = files()
+ map_source = files('libssc.map')
+ 
+-subdir('mocking')
+ subdir('data')
+ subdir('src')
+-subdir('tests')

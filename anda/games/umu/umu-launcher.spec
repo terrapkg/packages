@@ -39,8 +39,6 @@ Requires:       python3-cbor2
 AutoReqProv:    no
 %endif
 
-BuildArch:      x86_64
-
 %description
 %summary.
 

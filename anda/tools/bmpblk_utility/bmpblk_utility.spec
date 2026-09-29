@@ -16,7 +16,7 @@ Source1:        https://chromium.googlesource.com/chromium/src/+/HEAD/LICENSE
 
 BuildRequires:  make
 BuildRequires:  gcc
-BuildRequires:  gcc-g++
+BuildRequires:  gcc-c++
 BuildRequires:  xz-libs
 BuildRequires:  xz-devel
 BuildRequires:  libyaml

@@ -2,7 +2,7 @@
 
 Name:           cosmic-ext-applet-clipboard-manager
 Version:        0.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 SourceLicense:  GPL-3.0-only
 License:        GPL-3.0-only AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND BSD-2-Clause AND Zlib AND MIT AND GPL-3.0 AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND (MIT OR Apache-2.0 OR CC0-1.0) AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND CC0-1.0 AND BSL-1.0 AND ISC AND BSD-3-Clause AND (Unlicense OR MIT)
 Summary:        Clipboard manager for COSMIC
@@ -31,7 +31,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 install -Dm0755 target/rpm/cosmic-ext-applet-clipboard-manager  %{buildroot}%{_bindir}/cosmic-ext-applet-clipboard-manager
 install -Dm0644 res/desktop_entry.desktop                       %{buildroot}%{_appsdir}/%{appid}.desktop
 # Match the metainfo pulled from upstream
-install -Dm0644 res/app_icon.svg                                %{buildroot}%{_scalableiconsdir}/%{appid}-symbolic.svg
+install -Dm0644 res/app_icon.svg                                %{buildroot}%{_scalableiconsdir}/io.github.wiiznokes.cosmic-ext-applet-clipboard-manager-symbolic.svg
 
 %terra_appstream %{S:1}
 
@@ -41,7 +41,7 @@ install -Dm0644 res/app_icon.svg                                %{buildroot}%{_s
 %{_bindir}/cosmic-ext-applet-clipboard-manager
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_scalableiconsdir}/%{appid}-symbolic.svg
+%{_scalableiconsdir}/io.github.wiiznokes.cosmic-ext-applet-clipboard-manager-symbolic.svg
 
 %changelog
 * Fri Aug 14 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.0-1

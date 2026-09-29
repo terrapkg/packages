@@ -3,6 +3,6 @@ project pkg {
 		spec = "cosmic-ext-storage.spec"
 	}
 	labels {
-	  nightly = 1
+	  nightly = 3
 	}
 }

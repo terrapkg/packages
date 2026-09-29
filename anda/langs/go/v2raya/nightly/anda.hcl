@@ -3,6 +3,6 @@ project pkg {
     spec = "v2raya-nightly.spec"
   }
   labels {
-    nightly = 1
+    nightly = 2
   }
 }

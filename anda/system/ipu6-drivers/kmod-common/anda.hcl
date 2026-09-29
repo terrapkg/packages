@@ -4,6 +4,6 @@ project pkg {
         spec = "intel-ipu6-drivers.spec"
     }
     labels {
-        nightly = 1
+        nightly = 2
     }
 }

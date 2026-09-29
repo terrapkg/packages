@@ -1,0 +1,31 @@
+[Desktop Entry]
+Type=Application
+Name=Zen Browser
+GenericName=Web Browser
+Comment=Browse the web calmly and privately
+Exec=zen-browser %u
+Icon=app.zen_browser.zen
+Terminal=false
+StartupNotify=true
+StartupWMClass=zen
+Categories=Network;WebBrowser;
+Keywords=Internet;WWW;Browser;Web;Explorer;Zen;
+X-MultipleArgs=false
+MimeType=application/json;application/pdf;application/rdf+xml;application/rss+xml;application/x-xpinstall;application/xhtml+xml;application/xml;audio/flac;audio/ogg;audio/webm;image/avif;image/gif;image/jpeg;image/png;image/svg+xml;image/webp;text/html;text/mml;text/xml;video/ogg;video/webm;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;
+Actions=new-window;new-blank-window;new-private-window;profilemanager;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=zen-browser --new-window %u
+
+[Desktop Action new-blank-window]
+Name=New Blank Window
+Exec=zen-browser --blank-window %u
+
+[Desktop Action new-private-window]
+Name=New Private Window
+Exec=zen-browser --private-window %u
+
+[Desktop Action profilemanager]
+Name=Profile Manager
+Exec=zen-browser --ProfileManager

@@ -8,6 +8,7 @@
 
 Name:           intel-ipu6-drivers
 Summary:        Common files for Intel IPU6 drivers
+Epoch:          1
 Version:        0^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 License:        GPL-2.0-or-later

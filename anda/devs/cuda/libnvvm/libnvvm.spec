@@ -7,8 +7,8 @@
 %global major_package_version 13-1
 
 Name:           %(echo %real_name | tr '_' '-')
-Version:        13.3.73
-Release:        2%{?dist}
+Version:        13.4.92
+Release:        1%{?dist}
 Summary:        CUDA NVVM
 License:        CUDA Toolkit
 URL:            https://developer.nvidia.com/cuda-toolkit
@@ -17,7 +17,7 @@ ExclusiveArch:  x86_64 aarch64
 Source0:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-x86_64/%{real_name}-linux-x86_64-%{version}-archive.tar.xz
 Source1:        https://developer.download.nvidia.com/compute/cuda/redist/%{real_name}/linux-sbsa/%{real_name}-linux-sbsa-%{version}-archive.tar.xz
 
-Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{name}-%{major_package_version} < %{evr}
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
  
@@ -31,7 +31,7 @@ code from NVVM IR.
 %package devel
 Summary:        Development package for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Conflicts:      %{name}-%{major_package_version} < %{?epoch:%{epoch}:}%{version}-%{release}
+Conflicts:      %{name}-%{major_package_version} < %{evr}
 
 %description devel
 Files for development with %{name} and LLVM IR bytecode.

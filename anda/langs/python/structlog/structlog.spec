@@ -1,0 +1,46 @@
+%global pypi_name structlog
+%global _desc Structured Logging for Python.
+
+Name:			python-%{pypi_name}
+Version:		26.1.0
+Release:		1%?dist
+Summary:		Structured Logging for Python
+License:		Apache-2.0 AND MIT
+URL:			https://github.com/hynek/structlog
+Source0:		%{pypi_source}
+BuildArch:      noarch
+
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-pip
+BuildRequires:  python3-hatch-fancy-pypi-readme
+
+Packager:	    Its-J <jonah@fyralabs.com>
+
+%description
+%{_desc}
+
+%package -n     python3-%{pypi_name}
+Summary:        %{summary}
+%{?python_provide:%python_provide python3-%{pypi_name}}
+
+%description -n python3-%{pypi_name}
+%{_desc}
+
+%prep
+%autosetup -n %{pypi_name}-%{version}
+
+%build
+%pyproject_wheel
+
+%install
+%pyproject_install
+%pyproject_save_files %{pypi_name}
+
+%files -n python3-%{pypi_name} -f %{pyproject_files}
+%doc README.md
+%license LICENSE-*
+
+%changelog
+* Wed Sep 16 2026 Its-J <jonah@fyralabs.com> - 26.1.0-1
+- Initial commit

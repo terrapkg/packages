@@ -1,5 +1,5 @@
 Name:           kew
-Version:        4.3.2
+Version:        4.3.8
 Release:        1%{?dist}
 Summary:        Music for the Shell
 URL:            https://codeberg.org/ravachol/kew
@@ -41,6 +41,9 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{_bindir}/kew
 %{_datadir}/kew/
 %{_mandir}/man1/kew.1.*
+%{_mandir}/man5/kew.5.*
+%{_mandir}/man5/kewrc.5.*
+%{_mandir}/man5/kewstaterc.5.*
 %{_appsdir}/kew.desktop
 %{_hicolordir}/*/apps/kew.png
 

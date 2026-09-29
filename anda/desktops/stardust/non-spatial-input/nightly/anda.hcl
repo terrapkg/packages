@@ -3,6 +3,6 @@ project pkg {
         spec = "stardust-non-spatial-input-nightly.spec"
     }
     labels {
-       nightly = 1
+       nightly = 3
     }
 }

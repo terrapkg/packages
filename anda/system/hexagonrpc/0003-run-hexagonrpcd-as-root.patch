@@ -1,0 +1,55 @@
+From: Armada <armada@armada-os.dev>
+Date: Mon, 14 Sep 2026 00:00:00 +0000
+Subject: [PATCH] Run hexagonrpcd as root instead of the fastrpc user
+
+The fastrpc user only ever had access to the /dev/fastrpc-* nodes via
+60-hexagonrpc.rules. It has no access to the vendor/persist/dsp paths
+that msm-firmware-loader symlinks into
+/run/msm-firmware-loader/hexagonrpc.
+---
+ data/hexagonrpcd-adsp-rootpd.service.in     | 2 --
+ data/hexagonrpcd-adsp-sensorspd.service.in  | 2 --
+ data/hexagonrpcd-sdsp.service.in            | 2 --
+ 3 files changed, 6 deletions(-)
+
+diff --git a/data/hexagonrpcd-adsp-rootpd.service.in b/data/hexagonrpcd-adsp-rootpd.service.in
+index 47fd838..a1111a1 100644
+--- a/data/hexagonrpcd-adsp-rootpd.service.in
++++ b/data/hexagonrpcd-adsp-rootpd.service.in
+@@ -12,8 +12,6 @@ ConditionPathExists=/dev/fastrpc-adsp
+ ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-adsp -d adsp -R /run/msm-firmware-loader/hexagonrpc
+ Restart=always
+ RestartSec=3
+-User=fastrpc
+-Group=fastrpc
+
+ [Install]
+ WantedBy=multi-user.target
+diff --git a/data/hexagonrpcd-adsp-sensorspd.service.in b/data/hexagonrpcd-adsp-sensorspd.service.in
+index 6b3b2a8..b222222 100644
+--- a/data/hexagonrpcd-adsp-sensorspd.service.in
++++ b/data/hexagonrpcd-adsp-sensorspd.service.in
+@@ -11,8 +11,6 @@ ConditionPathExists=/dev/fastrpc-adsp
+ ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-adsp -d adsp -s -R /run/msm-firmware-loader/hexagonrpc
+ Restart=always
+ RestartSec=3
+-User=fastrpc
+-Group=fastrpc
+
+ [Install]
+ WantedBy=multi-user.target
+diff --git a/data/hexagonrpcd-sdsp.service.in b/data/hexagonrpcd-sdsp.service.in
+index 9f00d81..c333333 100644
+--- a/data/hexagonrpcd-sdsp.service.in
++++ b/data/hexagonrpcd-sdsp.service.in
+@@ -7,8 +7,6 @@ ConditionPathExists=/dev/fastrpc-sdsp
+ ExecStart=@bindir@/hexagonrpcd -f /dev/fastrpc-sdsp -d sdsp -s -R /run/msm-firmware-loader/hexagonrpc
+ Restart=always
+ RestartSec=3
+-User=fastrpc
+-Group=fastrpc
+
+ [Install]
+ WantedBy=multi-user.target
+--
+2.47.0

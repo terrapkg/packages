@@ -3,6 +3,6 @@ project pkg {
 		spec = "cosmic-ext-applet-weather.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }

@@ -1,6 +1,5 @@
-if rpm.changed() {
-    rpm.release();
-    let v = gh_commit("OpenGamingCollective/gamescope");
-    v.crop(1);
-    rpm.global("gamescope_commit", v);
-}
+let v = gh_tag("OpenGamingCollective/gamescope");
+
+rpm.global("ver", v);
+v.replace("-ogc", "^");
+rpm.version(v);

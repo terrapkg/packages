@@ -1,0 +1,34 @@
+From 738df596cf2d48c4a3e5e272a434654100e9a41b Mon Sep 17 00:00:00 2001
+From: Maximilian Luz <luzmaximilian@gmail.com>
+Date: Fri, 26 May 2023 12:32:21 +0200
+Subject: [PATCH] data: Add Microsoft Surface Pro 7+
+
+Based on https://github.com/linux-surface/libwacom-surface/issues/12
+---
+ data/surface-pro7-plus.tablet | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 data/surface-pro7-plus.tablet
+
+diff --git a/data/surface-pro7-plus.tablet b/data/surface-pro7-plus.tablet
+new file mode 100644
+index 00000000..5c4e540f
+--- /dev/null
++++ b/data/surface-pro7-plus.tablet
+@@ -0,0 +1,14 @@
++# This is for the Microsoft Surface Pro 7+
++
++[Device]
++Name=Microsoft Surface Pro 7+
++Class=PenDisplay
++DeviceMatch=virt|045e|0c1a
++Width=10
++Height=6
++IntegratedIn=Display;System;
++
++[Features]
++Stylus=false
++Touch=true
++Buttons=0
+-- 
+2.55.0
+

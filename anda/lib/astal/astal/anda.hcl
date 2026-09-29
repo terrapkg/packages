@@ -3,6 +3,6 @@ project pkg {
 		spec = "astal.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }

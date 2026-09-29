@@ -1,0 +1,59 @@
+#!/usr/bin/bash
+#
+# Start script for Zen Browser.
+# This script sets the environment that Zen Browser needs, then starts the
+# browser.
+
+MOZ_ARCH=$(uname -m)
+case $MOZ_ARCH in
+	x86_64 | s390x | sparc64)
+		MOZ_LIB_DIR="__PREFIX__/lib64"
+		SECONDARY_LIB_DIR="__PREFIX__/lib"
+		;;
+	*)
+		MOZ_LIB_DIR="__PREFIX__/lib"
+		SECONDARY_LIB_DIR="__PREFIX__/lib64"
+		;;
+esac
+
+MOZ_APP_FILE="__APP_FILE__"
+
+if [ ! -r "$MOZ_LIB_DIR/__APP_DIR__/$MOZ_APP_FILE" ]; then
+	if [ ! -r "$SECONDARY_LIB_DIR/__APP_DIR__/$MOZ_APP_FILE" ]; then
+		echo "Error: $MOZ_LIB_DIR/__APP_DIR__/$MOZ_APP_FILE not found" >&2
+		exit 1
+	fi
+	MOZ_LIB_DIR="$SECONDARY_LIB_DIR"
+fi
+
+MOZ_DIST_BIN="$MOZ_LIB_DIR/__APP_DIR__"
+MOZ_PROGRAM="$MOZ_DIST_BIN/$MOZ_APP_FILE"
+
+##
+## Set MOZ_APP_LAUNCHER for gnome-session.
+##
+export MOZ_APP_LAUNCHER="__PREFIX__/bin/__APP_FILE__"
+
+##
+## Enable XInput2 (mozbz#1207973).
+##
+export MOZ_USE_XINPUT2=${MOZ_USE_XINPUT2-1}
+
+##
+## BEAST fix (rhbz#1005611).
+##
+export NSS_SSL_CBC_RANDOM_IV=${NSS_SSL_CBC_RANDOM_IV-1}
+
+##
+## MOZ_APP_REMOTINGNAME connects the browser to its desktop file.
+##
+if [ -z "$MOZ_APP_REMOTINGNAME" ]; then
+	export MOZ_APP_REMOTINGNAME=__APP_NAME__
+fi
+
+##
+## Do not show the "old profile" dialog box.
+##
+export MOZ_ALLOW_DOWNGRADE=1
+
+exec "$MOZ_PROGRAM" "$@"

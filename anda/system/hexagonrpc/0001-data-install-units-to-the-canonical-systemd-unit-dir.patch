@@ -1,0 +1,37 @@
+From: Armada <armada@armada-os.dev>
+Date: Sat, 13 Sep 2026 00:00:00 +0000
+Subject: [PATCH] data: install units to the canonical systemd unit dir
+
+get_option('libdir') is lib64 on the Fedora aarch64 builder, but systemd
+only searches /usr/lib/systemd/system. Use the systemd pkgconfig variable.
+---
+ data/meson.build | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/data/meson.build b/data/meson.build
+index 0ad24ab..75f606c 100644
+--- a/data/meson.build
++++ b/data/meson.build
+@@ -4,12 +4,19 @@ systemd_units = [
+   'hexagonrpcd-sdsp.service',
+ ]
+
++systemd_dep = dependency('systemd', required : false)
++if systemd_dep.found()
++  systemd_system_unit_dir = systemd_dep.get_variable(pkgconfig : 'systemdsystemunitdir')
++else
++  systemd_system_unit_dir = get_option('prefix') / 'lib' / 'systemd/system'
++endif
++
+ foreach unit : systemd_units
+   configure_file(
+     input: unit + '.in',
+     output: unit,
+     configuration: { 'bindir': get_option('prefix') / get_option('bindir') },
+     install: true,
+-    install_dir: get_option('libdir') / 'systemd/system',
++    install_dir: systemd_system_unit_dir,
+   )
+ endforeach
+--
+2.47.0

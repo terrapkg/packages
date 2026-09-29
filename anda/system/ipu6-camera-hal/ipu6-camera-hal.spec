@@ -1,5 +1,5 @@
-%global commit 6fefa86dfa14bb33d908a46f104a96c59b41c7eb
-%global commit_date 20260821
+%global commit 7ccab62d133e053c8628f3591b636a761f06c956
+%global commit_date 20260926
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global build_cflags %{__build_flags_lang_c} %{?_distro_extra_cflags} -Wno-alloc-size-larger-than
 %global build_cxxflags %{__build_flags_lang_cxx} %{?_distro_extra_cxxflags} -Wno-alloc-size-larger-than

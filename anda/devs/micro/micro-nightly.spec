@@ -12,8 +12,8 @@
 
 # Naming variable as something other than "commit" is necessary
 # to stop %%gometa from putting commit hash in release
-%global commit_hash 393cf24858e63ba75af1480b618d2e3add5b9e3e
-%global commit_date 20260901
+%global commit_hash 50a6fe59d30677b0c29e22c9863a4d806b85ca0a
+%global commit_date 20260929
 %global shortcommit %{sub %{commit_hash} 1 7}
 %global ver 2.0.15
 
@@ -34,7 +34,7 @@ micro is a terminal-based text editor that aims to be easy to use and intuitive,
                         runtime/help/tutorial.md
 
 Name:           micro.nightly
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        A modern and intuitive terminal-based text editor
 
 License:        MIT

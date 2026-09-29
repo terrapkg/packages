@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>net.blockbench.Blockbench</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+
+  <name>Blockbench</name>
+  <summary>Low-poly 3D modeling and animation software</summary>
+
+  <description>
+    <p>
+      Blockbench is a free and open source model editor for low-poly models with
+      pixel art textures. Models can be exported into standardized formats for
+      games, rendering, 3D printing, and game engines.
+    </p>
+    <p>
+      Dedicated formats for Minecraft Java and Bedrock Edition provide
+      format-specific features, and plugins extend the functionality of the
+      program.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">blockbench.desktop</launchable>
+  <provides>
+    <binary>blockbench</binary>
+  </provides>
+
+  <categories>
+    <category>Graphics</category>
+    <category>3DGraphics</category>
+  </categories>
+
+  <keywords>
+    <keyword>3D</keyword>
+    <keyword>modeling</keyword>
+    <keyword>animation</keyword>
+    <keyword>Minecraft</keyword>
+    <keyword>pixel art</keyword>
+  </keywords>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://web.blockbench.net/content/front_page_app.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="homepage">https://www.blockbench.net/</url>
+  <url type="bugtracker">https://github.com/JannisX11/blockbench/issues</url>
+  <url type="vcs-browser">https://github.com/JannisX11/blockbench</url>
+
+  <releases>
+    <release version="5.2.1" date="2026-09-21" />
+    <release version="5.1.6" date="2026-07-25" />
+  </releases>
+</component>

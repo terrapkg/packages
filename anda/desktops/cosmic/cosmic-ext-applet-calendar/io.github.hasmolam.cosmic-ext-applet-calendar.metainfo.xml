@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>io.github.hasmolam.cosmic-ext-applet-calendar</id>
+
+    <name>Calendar &amp; Agenda</name>
+    <summary>COSMIC calendar applet with Google Calendar, CalDAV, and agenda view</summary>
+
+    <metadata_license>MIT</metadata_license>
+    <project_license>GPL-3.0-only</project_license>
+
+    <project_group>COSMIC</project_group>
+
+    <developer id="io.github.hasmolam">
+        <name>Hasan Hüseyin Yolcu</name>
+    </developer>
+
+    <icon type="stock">io.github.hasmolam.cosmic-ext-applet-calendar-symbolic</icon>
+
+    <url type="homepage">https://github.com/Hasmolam/cosmic-ext-applet-calendar</url>
+    <url type="bugtracker">https://github.com/Hasmolam/cosmic-ext-applet-calendar/issues</url>
+
+    <content_rating type="oars-1.1" />
+
+    <description>
+        <p>Standalone calendar and agenda applet for the COSMIC desktop. It fetches events from
+        Evolution Data Server (Google Calendar, Nextcloud, CalDAV) and local .ics files, marks
+        days with events on the monthly grid, and lists a chronological agenda for the selected
+        day, with one-click meeting links for Google Meet, Zoom, and Teams.</p>
+    </description>
+
+    <launchable type="desktop-id">io.github.hasmolam.cosmic-ext-applet-calendar.desktop</launchable>
+
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/Hasmolam/cosmic-ext-applet-calendar/main/screenshots/01_english_event_with_link_june5.png</image>
+            <caption>Event with a meeting link</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/Hasmolam/cosmic-ext-applet-calendar/main/screenshots/03_english_meeting_june20.png</image>
+            <caption>Agenda view</caption>
+        </screenshot>
+    </screenshots>
+
+    <provides>
+        <id>com.system76.CosmicApplet</id>
+        <binaries>
+            <binary>cosmic-ext-applet-calendar</binary>
+        </binaries>
+    </provides>
+
+    <releases>
+        <release version="1.1.1" date="2026-09-25" />
+        <release version="1.1.0" date="2026-09-24" />
+        <release version="1.0.0" date="2026-09-24" />
+    </releases>
+</component>

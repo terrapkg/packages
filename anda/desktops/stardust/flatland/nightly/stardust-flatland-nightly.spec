@@ -1,5 +1,5 @@
-%global commit a8694174290e02aaf454747e1232e4db0d7ef916
-%global commit_date 20260426
+%global commit 2a652b688b45e3e2e8eb5cc51014e9a7c874ec2b
+%global commit_date 20260926
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -10,7 +10,8 @@ Release:        1%{?dist}
 Summary:        Flatland for Stardust XR
 URL:            https://github.com/StardustXR/flatland
 Source0:        %url/archive/%commit/flatland-%commit.tar.gz
-License:        MIT AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND GPL-2.0-only AND ISC AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
+SourceLicense:  MIT
+License:        %{SourceLicense} AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND GPL-2.0-only AND ISC AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib
 BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros mold
 
 Provides:       flatland-nightly stardust-flatland-nightly

@@ -7,6 +7,6 @@ project pkg {
     labels { 
         mock = 1
         subrepo = "multimedia"
-        nightly = 1
+        nightly = 2
     }
 }

@@ -3,6 +3,6 @@ project pkg {
     spec = "umbriel-nightly.spec"
   }
   labels {
-    nightly = 1
+    nightly = 4
   }
 }

@@ -1,10 +1,10 @@
 %global _qt_major_version 6
-%global ver kup-0.10.0
-%global commit 130face33a7500b6f881cf8dc7114a2ba2ea1081
+%global ver v6.7.91
+%global commit 7b7be28c41ba02ea20bbcc6fa8a8455925e3bea4
 
 Name:			kup
 Version:		%(echo %ver | sed -E 's/^kup-//')
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		Backup scheduler for the Plasma desktop
 License:		GPL-3.0-or-later WITH LicenseRef-KDE-Accepted-GPL
 URL:			https://invent.kde.org/system/kup

@@ -8,8 +8,8 @@ Summary:		Fast State-of-the-Art Tokenizers optimized for Research and Production
 License:		Apache-2.0
 URL:			https://github.com/huggingface/tokenizers
 Source0:		%{pypi_source}
-Source1:        https://github.com/huggingface/tokenizers/blob/main/LICENSE
-Source2:        https://github.com/huggingface/tokenizers/blob/main/README.md
+Source1:        https://github.com/huggingface/tokenizers/raw/main/LICENSE
+Source2:        https://github.com/huggingface/tokenizers/raw/main/README.md
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-wheel

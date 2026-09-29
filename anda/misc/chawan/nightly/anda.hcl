@@ -3,6 +3,6 @@ project pkg {
     spec = "chawan-nightly.spec"
   }
  	labels {
-		nightly = 1
+		nightly = 3
 	}
 }

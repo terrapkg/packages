@@ -1,5 +1,5 @@
 Name:           uwsm
-Version:        0.26.7
+Version:        0.27.0
 Release:        1%{?dist}
 Summary:        Universal Wayland Session Manager
 URL:            https://github.com/Vladimir-csp/uwsm
@@ -22,9 +22,11 @@ Requires:       python3-dbus
 Requires:       python3-pyxdg
 Requires:       util-linux
 
-Recommends:     /usr/bin/notify-send
-Recommends:     /bin/whiptail
+Recommends:     libnotify
+Recommends:     newt
 Recommends:     wofi
+Recommends:     inotify-tools
+Recommends:     util-linux
 
 # We require you to add yourself as the packager here (if this is an issue for you, let us know):
 Packager:       Marcelo dos Santos Mafra <msmafra@gmail.com>

@@ -3,6 +3,6 @@ project pkg {
     spec = "bpftune-gaming.spec"
   }
   labels {
-    nightly = 1
+    nightly = 2
   }
 }

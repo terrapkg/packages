@@ -4,6 +4,6 @@ project pkg {
         spec = "spotx-bash.spec"
     }
     labels {
-        nightly = 1
+        nightly = 2
     }
 }

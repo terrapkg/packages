@@ -4,6 +4,6 @@ project pkg {
 		spec = "sc0710.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 3
 	}
 }

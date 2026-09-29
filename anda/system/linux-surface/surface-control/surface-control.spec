@@ -1,16 +1,16 @@
 %global ver v0.5.0-1
-%global sanitized_ver %(echo %{ver} | sed 's/-/./')
 
 %define debug_package %{nil}
 
 Name:           surface-control
-Version:        %{sanitized_ver}
+Version:        0.5.0.1
 Release:        1%{?dist}
 Summary:        Control various aspects of Microsoft Surface devices from the shell
 
-License:        MIT
+SourceLicense:  MIT
+License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Unlicense OR MIT)
 URL:            https://github.com/linux-surface/surface-control
-Source0:        %{url}/archive/refs/tags/v%{ver}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{ver}.tar.gz
 
 Requires:       dbus
 Requires:       libgcc
@@ -29,6 +29,7 @@ devices.
 %prep
 %autosetup -C
 %cargo_prep_online
+%cargo_license_summary_online
 
 %pkg_completion -bfz -n surface
 
@@ -43,6 +44,7 @@ install -Dm644 target/_surface                      %{buildroot}%{zsh_completion
 install -Dm644 target/surface.fish                  %{buildroot}%{fish_completions_dir}/surface.fish
 install -Dm644 target/systemd/surface-rapl.service  %{buildroot}%{_unitdir}/surface-rapl.service
 install -Dm744 target/systemd/surface-rapl.sh       %{buildroot}%{_libexecdir}/surface-rapl.sh
+%{cargo_license_online} > LICENSE.dependencies
 
 %post
 %systemd_post surface-rapl.service
@@ -54,6 +56,8 @@ install -Dm744 target/systemd/surface-rapl.sh       %{buildroot}%{_libexecdir}/s
 %systemd_postun_with_restart surface-rapl.service
 
 %files
+%doc README.md
+%license LICENSE LICENSE.dependencies
 %{_bindir}/surface
 %{_unitdir}/surface-rapl.service
 %{_libexecdir}/surface-rapl.sh

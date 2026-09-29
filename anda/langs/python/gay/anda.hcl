@@ -4,6 +4,6 @@ project pkg {
         spec = "gay.spec"
     }
    	labels {
-      nightly = 1
+      nightly = 4
 	}
 }

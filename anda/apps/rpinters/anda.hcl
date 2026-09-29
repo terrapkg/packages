@@ -3,6 +3,6 @@ project pkg {
     spec = "rpinters.spec"
   }
   labels {
-    nightly = 1
+    nightly = 3
   }
 }

@@ -1,5 +1,5 @@
 Name:   	noctalia-greeter
-Version:	1.3.1
+Version:	1.6.0
 Release:	1%{?dist}
 Summary:	A minimal login greeter for greetd that matches the look and feel of Noctalia Shell.
 
@@ -71,6 +71,7 @@ done
 %{_bindir}/%{name}-compositor
 %{_bindir}/%{name}-print-greetd-config
 %{_bindir}/%{name}-session
+%{_bindir}/noctalia-greeter-xsession
 %{_datadir}/%{name}/*
 %{_datadir}/polkit-1/actions/org.noctalia.greeter.apply-appearance.policy
 

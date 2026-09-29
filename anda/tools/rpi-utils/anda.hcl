@@ -3,6 +3,6 @@ project pkg {
 		spec = "rpi-utils.spec"
 	}
 	labels {
-	   nightly = 1
+	   nightly = 3
 	}
 }

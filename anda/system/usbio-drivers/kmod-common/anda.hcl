@@ -4,6 +4,6 @@ project pkg {
         spec = "intel-usbio-drivers.spec"
     }
     labels {
-        nightly = 1
+        nightly = 3
     }
 }

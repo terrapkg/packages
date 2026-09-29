@@ -4,6 +4,6 @@ project pkg {
 		spec = "openrazer.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 3
 	}
 }

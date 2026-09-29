@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.zotero.Zotero</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>AGPL-3.0-or-later</project_license>
+  <icon type="stock">zotero</icon>
+  <name>Zotero</name>
+  <summary>Collect, organize, cite, and share your research sources</summary>
+  <description>
+    <p>Zotero is a free, easy-to-use tool to help you collect, organize, cite, and share research sources.</p>
+  </description>
+  <launchable type="desktop-id">zotero.desktop</launchable>
+  <url type="homepage">https://www.zotero.org/</url>
+  <url type="bugtracker">https://github.com/zotero/zotero/issues</url>
+  <keywords>
+    <keyword>bibliography</keyword>
+    <keyword>citation</keyword>
+    <keyword>research</keyword>
+    <keyword>reference manager</keyword>
+  </keywords>
+  <releases>
+    <release version="10.0.4" date="2026-09-23" />
+    <release version="10.0.3" date="2026-09-18" />
+  </releases>
+  <categories>
+    <category>Office</category>
+    <category>Science</category>
+  </categories>
+  <provides>
+    <binary>zotero</binary>
+  </provides>
+</component>

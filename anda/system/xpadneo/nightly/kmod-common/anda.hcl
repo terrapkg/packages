@@ -4,6 +4,6 @@ project pkg {
 		spec = "xpadneo-nightly.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 4
 	}
 }

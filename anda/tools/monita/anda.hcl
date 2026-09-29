@@ -3,6 +3,6 @@ project pkg {
 		spec = "monita.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 3
 	}
 }

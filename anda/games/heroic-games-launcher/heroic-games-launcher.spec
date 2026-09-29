@@ -2,14 +2,14 @@
 %global git_name %(echo %{org_name} | sed 's/-//g')
 %global appid com.heroicgameslauncher.hgl
 %global shortname heroic
-%global legendary_version 0.21.0
+%global legendary_version 0.21.1
 %global gogdl_version 1.3.0
 %global nile_version 1.2.0
 %global comet_version 0.2.0
 
 Name:          %{shortname}-games-launcher
-Version:       2.22.1
-Release:       1%{?dist}
+Version:       2.22.3
+Release:       2%{?dist}
 Summary:       A games launcher for GOG, Amazon, and Epic Games
 License:       GPL-3.0-only AND MIT AND BSD-3-Clause
 URL:           https://heroicgameslauncher.com
@@ -22,6 +22,7 @@ Requires:      hicolor-icon-theme
 Requires:      nss
 Requires:      python3
 Requires:      which
+Requires:      adwaita-sans-fonts
 Recommends:    (falcond or gamemode)
 Recommends:    mangohud
 Recommends:    umu-launcher

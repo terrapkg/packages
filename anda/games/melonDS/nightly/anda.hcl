@@ -3,6 +3,6 @@ project pkg {
         spec = "melonDS-nightly.spec"
     }
    	labels {
-        nightly = 1
+        nightly = 3
 	}
 }
