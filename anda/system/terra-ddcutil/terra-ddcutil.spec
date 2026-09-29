@@ -4,7 +4,7 @@
 
 Name:       terra-ddcutil
 Version:    3.0.2
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Query and update monitor settings
 Packager:   Kyle Gospodnetich <me@kylegospodneti.ch>
 
@@ -61,24 +61,24 @@ changing a monitor's input source and adjusting its brightness.
 
 # libddcutil can be installed separately
 %if %{with build_lib}
-%package -n libddcutil
+%package -n terra-libddcutil
 Summary:        Shared library to query and update monitor settings
 Provides:       libddcutil = %{evr}
 Conflicts:      libddcutil
 
-%description -n libddcutil
+%description -n terra-libddcutil
 Shared library version of ddcutil, exposing a C API.
 
-%package -n libddcutil-devel
+%package -n terra-libddcutil-devel
 Summary:        Development files for libddcutil
 # FindDDCUtils.cmake has BSD-3-Clause license header
 License:        GPL-2.0-or-later AND BSD-3-Clause
 Provides:       libddcutil-devel = %{evr}
 Conflicts:      libddcutil-devel
-Requires:       libddcutil%{?_isa} = %{version}-%{release}
+Requires:       terra-libddcutil%{?_isa} = %{version}-%{release}
 Requires:       cmake-filesystem%{?_isa}
 
-%description -n libddcutil-devel
+%description -n terra-libddcutil-devel
 Development files for libddcutil
 %endif
 
@@ -108,12 +108,12 @@ NOCONFIGURE=1 ./autogen.sh
 %{_modulesloaddir}/ddcutil.conf
 
 %if %{with build_lib}
-%files -n libddcutil
+%files -n terra-libddcutil
 %doc AUTHORS NEWS.md README.md CHANGELOG.md
 %license COPYING
 %{_libdir}/lib%{packagename}.so.5*
 
-%files -n libddcutil-devel
+%files -n terra-libddcutil-devel
 %{_libdir}/lib%{packagename}.so
 %{_includedir}/%{packagename}*.h
 %{_libdir}/cmake/%{packagename}
@@ -121,5 +121,8 @@ NOCONFIGURE=1 ./autogen.sh
 %endif
 
 %changelog
+* Sun Sep 27 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 3.0.2-2
+- Rename libddcutil to terra-libddcutil
+
 * Thu Sep 24 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 3.0.2-1
 - Initial release of terra-ddcutil

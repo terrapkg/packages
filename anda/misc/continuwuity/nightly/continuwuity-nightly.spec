@@ -1,8 +1,8 @@
-%global commit a4d2d4a720a429ebac608e6c7ca47147b9e8f4d1
-%global commit_date 20260925
+%global commit 58d135bc578fcbb12dcb8cb3c119bc939f84ff0b
+%global commit_date 20260929
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global ver v26.9.0
+%global ver v26.9.1
 
 Name:           continuwuity-nightly
 Version:        %(echo "%{ver}" | sed 's/-/~/g;s/v//')^%{commit_date}git.%{shortcommit}
