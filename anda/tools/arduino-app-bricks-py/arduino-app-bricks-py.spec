@@ -44,7 +44,7 @@ Summary:        %{summary}
 Python libaries for Arduino App Lab Bricks
 
 %prep
-%autosetup -n %{pypi_name}-release-%{version}
+%autosetup -C
 
 %build
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}
