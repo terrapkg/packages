@@ -1,0 +1,11 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -48,7 +48,7 @@ endif()
+ 
+ ## SQLite3 ##
+ find_package(SQLite3)
+-if(NOT SQLITE3_FOUND)
++if(NOT SQLite3_FOUND)
+ 	add_subdirectory(sqlite3)
+ endif()
