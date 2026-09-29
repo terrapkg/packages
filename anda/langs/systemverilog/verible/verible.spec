@@ -14,15 +14,15 @@ BuildRequires: gcc-c++
 BuildRequires: flex
 BuildRequires: bison
 
-Recommends:    %{name}-format = %{version}-%{release}
-Recommends:    %{name}-lint = %{version}-%{release}
-Recommends:    %{name}-syntax = %{version}-%{release}
-Recommends:    %{name}-ls = %{version}-%{release}
-Recommends:    %{name}-diff = %{version}-%{release}
-Recommends:    %{name}-kythe = %{version}-%{release}
-Recommends:    %{name}-obfuscate = %{version}-%{release}
-Recommends:    %{name}-preprocessor = %{version}-%{release}
-Recommends:    %{name}-project = %{version}-%{release}
+Recommends:    %{name}-format = %{evr}
+Recommends:    %{name}-lint = %{evr}
+Recommends:    %{name}-syntax = %{evr}
+Recommends:    %{name}-ls = %{evr}
+Recommends:    %{name}-diff = %{evr}
+Recommends:    %{name}-kythe = %{evr}
+Recommends:    %{name}-obfuscate = %{evr}
+Recommends:    %{name}-preprocessor = %{evr}
+Recommends:    %{name}-project = %{evr}
 
 Packager:      Cypress Reed <cypress@fyralabs.com>
 
@@ -32,21 +32,21 @@ formatter, linter, and language server.
 
 %package format
 Summary:       Verible SystemVerilog formatter
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description format
 Verible tool for formatting SystemVerilog source code.
 
 %package lint
 Summary:       Verible SystemVerilog linter
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description lint
 Verible tool for checking SystemVerilog source code against style rules.
 
 %package syntax
 Summary:       Verible SystemVerilog syntax parser
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description syntax
 Verible tool for parsing SystemVerilog source code and displaying its syntax
@@ -54,7 +54,7 @@ structure.
 
 %package ls
 Summary:       Verible SystemVerilog language server
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description ls
 Verible language server implementing the Language Server Protocol for
@@ -62,7 +62,7 @@ SystemVerilog.
 
 %package diff
 Summary:       Verible SystemVerilog lexical diff tool
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description diff
 Verible tool for comparing SystemVerilog files while ignoring formatting
@@ -70,28 +70,28 @@ differences.
 
 %package kythe
 Summary:       Verible Kythe source index extractor
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description kythe
 Verible tool for extracting Kythe indexing facts from SystemVerilog source.
 
 %package obfuscate
 Summary:       Verible SystemVerilog obfuscator
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description obfuscate
 Verible tool for obfuscating identifiers in SystemVerilog source code.
 
 %package preprocessor
 Summary:       Verible SystemVerilog preprocessor
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description preprocessor
 Verible preprocessor-like tool for SystemVerilog source code.
 
 %package project
 Summary:       Verible SystemVerilog project tool
-Requires:      %{name} = %{version}-%{release}
+Requires:      %{name} = %{evr}
 
 %description project
 Verible tool for analyzing and transforming whole SystemVerilog projects.
