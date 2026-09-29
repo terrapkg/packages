@@ -4,7 +4,7 @@
 Name:        verible
 Version:     0.0~4163~g6cce8f19
 Release:     1%{?dist}
-Summary:     Parser, formatter, linter, and language server for SystemVerilog
+Summary:     SystemVerilog development tool suite, including a parser, formatter, linter, and language server
 License:     Apache
 URL:         https://chipsalliance.github.io/verible/
 Source0:     https://github.com/chipsalliance/verible/archive/refs/tags/v%{raw_version}.tar.gz
@@ -27,8 +27,7 @@ Recommends:    %{name}-project = %{evr}
 Packager:      Cypress Reed <cypress@fyralabs.com>
 
 %description
-Verible is a suite of SystemVerilog developer tools, including a parser,
-formatter, linter, and language server.
+%{summary}.
 
 %package format
 Summary:       Verible SystemVerilog formatter
