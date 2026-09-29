@@ -11,8 +11,9 @@ Name:          gram
 Version:       3.3.0
 Release:       1%{?dist}
 Summary:       The Gram Code Editor
-SourceLicense: Apache-2.0 AND CC-BY-SA-4.0 AND MIT AND OFL
-License:       FIXME
+# This changes next release. :))))
+SourceLicense: Apache-2.0 AND GPL-3.0-or-later
+License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Apache-2.0) AND ((MIT OR Apache-2.0) AND NCSA) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT OR BSL-1.0 OR CC0-1.0) AND (Apache-2.0 OR MIT OR BSL-1.0 OR CC0-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND BSL-1.0 AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND CDLA-Permissive-2.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR BSD-3-Clause) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND WTFPL AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:           https://gram-editor.com
 Source0:       https://codeberg.org/GramEditor/gram/archive/%{version}.tar.gz
 BuildRequires: anda-srpm-macros
@@ -81,17 +82,17 @@ install -Dm644 crates/gram/resources/%{appid}.svg -t %{buildroot}%{_scalableicon
 install -Dm644 %{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 
 # Funny Zed license solution
-%{__cargo} tree                                                             \
-    -Z avoid-dev-deps                                                       \
-    --workspace                                                             \
-    --edges no-build,no-dev,no-proc-macro                                   \
-    --target all                                                            \
-    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
-    --prefix none                                                           \
-    --format "{l}: {p}"                                                     \
-    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
-    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
-    | sort -u                                                               \
+%{__cargo} tree                                                          \
+    -Z avoid-dev-deps                                                    \
+    --workspace                                                          \
+    --edges no-build,no-dev,no-proc-macro                                \
+    --target all                                                         \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                     \
+    --prefix none                                                        \
+    --format "{l}: {p}"                                                  \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e ":b; s/^\([^:]*\)*\//\1 OR /; tb;" \
+    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                       \
+    | sort -u                                                            \
 > LICENSE.dependencies
 
 # All of these are currently commented because they affect the NEXT release of Gram, afterwards they have to be added. For now the commands below it are correct.
