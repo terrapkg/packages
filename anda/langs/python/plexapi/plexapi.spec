@@ -2,7 +2,7 @@
 %global _desc Python bindings for the Plex API.
 
 Name:			python-%{pypi_name}
-Version:		4.18.2
+Version:		4.18.3
 Release:		1%{?dist}
 Summary:		Python bindings for the Plex API
 License:		BSD-3-Clause
