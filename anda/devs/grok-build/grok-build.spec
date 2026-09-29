@@ -136,4 +136,5 @@ target/rpm/xai-grok-pager completions fish \
 %{_bindir}/grok
 
 %changelog
-%autochangelog
+* Tue Sep 29 2026 Leo Douglas <douglarek@gmail.com> - 1.0.45^20260929git.97f190f-1
+- Initial package
