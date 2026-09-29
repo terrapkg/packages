@@ -1,4 +1,4 @@
 let v = gh("chipsalliance/verible");
 rpm.global("raw_version", v);
-v.replace("-", "~")
+v.replace("-", "~");
 rpm.version(v);
