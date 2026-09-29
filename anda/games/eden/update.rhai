@@ -1,1 +1,1 @@
-rpm.version(codeberg("eden-emu/eden"));
+rpm.version(forgejo("git.eden-emu.dev", "eden-emu/eden"));
