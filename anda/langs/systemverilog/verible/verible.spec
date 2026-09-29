@@ -96,7 +96,7 @@ Requires:      %{name} = %{evr}
 Verible tool for analyzing and transforming whole SystemVerilog projects.
 
 %prep
-%autosetup -n verible-%{raw_version}
+%autosetup -C
 
 %build
 bazel build --announce_rc --strip=always \
