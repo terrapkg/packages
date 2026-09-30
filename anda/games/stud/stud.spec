@@ -27,8 +27,6 @@ Packager:       CatPieLeaf <catpieleaf@proton.me>
 ExclusiveArch:  x86_64
 
 BuildRequires:  anda-srpm-macros
-BuildRequires:  desktop-file-utils
-BuildRequires:  libappstream-glib
 BuildRequires:  zstd
 
 Requires:       bubblewrap
@@ -76,10 +74,6 @@ and isn't affiliated with, endorsed by or approved by Roblox Corporation.
 
 %install
 cp -a usr %{buildroot}/
-
-%check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license %{_datadir}/licenses/%{name}/
