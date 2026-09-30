@@ -32,6 +32,7 @@ BuildRequires:  zig
 BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
+BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(gtk4)
@@ -226,7 +227,7 @@ This package contains the static files that are used for developing with libghos
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%setup -qn %{base_name}-%{ver}-main-+%{shortcommit}
+%setup -qn %{base_name}-%{ver}-main+%{shortcommit}
 
 %zig_prep
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
