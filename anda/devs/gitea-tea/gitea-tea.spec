@@ -1,0 +1,70 @@
+# Adapted from https://build.opensuse.org/package/show/home:douglarek/gitea-tea
+
+%global goipath         gitea.dev/tea
+
+Name:           gitea-tea
+Version:        0.16.0
+Release:        1%{?dist}
+Summary:        A command line tool to interact with Gitea servers
+License:        MIT AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND ISC AND MPL-2.0 AND Unicode-3.0
+URL:            https://gitea.com/gitea/tea
+Source0:        %{url}/archive/v%{version}.tar.gz
+Packager:       Leo Douglas <douglarek@gmail.com>
+
+BuildRequires:  go-rpm-macros
+BuildRequires:  go-srpm-macros
+BuildRequires:  golang >= 1.26.0
+Requires:       git-core
+
+%description
+Tea can be used to manage most entities on one or multiple Gitea
+instances and provides local helpers like 'tea pr checkout'.
+
+It tries to make use of context provided by the repository in $PWD
+if available. And works best in a upstream/fork workflow, when the
+local main branch tracks the upstream repo. It also assumes that
+local git state is published on the remote before doing operations.
+Configuration lives in $XDG_CONFIG_HOME/tea.
+
+%pkg_completion -Bfz tea
+
+%prep
+%autosetup -n tea
+export GOTOOLCHAIN=local
+go mod download
+
+%build
+export GOTOOLCHAIN=local
+sdkversion=$(awk '$1 == "gitea.dev/sdk" { print substr($2, 2); exit }' go.mod)
+test -n "$sdkversion"
+
+%global gomodulesmode GO111MODULE=on
+%global currentgoldflags %{?currentgoldflags} -X %{goipath}/modules/version.Version=%{version} -X %{goipath}/modules/version.SDK=${sdkversion}
+%gobuild -o tea .
+%gobuild -o tea-docs ./docs
+./tea-docs --out docs/CLI.md
+
+%install
+install -v -m 0755 -D -t %{buildroot}%{_bindir} tea
+
+./tea completion bash > contrib/autocomplete.sh
+sed -i '1d' contrib/autocomplete.sh
+install -v -m 0644 -D contrib/autocomplete.sh \
+    %{buildroot}%{bash_completions_dir}/tea
+
+./tea completion zsh > contrib/autocomplete.zsh
+install -v -m 0644 -D contrib/autocomplete.zsh \
+    %{buildroot}%{zsh_completions_dir}/_tea
+
+./tea completion fish > contrib/autocomplete.fish
+install -v -m 0644 -D contrib/autocomplete.fish \
+    %{buildroot}%{fish_completions_dir}/tea.fish
+
+%files
+%license LICENSE
+%doc CHANGELOG.md docs/CLI.md CONTRIBUTING.md README.md
+%{_bindir}/tea
+
+%changelog
+* Wed Sep 30 2026 Leo Douglas <douglarek@gmail.com> - 0.16.0-1
+- Port to Terra
