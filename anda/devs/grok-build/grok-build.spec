@@ -19,10 +19,12 @@ Name:           grok-build
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Terminal AI coding agent by xAI
-# Legal-Review-Notice (boo#1273104): licences of the statically linked Rust
-# dependencies, verified against the vendored tree with
-# "cargo tree -p xai-grok-pager-bin -e normal" (1009 crates in this graph,
-# 1245 vendored):
+# Legal-Review-Notice (boo#1273104): the dependency part of the License tag
+# below is the licence set of the workspace's normal dependency graph (build,
+# dev and proc-macro edges excluded) at the versions pinned by Cargo.lock,
+# collected the same way %%cargo_license_online does it ("cargo tree
+# --workspace --edges no-build,no-dev,no-proc-macro --target all"). Notes from
+# the packager's review of the statically linked tree:
 #  - pdf_oxide IS shipped (pulled with its "rendering" feature), but it is
 #    "MIT OR Apache-2.0" and carries no GPL code. Its src/decoders/jbig2.rs is
 #    a pass-through stub ("no actual decoding performed"); its sole GPL-3.0
@@ -43,7 +45,7 @@ Summary:        Terminal AI coding agent by xAI
 #  - aws-lc-sys, rust-stemmers and zstd-sys ship a GPL licence text but none
 #    applies: aws-lc expressly elects ISC over GPL-2.0, rust-stemmers' GPL-3.0
 #    covers only its test_data, and zstd is dual BSD-3-Clause/GPL-2.0.
-License:        Apache-2.0 AND MPL-2.0 AND GPL-2.0 WITH Linking-exception AND LGPL-2.1-or-later
+License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Apache-2.0) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR BSL-1.0 OR MIT) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-2-Clause OR Apache-2.0) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR Apache-2.0) AND (BSD-3-Clause OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSL-1.0 AND CC0-1.0 AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CDLA-Permissive-2.0 AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND MIT AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR BSD-3-Clause) AND (MIT OR Zlib OR Apache-2.0) AND MIT-0 AND MPL-2.0 AND MPL-2.0-or-later AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT) AND GPL-2.0 WITH Linking-exception AND LGPL-2.1-or-later
 SourceLicense:  Apache-2.0
 URL:            https://github.com/xai-org/grok-build
 Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
@@ -111,6 +113,9 @@ export %{cargo_dist_env}
 # with 32 jobs), so bind it at one job per 8 GB.
 %constrain_build -m 8000
 %cargo_build -- --package xai-grok-pager-bin
+# Dependency licence provenance for the statically linked crates (Terra
+# policy); ships as LICENSE.dependencies.
+%{cargo_license_online} > LICENSE.dependencies
 
 %install
 install -D -m 0755 target/rpm/xai-grok-pager %{buildroot}%{_bindir}/grok
@@ -127,6 +132,7 @@ target/rpm/xai-grok-pager completions fish \
 
 %files
 %license LICENSE
+%license LICENSE.dependencies
 %doc README.md THIRD-PARTY-NOTICES
 %{_bindir}/grok
 
