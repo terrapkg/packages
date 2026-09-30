@@ -39,6 +39,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
+ls -laH target/rpm/
 install -Dm0755 target/rpm/noctua-cosmic                                            %{buildroot}%{_bindir}/noctua
 %desktop_file_install ui/cosmic/resources/app.desktop
 mv %{buildroot}%{_appsdir}/app.desktop %{buildroot}%{_appsdir}/%{appid}.desktop
