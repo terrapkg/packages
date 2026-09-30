@@ -1,6 +1,6 @@
 %global debug_package   %{nil}
 
-%global ver v5.2.0
+%global ver 5.2.0
 
 %global commit          9287a782f3422aa8868f71498d8b70f1644a52f2
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
