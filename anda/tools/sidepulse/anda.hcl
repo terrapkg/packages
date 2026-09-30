@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "sidepulse.spec"
 	}
+	labels {
+		nightly = 1
+	}
 }
