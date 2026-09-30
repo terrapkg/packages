@@ -87,7 +87,7 @@ Summary:        Mesa graphics libraries
 %global ver 26.2.3
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
-Release:        4%{?dist}
+Release:        1%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT AND BSD-3-Clause AND SGI-B-2.0
 URL:            https://mesa3d.org
