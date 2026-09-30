@@ -17,9 +17,7 @@ if rpm.changed() {
   let sarif_ver  = find(`java-sarif-([\d.]+)-modified\.jar`, rawfile, 1);
   rpm.global("sarif_ver", sarif_ver);
 
-  let z3_ver  = find(`Z3_VER = "([\d.]+)"`, rawfile, 1);
-  rpm.global("z3_ver", z3_ver);
-
-  let z3_glibc  = find(`Z3_X64_GLIBC_VER = "([\d.]+)"`, rawfile, 1);
-  rpm.global("z3_glibc", z3_glibc);
+  // Z3 is not taken from Ghidra: the spec overrides Ghidra's 4.13.0 pin
+  // with 4.13.4, whose Linux arm64 release works.
+  // TODO: Restore the Z3_VER lookup once the spec drops that override.
 }
