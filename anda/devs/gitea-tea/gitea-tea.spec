@@ -12,6 +12,7 @@ Source0:        %{url}/archive/v%{version}.tar.gz
 Packager:       Leo Douglas <douglarek@gmail.com>
 
 BuildRequires:  go-rpm-macros
+BuildRequires:  go-srpm-macros
 BuildRequires:  golang >= 1.26.0
 Requires:       git-core
 
@@ -66,4 +67,4 @@ install -v -m 0644 -D contrib/autocomplete.fish \
 
 %changelog
 * Wed Sep 30 2026 Leo Douglas <douglarek@gmail.com> - 0.16.0-1
-- Initial Terra package
+- Port to Terra
