@@ -4,6 +4,7 @@ project pkg {
 	}
 	labels {
 		mock = 1
+		nightly = 4
 		updbranch = 1
 	}
 }
