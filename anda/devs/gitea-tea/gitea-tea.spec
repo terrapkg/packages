@@ -1,16 +1,4 @@
-#
-# spec file for package gitea-tea
-#
-# Copyright (c) 2026 SUSE LLC and contributors
-#
-# All modifications and additions to the file contributed by third parties
-# remain the property of their copyright owners, unless otherwise agreed
-# upon. The license for this file, and modifications and additions to the
-# file, is the same license as for the pristine package itself (unless the
-# license for the pristine package is not an Open Source License, in which
-# case the license is the MIT License). An "Open Source License" is a
-# license that conforms to the Open Source Definition (Version 1.9)
-# published by the Open Source Initiative.
+# Adapted from https://build.opensuse.org/package/show/home:douglarek/gitea-tea
 
 %global goipath         gitea.dev/tea
 
@@ -18,20 +6,13 @@ Name:           gitea-tea
 Version:        0.16.0
 Release:        1%{?dist}
 Summary:        A command line tool to interact with Gitea servers
-License:        MIT
+License:        MIT AND Apache-2.0 AND BSD-2-Clause AND BSD-3-Clause AND ISC AND MPL-2.0 AND Unicode-3.0
 URL:            https://gitea.com/gitea/tea
 Source0:        %{url}/archive/v%{version}.tar.gz
 Packager:       Leo Douglas <douglarek@gmail.com>
 
-BuildRequires:  anda-srpm-macros
-BuildRequires:  bash-completion
-BuildRequires:  fish
-BuildRequires:  gcc
-BuildRequires:  git-core
 BuildRequires:  go-rpm-macros
 BuildRequires:  golang >= 1.26.0
-BuildRequires:  zsh
-Conflicts:      tea
 Requires:       git-core
 
 %description
@@ -84,4 +65,5 @@ install -v -m 0644 -D contrib/autocomplete.fish \
 %{_bindir}/tea
 
 %changelog
-%autochangelog
+* Wed Sep 30 2026 Leo Douglas <douglarek@gmail.com> - 0.16.0-1
+- Initial Terra package
