@@ -1,0 +1,14 @@
+--- a/crates/build/xai-proto-build/src/lib.rs
++++ b/crates/build/xai-proto-build/src/lib.rs
+@@ -186,10 +186,7 @@ impl XaiProtoBuilder {
+ 
+             let mut lines = output.lines();
+             let first_line = lines.next().context("protoc command output is empty")?;
+-            let prefix = "/dev/null:";
+-            let rem = first_line.strip_prefix(prefix).with_context(|| {
+-                format!("protoc command output must start with /dev/null: {output:?}")
+-            })?;
++            let rem = first_line.strip_prefix("/dev/null:").unwrap_or(first_line);
+             for line in iter::once(rem).chain(lines) {
+                 let line = line.trim();
+                 let line = line.strip_suffix("\\").unwrap_or(line);
