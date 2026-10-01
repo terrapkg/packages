@@ -5,7 +5,7 @@ Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 Release:        5%{?dist}
 Summary:        Release package for Terra
 
-License:        MIT
+License:        GPL-3.0-or-later
 URL:            https://terrapkg.com
 Source0:        terra.repo
 Source1:        terra-extras.repo
