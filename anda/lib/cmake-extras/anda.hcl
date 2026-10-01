@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "cmake-extras.spec"
 	}
+	labels {
+		updbranch = 1
+	}
 }
