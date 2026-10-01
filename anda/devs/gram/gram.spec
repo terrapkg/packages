@@ -65,6 +65,8 @@ sed -i "s|@release_info@||g" "crates/gram/resources/flatpak/gram.metainfo.xml.in
 
 envsubst < "crates/gram/resources/flatpak/gram.metainfo.xml.in" > %{appid}.metainfo.xml
 
+sed -i 's@CARGO_ABOUT_VERSION=".*"@CARGO_ABOUT_VERSION="$(cargo-about --version | sed "s/cargo-about //g")"@g' script/generate-licenses
+
 %build
 export GRAM_UPDATE_EXPLANATION="Run dnf up to update Gram from Terra."
 echo "stable" > crates/gram/RELEASE_CHANNEL
