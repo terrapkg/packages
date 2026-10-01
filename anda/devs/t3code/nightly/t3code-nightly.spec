@@ -102,6 +102,9 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+Thu Oct 01 2026 Owen Zimmerman <owen@fyralabs.com>
+- Remove conflicting arch bundled node modules
+
 * Fri Sep 04 2026 Addison LeClair <me@addi.lol>
 - Add new libsecret dependency
 
