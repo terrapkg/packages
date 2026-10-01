@@ -47,7 +47,7 @@ install -Dpm755 target/rpm/cargo-tauri %{buildroot}%{_bindir}/tauri
 %{cargo_license_online} > LICENSE.dependencies
 mkdir -p %{buildroot}{%{bash_completions_dir},%{fish_completions_dir},%{zsh_completions_dir}}
 
-target/rpm/cargo-tauri completions --shell bash --output %{buildroot}%{bash_completions_dir}/tauri || :
+target/rpm/cargo-tauri completions --shell bash --output %{buildroot}%{bash_completions_dir}/tauri
 target/rpm/cargo-tauri completions --shell fish --output %{buildroot}%{fish_completions_dir}/tauri.fish
 target/rpm/cargo-tauri completions --shell zsh --output %{buildroot}%{zsh_completions_dir}/_tauri
 
