@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="TYPE">
+  <id>app.winboat</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <icon type="local">winboat-logo.svg</icon>
+  <name>winboat</name>
+  <summary>Run Windows apps on Linux with seamless integration</summary>
+
+  <description>
+    <p>
+        Run Windows apps on Linux with seamless integration.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">winboat.desktop</launchable>
+
+  <url type="homepage">winboat.app</url>
+
+  <releases>
+    <release version="0.9.2"/>
+  </releases>
+</component>
