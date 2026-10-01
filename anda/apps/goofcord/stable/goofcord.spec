@@ -2,7 +2,7 @@
 %global appid io.github.milkshiift.GoofCord
 
 Name:          goofcord
-Version:       2.3.0
+Version:       2.3.1
 Release:       1%{?dist}
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
@@ -33,13 +33,13 @@ sed -i '/\"x64\",/d' electron-builder.ts
 install -Dm644 assetsDev/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 
 %check
-%desktop_file_validate %{buildroot}%{_datadir}/applications/%{name}.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/%{appid}.desktop
 %{_libdir}/%{name}/
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_hicolordir}/16x16/apps/%{name}.png

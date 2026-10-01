@@ -7,7 +7,7 @@
 %global __cargo_common_opts %{?_smp_mflags}
 
 Name:           rust-tauri
-Version:        2.12.0
+Version:        2.12.1
 Release:        1%{?dist}
 Summary:        Command line interface for building Tauri apps
 License:        Apache-2.0 OR MIT
@@ -29,7 +29,7 @@ License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) A
 %description -n tauri
 Build smaller, faster, and more secure desktop and mobile applications with a web frontend.
 
-%pkg_completion -n tauri -fz
+%pkg_completion -n tauri -Bfz
 
 %prep
 %autosetup -n %{crate}-%{version} -p1
@@ -47,13 +47,13 @@ install -Dpm755 target/rpm/cargo-tauri %{buildroot}%{_bindir}/tauri
 %{cargo_license_online} > LICENSE.dependencies
 mkdir -p %{buildroot}{%{bash_completions_dir},%{fish_completions_dir},%{zsh_completions_dir}}
 
-#target/rpm/cargo-tauri completions --shell bash --output %{buildroot}%{bash_completions_dir}/tauri || :
+target/rpm/cargo-tauri completions --shell bash --output %{buildroot}%{bash_completions_dir}/tauri
 target/rpm/cargo-tauri completions --shell fish --output %{buildroot}%{fish_completions_dir}/tauri.fish
 target/rpm/cargo-tauri completions --shell zsh --output %{buildroot}%{zsh_completions_dir}/_tauri
 
 %files -n tauri
-%license LICENSE_APACHE-2.0
-%license LICENSE_MIT
+%license LICENSE-APACHE-2.0
+%license LICENSE-MIT
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/tauri

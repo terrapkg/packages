@@ -1,4 +1,4 @@
-# Terra Sources
+# Terra Package Sources
 <a href="https://repology.org/repository/terra_rawhide"><img align="left" src="https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide" alt="Repository status"></a>
 Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.

@@ -1,6 +1,6 @@
 project pkg {
 	arches = ["x86_64"]
 	rpm {
-		spec = "cmake-extras.spec"
+		spec = "stud.spec"
 	}
 }
