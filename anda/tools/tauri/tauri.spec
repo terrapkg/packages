@@ -52,8 +52,8 @@ target/rpm/cargo-tauri completions --shell fish --output %{buildroot}%{fish_comp
 target/rpm/cargo-tauri completions --shell zsh --output %{buildroot}%{zsh_completions_dir}/_tauri
 
 %files -n tauri
-%license LICENSE_APACHE-2.0
-%license LICENSE_MIT
+%license LICENSE-APACHE-2.0
+%license LICENSE-MIT
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/tauri
