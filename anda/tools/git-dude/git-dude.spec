@@ -12,7 +12,7 @@ Source0:        %{url}/archive/%{commit}.tar.gz
 BuildArch:      noarch
 
 Requires:       bash
-Requires:       git
+Requires:       git-core
 Requires:       libnotify
 
 Packager:       Its-J <jonah@fyralabs.com>
