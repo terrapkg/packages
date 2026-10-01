@@ -51,6 +51,11 @@ mkdir -p dist
 tar -xJf "$archive" -C dist --strip-components=1
 
 find dist -path '*musl*' -delete
+%ifarch x86_64
+rm -rf dist/resources/app.asar.unpacked/node_modules/node-pty/prebuilds/linux-arm64
+%elifarch aarch64
+rm -rf dist/resources/app.asar.unpacked/node_modules/node-pty/prebuilds/linux-x64
+%endif
 
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -pr dist/. %{buildroot}%{_libdir}/%{name}/
