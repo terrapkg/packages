@@ -10,7 +10,7 @@ Summary:        Simplified wrapper for UMU-Launcher
 
 License:        MIT
 URL:            https://crates.io/crates/umu-wrapper
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  mold anda-srpm-macros rust-packaging >= 21
 

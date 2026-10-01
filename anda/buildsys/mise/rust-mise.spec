@@ -11,7 +11,7 @@ Summary:        Front-end to your dev env
 
 License:        MIT
 URL:            https://crates.io/crates/mise
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 Source1:        https://raw.githubusercontent.com/jdx/mise/main/man/man1/mise.1
 Source2:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise.bash
 Source3:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise.fish

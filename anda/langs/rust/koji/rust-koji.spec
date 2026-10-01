@@ -11,7 +11,7 @@ Summary:        Interactive CLI for creating conventional commits
 
 License:        MIT
 URL:            https://crates.io/crates/koji
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24 anda-srpm-macros
 BuildRequires:  openssl-devel

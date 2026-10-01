@@ -10,7 +10,7 @@ Summary:        Customizable cross-platform graphical process/system monitor for
 
 License:        MIT
 URL:            https://crates.io/crates/bottom
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros >= 24

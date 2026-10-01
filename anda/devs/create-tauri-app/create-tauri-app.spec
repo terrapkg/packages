@@ -6,7 +6,7 @@ Release:        1%{?dist}
 Summary:        Rapidly scaffold out a new tauri app project
 License:        Apache-2.0 OR MIT
 URL:            https://crates.io/crates/create-tauri-app
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  mold

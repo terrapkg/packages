@@ -10,7 +10,7 @@ Summary:        Modernized, complete, embeddable TeX/LaTeX engine
 
 License:        MIT
 URL:            https://crates.io/crates/tectonic
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  pkgconfig(fontconfig) g++ libicu-devel freetype-devel openssl-devel graphite2-devel anda-srpm-macros rust-packaging >= 21
 

@@ -12,7 +12,7 @@ Packager:       Olivia <git@olivia.sh>
 
 License:        AGPL-3.0-or-later
 URL:            https://crates.io/crates/bacon
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  mold

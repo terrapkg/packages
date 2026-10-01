@@ -8,7 +8,7 @@ Summary:        Extremely simple lofi player
 
 License:        MIT
 URL:            https://crates.io/crates/lowfi
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 Packager:       sadlerm <lerm@chromebooks.lol>
 

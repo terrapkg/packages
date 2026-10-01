@@ -11,7 +11,7 @@ Summary:        Terminal workspace with batteries included
 
 License:        MIT
 URL:            https://crates.io/crates/zellij
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 ExclusiveArch:  %{rust_arches}
 

@@ -10,7 +10,7 @@ Summary:        Hackable, minimal, fast TUI file explorer
 
 License:        MIT
 URL:            https://crates.io/crates/xplr
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  mold

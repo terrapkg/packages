@@ -11,7 +11,7 @@ Summary:        Command-line application for interacting with git repositories
 
 License:        MIT OR Apache-2.0
 URL:            https://crates.io/crates/gitoxide
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  openssl-devel cmake anda-srpm-macros rust-packaging >= 21 mold
 

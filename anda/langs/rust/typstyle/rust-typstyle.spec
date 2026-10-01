@@ -10,7 +10,7 @@ Summary:        CLI for Typstyle
 
 License:        Apache-2.0
 URL:            https://crates.io/crates/typstyle
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 Source1:        https://raw.githubusercontent.com/typstyle-rs/typstyle/v%{version}/LICENSE
 Packager:       Olivia <git@olivia.sh>
 

@@ -10,7 +10,7 @@ Summary:        Minimal, blazing-fast, and infinitely customizable prompt for an
 
 License:        ISC
 URL:            https://crates.io/crates/starship
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros

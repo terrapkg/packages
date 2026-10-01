@@ -12,7 +12,7 @@ Summary:        Terminal typing game
 
 License:        GPL-3.0
 URL:            https://crates.io/crates/typeracer
-Source:         %{terra_crates_source}
+Source:         %{crates_source}
 
 BuildRequires:  perl openssl-devel anda-srpm-macros rust-packaging >= 21 mold
 
