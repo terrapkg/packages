@@ -1,6 +1,6 @@
-%global commit 11e5e4c8cb395b9e6360b1eddcb57a259d2730a0
+%global commit fb2827366361d8470c5ae2076e5f5e74584484da
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260930
+%global commitdate 20261001
 %global ver 0.2.1
 
 Name:           ayaneo-leds
