@@ -49,7 +49,8 @@ fn version_quaterdaily(rpm, stable_ver, commit_hash) {
 /// Fetch and update quaterdaily package globals, querying the stable version only when the commit changes.
 fn gh_quaterdaily(rpm, repo) {
     let commit = gh_commit(repo);
-    if rpm.global("commit") == commit.trim() {
+    commit.trim();
+    if rpm.global("commit") == commit {
         return;
     }
     version_quaterdaily(rpm, gh(repo), commit);
