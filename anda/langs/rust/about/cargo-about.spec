@@ -1,7 +1,7 @@
 %global crate cargo-about
 
 Name:           cargo-about
-Version:        0.9.2
+Version:        0.8.2
 Release:        1%{?dist}
 Summary:        Cargo plugin for generating a license listing for all dependencies of a crate
 SourceLicense:  MIT OR Apache-2.0
@@ -21,11 +21,13 @@ Packager:       Gilver E. <roachy@fyralabs.com>
 %cargo_prep_online
 
 %build
-%cargo_build -f cli
+%dnl %cargo_build -f cli
+%cargo_build
 
 %install
 %crate_install_bin
-%{cargo_license_online -f cli} > LICENSE.dependencies
+%dnl %{cargo_license_online -f cli} > LICENSE.dependencies
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
 %doc README.md
@@ -36,5 +38,5 @@ Packager:       Gilver E. <roachy@fyralabs.com>
 %{_bindir}/%{name}
 
 %changelog
-* Wed Sep 30 2026 Gilver E. <roachy@fyralabs.com> - 0.9.2-1
+* Wed Sep 30 2026 Gilver E. <roachy@fyralabs.com> - 0.8.2-1
 - Initial package
