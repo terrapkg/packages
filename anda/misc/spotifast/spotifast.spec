@@ -38,7 +38,6 @@ Documentation files for spotifast.
 %cargo_build
 
 %install
-%cargo_install
 %cargo_license_summary_online
 %{cargo_license_online -a} > LICENSE.dependencies
 
