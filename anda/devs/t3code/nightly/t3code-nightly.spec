@@ -11,7 +11,7 @@
 Name:           t3code-nightly
 %electronmeta -D
 Version:        %{latest_stable_version}^%{commitdate}^%{run}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
