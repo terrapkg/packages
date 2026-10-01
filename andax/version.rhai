@@ -12,11 +12,11 @@ fn version_nightly(rpm, stable_ver, commit_hash) {
 
 /// Update the stable version global for a nightly or quaterdaily package.
 fn stable_version(rpm, stable_ver) {
-    stable_ver = stable_ver.trim();
+    stable_ver.trim();
     if stable_ver.starts_with("v") {
         stable_ver.crop(1);
     }
-    stable_ver = stable_ver.replace("-", ".");
+    stable_ver.replace("-", ".");
     rpm.global("ver", stable_ver);
     if rpm.changed() {
         rpm.release();
