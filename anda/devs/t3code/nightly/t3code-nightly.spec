@@ -11,7 +11,7 @@
 Name:           t3code-nightly
 %electronmeta -D
 Version:        %{latest_stable_version}^%{commitdate}^%{run}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
@@ -60,6 +60,11 @@ mkdir -p dist
 tar -xJf "$archive" -C dist --strip-components=1
 
 find dist -path '*musl*' -delete
+%ifarch x86_64
+rm -rf dist/resources/app.asar.unpacked/node_modules/node-pty/prebuilds/linux-arm64
+%elifarch aarch64
+rm -rf dist/resources/app.asar.unpacked/node_modules/node-pty/prebuilds/linux-x64
+%endif
 
 install -dm755 %{buildroot}%{_libdir}/%{name}
 cp -pr dist/. %{buildroot}%{_libdir}/%{name}/
@@ -97,6 +102,9 @@ EOF
 %{_hicolordir}/*/apps/%{name}.png
 
 %changelog
+Thu Oct 01 2026 Owen Zimmerman <owen@fyralabs.com>
+- Remove conflicting arch bundled node modules
+
 * Fri Sep 04 2026 Addison LeClair <me@addi.lol>
 - Add new libsecret dependency
 
