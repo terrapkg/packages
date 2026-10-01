@@ -1,5 +1,5 @@
 Name:       terra-wireplumber
-Version:    0.5.17
+Version:    0.5.18
 Release:    1%{?dist}
 Summary:    A modular session/policy manager for PipeWire
 Packager:   Kyle Gospodnetich <me@kylegospodneti.ch>
