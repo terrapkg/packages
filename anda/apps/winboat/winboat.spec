@@ -22,7 +22,7 @@ BuildRequires:  pkgconfig(alsa)
 Requires:       freerdp
 Requires:       gtk3
 Requires:       nss
-Requires:       (moby-engine or podman)
+Requires:       ((moby-engine and docker-compose) or (podman and podman-compose))
 
 Packager:       Its-J <jonah@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
 
