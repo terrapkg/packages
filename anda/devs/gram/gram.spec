@@ -17,6 +17,7 @@ License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) A
 URL:           https://gram-editor.com
 Source0:       https://codeberg.org/GramEditor/gram/archive/%{version}.tar.gz
 BuildRequires: anda-srpm-macros
+BuildRequires: cargo-about
 BuildRequires: cargo-rpm-macros
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
