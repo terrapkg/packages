@@ -3,7 +3,7 @@
 Name:           winboat
 %electronmeta -D
 Version:        0.9.2
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Run Windows apps on Linux with seamless integration
 License:        MIT AND %{electron_license}
 URL:            https://github.com/winboat-org/winboat
