@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<component type="TYPE">
-  <id>app.winboat</id>
+<component type="desktop-application">
+  <id>app.winboat.WinBoat</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>MIT</project_license>
-  <icon type="local">winboat-logo.svg</icon>
-  <name>winboat</name>
+  <icon type="stock">winboat</icon>
+  <name>WinBoat</name>
   <summary>Run Windows apps on Linux with seamless integration</summary>
+  <developer id="app.winboat">
+    <name>WinBoat</name>
+  </developer>
 
   <description>
     <p>
-        Run Windows apps on Linux with seamless integration.
+        WinBoat is an Electron app which allows you to run Windows apps on Linux using
+        a containerized approach. Windows runs as a VM inside a Docker/Podman container,
+        we communicate with it using the WinBoat Guest Server to retrieve data we need
+        from Windows. For compositing applications as native OS-level windows, we use
+        FreeRDP together with Windows's RemoteApp protocol.
     </p>
   </description>
 
   <launchable type="desktop-id">winboat.desktop</launchable>
-
-  <url type="homepage">winboat.app</url>
+  <url type="homepage">https://winboat.app</url>
+  <url type="vcs-browser">https://github.com/winboat-org/winboat</url>
 
   <releases>
-    <release version="0.9.2"/>
+    <release version="0.9.2" date="2026-08-25" />
   </releases>
+
+  <categories>
+    <category>Utility</category>
+    <category>System</category>
+  </categories>
 </component>
