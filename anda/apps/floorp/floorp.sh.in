@@ -35,4 +35,8 @@ if [ -z "$MOZ_APP_REMOTINGNAME" ]; then
 fi
 
 
+if [ "$#" -eq 0 ]; then
+    set -- --new-window about:home
+fi
+
 exec "$MOZ_PROGRAM" "$@"
