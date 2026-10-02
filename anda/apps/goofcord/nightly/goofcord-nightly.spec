@@ -37,7 +37,7 @@ sed -i '/\"x64\",/d' electron-builder.ts
 install -Dm644 assetsDev/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 
 %check
-%dnl %desktop_file_validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
+%desktop_file_validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
 %files
 %doc README.md
