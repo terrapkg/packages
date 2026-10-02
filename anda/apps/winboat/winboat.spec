@@ -31,7 +31,7 @@ Packager:       Its-J <jonah@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
 
 %prep
 %autosetup -S git
-%{__npm} i
+%{__npm} ci
 
 %build
 %npm_build -r build:linux-gs
