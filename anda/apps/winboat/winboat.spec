@@ -58,7 +58,7 @@ find "%{buildroot}%{_libdir}/winboat" -type f -exec file {} + \
 
 %files
 %license LICENSE
-%doc LICENSE
+%doc README.md
 %{_bindir}/%{name}
 %{_scalableiconsdir}/winboat.svg
 %{_appsdir}/winboat.desktop
