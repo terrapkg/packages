@@ -1,27 +1,31 @@
 %undefine __brp_mangle_shebangs
 
-%global ver 0.0.44
+%global appid gg.ping.T3Code-nightly
+
+%global ver 0.0.45
 %global commit 0fcd5f90611451cca842689faea53b5450c022da
-%global commitdate 20260929
-%global run 1
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global buildnum %(printf '%d' 0x%{shortcommit})
-%global electron_version %{ver}-nightly.%{commitdate}.%{buildnum}
+%global date 20261002
+%global run 2595
+%global tag 0.0.45-nightly.20261002.2595
+%global electron_version %{ver}-nightly.%{date}.%{run}
 
 Name:           t3code-nightly
 %electronmeta -D
-Version:        %{ver}^%{commitdate}^%{run}git.%{shortcommit}
-Release:        2%{?dist}
+Version:        %{ver}^%{date}^%{run}
+Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
 URL:            https://github.com/pingdotgg/t3code
-Source0:        %{url}/archive/%{commit}/t3code-%{commit}.tar.gz
+Source0:        %{url}/archive/refs/tags/v%{tag}.tar.gz
+Source1:        %{name}.desktop
+Source2:        %{appid}.metainfo.xml
 
 BuildRequires:  cargo
 BuildRequires:  ImageMagick
 BuildRequires:  pnpm
 BuildRequires:  nodejs24
 BuildRequires:  pkgconfig(libsecret-1)
+BuildRequires:  desktop-file-utils
 
 Requires:       git-core
 Suggests:       azure-cli
@@ -37,7 +41,7 @@ T3 Code is a minimal web GUI for coding agents such as Codex, Claude Code,
 Cursor, and OpenCode.
 
 %prep
-%autosetup -n t3code-%{commit}
+%autosetup -n t3code-%{tag}
 for manifest in apps/server/package.json apps/desktop/package.json apps/web/package.json packages/contracts/package.json; do
   node -e 'const fs = require("fs"); const [file, version] = process.argv.slice(1); const pkg = JSON.parse(fs.readFileSync(file, "utf8")); pkg.version = version; fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n");' "$manifest" %{electron_version}
 done
@@ -75,23 +79,12 @@ ln -sf %{_libdir}/%{name}/t3code %{buildroot}%{_bindir}/%{name}
 
 install -Dm644 assets/prod/black-universal-1024.png %{buildroot}%{_hicolordir}/1024x1024/apps/%{name}.png
 
-cat <<EOF > %{name}.desktop
-[Desktop Entry]
-Name=T3 Code (Nightly)
-Comment=%{summary}
-Exec=%{name} --ozone-platform-hint=auto %U
-Icon=%{name}
-Terminal=false
-Type=Application
-Categories=Development;
-StartupWMClass=%{name}
-MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;
-EOF
+%desktop_file_install %{SOURCE1} %{buildroot}%{_appsdir}/%{name}.desktop
 
-%desktop_file_install %{name}.desktop
+%terra_appstream -o %{SOURCE2}
 
 %check
-%desktop_file_validate %{buildroot}%{_appsdir}/*.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/%{name}.desktop
 
 %files
 %doc README.md
@@ -100,9 +93,13 @@ EOF
 %{_libdir}/%{name}/
 %{_appsdir}/%{name}.desktop
 %{_hicolordir}/*/apps/%{name}.png
+%{_metainfodir}/%appid.metainfo.xml
 
 %changelog
-Thu Oct 01 2026 Owen Zimmerman <owen@fyralabs.com>
+* Fri Oct 02 2026 Cypress Reed <cypress@fyralabs.com>
+- Switch to using upstream nightly tags, fix desktop files for policy, add appstream metainfo
+
+* Thu Oct 01 2026 Owen Zimmerman <owen@fyralabs.com>
 - Remove conflicting arch bundled node modules
 
 * Fri Sep 04 2026 Addison LeClair <me@addi.lol>
