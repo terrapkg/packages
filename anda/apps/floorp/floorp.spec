@@ -220,7 +220,6 @@ ac_add_options --disable-tests
 ac_add_options --disable-rust-tests
 ac_add_options --disable-geckodriver
 ac_add_options --enable-rust-simd
-ac_add_options --enable-wasm-simd
 ac_add_options --enable-jxl
 
 # The package manager owns updates and crash reporting.
@@ -287,7 +286,8 @@ echo "mk_add_options MOZ_MAKE_FLAGS=\"-j%{_smp_build_ncpus}\"" >> .mozconfig
     NODE_ENV=production deno task feles-build build --phase before-mach
 )
 
-xvfb-run -a -s "-screen 0 1024x768x24" ./mach configure
+# Allow PyO3 to attempt its stable ABI on Python 3.15.
+PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1 xvfb-run -a -s "-screen 0 1024x768x24" ./mach configure
 xvfb-run -a -s "-screen 0 1024x768x24" ./mach build
 
 %install
