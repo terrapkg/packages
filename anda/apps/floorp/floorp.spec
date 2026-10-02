@@ -242,13 +242,9 @@ ac_add_options --without-system-icu
 ac_add_options --enable-alsa
 ac_add_options --enable-pulseaudio
 ac_add_options --enable-necko-wifi
-ac_add_options --with-wasm-sandboxed-libraries=graphite,ogg,hunspell,expat,woff2,soundtouch
+ac_add_options --without-wasm-sandboxed-libraries
 ac_add_options --without-sysroot
-
-# Use the system Clang with the bootstrapped WASI sysroot.
-ac_add_options --enable-bootstrap=clang,sysroot-wasm32-wasi
-export WASM_CC="%{__cc}"
-export WASM_CXX="%{__cxx}"
+ac_add_options --disable-bootstrap
 
 
 ac_add_options --disable-elf-hack
@@ -286,8 +282,7 @@ echo "mk_add_options MOZ_MAKE_FLAGS=\"-j%{_smp_build_ncpus}\"" >> .mozconfig
     NODE_ENV=production deno task feles-build build --phase before-mach
 )
 
-# Allow PyO3 to attempt its stable ABI on Python 3.15.
-PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1 xvfb-run -a -s "-screen 0 1024x768x24" ./mach configure
+xvfb-run -a -s "-screen 0 1024x768x24" ./mach configure
 xvfb-run -a -s "-screen 0 1024x768x24" ./mach build
 
 %install
