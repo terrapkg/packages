@@ -340,7 +340,10 @@ grep -Fq 'chrome://noraneko-startup/content/chrome_root.js' %{buildroot}%{floorp
 test -s %{buildroot}%{floorpdir}/browser/buildid2
 grep -q '^#define MOZ_BLOCK_PROFILE_DOWNGRADE 1$' obj-artifact-build-output/mozilla-config.h
 for library in GRAPHITE OGG HUNSPELL EXPAT WOFF2 SOUNDTOUCH; do
-    grep -q "^#define MOZ_WASM_SANDBOXING_${library} 1$" obj-artifact-build-output/mozilla-config.h
+    if grep -q "^#define MOZ_WASM_SANDBOXING_${library} 1$" obj-artifact-build-output/mozilla-config.h; then
+        echo "Unexpected WASM sandboxing enabled for ${library}" >&2
+        exit 1
+    fi
 done
 
 %files
