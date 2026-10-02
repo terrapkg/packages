@@ -245,10 +245,10 @@ ac_add_options --enable-necko-wifi
 ac_add_options --with-wasm-sandboxed-libraries=graphite,ogg,hunspell,expat,woff2,soundtouch
 ac_add_options --without-sysroot
 
-# Fedora's native toolchain does not include a complete WASI C/C++ sysroot.
+# Use the system Clang with the bootstrapped WASI sysroot.
 ac_add_options --enable-bootstrap=clang,sysroot-wasm32-wasi
-export WASM_CC="$MOZBUILD_STATE_PATH/clang/bin/clang"
-export WASM_CXX="$MOZBUILD_STATE_PATH/clang/bin/clang++"
+export WASM_CC="%{__cc}"
+export WASM_CXX="%{__cxx}"
 
 
 ac_add_options --disable-elf-hack
