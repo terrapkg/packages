@@ -246,7 +246,7 @@ ac_add_options --with-wasm-sandboxed-libraries=graphite,ogg,hunspell,expat,woff2
 ac_add_options --without-sysroot
 
 # Use the system Clang with the bootstrapped WASI sysroot.
-ac_add_options --enable-bootstrap=clang,sysroot-wasm32-wasi
+ac_add_options --enable-bootstrap sysroot-wasm32-wasi
 export WASM_CC="%{__cc}"
 export WASM_CXX="%{__cxx}"
 
