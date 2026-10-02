@@ -77,7 +77,9 @@ chmod 4755 %{buildroot}%{_libdir}/%{name}/chrome-sandbox
 install -dm755 %{buildroot}%{_bindir}
 ln -sf %{_libdir}/%{name}/t3code %{buildroot}%{_bindir}/%{name}
 
-install -Dm644 assets/prod/black-universal-1024.png %{buildroot}%{_hicolordir}/1024x1024/apps/%{name}.png
+install -dm755 %{buildroot}%{_hicolordir}/512x512/apps
+magick assets/prod/black-universal-1024.png -resize 512x512 %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
+chmod 644 %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 
 %desktop_file_install %{SOURCE1} %{buildroot}%{_appsdir}/%{name}.desktop
 
