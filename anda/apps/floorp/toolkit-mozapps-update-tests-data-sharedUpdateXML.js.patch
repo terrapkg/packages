@@ -1,0 +1,39 @@
+diff --git a/toolkit/mozapps/update/tests/data/sharedUpdateXML.js b/toolkit/mozapps/update/tests/data/sharedUpdateXML.js
+--- a/toolkit/mozapps/update/tests/data/sharedUpdateXML.js
++++ b/toolkit/mozapps/update/tests/data/sharedUpdateXML.js
+@@ -359,6 +359,9 @@ function getUpdateString(aUpdateProps) {
+     ? 'displayVersion="' + aUpdateProps.displayVersion + '" '
+     : "";
+   let appVersion = 'appVersion="' + aUpdateProps.appVersion + '" ';
++  let appVersion2 = aUpdateProps.appVersion2
++    ? 'appVersion2="' + aUpdateProps.appVersion2 + '" '
++    : "";
+   let platformVersion =
+     'platformVersion="' + aUpdateProps.platformVersion + '" ';
+   // Not specifying a detailsURL will cause a leak due to bug 470244
+@@ -377,6 +380,9 @@ function getUpdateString(aUpdateProps) {
+   let unsupported = aUpdateProps.unsupported ? 'unsupported="true" ' : "";
+   let custom1 = aUpdateProps.custom1 ? aUpdateProps.custom1 + " " : "";
+   let custom2 = aUpdateProps.custom2 ? aUpdateProps.custom2 + " " : "";
++  let buildID2 = aUpdateProps.buildID2
++    ? 'buildID2="' + aUpdateProps.buildID2 + '" '
++    : "";
+   let buildID = 'buildID="' + aUpdateProps.buildID + '"';
+ 
+   return (
+@@ -385,6 +391,7 @@ function getUpdateString(aUpdateProps) {
+     name +
+     displayVersion +
+     appVersion +
++    appVersion2 +
+     platformVersion +
+     detailsURL +
+     promptWaitTime +
+@@ -393,6 +400,7 @@ function getUpdateString(aUpdateProps) {
+     unsupported +
+     custom1 +
+     custom2 +
++    buildID2 +
+     buildID
+   );
+ }
