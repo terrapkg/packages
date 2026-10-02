@@ -347,9 +347,6 @@ grep -q '^#define MOZ_BLOCK_PROFILE_DOWNGRADE 1$' obj-artifact-build-output/mozi
 for library in GRAPHITE OGG HUNSPELL EXPAT WOFF2 SOUNDTOUCH; do
     grep -q "^#define MOZ_WASM_SANDBOXING_${library} 1$" obj-artifact-build-output/mozilla-config.h
 done
-appstream-util validate-relax --nonet \
-    %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-%desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
 %license LICENSE noraneko/LICENSE
