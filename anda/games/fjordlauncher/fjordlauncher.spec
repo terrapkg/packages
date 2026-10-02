@@ -71,6 +71,8 @@ Suggests:         gamemode
 
 Obsoletes:        %{real_name}-qt5-nightly <= 9.4
 
+Packager:         PumpkinXD <cucurbita_moschata@yeah.net>
+
 %description
 A custom launcher for Minecraft that allows you to easily manage
 multiple installations of Minecraft at once (Fork of Prism Launcher)
@@ -131,6 +133,6 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
 
 
 %changelog
-* Fri Oct 02 2026 PumpkinXD <54535387+PumpkinXD@users.noreply.github.com>
+* Fri Oct 02 2026 PumpkinXD <cucurbita_moschata@yeah.net>
 - Initial package
 
