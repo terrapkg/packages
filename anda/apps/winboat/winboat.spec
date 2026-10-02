@@ -57,7 +57,7 @@ find "%{buildroot}%{_libdir}/winboat" -type f -exec file {} + \
 %terra_appstream -o %{S:1}
 
 %files
-%license README.md
+%license LICENSE
 %doc LICENSE
 %{_bindir}/%{name}
 %{_scalableiconsdir}/winboat.svg
