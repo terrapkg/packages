@@ -15,7 +15,7 @@
 %global __provides_exclude_from ^%{_prefix}/lib/stud/(angle|android-bionic)/.*|^%{_libexecdir}/stud/lib64/.*
 
 Name:           stud
-Version:        1.1.10
+Version:        1.1.11
 Release:        1%{?dist}
 Summary:        An Unofficial Open-Source Roblox Launcher for Linux
 
