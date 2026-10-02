@@ -2,7 +2,7 @@
 
 Name:           tidal-hifi
 Version:        8.1.3
-Release:        3%?dist
+Release:        4%?dist
 Summary:        The web version of Tidal running in electron with hifi support thanks to widevine
 %electronmeta
 License:        MIT AND %electron_license
@@ -23,11 +23,17 @@ The web version of TIDAL running in electron with Hi-Fi (High & Max) support tha
 
 %install
 %electron_install -I build/icons
-%desktop_file_install packaging/aur/%{name}.desktop
+%desktop_file_install -u %U packaging/aur/%{name}.desktop
+# The desktop-file macros cannot parse a multiword Exec value containing flags.
+sed -i 's|%%U$|--disable-dev-shm-usage %%U|' %{buildroot}%{_appsdir}/%{name}.desktop
+
 
 # Do not ship an absolute symlink from /usr/bin.
 rm -f %{buildroot}%{_bindir}/%{name}
 ln -s ../%{_lib}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
+
+%check
+%desktop_file_validate -f %{buildroot}%{_appsdir}/%{name}.desktop
 
 %files
 %doc README.md
