@@ -3,9 +3,12 @@
 %global _build_id_links none
 %global giturl  https://github.com/amir1376/ab-download-manager
 
+# The application bundles a private Java runtime; do not expose its libraries as system Provides.
+%global __provides_exclude_from ^%{_libdir}/ABDownloadManager/.*$
+
 Name:           ab-download-manager
 Version:        1.10.4
-Release:        1%?dist
+Release:        2%{?dist}
 Summary:        A fast, open-source download manager
 URL:            https://abdownloadmanager.com
 Source0:        abdownloadmanager.desktop
@@ -74,5 +77,8 @@ appstreamcli validate --no-net \
 %{_hicolordir}/512x512/apps/abdownloadmanager.png
 
 %changelog
+* Thu Oct 01 2026 Cypress Reed <cypress@fyralabs.com>
+- fix provides (don't mark this as providing random stuff)
+
 * Fri Sep 18 2026 Cypress Reed <cypress@fyralabs.com>
 - initial package
