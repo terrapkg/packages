@@ -28,6 +28,8 @@ Requires:   /usr/bin/rm
 Requires:   fish
 Requires:   subatomic-cli
 Requires:   python3
+Requires:   dnf5
+Requires:   rpm-build
 Requires:   git
 Requires:   anda
 Requires:   gh
@@ -55,6 +57,7 @@ install -Dm 755 sync-branches-ssh.sh    %{buildroot}%{_bindir}/sync-branches-ssh
 install -Dm 755 sync-branches.sh        %{buildroot}%{_bindir}/sync-branches
 install -Dm 755 terra-subtree-build.sh  %{buildroot}%{_bindir}/terra-subtree-build
 install -Dm 755 terra_mass_rebuild.py   %{buildroot}%{_bindir}/terra_mass_rebuild
+install -Dm 755 check-fedora-overlaps.py %{buildroot}%{_bindir}/check-fedora-overlaps
 install -Dm 755 backports.sh            %{buildroot}%{_bindir}/backports
 
 %files
@@ -76,8 +79,12 @@ install -Dm 755 backports.sh            %{buildroot}%{_bindir}/backports
 %{_bindir}/sync-branches
 %{_bindir}/terra-subtree-build
 %{_bindir}/terra_mass_rebuild
+%{_bindir}/check-fedora-overlaps
 
 %changelog
+* Sat Oct 03 2026 Cypress Reed <cypress@fyralabs.com>
+- Add check-fedora-overlaps.py
+
 * Fri Sep 25 2026 Owen Zimmerman <owen@fyralabs.com>
 - Update for 0.3.0, change name to terra-cli-tools
 
