@@ -47,7 +47,7 @@ install -Dm644 assetsDev/%{appid}.metainfo.xml %{buildroot}%{_metainfodir}/asset
 %{_bindir}/%{base_name}
 %{_appsdir}/%{appid}.desktop
 %{_libdir}/%{base_name}/
-%{_metainfodir}/%{appid}.metainfo.xml
+%{_metainfodir}/%{appid}-Nightly.metainfo.xml
 %{_hicolordir}/16x16/apps/%{base_name}.png
 %{_hicolordir}/24x24/apps/%{base_name}.png
 %{_hicolordir}/32x32/apps/%{base_name}.png
