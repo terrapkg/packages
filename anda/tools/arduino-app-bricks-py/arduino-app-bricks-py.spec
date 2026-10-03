@@ -1,8 +1,8 @@
 %global pypi_name app-bricks-py
 %global _desc The code of the Arduino App Lab Bricks
 
-%global ver bricks/0.13.0
-%global sanitized_ver %(echo %{ver} | sed 's|release/||')
+%global ver bricks/0.13.1
+%global sanitized_ver %(echo %{ver} | sed 's|bricks/||')
 
 Name:			%{pypi_name}
 Version:		%sanitized_ver
@@ -10,7 +10,7 @@ Release:		1%{?dist}
 Summary:		The code of the Arduino App Lab Bricks
 License:		MPL-2.0
 URL:			https://github.com/arduino/app-bricks-py
-Source0:		%url/archive/refs/tags/release/%version.tar.gz
+Source0:		%{url}/archive/refs/tags/bricks/%{version}.tar.gz
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -44,7 +44,7 @@ Summary:        %{summary}
 Python libaries for Arduino App Lab Bricks
 
 %prep
-%autosetup -n %{pypi_name}-release-%{version}
+%autosetup -C
 
 %build
 export SETUPTOOLS_SCM_PRETEND_VERSION=%{version}

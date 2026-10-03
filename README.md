@@ -1,4 +1,4 @@
-# Terra Sources
+# Terra Package Sources
 <a href="https://repology.org/repository/terra_rawhide"><img align="left" src="https://repology.org/badge/repository-big/terra_rawhide.svg?header=Terra+Rawhide" alt="Repository status"></a>
 Terra is a rolling-release Fedora repository for all the software you need.
 With Terra, you can install the latest packages knowing that quality and security are assured.
@@ -71,6 +71,6 @@ You can also `dnf search` for all packages, or search in graphical app stores fo
 
 Feel free to reach out by joining our chats above, or opening a GitHub issue.
 
-## Support
+## Sponsoring
 
 Maintaining Terra requires a ton of infrastructure, package maintainer, submission review, and software engineering work. If you would like to financially sponsor Terra, please go to [the Fyra Labs sponsor page](https://fyralabs.com/sponsor/) for an overview of how to do this, and thank you so much for helping us out!

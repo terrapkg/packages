@@ -1,14 +1,14 @@
-%global commit 00c7a9d326bb76760d86259ad7bce34acfb06d5f
+%global commit 5925c5eb82a456b8f33273b90c52c5360decd188
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260722
-%global ver 2.3.0^
+%global commit_date 20261001
+%global ver 2.3.1^
 %global base_name goofcord
 %global git_name GoofCord
 %global appid io.github.milkshiift.GoofCord
 
 Name:          %{base_name}-nightly
 Version:       %{ver}%{commit_date}.git.%{shortcommit}
-Release:       1%{?dist}
+Release:       3%{?dist}
 License:       OSL-3.0
 Summary:       A privacy-minded Legcord fork.
 Group:         Applications/Internet
@@ -29,23 +29,25 @@ A highly configurable and privacy minded Discord client.
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 
+sed -i 's|<name>GoofCord</name>|<name>GoofCord Nightly</name>|g;s|<id>%{appid}</id>|<id>%{appid}-Nightly</id>|g' assetsDev/io.github.milkshiift.GoofCord.metainfo.xml
+
 %build
 %bun_build
 
 %install
-%electron_install -d %{base_name} -s %{base_name} -b %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations -I
-install -Dm644 assetsDev/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
+%electron_install -d %{base_name} -s %{base_name} -b %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations -I -i %{base_name}
+install -Dm644 assetsDev/%{appid}.metainfo.xml %{buildroot}%{_metainfodir}/%{appid}-Nightly.metainfo.xml
 
 %check
-%desktop_file_validate %{buildroot}%{_datadir}/applications/%{base_name}.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
 %doc README.md
 %license LICENSE
 %{_bindir}/%{base_name}
-%{_datadir}/applications/%{base_name}.desktop
+%{_appsdir}/%{appid}.desktop
 %{_libdir}/%{base_name}/
-%{_metainfodir}/%{appid}.metainfo.xml
+%{_metainfodir}/%{appid}-Nightly.metainfo.xml
 %{_hicolordir}/16x16/apps/%{base_name}.png
 %{_hicolordir}/24x24/apps/%{base_name}.png
 %{_hicolordir}/32x32/apps/%{base_name}.png
