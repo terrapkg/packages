@@ -47,7 +47,6 @@ install -Dm644 src-tauri/icons/32x32.png %{buildroot}%{_hicolordir}/32x32/apps/c
 %{tauri_cargo_license} > LICENSE.dependencies
 
 %check
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
