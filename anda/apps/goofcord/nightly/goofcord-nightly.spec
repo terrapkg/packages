@@ -36,7 +36,7 @@ sed -i 's|<name>GoofCord</name>|<name>GoofCord Nightly</name>|g' assetsDev/io.gi
 
 %install
 %electron_install -d %{base_name} -s %{base_name} -b %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations -I -i %{base_name}
-install -Dm644 assetsDev/%{appid}.metainfo.xml %{buildroot}%{_metainfodir}/assetsDev/%{appid}-Nightly.metainfo.xml
+install -Dm644 assetsDev/%{appid}.metainfo.xml %{buildroot}%{_metainfodir}/%{appid}-Nightly.metainfo.xml
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
