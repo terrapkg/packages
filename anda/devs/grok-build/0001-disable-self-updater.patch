@@ -1,0 +1,16 @@
+diff --git a/crates/codegen/xai-grok-update/src/auto_update.rs b/crates/codegen/xai-grok-update/src/auto_update.rs
+--- a/crates/codegen/xai-grok-update/src/auto_update.rs
++++ b/crates/codegen/xai-grok-update/src/auto_update.rs
+@@ -515,6 +515,12 @@ fn env_installer() -> Option<&'static str> {
+ }
+ 
+ pub async fn get_installer() -> Option<&'static str> {
++    // openSUSE: the binary is managed by the distribution package manager.
++    // Report "no installer" so every update path (automatic, leader and the
++    // explicit `grok update` command) treats the binary as up to date and
++    // never downloads or overwrites itself.
++    return None;
++    #[allow(unreachable_code)]
+     // Only an explicit override outranks the WinGet location; npm hints and stale config do not.
+     if let Some(explicit) = std::env::var("GROK_INSTALLER")
+         .ok()

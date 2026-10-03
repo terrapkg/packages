@@ -1,6 +1,6 @@
-%global commit b5b7aa3dc115b1adb0e96b83ff6d81fcba069dbd
+%global commit 9e45c648b9f5a76b822a7cc1b7c18ea0d756aa3d
 %global shortcommit %{sub %{commit} 0 7}
-%global commitdate 20260911
+%global commitdate 20260930
 
 Name:          	fedora-updater
 Version:        0^%{commitdate}.git%{shortcommit}
