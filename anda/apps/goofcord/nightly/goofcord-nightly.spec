@@ -29,14 +29,13 @@ A highly configurable and privacy minded Discord client.
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 
-sed -i 's|<name>GoofCord</name>|<name>GoofCord Nightly</name>|g;s|%{appid}|%{appid}-Nightly|g' assetsDev/io.github.milkshiift.GoofCord.metainfo.xml
+sed -i 's|<name>GoofCord</name>|<name>GoofCord Nightly</name>|g;s|<id>%{appid}</id>|<id>%{appid}-Nightly</id>|g' assetsDev/io.github.milkshiift.GoofCord.metainfo.xml
 
 %build
 %bun_build
 
 %install
 %electron_install -d %{base_name} -s %{base_name} -b %{base_name} -i %{base_name} -D -O -U %U -E UseOzonePlatform,WaylandWindowDecorations -I -i %{base_name}
-sed -i 's|%{appid}|%{appid}-Nightly|g' %{buildroot}%{_appsdir}/%{appid}.desktop
 install -Dm644 assetsDev/%{appid}.metainfo.xml %{buildroot}%{_metainfodir}/%{appid}-Nightly.metainfo.xml
 
 %check
