@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=T3 Code
+Comment=Minimal web GUI for coding agents
+Exec=t3code --ozone-platform-hint=auto %U
+Icon=t3code
+Terminal=false
+Type=Application
+Categories=Development;
+StartupWMClass=t3code
+MimeType=x-scheme-handler/t3code;x-scheme-handler/t3code-dev;
