@@ -2,16 +2,17 @@
 
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        Release package for Terra
 
-License:        MIT
+License:        GPL-3.0-or-later
 URL:            https://terrapkg.com
 Source0:        terra.repo
 Source1:        terra-extras.repo
 Source2:        terra-nvidia.repo
 Source3:        terra-mesa.repo
 Source4:        terra-multimedia.repo
+Source5:        LICENSE
 BuildArch:      noarch
 
 %dnl We probably shouldn't do this in Rawhide!
@@ -64,28 +65,68 @@ Release package for the Terra Extras multimedia subrepo, which provides codecs t
 %build
 
 %install
-install -D -p -m 0644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE0}
-install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE1
-install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE2
-install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE3
-install -Dpm644 -t %buildroot%_sysconfdir/yum.repos.d %SOURCE4
+cp %{SOURCE5} LICENSE
+%if 0%{?fedora} >= 45
+install -Dpm644 -t %{buildroot}%{_datadir}/dnf5/repos.d %{SOURCE0}
+install -Dpm644 -t %{buildroot}%{_datadir}/dnf5/repos.d %{SOURCE1}
+install -Dpm644 -t %{buildroot}%{_datadir}/dnf5/repos.d %{SOURCE2}
+install -Dpm644 -t %{buildroot}%{_datadir}/dnf5/repos.d %{SOURCE3}
+install -Dpm644 -t %{buildroot}%{_datadir}/dnf5/repos.d %{SOURCE4}
+%else
+install -Dpm644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE0}
+install -Dpm644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE1}
+install -Dpm644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE2}
+install -Dpm644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE3}
+install -Dpm644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE4}
+%endif
+
 
 %files
+%license LICENSE
+%if 0%{?fedora} >= 45
+%config(noreplace) %{_datadir}/dnf5/repos.d/terra.repo
+%else
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra.repo
+%endif
 
 %files extras
+%license LICENSE
+%if 0%{?fedora} >= 45
+%config(noreplace) %{_datadir}/dnf5/repos.d/terra-extras.repo
+%else
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-extras.repo
+%endif
 
 %files nvidia
+%license LICENSE
+%if 0%{?fedora} >= 45
+%config(noreplace) %{_datadir}/dnf5/repos.d/terra-nvidia.repo
+%else
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-nvidia.repo
+%endif
 
 %files mesa
+%license LICENSE
+%if 0%{?fedora} >= 45
+%config(noreplace) %{_datadir}/dnf5/repos.d/terra-mesa.repo
+%else
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-mesa.repo
+%endif
 
 %files multimedia
+%license LICENSE
+%if 0%{?fedora} >= 45
+%config(noreplace) %{_datadir}/dnf5/repos.d/terra-multimedia.repo
+%else
 %config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
+%endif
 
 %changelog
+* Wed Sep 30 2026 Owen Zimmerman <owen@fyralabs.com> - 45-5
+- Update to new repo file directory for F45+
+- Install license file
+- Unify marco formatting
+
 * Thu Nov 13 2025 madonuko <mado@fyralabs.com> - 44-1
 - Add terra-multimedia
 
