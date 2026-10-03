@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           newsraft
-Version:        0.37
+Version:        0.38
 Release:        1%{?dist}
 Summary:        Newsraft is a feed reader with text-based user interface.
 
