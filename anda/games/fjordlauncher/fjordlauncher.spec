@@ -13,7 +13,7 @@
 %global build_platform terra
 
 Name:             fjordlauncher
-Version:          11.1.1
+Version:          11.1.1.0
 Release:          1%{?dist}
 Summary:          Minecraft launcher with ability to manage multiple instances and support for alternative auth server
 # see COPYING.md for more information
@@ -21,7 +21,7 @@ Summary:          Minecraft launcher with ability to manage multiple instances a
 License:          GPL-3.0-only AND Apache-2.0 AND LGPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND ISC AND OFL-1.1 AND LGPL-2.1-only AND MIT AND BSD-2-Clause-FreeBSD AND BSD-3-Clause AND LGPL-3.0-or-later
 Group:            Amusements/Games
 URL:              https://github.com/unmojang/FjordLauncher
-Source0:          https://github.com/unmojang/FjordLauncher/releases/download/%{version}/%{real_name}-%{version}.tar.gz
+Source0:          https://github.com/unmojang/FjordLauncher/archive/refs/tags/%{version}.tar.gz
 
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
@@ -74,8 +74,8 @@ Obsoletes:        %{real_name}-qt5-nightly <= 9.4
 Packager:         PumpkinXD <cucurbita_moschata@yeah.net>
 
 %description
-A custom launcher for Minecraft that allows you to easily manage
-multiple installations of Minecraft at once (Fork of Prism Launcher)
+A custom launcher for Minecraft with easy management of multiple instances
+and support for alternative authentication servers. (Fork of Prism Launcher)
 
 
 %prep
