@@ -1,6 +1,7 @@
 project pkg {
   pre_script = "pre.rhai"
   labels {
+    mock = 1
     large = 1
   }
   rpm {

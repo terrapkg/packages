@@ -1,6 +1,6 @@
 Name:			keyd
 Version:		2.6.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
 License:		MIT
@@ -46,5 +46,6 @@ install -Dm755 scripts/generate_xcompose -t %buildroot%_datadir/keyd/
 %_datadir/keyd
 %_datadir/doc/keyd/
 %_sysusersdir/keyd.conf
+%dir %{_sysconfdir}/%{name}
 %_mandir/man1/keyd-application-mapper.1.gz
 %_mandir/man1/keyd.1.gz

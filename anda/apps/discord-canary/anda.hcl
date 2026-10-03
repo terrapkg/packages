@@ -3,7 +3,4 @@ project pkg {
 	rpm {
 		spec = "discord-canary.spec"
 	}
-	labels {
-	  quaterdaily = 1
-	}
 }
