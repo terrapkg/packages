@@ -29,6 +29,8 @@ A highly configurable and privacy minded Discord client.
 sed -i '/\"x64\",/d' electron-builder.ts
 %endif
 
+sed -i 's|<name>GoofCord</name>|<name>GoofCord Nightly</name>|g' assetsDev/io.github.milkshiift.GoofCord.metainfo.xml
+
 %build
 %bun_build
 
