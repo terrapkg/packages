@@ -1,0 +1,13 @@
+diff --git a/src/3rdParty/CMakeLists.txt b/src/3rdParty/CMakeLists.txt
+--- a/src/3rdParty/CMakeLists.txt
++++ b/src/3rdParty/CMakeLists.txt
+@@ -7,6 +7,9 @@ add_subdirectory(lazy_loader)
+ 
+ if(NOT FREECAD_USE_EXTERNAL_E57FORMAT)
+     add_subdirectory(libE57Format)
++else()
++    find_package(E57Format REQUIRED)
++    set_target_properties(E57Format PROPERTIES IMPORTED_GLOBAL TRUE)
+ endif()
+ 
+ if(BUILD_MATERIAL_EXTERNAL)
