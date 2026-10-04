@@ -2,7 +2,7 @@
 
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        Release package for Terra
 
 License:        GPL-3.0-or-later
@@ -15,6 +15,7 @@ Source4:        terra-multimedia.repo
 Source5:        LICENSE
 BuildArch:      noarch
 
+Requires:       system-release(%{version})
 Requires:       terra-gpg-keys
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
