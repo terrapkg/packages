@@ -1,3 +1,5 @@
+# Do not modify this file. If you want to add modifications to the repository configurations, add them in /etc/dnf/repos.override.d/
+
 [terra-multimedia]
 name=Terra $releasever (Multimedia)
 #baseurl=https://repos.fyralabs.com/terra$releasever-multimedia
