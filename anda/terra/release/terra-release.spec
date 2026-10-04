@@ -15,9 +15,6 @@ Source4:        terra-multimedia.repo
 Source5:        LICENSE
 BuildArch:      noarch
 
-%dnl We probably shouldn't do this in Rawhide!
-%dnl Requires:       system-release(%{version})
-
 Requires:       terra-gpg-keys
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
@@ -84,44 +81,48 @@ install -Dpm644 -t %{buildroot}%{_sysconfdir}/yum.repos.d %{SOURCE4}
 %files
 %license LICENSE
 %if 0%{?fedora} >= 45
-%config(noreplace) %{_datadir}/dnf5/repos.d/terra.repo
+%{_datadir}/dnf5/repos.d/terra.repo
 %else
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra.repo
+%{_sysconfdir}/yum.repos.d/terra.repo
 %endif
 
 %files extras
 %license LICENSE
 %if 0%{?fedora} >= 45
-%config(noreplace) %{_datadir}/dnf5/repos.d/terra-extras.repo
+%{_datadir}/dnf5/repos.d/terra-extras.repo
 %else
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-extras.repo
+%{_sysconfdir}/yum.repos.d/terra-extras.repo
 %endif
 
 %files nvidia
 %license LICENSE
 %if 0%{?fedora} >= 45
-%config(noreplace) %{_datadir}/dnf5/repos.d/terra-nvidia.repo
+%{_datadir}/dnf5/repos.d/terra-nvidia.repo
 %else
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-nvidia.repo
+%{_sysconfdir}/yum.repos.d/terra-nvidia.repo
 %endif
 
 %files mesa
 %license LICENSE
 %if 0%{?fedora} >= 45
-%config(noreplace) %{_datadir}/dnf5/repos.d/terra-mesa.repo
+%{_datadir}/dnf5/repos.d/terra-mesa.repo
 %else
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-mesa.repo
+%{_sysconfdir}/yum.repos.d/terra-mesa.repo
 %endif
 
 %files multimedia
 %license LICENSE
 %if 0%{?fedora} >= 45
-%config(noreplace) %{_datadir}/dnf5/repos.d/terra-multimedia.repo
+%{_datadir}/dnf5/repos.d/terra-multimedia.repo
 %else
-%config(noreplace) %{_sysconfdir}/yum.repos.d/terra-multimedia.repo
+%{_sysconfdir}/yum.repos.d/terra-multimedia.repo
 %endif
 
 %changelog
+* Sun Oct 04 2026 Owen Zimmerman <owen@fyralabs.com> - 45-5
+- Drop %%config(noreplace)
+- Add repo file comment
+
 * Wed Sep 30 2026 Owen Zimmerman <owen@fyralabs.com> - 45-5
 - Update to new repo file directory for F45+
 - Install license file
