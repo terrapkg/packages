@@ -3,4 +3,7 @@ project pkg {
     rpm {
         spec = "datasets.spec"
     }
+    labels {
+        updbranch = 1
+    }
 }
