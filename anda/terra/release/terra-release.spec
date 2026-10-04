@@ -15,6 +15,7 @@ Source4:        terra-multimedia.repo
 Source5:        LICENSE
 BuildArch:      noarch
 
+Requires:       system-release(%{version})
 Requires:       terra-gpg-keys
 
 Packager:       Terra Packaging Team <terra@fyralabs.com>
