@@ -26,6 +26,7 @@ Source0:          https://github.com/unmojang/FjordLauncher/archive/refs/tags/%{
 BuildRequires:    cmake >= 3.15
 BuildRequires:    extra-cmake-modules
 BuildRequires:    gcc-c++
+BuildRequires:    clang-tools-extra
 # JDKs less than the most recent release & LTS are no longer in the default
 # Fedora repositories
 # Make sure you have Adoptium's repositories enabled
