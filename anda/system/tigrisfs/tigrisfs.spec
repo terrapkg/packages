@@ -48,8 +48,8 @@ install -Dm644 pkg/defaults                 %{buildroot}%{_sysconfdir}/default/t
 %systemd_user_postun_with_restart tigrisfs_user@.service
 
 %files
-%license LICENSE
-%doc README.md
+%license LICENSE Apache-2.0.txt LICENSE.geesefs
+%doc README.md README-azure.md
 %config(noreplace) %{_sysconfdir}/default/tigrisfs
 %{_bindir}/tigrisfs
 %{_unitdir}/tigrisfs@.service
