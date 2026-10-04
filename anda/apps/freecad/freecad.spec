@@ -35,7 +35,6 @@ License:        LGPL-2.0-or-later AND LGPL-2.1-or-later AND LGPL-2.1-only AND BS
 URL:            https://www.freecad.org/
 Source0:        https://raw.githubusercontent.com/licenses/license-templates/master/templates/zlib.txt
 Packager:       Utkarsh Verma <hi@utkarshverma.com>
-ExclusiveArch:  x86_64 aarch64
 
 # The external switch skips the bundled copy, but nothing calls
 # find_package. The imported target is local to src/3rdParty unless it is
@@ -110,8 +109,6 @@ Requires:       python3-requests
 Requires:       python3-typing-extensions
 Requires:       qt6-assistant
 Requires:       qt6-qtwayland
-
-Obsoletes:      %{name}-doc < 0.22-1
 
 Provides:       bundled(smesh) = %{bundled_smesh_version}
 
