@@ -1,5 +1,5 @@
 Name:           framework-kcm
-Version:        0.1.0
+Version:        0.1.2
 Release:        1%{?dist}
 Summary:        KDE System Settings module for Framework laptops
 
@@ -53,14 +53,33 @@ a companion system service for hardware access.
 %cmake_install
 %find_lang kcm_framework
 
+%pre
+# Up to 0.1.1 the daemon was called framework-kcmd. Its unit file is still
+# installed at this point, so disable it here (otherwise the enable symlink
+# is left dangling), remember whether it was enabled, and move its state.
+if [ -e %{_unitdir}/framework-kcmd.service ]; then
+    if systemctl is-enabled --quiet framework-kcmd.service 2>/dev/null; then
+        touch %{_rundir}/frameworkd-migrate-enable
+    fi
+    systemctl disable --now framework-kcmd.service >/dev/null 2>&1 || :
+    if [ -d %{_sharedstatedir}/framework-kcmd ] && [ ! -e %{_sharedstatedir}/frameworkd ]; then
+        mv %{_sharedstatedir}/framework-kcmd %{_sharedstatedir}/frameworkd
+    fi
+fi
+
 %post
-%systemd_post framework-kcmd.service
+%systemd_post frameworkd.service
+if [ -e %{_rundir}/frameworkd-migrate-enable ]; then
+    rm -f %{_rundir}/frameworkd-migrate-enable
+    systemctl daemon-reload >/dev/null 2>&1 || :
+    systemctl enable --now frameworkd.service >/dev/null 2>&1 || :
+fi
 
 %preun
-%systemd_preun framework-kcmd.service
+%systemd_preun frameworkd.service
 
 %postun
-%systemd_postun_with_restart framework-kcmd.service
+%systemd_postun_with_restart frameworkd.service
 
 %files -f kcm_framework.lang
 %license LICENSE
@@ -69,11 +88,14 @@ a companion system service for hardware access.
 %{_appsdir}/kcm_framework.desktop
 %{_datadir}/dbus-1/system.d/io.github.frameworkkcm.Daemon1.conf
 %{_datadir}/dbus-1/system-services/io.github.frameworkkcm.Daemon1.service
-%{_unitdir}/framework-kcmd.service
-%{_libexecdir}/framework-kcmd
+%{_unitdir}/frameworkd.service
+%{_libexecdir}/frameworkd
 %{_datadir}/polkit-1/actions/io.github.frameworkkcm.policy
 %{_scalableiconsdir}/framework-kcm.svg
 
 %changelog
+* Sun Oct 04 2026 Cypress Reed <cypress@fyralabs.com>
+- handle frameworkd rename
+
 * Fri Oct 02 2026 Cypress Reed <cypress@fyralabs.com>
 - initial package
