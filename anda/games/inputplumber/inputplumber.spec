@@ -2,16 +2,13 @@
 
 Name:           inputplumber
 Version:        0.81.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/InputPlumber
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
 Patch0:         make-install-dont-build.patch
-Patch1:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/InputPlumber/pull/644.patch
-Patch2:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/InputPlumber/pull/687.patch
-Patch3:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/InputPlumber/pull/719.patch
-Patch4:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/InputPlumber/pull/720.patch
+Patch1:         controller-fixes.patch
 BuildRequires:  libevdev-devel libiio-devel git make cargo libudev-devel llvm-devel clang-devel
 BuildRequires:  rust-packaging cargo-rpm-macros mold rpm_macro(cargo_prep_online) systemd-rpm-macros
 Requires:       libevdev libiio
@@ -53,11 +50,12 @@ keyboards) and translate their input to a variety of virtual device formats.
 %_udevhwdbdir/59-inputplumber.hwdb
 %_udevhwdbdir/60-inputplumber-autostart.hwdb
 %_udevrulesdir/90-inputplumber-autostart.rules
+%{_modulesloaddir}/inputplumber-hrtimer.conf
 %_datadir/dbus-1/system.d/org.shadowblip.InputPlumber.conf
 %_datadir/inputplumber/
 %{_udevrulesdir}/99-inputplumber-device-setup.rules
 %{_udevrulesdir}/60-inputplumber-uaccess.rules
-%{_udevrulesdir}/50-8bitdo-u2-controller.rules
+%{_udevrulesdir}/55-8bitdo-u2-controller.rules
 %{_datadir}/polkit-1/actions/org.shadowblip.InputPlumber.policy
 %{_datadir}/polkit-1/rules.d/org.shadowblip.InputPlumber.rules
 
