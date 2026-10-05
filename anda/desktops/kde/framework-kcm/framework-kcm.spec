@@ -1,10 +1,10 @@
 Name:           framework-kcm
 Version:        0.1.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        KDE System Settings module for Framework laptops
 
 License:        GPL-3.0-or-later
-URL:            https://github.com/flamingspaz/framework-kcm
+URL:            https://github.com/flamingspaz/framework-settings
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
 BuildRequires:  cmake >= 3.22
@@ -41,7 +41,7 @@ provides battery, fan, touchpad, LED, firmware and USB-C port controls, with
 a companion system service for hardware access.
 
 %prep
-%autosetup -n framework-kcm-%{version}
+%autosetup -n framework-settings-%{version}
 
 %conf
 %cmake_kf6
