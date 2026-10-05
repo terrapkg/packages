@@ -19,7 +19,7 @@
 %endif
 
 Name:			scrcpy
-Version:		4.1
+Version:		5.0
 Release:		1%{?dist}
 Summary:		Display and control your Android device
 License:		Apache-2.0 AND Proprietary
