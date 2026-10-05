@@ -13,7 +13,7 @@ Requires:       erlang
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%{summary}
+%{summary}.
 
 %prep
 %autosetup -C
