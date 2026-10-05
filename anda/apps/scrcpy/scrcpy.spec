@@ -39,6 +39,7 @@ BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(libswresample)
 BuildRequires:	pkgconfig(libusb)
 BuildRequires:	pkgconfig(libv4l2)
+BuildRequires: pkgconfig(libdrm)
 BuildRequires:	cmake(VulkanHeaders)
 BuildRequires:	vulkan-loader
 BuildRequires:	OpenCL-ICD-Loader
