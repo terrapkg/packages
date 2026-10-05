@@ -2,9 +2,12 @@
 %global appid io.dbeaver.DBeaver
 %global appstream_component desktop-application
 
+# The application bundles a private Java runtime; do not expose its libraries as system Provides.
+%global __provides_exclude_from ^%{_datadir}/dbeaver-bin/.*$
+
 Name:           dbeaver-bin
 Version:        26.2.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Free universal database tool and SQL client
 License:        Apache-2.0
 URL:            https://dbeaver.io
@@ -49,5 +52,8 @@ mv %buildroot%_datadir/%name/readme.txt .
 %_metainfodir/%appid.metainfo.xml
 
 %changelog
+* Mon Oct 05 2026 Cypress Reed <cypress@fyralabs.com> - 26.2.2-2
+- Exclude binary directory from provides detection
+
 * Mon Aug 17 2026 madonuko <mado@fyralabs.com> - 26.1.5-1
 - Initial package
