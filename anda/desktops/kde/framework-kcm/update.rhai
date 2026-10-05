@@ -1,1 +1,1 @@
-rpm.version(gh("flamingspaz/framework-kcm"));
+rpm.version(gh("flamingspaz/framework-settings"));
