@@ -41,7 +41,7 @@ provides battery, fan, touchpad, LED, firmware and USB-C port controls, with
 a companion system service for hardware access.
 
 %prep
-%autosetup -n framework-kcm-%{version}
+%autosetup -n framework-settings-%{version}
 
 %conf
 %cmake_kf6
