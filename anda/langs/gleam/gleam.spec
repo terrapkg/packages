@@ -1,6 +1,6 @@
 Name:           gleam
-Version:        1.18.1
-Release:        1%?dist
+Version:        1.19.0
+Release:        1%{?dist}
 Summary:        A friendly language for building type-safe, scalable systems!
 URL:            https://gleam.run/
 Source0:        https://github.com/gleam-lang/gleam/archive/refs/tags/v%{version}.tar.gz
