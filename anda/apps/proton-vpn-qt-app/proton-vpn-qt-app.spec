@@ -69,7 +69,7 @@ appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %posttrans
 cat <<'EOF'
 Install 'proton-vpn-cli' with:
-  dnf install https://repo.protonvpn.com/fedora-$(rpm -E '%fedora')-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.4-1.noarch.rpm
+  dnf install https://repo.protonvpn.com/fedora-$(rpm -E '%%{fedora}')-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.4-1.noarch.rpm
   dnf install --from-repo=protonvpn-fedora-stable proton-vpn-cli
 Recommends:
   'curl': fetches your public IP address when already connected on launch
