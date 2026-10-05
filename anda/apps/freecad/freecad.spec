@@ -87,6 +87,7 @@ BuildRequires:  tbb-devel
 BuildRequires:  vtk-devel
 BuildRequires:  xerces-c-devel
 BuildRequires:  yaml-cpp-devel
+BuildRequires:  pkgconfig(libusb-1.0)
 
 Requires:       hicolor-icon-theme
 Requires:       shared-mime-info
