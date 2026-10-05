@@ -11,8 +11,10 @@ Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Packager:       Mizuki Nguyen <tcbnmzk@proton.me>
 
 BuildRequires:  cmake
-BuildRequires:  desktop-file-utils
 BuildRequires:  gcc-c++
+BuildRequires:  appstream
+BuildRequires:  desktop-file-utils
+
 BuildRequires:  cmake(Qt6Core)
 BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Network)
