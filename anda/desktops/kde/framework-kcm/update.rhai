@@ -1,1 +1,1 @@
-rpm.version(gh("halfcyan/framework-kcm"));
+rpm.version(gh("flamingspaz/framework-kcm"));
