@@ -1,3 +1,5 @@
+%global appid io.github.wheat32.ProtonVPNQt
+
 Name:           proton-vpn-qt-app
 Version:        1.12.0
 Release:        1%{?dist}
@@ -52,6 +54,7 @@ A Qt GUI frontend for the Proton VPN Linux CLI.
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
+appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license LICENSE
@@ -59,7 +62,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %{_bindir}/*
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
-%{_datadir}/metainfo/io.github.wheat32.ProtonVPNQt.metainfo.xml
+%{_datadir}/metainfo/%{appid}.metainfo.xml
 
 %posttrans
 cat <<'EOF'
