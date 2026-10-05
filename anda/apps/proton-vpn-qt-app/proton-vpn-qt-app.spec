@@ -47,8 +47,10 @@ A Qt GUI frontend for the Proton VPN Linux CLI.
 %prep
 %autosetup
 
-%build
+%conf
 %cmake -S src
+
+%build
 %cmake_build
 
 %install
@@ -62,9 +64,9 @@ appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %license LICENSE
 %doc README.md
 %{_bindir}/*
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
-%{_datadir}/metainfo/%{appid}.metainfo.xml
+%{_appsdir}/%{name}.desktop
+%{_scalableiconsdir}/%{name}.svg
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %posttrans
 cat <<'EOF'
