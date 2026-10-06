@@ -4,6 +4,6 @@ project pkg {
 		spec = "sidepulse.spec"
 	}
 	labels {
-		nightly = 1
+		nightly = 2
 	}
 }
