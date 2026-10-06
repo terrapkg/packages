@@ -764,7 +764,7 @@ mkdir -p %{buildroot}%{_pkgdocdir}/intelp2m
 mkdir -p %{buildroot}%{_pkgdocdir}/smmstoretool
 
 cp Documentation/util.md %{buildroot}%{_pkgdocdir}/util.md
-cp Documentation/cbfs.txt %{buildroot}%{_pkgdocdir}/cbfs.txt
+cp -a Documentation/util/cbfstool/* %{buildroot}%{_pkgdocdir}/cbfstool/
 cp Documentation/util/abuild/index.md %{buildroot}%{_pkgdocdir}/abuild/index.md
 cp Documentation/util/cbfstool/index.md %{buildroot}%{_pkgdocdir}/cbfstool/index.md
 cp Documentation/util/cbfstool/mmap_windows.md %{buildroot}%{_pkgdocdir}/cbfstool/mmap_windows.md
@@ -921,6 +921,7 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 %{_bindir}/rmodtool
 %{_bindir}/cbfstool-test
 %doc util/cbfstool/description.md
+%doc %{_pkgdocdir}/cbfstool/*
 
 %files cbfstool-tests
 %{_bindir}/conftest
@@ -962,10 +963,8 @@ cp Documentation/util/smmstoretool/index.md %{buildroot}%{_pkgdocdir}/smmstoreto
 
 %files doc
 %{_pkgdocdir}/util.md
-%{_pkgdocdir}/cbfs.txt
 %{_pkgdocdir}/abuild/index.md
-%{_pkgdocdir}/cbfstool/index.md
-%{_pkgdocdir}/cbfstool/mmap_windows.md
+%{_pkgdocdir}/cbfstool/*
 %{_pkgdocdir}/ifdtool/binary_extraction.md
 %{_pkgdocdir}/ifdtool/index.md
 %{_pkgdocdir}/ifdtool/layout.md
