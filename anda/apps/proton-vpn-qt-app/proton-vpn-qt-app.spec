@@ -2,7 +2,7 @@
 
 Name:           proton-vpn-qt-app
 Version:        1.12.1
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Qt GUI frontend for the ProtonVPN Linux CLI.
 
 License:        GPL-3.0-only
@@ -74,9 +74,8 @@ Recommends:
 EOF
 
 %changelog
-* Wed Oct 7 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.1-2
-- Upstream fixed appstream AppID
 * Wed Oct 7 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.1-1
 - Bump to 1.12.1
+- Upstream fixed appstream validation
 * Mon Oct 5 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.0-1
 - Initial package
