@@ -100,7 +100,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
   %endif
   -DBUILD_TESTING=OFF \
 %if 0%{?fedora} > 43
-  -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-error=sfinae-incomplete"
+  -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-error=sfinae-incomplete -Wno-error=deprecated-declarations"
 %endif
 
 %build
