@@ -1,10 +1,10 @@
 %global appid dev.astramusic.astra
-%global ver v0.7.0-beta
+%global ver v0.8.0-beta
 
 Name:           astra
 %electronmeta -D
 Version:        %(echo %ver | sed 's/-/~/;s/^v//')
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        A desktop music player for people who still have a music library
 License:        GPL-3.0-only AND %electron_license
 URL:            https://astramusic.dev
