@@ -4,10 +4,12 @@
 
 # The application bundles a private Java runtime; do not expose its libraries as system Provides.
 %global __provides_exclude_from ^%{_datadir}/dbeaver-bin/.*$
+# The application has a bundled version of libfreetype
+%global __requires_exclude libfreetype\.so.*
 
 Name:           dbeaver-bin
 Version:        26.2.2
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Free universal database tool and SQL client
 License:        Apache-2.0
 URL:            https://dbeaver.io
@@ -19,6 +21,7 @@ Source0:        https://github.com/dbeaver/dbeaver/releases/download/%version/db
 Packager:       madonuko <mado@fyralabs.com>
 ExclusiveArch:  x86_64 aarch64
 Provides:       dbeaver = %evr
+Provides:       bundled(libfreetype)
 Conflicts:      dbeaver
 
 %description
