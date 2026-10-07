@@ -4,7 +4,7 @@
 
 # The application bundles a private Java runtime; do not expose its libraries as system Provides.
 %global __provides_exclude_from ^%{_datadir}/dbeaver-bin/.*$
-# The application has a bundled version of libfreetype
+# The application has a bundled version of libfreetype and bundled Java libraries
 %global __requires_exclude libfreetype\.so.*|libj.*\.so.*
 
 Name:           dbeaver-bin
