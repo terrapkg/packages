@@ -59,7 +59,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 %license LICENSE
 %doc README.md
 %{_bindir}/*
-%{_appsdir}/%{name}.desktop
+%{_appsdir}/%{appid}.desktop
 %{_scalableiconsdir}/%{appid}.svg
 %{_metainfodir}/%{appid}.metainfo.xml
 
