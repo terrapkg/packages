@@ -80,7 +80,7 @@ and support for alternative authentication servers. (Fork of Prism Launcher)
 
 
 %prep
-%autosetup -n FjordLauncher-%{version}
+%git_clone
 
 # Do not set RPATH
 sed -i "s|\$ORIGIN/||" CMakeLists.txt
