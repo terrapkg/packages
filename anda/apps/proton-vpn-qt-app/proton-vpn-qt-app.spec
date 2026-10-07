@@ -53,14 +53,14 @@ A Qt GUI frontend for the Proton VPN Linux CLI.
 %cmake_install
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
+desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
 %files
 %license LICENSE
 %doc README.md
 %{_bindir}/*
-%{_appsdir}/%{name}.desktop
-%{_scalableiconsdir}/%{name}.svg
+%{_appsdir}/%{appid}.desktop
+%{_scalableiconsdir}/%{appid}.svg
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %posttrans
@@ -74,5 +74,8 @@ Recommends:
 EOF
 
 %changelog
+* Wed Oct 7 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.1-1
+- Bump to 1.12.1
+- Upstream fixed appstream validation
 * Mon Oct 5 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.0-1
 - Initial package
