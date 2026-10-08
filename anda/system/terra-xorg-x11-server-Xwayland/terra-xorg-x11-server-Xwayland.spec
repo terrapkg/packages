@@ -9,7 +9,7 @@
 Summary:   Xwayland with gaming patches
 Name:      terra-xorg-x11-server-Xwayland
 Version:   24.1.13
-Release:   2%{?dist}
+Release:   3%{?dist}
 Packager:  Kyle Gospodnetich <me@kylegospodneti.ch>
 
 URL:       http://www.x.org
@@ -28,6 +28,7 @@ Patch1:    0002-Revert-xwayland-present-Check-allow_commits-in-xwl_p.patch
 # Nobara Patches
 Patch2:    xwayland-pointer-warp-fix.patch
 
+Provides:  xorg-x11-server-Xwayland = %{evr}
 Provides:  xorg-x11-server-Xwayland%{?_isa} = %{evr}
 Conflicts: xorg-x11-server-Xwayland
 
@@ -100,6 +101,7 @@ Xwayland is an X server for running X clients under Wayland.
 %package devel
 Summary: Development package
 Provides: xorg-x11-server-Xwayland-devel = %{evr}
+Provides: xorg-x11-server-Xwayland-devel%{?_isa} = %{evr}
 Conflicts: xorg-x11-server-Xwayland-devel
 Requires: pkgconfig
 Requires: %{name}%{?_isa} = %{version}-%{release}
@@ -146,5 +148,5 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_libdir}/pkgconfig/xwayland.pc
 
 %changelog
-* Wed Oct 07 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.99.903-1
+* Wed Oct 07 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 24.1.13-1
 - Initial release of terra-xorg-x11-server-Xwayland
