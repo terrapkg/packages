@@ -39,10 +39,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-install -Dm0755 target/rpm/noctua                                            %{buildroot}%{_bindir}/noctua
+install -Dm0755 target/rpm/noctua                                              %{buildroot}%{_bindir}/noctua
 %desktop_file_install ui/cosmic/resources/%{appid}.desktop
 install -Dm0644 ui/cosmic/resources/%{appid}.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-install -Dm0644 ui/cosmic/resources/icons/hicolor/scalable/apps/icon.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
+install -Dm0644 ui/cosmic/resources/icons/hicolor/scalable/apps/%{appid}.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 install -Dm0644 %{SOURCE1} LICENSE
 
 %terra_appstream
