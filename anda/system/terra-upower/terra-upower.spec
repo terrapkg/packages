@@ -2,7 +2,7 @@
 
 Summary:        Power Management Service
 Name:           terra-upower
-Version:        1.91.5
+Version:        1.91.3
 Release:        1%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        GPL-2.0-or-later
