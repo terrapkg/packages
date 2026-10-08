@@ -1,8 +1,8 @@
-%global v v2.0.0-alpha.3
+%global v v2.0.0-alpha.6
 
 Name:           zrythm
 Version:        %(echo %v | sed 's@-@~@g' | sed 's@^v@@')
-Release:        2%?dist
+Release:        1%{?dist}
 Summary:        Highly automated and intuitive digital audio workstation
 License:        AGPL-3.0-or-later
 Packager:       madonuko <mado@fyralabs.com>

@@ -1,8 +1,8 @@
-%global metainfo_commit cb236544cb12519f54e23c22633302e099651258
+%global metainfo_commit d56ab450e7d9f951a1dbac96a24dd7a63afc4c14
 
 Name:			proton-vpn-gtk-app
-Version:		4.18.2
-Release:		2%{?dist}
+Version:		4.18.6
+Release:		1%{?dist}
 Summary:		Official ProtonVPN Linux app
 License:		GPL-3.0-only
 URL:			https://protonvpn.com/download-linux

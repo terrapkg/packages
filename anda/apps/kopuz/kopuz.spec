@@ -6,7 +6,7 @@
 %global __cargo_common_opts %{?_smp_mflags}
 
 Name:           kopuz
-Version:        0.16.2
+Version:        0.19.0
 Release:        1%{?dist}
 Summary:        Modern, lightweight, music player application
 SourceLicense:  EUPL-1.2

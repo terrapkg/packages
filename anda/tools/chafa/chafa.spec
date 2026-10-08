@@ -1,5 +1,5 @@
 Name:          terra-chafa
-Version:        1.18.2
+Version:        1.18.3
 Release:        1%{?dist}
 Summary:        Terminal graphics for the 21st century
 License:        LGPL-3.0-or-later AND GPL-3.0-or-later

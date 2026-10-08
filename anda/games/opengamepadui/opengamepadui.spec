@@ -1,21 +1,31 @@
 %global debug_package %{nil}
+%global _default_patch_fuzz 2
 
 Name:           opengamepadui
 Version:        0.46.1
-Release:        5%{?dist}
+Release:        8%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/OpenGamepadUI
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
 
+# Disable external game controllers for now
 Patch0:         disable-manage-all.patch
+# https://github.com/ShadowBlip/OpenGamepadUI/commit/a2c9ef8103d18c1e75d085492422f22db65b3541
+Patch1:         https://github.com/ShadowBlip/OpenGamepadUI/commit/a2c9ef8103d18c1e75d085492422f22db65b3541.patch
+# https://github.com/ShadowBlip/OpenGamepadUI/commit/ba2f231a3659b5c217c620582d424e0a56563895
+Patch2:         https://github.com/ShadowBlip/OpenGamepadUI/commit/ba2f231a3659b5c217c620582d424e0a56563895.patch
+# https://github.com/ShadowBlip/OpenGamepadUI/commit/2cf702ff40212174b45bb7579622b375bff9d132
+Patch3:         https://github.com/ShadowBlip/OpenGamepadUI/commit/2cf702ff40212174b45bb7579622b375bff9d132.patch
+# https://github.com/ShadowBlip/OpenGamepadUI/commit/397253fd09997c41b71ef3cc7829c7b74d5bf2a0
+Patch4:         https://github.com/ShadowBlip/OpenGamepadUI/commit/397253fd09997c41b71ef3cc7829c7b74d5bf2a0.patch
 # https://github.com/ShadowBlip/OpenGamepadUI/pull/531
-Patch1:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/531.patch
+Patch5:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/531.patch
 # https://github.com/ShadowBlip/OpenGamepadUI/pull/525
-Patch2:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/525.patch
+Patch6:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/525.patch
 # https://github.com/ShadowBlip/OpenGamepadUI/pull/548
-Patch3:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/548.patch
+Patch7:         https://patch-diff.githubusercontent.com/raw/ShadowBlip/OpenGamepadUI/pull/548.patch
 
 BuildRequires:  godot
 BuildRequires:  scons
@@ -61,25 +71,31 @@ gamepad input to mouse and keyboard inputs.
 
 # We clone the repo from Git here because the build script requires
 # submodules to be present in the source directory.
-# %git_clone %{url} v%{version}
-# %dnl git checkout tags/v%{version}
-# Temporary while some final issues are resolved, same version as above.
-%git_clone %{url} pastaq/bazzite_crashes
+rm -rf %{build_dir}
+git clone %{url} %{build_dir} -b v%{version}
+cd %{build_dir}
+git checkout tags/v%{version}
 %patch 0 -p1
 %patch 1 -p1
 %patch 2 -p1
 %patch 3 -p1
+%patch 4 -p1
+%patch 5 -p1
+%patch 6 -p1
+%patch 7 -p1
 
 %build
+cd %{build_dir}
 %make_build import
 %make_build
 
 %install
+cd %{build_dir}
 %make_install PREFIX=%{buildroot}%{_prefix} INSTALL_PREFIX=%{_prefix}
 
 %files
-%license LICENSE
-%doc docs/
+%license %{build_dir}/LICENSE
+%doc %{build_dir}/docs/
 %{_bindir}/opengamepadui
 %{_datadir}/opengamepadui/
 %{_datadir}/applications/opengamepadui.desktop

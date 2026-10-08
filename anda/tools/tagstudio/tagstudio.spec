@@ -1,6 +1,6 @@
 Name:           tagstudio
-Version:        9.6.3
-Release:        6%{?dist}
+Version:        9.6.4
+Release:        1%{?dist}
 Summary:        User-focused photo and file management system
 License:        GPL-3.0-only
 URL:            https://github.com/TagStudioDev/TagStudio

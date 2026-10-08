@@ -13,7 +13,7 @@
 
 Name:           terra-mangohud
 Version:        0.8.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 
@@ -64,7 +64,7 @@ Recommends:     (mangohud(x86-32) if glibc(x86-32))
 Suggests:       %{name}-mangoplot
 Suggests:       goverlay
 
-Provides:       mangohud = %{version}-%{release}
+Provides:       mangohud = %{evr}
 Provides:       bundled(imgui) = %{imgui_ver}
 Provides:       bundled(implot) = %{implot_ver}
 Provides:       bundled(vulkan-headers) = %{vulkan_headers_ver}

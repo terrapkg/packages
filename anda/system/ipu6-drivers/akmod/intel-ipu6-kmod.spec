@@ -9,6 +9,7 @@
 
 Name:           %{modulename}-kmod
 Summary:        Akmods module for %{modulename}
+Epoch:          1
 Version:        0^%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 License:        GPL-2.0-or-later

@@ -3,7 +3,7 @@
 %global __requires_exclude ^libm\\.so\\.6$
 
 Name:           warp
-Version:        0.2026.06.09.19.54
+Version:        0.2026.06.03.09.49
 Release:        1%{?dist}
 Summary:        Warp is an agentic development environment, born out of the terminal
 URL:            https://warp.dev/

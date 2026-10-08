@@ -1,5 +1,5 @@
-%global commit 2a3d6daca24314e05b042b7a9f5ebbc72a300e9b
-%global commit_date 20260917
+%global commit 24678a92d72b7e7e5204c50d92a6638cbbe8fb8f
+%global commit_date 20261001
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           appset
@@ -45,9 +45,9 @@ Provides:       rp-appset
 %license debian/copyright
 %{_datadir}/rpcc/ui/pipanel.ui
 %{_libdir}/rpcc/librpcc_pipanel.so
-%{_iconsdir}/hicolor/*x*/apps/appset-taskbar.png
-%{_iconsdir}/hicolor/*x*/apps/appset-desktop.png
-
+%{_hicolordir}/*x*/apps/appset-taskbar.png
+%{_hicolordir}/*x*/apps/appset-desktop.png
+%{_hicolordir}/*x*/apps/appset-dock.png
 %{_scalableiconsdir}/appset-desktop.svg
 %{_scalableiconsdir}/appset-taskbar.svg
 

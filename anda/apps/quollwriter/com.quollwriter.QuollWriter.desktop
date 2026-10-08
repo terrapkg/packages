@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Quoll Writer
+Comment=A writing application that lets you focus on your words
+Exec=quollwriter
+Icon=quollwriter
+Categories=Office;WordProcessor;
+Keywords=writing;writer;novel;author;
+StartupNotify=true

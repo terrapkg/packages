@@ -2,7 +2,7 @@
 %global _desc Pythonic bindings for FFmpeg's libraries.
 
 Name:			python-%{pypi_name}
-Version:		18.1.0
+Version:		19.0.1
 Release:		1%{?dist}
 Summary:		Pythonic bindings for FFmpeg's libraries
 License:		BSD-3-Clause
@@ -45,8 +45,8 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md AUTHORS.rst
 %license LICENSE.txt
-%{python3_sitearch}/av-%version.dist-info/licenses/__pycache__/*
 %{_bindir}/pyav
+%{python3_sitearch}/av-%{version}.dist-info/licenses/__pycache__/AUTHORS.cpython-*.pyc
 
 %changelog
 * Fri Jan 16 2026 Owen Zimmerman <owen@fyralabs.com>

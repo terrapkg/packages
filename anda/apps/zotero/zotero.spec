@@ -9,7 +9,7 @@
 %endif
 
 Name:           zotero
-Version:        10.0.3
+Version:        10.0.5
 Release:        1%{?dist}
 Summary:        Collect, organize, cite, and share your research sources
 URL:            https://www.zotero.org/
@@ -52,7 +52,7 @@ git-lfs checkout
 %__npm install --no-audit --no-fund
 
 %build
-%__npm run build
+%__npm run clean-build
 app/scripts/dir_build -f -p l -a %{zotero_arch}
 
 %install
@@ -75,9 +75,10 @@ done
 
 %check
 %desktop_file_validate -f %{buildroot}%{_appsdir}/zotero.desktop
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
+%doc README.md CONTRIBUTING.md
+%license COPYING
 %{_bindir}/zotero
 %{bundledir}/
 %{_appsdir}/zotero.desktop

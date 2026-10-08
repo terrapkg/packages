@@ -1,0 +1,122 @@
+From d2d507654253f866977a0f7368312bbc3a4dfec5 Mon Sep 17 00:00:00 2001
+From: Dorian Stoll <dorian.stoll@tmsp.io>
+Date: Sat, 27 Jun 2020 18:21:11 +0200
+Subject: [PATCH] Add support for BUS_VIRTUAL
+
+This is needed to support IPTS devices through the iptsd userspace
+daemon. It exposes the touchscreen / stylus as uinput, since the parsing
+of raw IPTS data needs to happen in userspace.
+
+Because these devices are not backed by an actual bus, they are created
+as BUS_VIRTUAL.
+
+Signed-off-by: Dorian Stoll <dorian.stoll@tmsp.io>
+---
+ libwacom/libwacom-database.c | 4 ++++
+ libwacom/libwacom.c          | 7 +++++++
+ libwacom/libwacom.h          | 1 +
+ test/test-tablet-validity.c  | 1 +
+ test/test_data_files.py      | 1 +
+ tools/debug-device.c         | 3 +++
+ 6 files changed, 17 insertions(+)
+
+diff --git a/libwacom/libwacom-database.c b/libwacom/libwacom-database.c
+index 11dda452..40ff4928 100644
+--- a/libwacom/libwacom-database.c
++++ b/libwacom/libwacom-database.c
+@@ -175,6 +175,8 @@ bus_from_str(const char *str)
+ 		return WBUSTYPE_BLUETOOTH;
+ 	if (g_str_equal(str, "i2c"))
+ 		return WBUSTYPE_I2C;
++	if (g_str_equal(str, "virt"))
++		return WBUSTYPE_VIRTUAL;
+ 	return WBUSTYPE_UNKNOWN;
+ }
+ 
+@@ -193,6 +195,8 @@ bus_to_str(WacomBusType bus)
+ 		return "bluetooth";
+ 	case WBUSTYPE_I2C:
+ 		return "i2c";
++	case WBUSTYPE_VIRTUAL:
++		return "virt";
+ 	}
+ 	g_assert_not_reached();
+ }
+diff --git a/libwacom/libwacom.c b/libwacom/libwacom.c
+index 2087795b..6e8ca253 100644
+--- a/libwacom/libwacom.c
++++ b/libwacom/libwacom.c
+@@ -165,6 +165,10 @@ get_bus_vid_pid(GUdevDevice *device,
+ 		*bus = WBUSTYPE_I2C;
+ 		retval = TRUE;
+ 		break;
++	case 6:
++		*bus = WBUSTYPE_VIRTUAL;
++		retval = TRUE;
++		break;
+ 	}
+ 
+ out:
+@@ -1144,6 +1148,9 @@ print_match(int fd,
+ 	case WBUSTYPE_I2C:
+ 		bus_name = "i2c";
+ 		break;
++	case WBUSTYPE_VIRTUAL:
++		bus_name = "virt";
++		break;
+ 	case WBUSTYPE_UNKNOWN:
+ 		bus_name = "unknown";
+ 		break;
+diff --git a/libwacom/libwacom.h b/libwacom/libwacom.h
+index 06777dad..b27db031 100644
+--- a/libwacom/libwacom.h
++++ b/libwacom/libwacom.h
+@@ -153,6 +153,7 @@ typedef enum {
+ 	WBUSTYPE_SERIAL,    /**< Serial tablet */
+ 	WBUSTYPE_BLUETOOTH, /**< Bluetooth tablet */
+ 	WBUSTYPE_I2C,       /**< I2C tablet */
++	WBUSTYPE_VIRTUAL,   /**< Virtual (uinput) tablet */
+ } WacomBusType;
+ 
+ /**
+diff --git a/test/test-tablet-validity.c b/test/test-tablet-validity.c
+index bf4609b7..24078f64 100644
+--- a/test/test-tablet-validity.c
++++ b/test/test-tablet-validity.c
+@@ -180,6 +180,7 @@ assert_vidpid(WacomBusType bus,
+ 		break;
+ 	case WBUSTYPE_BLUETOOTH:
+ 	case WBUSTYPE_I2C:
++	case WBUSTYPE_VIRTUAL:
+ 		g_assert_cmpint(vid, >, 0);
+ 		g_assert_cmpint(pid, >, 0);
+ 		break;
+diff --git a/test/test_data_files.py b/test/test_data_files.py
+index 30d426f3..2e8e985c 100755
+--- a/test/test_data_files.py
++++ b/test/test_data_files.py
+@@ -46,6 +46,7 @@ def test_device_match(tabletfile):
+             "bluetooth",
+             "i2c",
+             "serial",
++            "virt",
+         ], f"{tabletfile}: unknown bus type"
+         assert re.match("[0-9a-f]{4}", vid), (
+             f"{tabletfile}: {vid} must be lowercase hex"
+diff --git a/tools/debug-device.c b/tools/debug-device.c
+index 0a5f45fa..6c5fbcd4 100644
+--- a/tools/debug-device.c
++++ b/tools/debug-device.c
+@@ -189,6 +189,9 @@ handle_device(WacomDeviceDatabase *db,
+ 		case WBUSTYPE_I2C:
+ 			busstr = "I2C";
+ 			break;
++		case WBUSTYPE_VIRTUAL:
++			busstr = "VIRTUAL";
++			break;
+ 		}
+ 		func(libwacom_get_bustype, "%s", busstr);
+ 	}
+-- 
+2.55.0
+

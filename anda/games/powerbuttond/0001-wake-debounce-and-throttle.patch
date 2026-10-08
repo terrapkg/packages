@@ -1,0 +1,198 @@
+--- a/powerbuttond.c
++++ b/powerbuttond.c
+@@ -2,6 +2,8 @@
+ //
+ // Copyright (c) 2023-2025 Valve Software
+ // Maintainer: Vicki Pfau <vi@endrift.com>
++//
++// Patched for Bazzite / Handheld Sleep Loop Debounce & Redundant Device Handling
+ #include <errno.h>
+ #include <fcntl.h>
+ #include <libevdev/libevdev.h>
+@@ -11,10 +13,12 @@
+ #include <signal.h>
+ #include <spawn.h>
+ #include <stdbool.h>
++#include <stdint.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/wait.h>
++#include <time.h>
+ #include <unistd.h>
+ 
+ #define MAX_DEVS 10
+@@ -32,6 +36,12 @@
+ #define MOD_RMETA 0x80
+ #define MOD_META 0xC0
+ 
++/* Grace period after system resumes from sleep (milliseconds) to drop any wake power press */
++#define POST_RESUME_DEBOUNCE_MS 1500
++
++/* Grace period between consecutive steam shortpowerpress commands (milliseconds) */
++#define MIN_PRESS_INTERVAL_MS 1200
++
+ extern char** environ;
+ static bool got_alarm = false;
+ static bool got_hup = false;
+@@ -39,8 +49,16 @@
+ struct evdev_context {
+ 	struct libevdev* dev;
+ 	int modifiers;
++	char name[128];
++	char devnode[64];
+ };
+ 
++static uint64_t get_time_ms(clockid_t clk_id) {
++	struct timespec ts;
++	clock_gettime(clk_id, &ts);
++	return (uint64_t)ts.tv_sec * 1000ULL + (uint64_t)(ts.tv_nsec / 1000000ULL);
++}
++
+ void alarm_handler(int) {
+ 	got_alarm = true;
+ }
+@@ -67,6 +85,9 @@
+ 		return false;
+ 	}
+ 	ctx->dev = dev;
++	const char* name = libevdev_get_name(dev);
++	snprintf(ctx->name, sizeof(ctx->name), "%s", name ? name : "unknown");
++	snprintf(ctx->devnode, sizeof(ctx->devnode), "%s", path);
+ 	return true;
+ }
+ 
+@@ -106,12 +127,14 @@
+ 			continue;
+ 		}
+ 		if (udev_device_get_property_value(dev, "STEAMOS_POWER_BUTTON_IGNORE")) {
++			udev_device_unref(dev);
+ 			continue;
+ 		}
+ 		const char* devpath = udev_device_get_devnode(dev);
+ 		if (devpath) {
+ 			if (open_dev(devpath, &devs[num_devs])) {
+-				printf("Found power button device at %s\n", devpath);
++				fprintf(stderr, "Found power button device %zu at %s (%s)\n",
++				        num_devs, devpath, devs[num_devs].name);
+ 				++num_devs;
+ 			}
+ 		}
+@@ -139,6 +162,8 @@
+ 	snprintf(steam, sizeof(steam), "%s/.steam/root/ubuntu12_32/steam", home);
+ 	snprintf(message, sizeof(message), "steam://%s", type);
+ 
++	fprintf(stderr, "steamos-powerbuttond: sending message: %s\n", message);
++
+ 	pid_t pid;
+ 	if (posix_spawn(&pid, steam, NULL, NULL, args, environ) < 0) {
+ 		return;
+@@ -165,6 +190,21 @@
+ 	}
+ }
+ 
++/* Discard all pending events in evdev buffer */
++void drain_devs(struct evdev_context* devs, size_t num_devs) {
++	size_t i;
++	for (i = 0; i < num_devs; ++i) {
++		struct input_event ev;
++		int res;
++		while (libevdev_has_event_pending(devs[i].dev) > 0) {
++			res = libevdev_next_event(devs[i].dev, LIBEVDEV_READ_FLAG_NORMAL, &ev);
++			while (res == LIBEVDEV_READ_STATUS_SYNC) {
++				res = libevdev_next_event(devs[i].dev, LIBEVDEV_READ_FLAG_SYNC, &ev);
++			}
++		}
++	}
++}
++
+ int main(int argc, char* argv[]) {
+ 	struct sigaction sa = {0};
+ 
+@@ -191,6 +231,7 @@
+ 		num_devs = find_devs(devs);
+ 	}
+ 	if (!num_devs) {
++		fprintf(stderr, "steamos-powerbuttond: no power button devices found\n");
+ 		return 0;
+ 	}
+ 	size_t i;
+@@ -199,6 +240,13 @@
+ 	}
+ 
+ 	bool press_active = false;
++	uint64_t last_mono = get_time_ms(CLOCK_MONOTONIC);
++	uint64_t last_boot = get_time_ms(CLOCK_BOOTTIME);
++	uint64_t last_resume_time = 0;
++	uint64_t last_sent_press_time = 0;
++
++	fprintf(stderr, "steamos-powerbuttond: started successfully with %zu devices\n", num_devs);
++
+ 	while (true) {
+ 		if (got_hup) {
+ 			got_hup = false;
+@@ -215,6 +263,30 @@
+ 		}
+ 
+ 		int res = poll(pfds, num_devs, -1);
++
++		/* Check if system woke from sleep/suspend while in poll() */
++		uint64_t cur_mono = get_time_ms(CLOCK_MONOTONIC);
++		uint64_t cur_boot = get_time_ms(CLOCK_BOOTTIME);
++
++		/* In Linux, CLOCK_BOOTTIME advances during suspend, CLOCK_MONOTONIC pauses */
++		int64_t delta_boot = (int64_t)(cur_boot - last_boot);
++		int64_t delta_mono = (int64_t)(cur_mono - last_mono);
++		int64_t suspend_sleep_ms = delta_boot - delta_mono;
++
++		last_mono = cur_mono;
++		last_boot = cur_boot;
++
++		if (suspend_sleep_ms > 400) {
++			fprintf(stderr, "steamos-powerbuttond: system resumed from sleep (%ld ms in suspend). Debouncing wake events.\n",
++			        (long)suspend_sleep_ms);
++			last_resume_time = cur_mono;
++			press_active = false;
++			alarm(0);
++			got_alarm = false;
++			drain_devs(devs, num_devs);
++			continue;
++		}
++
+ 		if (res < 0 && errno == EINTR && press_active && got_alarm) {
+ 			press_active = false;
+ 			steam_message("longpowerpress");
+@@ -242,15 +314,31 @@
+ 				}
+ 				if (ev.type == EV_KEY) {
+ 					switch (ev.code) {
+-					case KEY_POWER:
++					case KEY_POWER: {
++						uint64_t now = get_time_ms(CLOCK_MONOTONIC);
++						if (now - last_resume_time < POST_RESUME_DEBOUNCE_MS) {
++							fprintf(stderr, "steamos-powerbuttond: ignoring KEY_POWER %d from %s (%s) within %d ms of resume\n",
++							        ev.value, ctx->devnode, ctx->name, POST_RESUME_DEBOUNCE_MS);
++							press_active = false;
++							alarm(0);
++							break;
++						}
++
+ 						if (ev.value == 1) {
+ 							press_active = true;
+ 							alarm(1);
+ 						} else if (ev.value == 0 && press_active) {
+ 							press_active = false;
+-							steam_message("shortpowerpress");
++							if (now - last_sent_press_time >= MIN_PRESS_INTERVAL_MS) {
++								last_sent_press_time = now;
++								steam_message("shortpowerpress");
++							} else {
++								fprintf(stderr, "steamos-powerbuttond: throttling rapid shortpowerpress (%lu ms since last)\n",
++								        (unsigned long)(now - last_sent_press_time));
++							}
+ 						}
+ 						break;
++					}
+ 					case KEY_LEFTSHIFT:
+ 						ctx->modifiers &= ~MOD_LSHIFT;
+ 						if (ev.value > 0) {

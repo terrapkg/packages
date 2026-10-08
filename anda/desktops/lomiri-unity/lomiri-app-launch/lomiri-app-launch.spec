@@ -1,14 +1,14 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-app-launch
-%global commit 492200637f0eaeba75363ee8d14ef8564d2197df
-%forgemeta
 
 Name:           lomiri-app-launch
 Version:        0.2.0
+
+%forgemeta
 Release:        1%{?dist}
 Summary:        Provides the Lomiri App Launch user space daemon
 License:        GPL-3.0
 URL:            https://gitlab.com/ubports/development/core/lomiri-app-launch
-Source0:        %{url}/-/archive/%commit/lomiri-app-launch-%commit.tar.gz
+Source0:        %{url}/-/archive/%{version}/lomiri-app-launch-%{version}.tar.gz
 Patch0:         https://sources.debian.org/data/main/l/lomiri-app-launch/0.1.11-1/debian/patches/2003_remove-werror.patch
 Patch1:         2004-std-workaround.patch
 
@@ -49,7 +49,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 This package contains development files needed for lomiri-app-launch.
 
 %prep
-%autosetup -n lomiri-app-launch-%commit
+%autosetup -n lomiri-app-launch-%{version}
 
 %build
 # For some reason the macro of cmake fails on both clang and gcc

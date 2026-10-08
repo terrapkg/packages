@@ -8,4 +8,5 @@ if result.ctx.rc == 0 {
     rpm.global("bootstrap", "0");
 } else {
     print("Bazel is not available in the configured repositories; bootstrapping it");
+    rpm.global("bootstrap", "1"); // this is just because i worry bootstrap might get inadvertently set to 0
 }

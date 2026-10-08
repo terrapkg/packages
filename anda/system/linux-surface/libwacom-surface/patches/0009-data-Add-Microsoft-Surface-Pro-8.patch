@@ -1,0 +1,34 @@
+From 0ebb7bcfab7c76373ec9fbe34de1855ae860a073 Mon Sep 17 00:00:00 2001
+From: Maximilian Luz <luzmaximilian@gmail.com>
+Date: Sun, 11 Jun 2023 21:29:52 +0200
+Subject: [PATCH] data: Add Microsoft Surface Pro 8
+
+Based on https://github.com/linux-surface/libwacom-surface/issues/13
+---
+ data/surface-pro8.tablet | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 data/surface-pro8.tablet
+
+diff --git a/data/surface-pro8.tablet b/data/surface-pro8.tablet
+new file mode 100644
+index 00000000..dcfef119
+--- /dev/null
++++ b/data/surface-pro8.tablet
+@@ -0,0 +1,14 @@
++# This is for the Microsoft Surface Pro 8
++
++[Device]
++Name=Microsoft Surface Pro 8
++Class=PenDisplay
++DeviceMatch=virt|045e|0c37
++Width=10
++Height=6
++IntegratedIn=Display;System;
++
++[Features]
++Stylus=false
++Touch=true
++Buttons=0
+-- 
+2.55.0
+

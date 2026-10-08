@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Yaak
+Comment=Play with APIs, intuitively
+Exec=yaak %U
+Icon=app.yaak.Yaak
+StartupWMClass=yaak
+Terminal=false
+Type=Application
+Categories=Development;Network;
+MimeType=x-scheme-handler/yaak;

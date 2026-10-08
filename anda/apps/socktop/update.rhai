@@ -1,1 +1,1 @@
-rpm.global("ver", gh("jasonwitty/socktop"));
+rpm.version(gh("jasonwitty/socktop"));

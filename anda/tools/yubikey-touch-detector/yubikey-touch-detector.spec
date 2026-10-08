@@ -1,10 +1,10 @@
 %global goipath github.com/max-baz/yubikey-touch-detector
-Version:        1.13.0
+Version:        1.15.0
 
 %gometa
 
 Name:           yubikey-touch-detector
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        A tool to detect when your YubiKey is waiting for a touch
 
 License:        ISC

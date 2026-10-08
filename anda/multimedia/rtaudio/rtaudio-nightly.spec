@@ -1,12 +1,12 @@
 #? https://src.fedoraproject.org/rpms/rtaudio/blob/db1aa72863ccbfd480e22c2f7aefb41ebb8e2360/f/rtaudio.spec
-%global commit c0a533d7bb16e8ca0d96cdb2e3fcfb6d1d095df4
+%global commit ea2c88c7c8cf71e82b73a54a0e405df9215c35ae
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260913
+%global commit_date 20261002
 %global ver .0.1
 
 Name:           rtaudio-nightly
 Version:        %{ver}^%{commit_date}.git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        Real-time Audio I/O Library
 License:        MIT
 URL:            https://github.com/thestk/rtaudio

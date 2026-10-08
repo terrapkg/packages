@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.9.5
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Cython bindings and Pillow plugin for JPEG XL
 License:		MIT
 URL:			https://github.com/olokelo/jxlpy
@@ -42,7 +42,7 @@ Summary:        %{summary}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitearch}/_jxlpy.cpython-314-%{_arch}-linux-gnu.so
+%{python3_sitearch}/_jxlpy.cpython-*-%{_arch}-linux-gnu.so
 
 %changelog
 * Sat Mar 28 2026 Owen Zimmerman <owen@fyralabs.com>

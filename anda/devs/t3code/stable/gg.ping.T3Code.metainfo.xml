@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>gg.ping.T3Code</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <developer id="gg.ping">
+    <name>Ping Labs</name>
+  </developer>
+  <icon type="stock">t3code</icon>
+
+  <name>T3 Code</name>
+  <summary>Minimal web GUI for coding agents</summary>
+
+  <description>
+    <p>
+      T3 Code is a minimal web GUI for coding agents such as Codex, Claude Code,
+      Cursor, and OpenCode.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">t3code.desktop</launchable>
+
+  <url type="homepage">https://t3.codes/</url>
+  <url type="bugtracker">https://github.com/pingdotgg/t3code/issues</url>
+
+  <provides>
+    <binary>t3code</binary>
+  </provides>
+  <categories>
+    <category>Development</category>
+    <category>IDE</category>
+  </categories>
+  <keywords>
+    <keyword>coding</keyword>
+    <keyword>development</keyword>
+    <keyword>programming</keyword>
+  </keywords>
+
+  <releases>
+    <release version="0.0.45" date="2026-10-02" type="stable" />
+  </releases>
+</component>

@@ -1,6 +1,6 @@
-%global commit 6988ca6b3e41703a4925488d2fd8a15709e20e80
+%global commit 3879ba0f44e9bcfd500a5b92d02f83885f6b23c7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260915
+%global commitdate 20260919
 %global ver 0.10.4
 %global appid io.github.atar_axis.xpadneo
 

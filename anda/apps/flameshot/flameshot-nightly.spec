@@ -1,16 +1,16 @@
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
 %global ver 14.0.0
-%global commit 89861c4a951cf26096d66b8d3cbec64e05b4390c
+%global commit 3455978ec0b72779e5a1ff328f904a1250d58dc0
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20260917
+%global commit_date 20261003
 %global devel_name QtColorWidgets
 %global _distro_extra_cflags -fuse-ld=mold
 %global _distro_extra_cxxflags -fuse-ld=mold
 
 Name:			flameshot.nightly
 Version:		%ver^%{commit_date}git.%shortcommit
-Release:		2%?dist
+Release:		1%{?dist}
 License:		GPL-3.0-or-later AND ASL-2.0 AND GPL-2.0-only AND LGPL-3.0-only AND FAL-1.3
 Summary:		Powerful yet simple to use screenshot software
 URL:			https://flameshot.org

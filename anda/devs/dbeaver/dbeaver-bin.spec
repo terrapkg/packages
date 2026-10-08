@@ -2,9 +2,14 @@
 %global appid io.dbeaver.DBeaver
 %global appstream_component desktop-application
 
+# The application bundles a private Java runtime; do not expose its libraries as system Provides.
+%global __provides_exclude_from ^%{_datadir}/dbeaver-bin/.*$
+# The application has a bundled version of libfreetype and bundled Java libraries
+%global __requires_exclude libfreetype\.so.*|libj.*\.so.*|libawt.*\.so.*|libnet\.so.*
+
 Name:           dbeaver-bin
-Version:        26.2.0
-Release:        1%{?dist}
+Version:        26.2.2
+Release:        5%{?dist}
 Summary:        Free universal database tool and SQL client
 License:        Apache-2.0
 URL:            https://dbeaver.io
@@ -16,6 +21,7 @@ Source0:        https://github.com/dbeaver/dbeaver/releases/download/%version/db
 Packager:       madonuko <mado@fyralabs.com>
 ExclusiveArch:  x86_64 aarch64
 Provides:       dbeaver = %evr
+Provides:       bundled(libfreetype)
 Conflicts:      dbeaver
 
 %description
@@ -49,5 +55,8 @@ mv %buildroot%_datadir/%name/readme.txt .
 %_metainfodir/%appid.metainfo.xml
 
 %changelog
+* Mon Oct 05 2026 Cypress Reed <cypress@fyralabs.com> - 26.2.2-2
+- Exclude binary directory from provides detection
+
 * Mon Aug 17 2026 madonuko <mado@fyralabs.com> - 26.1.5-1
 - Initial package

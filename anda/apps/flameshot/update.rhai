@@ -4,4 +4,5 @@ if rpm.changed() {
     v.crop(1);
     rpm.global("ver", v);
     rpm.global("commit_date", date());
+    rpm.release();
 }

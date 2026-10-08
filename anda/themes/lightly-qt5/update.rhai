@@ -11,4 +11,9 @@ fn main(labels) {
     }
 }
 
+
 open_file("anda/themes/lightly-qt5/VER5.txt").write(`${main(labels)}`); // will trig rebuild when changed
+
+if rpm.changed() {
+    rpm.release();
+}
