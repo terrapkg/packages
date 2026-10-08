@@ -16,17 +16,17 @@ This reverts commit 7c25024879824cc96dc930e1af9e4c203eea740f.
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/hw/xwayland/xwayland-present.c b/hw/xwayland/xwayland-present.c
-index f349f71..88f7cd8 100644
+index f349f71..88f7cd9 100644
 --- a/hw/xwayland/xwayland-present.c
 +++ b/hw/xwayland/xwayland-present.c
-@@ -871,7 +871,6 @@ xwl_present_flip(present_vblank_ptr vblank, RegionPtr damage)
+@@ -871,6 +871,6 @@ xwl_present_flip(present_vblank_ptr vblank, RegionPtr damage)
      Bool                        implicit_sync = TRUE;
  
-     if (!xwl_window ||
--        !xwl_window->allow_commits ||
-         xwl_window->awaiting_initial_configure_event)
+-    if (!xwl_window || !xwl_window->allow_commits)
++    if (!xwl_window)
          return FALSE;
  
+     buffer = xwl_pixmap_get_wl_buffer(pixmap);
 -- 
 2.47.1
 

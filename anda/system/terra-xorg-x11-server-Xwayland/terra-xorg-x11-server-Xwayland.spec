@@ -9,7 +9,7 @@
 Summary:   Xwayland with gaming patches
 Name:      terra-xorg-x11-server-Xwayland
 Version:   24.1.13
-Release:   1%{?dist}
+Release:   2%{?dist}
 Packager:  Kyle Gospodnetich <me@kylegospodneti.ch>
 
 URL:       http://www.x.org
@@ -28,7 +28,7 @@ Patch1:    0002-Revert-xwayland-present-Check-allow_commits-in-xwl_p.patch
 # Nobara Patches
 Patch2:    xwayland-pointer-warp-fix.patch
 
-Provides:  xorg-x11-server-Xwayland = %{evr}
+Provides:  xorg-x11-server-Xwayland%{?_isa} = %{evr}
 Conflicts: xorg-x11-server-Xwayland
 
 Requires: xkeyboard-config
@@ -143,7 +143,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_datadir}/xwayland/protocol.txt
 
 %files devel
-%{_datadir}/pkgconfig/xwayland.pc
+%{_libdir}/pkgconfig/xwayland.pc
 
 %changelog
 * Wed Oct 07 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.99.903-1
