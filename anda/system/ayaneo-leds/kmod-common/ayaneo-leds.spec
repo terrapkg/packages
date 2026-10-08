@@ -5,7 +5,7 @@
 
 Name:           ayaneo-leds
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        LED RGB control for Ayaneo legacy devices
 License:        GPL-2.0-or-later
 URL:            https://github.com/TiPSilva/%{name}
