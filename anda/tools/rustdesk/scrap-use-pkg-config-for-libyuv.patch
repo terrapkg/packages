@@ -1,0 +1,41 @@
+--- a/libs/scrap/build.rs
++++ b/libs/scrap/build.rs
+@@ -180,6 +180,26 @@
+     generate_bindings(&ffi_header, &includes, &ffi_rs, &exact_file, regex);
+ }
+ 
++fn gen_libyuv_package() {
++    let includes = if cfg!(all(target_os = "linux", feature = "linux-pkg-config")) {
++        link_pkg_config("libyuv")
++    } else {
++        find_package("libyuv")
++    };
++    let src_dir = env::var_os("CARGO_MANIFEST_DIR").unwrap();
++    let src_dir = Path::new(&src_dir);
++    let out_dir = env::var_os("OUT_DIR").unwrap();
++    let out_dir = Path::new(&out_dir);
++
++    let ffi_header = src_dir.join("src").join("bindings").join("yuv_ffi.h");
++    println!("rerun-if-changed={}", ffi_header.display());
++    for dir in &includes {
++        println!("rerun-if-changed={}", dir.display());
++    }
++
++    generate_bindings(&ffi_header, &includes, &out_dir.join("yuv_ffi.rs"), ".*");
++}
++
+ // If you have problems installing ffmpeg, you can download $VCPKG_ROOT/installed from ci
+ // Linux require link in hwcodec
+ /*
+@@ -244,10 +264,9 @@
+     env::remove_var("CARGO_CFG_TARGET_FEATURE");
+     env::set_var("CARGO_CFG_TARGET_FEATURE", "crt-static");
+ 
+-    find_package("libyuv");
+     gen_vcpkg_package("libvpx", "vpx_ffi.h", "vpx_ffi.rs", "^[vV].*");
+     gen_vcpkg_package("aom", "aom_ffi.h", "aom_ffi.rs", "^(aom|AOM|OBU|AV1).*");
+-    gen_vcpkg_package("libyuv", "yuv_ffi.h", "yuv_ffi.rs", ".*");
++    gen_libyuv_package();
+     // ffmpeg();
+ 
+     if target_os == "ios" {
