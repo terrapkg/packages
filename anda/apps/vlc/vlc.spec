@@ -63,7 +63,6 @@ Patch:      0001-Use-SYSTEM-wide-ciphers-for-gnutls.patch
 Patch:      fdk-aac2.patch
 # port from intel-mediasdk to oneVPL
 Patch:      oneVPL.patch
-# fix appstreamcli validate to show in Software (rhbz#2258611)
 Patch:      appdata.patch
 # port from libidn to libidn2
 Patch:      libidn2.patch
