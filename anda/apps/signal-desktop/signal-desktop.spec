@@ -1,4 +1,5 @@
 %define appid org.signal.Signal
+%global pnpm_major 11
 
 Name:			signal-desktop
 %electronmeta -aD
@@ -15,7 +16,7 @@ BuildRequires:	pulseaudio-libs-devel
 BuildRequires:  libX11-devel
 BuildRequires:	git-lfs
 %if 0%{?fedora} > 45
-BuildRequires:	pnpm11
+BuildRequires:	pnpm%{pnpm_major}
 %endif
 BuildRequires:  python3
 BuildRequires:  terra-appstream-helper
@@ -63,7 +64,7 @@ sed -i '/"target": "deb",/{N;s/"arch": "x64"/"arch": "%{_electron_cpu}"/}' packa
 
 %build
 %if 0%{?fedora} <= 45 || %{defined rhel}
-%vendor_pnpm -v 11
+%vendor_pnpm -v %{pnpm_major}
 %endif
 export SIGNAL_ENV=production
 export SOURCE_DATE_EPOCH="$(date +"%s")"
