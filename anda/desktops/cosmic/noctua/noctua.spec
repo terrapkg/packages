@@ -5,7 +5,7 @@
 
 Name:           noctua-nightly
 Version:        0^%{commitdate}.git%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        An image viewer application for the COSMIC™ desktop
 
 SourceLicense:  GPL-3.0-only
