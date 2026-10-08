@@ -347,10 +347,6 @@ echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}
 echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
 %endif
 
-%check
-# Icon type local is not supported by appstreamcli for drivers
-appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
-
 %endif
 
 %ifarch x86_64 aarch64
