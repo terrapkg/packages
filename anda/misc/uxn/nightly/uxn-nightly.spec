@@ -1,5 +1,5 @@
-%global commit db2132a8a0f0885bc0b7c2470daf457cf9dd758c
-%global commit_date 20260903
+%global commit 6024e5c8d321396a947a2eb4c044a318cd033c7f
+%global commit_date 20261008
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           uxn-nightly
