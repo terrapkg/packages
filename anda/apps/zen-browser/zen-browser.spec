@@ -298,7 +298,6 @@ done
 %terra_appstream -o %{S:6}
 
 %check
-    %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
