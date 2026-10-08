@@ -2,8 +2,8 @@
 %global _desc Blazingly-fast, rock-solid, local application development with Kubernetes.
 
 Name:			python-%{pypi_name}
-Version:		2.5.5
-Release:		1%?dist
+Version:		2.5.6
+Release:		1%{?dist}
 Summary:		Blazingly-fast, rock-solid, local application development with Kubernetes.
 License:		Apache-2.0
 URL:			https://github.com/gefyrahq/gefyra

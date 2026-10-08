@@ -3,10 +3,10 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit 323609694d04a4715e88a087ccf7de05696c998c
+%global commit e4299e14d7c8821ea21953bc36812145611a309e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20260930
+%global commit_date 20261006
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 # Change this variables if you want to use custom keys
@@ -104,7 +104,7 @@ sed -i "s|\$ORIGIN/||" CMakeLists.txt
   %endif
   -DBUILD_TESTING=OFF \
 %if 0%{?fedora} > 43
-  -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-error=sfinae-incomplete"
+  -DCMAKE_CXX_FLAGS="$CXXFLAGS -Wno-error=deprecated-declarations"
 %endif
   
 %build

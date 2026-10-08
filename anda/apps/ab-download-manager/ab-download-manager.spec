@@ -5,10 +5,12 @@
 
 # The application bundles a private Java runtime; do not expose its libraries as system Provides.
 %global __provides_exclude_from ^%{_libdir}/ABDownloadManager/.*$
+# The application has a bundled version of libfreetype and bundled Java libraries
+%global __requires_exclude libfreetype\.so.*|libj.*\.so.*|libawt.*\.so.*|libnet\.so.*
 
 Name:           ab-download-manager
 Version:        1.10.4
-Release:        2%{?dist}
+Release:        4%{?dist}
 Summary:        A fast, open-source download manager
 URL:            https://abdownloadmanager.com
 Source0:        abdownloadmanager.desktop
@@ -23,6 +25,8 @@ BuildRequires:  java-25-openjdk-jmods
 BuildRequires:  desktop-file-utils
 BuildRequires:  terra-appstream-helper
 BuildRequires:  appstream
+
+Provides:       bundled(libfreetype)
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 

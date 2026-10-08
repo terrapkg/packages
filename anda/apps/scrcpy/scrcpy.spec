@@ -19,7 +19,7 @@
 %endif
 
 Name:			scrcpy
-Version:		4.1
+Version:		5.0.1
 Release:		1%{?dist}
 Summary:		Display and control your Android device
 License:		Apache-2.0 AND Proprietary
@@ -39,6 +39,7 @@ BuildRequires:	pkgconfig(libavutil)
 BuildRequires:	pkgconfig(libswresample)
 BuildRequires:	pkgconfig(libusb)
 BuildRequires:	pkgconfig(libv4l2)
+BuildRequires: pkgconfig(libdrm)
 BuildRequires:	cmake(VulkanHeaders)
 BuildRequires:	vulkan-loader
 BuildRequires:	OpenCL-ICD-Loader

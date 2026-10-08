@@ -1,6 +1,6 @@
 Name:           gleam
-Version:        1.18.1
-Release:        1%?dist
+Version:        1.19.1
+Release:        1%{?dist}
 Summary:        A friendly language for building type-safe, scalable systems!
 URL:            https://gleam.run/
 Source0:        https://github.com/gleam-lang/gleam/archive/refs/tags/v%{version}.tar.gz
@@ -13,7 +13,7 @@ Requires:       erlang
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%{summary}
+%{summary}.
 
 %prep
 %autosetup -C
@@ -24,7 +24,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %cargo_build
 
 %install
-%crate_install_bin
+install -Dm755 target/rpm/gleam %{buildroot}%{_bindir}/gleam
 
 %{cargo_license_online} > LICENSE.dependencies
 
