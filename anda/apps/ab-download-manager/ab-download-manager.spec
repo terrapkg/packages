@@ -6,11 +6,11 @@
 # The application bundles a private Java runtime; do not expose its libraries as system Provides.
 %global __provides_exclude_from ^%{_libdir}/ABDownloadManager/.*$
 # The application has a bundled version of libfreetype and bundled Java libraries
-%global __requires_exclude libfreetype\.so.*|libj.*\.so.*
+%global __requires_exclude libfreetype\.so.*|libj.*\.so.*|libawt.*\.so.*|libnet\.so.*
 
 Name:           ab-download-manager
 Version:        1.10.4
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A fast, open-source download manager
 URL:            https://abdownloadmanager.com
 Source0:        abdownloadmanager.desktop
