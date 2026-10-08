@@ -40,10 +40,9 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 install -Dm0755 target/rpm/noctua                                              %{buildroot}%{_bindir}/noctua
-%desktop_file_install ui/cosmic/resources/%{appid}.desktop
 install -Dm0644 ui/cosmic/resources/%{appid}.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 ui/cosmic/resources/icons/hicolor/scalable/apps/%{appid}.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
-install -Dm0644 %{SOURCE1} LICENSE
+%desktop_file_install ui/cosmic/resources/%{appid}.desktop
 
 %terra_appstream
 
@@ -56,5 +55,9 @@ install -Dm0644 %{SOURCE1} LICENSE
 %{_scalableiconsdir}/%{appid}.svg
 
 %changelog
+* Thu Oct 08 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for new file names
+- Install provided license file
+
 * Wed Sep 02 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
