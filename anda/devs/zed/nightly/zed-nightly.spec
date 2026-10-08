@@ -1,7 +1,7 @@
-%global commit bd747337d7be138834e20972b9e203c7b239cc47
+%global commit 72d073d6423b0bf7e04aa87567a308d19617b7f2
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20260929
-%global ver 1.23.0
+%global commit_date 20261007
+%global ver 1.24.0
 
 %bcond_with check
 %bcond_with debug_no_build
@@ -38,6 +38,7 @@ Conflicts:      zed-preview
 # BUG: fedora rustc missing this dep
 BuildRequires:  libedit(x86-64)
 %endif
+BuildRequires:  cargo-about
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  gcc
@@ -141,17 +142,17 @@ install -Dm644 %appid.metainfo.xml %{buildroot}%{_metainfodir}/%appid.metainfo.x
 # The license generation script doesn't generate licenses for ALL compiled dependencies, just direct deps of Zed, and it does not "group" licenses
 # Zed also needs a special approach to fetch the dep licenses
 %if %{without debug_no_build}
-%{__cargo} tree                                                             \
-    -Z avoid-dev-deps                                                       \
-    --workspace                                                             \
-    --edges no-build,no-dev,no-proc-macro                                   \
-    --target all                                                            \
-    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                        \
-    --prefix none                                                           \
-    --format "{l}: {p}"                                                     \
-    | sed -e "s: ($(pwd)[^)]*)::g" -e "s: / :/:g" -e "/\/.*:/{s/\// OR /}"  \
-    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                          \
-    | sort -u                                                               \
+%{__cargo} tree                                                          \
+    -Z avoid-dev-deps                                                    \
+    --workspace                                                          \
+    --edges no-build,no-dev,no-proc-macro                                \
+    --target all                                                         \
+    %{__cargo_parse_opts %{-n} %{-a} %{-f:-f%{-f*}}}                     \
+    --prefix none                                                        \
+    --format "{l}: {p}"                                                  \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e ":b; s/^\([^:]*\)*\//\1 OR /; tb;" \
+    | sed -e '/.*(\*).*/d' -e '/^: pet/ s/./MIT&/'                       \
+    | sort -u                                                            \
 > LICENSE.dependencies
 %endif
 mv assets/icons/LICENSES LICENSE.icons

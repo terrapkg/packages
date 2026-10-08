@@ -1,5 +1,5 @@
 Name:           nspawn
-Version:        1.8.0
+Version:        1.9.1
 Release:        1%{?dist}
 Summary:        Docker-like management of systemd-nspawn machines
 

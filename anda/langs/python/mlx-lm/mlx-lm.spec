@@ -2,8 +2,8 @@
 %global _desc Run LLMs with MLX.
 
 Name:			python-%{pypi_name}
-Version:		0.31.3
-Release:		1%?dist
+Version:		0.32.0
+Release:		1%{?dist}
 Summary:		Run LLMs with MLX
 License:		MIT
 URL:			https://github.com/ml-explore/mlx-lm

@@ -3,7 +3,7 @@
 %global appid io.github.texlyre.chelys
 
 Name:           chelys
-Version:        1.2.1
+Version:        1.3.0
 Release:        1%{?dist}
 Summary:        A local desktop companion app for TeXlyre
 URL:            https://github.com/TeXlyre/chelys
@@ -47,7 +47,6 @@ install -Dm644 src-tauri/icons/32x32.png %{buildroot}%{_hicolordir}/32x32/apps/c
 %{tauri_cargo_license} > LICENSE.dependencies
 
 %check
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files

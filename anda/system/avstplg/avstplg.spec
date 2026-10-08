@@ -1,12 +1,12 @@
-%global commit 11f6a53130182a85908505b9120313f8b817f32c
-%global commit_date 20250328
+%global commit 57062306e105a1901258d3f224580540035a17de
+%global commit_date 20260930
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global debug_package %{nil}
 %define __os_install_post %{nil}
 
 Name:           avstplg 
 Version:        %commit_date.%shortcommit
-Release:        1%?dist
+Release:        1%{?dist}
 
 License:        Apache-2.0
 Summary:        Set of tools designed to help develop and debug software and firmware on Intel platforms with AudioDSP onboard.

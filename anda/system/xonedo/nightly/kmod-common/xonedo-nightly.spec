@@ -12,7 +12,7 @@
 
 Name:           xonedo-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        3%{?dist}
+Release:        5%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif
@@ -62,7 +62,7 @@ BuildArch:       noarch
 
 %description     firmware
 Proprietary firmware for XBox controller dongles.
- 
+
 %prep
 %autosetup -p1 -n %{modulename}-%{commit}
 /usr/bin/sed -nE '/^BUILT_MODULE_NAME/{s@^.+"(.+)"@\1@; s|-|_|g; p}' dkms.conf > %{modulename}.conf

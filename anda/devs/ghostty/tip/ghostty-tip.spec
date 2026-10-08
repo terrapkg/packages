@@ -1,4 +1,4 @@
-%global commit f9e82709360d97b2246718f774c544de0f16787b
+%global commit b699ea79f4b881421b4b3055abc16a0957d76beb
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.2
@@ -6,7 +6,7 @@
 %global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-tip
-Version:        202609291953
+Version:        202610070412
 Release:        1%{?dist}
 %if 0%{?fedora} <= 46
 Epoch:          1
@@ -32,6 +32,7 @@ BuildRequires:  zig
 BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
+BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(freetype2)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(gtk4)
@@ -226,7 +227,7 @@ This package contains the static files that are used for developing with libghos
 
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%setup -qn %{base_name}-%{ver}-main-+%{shortcommit}
+%setup -qn %{base_name}-%{ver}-main+%{shortcommit}
 
 %zig_prep
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh

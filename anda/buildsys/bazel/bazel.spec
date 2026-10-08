@@ -2,8 +2,8 @@
 %global __strip /bin/true
 
 Name:           bazel
-Version:        9.2.0
-Release:        2%{?dist}
+Version:        9.3.0
+Release:        1%{?dist}
 Summary:        Build and test software of any size, quickly and reliably
 License:        Apache-2.0
 URL:            https://bazel.build/
