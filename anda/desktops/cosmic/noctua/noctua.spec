@@ -40,9 +40,8 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %install
 install -Dm0755 target/rpm/noctua                                            %{buildroot}%{_bindir}/noctua
-%desktop_file_install ui/cosmic/resources/app.desktop
-mv %{buildroot}%{_appsdir}/app.desktop %{buildroot}%{_appsdir}/%{appid}.desktop
-install -Dm0644 ui/cosmic/resources/app.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
+%desktop_file_install ui/cosmic/resources/%{appid}.desktop
+install -Dm0644 ui/cosmic/resources/%{appid}.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 ui/cosmic/resources/icons/hicolor/scalable/apps/icon.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 install -Dm0644 %{SOURCE1} LICENSE
 
