@@ -44,8 +44,6 @@ A QML module that provides support for controllers.
 %install
 %cmake_install
 
-%check
-
 %files
 %license LICENSE.txt
 %doc README.md
