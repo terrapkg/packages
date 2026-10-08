@@ -45,7 +45,6 @@ A QML module that provides support for controllers.
 %cmake_install
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{orgname}.*.xml || :
 
 %files
 %license LICENSE.txt

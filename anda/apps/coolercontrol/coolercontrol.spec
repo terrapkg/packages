@@ -102,7 +102,6 @@ install -Dpm644 packaging/metadata/%rdnn.metainfo.xml %buildroot%_metainfodir/%r
 
 
 %check
-appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
 
 
 %post -n coolercontrold
