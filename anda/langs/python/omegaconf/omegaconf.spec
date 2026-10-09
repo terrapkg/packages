@@ -2,7 +2,7 @@
 %global _desc Flexible Python configuration system. The last one you will ever need.
 
 Name:			python-%{pypi_name}
-Version:		2.3.1
+Version:		2.4.0
 Release:		1%{?dist}
 Summary:		Flexible Python configuration system. The last one you will ever need
 License:		BSD-3-Clause
