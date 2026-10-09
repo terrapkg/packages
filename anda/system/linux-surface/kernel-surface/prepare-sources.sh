@@ -10,6 +10,11 @@ for tool in git make gcc bison flex python3 curl rpm2cpio rpmspec cpio xz tar; d
     fi
 done
 
+if ! python3 -c 'import yaml'; then
+    echo "Missing Python module yaml (install python3-pyyaml or run ci_setup.rhai)" >&2
+    exit 1
+fi
+
 # The Ultramarine fork is the controlled source for Surface patches/configs.
 # This is the fork's fedora-43-6.19.8-3 release commit.
 readonly linux_surface_repository="https://github.com/Ultramarine-Linux/linux-surface.git"
