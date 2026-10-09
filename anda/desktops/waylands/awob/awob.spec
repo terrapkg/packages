@@ -1,5 +1,5 @@
 Name:           awob
-Version:        0.1.8
+Version:        0.1.9
 Release:        1%{?dist}
 Summary:        Another Wayland Overlay Bar
 Patch0:         0001-fix-service-binary-exec.patch
