@@ -47,7 +47,7 @@ documentation for python3-%{pypi_name}.
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/pydevd_plugins/
+%dnl %{python3_sitelib}/pydevd_plugins/
 
 %changelog
 * Thu Jan 08 2026 Owen Zimmerman <owen@fyralabs.com>
