@@ -1142,6 +1142,9 @@ Patch1022: %{surface_raw}/patches/6.19/0022-dirtyfrag-rxrpc-Fix-conn-level-packe
 Patch1023: %{surface_raw}/patches/6.19/0023-dirtyfrag-rxrpc-Fix-re-decryption-of-RESPONSE-packets.patch
 Patch1024: %{surface_raw}/patches/6.19/0024-dirtyfrag-rxrpc-Also-unshare-DATA-RESPONSE-packets-when-paged-.patch
 
+# Rust 1.98 removed the x86-softfloat target ABI spelling.
+Patch1025: https://github.com/torvalds/linux/commit/905b06d32a52afe32fcf5f30cf298c9ea6359f11.patch
+
 # END OF PATCH DEFINITIONS
 
 %description
@@ -2082,7 +2085,7 @@ cd linux-%{KVERREL}
 %{log_msg "Start of patch applications"}
 %if !%{nopatches}
 
-%autopatch -m 1001 -M 1024 -p1
+%autopatch -m 1001 -M 1025 -p1
 %endif
 
 %{log_msg "End of patch applications"}
