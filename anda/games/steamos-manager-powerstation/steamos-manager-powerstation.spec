@@ -44,7 +44,7 @@ and OGC gamescope-sessions.
 %prep
 %autosetup -n steamos-manager-%{commit}
 install -Dp -m644 -t data/selinux %{SOURCE1} %{SOURCE2} %{SOURCE3}
-%cargo_prep_online
+%cargo_prep_online -u
 
 %build
 %cargo_build
