@@ -1,6 +1,6 @@
-%global commit 228ff3ed1291662e77bd2212ee353cdeb0d63b8b
+%global commit 52463cbd035543dd64d1ba7d18ac66a1cff2a0c1
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20261008
+%global commitdate 20261009
 %global ver 1.1.3
 %undefine __brp_mangle_shebangs
 
