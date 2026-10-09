@@ -36,8 +36,10 @@ dwl — crafted for speed, flexibility, and a customizable desktop experience.
 %prep
 %autosetup -n mango-%{version}
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
@@ -47,14 +49,20 @@ dwl — crafted for speed, flexibility, and a customizable desktop experience.
 %doc README.md
 %license LICENSE
 %{_bindir}/mango
+%{_bindir}/mangonag
 %{_bindir}/mmsg
 %{_sysconfdir}/mango/config.conf
+%{_sysconfdir}/mango/config.toml
 %{_datadir}/wayland-sessions/mango.desktop
 %{_datadir}/xdg-desktop-portal/mango-portals.conf
 %{_mandir}/man1/mmsg.1.*
+%{_mandir}/man1/mangonag.1.*
 %{_userunitdir}/mango-session.target
 
 %changelog
+* Fri Oct 09 2026 Owen Zimmerman <owen@fyralabs.com> - 0.18.0-1 
+- Update for 0.18.0, use %%conf
+
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.15.4-2
 - Update packager
 
