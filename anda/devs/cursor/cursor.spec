@@ -2,7 +2,7 @@
 %global __strip /bin/true
 %global _build_id_links none
 
-%global commit 2dac2428994fe34f12658d9ecad1541b98db2c04
+%global commit cd6d2a1f2e56e9841f0ed9c7c24542087b4e69be
 
 %ifarch x86_64
 %global platform x64
@@ -13,7 +13,7 @@
 %endif
 
 Name:           cursor
-Version:        3.23.23
+Version:        3.24.9
 %electronmeta -D
 Release:        1%{?dist}
 Summary:        The AI Code Editor
