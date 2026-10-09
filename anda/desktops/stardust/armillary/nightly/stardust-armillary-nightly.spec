@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-armillary-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Model viewer for Stardust XR
 URL:            https://github.com/StardustXR/armillary
 Source0:        %url/archive/%commit/armillary-%commit.tar.gz
@@ -28,7 +28,6 @@ A model viewer for Stardust XR which works great for hand tracking, pointers, an
 %build
 
 %install
-%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
 %{cargo_license_online} > LICENSE.dependencies
 
