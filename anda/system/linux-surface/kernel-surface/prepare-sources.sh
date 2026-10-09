@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
-for tool in git make python3 curl rpm2cpio rpmspec cpio xz tar; do
+for tool in git make gcc bison flex python3 curl rpm2cpio rpmspec cpio xz tar; do
     if ! command -v "$tool" >/dev/null; then
         echo "Missing source preparation tool: $tool (run ci_setup.rhai first)" >&2
         exit 1
