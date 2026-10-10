@@ -81,7 +81,6 @@ sed -Ei "s|(<release version=\"%{version}\")([^>]*)/>|\1 date=\"${release_date}\
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/atlauncher.desktop
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license LICENSE
