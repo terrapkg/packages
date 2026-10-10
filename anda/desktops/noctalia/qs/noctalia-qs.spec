@@ -2,7 +2,7 @@
 
 Name:	       noctalia-qs
 Version:       0.0.12
-Release:       6%{?dist}
+Release:       7%{?dist}
 Summary:       Flexible QtQuick based desktop shell toolkit
 License:       LGPL-3.0-only AND GPL-3.0-only
 URL:	       https://github.com/noctalia-dev/noctalia-qs
@@ -36,7 +36,6 @@ BuildRequires: glib2-devel
 BuildRequires: polkit-devel
 
 Conflicts:    quickshell
-Provides:     quickshell
 
 Provides:     desktop-notification-daemon
 Provides:     PolicyKit-authentication-agent
@@ -73,6 +72,9 @@ Flexible QtQuick based desktop shell toolkit.
 %{_libdir}/qt6/qml/Quickshell
 
 %changelog
+* Sat Oct 10 2026 Cypress Reed <cypress@fyralabs.com>
+- stop providing quickshell
+
 * Thu Jun 04 2026 Cypress Reed <cypress@fyralabs.com>
 - Update email and name (was Willow Reed or Willow C Reed) (I'm official now!)
 
