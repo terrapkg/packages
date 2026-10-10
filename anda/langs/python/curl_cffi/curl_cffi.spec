@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 %global pypi_name curl_cffi
 %global _desc Python binding for curl-impersonate fork via cffi.
 %global _version 0.14.0b2
