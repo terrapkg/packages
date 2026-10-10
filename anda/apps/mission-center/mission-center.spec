@@ -50,9 +50,9 @@ Monitor your CPU, Memory, Disk, Network and GPU usage
 ls -la
 mkdir -p ./subprojects/magpie
 pushd ./subprojects/magpie/
-%cargo_prep_online
+%cargo_prep_online -u
 popd
-%cargo_prep_online
+%cargo_prep_online -u
 
 %conf
 %meson
