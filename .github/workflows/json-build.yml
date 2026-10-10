@@ -100,7 +100,7 @@ jobs:
         run: |
           NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
           x=${NAME//\//@}
-          if [[ "${{ matrix.pkg.labels.subrepo }}" == "nvidia" ]]; then
+          if [[ "${{ matrix.pkg.pkg }}" == anda/system/nvidia/* || "${{ matrix.pkg.pkg }}" == anda/system/nvidia-580/* ]]; then
             x="nvidia-$x"
           fi
           echo "name=$x" >> $GITHUB_OUTPUT
@@ -114,7 +114,7 @@ jobs:
             anda-build/rpm/srpm/*
 
       - name: Upload packages to subatomic
-        if: inputs.publish && matrix.pkg.labels.subrepo != 'nvidia'
+        if: inputs.publish && !startsWith(matrix.pkg.pkg, 'anda/system/nvidia/') && !startsWith(matrix.pkg.pkg, 'anda/system/nvidia-580/')
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -123,7 +123,7 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: inputs.publish && matrix.pkg.labels.subrepo != 'nvidia' && matrix.pkg.labels['no_upload_srpms'] != '1'
+        if: inputs.publish && !startsWith(matrix.pkg.pkg, 'anda/system/nvidia/') && !startsWith(matrix.pkg.pkg, 'anda/system/nvidia-580/') && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -146,10 +146,10 @@ jobs:
         if: inputs.publish && (cancelled() || failure())
         run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
 
-  # Keep NVIDIA artifacts out of the repository until every NVIDIA build succeeds.
+  # Keep NVIDIA driver packages out of the repository until every build in their folders succeeds.
   publish-nvidia:
     needs: build
-    if: inputs.publish && contains(inputs.packages, '"subrepo":"nvidia"')
+    if: inputs.publish && (contains(inputs.packages, 'anda/system/nvidia/') || contains(inputs.packages, 'anda/system/nvidia-580/'))
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/terrapkg/builder:frawhide
@@ -187,7 +187,7 @@ jobs:
             if [[ $(jq -r --arg pkg "$pkg" --arg arch "$arch" '.[] | select(.pkg == $pkg and .arch == $arch) | (.labels.no_upload_srpms // 0 | tostring)' packages.json) != '1' ]]; then
               find "$artifact_dir/srpm" -maxdepth 1 -type f -name '*.rpm' -exec cp -n {} nvidia-upload/srpms/ \;
             fi
-          done < <(jq -r '[.[] | select(.labels.subrepo == "nvidia") | [.pkg, .arch]] | unique[] | @tsv' packages.json)
+          done < <(jq -r '[.[] | select((.pkg | startswith("anda/system/nvidia/")) or (.pkg | startswith("anda/system/nvidia-580/"))) | [.pkg, .arch]] | unique[] | @tsv' packages.json)
 
           shopt -s nullglob
           rpms=(nvidia-upload/rpms/*.rpm)
