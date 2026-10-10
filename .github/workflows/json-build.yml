@@ -100,6 +100,9 @@ jobs:
         run: |
           NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
           x=${NAME//\//@}
+          if [[ "${{ matrix.pkg.labels.subrepo }}" == "nvidia" ]]; then
+            x="nvidia-$x"
+          fi
           echo "name=$x" >> $GITHUB_OUTPUT
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -111,7 +114,7 @@ jobs:
             anda-build/rpm/srpm/*
 
       - name: Upload packages to subatomic
-        if: inputs.publish
+        if: inputs.publish && matrix.pkg.labels.subrepo != 'nvidia'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -120,7 +123,7 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: inputs.publish && matrix.pkg.labels['no_upload_srpms'] != '1'
+        if: inputs.publish && matrix.pkg.labels.subrepo != 'nvidia' && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -142,3 +145,66 @@ jobs:
       - name: Notify Madoguchi (Failure)
         if: inputs.publish && (cancelled() || failure())
         run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
+
+  # Keep NVIDIA artifacts out of the repository until every NVIDIA build succeeds.
+  publish-nvidia:
+    needs: build
+    if: inputs.publish && contains(inputs.packages, '"subrepo":"nvidia"')
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: 'nvidia-*-rawhide'
+          merge-multiple: false
+          path: ./artifacts
+
+      - name: Upload NVIDIA packages to subatomic
+        env:
+          PACKAGES: ${{ inputs.packages }}
+          SUBATOMIC_TOKEN: ${{ secrets.SUBATOMIC_TOKEN }}
+          VERSION: rawhide
+        run: |
+          set -euo pipefail
+          printf '%s\n' "$PACKAGES" > packages.json
+          mkdir -p nvidia-upload/rpms nvidia-upload/srpms
+
+          while IFS=$'\t' read -r pkg arch; do
+            artifact_pkg=${pkg//\//@}
+            artifact_dir="artifacts/nvidia-${artifact_pkg}-${arch}-${VERSION}"
+            if [[ ! -d "$artifact_dir" ]]; then
+              echo "Missing build artifact for NVIDIA package $pkg ($arch)" >&2
+              exit 1
+            fi
+            if ! find "$artifact_dir/rpms" -maxdepth 1 -type f -name '*.rpm' -print -quit | grep -q .; then
+              echo "No RPMs found in build artifact for NVIDIA package $pkg ($arch)" >&2
+              exit 1
+            fi
+            find "$artifact_dir/rpms" -maxdepth 1 -type f -name '*.rpm' -exec cp -n {} nvidia-upload/rpms/ \;
+            if [[ $(jq -r --arg pkg "$pkg" --arg arch "$arch" '.[] | select(.pkg == $pkg and .arch == $arch) | (.labels.no_upload_srpms // 0 | tostring)' packages.json) != '1' ]]; then
+              find "$artifact_dir/srpm" -maxdepth 1 -type f -name '*.rpm' -exec cp -n {} nvidia-upload/srpms/ \;
+            fi
+          done < <(jq -r '[.[] | select(.labels.subrepo == "nvidia") | [.pkg, .arch]] | unique[] | @tsv' packages.json)
+
+          shopt -s nullglob
+          rpms=(nvidia-upload/rpms/*.rpm)
+          srpms=(nvidia-upload/srpms/*.rpm)
+          if ((${#rpms[@]} == 0)); then
+            echo "No NVIDIA RPMs were collected for upload" >&2
+            exit 1
+          fi
+
+          subatomic-cli upload --prune \
+            --server https://subatomic.fyralabs.com \
+            --token "$SUBATOMIC_TOKEN" \
+            "terra${VERSION}-nvidia" "${rpms[@]}"
+
+          if ((${#srpms[@]} > 0)); then
+            subatomic-cli upload --prune \
+              --server https://subatomic.fyralabs.com \
+              --token "$SUBATOMIC_TOKEN" \
+              "terra${VERSION}-nvidia-source" "${srpms[@]}"
+          fi
