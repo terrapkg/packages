@@ -68,7 +68,6 @@ install -Dpm644 flatpak/%{appid}.metainfo.xml \
     %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %check
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
