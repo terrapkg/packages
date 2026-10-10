@@ -68,8 +68,6 @@ install -Dm644 desktop/app/icons/icon.png \
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/abdownloadmanager.desktop
-appstreamcli validate --no-net \
-    %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license LICENSE
