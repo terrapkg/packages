@@ -1,5 +1,0 @@
-[org.gnome.desktop.wm.keybindings]
-close = ['<Alt>F4', '<Super>q']
-minimize = []
-toggle-maximized = ['<Super>m']
-unmaximize = []
