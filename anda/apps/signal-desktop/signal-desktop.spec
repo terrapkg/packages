@@ -1,4 +1,5 @@
 %define appid org.signal.Signal
+%global pnpm_major 11
 
 Name:			signal-desktop
 %electronmeta -aD
@@ -14,8 +15,9 @@ License:		AGPL-3.0-only AND %{electron_license}
 BuildRequires:	pulseaudio-libs-devel
 BuildRequires:  libX11-devel
 BuildRequires:	git-lfs
-BuildRequires:  anda-srpm-macros
-BuildRequires:	pnpm
+%if 0%{?fedora} > 45
+BuildRequires:	pnpm%{pnpm_major}
+%endif
 BuildRequires:  python3
 BuildRequires:  terra-appstream-helper
 BuildRequires:  libxcrypt-compat
@@ -52,41 +54,32 @@ Provides:       Signal-Desktop
 Packager:       junefish <june@fyralabs.com>
 
 %description
-Signal Desktop links with Signal on Android or iOS and lets you message from your Windows, macOS, and Linux computers.
+Signal Desktop links with Signal on Android or iOS and
+lets you message from your Windows, macOS, and Linux computers.
 
 %prep
 %autosetup -n Signal-Desktop-%{version}
 sed -i 's/--config.directories.output=release//g' package.json
+sed -i '/"target": "deb",/{N;s/"arch": "x64"/"arch": "%{_electron_cpu}"/}' package.json
 
 %build
+%if 0%{?fedora} <= 45 || %{defined rhel}
+%vendor_pnpm -v %{pnpm_major}
+%endif
 export SIGNAL_ENV=production
 export SOURCE_DATE_EPOCH="$(date +"%s")"
-%{__pnpm} install --frozen-lockfile
-%{__pnpm} run clean-transpile
-pushd sticker-creator
-%{__pnpm} install --frozen-lockfile
-%{__pnpm} run build
-popd
-%dnl %pnpm_build -r generate,build:policy-files,generate,build:esbuild:prod
-%{__pnpm} run generate
-%{__pnpm} run build-linux --%{_electron_cpu} --linux AppImage
-echo "Electron Builder" > %{rpmbuilddir}/webapp-tool.txt
+%pnpm_build -F -r clean-transpile,generate,build:policy-files,generate,build:esbuild:prod
+%pnpm_build -F -r build -- --dir sticker-creator
 
 %install
 mv ./packages/mute-state-change/LICENSE ./packages/mute-state-change/LICENSE.mute-state-change
-mv ./packages/windows-ucv/LICENSE ./packages/mute-state-change/LICENSE.windows-ucv
-mv ./packages/types/LICENSE ./packages/mute-state-change/LICENSE.types
-mv ./packages/lame/LICENSE ./packages/mute-state-change/LICENSE.lame
+mv ./packages/windows-ucv/LICENSE ./packages/windows-ucv/LICENSE.windows-ucv
+mv ./packages/types/LICENSE ./packages/types/LICENSE.types
+mv ./packages/lame/LICENSE ./packages/lame/LICENSE.lame
+mv LICENSE LICENSE.signal-desktop
 %electron_install -i signal -l -I build/icons/png
 
 %desktop_file_install %{SOURCE1}
-
-for policy in org.signalapp.view-aep.policy org.signalapp.enable-backups.policy; do
-install -Dm644 $OUTDIR/resources/$policy %{buildroot}%{_datadir}/polkit-1/rules.d/$policy
-rm $OUTDIR/resources/$policy
-done
-
-mv LICENSE LICENSE.signal-desktop
 
 %terra_appstream -o %{SOURCE2}
 
@@ -99,13 +92,19 @@ mv LICENSE LICENSE.signal-desktop
 %license bundled_licenses/*
 %{_bindir}/signal-desktop
 %{_libdir}/signal-desktop/
-%{_datadir}/polkit-1/rules.d/org.signalapp.view-aep.policy
-%{_datadir}/polkit-1/rules.d/org.signalapp.enable-backups.policy
 %{_appsdir}/signal.desktop
 %{_hicolordir}/*x*/apps/signal.png
 %{_metainfodir}/org.signal.Signal.metainfo.xml
 
 %changelog
+* Thu Oct 08 2026 Owen Zimmerman <owen@fyralabs.com> - 8.30.0-1
+- Dep on pnpm11
+- Fix arch-specific builds
+- Consolidate and clean up build scripts
+- Fix license mv lines
+- Remove redundant policy files
+- Use %%vendor_pnpm for branches without pnpm11
+
 * Thu Jun 25 2026 Owen Zimmerman <owen@fyralabs.com>
 - Fix more license name conflicts, remove patch
 
