@@ -1,7 +1,0 @@
-[org.gnome.shell.keybindings]
-toggle-message-tray = ['<Super>v']
-toggle-quick-settings = []
-
-[org.gnome.shell.overrides]
-attach-modal-dialogs = false
-workspaces-only-on-primary = false
