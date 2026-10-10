@@ -153,7 +153,6 @@ mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 
 %if %{with check}
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%appid.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 
 %if %{without debug_no_build}

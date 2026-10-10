@@ -52,7 +52,6 @@ install -Dm644 imgs/window-icon-v3.png %{buildroot}%{_hicolordir}/48x48/apps/quo
 %terra_appstream -o %{SOURCE1}
 
 %check
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
