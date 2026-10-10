@@ -3,7 +3,7 @@
 Summary:        Power Management Service
 Name:           terra-upower
 Version:        1.91.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        GPL-2.0-or-later
 URL:            https://upower.freedesktop.org/
@@ -13,6 +13,7 @@ Source0:        https://gitlab.freedesktop.org/upower/%{pkgname}/-/archive/v%{ve
 Patch0:         valve.patch
 
 Provides:       upower = %{evr}
+Provides:       upower%{?_isa} = %{evr}
 Conflicts:      upower
 
 BuildRequires:  meson
@@ -42,6 +43,7 @@ line tools for managing power devices attached to the system.
 %package libs
 Summary:        Client libraries for UPower
 Provides:       upower-libs = %{evr}
+Provides:       upower-libs%{?_isa} = %{evr}
 Conflicts:      upower-libs
 Requires:       gobject-introspection
 Recommends:     %{name}%{?_isa} = %{evr}
@@ -52,6 +54,7 @@ Client libraries for UPower.
 %package devel
 Summary:        Headers and libraries for UPower
 Provides:       upower-devel = %{evr}
+Provides:       upower-devel%{?_isa} = %{evr}
 Conflicts:      upower-devel
 Requires:       %{name}-libs%{?_isa} = %{evr}
 
@@ -71,6 +74,7 @@ Developer documentation for for libupower-glib.
 %package tests
 Summary:        Test files for Upower
 Provides:       upower-tests = %{evr}
+Provides:       upower-tests%{?_isa} = %{evr}
 Conflicts:      upower-tests
 Requires:       %{name}%{?_isa} = %{evr}
 
