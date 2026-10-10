@@ -1,17 +1,14 @@
-%define _unpackaged_files_terminate_build 0
-
 %global pypi_name curl_cffi
 %global _desc Python binding for curl-impersonate fork via cffi.
 %global _version 0.14.0b2
 
 Name:			python-%{pypi_name}
 Version:		0.16.3
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python binding for curl-impersonate fork via cffi..
 License:		MIT
 URL:			https://github.com/lexiforest/curl_cffi
 Source0:                %{pypi_source}
-BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
@@ -44,13 +41,12 @@ Provides:       %{pypi_name}
 %files -n python3-%{pypi_name} -f %{pyproject_files}
 %doc README.md
 %license LICENSE
-%{python3_sitelib}/%{pypi_name}-%{version}.dist-info/*
-%{python3_sitelib}/%{pypi_name}/*.{py,so,typed}
-%{python3_sitelib}/%{pypi_name}/__pycache__/*.pyc
-%{python3_sitelib}/%{pypi_name}/requests/*.py
-%{python3_sitelib}/%{pypi_name}/requests/__pycache__/*.pyc
+%{_bindir}/curl-cffi
 
 %changelog
+* Sat Oct 10 2026 Owen Zimmerman <owen@fyralabs.com> - 0.16.3-2
+- Build arch-specific files, update spec
+
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 0.15.0-3
 - Update packager
 
