@@ -1,4 +1,4 @@
-%global commit 2551d9323505043ee6f4fcd5fc6f116bbe06f1df
+%global commit 61615915c8f423b1497ac2a1ae68885cad353892
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.3.2
@@ -6,7 +6,7 @@
 %global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-tip
-Version:        202610101956
+Version:        202610102025
 Release:        1%{?dist}
 %if 0%{?fedora} <= 46
 Epoch:          1
