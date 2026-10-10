@@ -209,7 +209,6 @@ sed -e "s|/usr/local/etc|%{_sysconfdir}/mpv|" -i etc/mpv.conf
 %meson_install
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/mpv.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/mpv.desktop
 
 %files

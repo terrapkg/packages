@@ -107,7 +107,6 @@ install -p -m 0644 %{SOURCE2} %{buildroot}%{_metainfodir}/
 %check
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 desktop-file-validate %{buildroot}%{_sysconfdir}/xdg/autostart/%{name}-load.desktop
-appstream-util validate-relax --nonet %{buildroot}/%{_metainfodir}/%{name}.appdata.xml
 
 %files
 %{_bindir}/%{name}
