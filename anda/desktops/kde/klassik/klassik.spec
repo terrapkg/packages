@@ -9,6 +9,7 @@ Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 Packager:      Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  cmake
+BuildRequires:  extra-cmake-modules
 BuildRequires:  gcc-c++
 BuildRequires:  kf6-rpm-macros
 BuildRequires:  kf6-kio-devel
