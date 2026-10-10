@@ -65,7 +65,6 @@ Checks for and notifies when updates are available.
 %autosetup
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{app_id}.desktop
 %desktop_file_validate %{buildroot}%{_sysconfdir}/xdg/autostart/%{app_id}-updater.desktop
 

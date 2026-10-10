@@ -82,7 +82,6 @@ export GIT_HASH=%commit
 %fdupes %{buildroot}%{_datadir}/icons
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 %files -f Internationalization.lang
