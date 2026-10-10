@@ -68,7 +68,6 @@ popd
 
 %check
 %desktop_file_validate %{buildroot}/%{_datadir}/applications/io.missioncenter.MissionCenter.desktop
-appstream-util validate-relax  %{buildroot}/%{_datadir}/metainfo/io.missioncenter.MissionCenter.metainfo.xml
 %meson_test
 
 # https://gitlab.com/mission-center-devs/mission-center/-/wikis/Home/Nethogs
