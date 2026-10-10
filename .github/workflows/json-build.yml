@@ -100,9 +100,10 @@ jobs:
         run: |
           NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
           x=${NAME//\//@}
-          if [[ "${{ matrix.pkg.pkg }}" == anda/system/nvidia/* || "${{ matrix.pkg.pkg }}" == anda/system/nvidia-580/* ]]; then
-            x="nvidia-$x"
-          fi
+          case "${{ matrix.pkg.pkg }}" in
+            anda/system/nvidia/*) x="driver-nvidia-$x" ;;
+            anda/system/nvidia-580/*) x="driver-nvidia-580-$x" ;;
+          esac
           echo "name=$x" >> $GITHUB_OUTPUT
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -146,10 +147,22 @@ jobs:
         if: inputs.publish && (cancelled() || failure())
         run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
 
+      - name: Create NVIDIA build success marker
+        if: success() && (startsWith(matrix.pkg.pkg, 'anda/system/nvidia/') || startsWith(matrix.pkg.pkg, 'anda/system/nvidia-580/'))
+        run: touch nvidia-build-success
+
+      - name: Upload NVIDIA build success marker
+        if: success() && (startsWith(matrix.pkg.pkg, 'anda/system/nvidia/') || startsWith(matrix.pkg.pkg, 'anda/system/nvidia-580/'))
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ready-${{ steps.art.outputs.name }}
+          path: nvidia-build-success
+          if-no-files-found: error
+
   # Keep NVIDIA driver packages out of the repository until every build in their folders succeeds.
   publish-nvidia:
     needs: build
-    if: inputs.publish && (contains(inputs.packages, 'anda/system/nvidia/') || contains(inputs.packages, 'anda/system/nvidia-580/'))
+    if: always() && !cancelled() && inputs.publish && (contains(inputs.packages, 'anda/system/nvidia/') || contains(inputs.packages, 'anda/system/nvidia-580/'))
     runs-on: ubuntu-22.04
     container:
       image: ghcr.io/terrapkg/builder:frawhide
@@ -158,7 +171,7 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
-          pattern: 'nvidia-*-rawhide'
+          pattern: '*driver-nvidia*-rawhide'
           merge-multiple: false
           path: ./artifacts
 
@@ -172,22 +185,49 @@ jobs:
           printf '%s\n' "$PACKAGES" > packages.json
           mkdir -p nvidia-upload/rpms nvidia-upload/srpms
 
-          while IFS=$'\t' read -r pkg arch; do
-            artifact_pkg=${pkg//\//@}
-            artifact_dir="artifacts/nvidia-${artifact_pkg}-${arch}-${VERSION}"
-            if [[ ! -d "$artifact_dir" ]]; then
-              echo "Missing build artifact for NVIDIA package $pkg ($arch)" >&2
-              exit 1
+          for group in nvidia nvidia-580; do
+            if [[ "$group" == "nvidia" ]]; then
+              folder="anda/system/nvidia/"
+            else
+              folder="anda/system/nvidia-580/"
             fi
-            if ! find "$artifact_dir/rpms" -maxdepth 1 -type f -name '*.rpm' -print -quit | grep -q .; then
-              echo "No RPMs found in build artifact for NVIDIA package $pkg ($arch)" >&2
-              exit 1
-            fi
-            find "$artifact_dir/rpms" -maxdepth 1 -type f -name '*.rpm' -exec cp -n {} nvidia-upload/rpms/ \;
-            if [[ $(jq -r --arg pkg "$pkg" --arg arch "$arch" '.[] | select(.pkg == $pkg and .arch == $arch) | (.labels.no_upload_srpms // 0 | tostring)' packages.json) != '1' ]]; then
-              find "$artifact_dir/srpm" -maxdepth 1 -type f -name '*.rpm' -exec cp -n {} nvidia-upload/srpms/ \;
-            fi
-          done < <(jq -r '[.[] | select((.pkg | startswith("anda/system/nvidia/")) or (.pkg | startswith("anda/system/nvidia-580/"))) | [.pkg, .arch]] | unique[] | @tsv' packages.json)
+            mapfile -t builds < <(jq -r --arg folder "$folder" '[.[] | select(.pkg | startswith($folder)) | [.pkg, .arch, (.labels.no_upload_srpms // 0 | tostring)]] | unique[] | @tsv' packages.json)
+            ((${#builds[@]} > 0)) || continue
+
+            complete=true
+            for build in "${builds[@]}"; do
+              IFS=$'\t' read -r pkg arch no_upload_srpms <<< "$build"
+              artifact_pkg=${pkg//\//@}
+              artifact="driver-${group}-${artifact_pkg}-${arch}-${VERSION}"
+              if [[ ! -f "artifacts/ready-${artifact}/nvidia-build-success" || ! -d "artifacts/${artifact}" ]]; then
+                echo "Not publishing $group: $pkg ($arch) did not complete successfully" >&2
+                complete=false
+                break
+              fi
+              if ! find "artifacts/${artifact}/rpms" -maxdepth 1 -type f -name '*.rpm' -print -quit | grep -q .; then
+                echo "Not publishing $group: no RPMs found for $pkg ($arch)" >&2
+                complete=false
+                break
+              fi
+              if [[ "$no_upload_srpms" != "1" ]] && ! find "artifacts/${artifact}/srpm" -maxdepth 1 -type f -name '*.rpm' -print -quit | grep -q .; then
+                echo "Not publishing $group: no source RPM found for $pkg ($arch)" >&2
+                complete=false
+                break
+              fi
+            done
+            [[ "$complete" == "true" ]] || continue
+
+            echo "All packages in $group built successfully; including them in the repository upload."
+            for build in "${builds[@]}"; do
+              IFS=$'\t' read -r pkg arch no_upload_srpms <<< "$build"
+              artifact_pkg=${pkg//\//@}
+              artifact="artifacts/driver-${group}-${artifact_pkg}-${arch}-${VERSION}"
+              find "$artifact/rpms" -maxdepth 1 -type f -name '*.rpm' -exec cp -n {} nvidia-upload/rpms/ \;
+              if [[ "$no_upload_srpms" != "1" ]]; then
+                find "$artifact/srpm" -maxdepth 1 -type f -name '*.rpm' -exec cp -n {} nvidia-upload/srpms/ \;
+              fi
+            done
+          done
 
           shopt -s nullglob
           rpms=(nvidia-upload/rpms/*.rpm)
