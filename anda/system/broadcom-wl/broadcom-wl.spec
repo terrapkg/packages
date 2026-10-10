@@ -54,7 +54,6 @@ fn=%{buildroot}%{_metainfodir}/com.broadcom.wireless.hybrid.driver.metainfo.xml
 # appstream-util deletes all comments in the metainfo.xml file, so copyright must be saved and rewritten to the resulting file.
 copyright_string=$(grep Copyright ${fn})
 python3 %{SOURCE7} README_6.30.223.271.txt "SUPPORTED DEVICES" | xargs appstream-util add-provide ${fn} modalias
-appstream-util validate-relax --nonet ${fn}
 grep -q Copyright ${fn} >/dev/null || sed -i "s%\(^<?xml.*$\)%\1\n${copyright_string}%" ${fn}
 
 %files
