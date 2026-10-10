@@ -7,7 +7,7 @@
 
 Name:           atac
 Version:        0.23.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Arguably a Terminal API Client
 
 License:        MIT
@@ -37,7 +37,7 @@ and account-less.}
 %build
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
 %crate_install_bin

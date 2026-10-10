@@ -9,7 +9,7 @@
 
 Name:			python-%{pypi_name}
 Version:		5.8.7
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A facade to the other Proton VPN components
 License:		GPL-3.0-Only
 URL:			https://github.com/ProtonVPN/python-proton-vpn-api-core
@@ -64,7 +64,7 @@ sed -i \
 export CARGO_REGISTRIES_PROTON_PUBLIC_INDEX="sparse+https://rust-registry.proton.me/index/"
 export CARGO_REGISTRIES_PROTON_INDEX="sparse+https://rust-registry.proton.me/index/"
 %pyproject_wheel
-%cargo_build -- --locked \
+%cargo_build -- \
 --bin nm-protun-service \
 --bin nm-protun-auth-dialog \
 --lib \

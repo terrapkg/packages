@@ -40,10 +40,8 @@ Andaman Build toolchain.
 %prep
 %autosetup -n %{crate}-%{version}
 %cargo_prep_online
-%{__cargo} fetch --locked
 
 %build
-%{cargo_build} --frozen
 %{cargo_license_online} > LICENSE.dependencies
 %{__cargo} run --release -p xtask -- manpage
 %{__cargo} run --release -p xtask -- completion

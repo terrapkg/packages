@@ -4,7 +4,7 @@
 %global crate readymade
 Name:           readymade-git
 Version:        %commit_date.%shortcommit
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Install ready-made distribution images!
 License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
@@ -52,7 +52,7 @@ rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macro
 %cargo_prep_online
 
 %build
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
 install -Dm755 target/rpm/readymade -t %buildroot%_bindir

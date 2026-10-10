@@ -10,7 +10,7 @@
 
 Name:           rust-deno
 Version:        2.9.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Deno executable
 
 License:        MIT
@@ -70,7 +70,7 @@ cp %{S:2} gcc
 %build
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
 %crate_install_bin
