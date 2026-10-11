@@ -42,24 +42,24 @@ BuildRequires: libappstream-glib
 Recommends: nethogs
 Requires:   lm_sensors
 
+Packager:      Owen Zimmerman <owen@fyralabs.com>
+
 %description
 Monitor your CPU, Memory, Disk, Network and GPU usage
 
 %prep
 %git_clone %{url}.git v%{version}
-ls -la
 mkdir -p ./subprojects/magpie
 pushd ./subprojects/magpie/
-%cargo_prep_online
+%cargo_prep_online -u
 popd
-%cargo_prep_online
+%cargo_prep_online -u
 
 %conf
 %meson
 
 %build
 %meson_build
-%{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
@@ -79,8 +79,7 @@ fi
 
 %files -f missioncenter.lang
 %doc README.md
-%license COPYING
-%license LICENSE.dependencies
+%license COPYING LICENSE.dependencies
 %{_datadir}/missioncenter/
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
