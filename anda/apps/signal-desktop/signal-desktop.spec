@@ -51,7 +51,7 @@ Provides:       signal
 Provides:       Signal
 Provides:       Signal-Desktop
 
-Packager:       junefish <june@fyralabs.com>
+Packager:       junefish <june@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Signal Desktop links with Signal on Android or iOS and
