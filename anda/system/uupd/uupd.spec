@@ -1,6 +1,6 @@
 Name:           uupd
 Version:        1.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Centralized update service/checker made for Universal Blue
 License:        Apache-2.0
 URL:            https://github.com/ublue-os/uupd
@@ -27,8 +27,14 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 
 %install
 install -Dpm0755 -t %{buildroot}%{_bindir}/ %{name}
-install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}.service %{name}.timer
-install -Dpm0644 -t %{buildroot}%{_sysconfdir}/polkit-1/rules.d/ %{name}.rules
+install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}.service
+install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}-manual.service
+install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}.timer
+install -Dpm0644 -t %{buildroot}%{_datadir}/polkit-1/rules.d/ %{name}.rules
+install -Dpm0644 -t %{buildroot}/%{_sysconfdir}/%{name}/ config.json
+
+%check
+go test -v ./...
 
 %post
 %systemd_post %{name}.service
@@ -42,7 +48,9 @@ install -Dpm0644 -t %{buildroot}%{_sysconfdir}/polkit-1/rules.d/ %{name}.rules
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %{_unitdir}/%{name}.timer
-%{_sysconfdir}/polkit-1/rules.d/%{name}.rules
+%{_unitdir}/%{name}-manual.service
+%{_datadir}/polkit-1/rules.d/%{name}.rules
+%config(noreplace) %{_sysconfdir}/%{name}/config.json
 
 %changelog
 * Sat Sep 5 2026 Hec <hec@heccraft.com.
