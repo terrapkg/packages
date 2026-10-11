@@ -1,7 +1,7 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-ui-toolkit
 
 Name:           lomiri-ui-toolkit
-Version:        1.3.5908
+Version:        1.3.5909
 
 %forgemeta
 Release:        1%{?dist}

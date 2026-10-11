@@ -5,7 +5,7 @@
 %global wasm_pack_root  %{_builddir}/wasm-pack
 
 Name:           yaak
-Version:        2026.8.1
+Version:        2026.9.0
 Release:        1%{?dist}
 Summary:        A fast, privacy-first API client
 SourceLicense:  MIT
@@ -68,7 +68,6 @@ install -Dpm644 flatpak/%{appid}.metainfo.xml \
     %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %check
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files

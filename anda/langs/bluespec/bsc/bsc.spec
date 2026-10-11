@@ -4,7 +4,7 @@
 
 Name:           bsc
 Version:        2026.07.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Bluespec Compiler (BSC)
 License:        BSD-3-Clause AND BSD-2-Clause AND MIT AND LGPL-2.0-or-later AND BSL-1.0
 URL:            https://github.com/B-Lang-org/bsc
@@ -29,7 +29,9 @@ BuildRequires:  binutils
 BuildRequires:  iverilog
 
 Provides:       bundled(stp)
-Provides:       bundled(yices)
+Provides:       bundled(yices) = 2.6
+
+Requires:       gcc-c++
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -80,5 +82,8 @@ done
 %{_datadir}/bsc/*
 
 %changelog
+* Tue Sep 29 2026 Owen Zimmerman <owen@fyralabs.com>
+- dep on gcc-c++, version bundled yices library
+
 * Fri Apr 24 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

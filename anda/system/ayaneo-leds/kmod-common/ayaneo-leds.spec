@@ -1,11 +1,11 @@
-%global commit 11e5e4c8cb395b9e6360b1eddcb57a259d2730a0
+%global commit 0be120d0d580363f386a9e51ebf0370d6367f45c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260930
+%global commitdate 20261006
 %global ver 0.2.1
 
 Name:           ayaneo-leds
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        LED RGB control for Ayaneo legacy devices
 License:        GPL-2.0-or-later
 URL:            https://github.com/TiPSilva/%{name}

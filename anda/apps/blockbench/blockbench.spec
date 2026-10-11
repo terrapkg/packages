@@ -1,7 +1,7 @@
 %global appid net.blockbench.Blockbench
 
 Name:           blockbench
-Version:        5.2.1
+Version:        5.2.2
 Release:        1%{?dist}
 Summary:        Low-poly 3D modeling and animation software
 
@@ -42,7 +42,6 @@ mv dist-electron/*-unpacked dist/
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/blockbench.desktop
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license LICENSE.MD

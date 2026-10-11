@@ -6,7 +6,7 @@
 
 Name:           veracrypt
 Version:        %{sanitized_ver}
-Release:        2%?dist
+Release:        3%?dist
 Summary:        Disk encryption with strong security based on TrueCrypt
 URL:            https://veracrypt.jp/en/Home.html
 Source0:        https://github.com/veracrypt/VeraCrypt/archive/refs/tags/VeraCrypt_%version.tar.gz
@@ -21,7 +21,7 @@ BuildRequires:  pkgconf-pkg-config
 BuildRequires:  wxGTK-devel
 BuildRequires:  pkgconfig(fuse)
 BuildRequires:  pcsc-lite-devel
-Requires:       wxGTK-devel
+Requires:       wxGTK
 
 Provides:       VeraCrypt
 

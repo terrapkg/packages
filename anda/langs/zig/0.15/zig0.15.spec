@@ -10,7 +10,9 @@
 
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
+%bcond macro     1
 %bcond test      1
+
 # GCC < 16.0 miscompiles on RISC-V
 %ifarch riscv64
 %if 0%{?fedora} < 44
@@ -22,7 +24,7 @@
 %global         realname zig
 Name:           %{realname}0.15
 Version:        0.15.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        compatibility build for ${realname} %{version}
 # The minisign file references a specific archive name so we store for ease of use
 %global         archive_name %{realname}-%{version}.tar.xz
@@ -31,6 +33,7 @@ License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GC
 URL:            https://ziglang.org
 Source0:        %{url}/download/%{version}/%{archive_name}
 Source1:        %{url}/download/%{version}/%{archive_name}.minisig
+Source2:        macros.%{realname}
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
 %if %{defined rhel}
 Patch1:         0001-Remove-unsupported-LLVM-targets-for-EPEL.patch
@@ -130,6 +133,19 @@ Requires:       %{name} = %{version}
 Documentation for Zig. For more information, visit %{url}
 %endif
 
+  
+%if %{with macro}
+%package        rpm-macros
+Summary:        Common RPM macros for %{name}
+Requires:       rpm
+Conflicts:      zig-rpm-macros
+BuildArch:      noarch
+
+%description    rpm-macros
+This package contains common RPM macros for %{name}.
+%endif
+  
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key} | grep -F -C5 "file:%{archive_name}" || exit 1
 %autosetup -p1 -n %{realname}-%{version}
@@ -213,6 +229,11 @@ DESTDIR="%{buildroot}" zig build install %{zig_install_options}
 install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/ 
 %endif
 
+  
+%if %{with macro}
+install -D -pv -m 0644 %{SOURCE2} %{buildroot}%{_rpmmacrodir}/macros.%{name}
+%endif
+
 %if %{with test}
 %check
 # Run reduced set of tests, based on the Zig CI
@@ -236,10 +257,20 @@ install -Dpm644 zig.1 -t %{buildroot}%{_mandir}/man1/
 %doc zig-out/doc/std
 %endif
 
+%if %{with macro}
+%files rpm-macros
+%{_rpmmacrodir}/macros.%{name}  
+%endif
+
 %changelog
+* Sat Oct 10 2026 Jan200101 <sentrycraft123@gmail.com> - 0.15.2-2
+- add RPM macros
+
 * Sat May 10 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.482+2c241b263-2
 - Added GCC runtime dependency to pass system information to Zig
+
 * Fri Apr 25 2025 Gilver E. <rockgrub@disroot.org> - 0.15.0~dev.384+c06fecd46-2
 - Ported Fedora Zig patches
+
 * Wed Apr 23 2025 Gilver E. <rockgrub@disroot.org>
 - Initial package

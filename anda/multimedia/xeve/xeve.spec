@@ -1,6 +1,6 @@
 Name:           xeve
 Epoch:          1
-Version:        0.7.0
+Version:        0.7.1
 Release:        1%{?dist}
 Summary:        eXtra-fast Essential Video Encoder, MPEG-5 EVC (Essential Video Coding)
 License:        BSD-3-Clause

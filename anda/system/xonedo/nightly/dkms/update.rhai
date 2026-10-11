@@ -6,8 +6,8 @@ if rpm.changed() {
     let d = sh("cat anda/system/xonedo/nightly/kmod-common/xonedo-nightly.spec | grep '%global commitdate' | sed -E 's/.+commitdate //'", #{"stdout": "piped"}).ctx.stdout;
     d.pop();
     rpm.global("commitdate", d);
-    let v = sh("cat anda/system/xonedo/nightly/kmod-common/xonedo-nightly.spec | grep '%global ver' | sed -E 's/.+ver //'", #{"stdout": "piped"}).ctx.stdout;
+    let v = sh("cat anda/system/xonedo/nightly/kmod-common/xonedo-nightly.spec | grep '%global relver' | sed -E 's/.+relver //'", #{"stdout": "piped"}).ctx.stdout;
     v.pop();
-    rpm.global("ver", v);
+    rpm.global("relver", v);
 }
 

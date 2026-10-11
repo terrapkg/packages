@@ -12,11 +12,11 @@ fn version_nightly(rpm, stable_ver, commit_hash) {
 
 /// Update the stable version global for a nightly or quaterdaily package.
 fn stable_version(rpm, stable_ver) {
-    stable_ver = stable_ver.trim();
+    stable_ver.trim();
     if stable_ver.starts_with("v") {
         stable_ver.crop(1);
     }
-    stable_ver = stable_ver.replace("-", ".");
+    stable_ver.replace("-", ".");
     rpm.global("ver", stable_ver);
     if rpm.changed() {
         rpm.release();
@@ -49,7 +49,8 @@ fn version_quaterdaily(rpm, stable_ver, commit_hash) {
 /// Fetch and update quaterdaily package globals, querying the stable version only when the commit changes.
 fn gh_quaterdaily(rpm, repo) {
     let commit = gh_commit(repo);
-    if rpm.global("commit") == commit.trim() {
+    commit.trim();
+    if rpm.global("commit") == commit {
         return;
     }
     version_quaterdaily(rpm, gh(repo), commit);

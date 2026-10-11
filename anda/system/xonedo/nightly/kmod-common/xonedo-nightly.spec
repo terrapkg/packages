@@ -12,7 +12,7 @@
 
 Name:           xonedo-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        4%{?dist}
+Release:        5%{?dist}
 %if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
 Epoch:          1
 %endif

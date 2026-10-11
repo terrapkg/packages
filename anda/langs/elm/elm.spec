@@ -1,6 +1,6 @@
 Name:           elm
-Version:        0.19.2
-Release:        1%?dist
+Version:        0.19.3
+Release:        1%{?dist}
 Summary:        A delightful language for reliable webapps
 URL:            https://elm-lang.org
 Source0:        https://github.com/elm/compiler/archive/refs/tags/%{version}.tar.gz

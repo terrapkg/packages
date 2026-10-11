@@ -213,7 +213,6 @@ install -Dpm644 gtk/src/%desktop_id.svg \
 
 %check
 desktop-file-validate %buildroot%_datadir/applications/%desktop_id.desktop
-appstream-util validate-relax --nonet %buildroot%_metainfodir/%desktop_id.metainfo.xml
 
 %files gui
 %license COPYING

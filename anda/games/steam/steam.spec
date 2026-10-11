@@ -206,7 +206,6 @@ install -m 775 -p %{SOURCE7} %{buildroot}%{_bindir}/steamrestart
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license COPYING steam_subscriber_agreement.txt

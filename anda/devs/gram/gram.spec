@@ -17,6 +17,7 @@ License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) A
 URL:           https://gram-editor.com
 Source0:       https://codeberg.org/GramEditor/gram/archive/%{version}.tar.gz
 BuildRequires: anda-srpm-macros
+BuildRequires: cargo-about
 BuildRequires: cargo-rpm-macros
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -63,6 +64,8 @@ envsubst < "crates/gram/resources/gram.desktop.in" > %{appid}.desktop
 sed -i "s|@release_info@||g" "crates/gram/resources/flatpak/gram.metainfo.xml.in"
 
 envsubst < "crates/gram/resources/flatpak/gram.metainfo.xml.in" > %{appid}.metainfo.xml
+
+sed -i 's@CARGO_ABOUT_VERSION=".*"@CARGO_ABOUT_VERSION="$(cargo-about --version | sed "s/cargo-about //g")"@g' script/generate-licenses
 
 %build
 export GRAM_UPDATE_EXPLANATION="Run dnf up to update Gram from Terra."

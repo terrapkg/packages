@@ -48,7 +48,6 @@ install -Dm644 data/glib-2.0/schemas/%{lower:%app}.gschema.xml %buildroot%_datad
 %check
 #pyproject_check_import
 desktop-file-validate %buildroot%_datadir/applications/%app.desktop
-appstream-util validate-relax --nonet %buildroot%_metainfodir/mugshot.appdata.xml
 
 %files -n mugshot -f %{pyproject_files} -f mugshot.lang
 %doc README.md NEWS

@@ -1,4 +1,4 @@
-policy_module(steamos_manager, 1.0.7)
+policy_module(steamos_manager, 1.0.8)
 
 ########################################
 # Init
@@ -85,6 +85,7 @@ domain_read_all_domains_state(steamos_manager_t)
 
 # ds-inhibit walks /proc/{pid}/fd/
 allow steamos_manager_t self:capability { dac_read_search sys_ptrace };
+allow steamos_manager_t self:cap_userns sys_ptrace;
 
 ########################################
 # Tracefs and debugfs

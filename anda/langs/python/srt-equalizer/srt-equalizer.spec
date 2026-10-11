@@ -2,8 +2,8 @@
 %global _desc A Python module to transform subtitle line lengths, splitting into multiple subtitle fragments if necessary.
 
 Name:			python-%{pypi_name}
-Version:		0.1.12
-Release:		2%?dist
+Version:		0.1.13
+Release:		1%{?dist}
 Summary:		A Python module to transform subtitle line lengths, splitting into multiple subtitle fragments if necessary
 License:		MIT
 URL:			https://github.com/peterk/srt_equalizer

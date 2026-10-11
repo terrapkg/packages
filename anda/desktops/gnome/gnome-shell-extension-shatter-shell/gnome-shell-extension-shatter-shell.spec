@@ -3,7 +3,7 @@
 %global appid       org.gnome.shell.extensions.%{extension}
 
 Name:           gnome-shell-extension-%{extension}
-Version:        2.3.1
+Version:        2.4.0
 Release:        1%{?dist}
 Summary:        Advanced tiling window management extension for GNOME
 License:        GPL-3.0-only
@@ -12,14 +12,6 @@ Packager:       Adil Hanney <adilhanney@disroot.org>
 BuildArch:      noarch
 
 Source0:        %{url}/archive/refs/tags/%{version}/%{extension}-%{version}.tar.gz
-
-Source1:        50_org.gnome.desktop.wm.keybindings.%{extension}.gschema.override
-Source2:        50_org.gnome.mutter.%{extension}.gschema.override
-Source3:        50_org.gnome.mutter.wayland.%{extension}.gschema.override
-Source4:        50_org.gnome.settings-daemon.plugins.media-keys.%{extension}.gschema.override
-Source5:        50_org.gnome.shell.%{extension}.gschema.override
-# downstream-only
-Patch:          0001-Remove-schema-handling-from-transpile.sh.patch
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  nodejs
@@ -58,7 +50,7 @@ Shortcut overrides for %{name}.
 
 
 %build
-/usr/bin/env %{npm_common_envvars} %make_build compile
+/usr/bin/env %{npm_common_envvars} %make_build COMPILE_SCHEMAS=false compile
 
 
 %install
@@ -66,17 +58,19 @@ Shortcut overrides for %{name}.
 /usr/bin/env %{npm_common_envvars} %make_install
 
 # install the schema file
-install -D -p -m 0644 \
+install -Dm644 \
     schemas/%{appid}.gschema.xml \
-    %{buildroot}%{_datadir}/glib-2.0/schemas/%{appid}.gschema.xml
+    -t %{buildroot}%{_datadir}/glib-2.0/schemas/
 
 # install the gnome-control-center keybindings
-install -d -m 0755 %{buildroot}%{_datadir}/gnome-control-center/keybindings
-install -p -m 0644 keybindings/*.xml %{buildroot}%{_datadir}/gnome-control-center/keybindings/
+install -Dm644 \
+    keybindings/*.xml \
+    -t %{buildroot}%{_datadir}/gnome-control-center/keybindings
 
 # install the schema override files
-install -d -m 0755 %{buildroot}%{_datadir}/glib-2.0/schemas
-install -p -m 0644 %{S:1} %{S:2} %{S:3} %{S:4} %{S:5} %{buildroot}%{_datadir}/glib-2.0/schemas/
+install -Dm644 \
+    keybinding-overrides/*.shatter-shell.gschema.override \
+    -t %{buildroot}%{_datadir}/glib-2.0/schemas/
 
 
 %files

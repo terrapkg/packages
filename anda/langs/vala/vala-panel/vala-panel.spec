@@ -48,9 +48,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 rm -rf %{buildroot}%{_datadir}/vala-panel/doc
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/org.valapanel.application.desktop
-# Seems to succeed with other appstream checkers and works but fails
-#appstream-util validate-relax --nonet {buildroot}{_datadir}/appdata/org.valapanel.application.appdata.xml
+%desktop_file_validate %{buildroot}%{_datadir}/applications/org.valapanel.application.desktop
 
 %files -f %{name}.lang
 %doc README.md

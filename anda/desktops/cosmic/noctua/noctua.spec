@@ -1,5 +1,5 @@
 %global commitdate 20260608
-%global commit b41bb15f5a05b494244ddf61f4a9fa41035c352a
+%global commit 4734fed61bd10241fc79aee6e36a0ba624fe7721
 %global shortcommit %{sub %{commit} 0 7}
 %global appid org.codeberg.wfx.Noctua
 
@@ -8,12 +8,11 @@ Version:        0^%{commitdate}.git%{shortcommit}
 Release:        1%{?dist}
 Summary:        An image viewer application for the COSMIC™ desktop
 
-SourceLicense:  GPL-3.0-or-later
+SourceLicense:  GPL-3.0-only
 License:        %{sourcelicense} AND (BSD-3-Clause OR MIT OR Apache-2.0) AND ((MIT OR Apache-2.0) AND NCSA) AND Unlicense AND (Apache-2.0 OR MIT) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND BSD-2-Clause AND Zlib AND MIT AND (Apache-2.0 OR GPL-2.0-only) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND (MIT OR Apache-2.0 OR CC0-1.0) AND GPL-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND CC0-1.0 AND (CC0-1.0 OR Apache-2.0) AND (BSD-3-Clause OR Apache-2.0) AND BSL-1.0 AND ISC AND GPL-3.0-only AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 
 URL:            https://codeberg.org/wfx/noctua
 Source0:        %{url}/archive/%{commit}.tar.gz
-Source1:        https://github.com/cosmic-utils/noctua/raw/refs/heads/main/LICENSE
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc-c++
@@ -40,12 +39,10 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-install -Dm0755 target/rpm/noctua-cosmic                                            %{buildroot}%{_bindir}/noctua
-%desktop_file_install ui/cosmic/resources/app.desktop
-mv %{buildroot}%{_appsdir}/app.desktop %{buildroot}%{_appsdir}/%{appid}.desktop
-install -Dm0644 ui/cosmic/resources/app.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
-install -Dm0644 ui/cosmic/resources/icons/hicolor/scalable/apps/icon.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
-install -Dm0644 %{SOURCE1} LICENSE
+install -Dm0755 target/rpm/noctua                                              %{buildroot}%{_bindir}/noctua
+install -Dm0644 ui/cosmic/resources/%{appid}.metainfo.xml                      %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
+install -Dm0644 ui/cosmic/resources/icons/hicolor/scalable/apps/%{appid}.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
+%desktop_file_install ui/cosmic/resources/%{appid}.desktop
 
 %terra_appstream
 
@@ -58,5 +55,9 @@ install -Dm0644 %{SOURCE1} LICENSE
 %{_scalableiconsdir}/%{appid}.svg
 
 %changelog
+* Thu Oct 08 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for new file names
+- Install provided license file
+
 * Wed Sep 02 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

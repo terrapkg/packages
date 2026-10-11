@@ -1,3 +1,5 @@
+# Do not modify this file. If you want to add modifications to the repository configurations, add them in /etc/dnf/repos.override.d/
+
 [terra-extras]
 name=Terra $releasever (Extras)
 #baseurl=https://repos.fyralabs.com/terra$releasever-extras

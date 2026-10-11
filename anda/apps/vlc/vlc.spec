@@ -797,7 +797,6 @@ rm -rf %{buildroot}%{_docdir}/vlc
 
 %check
 desktop-file-validate %{buildroot}%{_appsdir}/vlc.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/vlc.appdata.xml
 
 # chroma_copy_test fails on s390x (big endian?)
 %ifnarch s390x

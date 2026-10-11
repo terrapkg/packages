@@ -1,7 +1,7 @@
 %global appid com.moonlight_stream.Moonlight
 
 Name:           moonlight-qt
-Version:        6.1.0
+Version:        6.2.0
 Release:        1%{?dist}
 Summary:        GameStream client for PCs
 

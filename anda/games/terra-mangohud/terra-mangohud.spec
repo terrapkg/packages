@@ -147,7 +147,6 @@ sed -i "s@#!/usr/bin/env python@#!/usr/bin/python3@" \
 %check
 # https://github.com/flightlessmango/MangoHud/issues/812
 # ? tag-invalid           : stock icon is not valid [io.github.flightlessmango.mangohud]
-%dnl appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.xml
 %if %{with tests}
 %meson_test
 %endif

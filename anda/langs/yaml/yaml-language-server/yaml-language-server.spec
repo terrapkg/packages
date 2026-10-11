@@ -2,8 +2,8 @@
 %global npm_name yaml-language-server
 
 Name:           %npm_name
-Version:        1.24.0
-Release:        1%?dist
+Version:        1.25.0
+Release:        1%{?dist}
 Summary:        YAML language server
 License:        MIT AND BSD-3-Clause AND ISC
 SourceLicense:  MIT

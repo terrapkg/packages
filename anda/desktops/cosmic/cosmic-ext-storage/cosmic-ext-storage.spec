@@ -4,7 +4,7 @@
 %global shortcommit %{sub %{commit} 0 7}
 %global appid com.cosmic.ext.Storage
 
-Name:           cosmic-ext-applet-sysinfo
+Name:           cosmic-ext-storage
 Version:        %{ver}^%{commitdate}.git%{shortcommit}
 Release:        1%{?dist}
 Summary:        A Disk Utility for the Comsic Desktop

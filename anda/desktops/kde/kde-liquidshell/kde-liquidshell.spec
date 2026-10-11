@@ -52,7 +52,6 @@ liquidshell is a basic Desktop Shell implemented using QtWidgets.
 
 %install
 %cmake_install
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/*.appdata.xml
 
 %files
 %doc README

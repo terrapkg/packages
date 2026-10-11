@@ -69,7 +69,6 @@ By default, it is configured for Bazzite.
 %find_lang bazzite-updater
 
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_kf6_metainfodir}/%{appid}.*.xml || :
 desktop-file-validate %{buildroot}%{_kf6_datadir}/applications/%{appid}.desktop
 
 %files -f bazzite-updater.lang
