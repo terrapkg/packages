@@ -17,6 +17,8 @@ BuildRequires:  libX11-devel
 BuildRequires:	git-lfs
 %if 0%{?fedora} > 45
 BuildRequires:	pnpm%{pnpm_major}
+%else
+BuildRequires:  libatomic
 %endif
 BuildRequires:  python3
 BuildRequires:  terra-appstream-helper
