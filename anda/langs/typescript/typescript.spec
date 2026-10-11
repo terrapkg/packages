@@ -1,7 +1,6 @@
-%if 0%{?rhel}
 Name:           typescript
 Version:        5.9.3
-Release:        %autorelease
+Release:        1%{?dist}
 Summary:        A language for application scale JavaScript development
 License:        Apache-2.0
 URL:            https://www.typescriptlang.org
@@ -43,4 +42,3 @@ ln -s ../lib/node_modules/typescript/bin/tsserver %{buildroot}%{_bindir}/tsserve
 %changelog
 * Wed Mar 18 2026 Owen Zimmerman <owen@fyralabs.com> - 5.7.3-1
 - Port from Fedora EPEL9 spec
-%endif
