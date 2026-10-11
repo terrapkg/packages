@@ -42,6 +42,8 @@ BuildRequires: libappstream-glib
 Recommends: nethogs
 Requires:   lm_sensors
 
+Packager:      Owen Zimmerman <owen@fyralabs.com>
+
 %description
 Monitor your CPU, Memory, Disk, Network and GPU usage
 
