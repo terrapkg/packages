@@ -9,7 +9,7 @@
 %global opendeck_libdir     %{_prefix}/lib/%{name}
 
 Name:           opendeck
-Version:        2.14.0
+Version:        2.14.1
 Release:        1%{?dist}
 Summary:        Use stream controllers
 URL:            https://github.com/nekename/OpenDeck
