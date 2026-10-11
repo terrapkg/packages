@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "typescript.spec"
 	}
+	labels {
+		updbranch = 1
+	}
 }
