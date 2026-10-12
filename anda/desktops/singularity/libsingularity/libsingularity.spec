@@ -27,6 +27,7 @@ BuildRequires:  pkgconfig(upower-glib)
 BuildRequires:  pkgconfig(libnm)
 BuildRequires:  pkgconfig(enchant-2)
 BuildRequires:  pkgconfig(gstreamer-1.0)
+BuildRequires:  pkgconfig(gstreamer-video-1.0)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
