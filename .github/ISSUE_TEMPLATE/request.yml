@@ -29,7 +29,7 @@ body:
       description: Provide the link to source code, website, spec files, etc.
     validations:
       required: true
-  - type: textarea
+  - type: input
     id: llm
     attributes:
       label: I am not an LLM

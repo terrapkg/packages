@@ -41,7 +41,7 @@ body:
     attributes:
       label: Description
       description: Provide details on e.g. what the latest version is supposed to be, the link to the failing CI build, etc.
-  - type: textarea
+  - type: input
     id: llm
     attributes:
       label: I am not an LLM
