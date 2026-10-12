@@ -4,8 +4,8 @@
 %global _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
-Version:		1.1.3
-Release:		3%{?dist}
+Version:		1.1.4
+Release:		1%{?dist}
 Summary:		Pure python 7-zip library
 License:		LGPL-2.1-or-later
 URL:			https://py7zr.readthedocs.io/
