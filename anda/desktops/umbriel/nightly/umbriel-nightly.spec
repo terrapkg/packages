@@ -82,6 +82,14 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{_datadir}/umbriel/effects/screen/vignette/shader.glsl
 %{_datadir}/umbriel/effects/window/scanlines/effect.toml
 %{_datadir}/umbriel/effects/window/scanlines/shader.glsl
+%{_datadir}/umbriel/effects/animation/workspace_wipe/effect.toml
+%{_datadir}/umbriel/effects/animation/workspace_wipe/shader.glsl
+%{_datadir}/umbriel/effects/border/audio/effect.toml
+%{_datadir}/umbriel/effects/border/audio/shader.glsl
+%{_datadir}/umbriel/effects/cursor/trail-path/effect.toml
+%{_datadir}/umbriel/effects/cursor/trail-path/shader.glsl
+%{_datadir}/umbriel/effects/cursor/trail/effect.toml
+%{_datadir}/umbriel/effects/cursor/trail/shader.glsl
 
 %changelog
 * Mon Sep 07 2026 Cypress Reed <cypress@fyralabs.com>
