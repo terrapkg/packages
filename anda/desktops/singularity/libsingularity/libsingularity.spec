@@ -30,6 +30,7 @@ BuildRequires:  pkgconfig(gstreamer-1.0)
 BuildRequires:  pkgconfig(gstreamer-video-1.0)
 BuildRequires:  pkgconfig(cups)
 BuildRequires:  pkgconfig(lcms2)
+BuildRequires:  pkgconfig(xkbcommon)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
