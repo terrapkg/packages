@@ -1,5 +1,5 @@
 Name:       qmenumodel
-Version:    0.10.0
+Version:    0.10.1
 Release:    1%{?dist}
 Summary:    Qt5 renderer for Ayatana Indicators
 License:    LGPL-3.0-or-later
