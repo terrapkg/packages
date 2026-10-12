@@ -44,7 +44,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 install -Dm 755 target/rpm/%{name}                            %{buildroot}%{_bindir}/%{name}
 install -Dm 644 res/icons/hicolor/128x128/apps/%{appid}.svg   %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 install -Dm 644 res/%{appid}.thumbnailer                      %{buildroot}%{_datadir}/thumbnailers/%{appid}.thumbnailer
-%desktop_fine_install res/%{appid}.desktop
+%desktop_file_install res/%{appid}.desktop
 
 %files
 %doc README.md
