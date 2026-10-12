@@ -181,7 +181,7 @@ ac_add_options --disable-tests
 ac_add_options --disable-rust-tests
 ac_add_options --disable-geckodriver
 ac_add_options --enable-rust-simd
-ac_add_options --enable-wasm-simd
+%dnl ac_add_options --enable-wasm-simd
 ac_add_options --enable-jxl
 
 # Disable the crash reporter, since we're distributing binaries ourselves.
