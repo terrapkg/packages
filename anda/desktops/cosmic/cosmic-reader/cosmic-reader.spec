@@ -34,7 +34,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %prep
 %autosetup -C
 %cargo_prep_online
-%cargo_license_summary_online
 
 %build
 %cargo_build
