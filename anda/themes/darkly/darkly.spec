@@ -52,8 +52,10 @@ Requires:       kf6-plasma
 
 %install
 %cmake_install
+%find_lang darkly_kwin_deco
+%find_lang darkly_style_config
 
-%files
+%files -f darkly_kwin_deco.lang -f darkly_style_config.lang 
 %doc README.md
 %license COPYING
 %{_bindir}/darkly-settings6
