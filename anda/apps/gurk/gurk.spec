@@ -20,7 +20,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %prep
 %autosetup -n gurk-rs-%{version}
-%cargo_prep_online
+%cargo_prep_online -u
 
 %build
 
