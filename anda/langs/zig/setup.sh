@@ -17,7 +17,7 @@ function randomize_mirrors() {
 }
 
 if [ "$1" == "fetch" ]; then
-   until curl -If ${mirror}/zig-${version}.tar.xz &>/dev/null && curl -If ${mirror}/zig-${version}.tar.xz.minisig &>/dev/null; do
+   until curl -If ${mirror}/zig-${version}.tar.xz?source=terrapkg.com &>/dev/null && curl -If ${mirror}/zig-${version}.tar.xz.minisig?source=terrapkg.com &>/dev/null; do
      randomize_mirrors
    done
    echo -e "\033[0;32mNote:\033[0m Selected mirror $mirror"
