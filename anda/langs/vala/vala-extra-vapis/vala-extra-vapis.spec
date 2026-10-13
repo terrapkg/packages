@@ -25,7 +25,7 @@ Packager:   Owen Zimmerman <owen@fyralabs.com
 mkdir -p %{buildroot}%{_datadir}/vala/vapi/
 cp -a *.vapi %{buildroot}%{_datadir}/vala/vapi/
 cp -a *.deps %{buildroot}%{_datadir}/vala/vapi/
-mv %{S:1} LICENSE
+cp %{S:1} LICENSE
 
 %files
 %doc README.md
