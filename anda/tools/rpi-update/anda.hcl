@@ -4,6 +4,6 @@ project pkg {
 		spec = "rpi-update.spec"
 	}
 	labels {
-	   nightly = 4
+	   nightly = 1
 	}
 }
