@@ -49,8 +49,7 @@ developing applications that use %{name}.
 %{_qt5_qmldir}/QMenuModel.1/qmldir
 
 %files devel
-%dnl %{_includedir}/qmenumodel/*.h
-%{_libdir}/libqmenumodel.so
+%{_qt5_includedir}/qmenumodel/*.h
 %{_libdir}/pkgconfig/qmenumodel.pc
 
 %changelog
