@@ -1,11 +1,11 @@
 %global appid com.vscodium.VSCodium
 
 Name:			      codium
-Version:		    1.135.06055
+Version:		    1.140.06880
 %electronmeta -D
 %global __requires_exclude %{__requires_exclude}|libcurl.so|libmsalruntime.so
 %global __requires_exclude_from ^%{_datadir}/%{name}/resources/app/node_modules\\.asar\\.unpacked/@vscode/ripgrep-universal/bin/
-Release:		    2%{?dist}
+Release:		    1%{?dist}
 Summary:		    Code editing. Redefined.
 License:	      %{electron_license}
 URL:            https://vscodium.com/
