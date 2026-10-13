@@ -29,8 +29,24 @@ sed -i 's/^version = "0\.0\.0"$/version = "%{version}"/' Cargo.lock
 %build
 cd codex-rs
 export CODEX_SKIP_BWRAP_BUILD=1
-%{cargo_license_summary_online}
-%{cargo_license_online} > ../LICENSE.dependencies
+%{__cargo} tree -Z avoid-dev-deps --package codex-cli \
+    --edges no-build,no-dev,no-proc-macro --target all \
+    --prefix none --format '# {l}' \
+    | sed -e 's: / :/:g' -e 's:/: OR :g' | sort -u
+# rm after fixing licences ^
+# we had to do this for zed too
+# tl;dr it doesn't catch non-direct licences, so we do this
+%{__cargo} tree                                                          \
+    -Z avoid-dev-deps                                                    \
+    --package codex-cli                                                  \
+    --edges no-build,no-dev,no-proc-macro                                \
+    --target all                                                         \
+    --prefix none                                                        \
+    --format "{l}: {p}"                                                  \
+    | sed -e "s: ($(pwd)[^)]*)::g" -e ":b; s/^\([^:]*\)*\//\1 OR /; tb;" \
+    | sed -e '/.*(\*).*/d'                                               \
+    | sort -u                                                            \
+> ../LICENSE.dependencies
 %cargo_build -- --package codex-cli
 
 %install
