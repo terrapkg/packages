@@ -13,6 +13,7 @@ BuildRequires:  meson
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  vala
+BuildRequires:  vala-extra-vapis
 BuildRequires:  sassc
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(gtk4-layer-shell-0)
