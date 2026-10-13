@@ -52,9 +52,9 @@ Requires:       kf6-plasma
 
 %install
 %cmake_install
-%find_lang darkly_*
+%find_lang darkly
 
-%files -f darkly_*.lang
+%files -f darkly.lang
 %doc README.md
 %license COPYING
 %{_bindir}/darkly-settings6
