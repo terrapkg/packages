@@ -1,3 +1,5 @@
+%global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
+
 Name:           codex
 Version:        0.162.1
 Release:        1%{?dist}
