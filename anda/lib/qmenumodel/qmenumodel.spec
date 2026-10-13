@@ -50,6 +50,7 @@ developing applications that use %{name}.
 
 %files devel
 %{_qt5_includedir}/qmenumodel/*.h
+%{_libdir}/libqmenumodel.so
 %{_libdir}/pkgconfig/qmenumodel.pc
 
 %changelog
