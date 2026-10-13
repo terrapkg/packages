@@ -1,3 +1,3 @@
 let v = gh("openai/codex");
-v.replace("rust-v", "");
+v.crop(6);
 rpm.version(v);
