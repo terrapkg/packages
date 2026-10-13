@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "vala-extra-vapis.spec"
 	}
+	labels {
+		mock = 1
+	}
 }
