@@ -44,15 +44,15 @@ export CODEX_SKIP_BWRAP_BUILD=1
 > ../LICENSE.dependencies
 %cargo_build -- --package codex-cli
 
+for sh in bash zsh fish; do
+    target/rpm/codex completion $sh > ../codex.$sh
+done
+
 %install
 install -Dm755 codex-rs/target/rpm/codex %{buildroot}%{_bindir}/codex
-
-mkdir -p %{buildroot}%{bash_completions_dir} \
-         %{buildroot}%{zsh_completions_dir} \
-         %{buildroot}%{fish_completions_dir}
-%{buildroot}%{_bindir}/codex completion bash > %{buildroot}%{bash_completions_dir}/codex
-%{buildroot}%{_bindir}/codex completion zsh  > %{buildroot}%{zsh_completions_dir}/_codex
-%{buildroot}%{_bindir}/codex completion fish > %{buildroot}%{fish_completions_dir}/codex.fish
+install -Dm644 codex.bash %{buildroot}%{bash_completions_dir}/codex
+install -Dm644 codex.zsh  %{buildroot}%{zsh_completions_dir}/_codex
+install -Dm644 codex.fish %{buildroot}%{fish_completions_dir}/codex.fish
 
 %files
 %license LICENSE NOTICE LICENSE.dependencies
