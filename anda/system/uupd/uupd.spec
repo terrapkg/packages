@@ -71,7 +71,7 @@ go test -v ./...
 * Mon May 18 2026 Raboneko <raboneko@fyralabs.com> - 1.4.0-1
 - Upstream Release v1.4.0
 
-* Sun Apr 19 2026 Tulip Blossom <tulilirockz@outlook.com> - 1.3.0-1
+* Sun Apr 19 2026 Tulip Blossom <tulilirockz@outlook.com> - 1.3.0-2
 - Initial commit
 
 * Mon Jan 26 2026 Raboneko <raboneko@fyralabs.com> - 1.3.0-1
