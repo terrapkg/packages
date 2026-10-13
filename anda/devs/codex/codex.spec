@@ -18,10 +18,10 @@ Requires:       bubblewrap
 Recommends:     ripgrep git
 
 %description
-%summary.
+%{summary}.
 
 %prep
-%autosetup -n codex-rust-v%{version} -p1
+%autosetup -n codex-rust-v%{version}
 cd codex-rs
 sed -i 's/^version = "0\.0\.0"$/version = "%{version}"/' Cargo.lock
 %cargo_prep_online
