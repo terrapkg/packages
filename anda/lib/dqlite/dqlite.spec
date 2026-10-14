@@ -15,6 +15,8 @@ BuildRequires:  pkgconfig(liblz4)
 BuildRequires:  pkgconfig(libuv)
 BuildRequires:  pkgconfig(sqlite3)
 
+Packager:       Jaiden Riordan <jade@fyralabs.com>
+
 %description
 dqlite is a C library that implements an embeddable and replicated SQL database
 engine with high-availability and automatic failover.
