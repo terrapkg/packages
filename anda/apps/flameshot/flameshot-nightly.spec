@@ -1,9 +1,9 @@
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
 %global ver 14.0.0
-%global commit d1d7f195ec3c0f8d65a4ef8e79d6950e230d9e62
+%global commit e4357e38c36491a58db346c91a4559fc6dd98968
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20261012
+%global commit_date 20261014
 %global devel_name QtColorWidgets
 %global _distro_extra_cflags -fuse-ld=mold
 %global _distro_extra_cxxflags -fuse-ld=mold
