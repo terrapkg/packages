@@ -29,9 +29,11 @@ Development headers and library for dqlite.
 %prep
 %autosetup -n %{name}-%{version} -p1
 
-%build
+%conf
 autoreconf -i
 %configure --disable-static --enable-build-raft=yes
+
+%build
 %make_build
 
 %install
