@@ -29,7 +29,7 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Development headers and library for dqlite.
 
 %prep
-%autosetup -n %{name}-%{version} -p1
+%autosetup -C -p1
 
 %conf
 autoreconf -i
