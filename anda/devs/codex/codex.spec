@@ -26,6 +26,12 @@ Recommends:     ripgrep git
 %autosetup -n codex-rust-v%{version}
 cd codex-rs
 sed -i 's/^version = "0\.0\.0"$/version = "%{version}"/' Cargo.lock
+# this disables the daemon and agents functionality, see upstream #
+cat >> config/defaults.toml <<'EOF'
+
+[features]
+daemon_auto_start = false
+EOF
 %cargo_prep_online
 
 %build
