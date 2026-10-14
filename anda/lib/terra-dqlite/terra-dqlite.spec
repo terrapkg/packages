@@ -23,7 +23,7 @@ engine with high-availability and automatic failover.
 
 %package devel
 Summary:        Development libraries for dqlite
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       dqlite%{?_isa} = %{version}-%{release}
 
 %description devel
 Development headers and library for dqlite.
@@ -54,8 +54,8 @@ rm -f %{buildroot}%{_libdir}/libdqlite.la
 
 %files devel
 %{_libdir}/libdqlite.so
-%{_libdir}/pkgconfig/%{name}.pc
-%{_includedir}/%{name}.h
+%{_libdir}/pkgconfig/dqlite.pc
+%{_includedir}/dqlite.h
 
 %changelog
 * Wed Oct 14 2026 Jaiden Riordan <jade@fyralabs.com> - 1.18.7-1
