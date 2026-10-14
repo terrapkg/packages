@@ -1,0 +1,11 @@
+--- a/crates/hushmic-denoiser/src/model.rs
++++ b/crates/hushmic-denoiser/src/model.rs
+@@ -45,7 +45,7 @@
+         .map_err(|e| e.to_string())?
+         .with_inter_threads(1)
+         .map_err(|e| e.to_string())?
+-        .with_optimization_level(GraphOptimizationLevel::Level3)
++        .with_optimization_level(GraphOptimizationLevel::All)
+         .map_err(|e| e.to_string())
+ }
+ 
