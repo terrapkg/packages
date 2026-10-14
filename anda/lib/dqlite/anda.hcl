@@ -3,6 +3,6 @@ project pkg {
         spec = "dqlite.spec"
     }
     labels {
-        subrepo = "extras"
-      }
+          updbranch = 1
+    }
 }
