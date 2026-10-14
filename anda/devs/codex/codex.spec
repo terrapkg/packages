@@ -14,9 +14,7 @@ Source0:        %{url}/archive/refs/tags/rust-v%{version}.tar.gz
 Packager:       Jaiden Riordan <jade@fyralabs.com>
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros gcc gcc-c++ pkgconfig(openssl) pkgconfig(dbus-1)
-
 Requires:       bubblewrap
-
 Recommends:     ripgrep git
 
 %description
