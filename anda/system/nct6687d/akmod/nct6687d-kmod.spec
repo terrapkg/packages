@@ -5,8 +5,8 @@
 %global buildforkernels akmod
 %global debug_package %{nil}
 
-%global commit 5f12dd1b0b3c8f79f31d309749862d986ff9efa7
-%global commitdate 20260916
+%global commit 060728e8d04e3ee17b5e003a53e0bcb34c60de92
+%global commitdate 20261013
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global modulename nct6687d
 

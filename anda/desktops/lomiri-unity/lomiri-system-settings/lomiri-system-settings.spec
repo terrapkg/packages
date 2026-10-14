@@ -1,7 +1,7 @@
 %global forgeurl https://gitlab.com/ubports/development/core/lomiri-system-settings
 
 Name:       lomiri-system-settings
-Version:    1.4.0
+Version:    1.5.0
 
 %forgemeta
 Release:    1%{?dist}
