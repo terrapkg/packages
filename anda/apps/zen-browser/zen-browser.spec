@@ -32,7 +32,7 @@
 
 Name:           zen-browser
 Version:        1.23.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Calm and private web browser that is built on Firefox
 
 License:        MPL-2.0
@@ -137,7 +137,9 @@ export MOZBUILD_STATE_PATH="%{rpmbuilddir}/mozbuild"
 export MOZ_NOSPAM=1
 export MOZILLA_OFFICIAL=1
 export MOZ_APP_BASENAME=Zen
-export MOZ_BUILD_DATE=$(date -u -d "@${SOURCE_DATE_EPOCH:-$(date +%%s)}" +%%Y%%m%%d%%H%%M%%S)
+# Build date needs to be changed for every release, otherwise the
+# furry fucker underneath zen get very sad
+export MOZ_BUILD_DATE=$(date -u +%%Y%%m%%d%%H%%M%%S)
 
 # The build system of Mozilla does not accept some of the default flags of
 # the distribution. Note: %%gsub is not usable here, because a Lua pattern
