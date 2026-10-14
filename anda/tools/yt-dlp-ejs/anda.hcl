@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "python-yt-dlp-ejs.spec"
 	}
+	labels {
+		updbranch = 1
+	}
 }
