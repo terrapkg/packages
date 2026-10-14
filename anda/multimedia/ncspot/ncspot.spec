@@ -18,10 +18,11 @@ BuildRequires:  libxcb-devel
 BuildRequires:  ncurses-devel
 BuildRequires:  openssl-devel
 BuildRequires:  pulseaudio-libs-devel
+BuildRequires:  desktop-file-utils
 
-Requires:	dbus
-Requires:	libxcb
-Requires:	openssl
+Requires:       dbus
+Requires:       libxcb
+Requires:       openssl
 
 %global _description %{expand:
 ncurses Spotify client written in Rust using librespot.
@@ -31,7 +32,7 @@ official Spotify client.}
 
 %description %{_description}
 
-%pkg_completion -befz
+%pkg_completion -bfz
 
 %files
 %license LICENSE
@@ -47,16 +48,15 @@ official Spotify client.}
 
 %build
 %cargo_build -f "%{cargo_features}"
-%{__cargo} xtask generate-manpage
-%{__cargo} xtask generate-shell-completion
+%{__cargo} run --manifest-path xtask/Cargo.toml -- generate-manpage
+%{__cargo} run --manifest-path xtask/Cargo.toml -- generate-shell-completion
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
 %crate_install_bin
-install -Dpm644 misc/%{crate}.desktop -t %{buildroot}%{_appsdir}
 install -Dm644 misc/*.1 -t %{buildroot}%{_mandir}/man1
+%desktop_file_install misc/%{crate}.desktop
 install -Dm755 misc/%{crate}.bash -t %{buildroot}%{bash_completions_dir}
-install -Dm755 misc/%{crate}.elv -t %{buildroot}%{elvish_completions_dir}
 install -Dm755 misc/%{crate}.fish -t %{buildroot}%{fish_completions_dir}
 install -Dm755 misc/_%{crate} -t %{buildroot}%{zsh_completions_dir}
 
