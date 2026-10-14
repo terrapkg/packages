@@ -1,27 +1,25 @@
 %global appid io.github.fovty.HushMic
+
 # hushmic specifically only resolves these to /usr/lib so we can't use the _libdir macro
 %global privlibdir /usr/lib/hushmic
 %global ladspadir /usr/lib/ladspa
 
+# hushmic only officially supports x86.
+# aarch may work but its never been tested so we don't provide it.
 ExclusiveArch:  x86_64
 
 Name:           hushmic
-Version:        0.10.2
+Version:        0.10.3
 Release:        1%{?dist}
 Summary:        Real-time microphone noise suppression as a virtual mic
-License:        MIT OR Apache-2.0
+SourceLicense:  MIT OR Apache-2.0
+License:        (%sourcelicense) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND Unlicense AND Apache-2.0 AND MIT AND (MIT OR Apache-2.0 OR Zlib) AND ((MIT OR Apache-2.0) AND OFL-1.1 AND Ubuntu-font-1.0) AND (0BSD OR MIT OR Apache-2.0) AND BSD-2-Clause AND Zlib AND MIT AND (Apache-2.0 OR GPL-2.0-only) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR Apache-2.0) AND BSL-1.0 AND ISC AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 URL:            https://github.com/Fovty/hushmic
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-Source1:        https://huggingface.co/Ceva-IP/DPDFNet/resolve/dd6818d00f50c836fed43a6243ebe49116de5964/onnx/dpdfnet8_48khz_hr.onnx
-Source2:        https://huggingface.co/Ceva-IP/DPDFNet/resolve/dd6818d00f50c836fed43a6243ebe49116de5964/onnx/dpdfnet2_48khz_hr.onnx
+Source1:        %{url}/releases/download/v%{version}/dpdfnet8_48khz_hr.onnx
+Source2:        %{url}/releases/download/v%{version}/dpdfnet2_48khz_hr.onnx
 Source3:        %{url}/releases/download/v%{version}/dpdfnet8_48khz_hr.weights.f32
 Source4:        %{url}/releases/download/v%{version}/dpdfnet2_48khz_hr.weights.f32
-
-# hushmic technically needs onnxruntime >=1.23.0, but this one line patch makes it work on as old as 1.18.0.
-# f43 and f44 are on older onnxruntime versions so they need this patch to work.
-%if 0%{?fedora} == 43 || 0%{?fedora} == 44
-Patch0:         hushmic-optimization-level-compat.patch
-%endif
 
 BuildRequires:  rust
 BuildRequires:  cargo-rpm-macros
@@ -92,8 +90,7 @@ install -Dm644 packaging/hushmic-256.png %{buildroot}%{_hicolordir}/256x256/apps
 %systemd_user_postun_with_restart hushmic.service
 
 %files
-%license LICENSE-MIT LICENSE-APACHE
-%license LICENSE.dependencies
+%license LICENSE-MIT LICENSE-APACHE LICENSE.dependencies
 %doc README.md
 %{_bindir}/hushmic
 %dir %{ladspadir}
