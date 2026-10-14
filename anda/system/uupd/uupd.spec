@@ -1,9 +1,11 @@
+%global goipath github.com/ublue-os/%{name}
+
 Name:           uupd
 Version:        1.5.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Centralized update service/checker made for Universal Blue
 License:        Apache-2.0
-URL:            https://github.com/ublue-os/uupd
+URL:            https://github.com/ublue-os/%{name}
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 BuildRequires:  golang
 BuildRequires:  go-rpm-macros
@@ -15,7 +17,6 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 %{summary}.
 
 %gopkg
-%global goipath github.com/ublue-os/uupd
 %gometa -f
 
 %prep
@@ -53,6 +54,9 @@ go test -v ./...
 %config(noreplace) %{_sysconfdir}/%{name}/config.json
 
 %changelog
+* Wed Oct 14 2026 renner <renner0@posteo.de> - 1.5.0-4
+- move %global goipath to top
+
 * Tue Oct 13 2026 renner <renner0@posteo.de> - 1.5.0-3
 - Retroactively import changelogs for better chunkah stability calculation
 
