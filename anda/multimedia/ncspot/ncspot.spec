@@ -2,31 +2,26 @@
 %global cargo_features cover
 
 Name:           ncspot
-Version:        1.3.3
+Version:        1.5.0
 Release:        1%{?dist}
 Summary:        Cross-platform ncurses Spotify client written in Rust
 Packager:       like-engels <higashikataengels@icloud.com>
-License:        BSD-2-Clause AND (MIT OR Apache-2.0)
+License:        BSD-2-Clause AND (MIT OR Apache-2.0) AND (ISC AND (Apache-2.0 OR ISC)) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND CDLA-Permissive-2.0 AND BSD-2-Clause AND Zlib AND MIT AND (LGPL-3.0-or-later OR MPL-2.0) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR Apache-2.0) AND BSL-1.0 AND ISC AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (ISC AND (Apache-2.0 OR ISC) AND OpenSSL) AND (Unlicense OR MIT)
 URL:            https://crates.io/crates/%{crate}
 Source0:        https://github.com/hrkfdn/ncspot/archive/refs/tags/v%version.tar.gz
 
-Requires:	dbus
-Requires:	glibc
-Requires:	libxcb
-Requires:	pipewire-pulseaudio
-Requires:	pulseaudio-libs
-Requires:	openssl
-
-BuildRequires:  anda-srpm-macros
-BuildRequires:  cargo-rpm-macros >= 24
+BuildRequires:  cargo-rpm-macros
 BuildRequires:  gcc
 BuildRequires:  binutils
-BuildRequires:  mold
 BuildRequires:  dbus-devel
 BuildRequires:  libxcb-devel
 BuildRequires:  ncurses-devel
 BuildRequires:  openssl-devel
 BuildRequires:  pulseaudio-libs-devel
+
+Requires:	dbus
+Requires:	libxcb
+Requires:	openssl
 
 %global _description %{expand:
 ncurses Spotify client written in Rust using librespot.
@@ -37,7 +32,8 @@ official Spotify client.}
 %description %{_description}
 
 %pkg_completion -befz
-%files -n %{crate}
+
+%files
 %license LICENSE
 %license LICENSE.dependencies
 %doc README.md
@@ -51,20 +47,22 @@ official Spotify client.}
 
 %build
 %cargo_build -f "%{cargo_features}"
-%{cargo_license_summary_online}
+%{__cargo} xtask generate-manpage
+%{__cargo} xtask generate-shell-completion
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
 %crate_install_bin
-cargo xtask generate-manpage
-cargo xtask generate-shell-completion
-install -Dpm644 misc/%{crate}.desktop -t %buildroot%_appsdir
-install -Dm644 misc/*.1 -t %buildroot%_mandir/man1
-install -Dm755 misc/%{crate}.bash -t %buildroot%bash_completions_dir
-install -Dm755 misc/%{crate}.elv -t %buildroot%elvish_completions_dir
-install -Dm755 misc/%{crate}.fish -t %buildroot%fish_completions_dir
-install -Dm755 misc/_%{crate} -t %buildroot%zsh_completions_dir
+install -Dpm644 misc/%{crate}.desktop -t %{buildroot}%{_appsdir}
+install -Dm644 misc/*.1 -t %{buildroot}%{_mandir}/man1
+install -Dm755 misc/%{crate}.bash -t %{buildroot}%{bash_completions_dir}
+install -Dm755 misc/%{crate}.elv -t %{buildroot}%{elvish_completions_dir}
+install -Dm755 misc/%{crate}.fish -t %{buildroot}%{fish_completions_dir}
+install -Dm755 misc/_%{crate} -t %{buildroot}%{zsh_completions_dir}
 
 %changelog
+* Tue Oct 13 2026 Owen Zimmerman <owen@fyralabs.com> - 1.5.0-1 
+- Clean up spec
+
 * Wed Mar 18 2026 like-engels <higashikataengels@icloud.com> - 1.3.3-1
 - Initial package
