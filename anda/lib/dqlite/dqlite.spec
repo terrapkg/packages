@@ -56,7 +56,7 @@ rm -f %{buildroot}%{_libdir}/libdqlite.la
 %{_includedir}/%{name}.h
 
 %changelog
-* Wed Oct 14 2026 Jaiden Riordan <jade@fyralabs.com>
+* Wed Oct 14 2026 Jaiden Riordan <jade@fyralabs.com> - 1.18.7-1
 - Port to Terra
 
 * Fri Jan 16 2026 Fedora Release Engineering <releng@fedoraproject.org> - 1.17.1-4
