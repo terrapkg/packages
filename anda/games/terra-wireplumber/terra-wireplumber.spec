@@ -1,3 +1,5 @@
+%global _default_patch_fuzz 3
+
 Name:       terra-wireplumber
 Version:    0.5.18
 Release:    1%{?dist}
