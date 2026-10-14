@@ -13,6 +13,7 @@ BuildRequires:  meson
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  vala
+BuildRequires:  vala-extra-vapis
 BuildRequires:  sassc
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(gtk4-layer-shell-0)
@@ -26,6 +27,11 @@ BuildRequires:  pkgconfig(gudev-1.0)
 BuildRequires:  pkgconfig(upower-glib)
 BuildRequires:  pkgconfig(libnm)
 BuildRequires:  pkgconfig(enchant-2)
+BuildRequires:  pkgconfig(gstreamer-1.0)
+BuildRequires:  pkgconfig(gstreamer-video-1.0)
+BuildRequires:  pkgconfig(cups)
+BuildRequires:  pkgconfig(lcms2)
+BuildRequires:  pkgconfig(xkbcommon)
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -34,6 +40,7 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 
 %prep
 %autosetup -n libsingularity-%{commit}
+sed -i 's/Gtk\.DragIcon\.get_for_drag(drag) as Gtk\.DragIcon/new Gtk.DragIcon.get_for_drag(drag)/' src/animation/drag_lift.vala
 
 %package devel
 %pkg_devel_files
@@ -63,7 +70,15 @@ A GTK4 application and widget framework for the Singularity Desktop Environment.
 %{_datadir}/vala/vapi/singularity-system-1.0.vapi
 %{_datadir}/themes/Singularity/
 %{_datadir}/singularity
+%{_datadir}/dbus-1/interfaces/dev.sinty.UpdateProvider1.xml
+%{_datadir}/glib-2.0/schemas/dev.sinty.toolbar.gschema.xml
+%{_sysconfdir}/xdg/singularity/text-recognition.conf
 
 %changelog
+* Tue Oct 13 2026 Owen Zimmerman <owen@fyralabs.com>
+- Update for new deps
+- Update for new files
+- Patch DragIcon issue for newer vala versions
+
 * Sat May 16 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
