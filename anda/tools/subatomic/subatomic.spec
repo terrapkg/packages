@@ -1,4 +1,3 @@
-%bcond rust_nightly 1
 %undefine __brp_mangle_shebangs
 
 Name:           subatomic
@@ -10,6 +9,7 @@ License:        (ISC AND (Apache-2.0 OR ISC)) AND (BSD-3-Clause OR MIT OR Apache
 URL:            https://github.com/FyraLabs/subatomic
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 
+BuildRequires:  rustup
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(openssl)
 
@@ -36,9 +36,7 @@ Next-generation modern RPM repository metadata generator
 
 %prep
 %autosetup -C
-%if %{with rust_nightly}
 %rustup_nightly
-%endif
 %cargo_prep_online
 %cargo_license_summary_online
 
