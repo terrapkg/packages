@@ -23,7 +23,7 @@ jobs:
       - name: Install repositories
         run: |
           dnf5 swap -y --setopt=install_weak_deps=False systemd-standalone-sysusers systemd
-          dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins rpmbuild script
+          dnf5 install -y --setopt=install_weak_deps=False curl wget git-core openssl-devel cargo podman fuse-overlayfs dnf5-plugins rpmbuild
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -73,9 +73,6 @@ jobs:
 
       - name: Build terra-appstream-helper
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/appstream-helper/pkg
-
-      - name: Build terra-scripts
-        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/terra-scripts/pkg
 
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
