@@ -30,7 +30,7 @@ Packager:       Its-J <jonah@fyralabs.com>
 %install
 %npm_install
 # Fix broken /usr/bin link
-ln -sf %{nodejs_sitelib}/%{npm_name}/index.js %{buildroot}%{_bindir}/%{npm_name}
+%{__ln_s} -f %{nodejs_sitelib}/%{npm_name}/index.js %{buildroot}%{_bindir}/%{npm_name}
 # Non-deterministic race in npm gives 777 permissions to random directories, see https://github.com/npm/npm/issues/9359 for details.
 chmod -R u=rwX,go=rX %{buildroot}%{nodejs_sitelib}/%{npm_name}
 
