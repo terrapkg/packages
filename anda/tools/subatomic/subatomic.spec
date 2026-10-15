@@ -1,3 +1,4 @@
+%bcond rust_nightly 1
 %undefine __brp_mangle_shebangs
 
 Name:           subatomic
@@ -35,10 +36,14 @@ Next-generation modern RPM repository metadata generator
 
 %prep
 %autosetup -C
+%if %{with rust_nightly}
+%rustup_nightly
+%endif
 %cargo_prep_online
 %cargo_license_summary_online
 
 %build
+export ZSTD_SYS_USE_PKG_CONFIG=1
 %cargo_build
 pushd crates/kiritan
 %cargo_build
