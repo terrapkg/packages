@@ -76,8 +76,8 @@ jobs:
 
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
-      - name: Install Subatomic
-        run: dnf5 install -y ./anda-build/rpm/rpms/subatomic-*.rpm
+      - name: Install satm
+        run: dnf5 install -y ./anda-build/rpm/rpms/satm-*.rpm
 
       - name: Tidy up output directory
         run: rmdir anda-build/rpm/rpms/{noarch,aarch64,x86_64} | true
