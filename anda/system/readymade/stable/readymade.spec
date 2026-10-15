@@ -39,7 +39,7 @@ rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macro
 %cargo_prep_online
 
 %build
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
 %crate_install_bin
