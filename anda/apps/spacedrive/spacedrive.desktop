@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Spacedrive
+Comment=An open source cross-platform file explorer
+Exec=spacedrive %U
+Icon=com.spacedrive.Spacedrive
+Terminal=false
+Type=Application
+Categories=Utility;FileManager;
+MimeType=inode/directory;
+StartupWMClass=spacedrive
