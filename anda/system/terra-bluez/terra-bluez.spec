@@ -10,7 +10,7 @@
 
 Name:     terra-bluez
 Version:  5.87+1.git8750129efca8
-Release:  1%{?dist}
+Release:  2%{?dist}
 Packager: Kyle Gospodnetich <me@kylegospodneti.ch>
 Summary:  Bluetooth utilities
 License:  GPL-2.0-or-later
@@ -77,7 +77,7 @@ The BLUETOOTH trademarks are owned by Bluetooth SIG, Inc., U.S.A.
 Summary: CUPS printer backend for Bluetooth printers
 Provides: bluez-cups = %{evr}
 Provides: bluez-cups%{?_isa} = %{evr}
-Conflicts: bluez-cups
+Conflicts: bluez-cups%{?_isa}
 Requires: %{name}%{?_isa} = %{evr}
 Requires: cups
 
@@ -110,7 +110,7 @@ be dropped by upstream. Utilities include:
 Summary: Libraries for use in Bluetooth applications
 Provides: bluez-libs = %{evr}
 Provides: bluez-libs%{?_isa} = %{evr}
-Conflicts: bluez-libs
+Conflicts: bluez-libs%{?_isa}
 
 %description libs
 Libraries for use in Bluetooth applications.
@@ -130,7 +130,7 @@ use in Bluetooth applications.
 Summary: Put HID proxying bluetooth HCI's into HCI mode
 Provides: bluez-hid2hci = %{evr}
 Provides: bluez-hid2hci%{?_isa} = %{evr}
-Conflicts: bluez-hid2hci
+Conflicts: bluez-hid2hci%{?_isa}
 Requires: %{name}%{?_isa} = %{evr}
 
 %description hid2hci
@@ -156,7 +156,7 @@ and mouse.
 Summary: Bluetooth mesh
 Provides: bluez-mesh = %{evr}
 Provides: bluez-mesh%{?_isa} = %{evr}
-Conflicts: bluez-mesh
+Conflicts: bluez-mesh%{?_isa}
 Requires: %{name}%{?_isa} = %{evr}
 Requires: %{name}-libs%{?_isa} = %{evr}
 
@@ -167,7 +167,7 @@ Services for bluetooth mesh
 Summary: Object Exchange daemon for sharing content
 Provides: bluez-obexd = %{evr}
 Provides: bluez-obexd%{?_isa} = %{evr}
-Conflicts: bluez-obexd
+Conflicts: bluez-obexd%{?_isa}
 Requires: %{name}%{?_isa} = %{evr}
 Requires: %{name}-libs%{?_isa} = %{evr}
 
