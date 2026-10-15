@@ -25,7 +25,7 @@ Packager:       Its-J <jonah@fyralabs.com>
 
 %build
 %{npm_license_summary}
-%{npm_license} -o LICENSE.modules
+%npm_license -o LICENSE.modules
 
 %install
 %{npm_install}
