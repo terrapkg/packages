@@ -77,7 +77,7 @@ jobs:
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
       - name: Install satm
-        run: dnf5 install -y ./anda-build/rpm/rpms/satm-*.rpm
+        run: dnf5 install -y ./anda-build/rpm/rpms/satm-1.*.rpm
 
       - name: Tidy up output directory
         run: rmdir anda-build/rpm/rpms/{noarch,aarch64,x86_64} | true
@@ -105,9 +105,8 @@ jobs:
           SUBATOMIC_API_TOKEN: ${{ secrets.KIRITANPO_TOKEN }}
 
       - name: Create Madoguchi Repository
-        if: matrix.pkg.labels['staging']
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" https://madoguchi.fyralabs.com/v4/repos/terra${{ matrix.version }} -X PUT -H "Content-Type: application/json" -d '{"gh":"https://github.com/terrapkg/packages/tree/${{ matrix.version }}","link":"https://repos.fyralabs.com/terra${{ matrix.version }}/"}' --fail-with-body
+          curl -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" https://madoguchi.fyralabs.com/v4/repos/staging-terra${{ matrix.version }} -X PUT -H "Content-Type: application/json" -d '{"gh":"https://github.com/terrapkg/packages/tree/${{ matrix.version }}","link":"https://repos.fyralabs.com/staging-terra${{ matrix.version }}/"}' --fail-with-body
 
       - name: Attest build provenance
         uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
