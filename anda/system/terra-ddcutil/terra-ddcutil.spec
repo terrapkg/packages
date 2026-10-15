@@ -4,7 +4,7 @@
 
 Name:       terra-ddcutil
 Version:    3.0.2
-Release:    2%{?dist}
+Release:    3%{?dist}
 Summary:    Query and update monitor settings
 Packager:   Kyle Gospodnetich <me@kylegospodneti.ch>
 
