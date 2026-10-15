@@ -3,7 +3,7 @@
 
 Name:           stardust-xr-non-spatial-input
 Version:        0.53.0.rc.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        Tools you can easily snap together to get non-spatial input into Stardust XR
 URL:            https://github.com/StardustXR/non-spatial-input
@@ -25,7 +25,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %build
 
 %install
-%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 (cd azimuth && %cargo_install) &
 (cd eclipse && %cargo_install) &
 (cd manifold && %cargo_install) &
