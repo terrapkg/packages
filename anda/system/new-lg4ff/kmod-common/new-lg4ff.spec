@@ -5,7 +5,7 @@
 
 Name:           new-lg4ff
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Logitech force feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/berarma/%{name}
