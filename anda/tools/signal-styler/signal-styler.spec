@@ -21,18 +21,16 @@ Packager:       Its-J <jonah@fyralabs.com>
 %{summary}.
 
 %prep
-%npm_prep
+%{npm_prep}
 
 %build
-%npm_license_summary
-%npm_license -o LICENSE.modules
+%{npm_license_summary}
+%{npm_license} -o LICENSE.modules
 
 %install
-%npm_install
+%{npm_install}
 # Fix broken /usr/bin link
 %{__ln_s} -f %{nodejs_sitelib}/%{npm_name}/index.js %{buildroot}%{_bindir}/%{npm_name}
-# Non-deterministic race in npm gives 777 permissions to random directories, see https://github.com/npm/npm/issues/9359 for details.
-chmod -R u=rwX,go=rX %{buildroot}%{nodejs_sitelib}/%{npm_name}
 
 %files
 %doc README.md
