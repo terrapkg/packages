@@ -35,7 +35,7 @@ Summary:        Next-generation modern RPM repository metadata generator
 Next-generation modern RPM repository metadata generator
 
 %prep
-%autosetup -C
+%autosetup
 %rustup_nightly
 %cargo_prep_online
 %cargo_license_summary_online
