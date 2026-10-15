@@ -42,6 +42,7 @@ Andaman Build toolchain.
 %cargo_prep_online
 
 %build
+%cargo_build
 %{cargo_license_online} > LICENSE.dependencies
 %{__cargo} run --release -p xtask -- manpage
 %{__cargo} run --release -p xtask -- completion
