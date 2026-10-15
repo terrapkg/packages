@@ -1,6 +1,6 @@
-%global commit 185dc538691ddd16c949779a9af41d2513749045
+%global commit 93b420c34c333c5deeb202a9e1450ee8fd73630b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20250903
+%global commit_date 20261015
 %if 0%{?fedora} == 41
 %ifarch %ix86
 %global debug_package %{nil}
@@ -19,7 +19,7 @@
 
 Name:           extest
 Version:        %{commit_date}git.%{shortcommit}
-Release:        1%?dist
+Release:        1%{?dist}
 Summary:        X11 XTEST reimplementation primarily for Steam Controller on Wayland
 
 License:        MIT
