@@ -21,15 +21,13 @@ Packager:       Its-J <jonah@fyralabs.com>
 %{summary}.
 
 %prep
-%{npm_prep}
+%npm_prep
 
 %build
-%{npm_license_summary}
-%npm_license -o LICENSE.modules
 
 %install
-%{npm_install}
-# Fix broken /usr/bin link
+%npm_license -o LICENSE.modules
+%npm_install
 %{__ln_s} -f %{nodejs_sitelib}/%{npm_name}/index.js %{buildroot}%{_bindir}/%{npm_name}
 
 %files
