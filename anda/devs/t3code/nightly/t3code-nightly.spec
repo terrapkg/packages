@@ -5,8 +5,8 @@
 %global ver 0.0.46
 %global commit 0fcd5f90611451cca842689faea53b5450c022da
 %global date 20261015
-%global run 3145
-%global tag 0.0.46-nightly.20261015.3145
+%global run 3158
+%global tag 0.0.46-nightly.20261015.3158
 %global electron_version %{ver}-nightly.%{date}.%{run}
 
 Name:           t3code-nightly
