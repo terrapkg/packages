@@ -1,4 +1,4 @@
-%global ver v0.2.5
+%global ver v1.0.2
 %global appid com.github.librepods
 
 Name:           librepods
