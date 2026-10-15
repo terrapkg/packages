@@ -1,56 +1,75 @@
-%define debug_package %{nil}
+%undefine __brp_mangle_shebangs
 
 Name:           subatomic
-Version:        1.1.3
+Version:        1.1.2
 Release:        1%{?dist}
 Summary:        A modern package delivery system
-
-License:        MIT
+SourceLicense:  AGPL-3.0-or-later
+License:        (ISC AND (Apache-2.0 OR ISC)) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND bzip2-1.0.6 AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0) AND (MIT OR Apache-2.0 OR Zlib) AND AGPL-3.0-or-later AND (0BSD OR MIT OR Apache-2.0) AND Zlib AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND MIT AND (MIT OR Apache-2.0 OR BSD-1-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND Unicode-3.0 AND MPL-2.0+ AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (Apache-2.0 OR BSL-1.0 OR MIT) AND MIT AND BSD-3-Clause AND ISC AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 URL:            https://github.com/FyraLabs/subatomic
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 
-BuildRequires:  go-rpm-macros
-BuildRequires:  git-core
-BuildRequires:  ostree-devel
-BuildRequires:  gcc
-Requires:       ostree
-Requires:       createrepo_c
+BuildRequires:  cargo-rpm-macros
+BuildRequires:  pkgconfig(openssl)
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Subatomic is a package delivery system which supports multiple package formats.
 It manages a repository of packages, handling updating, signing, and other
 tasks.
 
-%package cli
-Summary:        Client for Subatomic repo manager
+%package -n satm
+Version:        1.1.0
+Summary:        CLI web client for subatomic-server
 
-%description cli
-Client for Subatomic repo manager
+%description -n satm
+CLI web client for subatomic-server.
 
-%files cli
-%{_bindir}/subatomic-cli
+%package -n kiritan
+Version:        1.1.1
+Summary:        Next-generation modern RPM repository metadata generator
+
+%description -n kiritan
+Next-generation modern RPM repository metadata generator
 
 %prep
-%autosetup
-go mod download
-
+%autosetup -C
+%cargo_prep_online
+%cargo_license_summary_online
 
 %build
-mkdir -p build/bin
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/subatomic-cli ./subatomic-cli
-go build -ldflags "-B 0x$(head -c20 /dev/urandom|od -An -tx1|tr -d ' \n') -s -w" -buildmode=pie -o build/bin/subatomic ./server
-
+%cargo_build
+pushd crates/kiritan
+%cargo_build
+popd
+pushd crates/satm
+cargo fetch --locked
+%cargo_build -- --frozen
+popd
 
 %install
-mkdir -p %{buildroot}%{_bindir}/
-install -pm 755 build/bin/subatomic-cli %{buildroot}%{_bindir}/
-install -pm 755 build/bin/subatomic %{buildroot}%{_bindir}/
-
+install -Dm 755 target/rpm/subatomic    %{buildroot}%{_bindir}/subatomic
+install -Dm 755 target/rpm/satm         %{buildroot}%{_bindir}/satm
+install -Dm 755 target/rpm/kiritan      %{buildroot}%{_bindir}/kiritan
+%{cargo_license_online} > LICENSE.dependencies
 
 %files
+%doc README.md docs/*
+%license LICENSE LICENSE.dependencies
 %{_bindir}/subatomic
 
+%files -n satm
+%license LICENSE LICENSE.dependencies
+%{_bindir}/satm
+
+%files -n kiritan
+%license LICENSE LICENSE.dependencies
+%{_bindir}/kiritan
 
 %changelog
+* Thu Sep 10 2026 Owen Zimmerman <owen@fyralabs.com> - 1.0.0-1
+- Convert to rust format
+
 * Fri Sep 30 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 0.1.0.200283ccd3cf7c90b6a9be565ce6ff52bdec977e-1
 - Intial release

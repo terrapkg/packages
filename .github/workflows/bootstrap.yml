@@ -13,6 +13,7 @@ jobs:
       matrix:
         version: ["rawhide"]
         arch: ["x86_64", "aarch64"]
+        staging: ["staging"]
       fail-fast: true
     runs-on: ${{ matrix.arch == 'aarch64' && 'ubuntu-22.04-arm' || 'ubuntu-22.04' }}
     container:
@@ -85,21 +86,29 @@ jobs:
         run: rmdir anda-build/rpm/rpms/{noarch,aarch64,x86_64} | true
 
       - name: Upload packages to subatomic
+        if: inputs.publish
         run: |
-          subatomic-cli upload --prune \
-            --server https://subatomic.fyralabs.com \
-            --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }} anda-build/rpm/rpms/*
+          staging="${{ matrix.pkg.labels['staging'] && 'staging-' || '' }}"
+          satm repo upload \
+            ${staging}terra${{ matrix.version }} \
+            anda-build/rpm/rpms/*
+        env:
+          SUBATOMIC_API_URL: https://kiritanpo.fyralabs.com
+          SUBATOMIC_API_TOKEN: ${{ secrets.KIRITANPO_TOKEN }}
 
       - name: Upload source packages to subatomic
-        if: github.event_name == 'push'
+        if: inputs.publish && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
-          subatomic-cli upload --prune \
-            --server https://subatomic.fyralabs.com \
-            --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}-source anda-build/rpm/srpm/*
+          staging="${{ matrix.pkg.labels['staging'] && 'staging-' || '' }}"
+          satm repo upload \
+            ${staging}terra${{ matrix.version }}-source \
+            anda-build/rpm/srpm/*
+        env:
+          SUBATOMIC_API_URL: https://kiritanpo.fyralabs.com
+          SUBATOMIC_API_TOKEN: ${{ secrets.KIRITANPO_TOKEN }}
 
       - name: Create Madoguchi Repository
+        if: matrix.pkg.labels['staging']
         run: |
           curl -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" https://madoguchi.fyralabs.com/v4/repos/terra${{ matrix.version }} -X PUT -H "Content-Type: application/json" -d '{"gh":"https://github.com/terrapkg/packages/tree/${{ matrix.version }}","link":"https://repos.fyralabs.com/terra${{ matrix.version }}/"}' --fail-with-body
 
