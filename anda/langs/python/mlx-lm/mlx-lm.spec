@@ -2,7 +2,7 @@
 %global _desc Run LLMs with MLX.
 
 Name:			python-%{pypi_name}
-Version:		0.32.0
+Version:		0.32.1
 Release:		1%{?dist}
 Summary:		Run LLMs with MLX
 License:		MIT
