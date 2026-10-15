@@ -1,1 +1,1 @@
-rpm.version(gh("anomalyco/opencode"));
+rpm.version(gh_tag("anomalyco/opencode"));
