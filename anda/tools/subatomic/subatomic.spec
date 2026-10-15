@@ -36,7 +36,16 @@ Next-generation modern RPM repository metadata generator
 
 %prep
 %autosetup
-%rustup_nightly
+%global _cargo_home %{rpmbuilddir}%{?buildsubdir:/%{buildsubdir}}/.cargo 
+%{__rm} -rf {.cargo/,%{_cargo_home}/} 
+%global _rustup_home %{rpmbuilddir}/.rustup 
+%global __cargo . %{_cargo_home}/env && /usr/bin/env CARGO_HOME=%{_cargo_home} RUSTUP_HOME=%{_rustup_home} RUSTFLAGS='%{terra_rustflags}' %{_cargo_home}/bin/cargo 
+%global __rustc %{_cargo_home}/bin/rustc 
+%global __rustdoc %{_cargo_home}/bin/rustdoc 
+/usr/bin/env CARGO_HOME=%{_cargo_home} RUSTUP_HOME=%{_rustup_home} RUSTUP_INIT_SKIP_PATH_CHECK=yes rustup-init --default-toolchain nightly -y -q --no-modify-path 
+. %{_cargo_home}/env 
+%bcond rust_nightly 1
+
 %cargo_prep_online
 %cargo_license_summary_online
 
