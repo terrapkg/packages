@@ -9,7 +9,7 @@
 
 Name:           cardwire
 Version:        0.12.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A GPU Manager for linux that uses eBPF LSM hooks to block GPUs
 URL:            https://opengamingcollective.github.io/cardwire/
 Source0:        https://github.com/OpenGamingCollective/cardwire/archive/refs/tags/v%{version}.tar.gz
@@ -101,7 +101,7 @@ export RUSTC_BOOTSTRAP=1
 # nightly Cargo configuration used by Aya.
 rm -rf %{_builddir}/tool-cargo-home
 CARGO_HOME=%{_builddir}/tool-cargo-home RUSTUP_TOOLCHAIN=stable \
-    /usr/bin/cargo install --locked --root %{_builddir}/cargo-binstall cargo-binstall
+    /usr/bin/cargo install --root %{_builddir}/cargo-binstall cargo-binstall
 export PATH=%{_builddir}/cargo-binstall/bin:$PATH
 CARGO_HOME=%{_builddir}/tool-cargo-home RUSTUP_TOOLCHAIN=stable \
     cargo binstall --no-confirm --install-path %{_builddir}/bpf-linker/bin bpf-linker
