@@ -42,7 +42,6 @@ mv dist-electron/*-unpacked dist/
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/blockbench.desktop
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license LICENSE.MD

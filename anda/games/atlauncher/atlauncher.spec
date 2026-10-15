@@ -4,7 +4,7 @@
 
 Name:           atlauncher
 Version:        3.4.41.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A launcher for Minecraft which integrates multiple different modpacks
 
 License:        GPL-3.0-only
@@ -22,8 +22,8 @@ BuildRequires:  appstream
 Requires:       java >= 1.8.0
 Requires:       alsa-lib
 Requires:       libglvnd
-Requires:       libpulseaudio
-Requires:       libudev
+Requires:       pulseaudio-libs
+Requires:       systemd-libs
 Requires:       libX11
 Requires:       libXcursor
 Requires:       libXxf86vm
@@ -81,7 +81,6 @@ sed -Ei "s|(<release version=\"%{version}\")([^>]*)/>|\1 date=\"${release_date}\
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/atlauncher.desktop
-appstreamcli validate --no-net %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license LICENSE

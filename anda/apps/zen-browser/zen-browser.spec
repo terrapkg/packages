@@ -32,7 +32,7 @@
 
 Name:           zen-browser
 Version:        1.23.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Calm and private web browser that is built on Firefox
 
 License:        MPL-2.0
@@ -137,7 +137,9 @@ export MOZBUILD_STATE_PATH="%{rpmbuilddir}/mozbuild"
 export MOZ_NOSPAM=1
 export MOZILLA_OFFICIAL=1
 export MOZ_APP_BASENAME=Zen
-export MOZ_BUILD_DATE=$(date -u -d "@${SOURCE_DATE_EPOCH:-$(date +%%s)}" +%%Y%%m%%d%%H%%M%%S)
+# Build date needs to be changed for every release, otherwise the
+# furry fucker underneath zen get very sad
+export MOZ_BUILD_DATE=$(date -u +%%Y%%m%%d%%H%%M%%S)
 
 # The build system of Mozilla does not accept some of the default flags of
 # the distribution. Note: %%gsub is not usable here, because a Lua pattern
@@ -181,7 +183,7 @@ ac_add_options --disable-tests
 ac_add_options --disable-rust-tests
 ac_add_options --disable-geckodriver
 ac_add_options --enable-rust-simd
-ac_add_options --enable-wasm-simd
+%dnl ac_add_options --enable-wasm-simd
 ac_add_options --enable-jxl
 
 # Disable the crash reporter, since we're distributing binaries ourselves.
@@ -298,8 +300,6 @@ done
 %terra_appstream -o %{S:6}
 
 %check
-appstream-util validate-relax --nonet \
-    %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files

@@ -1,6 +1,6 @@
 Name:           lily
 Summary:        Interpreted language focused on expressiveness and type safety
-Version:        2.5
+Version:        2.6
 Release:        1%{?dist}
 License:        MIT
 URL:            https://github.com/fascinatedbox/lily

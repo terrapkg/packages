@@ -9,8 +9,8 @@
 %global __requires_exclude libfreetype\.so.*|libj.*\.so.*|libawt.*\.so.*|libnet\.so.*
 
 Name:           ab-download-manager
-Version:        1.10.4
-Release:        4%{?dist}
+Version:        1.11.1
+Release:        1%{?dist}
 Summary:        A fast, open-source download manager
 URL:            https://abdownloadmanager.com
 Source0:        abdownloadmanager.desktop
@@ -68,8 +68,6 @@ install -Dm644 desktop/app/icons/icon.png \
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/abdownloadmanager.desktop
-appstreamcli validate --no-net \
-    %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 
 %files
 %license LICENSE

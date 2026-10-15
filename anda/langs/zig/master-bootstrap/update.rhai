@@ -5,9 +5,6 @@ rpm.global("ver", v);
 
 if rpm.changed() {
    rpm.release();
-   // Update the Zig version in the script
-   let dir = sub(`/[^/]+$`, "", __script_path);
-   sh(`sed -i 's|version=.*|version=${v}|' setup.sh`, #{ "cwd": dir });
    // Update the needed LLVM version
    let rawfile = codeberg_rawfile("ziglang/zig", "master", "README.md");
    let l = find(`releases\.llvm\.org/download\.html#([\d.]+)`, rawfile, 1);

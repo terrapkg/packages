@@ -1,0 +1,1334 @@
+From 9a6dc8b223e2bbc1ec82339e994ee4ddad70361d Mon Sep 17 00:00:00 2001
+From: "Derek J. Clark" <derekjohn.clark@gmail.com>
+Date: Mon, 14 Sep 2026 12:00:44 -0700
+Subject: [PATCH 1/7] fix(Hardware Support): Condense GPD Capability maps
+
+The current GPD Cabability maps have lots of duplication. Deduplicate them.
+As these are refrenced by multiple models, fix those in separate commits.
+---
+ .../capability_maps/gpd_type2.yaml            | 34 +++++++++-
+ .../capability_maps/gpd_type3.yaml            | 25 --------
+ .../capability_maps/gpd_type4.yaml            | 63 -------------------
+ 3 files changed, 32 insertions(+), 90 deletions(-)
+ delete mode 100644 rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
+ delete mode 100644 rootfs/usr/share/inputplumber/capability_maps/gpd_type4.yaml
+
+diff --git a/rootfs/usr/share/inputplumber/capability_maps/gpd_type2.yaml b/rootfs/usr/share/inputplumber/capability_maps/gpd_type2.yaml
+index 0bfceea..52d225c 100644
+--- a/rootfs/usr/share/inputplumber/capability_maps/gpd_type2.yaml
++++ b/rootfs/usr/share/inputplumber/capability_maps/gpd_type2.yaml
+@@ -15,16 +15,46 @@ id: gpd2
+ mapping:
+   - name: Left Paddle
+     source_events:
+-      - keyboard: Key0
++      - keyboard: KeyLeftCtrl
++      - keyboard: KeyLeftShift
++      - keyboard: KeyF14
+     target_event:
+       gamepad:
+         button: LeftPaddle1
+   - name: Right Paddle
+     source_events:
+-      - keyboard: Key9
++      - keyboard: KeyF3
++      - keyboard: KeyF15
+     target_event:
+       gamepad:
+         button: RightPaddle1
++  - name: Home
++    source_events:
++      - keyboard: KeyLeftMeta
++      - keyboard: KeyD
++    target_event:
++      gamepad:
++        button: Guide
++  - name: Home (Long Press)
++    source_events:
++      - keyboard: KeyTab
++    target_event:
++      gamepad:
++        button: Guide
++  - name: Menu
++    source_events:
++      - keyboard: KeyLeftCtrl
++      - keyboard: KeyLeftMeta
++      - keyboard: KeyO
++    target_event:
++      gamepad:
++        button: QuickAccess
++  - name: Keyboard (Long Press)
++    source_events:
++      - keyboard: KeyDelete
++    target_event:
++      gamepad:
++        button: QuickAccess2
+ 
+ # List of events to filter from the source devices
+ filtered_events: []
+diff --git a/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml b/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
+deleted file mode 100644
+index 3fde914..0000000
+--- a/rootfs/usr/share/inputplumber/capability_maps/gpd_type3.yaml
++++ /dev/null
+@@ -1,25 +0,0 @@
+-# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/capability_map_v1.json
+-# Schema version number
+-version: 1
+-
+-# The type of configuration schema
+-kind: CapabilityMap
+-
+-# Name for the device event map
+-name: GPD Type 3
+-
+-# Unique identifier of the capability mapping
+-id: gpd3
+-
+-# List of mapped events that are activated by a specific set of activation keys.
+-mapping:
+-  - name: Quick Access
+-    source_events:
+-      - gamepad:
+-          button: RightPaddle1
+-    target_event:
+-      gamepad:
+-        button: QuickAccess
+-
+-# List of events to filter from the source devices
+-filtered_events: []
+diff --git a/rootfs/usr/share/inputplumber/capability_maps/gpd_type4.yaml b/rootfs/usr/share/inputplumber/capability_maps/gpd_type4.yaml
+deleted file mode 100644
+index 89694dd..0000000
+--- a/rootfs/usr/share/inputplumber/capability_maps/gpd_type4.yaml
++++ /dev/null
+@@ -1,63 +0,0 @@
+-# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/capability_map_v1.json
+-# Schema version number
+-version: 1
+-
+-# The type of configuration schema
+-kind: CapabilityMap
+-
+-# Name for the device event map
+-name: GPD Type 4
+-
+-# Unique identifier of the capability mapping
+-id: gpd4
+-
+-# List of mapped events that are activated by a specific set of activation keys.
+-mapping:
+-  - name: Left Paddle
+-    source_events:
+-      - keyboard: KeyF14
+-    target_event:
+-      gamepad:
+-        button: LeftPaddle1
+-  - name: Right Paddle
+-    source_events:
+-      - keyboard: KeyF15
+-    target_event:
+-      gamepad:
+-        button: RightPaddle1
+-  - name: Mode Switch
+-    source_events:
+-      - keyboard: KeyF13
+-    target_event:
+-      gamepad:
+-        button: QuickAccess
+-  - name: Home
+-    source_events:
+-      - keyboard: KeyLeftMeta
+-      - keyboard: KeyD
+-    target_event:
+-      gamepad:
+-        button: Guide
+-  - name: Home (Long Press)
+-    source_events:
+-      - keyboard: KeyTab
+-    target_event:
+-      gamepad:
+-        button: Guide
+-  - name: Keyboard
+-    source_events:
+-      - keyboard: KeyLeftMeta
+-      - keyboard: KeyLeftCtrl
+-      - keyboard: KeyO
+-    target_event:
+-      gamepad:
+-        button: Keyboard
+-  - name: Keyboard (Long Press)
+-    source_events:
+-      - keyboard: KeyDelete
+-    target_event:
+-      gamepad:
+-        button: QuickAccess
+-
+-# List of events to filter from the source devices
+-filtered_events: []
+-- 
+2.56.0
+
+From 405d1639479869707f097b3117b14a10ed44f185 Mon Sep 17 00:00:00 2001
+From: "Derek J. Clark" <derekjohn.clark@gmail.com>
+Date: Mon, 14 Sep 2026 11:41:46 -0700
+Subject: [PATCH 2/7] fix(Hardware Support): Expand GPD Win 4 support
+
+Adds support for GPD Win 4 2023 (7640u/7840u) versions.
+Adds support for GPD Win 4 2024 (8840u) version.
+Separate each year into it's own config to support different IMU mounting orientations.
+---
+ .../devices/50-gpd_win4_2022.yaml             | 62 +++++++++++++++++
+ .../devices/50-gpd_win4_2023.yaml             | 66 +++++++++++++++++++
+ .../devices/50-gpd_win4_2024.yaml             | 62 +++++++++++++++++
+ ...50-gpd_win4.yaml => 50-gpd_win4_2025.yaml} | 34 +++-------
+ 4 files changed, 199 insertions(+), 25 deletions(-)
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_win4_2022.yaml
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_win4_2023.yaml
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_win4_2024.yaml
+ rename rootfs/usr/share/inputplumber/devices/{50-gpd_win4.yaml => 50-gpd_win4_2025.yaml} (74%)
+
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2022.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2022.yaml
+new file mode 100644
+index 0000000..e982e5e
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2022.yaml
+@@ -0,0 +1,62 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win4 2022
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1618-04
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 7 6800U with Radeon Graphics
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  # Back paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:73:00.3-4.1/input0
++      handler: event*
++  - group: keyboard
++    blocked: true
++    evdev:
++      name: "  Mouse for Windows"
++      handler: event*
++      phys_path: usb-0000:73:00.3-4.2/input1
++  - group: imu
++    iio:
++      name: "{i2c-BMI0160:00,bmi260}"
++      mount_matrix:
++        x: [-1, 0, 0]
++        y: [0, 0, 1]
++        z: [0, -1, 0]
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2023.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2023.yaml
+new file mode 100644
+index 0000000..499509b
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2023.yaml
+@@ -0,0 +1,66 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win4 2023
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1618-04
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 7 7840U w/ Radeon 780M Graphics
++  - dmi_data:
++      product_name: G1618-04
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  # Back paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:63:00.3-3.1/input0
++      handler: event*
++  - group: keyboard
++    blocked: true
++    evdev:
++      name: "  Mouse for Windows"
++      handler: event*
++      phys_path: usb-0000:63:00.3-3.2/input1
++  - group: imu
++    iio:
++      name: "{i2c-BMI0160:00,bmi260}"
++      mount_matrix:
++        x: [0, 1, 0]
++        y: [1, 0, 0]
++        z: [0, 0, -1]
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2024.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2024.yaml
+new file mode 100644
+index 0000000..52bf8de
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2024.yaml
+@@ -0,0 +1,62 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win4 2024
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1618-04
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 7 8840U w/ Radeon 780M Graphics
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  # Back paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:63:00.3-2.1/input0
++      handler: event*
++  - group: keyboard
++    blocked: true
++    evdev:
++      name: "  Mouse for Windows"
++      handler: event*
++      phys_path: usb-0000:63:00.3-2.2/input1
++  - group: imu
++    iio:
++      name: "{i2c-BMI0160:00,bmi260}"
++      mount_matrix:
++        x: [0, 1, 0]
++        y: [1, 0, 0]
++        z: [0, 0, -1]
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win4.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2025.yaml
+similarity index 74%
+rename from rootfs/usr/share/inputplumber/devices/50-gpd_win4.yaml
+rename to rootfs/usr/share/inputplumber/devices/50-gpd_win4_2025.yaml
+index cfb29e7..eeb0453 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_win4.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2025.yaml
+@@ -6,7 +6,7 @@ version: 1
+ kind: CompositeDevice
+ 
+ # Name of the composite device mapping
+-name: GPD Win4
++name: GPD Win4 2025
+ 
+ # Only allow a single source device per composite device of this type.
+ single_source: false
+@@ -18,44 +18,31 @@ matches:
+   - dmi_data:
+       product_name: G1618-04
+       sys_vendor: GPD
++      cpu_model: AMD Ryzen AI 9 HX 370 w/ Radeon 890M
+ 
+ # One or more source devices to combine into a single virtual device. The events
+ # from these devices will be watched and translated according to the key map.
+ source_devices:
+-  # GPD Win4 2022 (6800U)
+-  - group: gamepad
+-    evdev:
+-      name: "Microsoft X-Box 360 pad"
+-      phys_path: usb-0000:73:00.3-4.1/input0
+-      handler: event*
++  # Back paddles
+   - group: keyboard
+-    evdev:
+-      name: "  Mouse for Windows"
+-      handler: event*
+-      phys_path: usb-0000:73:00.3-4.2/input1
+-  - group: imu
+-    iio:
+-      name: "{i2c-BMI0160:00,bmi260}"
+-    config:
+-      imu:
+-        mount_matrix:
+-          x: [-1, 0, 0]
+-          y: [0, -1, 0]
+-          z: [0, 0, 1]
+-  # GPD Win4 2025 (HX 370)
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
+   - group: gamepad
+     evdev:
+       name: "Microsoft X-Box 360 pad"
+       phys_path: usb-0000:66:00.0-2.1/input0
+       handler: event*
+   - group: keyboard
++    blocked: true
+     evdev:
+       name: "  Mouse for Windows"
+       handler: event*
+       phys_path: usb-0000:66:00.0-2.2/input1
+   - group: imu
+     iio:
+-      name: i2c-BMI0260:00
++      name: "{i2c-BMI0160:00,bmi260}"
+     config:
+       imu:
+         mount_matrix:
+@@ -75,6 +62,3 @@ target_devices:
+   - xbox-elite
+   - mouse
+   - keyboard
+-
+-# The ID of a device event mapping in the 'event_maps' folder
+-capability_map_id: gpd3
+-- 
+2.56.0
+
+From 0ebc1c3f95e71302e4e222fbbd73a79cecabaaad Mon Sep 17 00:00:00 2001
+From: "Derek J. Clark" <derekjohn.clark@gmail.com>
+Date: Mon, 14 Sep 2026 11:45:21 -0700
+Subject: [PATCH 3/7] fix(Hardware Support): Expand GPD Win Mini support
+
+Separated GPD Win Mini 2023, 2024
+Added support for GPD Win Mini 2025
+---
+ .../hwdb.d/60-inputplumber-autostart.hwdb     |  1 +
+ ..._winmini.yaml => 50-gpd_winmini_2023.yaml} | 42 +++++----
+ .../devices/50-gpd_winmini_2024.yaml          | 85 +++++++++++++++++++
+ .../devices/50-gpd_winmini_2025.yaml          | 70 +++++++++++++++
+ 4 files changed, 181 insertions(+), 17 deletions(-)
+ rename rootfs/usr/share/inputplumber/devices/{50-gpd_winmini.yaml => 50-gpd_winmini_2023.yaml} (82%)
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2024.yaml
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml
+
+diff --git a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
+index b3af837..d0187be 100644
+--- a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
++++ b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
+@@ -68,6 +68,7 @@ dmi:*svnGPD:pnG1618-05:*
+ dmi:*svnGPD:pnG1619-04:*
+ # GPD Win Mini
+ dmi:*svnGPD:pnG1617-01:*
++dmi:*svnGPD:pnG1617-02:*
+ # KONKR Fit
+ dmi:*svnKONKR:pnKONKRFIT:*
+ # Lenovo Legion Go
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2023.yaml
+similarity index 82%
+rename from rootfs/usr/share/inputplumber/devices/50-gpd_winmini.yaml
+rename to rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2023.yaml
+index d5e887c..16aab4f 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2023.yaml
+@@ -6,7 +6,7 @@ version: 1
+ kind: CompositeDevice
+ 
+ # Name of the composite device mapping
+-name: GPD WinMini
++name: GPD Win Mini 2023
+ 
+ # Only allow a single source device per composite device of this type.
+ single_source: false
+@@ -18,6 +18,11 @@ matches:
+   - dmi_data:
+       product_name: G1617-01
+       sys_vendor: GPD
++      cpu_model: AMD Ryzen 7 7840U w/ Radeon 780M Graphics
++  - dmi_data:
++      product_name: G1617-01
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
+ 
+ # One or more source devices to combine into a single virtual device. The events
+ # from these devices will be watched and translated according to the key map.
+@@ -25,30 +30,36 @@ source_devices:
+   - group: gamepad
+     evdev:
+       name: "Microsoft X-Box 360 pad"
+-      phys_path: "{usb-0000:63:00.3-5/input0,usb-0000:c3:00.3-5/input0}"
++      phys_path: usb-0000:63:00.3-5/input0
+       handler: event*
+   - group: keyboard
+-    hidraw:
+-      vendor_id: 0x2f24
+-      product_id: 0x0135
+-      interface_num: 1
+-  - group: keyboard
+-    blocked: true
+     evdev:
+       name: "  Mouse for Windows"
+       phys_path: usb-0000:63:00.3-3/input1
+       handler: event*
+-  - group: mouse
+-    hidraw:
+-      vendor_id: 0x093A
+-      product_id: 0x0255
+-      interface_num: 0
++    events:
++      exclude:
++        - keyboard:KeySysrq
++        - keyboard:KeyPause
++  # All devices
+   - group: mouse
+     unique: false
+     blocked: true
+     evdev:
+-      name: "{HTIX5288:00 093A:0255 Mouse,HTIX5288:00 093A:0255 Touchpad}"
++      name: "{HTIX5288:00*}"
+       handler: event*
++  # Back Paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  # Touchpad
++  - group: mouse
++    hidraw:
++      vendor_id: 0x093A
++      product_id: 0x0255
++      interface_num: 0
+   - group: imu
+     iio:
+       name: "{i2c-BMI0160:00,bmi260}"
+@@ -72,6 +83,3 @@ target_devices:
+   - mouse
+   - keyboard
+   - touchpad
+-
+-# The ID of a device event mapping in the 'event_maps' folder
+-capability_map_id: gpd3
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2024.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2024.yaml
+new file mode 100644
+index 0000000..1e5e019
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2024.yaml
+@@ -0,0 +1,85 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win Mini 2024
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1617-01
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 7 8840U w/ Radeon 780M Graphics
++  - dmi_data:
++      product_name: G1617-01
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 5 8640U w/ Radeon 760M Graphics
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:c3:00.3-5/input0
++      handler: event*
++  - group: keyboard
++    evdev:
++      name: "  Mouse for Windows"
++      phys_path: usb-0000:c3:00.3-3/input1
++      handler: event*
++    events:
++      exclude:
++        - keyboard:KeySysrq
++        - keyboard:KeyPause
++  # All devices
++  - group: mouse
++    unique: false
++    blocked: true
++    evdev:
++      name: "{HTIX5288:00*}"
++      handler: event*
++  # Back Paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  # Touchpad - Shares VID/PID with the Orange Pi Neo, so it must be
++  # matched by name. (E.g. "HTIX5288:00")
++  - group: mouse
++    hidraw:
++      name: "{HTIX5288:00*}"
++      vendor_id: 0x0911
++      product_id: 0x5288
++      interface_num: 0
++  - group: imu
++    iio:
++      name: "{i2c-BMI0160:00,bmi260}"
++      mount_matrix:
++        x: [1, 0, 0]
++        y: [0, 0, -1]
++        z: [0, 1, 0]
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
++  - touchpad
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml
+new file mode 100644
+index 0000000..66f8f70
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml
+@@ -0,0 +1,70 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win Mini 2025
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1617-02
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 7 8840U w/ Radeon 780M Graphics
++  - dmi_data:
++      product_name: G1617-02
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen AI 9 HX 370 w/ Radeon 890M
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  # Win Mini (2025)
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:c6:00.0-3.1/input0
++      handler: event*
++  - group: keyboard
++    evdev:
++      name: "  Keyboard for Windows"
++      phys_path: usb-0000:c6:00.0-3.3/input0
++      handler: event*
++    events:
++      exclude:
++        - keyboard:KeySysrq
++        - keyboard:KeyPause
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  - group: imu
++    iio:
++      name: "{i2c-BMI0160:00,bmi260}"
++      mount_matrix:
++        x: [1, 0, 0]
++        y: [0, 0, -1]
++        z: [0, 1, 0]
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
++  - touchpad
+-- 
+2.56.0
+
+From 424e641d7856d64887a82cc2c0056769346b2ae9 Mon Sep 17 00:00:00 2001
+From: "Derek J. Clark" <derekjohn.clark@gmail.com>
+Date: Mon, 14 Sep 2026 11:47:32 -0700
+Subject: [PATCH 4/7] fix(Hardware Support): Add GPD Win Max Support
+
+---
+ .../hwdb.d/60-inputplumber-autostart.hwdb     |  2 +
+ .../inputplumber/devices/50-gpd_winmax.yaml   | 42 +++++++++++++++++++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_winmax.yaml
+
+diff --git a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
+index d0187be..5ba555f 100644
+--- a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
++++ b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
+@@ -64,6 +64,8 @@ dmi:*svnGPD:pnG1618-03:*
+ dmi:*svnGPD:pnG1618-04:*
+ # GPD Win 5
+ dmi:*svnGPD:pnG1618-05:*
++# GPD Win Max
++dmi:*svnGPD:pnG1619-01:*
+ # GPD Win Max 2
+ dmi:*svnGPD:pnG1619-04:*
+ # GPD Win Mini
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmax.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax.yaml
+new file mode 100644
+index 0000000..38b70b6
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax.yaml
+@@ -0,0 +1,42 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win Max
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1619-01
++      sys_vendor: GPD
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:00:14.0-5/input0
++      handler: event*
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
+-- 
+2.56.0
+
+From 04e4cfaa24be9a0f5308c8602ddf6e62fe25e4a4 Mon Sep 17 00:00:00 2001
+From: "Derek J. Clark" <derekjohn.clark@gmail.com>
+Date: Mon, 14 Sep 2026 11:56:13 -0700
+Subject: [PATCH 5/7] fix(Hardware Support): Expand GPD Win Max 2 Support
+
+Adds GPD Win Max 2 2025 support
+Separate 2022, 2023, and unknown year into their own files.
+---
+ .../hwdb.d/60-inputplumber-autostart.hwdb     |  1 +
+ .../devices/50-gpd_winmax2_2022.yaml          | 58 +++++++++++++++++
+ .../devices/50-gpd_winmax2_2023.yaml          | 62 +++++++++++++++++++
+ .../devices/50-gpd_winmax2_2025.yaml          | 57 +++++++++++++++++
+ ...0-gpd_winmax2.yaml => 55-gpd_winmax2.yaml} | 46 ++++----------
+ 5 files changed, 190 insertions(+), 34 deletions(-)
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2022.yaml
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2023.yaml
+ create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2025.yaml
+ rename rootfs/usr/share/inputplumber/devices/{50-gpd_winmax2.yaml => 55-gpd_winmax2.yaml} (64%)
+
+diff --git a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
+index 5ba555f..2dfb549 100644
+--- a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
++++ b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
+@@ -68,6 +68,7 @@ dmi:*svnGPD:pnG1618-05:*
+ dmi:*svnGPD:pnG1619-01:*
+ # GPD Win Max 2
+ dmi:*svnGPD:pnG1619-04:*
++dmi:*svnGPD:pnG1619-05:*
+ # GPD Win Mini
+ dmi:*svnGPD:pnG1617-01:*
+ dmi:*svnGPD:pnG1617-02:*
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2022.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2022.yaml
+new file mode 100644
+index 0000000..ade6551
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2022.yaml
+@@ -0,0 +1,58 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win Max 2 2022
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1619-04
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 7 6800U with Radeon Graphics
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  # Back paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:74:00.3-3/input0
++      handler: event*
++  - group: keyboard
++    blocked: true
++    evdev:
++      name: "  Mouse for Windows"
++      phys_path: usb-0000:74:00.3-4/input1
++      handler: event*
++  - group: imu
++    iio:
++      name: "{i2c-BMI0160:00,i2c-BMI0260:00,i2c-10EC5280:00,bmi260}"
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2023.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2023.yaml
+new file mode 100644
+index 0000000..814bc85
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2023.yaml
+@@ -0,0 +1,62 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win Max 2
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1619-04
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 7 7840U w/ Radeon 780M Graphics
++  - dmi_data:
++      product_name: G1619-04
++      sys_vendor: GPD
++      cpu_model: AMD Ryzen 5 7640U w/ Radeon 760M Graphics
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  # Back paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:65:00.3-3/input0
++      handler: event*
++  - group: keyboard
++    blocked: true
++    evdev:
++      name: "  Mouse for Windows"
++      phys_path: usb-0000:65:00.3-4/input1
++      handler: event*
++  - group: imu
++    iio:
++      name: "{i2c-BMI0160:00,i2c-BMI0260:00,i2c-10EC5280:00,bmi260}"
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2025.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2025.yaml
+new file mode 100644
+index 0000000..0d1b8a4
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2_2025.yaml
+@@ -0,0 +1,57 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/composite_device_v1.json
++# Schema version number
++version: 1
++
++# The type of configuration schema
++kind: CompositeDevice
++
++# Name of the composite device mapping
++name: GPD Win Max 2 2025
++
++# Only allow a single source device per composite device of this type.
++single_source: false
++
++# Only use this profile if *any* of the given matches matches. If this list is
++# empty, then the source devices will *always* be checked.
++# /sys/class/dmi/id/product_name
++matches:
++  - dmi_data:
++      product_name: G1619-05
++      sys_vendor: GPD
++
++# One or more source devices to combine into a single virtual device. The events
++# from these devices will be watched and translated according to the key map.
++source_devices:
++  # Back paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
++  - group: gamepad
++    evdev:
++      name: "Microsoft X-Box 360 pad"
++      phys_path: usb-0000:c7:00.0-3/input0
++      handler: event*
++  - group: keyboard
++    blocked: true
++    evdev:
++      name: "  Mouse for Windows"
++      phys_path: usb-0000:c7:00.0-4/input1
++      handler: event*
++  - group: imu
++    iio:
++      name: "{i2c-BMI0160:00,i2c-BMI0260:00,i2c-10EC5280:00,bmi260}"
++
++# Optional configuration for the composite device
++options:
++  # If true, InputPlumber will automatically try to manage the input device. If
++  # this is false, InputPlumber will not try to manage the device unless an
++  # external service enables management of the device. Defaults to 'false'
++  auto_manage: true
++
++# The target input device(s) to emulate by default
++target_devices:
++  - xbox-elite
++  - mouse
++  - keyboard
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2.yaml b/rootfs/usr/share/inputplumber/devices/55-gpd_winmax2.yaml
+similarity index 64%
+rename from rootfs/usr/share/inputplumber/devices/50-gpd_winmax2.yaml
+rename to rootfs/usr/share/inputplumber/devices/55-gpd_winmax2.yaml
+index 87a48ad..7bc7d1f 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_winmax2.yaml
++++ b/rootfs/usr/share/inputplumber/devices/55-gpd_winmax2.yaml
+@@ -6,11 +6,15 @@ version: 1
+ kind: CompositeDevice
+ 
+ # Name of the composite device mapping
+-name: GPD WinMax2
++name: GPD Win Max 2
+ 
+ # Only allow a single source device per composite device of this type.
+ single_source: false
+ 
++# TODO: Upknown year, used as catch all for now. Add CPU match and product_name
++# to 50-gpd_winmax2_202X for that year. Likely 2024 but not confirmed on actual
++# hardware.
++
+ # Only use this profile if *any* of the given matches matches. If this list is
+ # empty, then the source devices will *always* be checked.
+ # /sys/class/dmi/id/product_name
+@@ -22,42 +26,19 @@ matches:
+ # One or more source devices to combine into a single virtual device. The events
+ # from these devices will be watched and translated according to the key map.
+ source_devices:
+-  - group: gamepad
+-    evdev:
+-      name: "Microsoft X-Box 360 pad"
+-      phys_path: usb-0000:74:00.3-3/input0
+-      handler: event*
+-  - group: gamepad
+-    evdev:
+-      name: "Microsoft X-Box 360 pad"
+-      phys_path: usb-0000:65:00.3-3/input0
+-      handler: event*
++  # Back paddles
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0135
++      interface_num: 1
+   - group: gamepad
+     evdev:
+       name: "Microsoft X-Box 360 pad"
+       phys_path: usb-0000:73:00.3-3/input0
+       handler: event*
+   - group: keyboard
+-    evdev:
+-      name: "  Mouse for Windows"
+-      phys_path: usb-0000:74:00.3-4/input1
+-      handler: event*
+-  - group: keyboard
+-    evdev:
+-      name: "  Mouse for Windows"
+-      phys_path: usb-0000:65:00.3-4/input0
+-      handler: event*
+-  - group: keyboard
+-    evdev:
+-      name: "  Mouse for Windows"
+-      phys_path: usb-0000:65:00.3-4/input1
+-      handler: event*
+-  - group: keyboard
+-    evdev:
+-      name: "  Mouse for Windows"
+-      phys_path: usb-0000:73:00.3-4/input0
+-      handler: event*
+-  - group: keyboard
++    blocked: true
+     evdev:
+       name: "  Mouse for Windows"
+       phys_path: usb-0000:73:00.3-4/input1
+@@ -78,6 +59,3 @@ target_devices:
+   - xbox-elite
+   - mouse
+   - keyboard
+-
+-# The ID of a device event mapping in the 'event_maps' folder
+-capability_map_id: gpd2
+-- 
+2.56.0
+
+From 3404d04cc70e52603cb101f0b9205420e2aa78ad Mon Sep 17 00:00:00 2001
+From: "Derek J. Clark" <derekjohn.clark@gmail.com>
+Date: Mon, 14 Sep 2026 11:57:47 -0700
+Subject: [PATCH 6/7] fix(Hardware Support): Add support for GPD Win 5 2025 (HX
+ 370) version
+
+---
+ .../inputplumber/devices/50-gpd_win5.yaml     | 28 +++++++++++++++----
+ 1 file changed, 22 insertions(+), 6 deletions(-)
+
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
+index 997c2df..600c91c 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
+@@ -28,21 +28,37 @@ source_devices:
+       phys_path: usb-0000:66:00.0-5.1/input0
+       handler: event*
+     capability_map_id: gpd_menu
+-  - group: keyboard
+-    evdev:
+-      name: "  Mouse for Windows"
+-      handler: event*
+-      phys_path: usb-0000:66:00.0-5.2/input0
+   - group: keyboard
+     evdev:
+       name: "  Keyboard for Windows"
+       handler: event*
+       phys_path: usb-0000:66:00.0-5.3/input0
++    events:
++      exclude:
++        - "*"
++      include:
++        - Keyboard:KeyF14
++        - Keyboard:KeyF15
++        - Keyboard:KeyF3
++        - Keyboard:KeyLeftCtrl
++        - Keyboard:KeyLeftShift
+   - group: keyboard
+     evdev:
+       name: AT Translated Set 2 keyboard
+       phys_path: isa0060/serio0/input0
+       handler: event*
++    events:
++      exclude:
++        - "*"
++      include:
++        - Keyboard:KeyD
++        - Keyboard:KeyDelete
++        - Keyboard:KeyLeftCtrl
++        - Keyboard:KeyLeftMeta
++        - Keyboard:KeyO
++        - Keyboard:KeyTab
++        - Keyboard:KeyVolumeDown
++        - Keyboard:KeyVolumeUp
+   - group: imu
+     iio:
+       name: "{i2c-BMI0160:00,bmi260}"
+@@ -67,4 +83,4 @@ target_devices:
+   - keyboard
+ 
+ # The ID of a device event mapping in the 'event_maps' folder
+-capability_map_id: gpd4
++capability_map_id: gpd2
+-- 
+2.56.0
+
+From 3358640757d48a97fc15c9dbdf966c1a51d853ac Mon Sep 17 00:00:00 2001
+From: Kyle Gospodnetich <me@kylegospodneti.ch>
+Date: Sun, 11 Oct 2026 09:21:37 -0700
+Subject: [PATCH 7/7] fix(Hardware Support): Move GPD mount_matrix under
+ config.imu
+
+---
+ .../share/inputplumber/devices/50-gpd_win4_2022.yaml   | 10 ++++++----
+ .../share/inputplumber/devices/50-gpd_win4_2023.yaml   | 10 ++++++----
+ .../share/inputplumber/devices/50-gpd_win4_2024.yaml   | 10 ++++++----
+ .../inputplumber/devices/50-gpd_winmini_2024.yaml      | 10 ++++++----
+ .../inputplumber/devices/50-gpd_winmini_2025.yaml      | 10 ++++++----
+ 5 files changed, 30 insertions(+), 20 deletions(-)
+
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2022.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2022.yaml
+index e982e5e..988a17a 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2022.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2022.yaml
+@@ -43,10 +43,12 @@ source_devices:
+   - group: imu
+     iio:
+       name: "{i2c-BMI0160:00,bmi260}"
+-      mount_matrix:
+-        x: [-1, 0, 0]
+-        y: [0, 0, 1]
+-        z: [0, -1, 0]
++    config:
++      imu:
++        mount_matrix:
++          x: [-1, 0, 0]
++          y: [0, 0, 1]
++          z: [0, -1, 0]
+ 
+ # Optional configuration for the composite device
+ options:
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2023.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2023.yaml
+index 499509b..6cd791d 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2023.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2023.yaml
+@@ -47,10 +47,12 @@ source_devices:
+   - group: imu
+     iio:
+       name: "{i2c-BMI0160:00,bmi260}"
+-      mount_matrix:
+-        x: [0, 1, 0]
+-        y: [1, 0, 0]
+-        z: [0, 0, -1]
++    config:
++      imu:
++        mount_matrix:
++          x: [0, 1, 0]
++          y: [1, 0, 0]
++          z: [0, 0, -1]
+ 
+ # Optional configuration for the composite device
+ options:
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2024.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2024.yaml
+index 52bf8de..4d70b62 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2024.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win4_2024.yaml
+@@ -43,10 +43,12 @@ source_devices:
+   - group: imu
+     iio:
+       name: "{i2c-BMI0160:00,bmi260}"
+-      mount_matrix:
+-        x: [0, 1, 0]
+-        y: [1, 0, 0]
+-        z: [0, 0, -1]
++    config:
++      imu:
++        mount_matrix:
++          x: [0, 1, 0]
++          y: [1, 0, 0]
++          z: [0, 0, -1]
+ 
+ # Optional configuration for the composite device
+ options:
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2024.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2024.yaml
+index 1e5e019..9c7e860 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2024.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2024.yaml
+@@ -65,10 +65,12 @@ source_devices:
+   - group: imu
+     iio:
+       name: "{i2c-BMI0160:00,bmi260}"
+-      mount_matrix:
+-        x: [1, 0, 0]
+-        y: [0, 0, -1]
+-        z: [0, 1, 0]
++    config:
++      imu:
++        mount_matrix:
++          x: [1, 0, 0]
++          y: [0, 0, -1]
++          z: [0, 1, 0]
+ 
+ # Optional configuration for the composite device
+ options:
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml
+index 66f8f70..a53d96a 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml
+@@ -50,10 +50,12 @@ source_devices:
+   - group: imu
+     iio:
+       name: "{i2c-BMI0160:00,bmi260}"
+-      mount_matrix:
+-        x: [1, 0, 0]
+-        y: [0, 0, -1]
+-        z: [0, 1, 0]
++    config:
++      imu:
++        mount_matrix:
++          x: [1, 0, 0]
++          y: [0, 0, -1]
++          z: [0, 1, 0]
+ 
+ # Optional configuration for the composite device
+ options:
+-- 
+2.56.0
+

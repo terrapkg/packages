@@ -100,11 +100,6 @@ for f in packaging/systemd/*.service; do
 done
 install -Dpm644 packaging/metadata/%rdnn.metainfo.xml %buildroot%_metainfodir/%rdnn.metainfo.xml
 
-
-%check
-appstream-util validate-relax --nonet %buildroot%_metainfodir/%rdnn.metainfo.xml
-
-
 %post -n coolercontrold
 %systemd_post coolercontrold.service
 

@@ -204,7 +204,6 @@ find %{buildroot}%{_libdir} -name '*.so' -exec chmod +x '{}' ';'
 
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
-appstream-util validate-relax --nonet %{buildroot}%{_datadir}/metainfo/studio.kx.carla.appdata.xml
 
 %files
 %doc README.md

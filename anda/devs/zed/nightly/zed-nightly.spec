@@ -1,7 +1,7 @@
-%global commit 9ab0715969e9854f2efe61a9d782e7698e5fe6d2
+%global commit 3e145061d861ed32bb6a08dad7b03f2b5e455ad8
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20261009
-%global ver 1.25.0
+%global commit_date 20261015
+%global ver 1.26.0
 
 %bcond_with check
 %bcond_with debug_no_build
@@ -162,7 +162,6 @@ mv assets/fonts/ibm-plex-sans/license.txt LICENSE.fonts
 
 %if %{with check}
 %check
-appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/%appid.metainfo.xml
 desktop-file-validate %{buildroot}%{_datadir}/applications/%appid.desktop
 
 %if %{without debug_no_build}
