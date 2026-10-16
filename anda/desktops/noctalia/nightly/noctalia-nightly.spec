@@ -1,10 +1,10 @@
 %global debug_package   %{nil}
 
-%global ver 5.2.1
+%global ver 5.3.0
 
-%global commit          f157ebe9e8f0caa51b182ee4749f06aae4fab20e
+%global commit          eeea6ff75cd71f9dbcd3acea6035449fefe3c71a
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20261015
+%global commitdate      20261016
 
 Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
