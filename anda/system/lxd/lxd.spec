@@ -72,7 +72,7 @@ Conflicts:      incus-tools
 Extra tools for LXD.
 
 %prep
-%autosetup -p1
+%autosetup
 rm -rf vendor/dqlite vendor/liblxc
 cp -p client/COPYING COPYING.Apache-2.0
 
