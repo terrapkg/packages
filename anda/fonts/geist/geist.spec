@@ -1,8 +1,8 @@
-%global ver v1.7.2
+%global ver v1.8.1
 
 Name:		    geist-font
 Version:	    %(echo %ver | sed 's/^geist@//')
-Release:	    1%?dist
+Release:	    1%{?dist}
 URL:		    https://vercel.com/font
 Source0:	    https://github.com/vercel/geist-font/archive/refs/tags/%ver.tar.gz
 License:	    OFL-1.1

@@ -6,7 +6,7 @@
 
 Name:           stardust-xr-black-hole-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Spatial storage for Stardust XR
 URL:            https://github.com/StardustXR/black-hole
 Source0:        %url/archive/%commit/black-hole-%commit.tar.gz
@@ -28,7 +28,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %build
 
 %install
-%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 export STARDUST_RES_PREFIXES=%_datadir
 %cargo_install
 %{cargo_license_online} > LICENSE.dependencies

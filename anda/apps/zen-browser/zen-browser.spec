@@ -32,7 +32,7 @@
 
 Name:           zen-browser
 Version:        1.23.2
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Calm and private web browser that is built on Firefox
 
 License:        MPL-2.0
