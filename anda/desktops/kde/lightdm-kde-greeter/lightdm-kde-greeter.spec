@@ -1,5 +1,3 @@
-%global commit 9e087a8bf734df279e3cdd982dfe04dffe46f0d0
-
 Name:           lightdm-kde-greeter
 Version:        6.1.7
 Release:        1%{?dist}
@@ -34,19 +32,18 @@ Provides: lightdm-greeter
 %description
 %summary.
 
-
 %prep
-# why the heck do you torture me for godsake.
-%autosetup -n %name-v%version-%commit
+%autosetup -C
 sed 's/sbin/bin/' -i greeter/CMakeLists.txt
 
-
-%build
+%conf
 export LDFLAGS="$LDFLAGS -fuse-ld=mold"
 %cmake_kf6 \
 	-DGREETER_WAYLAND_SESSIONS_FIRST=ON \
 	-DGREETER_IMAGES_DIR=%_sharedstatedir/%name/images \
 	-DBUILD_TESTING=OFF
+
+%build
 %cmake_build
 
 
@@ -57,8 +54,6 @@ export LDFLAGS="$LDFLAGS -fuse-ld=mold"
 %find_lang lightdm_kde_greeter   --with-kde
 %find_lang lightdm_theme_userbar --with-kde
 
-# FIXME: why does it installs to the wrong dir
-mv %buildroot/%name %buildroot%_datadir/
 mkdir -p %buildroot%_sharedstatedir/%name
 
 %post
@@ -77,8 +72,8 @@ mkdir -p %buildroot%_sharedstatedir/%name
 %config(noreplace) %_sysconfdir/lightdm/%name.conf
 %dir %_sharedstatedir/%name
 %_bindir/%name
-%_bindir/lightdm-kde-greeter-rootimage
-%_bindir/lightdm-kde-greeter-wifikeeper
+%_libexecdir/lightdm-kde-greeter-rootimage
+%_libexecdir/lightdm-kde-greeter-wifikeeper
 %_datadir/applications/kcm_lightdm.desktop
 %_datadir/dbus-1/system-services/org.kde.kcontrol.kcmlightdm.service
 %_datadir/dbus-1/system.d/org.kde.kcontrol.kcmlightdm.conf
@@ -91,5 +86,9 @@ mkdir -p %buildroot%_sharedstatedir/%name
 %_userunitdir/lightdm-kde-greeter-wifikeeper.service
 
 %changelog
+* Fri Oct 16 2026 Owen Zimmerman <owen@fyralabs.com> - 6.1.7-1
+- Update for 6.1.7
+- Use %%autosetup -C so we don't need to track commits
+
 * Tue Dec 24 2024 madonuko <mado@fyralabs.com> - 6.0.1-1
 - Initial package
