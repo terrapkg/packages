@@ -26,6 +26,7 @@ jobs:
     runs-on: arc-runner-set
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
+      nvidia_matrix: ${{ steps.generate_build_matrix.outputs.nvidia_matrix }}
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
@@ -38,17 +39,30 @@ jobs:
           fetch-depth: 0
       - name: Generate build matrix
         id: generate_build_matrix
-        run: anda ci >> $GITHUB_OUTPUT
+        run: |
+          set -eo pipefail
+          anda ci | cut -d= -f2- | jq -r -f .github/scripts/split-build-matrix.jq >> "$GITHUB_OUTPUT"
   build:
     needs: manifest
+    if: needs.manifest.outputs.build_matrix != '[]'
     uses: ./.github/workflows/json-build.yml
     secrets: inherit
     with:
       packages: ${{ needs.manifest.outputs.build_matrix }}
       publish: ${{ github.event_name == 'push' }}
 
+  nvidia:
+    needs: manifest
+    if: needs.manifest.outputs.nvidia_matrix != '[]'
+    uses: ./.github/workflows/nvidia-build.yml
+    secrets: inherit
+    with:
+      packages: ${{ needs.manifest.outputs.nvidia_matrix }}
+      publish: ${{ github.event_name == 'push' }}
+
   appstream:
-    needs: build
+    needs: [build, nvidia]
+    if: always() && !cancelled() && (needs.build.result == 'success' || needs.nvidia.result == 'success') && (needs.build.result == 'success' || needs.build.result == 'skipped') && (needs.nvidia.result == 'success' || needs.nvidia.result == 'skipped')
     runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/appstream-generator:main
