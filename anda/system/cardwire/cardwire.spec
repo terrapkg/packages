@@ -85,7 +85,7 @@ chmod 0755 %{_cargo_home}/cardwire-cargo %{_cargo_home}/cardwire-rustc %{_cargo_
 rust_src=%{_rustup_home}/toolchains/%{cardwire_toolchain}-x86_64-unknown-linux-gnu/lib/rustlib/src/rust
 install -Dpm0644 %{SOURCE2} "$rust_src/library/Cargo.lock"
 test -f "$rust_src/library/Cargo.lock"
-%cargo_prep_online
+%cargo_prep_online -u
 
 %build
 # The Rustup environment from %prep is not retained by RPM.
