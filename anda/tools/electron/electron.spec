@@ -1,6 +1,6 @@
 Name:			electron
 %electronmeta
-Version:		44.7.2
+Version:		44.8.0
 Release:		1%{?dist}
 Summary:		Build cross platform desktop apps with web technologies
 License:		%{electron_license}
