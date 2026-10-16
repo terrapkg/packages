@@ -63,9 +63,7 @@ jobs:
           anda build -D "vendor Terra" -rrpmbuild anda/terra/mock-configs/pkg
 
       - name: Build terra-cli-tools
-        run: |
-          mkdir -p anda-build/rpm/rpms
-          rpmbuild -bb anda/terra/cli-tools/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/terra/cli-tools/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/cli-tools/pkg
 
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
