@@ -68,6 +68,7 @@ sed -i 's/Gtk\.DragIcon\.get_for_drag(drag) as Gtk\.DragIcon/new Gtk.DragIcon.ge
 %{_datadir}/vala/vapi/singularity-1.0.deps
 %{_datadir}/vala/vapi/singularity-system-1.0.deps
 %{_datadir}/vala/vapi/singularity-system-1.0.vapi
+%{_datadir}/vala/vapi/upower-glib.vapi
 %{_datadir}/themes/Singularity/
 %{_datadir}/singularity
 %{_datadir}/dbus-1/interfaces/dev.sinty.UpdateProvider1.xml
