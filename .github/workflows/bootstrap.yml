@@ -86,7 +86,7 @@ jobs:
         run: |
           staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
           satm repo upload \
-            ${staging}terra-${{ matrix.version }} \
+            ${staging}terra${{ matrix.version }} \
             anda-build/rpm/rpms/*
         env:
           SUBATOMIC_API_URL: https://kiritanpo.fyralabs.com
@@ -104,7 +104,8 @@ jobs:
 
       - name: Create Madoguchi Repository
         run: |
-          curl -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" https://madoguchi.fyralabs.com/v4/repos/${{ matrix.pkg.labels['staging'] == 'staging' && 'staging-' || '' }}terra${{ matrix.version }} -X PUT -H "Content-Type: application/json" -d '{"gh":"https://github.com/terrapkg/packages/tree/${{ matrix.version }}","link":"https://repos.fyralabs.com/${{ matrix.pkg.labels['staging'] == 'staging' && 'staging-' || '' }}terra${{ matrix.version }}/"}' --fail-with-body
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
+          curl -H "Authorization: Bearer ${{ secrets.MADOGUCHI_JWT }}" https://madoguchi.fyralabs.com/v4/repos/${staging}terra${{ matrix.version }} -X PUT -H "Content-Type: application/json" -d '{"gh":"https://github.com/terrapkg/packages/tree/f${{ matrix.version }}","link":"https://repos.fyralabs.com/${staging}terra${{ matrix.version }}/"}' --fail-with-body
 
       - name: Attest build provenance
         uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
