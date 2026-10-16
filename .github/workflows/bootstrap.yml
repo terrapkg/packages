@@ -46,7 +46,7 @@ jobs:
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
       - name: Install build dependencies
-        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper,cli-tools}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
 
       - name: Install Anda
         run: |
@@ -60,6 +60,11 @@ jobs:
           export PATH=$PATH:/github/home/.cargo/bin
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           anda build -D "vendor Terra" -rrpmbuild anda/terra/mock-configs/pkg
+
+      - name: Build terra-cli-tools
+        run: |
+          mkdir -p anda-build/rpm/rpms
+          rpmbuild -bb anda/terra/cli-tools/*.spec --undefine=_disable_source_fetch -D "_sourcedir $(pwd)/anda/terra/cli-tools/" -D "_rpmdir $(pwd)/anda-build/rpm/rpms/"
 
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
