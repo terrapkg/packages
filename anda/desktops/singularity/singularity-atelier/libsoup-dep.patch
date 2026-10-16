@@ -1,0 +1,21 @@
+diff --git a/meson.build b/meson.build
+index 6e9de95..5b89ce1 100644
+--- a/meson.build
++++ b/meson.build
+@@ -22,6 +22,7 @@ lcms_dep   = dependency('lcms2', required: false)
+ math_dep   = cc.find_library('m')
+ gst_dep    = dependency('gstreamer-1.0')
+ peas_dep   = dependency('libpeas-2')
++soup_dep   = dependency('libsoup-3.0')
+ 
+ libsingularity_dep = dependency('singularity-1.0',
+   fallback: ['libsingularity', 'libsingularity_dep']
+@@ -42,7 +43,7 @@ plugin_api = shared_library('atelier-plugin',
+ )
+ plugin_api_dep = declare_dependency(link_with: plugin_api, include_directories: include_directories('.'))
+ 
+-core_deps = [gee_dep, gio_dep, json_dep, xml_dep, zlib_dep, cairo_dep, pango_dep, pixbuf_dep, gtk_dep, math_dep, gst_dep, peas_dep, plugin_api_dep, libsingularity_dep]
++core_deps = [gee_dep, gio_dep, json_dep, xml_dep, zlib_dep, cairo_dep, pango_dep, pixbuf_dep, gtk_dep, math_dep, gst_dep, peas_dep, soup_dep, plugin_api_dep, libsingularity_dep]
+ core_args = ['--pkg', 'zlib']
+ if lcms_dep.found()
+   core_deps += [lcms_dep]
