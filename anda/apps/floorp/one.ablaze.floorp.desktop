@@ -1,0 +1,27 @@
+[Desktop Entry]
+Type=Application
+Name=Floorp
+GenericName=Web Browser
+Comment=Privacy-focused web browser based on Firefox
+Exec=floorp %u
+Icon=one.ablaze.floorp
+Terminal=false
+StartupNotify=true
+StartupWMClass=floorp
+Categories=Network;WebBrowser;
+Keywords=Internet;WWW;Browser;Web;Explorer;Floorp;
+X-MultipleArgs=false
+MimeType=application/json;application/pdf;application/rdf+xml;application/rss+xml;application/x-xpinstall;application/xhtml+xml;application/xml;audio/flac;audio/ogg;audio/webm;image/avif;image/gif;image/jpeg;image/png;image/svg+xml;image/webp;text/html;text/mml;text/xml;video/ogg;video/webm;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;
+Actions=new-window;new-private-window;profilemanager;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=floorp --new-window %u
+
+[Desktop Action new-private-window]
+Name=New Private Window
+Exec=floorp --private-window %u
+
+[Desktop Action profilemanager]
+Name=Profile Manager
+Exec=floorp --ProfileManager
