@@ -79,6 +79,7 @@ mkdir -p license_${crate}
 pushd crates/$crate
 %{cargo_license_online} > ../../license_${crate}/LICENSE.dependencies
 popd
+done
 
 %files
 %doc README.md docs/*
