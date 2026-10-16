@@ -1,6 +1,8 @@
 %global pypi_name mlx-lm
 %global _desc Run LLMs with MLX.
 
+%global _python_dist_allow_version_zero 1
+
 Name:			python-%{pypi_name}
 Version:		0.32.2
 Release:		1%{?dist}
