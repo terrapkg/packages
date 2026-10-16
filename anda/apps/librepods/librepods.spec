@@ -56,7 +56,7 @@ popd
 %terra_appstream -o %{SOURCE1}
 
 %files
-%doc README.md linux/README.md CHANGELOG.md
+%doc README.md linux/README.md
 %license LICENSE
 %{_bindir}/librepods
 %{_bindir}/librepods-ctl
