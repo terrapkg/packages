@@ -115,7 +115,7 @@ jobs:
         if: inputs.publish
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
-          staging="${{ matrix.pkg.labels['staging'] && 'staging-' || '' }}"
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
           satm repo upload \
             ${staging}terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} \
             anda-build/rpm/rpms/*
@@ -127,7 +127,7 @@ jobs:
         if: inputs.publish && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
-          staging="${{ matrix.pkg.labels['staging'] && 'staging-' || '' }}"
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
           satm repo upload \
             ${staging}terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }}-source \
             anda-build/rpm/srpm/*
@@ -144,8 +144,12 @@ jobs:
             anda-build/rpm/srpm/*
 
       - name: Notify Madoguchi (Success)
-        if: inputs.publish && success() && matrix.pkg.labels['staging']
-        run: ./.github/workflows/mg.sh true "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
+        if: inputs.publish && success()
+        run: |
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
+          ./.github/workflows/mg.sh true "${{matrix.pkg.pkg}}" "${staging}terra${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
       - name: Notify Madoguchi (Failure)
-        if: inputs.publish && (cancelled() || failure()) && matrix.pkg.labels['staging']
-        run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
+        if: inputs.publish && (cancelled() || failure())
+        run: |
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
+          ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${staging}terra${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"

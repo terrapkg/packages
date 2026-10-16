@@ -84,7 +84,7 @@ jobs:
 
       - name: Upload packages to subatomic
         run: |
-          staging="${{ matrix.pkg.labels['staging'] == 'staging' && 'staging-' || '' }}"
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
           satm repo upload \
             ${staging}terra-${{ matrix.version }} \
             anda-build/rpm/rpms/*
@@ -94,7 +94,7 @@ jobs:
 
       - name: Upload source packages to subatomic
         run: |
-          staging="${{ matrix.pkg.labels['staging'] == 'staging' && 'staging-' || '' }}"
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
           satm repo upload \
             ${staging}terra${{ matrix.version }}-source \
             anda-build/rpm/srpm/*
