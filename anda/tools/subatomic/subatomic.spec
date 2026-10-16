@@ -47,18 +47,24 @@ Next-generation modern RPM repository metadata generator
 . %{_cargo_home}/env 
 %bcond rust_nightly 1
 
+for crate in kiritan libsubatomic satm; do
+pushd crates/$crate
+%{__cargo} fetch --locked
+popd
+done
+
 %cargo_prep_online
 %cargo_license_summary_online
 
 %build
 export ZSTD_SYS_USE_PKG_CONFIG=1
 %cargo_build
-pushd crates/kiritan
+
+for crate in kiritan satm; do
+pushd crates/$crate
 %cargo_build
 popd
-pushd crates/satm
-%cargo_build
-popd
+done
 
 %install
 install -Dm 755 target/rpm/subatomic    %{buildroot}%{_bindir}/subatomic
