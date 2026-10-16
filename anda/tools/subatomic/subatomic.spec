@@ -71,18 +71,26 @@ install -Dm 755 target/rpm/subatomic    %{buildroot}%{_bindir}/subatomic
 install -Dm 755 target/rpm/satm         %{buildroot}%{_bindir}/satm
 install -Dm 755 target/rpm/kiritan      %{buildroot}%{_bindir}/kiritan
 %{cargo_license_online} > LICENSE.dependencies
+pushd crates/libsubatomic
+%{cargo_license_online} > ../../LICENSE-libsubatomic.dependencies
+popd
+for crate in kiritan satm; do
+mkdir -p license_${crate}
+pushd crates/$crate
+%{cargo_license_online} > ../../license_${crate}/LICENSE.dependencies
+popd
 
 %files
 %doc README.md docs/*
-%license LICENSE LICENSE.dependencies
+%license LICENSE LICENSE.dependencies LICENSE-libsubatomic.dependencies
 %{_bindir}/subatomic
 
 %files -n satm
-%license LICENSE LICENSE.dependencies
+%license LICENSE license_satm/LICENSE.dependencies
 %{_bindir}/satm
 
 %files -n kiritan
-%license LICENSE LICENSE.dependencies
+%license LICENSE license_kiritan/LICENSE.dependencies
 %{_bindir}/kiritan
 
 %changelog
