@@ -1,7 +1,7 @@
 %define debug_package %nil
 
 Name:           chawan-nightly
-Version:        0.4.4
+Version:        0.5.0
 Release:        1%{?dist}
 Epoch:          1
 Summary:        TUI web (and (S)FTP, Gopher, Gemini, ...) browser with CSS, inline image and JavaScript support
