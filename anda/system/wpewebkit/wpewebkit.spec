@@ -12,23 +12,19 @@ Source0:        https://wpewebkit.org/releases/%{name}-%{version}.tar.xz
 
 BuildRequires: atk-devel at-spi2-atk-devel
 BuildRequires: bison
-BuildRequires: cairo-devel
 BuildRequires: cmake
-BuildRequires: egl-wayland-devel
 BuildRequires: enchant2-devel
 BuildRequires: expat-devel
 BuildRequires: flex
 BuildRequires: flite-devel
 BuildRequires: clang
 BuildRequires: lld
-BuildRequires: gi-docgen
 BuildRequires: gperf
 BuildRequires: gstreamer1-devel
 BuildRequires: gstreamer1-plugins-bad-free-devel
 BuildRequires: gstreamer1-plugins-base-devel
 BuildRequires: harfbuzz-devel
 BuildRequires: hyphen-devel
-BuildRequires: pkgconfig(gobject-introspection-1.0)
 BuildRequires: libatomic
 BuildRequires: libepoxy-devel
 BuildRequires: libicu-devel
@@ -99,25 +95,17 @@ files for developing applications that use %{name}
 %autosetup -p1 -n wpewebkit-%{version}
 
 %conf
-# Increase the DIE limit so our debuginfo packages could be size optimized.
-# Decreases the size for x86_64 from ~5G to ~1.1G.
-# https://bugzilla.redhat.com/show_bug.cgi?id=1456261
-%global _dwz_max_die_limit 250000000
+# WebKit's LTO_MODE handles LTO itself; don't let redhat-rpm-config add
+# -flto=thin on top (which also made riscv64 get LTO anyway).
+# Must come before anything below that expands optflags/build_ldflags.
+%global _lto_cflags %{nil}
 
-# The _dwz_max_die_limit is being overridden by the arch specific ones from the
-# redhat-rpm-config so we need to set the arch specific ones as well - now it
-# is only needed for x86_64.
-%global _dwz_max_die_limit_x86_64 250000000
-
-# Require 32 GB of RAM per vCPU for debuginfo processing. 16 GB is not enough.
-%global _find_debuginfo_opts %limit_build -m 32768
-
-# Reduce debuginfo verbosity 32-bit builds to reduce memory consumption even more.
-# https://bugs.webkit.org/show_bug.cgi?id=140176
-# https://lists.fedoraproject.org/archives/list/devel@lists.fedoraproject.org/thread/I6IVNA52TXTBRQLKW45CJ5K4RA4WNGMI/
-%ifarch %{ix86}
+# Only emit line tables. Full -g makes ThinLTO links and find-debuginfo/dwz
+# take a very long time and huge amounts of RAM, and backtraces work fine with -g1.
 %global optflags %(echo %{optflags} | sed 's/-g /-g1 /')
-%endif
+
+# WebKit only picks lld when LTO_MODE is set, use it everywhere.
+%global build_ldflags %{build_ldflags} -fuse-ld=lld
 
 # JIT is broken on ARM systems with new ARMv8.5 BTI extension at the moment
 # Cf. https://bugzilla.redhat.com/show_bug.cgi?id=2130009
