@@ -107,6 +107,13 @@ files for developing applications that use %{name}
 # WebKit only picks lld when LTO_MODE is set, use it everywhere.
 %global build_ldflags %{build_ldflags} -fuse-ld=lld
 
+# dwz can't handle clang's DWARF 5 output (.debug_str_offsets) and bails anyway.
+%global _find_debuginfo_dwz_opts %{nil}
+
+# Multithreaded zstd at the default level, the huge payloads are otherwise
+# compressed on a single core.
+%global _binary_payload w19T.zstdio
+
 # JIT is broken on ARM systems with new ARMv8.5 BTI extension at the moment
 # Cf. https://bugzilla.redhat.com/show_bug.cgi?id=2130009
 # Cf. https://bugs.webkit.org/show_bug.cgi?id=245697
