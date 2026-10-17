@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-    spec = "wpebackend-fdp.spec"
+    spec = "wpebackend-fdo.spec"
   }
 }
