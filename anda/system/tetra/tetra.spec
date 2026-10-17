@@ -1,5 +1,5 @@
 Name:           tetra
-Version:        0.2.2
+Version:        0.2.3
 Release:        2%{?dist}
 Summary:        Modular host agent for Ultramarine Server and cloud hosts
 SourceLicense:  AGPL-3.0-or-later
