@@ -13,7 +13,7 @@ Source0:        https://gitlab.zrythm.org/zrythm/zrythm/-/archive/%v/zrythm-%v.t
 
 BuildRequires: automake
 BuildRequires: libappstream-glib
-BuildRequires: mold
+BuildRequires: lld
 BuildRequires: git
 BuildRequires: gettext
 BuildRequires: python
@@ -104,8 +104,8 @@ various plugin and file formats.
 
 
 %build
-CFLAGS=$(echo "$CFLAGS -fuse-ld=mold -Wno-incompatible-pointer-types" | sed -E "s@\b-Werror\b@@")
-CXXFLAGS=$(echo "$CFLAGS -fuse-ld=mold" | sed -E "s@\b-Werror\b@@")
+CFLAGS=$(echo "$CFLAGS -fuse-ld=lld -Wno-incompatible-pointer-types" | sed -E "s@\b-Werror\b@@")
+CXXFLAGS=$(echo "$CFLAGS -fuse-ld=lld" | sed -E "s@\b-Werror\b@@")
 
 %meson \
        -Drtmidi=enabled \

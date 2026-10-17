@@ -9,7 +9,7 @@ URL:            https://crates.io/crates/create-tauri-app
 Source:         %{terra_crates_source}
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
-BuildRequires:  mold
+BuildRequires:  lld
 Suggests:       tauri
 Packager:       Gilver E. <roachy@fyralabs.com>
 

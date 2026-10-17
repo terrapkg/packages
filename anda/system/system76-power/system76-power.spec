@@ -14,7 +14,7 @@ BuildRequires:  libusb-compat-0.1-devel
 BuildRequires:  dbus-devel 
 BuildRequires:  systemd-rpm-macros 
 BuildRequires:  cargo-rpm-macros
-BuildRequires:  mold
+BuildRequires:  lld
 
 %description
 %summary.

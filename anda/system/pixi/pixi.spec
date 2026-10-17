@@ -10,7 +10,7 @@ Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  mold
+BuildRequires:  lld
 
 %pkg_completion -BefNz
 

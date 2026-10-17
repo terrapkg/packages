@@ -16,7 +16,7 @@ Source3:        https://raw.githubusercontent.com/InioX/matugen/refs/tags/v%vers
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
-BuildRequires:  mold
+BuildRequires:  lld
 
 Packager:       sadlerm <sad_lerm@hotmail.com>
 

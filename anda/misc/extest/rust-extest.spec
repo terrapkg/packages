@@ -42,7 +42,7 @@ BuildRequires:  perl
 BuildRequires:  rust-packaging
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  clang
-BuildRequires:  mold
+BuildRequires:  lld
 Recommends:     %{name}-steam
 %ifarch x86_64
 Recommends:     %{name}(x86-32)

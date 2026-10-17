@@ -21,7 +21,7 @@ Requires:       xhost
 Requires:       kwin-wayland swaybg
 Requires:       nmgui network-manager-applet
 Requires:       polkit
-BuildRequires:  anda-srpm-macros mold cargo rust-packaging perl systemd-rpm-macros
+BuildRequires:  anda-srpm-macros lld cargo rust-packaging perl systemd-rpm-macros
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  gcc clang clang-libs
