@@ -20,6 +20,7 @@ BuildRequires: expat-devel
 BuildRequires: flex
 BuildRequires: flite-devel
 BuildRequires: clang
+BuildRequires: lld
 BuildRequires: gi-docgen
 BuildRequires: gperf
 BuildRequires: gstreamer1-devel
@@ -68,7 +69,6 @@ BuildRequires: libgcrypt-devel
 BuildRequires: libseccomp-devel
 BuildRequires: xdg-dbus-proxy
 BuildRequires: lcms2-devel
-BuildRequires: mold
 
 BuildRequires: pkgconfig(libavif)
 BuildRequires: pkgconfig(libdrm)
@@ -128,7 +128,9 @@ files for developing applications that use %{name}
 %endif
 
 %cmake \
-  -DCMAKE_EXE_LINKER_FLAGS=-fuse-ld=lld \
+%ifnarch riscv64
+  -DLTO_MODE=thin \
+%endif
   -DPORT=WPE \
   -DCMAKE_BUILD_TYPE=Release \
   -DENABLE_MINIBROWSER=ON \
@@ -147,40 +149,48 @@ export NINJA_STATUS="[%f/%t][%e] "
 %cmake_install
 
 # Many bundled license files share a name (e.g. "LICENSE"), so flatten each
-# path into the filename: Source/WTF/icu/LICENSE -> Source.WTF.icu.LICENSE
+# path into the filename: Source/ThirdParty/skia/LICENSE -> Source.ThirdParty.skia.LICENSE
 mkdir -p _license_files
 for f in \
-  Source/JavaScriptCore/disassembler/zydis/LICENSE-zydis.txt \
-  Source/JavaScriptCore/disassembler/zydis/LICENSE-zycore.txt \
-  Source/WebCore/LICENSE-LGPL-2 \
   Source/WebCore/LICENSE-APPLE \
+  Source/WebCore/LICENSE-LGPL-2 \
   Source/WebCore/LICENSE-LGPL-2.1 \
-  Source/WTF/LICENSE-libc++.txt \
-  Source/WTF/wtf/dtoa/LICENSE \
+  Source/JavaScriptCore/COPYING.LIB \
+  Source/JavaScriptCore/disassembler/ARM64/LICENSE-binja.txt \
+  Source/JavaScriptCore/disassembler/zydis/LICENSE-zycore.txt \
+  Source/JavaScriptCore/disassembler/zydis/LICENSE-zydis.txt \
+  Source/JavaScriptCore/runtime/temporal/core/LICENSE-icu4x.txt \
+  Source/JavaScriptCore/runtime/temporal/core/LICENSE-temporal_rs.txt \
   Source/WTF/LICENSE-LLVM.txt \
-  Source/WTF/icu/LICENSE \
-  Source/WebInspectorUI/UserInterface/External/Esprima/LICENSE \
-  Source/WebInspectorUI/UserInterface/External/CodeMirror/LICENSE \
-  Source/WebInspectorUI/UserInterface/External/three.js/LICENSE \
+  Source/WTF/LICENSE-dragonbox.txt \
+  Source/WTF/LICENSE-libc++.txt \
+  Source/WTF/LICENSE-simde.txt \
+  Source/WTF/wtf/dtoa/COPYING \
+  Source/WTF/wtf/dtoa/LICENSE \
+  Source/WTF/wtf/fast_float/LICENSE \
+  Source/WTF/wtf/simdutf/LICENSE-simdutf.txt \
+  Source/bmalloc/mimalloc/mimalloc/LICENSE \
   Source/WebInspectorUI/UserInterface/External/CSSDocumentation/LICENSE \
-  Source/ThirdParty/gtest/LICENSE \
-  Source/ThirdParty/ANGLE/src/libANGLE/renderer/vulkan/shaders/src/third_party/ffx_spd/LICENSE \
-  Source/ThirdParty/ANGLE/src/libANGLE/renderer/vulkan/shaders/src/third_party/etc_decoder/LICENSE \
-  Source/ThirdParty/ANGLE/src/third_party/ceval/LICENSE \
-  Source/ThirdParty/ANGLE/src/third_party/volk/LICENSE.md \
-  Source/ThirdParty/ANGLE/src/third_party/libXNVCtrl/LICENSE \
-  Source/ThirdParty/ANGLE/src/common/third_party/xxhash/LICENSE \
-  Source/ThirdParty/ANGLE/src/tests/test_utils/third_party/LICENSE \
-  Source/ThirdParty/ANGLE/util/windows/third_party/StackWalker/LICENSE \
+  Source/WebInspectorUI/UserInterface/External/CodeMirror/LICENSE \
+  Source/WebInspectorUI/UserInterface/External/Esprima/LICENSE \
+  Source/WebInspectorUI/UserInterface/External/three.js/LICENSE \
   Source/ThirdParty/ANGLE/LICENSE \
-  Source/ThirdParty/ANGLE/tools/flex-bison/third_party/m4sugar/LICENSE \
+  Source/ThirdParty/ANGLE/src/common/third_party/xxhash/LICENSE \
+  Source/ThirdParty/ANGLE/src/third_party/ceval/LICENSE \
   Source/ThirdParty/ANGLE/tools/flex-bison/third_party/skeletons/LICENSE \
-  Source/ThirdParty/ANGLE/third_party/colorama/LICENSE \
-  Source/ThirdParty/ANGLE/third_party/r8/LICENSE \
-  Source/ThirdParty/ANGLE/third_party/android_system_sdk/LICENSE \
-  Source/ThirdParty/ANGLE/third_party/proguard/LICENSE \
-  Source/ThirdParty/ANGLE/third_party/flatbuffers/LICENSE \
-  Source/ThirdParty/ANGLE/third_party/turbine/LICENSE
+  Source/ThirdParty/skia/LICENSE \
+  Source/ThirdParty/skia/modules/skcms/LICENSE \
+  Source/ThirdParty/pdfjs/LICENSE \
+  Source/ThirdParty/pdfjs/web/cmaps/LICENSE \
+  Source/ThirdParty/pdfjs/web/iccs/LICENSE \
+  Source/ThirdParty/pdfjs/web/standard_fonts/LICENSE_FOXIT \
+  Source/ThirdParty/pdfjs/web/standard_fonts/LICENSE_LIBERATION \
+  Source/ThirdParty/pdfjs/web/wasm/LICENSE_JBIG2 \
+  Source/ThirdParty/pdfjs/web/wasm/LICENSE_OPENJPEG \
+  Source/ThirdParty/pdfjs/web/wasm/LICENSE_PDFJS_JBIG2 \
+  Source/ThirdParty/pdfjs/web/wasm/LICENSE_PDFJS_OPENJPEG \
+  Source/ThirdParty/pdfjs/web/wasm/LICENSE_PDFJS_QCMS \
+  Source/ThirdParty/pdfjs/web/wasm/LICENSE_QCMS
 do
   cp -p "$f" "_license_files/${f//\//.}"
 done
