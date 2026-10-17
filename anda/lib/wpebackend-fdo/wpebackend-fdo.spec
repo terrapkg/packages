@@ -5,7 +5,8 @@ Version:        1.16.1
 Release:        1%{?dist}
 Summary:        A WPE backend designed for Linux desktop systems
 
-License:        BSD-2-Clause AND MIT
+SourceLicense:  BSD-2-Clause
+License:        %{sourcelicense} AND MIT
 URL:            https://github.com/Igalia/wpebackend-fdp
 Source0:        https://wpewebkit.org/releases/wpebackend-fdo-%{version}.tar.xz
 
