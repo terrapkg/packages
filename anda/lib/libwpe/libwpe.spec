@@ -3,7 +3,7 @@ Version:        1.16.3
 Release:        1%{?dist}
 Summary:        General-purpose library for the WPE-flavored port of WebKit
 SourceLicense:  BSD-2-Clause
-License:        BSD-2-Clause AND Apache-2.0 AND LGPL-2.0-or-later AND MIT-open-group AND HPND
+License:        %{sourcelicense} AND Apache-2.0 AND LGPL-2.0-or-later AND MIT-open-group AND HPND
 URL:            https://github.com/WebPlatformForEmbedded/%{name}
 Source0:        https://wpewebkit.org/releases/libwpe-%{version}.tar.xz
 
