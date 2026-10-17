@@ -21,6 +21,8 @@ BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(wpe-1.0)
 
+Packager: Cypress Reed <cypress@fyralabs.com>
+
 %description
 A WPE backend designed for Linux desktop systems.
 
