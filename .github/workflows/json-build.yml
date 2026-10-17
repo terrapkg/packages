@@ -44,6 +44,7 @@ jobs:
       matrix:
         pkg: ${{ fromJson(inputs.packages) }}
         version: ["rawhide"]
+        staging: ["staging"]
       fail-fast: false
     runs-on: ${{ inputs.custom_builder && inputs.custom_builder || (matrix.pkg.arch == 'aarch64' && matrix.pkg.labels['large']) && format('cirun-arm64-lg--{0}', github.run_id) || matrix.pkg.arch == 'aarch64' && 'ubuntu-22.04-arm' || matrix.pkg.labels['large'] && format('cirun-x86-64-lg--{0}', github.run_id) || 'ubuntu-22.04' }}
     container:
@@ -114,19 +115,25 @@ jobs:
         if: inputs.publish
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
-          subatomic-cli upload --prune \
-            --server https://subatomic.fyralabs.com \
-            --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
+          satm repo upload \
+            ${staging}terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} \
+            anda-build/rpm/rpms/*
+        env:
+          SUBATOMIC_API_URL: https://kiritanpo.fyralabs.com
+          SUBATOMIC_API_TOKEN: ${{ secrets.KIRITANPO_TOKEN }}
 
       - name: Upload source packages to subatomic
         if: inputs.publish && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
-          subatomic-cli upload --prune \
-            --server https://subatomic.fyralabs.com \
-            --token ${{ secrets.SUBATOMIC_TOKEN }} \
-            terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }}-source anda-build/rpm/srpm/*
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
+          satm repo upload \
+            ${staging}terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }}-source \
+            anda-build/rpm/srpm/*
+        env:
+          SUBATOMIC_API_URL: https://kiritanpo.fyralabs.com
+          SUBATOMIC_API_TOKEN: ${{ secrets.KIRITANPO_TOKEN }}
 
       - name: Attest build provenance
         if: inputs.publish
@@ -138,7 +145,11 @@ jobs:
 
       - name: Notify Madoguchi (Success)
         if: inputs.publish && success()
-        run: ./.github/workflows/mg.sh true "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
+        run: |
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
+          ./.github/workflows/mg.sh true "${{matrix.pkg.pkg}}" "${staging}terra${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
       - name: Notify Madoguchi (Failure)
         if: inputs.publish && (cancelled() || failure())
-        run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
+        run: |
+          staging="${{ matrix.staging == 'staging' && 'staging-' || '' }}"
+          ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${staging}terra${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
