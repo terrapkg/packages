@@ -1,8 +1,8 @@
 %global goipath github.com/ublue-os/%{name}
 
 Name:           uupd
-Version:        1.5.0
-Release:        4%{?dist}
+Version:        1.5.1
+Release:        1%{?dist}
 Summary:        Centralized update service/checker made for Universal Blue
 License:        Apache-2.0
 URL:            https://github.com/ublue-os/%{name}
