@@ -13,7 +13,7 @@ URL:            https://crates.io/crates/xplr
 Source:         %{terra_crates_source}
 
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  mold
+BuildRequires:  lld
 BuildRequires:  anda-srpm-macros
 
 %global _description %{expand:

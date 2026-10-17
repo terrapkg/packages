@@ -17,7 +17,7 @@ BuildRequires:  libseccomp-devel
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  binutils
 BuildRequires:  fdupes
-BuildRequires:  mold
+BuildRequires:  lld
 
 %description
 youki is an implementation of the OCI runtime-spec in Rust, similar to runc.

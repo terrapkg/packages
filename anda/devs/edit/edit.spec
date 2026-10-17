@@ -20,7 +20,7 @@ BuildRequires: cargo-rpm-macros
 %if %{with rust_nightly}
 BuildRequires: rustup
 %endif
-BuildRequires: mold
+BuildRequires: lld
 Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description %_description

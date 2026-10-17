@@ -14,7 +14,7 @@ License:        %{SourceLicense} AND (Apache-2.0 OR MIT) AND BSD-3-Clause AND (M
 BuildRequires:  cargo
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-BuildRequires:  mold
+BuildRequires:  lld
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 

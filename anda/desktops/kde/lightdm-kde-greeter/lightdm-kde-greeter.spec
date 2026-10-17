@@ -6,7 +6,7 @@ License:        GPL-3.0-or-later
 URL:            https://invent.kde.org/plasma/%name
 Source0:        %url/-/archive/v%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
-BuildRequires:  gcc gcc-c++ mold
+BuildRequires:  gcc gcc-c++ lld
 BuildRequires:  cmake extra-cmake-modules
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6ShaderTools)
@@ -37,7 +37,7 @@ Provides: lightdm-greeter
 sed 's/sbin/bin/' -i greeter/CMakeLists.txt
 
 %conf
-export LDFLAGS="$LDFLAGS -fuse-ld=mold"
+export LDFLAGS="$LDFLAGS -fuse-ld=lld"
 %cmake_kf6 \
 	-DGREETER_WAYLAND_SESSIONS_FIRST=ON \
 	-DGREETER_IMAGES_DIR=%_sharedstatedir/%name/images \

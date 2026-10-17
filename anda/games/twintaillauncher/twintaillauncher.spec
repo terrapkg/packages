@@ -41,7 +41,7 @@ BuildRequires:       hicolor-icon-theme
 BuildRequires:       perl
 BuildRequires:       zlib-ng-devel
 BuildRequires:       clang
-BuildRequires:       mold
+BuildRequires:       lld
 
 Provides: ttl
 

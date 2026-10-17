@@ -5,7 +5,7 @@ Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
 License:		MIT
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	gcc mold make kernel-headers systemd-rpm-macros anda-srpm-macros
+BuildRequires:	gcc lld make kernel-headers systemd-rpm-macros anda-srpm-macros
 Packager:   madonuko <mado@fyralabs.com>
 
 %description
@@ -19,10 +19,10 @@ g keyd -
 EOF
 
 %build
-%make_build PREFIX=%_prefix LDFLAGS="$LDFLAGS -fuse-ld=mold"
+%make_build PREFIX=%_prefix LDFLAGS="$LDFLAGS -fuse-ld=lld"
 
 %install
-%make_install PREFIX=%_prefix LDFLAGS="$LDFLAGS -fuse-ld=mold" FORCE_SYSTEMD=1
+%make_install PREFIX=%_prefix LDFLAGS="$LDFLAGS -fuse-ld=lld" FORCE_SYSTEMD=1
 install -Dm644 keyd.service %buildroot%_unitdir/keyd.service
 install -Dm644 keyd.conf -t %buildroot%_sysusersdir
 install -Dm755 scripts/dump-xkb-config -t %buildroot%_datadir/keyd/

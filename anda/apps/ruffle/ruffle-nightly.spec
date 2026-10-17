@@ -1,7 +1,7 @@
 %global ver 2026-10-20
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
-%bcond_without mold
+%bcond_without lld
 
 %global _description %{expand:
 Ruffle is an Adobe Flash Player emulator written in the Rust programming
@@ -16,7 +16,7 @@ URL:            https://ruffle.rs/
 Source0:        https://github.com/ruffle-rs/ruffle/archive/refs/tags/nightly-%ver.tar.gz
 Provides:       ruffle
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  anda-srpm-macros mold
+BuildRequires:  anda-srpm-macros lld
 BuildRequires:  gcc-c++ cmake
 BuildRequires:  java-latest-openjdk-headless
 BuildRequires:  pkgconfig(alsa)

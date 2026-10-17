@@ -11,7 +11,6 @@ Source0:	https://tangled.org/willowidk.dev/panel-modeler/archive/refs/tags/v%{ve
 
 BuildRequires:  meson
 BuildRequires:  clang
-BuildRequires:  mold
 BuildRequires:  ninja-build
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  desktop-file-utils

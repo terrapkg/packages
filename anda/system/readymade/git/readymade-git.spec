@@ -10,7 +10,7 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
 Source0:        %url/archive/%commit.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
-BuildRequires:	anda-srpm-macros rust-packaging mold
+BuildRequires:	anda-srpm-macros rust-packaging lld
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libacl)
