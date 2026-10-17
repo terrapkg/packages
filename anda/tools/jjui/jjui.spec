@@ -3,7 +3,7 @@
 
 # https://github.com/idursun/jjui
 %global goipath         github.com/idursun/jjui
-Version:                0.10.12
+Version:                0.10.11
 
 %gometa -f
 
