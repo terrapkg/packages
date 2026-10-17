@@ -9,9 +9,11 @@ Summary:        Cloudflare Tunnel client
 
 License:        Apache-2.0
 URL:            https://github.com/cloudflare/cloudflared
-Source:         %{url}/archive/refs/tags/%{version}.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
+Source1:        cloudflared.service
 
 BuildRequires:  anda-srpm-macros
+BuildRequires:  systemd-rpm-macros
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -32,12 +34,25 @@ sed -e 's/\${VERSION}/%{version}/; s/\${DATE}/%{build_date}/' cloudflared_man_te
 %install
 install -Dm755 %{gobuilddir}/bin/%{name} %{buildroot}%{_bindir}/%{name}
 install -Dm644 cloudflared.1 %{buildroot}%{_mandir}/man1/cloudflared.1
+install -Dm644 %{SOURCE1} %{buildroot}%{_unitdir}/cloudflared.service
+install -dm755 %{buildroot}%{_sysconfdir}/cloudflared
+
+%post
+%systemd_post cloudflared.service
+
+%preun
+%systemd_preun cloudflared.service
+
+%postun
+%systemd_postun_with_restart cloudflared.service
 
 %files
 %license LICENSE
 %doc README.md RELEASE_NOTES
 %{_bindir}/cloudflared
 %{_mandir}/man1/cloudflared.1*
+%{_unitdir}/cloudflared.service
+%dir %{_sysconfdir}/cloudflared
 
 %changelog
 * Sat Oct 17 2026 Cypress Reed <cypress@fyralabs.com>
