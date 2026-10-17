@@ -1,5 +1,5 @@
 Name:           buildprof
-Version:        0.2.7
+Version:        0.2.8
 Release:        1%{?dist}
 Summary:        Records every process and file access in a build and shows it as an interactive timeline
 URL:            https://buildprof.lalitm.com
