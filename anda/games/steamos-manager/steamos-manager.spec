@@ -11,7 +11,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  clang-devel
 BuildRequires:  rust
-BuildRequires:  mold
+BuildRequires:  lld
 BuildRequires:  glib2-devel
 BuildRequires:  speech-dispatcher-devel
 BuildRequires:  pkgconfig(libudev)

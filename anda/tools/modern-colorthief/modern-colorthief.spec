@@ -15,7 +15,7 @@ BuildRequires: anda-srpm-macros
 BuildRequires: cargo
 BuildRequires: cargo-rpm-macros
 BuildRequires: maturin
-BuildRequires: mold
+BuildRequires: lld
 BuildRequires: python3-devel
 BuildRequires: pyproject-rpm-macros
 BuildRequires: python3dist(pip)

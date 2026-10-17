@@ -15,7 +15,7 @@ URL:            https://crates.io/crates/gping
 Source:         %{terra_crates_source}
 Source1:        https://github.com/orf/gping/blob/gping-v%version/LICENSE
 
-BuildRequires:  anda-srpm-macros rust-packaging >= 21 mold
+BuildRequires:  anda-srpm-macros rust-packaging >= 21 lld
 
 %global _description %{expand:
 Ping, but with a graph.}

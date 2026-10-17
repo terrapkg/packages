@@ -15,7 +15,7 @@ Source:         %{terra_crates_source}
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cmake
-BuildRequires:  mold
+BuildRequires:  lld
 BuildRequires:  git-core
 
 # Old devel packages

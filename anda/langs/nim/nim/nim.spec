@@ -11,7 +11,7 @@ Source1:		nim.1
 Source2:		nimgrep.1
 Source3:		nimble.1
 Source4:		nimsuggest.1
-BuildRequires:	gcc mold git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre2-devel
+BuildRequires:	gcc lld git-core gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel pcre2-devel
 BuildRequires:  redhat-rpm-config anda-srpm-macros
 Requires:		gcc
 Recommends:		nim-tools
@@ -54,10 +54,10 @@ and its standard library.
 
 
 %build
-export CFLAGS="${CFLAGS} -Ofast -fuse-ld=mold"
-export CXXFLAGS="${CXXFLAGS} -Ofast -fuse-ld=mold"
-export FFLAGS="${FFLAGS} -Ofast -fuse-ld=mold"
-export FCFLAGS="${FCFLAGS} -Ofast -fuse-ld=mold"
+export CFLAGS="${CFLAGS} -Ofast -fuse-ld=lld"
+export CXXFLAGS="${CXXFLAGS} -Ofast -fuse-ld=lld"
+export FFLAGS="${FFLAGS} -Ofast -fuse-ld=lld"
+export FCFLAGS="${FCFLAGS} -Ofast -fuse-ld=lld"
 
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
@@ -77,10 +77,10 @@ wait
 
 
 %install
-export CFLAGS="${CFLAGS} -Ofast -fuse-ld=mold"
-export CXXFLAGS="${CXXFLAGS} -Ofast -fuse-ld=mold"
-export FFLAGS="${FFLAGS} -Ofast -fuse-ld=mold"
-export FCFLAGS="${FCFLAGS} -Ofast -fuse-ld=mold"
+export CFLAGS="${CFLAGS} -Ofast -fuse-ld=lld"
+export CXXFLAGS="${CXXFLAGS} -Ofast -fuse-ld=lld"
+export FFLAGS="${FFLAGS} -Ofast -fuse-ld=lld"
+export FCFLAGS="${FCFLAGS} -Ofast -fuse-ld=lld"
 
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 

@@ -21,7 +21,7 @@ BuildRequires:  openssl-devel
 BuildRequires:  git-core
 BuildRequires:  pkgconfig(libgit2)
 BuildRequires:  libssh2-devel
-BuildRequires:  mold
+BuildRequires:  lld
 Requires:       mock
 Requires:       rpm-build
 Requires:       createrepo_c

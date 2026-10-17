@@ -8,7 +8,7 @@ License:        MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Apach
 
 BuildRequires:  cargo
 BuildRequires:  gcc-c++
-BuildRequires:  mold
+BuildRequires:  lld
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils

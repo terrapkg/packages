@@ -10,7 +10,7 @@ URL:            https://github.com/EmbarkStudios/cargo-about
 Source0:        %{crates_source}
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
-BuildRequires:  mold
+BuildRequires:  lld
 Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description

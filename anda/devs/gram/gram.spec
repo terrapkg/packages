@@ -29,7 +29,7 @@ BuildRequires: gcc-c++
 %endif
 BuildRequires: gettext-envsubst
 BuildRequires: libxkbcommon-x11-devel
-BuildRequires: mold
+BuildRequires: lld
 BuildRequires: openssl-devel
 Packager:      Gilver E. <roachy@fyralabs.com>
 

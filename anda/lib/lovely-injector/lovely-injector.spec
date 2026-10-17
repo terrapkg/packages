@@ -22,7 +22,7 @@ BuildRequires:  cmake
 BuildRequires:  gcc-c++
 Packager:       Cappy Ishihara <cappy@cappuchino.xyz>
 
-BuildRequires:  mold anda-srpm-macros cargo-rpm-macros >= 24
+BuildRequires:  lld anda-srpm-macros cargo-rpm-macros >= 24
 %if %{with rust_nightly}
 BuildRequires: rustup
 %endif
