@@ -42,8 +42,7 @@ Summary:        Web server with automatic HTTPS and DNS provider modules
 # their vendored Go dependencies (vendor-modules.txt lists them).
 License:        Apache-2.0 AND MIT AND BSD-2-Clause AND BSD-2-Clause-Views AND BSD-3-Clause AND CC0-1.0 AND MPL-2.0 AND OFL-1.1
 URL:            https://caddyserver.com
-# Upstream packaging assets (welcome page)
-Source0:        https://github.com/caddyserver/dist/archive/refs/tags/%{dist_ver}.tar.gz#/caddy-dist-%{dist_ver}.tar.gz
+Source0:        https://github.com/caddyserver/dist/archive/refs/tags/%{dist_ver}.tar.gz
 # Config, units and sysusers match Fedora's caddy package so this is a
 # drop-in replacement for it
 Source1:        Caddyfile
@@ -77,6 +76,8 @@ RFC 2136 and ACME-DNS.
 
 It ships the same caddy.service, caddy-api.service and /etc/caddy layout as
 Fedora's caddy package and replaces it.
+
+%pkg_completion -Bfz caddy
 
 %prep
 %autosetup -n dist-%(echo %{dist_ver} | sed 's/^v//')
@@ -218,10 +219,7 @@ fi
 %config(noreplace) %{_sysconfdir}/caddy/Caddyfile
 %dir %{_sysconfdir}/caddy/Caddyfile.d
 %attr(0750,caddy,caddy) %dir %{_sharedstatedir}/caddy
-%{bash_completions_dir}/caddy
-%{zsh_completions_dir}/_caddy
-%{fish_completions_dir}/caddy.fish
 
 %changelog
-* Sat Oct 17 2026 Cypress Reed <cypress@fyralabs.com> - 2.11.7-1
+* Sat Oct 17 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial package
