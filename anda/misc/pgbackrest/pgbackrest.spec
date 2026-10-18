@@ -10,6 +10,7 @@ BuildRequires:  meson
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  bzip2-devel
+BuildRequires:  python3-pyyaml
 BuildRequires:  pkgconfig(liblz4)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libpq)
