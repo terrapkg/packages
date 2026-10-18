@@ -31,6 +31,7 @@ BuildRequires:  pkgconfig(x11-xcb)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xkbcommon-x11)
 BuildRequires:  rpm_macro(buildsystem_meson_conf)
+BuildRequires:  pkgconfig(gbm)
 BuildSystem:    meson
 BuildOption(conf): -Dplatforms=drm,headless,wayland,gtk4,x11
 BuildOption(conf): -Dwpe_api=2.0
