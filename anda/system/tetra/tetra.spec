@@ -84,8 +84,7 @@ fi
 
 %changelog
 * Sat Oct 17 2026 Cypress Reed <cypress@fyralabs.com>
-- Package tetra.socket and the tetra sysusers group; tetra.service is now
-  socket-activated
+- Package tetra.socket and the tetra sysusers group; tetra.service is now socket-activated
 
 * Sun Aug 09 2026 Cypress Reed <cypress@fyralabs.com>
 - Change license to AGPL
