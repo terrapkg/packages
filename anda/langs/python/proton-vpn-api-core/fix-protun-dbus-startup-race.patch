@@ -1,0 +1,44 @@
+diff --git a/src/protun/nm_protun_service/run.rs b/src/protun/nm_protun_service/run.rs
+index e17cfa8..b36327e 100644
+--- a/src/protun/nm_protun_service/run.rs
++++ b/src/protun/nm_protun_service/run.rs
+@@ -25,7 +25,7 @@
+ 
+ use std::sync::Arc;
+ 
+-use zbus::Connection;
++use zbus::connection;
+ 
+ use super::interfaces::new_interfaces;
+ 
+@@ -41,20 +41,18 @@ pub async fn run() -> Result<(), Box<dyn std::error::Error>> {
+ 
+     let shutdown = Arc::new(tokio::sync::Notify::new());
+     let (plugin, connection_updates) = new_interfaces(shutdown.clone());
+-    let zbus_connection = Connection::system().await?;
+-
+-    zbus_connection
+-        .object_server()
+-        .at(DBUS_OBJECT_PATH, plugin)
+-        .await?;
+-
+-    zbus_connection
+-        .object_server()
+-        .at(DBUS_OBJECT_PATH, connection_updates)
++    // Use the connection builder so the object server is fully started
++    // before the bus name is requested. Registering interfaces on an
++    // existing connection starts the object server lazily without waiting
++    // for it, so NetworkManager could call NeedSecrets as soon as the name
++    // appears and the call would be silently dropped.
++    let _zbus_connection = connection::Builder::system()?
++        .serve_at(DBUS_OBJECT_PATH, plugin)?
++        .serve_at(DBUS_OBJECT_PATH, connection_updates)?
++        .name(DBUS_SERVICE_NAME)?
++        .build()
+         .await?;
+ 
+-    zbus_connection.request_name(DBUS_SERVICE_NAME).await?;
+-
+     log::info!(
+         "Plugin registered at {} with service name {}",
+         DBUS_OBJECT_PATH,
