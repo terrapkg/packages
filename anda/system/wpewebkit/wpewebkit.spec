@@ -2,13 +2,16 @@
 
 Name:           wpewebkit
 Version:        2.54.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A WebKit port optimized for low-end devices
 
 SourceLicense:  BSD-2-Clause AND BSD-3-Clause AND LGPL-2.0-or-later AND LGPL-2.1-or-later
 License:        BSD-2-Clause AND BSD-3-Clause AND LGPL-2.0-only AND LGPL-2.0-or-later AND LGPL-2.1-or-later AND Apache-2.0 AND (Apache-2.0 OR MIT OR BSL-1.0) AND Apache-2.0 WITH LLVM-exception AND (Apache-2.0 WITH LLVM-exception OR BSL-1.0) AND (AFL-2.0 OR LGPL-2.0-or-later) AND BSL-1.0 AND bzip2-1.0.6 AND CC0-1.0 AND GPL-2.0-or-later WITH Bison-exception-2.2 AND GPL-3.0-or-later WITH Bison-exception-2.2 AND ISC AND (LGPL-2.1-or-later OR MPL-1.1 OR GPL-2.0-only) AND MIT AND MIT-Khronos-old AND (MPL-1.1 OR GPL-2.0-or-later OR LGPL-2.1-or-later) AND MPL-2.0 AND NCSA AND (NCSA OR MIT) AND OFL-1.1 AND SunPro AND Unicode-3.0
 URL:            https://www.wpewebkit.org/
 Source0:        https://wpewebkit.org/releases/%{name}-%{version}.tar.xz
+# Fix a build race: the JavaScriptCoreJIT PCH subtarget was not ordered after
+# the JavaScriptCore forwarding header copy targets.
+Patch0:         jsc-subtarget-header-deps.patch
 
 BuildRequires: atk-devel at-spi2-atk-devel
 BuildRequires: bison
