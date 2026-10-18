@@ -3,6 +3,11 @@ Version:                2026.10.1
 
 %gometa -f
 
+# Older Fedora's debugedit can't parse the DWARF from the Go 1.27 toolchain
+%if 0%{?fedora} && 0%{?fedora} < 45
+%global debug_package %{nil}
+%endif
+
 Name:           cloudflared
 Release:        2%{?dist}
 Summary:        Cloudflare Tunnel client
