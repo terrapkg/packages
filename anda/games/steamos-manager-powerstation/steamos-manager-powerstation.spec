@@ -1,6 +1,6 @@
-%global commit 3f58a566c2edf92b4c9d63223ca9bb6cfa566450
+%global commit aa85e5bf34808464ed2cbe39b84f7eda0ee522e2
 %global shortcommit %{sub %{commit} 0 7}
-%global commitdate 20261015
+%global commitdate 20261018
 
 %global steamos_manager_systemd_user_units steamos-manager.service steamos-manager-configure-cecd.service steamos-manager-session-cleanup.service
 
