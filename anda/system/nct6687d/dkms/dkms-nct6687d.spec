@@ -1,12 +1,12 @@
-%global commit 060728e8d04e3ee17b5e003a53e0bcb34c60de92
+%global commit 7e3d7b36c55f06ab5bb2077bc85329f592996b2a
 %global debug_package %{nil}
 %global modulename nct6687d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20261013
+%global commitdate 20261018
 
 Name:           dkms-%{modulename}
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Linux kernel driver for the NCT6687D hardware monitoring chip
 License:        GPL-2.0-or-later
 URL:            https://github.com/Fred78290/%{modulename}
