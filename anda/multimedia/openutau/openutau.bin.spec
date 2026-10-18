@@ -1,4 +1,4 @@
-%global ver untagged-3a17c58c9d916ea0a505
+%global ver 0.1.576
 
 Name:			openutau.bin
 Version:		%(echo %ver | sed -E 's@^build/@@')
