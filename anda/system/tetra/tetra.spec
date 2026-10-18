@@ -67,7 +67,8 @@ fi
 %systemd_preun tetra.socket tetra.service
 
 %postun
-%systemd_postun_with_restart tetra.socket tetra.service
+%systemd_postun tetra.socket
+%systemd_postun_with_restart tetra.service
 
 %files
 %license LICENSE LICENSE.dependencies
