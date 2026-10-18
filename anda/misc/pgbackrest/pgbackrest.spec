@@ -41,7 +41,7 @@ that seamlessly scales up to the largest databases and workloads.
 %meson_install
 
 %files
-%doc README.md CODING.md CONTRIBUTING.md doc/*
+%doc README.md CONTRIBUTING.md doc/*
 %license LICENSE
 %{_bindir}/pgbackrest
 
