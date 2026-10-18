@@ -30,7 +30,7 @@ case-insensitive file access to work on Linux.
 %install
 %make_install
 # Upstream makefile does not create this file, but the cicpoffs github builder does.
-ln -s cicpoffs %{buildroot}%{_bindir}/mount.cicpoffs
+%{__ln_s} cicpoffs %{buildroot}%{_bindir}/mount.cicpoffs
 
 %files
 %license LICENSE
