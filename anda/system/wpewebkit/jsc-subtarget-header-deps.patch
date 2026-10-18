@@ -1,0 +1,13 @@
+--- a/Source/JavaScriptCore/CMakeLists.txt	2026-10-18 01:38:40.202604837 +0000
++++ b/Source/JavaScriptCore/CMakeLists.txt	2026-10-18 01:38:40.220790833 +0000
+@@ -1797,6 +1797,10 @@
+ 
+ add_dependencies(JavaScriptCore_CopyPrivateHeaders Bytecodes JSCBuiltins JSCWebPreferenceOptions)
+ 
++# Subtargets (e.g. JavaScriptCoreJIT) inherit JavaScriptCore_DEPENDENCIES; without
++# this their precompiled header can be built before the forwarding headers exist.
++list(APPEND JavaScriptCore_DEPENDENCIES JavaScriptCore_CopyHeaders JavaScriptCore_CopyPrivateHeaders)
++
+ target_include_directories(LowLevelInterpreterLib
+     PRIVATE "$<TARGET_PROPERTY:JavaScriptCore,INCLUDE_DIRECTORIES>" "${JavaScriptCore_PRIVATE_FRAMEWORK_HEADERS_DIR}/JavaScriptCore")
+ add_dependencies(LowLevelInterpreterLib Bytecodes JSCBuiltins JSCWebPreferenceOptions)
