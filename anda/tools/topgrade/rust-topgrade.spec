@@ -16,7 +16,7 @@ Source:         %terra_crates_source
 BuildRequires:  cargo
 BuildRequires:  rust
 BuildRequires:  rpm_macro(cargo_install)
-BuildRequires:  anda-srpm-macros lld
+BuildRequires:  anda-srpm-macros
 
 %global _description %{expand:
 Keeping your system up to date usually involves invoking multiple package managers.

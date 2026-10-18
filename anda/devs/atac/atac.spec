@@ -15,7 +15,7 @@ URL:            https://crates.io/crates/atac
 Source:         %{terra_crates_source}
 
 Packager:       xiaoshihou <xiaoshihou@tutamail.com>
-BuildRequires:  anda-srpm-macros cargo-rpm-macros lld
+BuildRequires:  anda-srpm-macros cargo-rpm-macros
 
 %global _description %{expand:
 Arguably a Terminal API Client. Feature-full, free, open-source, offline

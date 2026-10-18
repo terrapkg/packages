@@ -10,7 +10,7 @@ URL:            https://github.com/craftablescience/VPKEdit
 Requires:       qt6-qtbase hicolor-icon-theme
 Suggests:       qt6-qtwayland
 Packager:       madonuko <mado@fyralabs.com>
-BuildRequires:  cmake git-core gcc gcc-c++ binutils lld
+BuildRequires:  cmake git-core gcc gcc-c++ binutils
 BuildRequires:  cmake(Qt6)
 BuildRequires:  cmake(Qt6Svg)
 BuildRequires:  cmake(Qt6Linguist)

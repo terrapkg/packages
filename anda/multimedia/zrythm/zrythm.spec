@@ -13,7 +13,6 @@ Source0:        https://gitlab.zrythm.org/zrythm/zrythm/-/archive/%v/zrythm-%v.t
 
 BuildRequires: automake
 BuildRequires: libappstream-glib
-BuildRequires: lld
 BuildRequires: git
 BuildRequires: gettext
 BuildRequires: python

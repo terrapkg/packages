@@ -18,7 +18,7 @@ Source3:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise
 Source4:        https://raw.githubusercontent.com/jdx/mise/main/completions/_mise
 Packager:       madonuko <mado@fyralabs.com>
 
-BuildRequires:  anda-srpm-macros cmake lld cargo-rpm-macros >= 24
+BuildRequires:  anda-srpm-macros cmake cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:

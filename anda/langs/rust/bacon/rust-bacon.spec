@@ -15,7 +15,6 @@ URL:            https://crates.io/crates/bacon
 Source:         %{terra_crates_source}
 
 BuildRequires:  anda-srpm-macros
-BuildRequires:  lld
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  alsa-lib-devel
 

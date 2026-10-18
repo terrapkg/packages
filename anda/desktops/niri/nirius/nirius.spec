@@ -11,7 +11,6 @@ Packager:       Olivia <git@olivia.sh>
 
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
-BuildRequires:  lld
 Requires:       niri
 
 %description

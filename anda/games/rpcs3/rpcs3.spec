@@ -19,7 +19,7 @@ Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
 Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
-BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core lld
+BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core
 BuildRequires:  llvm%{?llvm_major}-devel
 # Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
 BuildRequires:  clang%{?llvm_major}

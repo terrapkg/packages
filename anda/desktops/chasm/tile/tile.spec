@@ -8,7 +8,7 @@ License:        Unlicense
 URL:            https://github.com/isene/tile
 Source:         %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  nasm
-BuildRequires:  gcc lld
+BuildRequires:  gcc
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 ExclusiveArch:  x86_64
 

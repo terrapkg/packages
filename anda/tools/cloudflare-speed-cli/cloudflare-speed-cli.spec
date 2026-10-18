@@ -10,7 +10,6 @@ URL:            https://github.com/kavehtehrani/cloudflare-speed-cli
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  cargo-rpm-macros
-BuildRequires:  lld
 
 %description
 %summary.
