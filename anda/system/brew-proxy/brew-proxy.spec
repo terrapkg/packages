@@ -57,7 +57,6 @@ BuildRequires: rust-srpm-macros
 # Build tooling.
 BuildRequires: meson
 BuildRequires: clang
-BuildRequires: lld
 
 # Subpackages.
 Recommends: %{name}-selinux

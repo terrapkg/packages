@@ -9,7 +9,7 @@ SourceLicense:  MIT
 License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (MIT OR Apache-2.0) AND (Unlicense OR MIT)
 URL:            https://github.com/linux-surface/surface-dtx-daemon
 Source:         %{url}/archive/refs/tags/%{ver}.tar.gz
-BuildRequires:  rust cargo dbus-devel anda-srpm-macros cargo-rpm-macros lld
+BuildRequires:  rust cargo dbus-devel anda-srpm-macros cargo-rpm-macros
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 Obsoletes:      terra-surface-dtx-daemon <= v0.3.11~1-4
 

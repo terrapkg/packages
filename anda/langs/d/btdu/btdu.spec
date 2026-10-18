@@ -9,7 +9,7 @@ URL:			https://github.com/CyberShadow/btdu
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 # gcc-gdc is built using ldc ironically
 # let's just use ldc instead, they have the funny macros
-BuildRequires:	dub ldc lld
+BuildRequires:	dub ldc
 BuildRequires:	pkgconfig(ncurses)
 ExclusiveArch:	%ldc_arches
 

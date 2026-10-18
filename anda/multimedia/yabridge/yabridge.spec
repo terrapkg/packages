@@ -62,7 +62,6 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  uuid-devel
 BuildRequires:  cmake
 BuildRequires:  cargo
-BuildRequires:  lld
 BuildRequires:  clang-devel
 BuildRequires:  git-core
 BuildRequires:  meson >= 0.56

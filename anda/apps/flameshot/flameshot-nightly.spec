@@ -23,7 +23,6 @@ BuildRequires:	fdupes
 BuildRequires:	libappstream-glib
 BuildRequires:	ninja-build
 BuildRequires:	desktop-file-utils
-BuildRequires:	lld
 
 BuildRequires:	cmake(Qt6Core) >= 6.0.0
 BuildRequires:	cmake(KF6GuiAddons) >= 6.7.0

@@ -10,7 +10,7 @@ URL:            https://github.com/StardustXR/comet
 Source0:        %url/archive/refs/tags/%version.tar.gz
 SourceLicense:  MIT
 License:        %{SourceLicense} AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND ISC AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (Unlicense OR MIT) AND Zlib
-BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros lld
+BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros
 
 Provides:       comet stardust-comet
 Packager:       Owen Zimmerman <owen@fyralabs.com>

@@ -12,7 +12,7 @@ URL:            https://github.com/StardustXR/magnetar
 Source0:        %url/archive/%commit/magnetar-%commit.tar.gz
 SourceLicense:  MIT
 License:        %{SourceLicense} AND Apache-2.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND (Unlicense OR MIT)
-BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros lld libudev-devel g++ libinput-devel libxkbcommon-x11-devel
+BuildRequires:  cargo cmake anda-srpm-macros cargo-rpm-macros libudev-devel g++ libinput-devel libxkbcommon-x11-devel
 
 Provides:       magnetar stardust-magnetar
 Packager:       Owen Zimmerman <owen@fyralabs.com>

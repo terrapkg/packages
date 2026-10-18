@@ -6,7 +6,7 @@ License:        GPL-3.0-or-later
 URL:            https://invent.kde.org/plasma/%name
 Source0:        %url/-/archive/v%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
-BuildRequires:  gcc gcc-c++ lld
+BuildRequires:  gcc gcc-c++
 BuildRequires:  cmake extra-cmake-modules
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6ShaderTools)
