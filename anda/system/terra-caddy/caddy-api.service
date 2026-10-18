@@ -1,0 +1,28 @@
+# caddy-api.service
+#
+# For using Caddy with its API.
+#
+# This unit is "durable" in that it will automatically resume
+# the last active configuration if the service is restarted.
+#
+# See https://caddyserver.com/docs/install for instructions.
+
+[Unit]
+Description=Caddy web server
+Documentation=https://caddyserver.com/docs/
+After=network.target
+
+[Service]
+Type=notify
+User=caddy
+Group=caddy
+ExecStart=/usr/bin/caddy run --environ --resume
+TimeoutStopSec=5s
+LimitNOFILE=1048576
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+AmbientCapabilities=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=multi-user.target
