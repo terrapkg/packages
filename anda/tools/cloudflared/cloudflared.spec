@@ -3,8 +3,13 @@ Version:                2026.10.1
 
 %gometa -f
 
+# Older Fedora and RHEL's debugedit can't parse the DWARF from the Go 1.27 toolchain
+%if 0%{?fedora} && 0%{?fedora} < 45 || 0%{?rhel}
+%global debug_package %{nil}
+%endif
+
 Name:           cloudflared
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Cloudflare Tunnel client
 
 License:        Apache-2.0
@@ -26,6 +31,9 @@ daemon that proxies traffic from the Cloudflare network to your origins.
 
 %build
 export GOFIPS140=off
+# go.mod may require a newer Go than older Fedora releases ship; let Go fetch it
+export GOTOOLCHAIN=auto
+export GOPROXY=https://proxy.golang.org,direct
 %global build_date %(date -u -d @${SOURCE_DATE_EPOCH:-$(date +%%s)} '+%%Y-%%m-%%dT%%H:%%MZ')
 %define currentgoldflags -X main.Version=%{version} -X main.BuildTime=%{build_date} -X %{goipath}/cmd/cloudflared/updater.BuiltForPackageManager=dnf
 %gobuild -o %{gobuilddir}/bin/%{name} %{goipath}/cmd/%{name}
