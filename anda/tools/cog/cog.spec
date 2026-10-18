@@ -30,12 +30,7 @@ BuildRequires:  pkgconfig(wpebackend-fdo-1.0)
 BuildRequires:  pkgconfig(x11-xcb)
 BuildRequires:  pkgconfig(xcb)
 BuildRequires:  pkgconfig(xkbcommon-x11)
-BuildRequires:  rpm_macro(buildsystem_meson_conf)
 BuildRequires:  pkgconfig(gbm)
-BuildSystem:    meson
-BuildOption(conf): -Dplatforms=drm,headless,wayland,gtk4,x11
-BuildOption(conf): -Dwpe_api=2.0
-BuildOption(conf): -Dlibmanette=enabled
 
 Requires:       %{name}-libs%{?_isa} = %{evr}
 
@@ -61,6 +56,21 @@ Requires:      %{name}-libs%{?_isa} = %{evr}
 %description   devel
 The %{name}-devel package contains libraries, build data, and header
 files for developing applications that use %{name}.
+
+%prep
+%autosetup -n cog-%{version}
+
+%conf
+%meson \
+    -Dplatforms=drm,headless,wayland,gtk4,x11 \
+    -Dwpe_api=2.0 \
+    -Dlibmanette=enabled
+
+%build
+%meson_build
+
+%install
+%meson_install
 
 %files
 %license COPYING
