@@ -1,9 +1,9 @@
 %global debug_package %{nil}
-%global ver v0.3.11-1
+%global ver v0.3.12-1
 
 Name:           surface-dtx-daemon
 Version:        %(echo %ver | sed 's/^v//;s/-/./g')
-Release:        6%{?dist}
+Release:        1%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
 SourceLicense:  MIT
 License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (MIT OR Apache-2.0) AND (Unlicense OR MIT)
