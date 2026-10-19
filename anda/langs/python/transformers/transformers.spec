@@ -2,7 +2,7 @@
 %global _desc The model-definition framework for state-of-the-art machine learning models.
 
 Name:			python-%{pypi_name}
-Version:		5.20.1
+Version:		5.20.2
 Release:		1%{?dist}
 Summary:		The model-definition framework for state-of-the-art machine learning models
 License:		Apache-2.0
