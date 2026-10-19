@@ -2,6 +2,8 @@
 %global commit_date 20260328
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
+%global debug_package   %{nil}
+
 Name:           grub2-distro-themes-nightly
 Version:        3.2~%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
@@ -18,9 +20,6 @@ Requires:       grub2-efi
 %endif
 
 Packager:       Its-J <jonah@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
-
-%global debug_package   %{nil}
-%global _grubthemedir /boot/grub2/themes
 
 %package        acer
 Requires:       %{name}%{?_isa} = %{evr}
