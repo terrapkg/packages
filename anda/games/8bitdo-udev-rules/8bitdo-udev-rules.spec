@@ -9,6 +9,7 @@ Provides: 8bitdo-udev = %{version}-%{release}
 License:        Unlicense
 Source0:        71-8bitdo.rules
 Source1:        com.8bitdo.Udev.metainfo.xml
+Packager:       Cappy Ishihara <cappy@fyralabs.com>
 BuildArch:      noarch
 BuildRequires:  systemd
 BuildRequires:  anda-srpm-macros
