@@ -1,9 +1,9 @@
 %global forgeurl https://github.com/skeeto/u-config
-Version:        0.34.0
+Version:        0.35.0
 %forgemeta
 
 Name:           u-config
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        A smaller, simpler, portable pkg-config clone 
 
 License:        Unlicense
