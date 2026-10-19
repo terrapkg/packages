@@ -28,6 +28,7 @@ BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  python3-devel
 BuildRequires:  ninja-build
 BuildRequires:  pkgconfig(wlroots-0.20)
+BuildRequires:  pkgconfig(librsvg-2.0)
 
 %description
 somewm is a Wayland compositor that brings AwesomeWM's Lua API to Wayland, built on wlroots.
