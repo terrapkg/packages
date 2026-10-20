@@ -1,5 +1,5 @@
 %global toolchain clang
-%global _distro_extra_ldflags -fuse-ld=lld
+%global _pkg_extra_ldflags -fuse-ld=lld
 %global commit 631edce27b702691e9a603059c78550b6b533a64
 %global ver 1.8.68
 %global commit_date 20261020
