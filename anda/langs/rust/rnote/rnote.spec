@@ -10,7 +10,7 @@ Packager:       madonuko <mado@fyralabs.com>
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
 Recommends:     rnote-cli = %evr
 BuildRequires:  rust-packaging
-BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ alsa-lib clang-devel python desktop-file-utils mold
+BuildRequires:  cargo meson cmake libappstream-glib gcc-c++ alsa-lib clang-devel python desktop-file-utils
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.7
