@@ -1,0 +1,528 @@
+From e03ec9b28af960defbe9ab9286b81197896b6a08 Mon Sep 17 00:00:00 2001
+From: Qiyu Yan <yanqiyu@fedoraproject.org>
+Date: Wed, 1 Jan 2025 10:12:27 +0800
+Subject: [PATCH] use system absl
+
+---
+ src/base/absl.gyp    | 368 ++++++++++++++++++++++++++++++++++---------
+ src/gyp/defines.gypi |   3 +
+ 2 files changed, 297 insertions(+), 74 deletions(-)
+
+diff --git a/src/base/absl.gyp b/src/base/absl.gyp
+index 374065c34..48bfc97e8 100644
+--- a/src/base/absl.gyp
++++ b/src/base/absl.gyp
+@@ -35,12 +35,25 @@
+   'targets': [
+     {
+       'target_name': 'absl_base',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) base "**/*.cc"' +
+-        ' --exclude "**/*_benchmark.cc" "**/*_test*.cc")',
+-        '<(absl_srcdir)/profiling/internal/exponential_biased.cc',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_base -labsl_log_severity -labsl_raw_logging_internal -labsl_spinlock_wait -labsl_malloc_internal -labsl_throw_delegate -labsl_exponential_biased -labsl_periodic_sampler -labsl_scoped_set_env -labsl_strerror -labsl_tracing_internal',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) base "**/*.cc"' +
++            ' --exclude "**/*_benchmark.cc" "**/*_test*.cc")',
++            '<(absl_srcdir)/profiling/internal/exponential_biased.cc',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_hash_internal',
+@@ -54,18 +67,44 @@
+     },
+     {
+       'target_name': 'absl_crc',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) crc "**/*.cc")',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_crc32c -labsl_crc_cord_state -labsl_crc_cpu_detect -labsl_crc_internal',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) crc "**/*.cc")',
++          ],
++        }],
+       ],
+     },
+     {
+       'target_name': 'absl_debugging',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) debugging "**/*.cc")',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_debugging_internal',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) debugging "**/*.cc")',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_base',
+@@ -73,10 +112,23 @@
+     },
+     {
+       'target_name': 'absl_flags',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) flags "*.cc")',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_flags_program_name -labsl_flags_config -labsl_flags_marshalling -labsl_flags_commandlineflag_internal -labsl_flags_commandlineflag -labsl_flags_private_handle_accessor -labsl_flags_reflection -labsl_flags_internal -labsl_flags_usage_internal -labsl_flags_usage -labsl_flags_parse',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) flags "*.cc")',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_flags_internal',
+@@ -86,10 +138,23 @@
+     },
+     {
+       'target_name': 'absl_flags_internal',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) flags/internal "*.cc" --exclude size_tester.cc)',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_flags_commandlineflag_internal -labsl_flags_internal -labsl_flags_private_handle_accessor -labsl_flags_program_name -labsl_flags_usage_internal',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) flags/internal "*.cc" --exclude size_tester.cc)',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_strings',
+@@ -98,19 +163,44 @@
+     {
+       'target_name': 'absl_hash_internal',
+       'toolsets': ['host', 'target'],
+-      'type': 'static_library',
+-      'sources': [
+-        '<(absl_srcdir)/container/internal/raw_hash_set.cc',
+-        '<(absl_srcdir)/hash/internal/city.cc',
+-        '<(absl_srcdir)/hash/internal/hash.cc',
+-        '<(absl_srcdir)/hash/internal/low_level_hash.cc',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_raw_hash_set -labsl_hash -labsl_city -labsl_low_level_hash',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<(absl_srcdir)/container/internal/raw_hash_set.cc',
++            '<(absl_srcdir)/hash/internal/city.cc',
++            '<(absl_srcdir)/hash/internal/hash.cc',
++            '<(absl_srcdir)/hash/internal/low_level_hash.cc',
++          ],
++        }],
+       ],
+     },
+     {
+       'target_name': 'absl_hash_testing',
+       'toolsets': ['host', 'target'],
+-      'type': 'static_library',
+-      'sources': [],
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [],
++        }],
++      ],
+       'dependencies': [
+           'absl_strings',
+           'absl_types',
+@@ -118,13 +208,26 @@
+     },
+     {
+       'target_name': 'absl_log',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) log "*.cc")',
+-      ],
+-      'sources!': [
+-        '<(absl_srcdir)/log/scoped_mock_log.cc',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_log_entry -labsl_log_flags -labsl_log_globals -labsl_log_initialize -labsl_log_internal_check_op -labsl_log_internal_conditions -labsl_log_internal_format -labsl_log_internal_globals -labsl_log_internal_proto -labsl_log_internal_message  -labsl_log_internal_nullguard -labsl_die_if_null -labsl_log_sink',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) log "*.cc")',
++          ],
++          'sources!': [
++            '<(absl_srcdir)/log/scoped_mock_log.cc',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_base',
+@@ -134,10 +237,23 @@
+     },
+     {
+       'target_name': 'absl_log_internal',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) log/internal "*.cc")',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_log_internal_log_sink_set -labsl_log_internal_check_op -labsl_log_internal_conditions -labsl_log_internal_format -labsl_log_internal_globals -labsl_log_internal_proto -labsl_log_internal_message  -labsl_log_internal_nullguard',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) log/internal "*.cc")',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_base',
+@@ -146,10 +262,23 @@
+     },
+     {
+       'target_name': 'absl_numeric',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<(absl_srcdir)/numeric/int128.cc',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_int128',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<(absl_srcdir)/numeric/int128.cc',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_base',
+@@ -157,14 +286,27 @@
+     },
+     {
+       'target_name': 'absl_random',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) random "**/*.cc"' +
+-        ' --exclude "**/*benchmark*.cc" "**/*generator*.cc")',
+-      ],
+-      'sources!': [
+-        '<(absl_srcdir)/random/internal/gaussian_distribution_gentables.cc',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_random_distributions -labsl_random_internal_distribution_test_util -labsl_random_internal_platform -labsl_random_internal_entropy_pool -labsl_random_internal_randen -labsl_random_internal_randen_hwaes -labsl_random_internal_randen_hwaes_impl -labsl_random_internal_randen_slow -labsl_random_internal_seed_material -labsl_random_seed_gen_exception -labsl_random_seed_sequences',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) random "**/*.cc"' +
++            ' --exclude "**/*benchmark*.cc" "**/*generator*.cc")',
++          ],
++          'sources!': [
++            '<(absl_srcdir)/random/internal/gaussian_distribution_gentables.cc',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_base',
+@@ -172,15 +314,28 @@
+     },
+     {
+       'target_name': 'absl_status',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) status "*.cc")',
+-        '<!@(<(glob_absl) status/internal "*.cc")',
+-      ],
+-      'include_dirs': [
+-        '<(gmock_dir)/include',
+-        '<(gtest_dir)/include',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_status -labsl_statusor',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) status "*.cc")',
++            '<!@(<(glob_absl) status/internal "*.cc")',
++          ],
++          'include_dirs': [
++            '<(gmock_dir)/include',
++            '<(gtest_dir)/include',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_base',
+@@ -189,15 +344,28 @@
+     },
+     {
+       'target_name': 'absl_strings_internal',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) strings/internal "**/*.cc")',
+-      ],
+-      'sources!': [
+-        '<(absl_srcdir)/strings/internal/str_format/benchmarks.cc',
+-        '<(absl_srcdir)/strings/internal/str_format/extension_test_class.cc',
+-        '<(absl_srcdir)/strings/internal/str_format/parser_fuzzer.cc',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_strings_internal -labsl_str_format_internal -labsl_cord_internal',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) strings/internal "**/*.cc")',
++          ],
++          'sources!': [
++            '<(absl_srcdir)/strings/internal/str_format/benchmarks.cc',
++            '<(absl_srcdir)/strings/internal/str_format/extension_test_class.cc',
++            '<(absl_srcdir)/strings/internal/str_format/parser_fuzzer.cc',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_base',
+@@ -206,10 +374,23 @@
+     },
+     {
+       'target_name': 'absl_strings',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) strings "*.cc")',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_strings -labsl_cordz_info -labsl_cord',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) strings "*.cc")',
++          ],
++        }],
+       ],
+       'dependencies': [
+         'absl_base',
+@@ -220,10 +401,23 @@
+     },
+     {
+       'target_name': 'absl_synchronization',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) synchronization "**/*.cc")',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_synchronization -labsl_kernel_timeout_internal',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) synchronization "**/*.cc")',
++          ],
++        }],
+       ],
+       'cflags': [
+         '-Wno-error',
+@@ -237,12 +431,25 @@
+     },
+     {
+       'target_name': 'absl_time',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) time "*.cc")',
+-        '<!@(<(glob_absl) time/internal/cctz/src "*.cc"' +
+-        ' --exclude time_tool.cc)',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_time -labsl_civil_time -labsl_time_zone',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) time "*.cc")',
++            '<!@(<(glob_absl) time/internal/cctz/src "*.cc"' +
++            ' --exclude time_tool.cc)',
++          ],
++        }],
+       ],
+       'cflags': [
+         '-Wno-error',
+@@ -255,10 +462,23 @@
+     },
+     {
+       'target_name': 'absl_types',
+-      'type': 'static_library',
+       'toolsets': ['host', 'target'],
+-      'sources': [
+-        '<!@(<(glob_absl) types "**/*.cc")',
++      'conditions': [
++        ['use_system_abseil_cpp==1', {
++          'type': 'none',
++          'all_dependent_settings': {
++            'link_settings': {
++              'libraries': [
++                '-labsl_bad_variant_access',
++              ],
++            },
++          },
++        }, {
++          'type': 'static_library',
++          'sources': [
++            '<!@(<(glob_absl) types "**/*.cc")',
++          ],
++        }],
+       ],
+       'cflags': [
+         '-Wno-error',
+diff --git a/src/gyp/defines.gypi b/src/gyp/defines.gypi
+index af3b0eddd..d4c6f7c82 100644
+--- a/src/gyp/defines.gypi
++++ b/src/gyp/defines.gypi
+@@ -63,6 +63,9 @@
+     # - https://github.com/google/mozc/issues/14
+     # for the background information.
+     'use_libprotobuf%': '0',
++    # use_system_abseil_cpp represents if system version or bundled version
++    # of abseil-cpp library is used.
++    'use_system_abseil_cpp%': '0',
+   },
+   'target_defaults': {
+     'defines': [
+-- 
+2.49.0
+

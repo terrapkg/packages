@@ -1,0 +1,21 @@
+diff -pruN mozc-2.25.4190.102.orig/src/build_mozc.py mozc-2.25.4190.102/build_mozc.py
+--- mozc-2.25.4190.102.orig/src/build_mozc.py	2020-11-19 13:18:22.391113319 +0900
++++ mozc-2.25.4190.102/src/build_mozc.py	2020-11-19 13:20:00.583082777 +0900
+@@ -579,7 +579,7 @@ def BuildWithNinja(options, targets):
+ 
+   for target in targets:
+     (_, target_name) = target.split(':')
+-    RunOrDie([ninja, '-C', build_arg, target_name])
++    RunOrDie([ninja, '-v', '-C', build_arg, target_name])
+ 
+ 
+ def BuildOnWindows(targets):
+@@ -588,7 +588,7 @@ def BuildOnWindows(targets):
+ 
+   for target in targets:
+     (build_arg, target_name) = target.split(':')
+-    RunOrDie([ninja, '-C', build_arg, target_name])
++    RunOrDie([ninja, '-v', '-C', build_arg, target_name])
+ 
+ 
+ def BuildMain(options, targets):
