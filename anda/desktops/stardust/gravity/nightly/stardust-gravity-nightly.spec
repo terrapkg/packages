@@ -1,12 +1,12 @@
-%global commit b6851338a4b8b1222d4a3bc2406afe5d7b80298e
-%global commit_date 20261013
+%global commit 68aa51365725d44d45170d28611e6a8a60710db6
+%global commit_date 20261020
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-gravity-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Utility to launch apps and Stardust XR clients spatially
 URL:            https://github.com/StardustXR/gravity
 Source0:        %url/archive/%commit/gravity-%commit.tar.gz
