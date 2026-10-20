@@ -13,6 +13,7 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-poetry
+BuildRequires:  python3dist(uv-build)
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
