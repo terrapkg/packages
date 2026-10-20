@@ -8,7 +8,7 @@
 
 Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
@@ -25,7 +25,13 @@ BuildRequires:  sdbus-cpp-devel
 BuildRequires:  tomlplusplus-devel
 BuildRequires:  json-devel
 BuildRequires:  md4c-devel
+%if 0%{?fedora} >= 46
+BuildRequires:  stb_image-devel
+BuildRequires:  stb_image_write-devel
+BuildRequires:  stb_image_resize2-devel
+%else
 BuildRequires:  stb-devel
+%endif
 BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
@@ -107,6 +113,9 @@ done
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Tue Oct 20 2026 Cypress Reed <cypress@fyralabs.com>
+- Use stb-devel subpackages instead of metapackages (fedora removed it)
+
 * Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
 - Rename package to noctalia-nightly
 
