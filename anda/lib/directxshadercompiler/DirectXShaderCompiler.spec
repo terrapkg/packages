@@ -1,5 +1,5 @@
 %global toolchain clang
-%global _distro_extra_ldflags -fuse-ld=lld
+%global _pkg_extra_ldflags -fuse-ld=lld
 # Disable in-source build.
 %undefine __cmake_in_source_build
 
