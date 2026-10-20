@@ -22,13 +22,6 @@ BuildRequires:  pkgconfig(sdbus-c++)
 BuildRequires:  pkgconfig(tomlplusplus)
 BuildRequires:  pkgconfig(nlohmann_json)
 BuildRequires:  pkgconfig(md4c)
-%if 0%{?fedora} >= 46
-BuildRequires:  stb_image-devel
-BuildRequires:  stb_image_write-devel
-BuildRequires:  stb_image_resize2-devel
-%else
-BuildRequires:  stb-devel
-%endif
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(jemalloc)
 BuildRequires:  pkgconfig(wayland-client)
