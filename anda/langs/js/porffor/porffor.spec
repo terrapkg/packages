@@ -1,3 +1,4 @@
+%global toolchain clang
 %global commit 7e9729d439dee8c80daeb8f95f129a92c9495094
 %global commit_date 20261020
 %global shortcommit %(c=%{commit}; echo ${c:0:7})

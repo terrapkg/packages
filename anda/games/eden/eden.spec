@@ -1,3 +1,5 @@
+%global toolchain clang
+%global _distro_extra_ldflags -fuse-ld=lld
 Name:           eden
 Version:        0.2.1
 Release:        1%?dist
@@ -7,7 +9,8 @@ URL:            https://eden-emu.dev
 Packager:       madonuko <mado@fyralabs.com>
 Source0:        https://git.eden-emu.dev/eden-emu/eden/archive/v%version.tar.gz
 BuildSystem:    cmake
-BuildRequires:  gcc git-core
+BuildRequires:  git-core
+BuildRequires:  clang
 BuildRequires:  pkgconfig(libusb)
 BuildRequires:  cmake(VulkanMemoryAllocator)
 BuildRequires:  cmake(VulkanUtilityLibraries)

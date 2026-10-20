@@ -1,3 +1,4 @@
+%global toolchain clang
 Name:			keyd
 Version:		2.6.0
 Release:		2%?dist
@@ -5,7 +6,8 @@ Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
 License:		MIT
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	gcc make kernel-headers systemd-rpm-macros anda-srpm-macros
+BuildRequires:	make kernel-headers systemd-rpm-macros anda-srpm-macros
+BuildRequires:	clang
 Packager:   madonuko <mado@fyralabs.com>
 
 %description

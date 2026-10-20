@@ -1,3 +1,5 @@
+%global toolchain clang
+%global _distro_extra_ldflags -fuse-ld=lld
 %global commit 631edce27b702691e9a603059c78550b6b533a64
 %global ver 1.8.68
 %global commit_date 20261020
@@ -12,13 +14,12 @@ Summary:       Cross-platform library for building Telegram clients
 Source0:       %url/archive/%commit/tdlib-%commit.tar.gz
 
 BuildRequires: gperftools-devel
+BuildRequires: clang
 BuildRequires: openssl-devel
 BuildRequires: ninja-build
 BuildRequires: zlib-devel
-BuildRequires: gcc-c++
 BuildRequires: gperf
 BuildRequires: cmake
-BuildRequires: gcc
 
 Provides:      bundled(sqlite) = 3.31.0
 
@@ -56,7 +57,8 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_LIBDIR=%_lib \
     -DTD_ENABLE_JNI:BOOL=OFF \
-    -DTD_ENABLE_DOTNET:BOOL=OFF
+    -DTD_ENABLE_DOTNET:BOOL=OFF \
+    -DBUILD_TESTING:BOOL=OFF
 %cmake_build
 
 %install
