@@ -1,6 +1,6 @@
 Name:   	noctalia-greeter
 Version:	1.7.0
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A minimal login greeter for greetd that matches the look and feel of Noctalia Shell.
 
 License:	MIT
@@ -27,7 +27,13 @@ BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(tomlplusplus)
 BuildRequires:  pkgconfig(nlohmann_json)
 BuildRequires:  pkgconfig(libjxl)
+%if 0%{?fedora} >= 46
+BuildRequires:  stb_image-devel
+BuildRequires:  stb_image_write-devel
+BuildRequires:  stb_image_resize2-devel
+%else
 BuildRequires:  stb-devel
+%endif
 BuildRequires:  polkit
 BuildRequires:  wlroots-devel >= 0.20
 
@@ -77,6 +83,9 @@ done
 %{_datadir}/polkit-1/actions/org.noctalia.greeter.apply-appearance.policy
 
 %changelog
+* Tue Oct 20 2026 Cypress Reed <cypress@fyralabs.com>
+- Use stb-devel subpackages instead of metapackages (fedora removed it)
+
 * Fri Jun 19 2026 Cypress Reed <cypress@fyralabs.com>
 - Switch to stable versioning from nightly git
 
