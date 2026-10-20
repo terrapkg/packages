@@ -20,6 +20,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  clang >= 17
 BuildRequires:  elfutils-libelf
 BuildRequires:  elfutils-libelf-devel
+BuildRequires:  flex
 BuildRequires:  gcc
 BuildRequires:  git
 BuildRequires:  jq
