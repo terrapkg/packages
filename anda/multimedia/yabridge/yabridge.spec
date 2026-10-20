@@ -174,7 +174,7 @@ export LDFLAGS="%{build_ldflags}"
 %endif
 
 export CC_LD=lld
-export LD=lld
+export LD=ld.lld
 
 %if %{with_32bit}
 %meson --cross-file cross-wine.conf \
