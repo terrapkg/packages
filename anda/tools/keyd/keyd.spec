@@ -6,8 +6,7 @@ Summary:		Key remapping daemon for linux
 URL:			https://github.com/rvaiya/keyd
 License:		MIT
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-BuildRequires:	make kernel-headers systemd-rpm-macros anda-srpm-macros
-BuildRequires:	clang
+BuildRequires:	clang make kernel-headers systemd-rpm-macros anda-srpm-macros
 Packager:   madonuko <mado@fyralabs.com>
 
 %description

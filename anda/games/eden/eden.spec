@@ -9,8 +9,7 @@ URL:            https://eden-emu.dev
 Packager:       madonuko <mado@fyralabs.com>
 Source0:        https://git.eden-emu.dev/eden-emu/eden/archive/v%version.tar.gz
 BuildSystem:    cmake
-BuildRequires:  git-core
-BuildRequires:  clang
+BuildRequires:  clang git-core
 BuildRequires:  pkgconfig(libusb)
 BuildRequires:  cmake(VulkanMemoryAllocator)
 BuildRequires:  cmake(VulkanUtilityLibraries)
