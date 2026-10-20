@@ -7,15 +7,13 @@ on:
   push:
     paths:
       - "anda/**"
-    paths-ignore:
-      - "**/update.rhai"
+      - "!**/update.rhai"
     branches:
       - el10
   pull_request:
     paths:
       - "anda/**"
-    paths-ignore:
-      - "**/update.rhai"
+      - "!**/update.rhai"
     branches:
       - el10
   merge_group:
