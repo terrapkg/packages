@@ -9,10 +9,16 @@ permissions:
 on:
   push:
     paths:
-      - anda/**
+      - "anda/**"
+    paths-ignore:
+      - "**/update.rhai"
     branches:
       - frawhide
   pull_request:
+    paths:
+      - "anda/**"
+    paths-ignore:
+      - "**/update.rhai"
     branches:
       - frawhide
   merge_group:
