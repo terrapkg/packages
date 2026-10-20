@@ -37,7 +37,6 @@ sketch, make patterns, grade sizes and prepare tech packs.
 %pkg_devel_files
 %{_libdir}/singularity-atelier/plugins/cut-list/cut-list.plugin
 %{_libdir}/singularity-atelier/plugins/cut-list/libatelier-cut-list.so
-%{_datadir}/vala/vapi/atelier-plugin.vapi
 
 %prep
 %autosetup -C -p1
