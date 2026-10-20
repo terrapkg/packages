@@ -41,7 +41,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  gettext-envsubst
 BuildRequires:  clang
 BuildRequires:  cmake
-BuildRequires:  mold
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
