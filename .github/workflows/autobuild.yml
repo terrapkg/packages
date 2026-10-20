@@ -10,15 +10,13 @@ on:
   push:
     paths:
       - "anda/**"
-    paths-ignore:
-      - "**/update.rhai"
+      - "!**/update.rhai"
     branches:
       - f44
   pull_request:
     paths:
       - "anda/**"
-    paths-ignore:
-      - "**/update.rhai"
+      - "!**/update.rhai"
     branches:
       - f44
   merge_group:
