@@ -9,6 +9,14 @@
         "1dot75cm.rpmspec",
         "hashicorp.hcl",
         "redhat.vscode-xml"
+      ],
+    },
+    "zed": {
+      "extensions": [
+        "rhai",
+        "rpmspec",
+        "terraform",
+        "xml"
       ]
     }
   }

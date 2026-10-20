@@ -1,12 +1,12 @@
-%global commit b426730b1c5f136d654d877dfe1cc9459b05712d
-%global commit_date 20261007
+%global commit 8996f8179b1501c4fc50b1294c631fa6e042b12c
+%global commit_date 20261014
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-non-spatial-input-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Tools you can easily snap together to get non-spatial input into Stardust XR
 URL:            https://github.com/StardustXR/non-spatial-input
 Source0:        %url/archive/%commit/non-spatial-input-%commit.tar.gz
@@ -28,7 +28,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %build
 
 %install
-%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 (cd azimuth && %cargo_install) &
 (cd eclipse && %cargo_install) &
 (cd manifold && %cargo_install) &

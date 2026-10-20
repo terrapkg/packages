@@ -1,5 +1,5 @@
 Name:           tetra
-Version:        0.2.1
+Version:        0.2.3
 Release:        2%{?dist}
 Summary:        Modular host agent for Ultramarine Server and cloud hosts
 SourceLicense:  AGPL-3.0-or-later
@@ -49,16 +49,25 @@ install -Dm644 examples/transport.json %{buildroot}%{_sysconfdir}/tetra/transpor
 mkdir -p %{buildroot}%{_datadir}/tetra
 cp -pr templates %{buildroot}%{_datadir}/tetra/
 
-# Systemd service
 install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
+install -Dm644 systemd/tetra.socket %{buildroot}%{_unitdir}/tetra.socket
+install -Dm644 systemd/tetra.sysusers.conf %{buildroot}%{_sysusersdir}/tetra.conf
+
+%check
+# The release binary must not contain the development TCP listener.
+if %{buildroot}%{_bindir}/tetra agent-ws-serve --help >/dev/null 2>&1; then
+    echo "tetra was built with the dev-listener feature" >&2
+    exit 1
+fi
 
 %post
-%systemd_post tetra.service
+%systemd_post tetra.socket tetra.service
 
 %preun
-%systemd_preun tetra.service
+%systemd_preun tetra.socket tetra.service
 
 %postun
+%systemd_postun tetra.socket
 %systemd_postun_with_restart tetra.service
 
 %files
@@ -66,12 +75,17 @@ install -Dm644 systemd/tetra.service %{buildroot}%{_unitdir}/tetra.service
 %doc README.md SECURITY.md docs/*
 %{_bindir}/tetra
 %{_unitdir}/tetra.service
+%{_unitdir}/tetra.socket
+%{_sysusersdir}/tetra.conf
 %{_datadir}/tetra/templates
 %config(noreplace) %{_sysconfdir}/tetra/transport.json.example
 %dir %attr(0750, root, root) %{_sharedstatedir}/tetra
 %dir %attr(0750, root, root) %{_sharedstatedir}/tetra/identity
 
 %changelog
+* Sat Oct 17 2026 Cypress Reed <cypress@fyralabs.com>
+- Package tetra.socket and the tetra sysusers group; tetra.service is now socket-activated
+
 * Sun Aug 09 2026 Cypress Reed <cypress@fyralabs.com>
 - Change license to AGPL
 

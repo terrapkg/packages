@@ -1,8 +1,8 @@
-%global ver build/0.1.529
+%global ver 0.1.576
 
 Name:			openutau.bin
 Version:		%(echo %ver | sed -E 's@^build/@@')
-Release:		3%?dist
+Release:		1%{?dist}
 Summary:		Open singing synthesis platform / Open source UTAU successor
 License:		MIT
 URL:			http://www.openutau.com

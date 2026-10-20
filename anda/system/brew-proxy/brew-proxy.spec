@@ -32,7 +32,7 @@
 
 # Metadata.
 Name:    brew-proxy
-Version: 0.3.6
+Version: 0.3.7
 Release: 1%{?dist}
 Summary: DBus-activated proxy service for a more secure Homebrew setup on Linux 
 License:        %{shrink:
@@ -81,7 +81,7 @@ SELinux policy for %{name}.
 
 %prep
 %autosetup -C
-%cargo_prep_online
+%cargo_prep_online -u
 %meson
 
 %build

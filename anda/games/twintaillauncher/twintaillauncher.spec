@@ -6,7 +6,7 @@
 
 Name:           twintaillauncher
 
-Version:        2.5.1
+Version:        2.5.2
 Release:        1%{?dist}
 Summary:       Your anime games, one launcher
 Packager:        Yoong Jin <solomoncyj@gmail.com>
@@ -51,7 +51,7 @@ TTL is an all-in-one tool for downloading, managing, and launching your favorite
 
 %prep
 %autosetup -n TwintailLauncher-ttl-v%{version}
-%tauri_prep
+%tauri_prep -u
 %{__pnpm} import
 
 %build

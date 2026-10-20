@@ -1,5 +1,5 @@
 Name:		limine
-Version:	12.9.3
+Version:	12.9.4
 Release:	1%{?dist}
 Summary:	Modern, advanced, portable, multiprotocol bootloader
 License:	BSD-2-Clause
@@ -29,10 +29,8 @@ gpg --verify %{S:1} %{S:0} || exit 1
 %install
 %make_install
 
-
 %files
 %doc README.md 3RDPARTY.md FAQ.md CONFIG.md COPYING USAGE.md ChangeLog
-%license %_datadir/doc/limine/LICENSES/LicenseRef-scancode-bsd-no-disclaimer-unmodified.txt
 %license COPYING
 %_bindir/limine
 %_datadir/limine/

@@ -1,5 +1,5 @@
-%global commit ccdf092314b2241ec13ede2381d8174b051d5d09
-%global commit_date 20260524
+%global commit 2ad23d6c425456d277ba3f8572066ba38f53da69
+%global commit_date 20261020
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global crate readymade
 Name:           readymade-git
@@ -52,7 +52,7 @@ rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macro
 %cargo_prep_online
 
 %build
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
 install -Dm755 target/rpm/readymade -t %buildroot%_bindir

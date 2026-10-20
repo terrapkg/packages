@@ -2,18 +2,18 @@
 %global _desc Generate Debian packages for common devops tools such as kubectl, kustomize, helm.
 
 Name:			python-%{pypi_name}
-Version:		2.7.0
-Release:		1%?dist
+Version:		2.8.0
+Release:		1%{?dist}
 Summary:		Generate Debian packages for common devops tools such as kubectl, kustomize, helm
 License:		MIT
 URL:			https://github.com/upciti/ops2deb
 Source0:		%{pypi_source}
-Patch0:			versions.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-poetry
+BuildRequires:  python3dist(uv-build)
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -28,7 +28,11 @@ Summary:        %{summary}
 %_desc
 
 %prep
-%autosetup -n %{pypi_name}-%{version} -p1
+%autosetup -n %{pypi_name}-%{version}
+sed -i '/^requires-python/s/,<3\.12//' pyproject.toml
+
+%pyproject_patch_dependency ruamel-yaml:drop_constraints
+%pyproject_patch_dependency semver:drop_constraints
 
 %build
 %pyproject_wheel

@@ -14,8 +14,20 @@ ExclusiveArch:  x86_64 aarch64
 %global appid ai.opencode.opencode
 
 Name:			opencode-cli
-Version:		1.19.0
+Version:		2.1.1
 Release:		1%{?dist}
+
+# v2 renamed the CLI package dir from packages/opencode to packages/cli,
+# changed the dist dir name, and replaced the `completion` subcommand with
+# effect/cli's built-in `--completions` flag.
+%global v2 %{lua: print(rpm.vercmp(rpm.expand("%{version}"), "2.0") >= 0 and 1 or 0)}
+%if "%{v2}" == "1"
+%global pkgdir cli
+%global distdir cli
+%else
+%global pkgdir opencode
+%global distdir opencode
+%endif
 Summary:		Open source AI coding agent for the terminal, IDE, and desktop
 License:		MIT
 URL:			https://opencode.ai
@@ -44,19 +56,25 @@ export npm_config_prefix=%{_builddir}/.npm-global
 export PATH=%{_builddir}/.npm-global/bin:$PATH
 
 %__bun install
-cd packages/opencode
+cd packages/%{pkgdir}
 OPENCODE_VERSION=%{version} OPENCODE_CHANNEL=latest %__bun run script/build.ts --single --skip-install
 
 %install
 export HOME=%{_builddir}/oc-home
 mkdir -p "$HOME"
 
-BIN=packages/opencode/dist/opencode-linux-%{a}/bin/opencode
+BIN=packages/%{pkgdir}/dist/%{distdir}-linux-%{a}/bin/opencode
 install -Dpm755 "$BIN" %{buildroot}%{_bindir}/opencode
 
+%if "%{v2}" == "1"
+"$BIN" --completions bash > opencode.bash
+"$BIN" --completions zsh  > _opencode
+"$BIN" --completions fish > opencode.fish
+%else
 "$BIN" completion bash > opencode.bash
 "$BIN" completion zsh  > _opencode
 "$BIN" completion fish > opencode.fish
+%endif
 install -Dm644 opencode.bash %{buildroot}%{bash_completions_dir}/opencode
 install -Dm644 _opencode     %{buildroot}%{zsh_completions_dir}/_opencode
 install -Dm644 opencode.fish %{buildroot}%{fish_completions_dir}/opencode.fish

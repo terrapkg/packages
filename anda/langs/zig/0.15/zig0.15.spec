@@ -31,8 +31,8 @@ Summary:        compatibility build for ${realname} %{version}
 
 License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GCC-exception-2.0 AND GPL-2.0-or-later AND GPL-2.0-or-later WITH GCC-exception-2.0 AND BSD-3-Clause AND Inner-Net-2.0 AND ISC AND LicenseRef-Fedora-Public-Domain AND GFDL-1.1-or-later AND ZPL-2.1
 URL:            https://ziglang.org
-Source0:        %{url}/download/%{version}/%{archive_name}
-Source1:        %{url}/download/%{version}/%{archive_name}.minisig
+Source0:        %{archive_name}
+Source1:        %{archive_name}.minisig
 Source2:        macros.%{realname}
 Patch0:         0000-remove-native-lib-directories-from-rpath.patch
 %if %{defined rhel}

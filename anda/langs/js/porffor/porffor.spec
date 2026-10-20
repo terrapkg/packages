@@ -1,5 +1,5 @@
-%global commit 0342e06d1c893c15eb9d22c5fc2bfe2c5965c81b
-%global commit_date 20261010
+%global commit 7e9729d439dee8c80daeb8f95f129a92c9495094
+%global commit_date 20261020
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           porffor-nightly
@@ -23,7 +23,7 @@ Porffor is a 100% AOT compiled JS engine/runtime. There is nothing interpreted o
 
 %build
 node selfhosted/build.mjs
-./porf c --compress-data selfhosted/bundle.js -o selfhosted/stage1.c
+node runtime/index.js c --compress-data selfhosted/bundle.js -o selfhosted/stage1.c
 
 clang -O0 -fuse-ld=mold -fno-sanitize=undefined -w \
   -fprofile-instr-generate=release.profraw \

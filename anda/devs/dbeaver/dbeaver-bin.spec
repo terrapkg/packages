@@ -8,8 +8,8 @@
 %global __requires_exclude libfreetype\.so.*|libj.*\.so.*|libawt.*\.so.*|libnet\.so.*
 
 Name:           dbeaver-bin
-Version:        26.2.2
-Release:        5%{?dist}
+Version:        26.2.3
+Release:        1%{?dist}
 Summary:        Free universal database tool and SQL client
 License:        Apache-2.0
 URL:            https://dbeaver.io

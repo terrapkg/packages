@@ -1,0 +1,12 @@
+diff --git a/meson.build b/meson.build
+index 6e9de95..fd90940 100644
+--- a/meson.build
++++ b/meson.build
+@@ -150,7 +150,6 @@ executable('singularity-atelier',
+   core + ui + [resources],
+   dependencies: core_deps,
+   vala_args: core_args,
+-  install_rpath: get_option('prefix') / get_option('libdir'),
+   install: true
+ )
+ 

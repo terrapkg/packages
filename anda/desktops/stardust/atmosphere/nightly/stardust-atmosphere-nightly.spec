@@ -1,12 +1,12 @@
-%global commit e24d5f5d84aeb8cbe4888e1742d701a8bc23dfae
-%global commit_date 20261008
+%global commit 1ef7f8ef72540326b346f544d8090e9b3f092ba8
+%global commit_date 20261013
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-atmosphere-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Environment, homespace, and setup client for Stardust XR
 URL:            https://github.com/StardustXR/atmosphere
 Source0:        %url/archive/%commit/atmosphere-%commit.tar.gz
@@ -28,7 +28,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %build
 
 %install
-%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
 %{cargo_license_online} > LICENSE.dependencies
 

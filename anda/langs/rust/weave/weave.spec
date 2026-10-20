@@ -1,5 +1,5 @@
 Name:           weave
-Version:        0.5.4
+Version:        0.6.1
 Release:        1%{?dist}
 Summary:        Entity-level git merge driver
 
@@ -19,8 +19,7 @@ Resolves merge conflicts that Git can't by understanding code structure via tree
 
 %prep
 %autosetup
-%cargo_prep_online
-
+%cargo_prep_online -u
 
 %build
 cargo update

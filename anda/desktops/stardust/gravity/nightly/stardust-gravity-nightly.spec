@@ -1,5 +1,5 @@
-%global commit 0237dea55479c48ea70f08017867a9033c5aeb03
-%global commit_date 20261008
+%global commit 68aa51365725d44d45170d28611e6a8a60710db6
+%global commit_date 20261020
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -28,7 +28,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %build
 
 %install
-%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 %cargo_install
 %{cargo_license_online} > LICENSE.dependencies
 

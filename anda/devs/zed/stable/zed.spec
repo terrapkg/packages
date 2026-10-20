@@ -17,7 +17,7 @@
 %global rustflags_debuginfo 0
 
 Name:           zed
-Version:        1.23.2
+Version:        1.24.4
 Release:        1%{?dist}
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  Apache-2.0 AND GPL-3.0-or-later
@@ -110,7 +110,7 @@ export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed from Terra."
 echo "stable" > crates/zed/RELEASE_CHANNEL
 
 %cargo_build -- --package zed --package cli
-ALLOW_MISSING_LICENSES=1 script/generate-licenses
+CARGO_NET_OFFLINE=false ALLOW_MISSING_LICENSES=1 script/generate-licenses
 %endif
 
 %install

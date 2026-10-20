@@ -1,5 +1,5 @@
 Name:           steelseriesgg-rs
-Version:        0.1.5
+Version:        0.1.7
 Release:        1%{?dist}
 Summary:        Open-source SteelSeries GG replacement for Linux
 URL:            https://github.com/Ven0m0/steelseriesgg-rs
@@ -40,7 +40,7 @@ install -Dm644 assets/99-steelseries.rules  %{buildroot}%{_udevrulesdir}/99-stee
 %systemd_postun_with_restart ssgg.service
 
 %files
-%doc README.md CHANGELOG.md PLAN.md TODO.md docs/development/*
+%doc README.md CHANGELOG.md PLAN.md docs/development/*
 %license LICENSE
 %{_bindir}/ssgg
 %{_unitdir}/ssgg.service

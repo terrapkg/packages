@@ -10,12 +10,9 @@ URL:            https://github.com/FyraLabs/moonshot
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 Source1:        com.fyralabs.moonshot.metainfo.xml
 
-BuildRequires:  wails3
 BuildRequires:  golang
 BuildRequires:  bun-bin
-BuildRequires:  pkgconfig(webkit2gtk-4.1)
-BuildRequires:  pkgconfig(gtk4)
-BuildRequires:  pkgconfig(webkitgtk-6.0)
+BuildRequires:  %{wails3_buildrequires -e}
 BuildRequires:  pkgconfig(gio-unix-2.0)
 BuildRequires:  pkgconfig(libsoup-3.0)
 
@@ -33,8 +30,7 @@ Why?
 %autosetup
 
 %build
-%set_javascript_build_flags
-EXTRA_TAGS=gtk4 wails3 build
+EXTRA_TAGS=gtk4 %wails3_build
 
 %install
 install -Dm755 bin/moonshot                 %{buildroot}%{_bindir}/moonshot

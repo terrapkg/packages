@@ -1,5 +1,5 @@
-%global commit 05c5677583ec6dfdf0937f7a6ced22bed0f53594
-%global commit_date 20261010
+%global commit cd0a4d522c497cf8038814c2f488dc1ccafa0456
+%global commit_date 20261020
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -28,7 +28,6 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %build
 
 %install
-%define __cargo_common_opts %{?_smp_mflags} -Z avoid-dev-deps --locked
 export STARDUST_RES_PREFIXES=%_datadir
 %cargo_install
 %{cargo_license_online} > LICENSE.dependencies

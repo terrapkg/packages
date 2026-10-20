@@ -1,0 +1,14 @@
+let url = `https://ziglang.org/download/index.json`;
+let json = get(url).json();
+let v = json.master.version;
+rpm.global("ver", v);
+
+if rpm.changed() {
+   rpm.release();
+   // Update the needed LLVM version
+   let rawfile = codeberg_rawfile("ziglang/zig", "master", "README.md");
+   let l = find(`releases\.llvm\.org/download\.html#([\d.]+)`, rawfile, 1);
+   rpm.global("llvm_version", l);
+   l.truncate(2);
+   rpm.define("llvm_compat", l);
+}

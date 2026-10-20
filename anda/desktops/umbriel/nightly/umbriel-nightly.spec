@@ -1,8 +1,8 @@
 %global debug_package   %{nil}
 
-%global commit          ac479b43a929f44fed3fca240d35ddfaecad3406
+%global commit          b93ed3d2f9eef54e593e29066d1a4ecf057888c2
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20261011
+%global commitdate      20261020
 
 Name:   	umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
@@ -82,6 +82,14 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{_datadir}/umbriel/effects/screen/vignette/shader.glsl
 %{_datadir}/umbriel/effects/window/scanlines/effect.toml
 %{_datadir}/umbriel/effects/window/scanlines/shader.glsl
+%{_datadir}/umbriel/effects/animation/workspace_wipe/effect.toml
+%{_datadir}/umbriel/effects/animation/workspace_wipe/shader.glsl
+%{_datadir}/umbriel/effects/border/audio/effect.toml
+%{_datadir}/umbriel/effects/border/audio/shader.glsl
+%{_datadir}/umbriel/effects/cursor/trail-path/effect.toml
+%{_datadir}/umbriel/effects/cursor/trail-path/shader.glsl
+%{_datadir}/umbriel/effects/cursor/trail/effect.toml
+%{_datadir}/umbriel/effects/cursor/trail/shader.glsl
 
 %changelog
 * Mon Sep 07 2026 Cypress Reed <cypress@fyralabs.com>
