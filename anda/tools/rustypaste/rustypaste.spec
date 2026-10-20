@@ -12,7 +12,6 @@ BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: gcc
 BuildRequires: cargo
-BuildRequires: mold
 BuildRequires: systemd-rpm-macros
 
 Packager:      Owen Zimmerman <owen@fyralabs.com>

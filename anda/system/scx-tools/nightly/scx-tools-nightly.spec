@@ -24,7 +24,6 @@ BuildRequires:  git
 BuildRequires:  libseccomp-devel
 BuildRequires:  lld >= 17
 BuildRequires:  llvm >= 17
-BuildRequires:  mold
 BuildRequires:  python3
 BuildRequires:  rust
 BuildRequires:  systemd
