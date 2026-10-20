@@ -4,6 +4,6 @@ project pkg {
 		spec = "yabs.spec"
 	}
 	labels {
-		nightly = 2
+		nightly = 4
 	}
 }
