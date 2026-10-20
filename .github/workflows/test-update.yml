@@ -1,0 +1,89 @@
+name: Test update scripts
+permissions:
+  contents: read
+
+concurrency:
+  group: test-update-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+on:
+  pull_request:
+    paths:
+      - "anda/**"
+
+jobs:
+  test-update:
+    runs-on: arc-runner-set
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      - name: Set workspace as safe
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # the PR merge commit and its first parent (the base branch)
+          fetch-depth: 2
+
+      - name: Find changed projects with update scripts
+        id: changed
+        run: |
+          set -euo pipefail
+          matrix=$(anda ci | sed -n 's/^build_matrix=//p')
+          projects=()
+          for proj in $(jq -r '.[].pkg' <<< "${matrix:-[]}" | sort -u); do
+            dir=$(dirname "$proj")
+            # only projects that actually have an update script
+            if [[ -f "$dir/update.rhai" ]] || grep -qE '^\s*update\s*=' "$dir/anda.hcl"; then
+              projects+=("$proj")
+            fi
+          done
+
+          printf '%s\n' "${projects[@]}"
+          echo "projects=${projects[*]}" >> "$GITHUB_OUTPUT"
+
+      - name: Run update scripts
+        if: steps.changed.outputs.projects != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECTS: ${{ steps.changed.outputs.projects }}
+          BRANCH: ${{ github.base_ref }}
+          NO_COLOR: "1"
+          RUST_BACKTRACE: full
+        run: |
+          set -uo pipefail
+          failed=()
+          log=$(mktemp)
+          echo "## Update script results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          for proj in $PROJECTS; do
+            echo "::group::$proj"
+            if anda update --labels "branch=$BRANCH" "$proj" 2>&1 | tee "$log" && ! grep -q ' ERROR ' "$log"; then
+              echo "::endgroup::"
+              echo "- ✅ \`$proj\`" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "::endgroup::"
+              echo "::error title=Update script failed::$proj"
+              echo "- ❌ \`$proj\`" >> "$GITHUB_STEP_SUMMARY"
+              failed+=("$proj")
+            fi
+          done
+
+          if ! git diff --no-ext-diff --quiet; then
+            {
+              echo ""
+              echo "<details><summary>Changes made by update scripts</summary>"
+              echo ""
+              echo '```diff'
+              git diff --no-ext-diff
+              echo '```'
+              echo "</details>"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+          if (( ${#failed[@]} )); then
+            echo "Failed: ${failed[*]}"
+            exit 1
+          fi
