@@ -1,5 +1,5 @@
 %global toolchain clang
-%global _distro_extra_ldflags -fuse-ld=lld
+%global _pkg_extra_ldflags -fuse-ld=lld
 Name:           eden
 Version:        0.2.1
 Release:        1%?dist
