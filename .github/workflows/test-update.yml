@@ -9,7 +9,7 @@ concurrency:
 on:
   pull_request:
     paths:
-      - "anda/**"
+      - "**/update.rhai"
 
 jobs:
   test-update:
