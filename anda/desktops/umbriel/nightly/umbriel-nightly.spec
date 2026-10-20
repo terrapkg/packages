@@ -6,7 +6,7 @@
 
 Name:   	umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A work-in-progress Wayland compositor designed for daily use, with scrolling and dwindle layouts, per-output workspaces, window rules, blur, shadows, and fluid animations
 
 License:	MIT
@@ -22,7 +22,13 @@ BuildRequires:  pkgconfig(sdbus-c++)
 BuildRequires:  pkgconfig(tomlplusplus)
 BuildRequires:  pkgconfig(nlohmann_json)
 BuildRequires:  pkgconfig(md4c)
+%if 0%{?fedora} >= 46
+BuildRequires:  stb_image-devel
+BuildRequires:  stb_image_write-devel
+BuildRequires:  stb_image_resize2-devel
+%else
 BuildRequires:  stb-devel
+%endif
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(jemalloc)
 BuildRequires:  pkgconfig(wayland-client)
