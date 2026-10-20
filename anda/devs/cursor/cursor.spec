@@ -44,9 +44,9 @@ tar xf data.tar.xz
 %install
 cp -pr usr %{buildroot}/
 mv %{buildroot}%{_datadir}/appdata %{buildroot}%{_metainfodir}
-mv %{buildroot}%{_datadir}/zsh/vendor-completions %{buildroot}%{zsh_site_functions}
+mv %{buildroot}%{_datadir}/zsh/vendor-completions %{buildroot}%{_datadir}/zsh/site-functions
 mkdir -p %{buildroot}%{_bindir}
-ln -sf %{_datadir}/%{name}/bin/%{name} %{buildroot}%{_bindir}/%{name}
+%{__ln_s} -f %{_datadir}/%{name}/bin/%{name} %{buildroot}%{_bindir}/%{name}
 cp -p usr/share/cursor/resources/app/LICENSE.txt .
 
 %files
