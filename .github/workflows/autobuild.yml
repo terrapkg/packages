@@ -9,10 +9,16 @@ permissions:
 on:
   push:
     paths:
-      - anda/**
+      - "anda/**"
+    paths-ignore:
+      - "**/update.rhai"
     branches:
       - f44
   pull_request:
+    paths:
+      - "anda/**"
+    paths-ignore:
+      - "**/update.rhai"
     branches:
       - f44
   merge_group:
