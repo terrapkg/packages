@@ -23,7 +23,7 @@ unzip -o %{SOURCE1}
 
 %install
 install -dm755 %buildroot%_libdir/%name/
-find . -mindepth 1 -maxdepth 1 -type f ! -name "*.zip" ! -name "LICENSE*" -exec cp -r --no-preserve=ownership --preserve=mode -t %buildroot%_libdir/%name/. {} +
+find . -mindepth 1 -maxdepth 1 -type f ! -name "*.zip" ! -name "LICENSE*" ! -name "rpmbuild.env" -exec cp -r --no-preserve=ownership --preserve=mode -t %buildroot%_libdir/%name/. {} +
 
 for _folder in 'locales' 'resources'; do
 	cp -r --no-preserve=ownership --preserve=mode "${_folder}/" %buildroot%_libdir/%name/${_folder}/
