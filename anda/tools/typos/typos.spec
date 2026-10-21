@@ -13,7 +13,6 @@ Source1:        https://raw.githubusercontent.com/crate-ci/%{name}/refs/tags/v%{
 Source2:        https://raw.githubusercontent.com/crate-ci/%{name}/refs/tags/v%{version}/LICENSE-APACHE
 
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  mold
 
 Packager:       Olivia <git@olivia.sh>
 
