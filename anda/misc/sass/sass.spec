@@ -4,7 +4,7 @@
 %define _build_id_links none
 
 Name: sass
-Version: 1.105.2
+Version: 1.106.0
 Release: 1%{?dist}
 Summary: The reference implementation of Sass, written in Dart
 License: MIT
