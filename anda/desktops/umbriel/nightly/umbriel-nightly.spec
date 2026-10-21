@@ -29,6 +29,7 @@ BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(pangocairo)
+BuildRequires:  pkgconfig(libdisplay-info)
 
 Requires:       xwayland-satellite
 Requires:       xdg-desktop-portal-umbriel-nightly
