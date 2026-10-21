@@ -1,7 +1,7 @@
 %global real_name nvidia-modprobe
 
 Name:           %{real_name}-580xx
-Version:        580.178.04
+Version:        580.196.07
 Release:        1%{?dist}
 Summary:        NVIDIA kernel module loader
 Epoch:          3
