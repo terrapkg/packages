@@ -2,6 +2,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20261020
 %global ver 1.1.4
+%global __terra_use_lld 0
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds-nightly
