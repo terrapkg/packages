@@ -25,7 +25,6 @@ Requires:       dkms
 Conflicts:      akmod-%{modulename}
 Provides:       %{modulename}-kmod
 BuildArch:      noarch
-Packager:       Potajito <potajito@gmail.com>
 
 %description
 Linux kernel module for Thrustmaster T300RS, T248 and (experimental) TX, T128,
