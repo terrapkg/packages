@@ -1,4 +1,3 @@
-%bcond_without mold
 %global _desc %{expand:
 CoolerControl is a feature-rich cooling device control application for Linux. It has a system daemon
 for background device management, as well as a GUI to expertly customize your settings.

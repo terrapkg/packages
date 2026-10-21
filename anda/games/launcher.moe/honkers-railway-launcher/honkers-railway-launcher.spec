@@ -32,7 +32,7 @@ BuildRequires: python3
 BuildRequires: python3-gobject
 BuildRequires: libadwaita-devel
 BuildRequires: cmake
-BuildRequires: gcc clang-devel mold
+BuildRequires: gcc clang-devel
 BuildRequires: rust-packaging
 BuildRequires: desktop-file-utils
 BuildRequires: anda-srpm-macros

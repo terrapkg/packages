@@ -20,7 +20,7 @@ Name:           devpod
 Release:        3%?dist
 Summary:        Spin up dev environments in any infra
 Provides:       golang-github-loft-sh-devpod
-BuildRequires:  anda-srpm-macros mold
+BuildRequires:  anda-srpm-macros
 BuildRequires:  yarnpkg rust-packaging
 Recommends:     devpod-desktop
 

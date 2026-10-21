@@ -6,7 +6,7 @@ License:        AGPL-3.0-or-later AND GPL-3.0-or-later AND LGPL-3.0-or-later AND
 URL:            https://apps.ankiweb.net/
 BuildRequires:  python3-devel python3-setuptools python3-waitress python3-protobuf python3-pysocks rpm_macro(fdupes)
 BuildRequires:  python3-distro python3-flask-cors python3-jsonschema python3-send2trash python3-certifi python3-simplejson python3-pyqt5-sip
-BuildRequires:  python3-installer make mold cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc
+BuildRequires:  python3-installer make cargo git rsync ninja-build libxcrypt-compat nodejs python3.9 python-unversioned-command gcc
 Requires:       hicolor-icon-theme python3-sqlalchemy python3-simplejson python3-matplotlib python3-decorator python3-markdown python3-send2trash python3-orjson mpv python3-qt5-webengine
 Requires:       python3-requests python3-pygame python3-beautifulsoup4 python3-httplib2 python3-pyaudio python3-jsonschema sox libxcrypt-compat python3-pyqt5-sip
 ExclusiveArch:  x86_64
@@ -28,7 +28,7 @@ git checkout %version
 # See https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=anki-qt5
 
 %build
-mold -run ./tools/build
+./tools/build
 
 %install
 for file in out/wheels/*.whl; do
