@@ -10,7 +10,6 @@ BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: gcc
 BuildRequires: cargo
-BuildRequires: mold
 
 Packager:      Owen Zimmerman <owen@fyralabs.com>
 
