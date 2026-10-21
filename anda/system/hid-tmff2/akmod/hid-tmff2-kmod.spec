@@ -68,7 +68,7 @@ done
 %{?akmod_install}
 
 %changelog
-* Tue Oct 20 2026 Potajito <potajito@gmail.com> - %{version}-3
+* Tue Oct 20 2026 Potajito <potajito@gmail.com> - 0.83^20260826git.d890a93-3
 - Build and ship hid-tminit-new and usb-tminit-new from the hid-tminit
   dependency (required for wheels needing mode switching, e.g. T128X)
   https://github.com/ublue-os/bazzite/issues/3555
