@@ -45,7 +45,7 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
-* Tue Oct 20 2026 Potajito <potajito@gmail.com> - %{version}-3
+* Tue Oct 20 2026 Potajito <potajito@gmail.com> - 0.83^20260826git.d890a93-3
 - Sync release bump with kmod packages now shipping hid-tminit-new and
   usb-tminit-new (https://github.com/ublue-os/bazzite/issues/3555)
 
