@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 %global commit 0342e06d1c893c15eb9d22c5fc2bfe2c5965c81b
 %global commit_date 20261010
+=======
+%global toolchain clang
+%global commit 7e9729d439dee8c80daeb8f95f129a92c9495094
+%global commit_date 20261020
+>>>>>>> e73f6c348c (chore: move some packages over to clang for lld switch (#19258))
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           porffor-nightly
