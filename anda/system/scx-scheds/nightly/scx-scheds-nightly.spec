@@ -14,6 +14,7 @@ URL:            https://github.com/sched-ext/scx
 Source0:        %{URL}/archive/%{commit}/scx-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros
 BuildRequires:  autoconf
+BuildRequires:  automake
 BuildRequires:  bison
 BuildRequires:  bpftool
 BuildRequires:  cargo
