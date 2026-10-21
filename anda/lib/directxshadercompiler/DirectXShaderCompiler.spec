@@ -1,3 +1,5 @@
+%global toolchain clang
+%global _pkg_extra_ldflags -fuse-ld=lld
 # Disable in-source build.
 %undefine __cmake_in_source_build
 
@@ -13,7 +15,7 @@ Packager:       libffi <contact@ffi.lol>
 URL:            https://github.com/microsoft/DirectXShaderCompiler
 
 # Build dependencies - tooling.
-BuildRequires:  gcc-c++
+BuildRequires:  clang
 BuildRequires:  cmake >= 3.17.2
 BuildRequires:  python3
 BuildRequires:  git
@@ -70,8 +72,8 @@ for %{name}.
 %build
 %cmake \
     -C ./cmake/caches/PredefinedParams.cmake \
-    -DCMAKE_C_COMPILER=gcc \
-    -DCMAKE_CXX_COMPILER=g++ \
+    -DCMAKE_C_COMPILER=%{__cc} \
+    -DCMAKE_CXX_COMPILER=%{__cxx} \
     -DSPIRV_BUILD_TESTS=OFF \
     -DBUILD_SHARED_LIBS=OFF \
     -DCMAKE_BUILD_TYPE=Fedora
