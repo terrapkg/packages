@@ -1,3 +1,4 @@
+%global toolchain clang
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
 %global ver 14.0.0
@@ -18,7 +19,7 @@ Source0:		https://github.com/flameshot-org/flameshot/archive/%commit/flameshot-%
 Packager:  madonuko <mado@fyralabs.com>
 
 BuildRequires:	cmake >= 3.13.0
-BuildRequires:	gcc-c++ >= 7
+BuildRequires:	clang
 BuildRequires:	fdupes
 BuildRequires:	libappstream-glib
 BuildRequires:	ninja-build
