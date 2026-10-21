@@ -2,7 +2,7 @@
 
 # The bare-metal target invokes rust-lld directly rather than cc/gcc.
 %global debug_package %{nil}
-%bcond_with lld
+%global __terra_use_lld 0
 %define terra_rustflags %build_rustflags
 %define _package_note_flags %nil
 %undefine _package_note_status
