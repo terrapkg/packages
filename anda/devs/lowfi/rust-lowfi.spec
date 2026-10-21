@@ -14,7 +14,6 @@ Packager:       sadlerm <lerm@chromebooks.lol>
 
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
-BuildRequires:  mold
 BuildRequires:  pkgconfig(alsa)
 BuildRequires:  pkgconfig(openssl)
 

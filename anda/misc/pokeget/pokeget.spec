@@ -13,7 +13,6 @@ URL:           https://crates.io/crates/%{crate}
 Source0:       %{terra_crates_source}
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
-BuildRequires: mold
 Provides:      bundled(%{pname}) = %{pcommit}
 Obsoletes:     %{crate}-rs < %{version}-%{release}
 Packager:      Gilver E. <roachy@fyralabs.com>, madonuko <mado@fyralabs.com>

@@ -1,4 +1,4 @@
-%bcond_without mold
+%bcond_without lld
 %global _desc %{expand:
 CoolerControl is a feature-rich cooling device control application for Linux. It has a system daemon
 for background device management, as well as a GUI to expertly customize your settings.
@@ -8,7 +8,7 @@ for background device management, as well as a GUI to expertly customize your se
 %global __brp_mangle_shebangs %{nil}
 
 Name:           coolercontrol
-Version:        5.1.0
+Version:        5.1.1
 Release:        1%{?dist}
 Summary:        Cooling device control for Linux
 ExclusiveArch:  x86_64 aarch64

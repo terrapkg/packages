@@ -57,7 +57,6 @@ BuildRequires: rust-srpm-macros
 # Build tooling.
 BuildRequires: meson
 BuildRequires: clang
-BuildRequires: mold
 
 # Subpackages.
 Recommends: %{name}-selinux
@@ -81,7 +80,7 @@ SELinux policy for %{name}.
 
 %prep
 %autosetup -C
-%cargo_prep_online
+%cargo_prep_online -u
 %meson
 
 %build

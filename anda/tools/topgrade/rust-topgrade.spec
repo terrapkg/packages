@@ -3,7 +3,7 @@
 
 Name:           rust-topgrade
 # renovate: datasource=github-releases depName=topgrade-rs/topgrade
-Version:        17.13.1
+Version:        17.14.1
 Release:        1%{?dist}
 Summary:        Upgrade all the things
 
@@ -16,7 +16,7 @@ Source:         %terra_crates_source
 BuildRequires:  cargo
 BuildRequires:  rust
 BuildRequires:  rpm_macro(cargo_install)
-BuildRequires:  anda-srpm-macros mold
+BuildRequires:  anda-srpm-macros
 
 %global _description %{expand:
 Keeping your system up to date usually involves invoking multiple package managers.

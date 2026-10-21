@@ -7,7 +7,7 @@
 %global debug_package %{nil}
 %endif
 
-%global ver 1.25.0-pre
+%global ver 1.25.1-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
@@ -41,7 +41,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  gettext-envsubst
 BuildRequires:  clang
 BuildRequires:  cmake
-BuildRequires:  mold
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel

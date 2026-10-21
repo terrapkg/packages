@@ -18,7 +18,6 @@ Source0:       %{terra_crates_source}
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo
 BuildRequires: cargo-rpm-macros
-BuildRequires: mold
 %if %{with dist}
 BuildRequires: perl
 %endif
