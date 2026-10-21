@@ -4,7 +4,7 @@
 %global cargo_install_lib 0
 
 Name:           rustup
-Version:        1.29.1
+Version:        1.29.2
 Release:        1%{?dist}
 Summary:        Manage multiple rust installations with ease
 Packager:       Cypress Reed <cypress@fyralabs.com>
