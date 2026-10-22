@@ -1766,13 +1766,13 @@ index 0000000..badeb88
 +      gamepad:
 +        button: RightPaddle1
 diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
-index 997c2df..a56c9f3 100644
+index 600c91c..c5c285f 100644
 --- a/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
 +++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
-@@ -38,6 +38,12 @@ source_devices:
-       name: "  Keyboard for Windows"
-       handler: event*
-       phys_path: usb-0000:66:00.0-5.3/input0
+@@ -42,6 +42,12 @@ source_devices:
+         - Keyboard:KeyF3
+         - Keyboard:KeyLeftCtrl
+         - Keyboard:KeyLeftShift
 +  - group: keyboard
 +    hidraw:
 +      vendor_id: 0x2f24
@@ -1784,4 +1784,3 @@ index 997c2df..a56c9f3 100644
        name: AT Translated Set 2 keyboard
 -- 
 2.55.0
-
