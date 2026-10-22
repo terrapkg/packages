@@ -1,8 +1,8 @@
 %global toolchain clang
 %global _pkg_extra_ldflags -fuse-ld=lld
-%global commit 0e88653dcbf4e44c73cb655a05b58cd749a91169
+%global commit 9d92b49bc5d0d2e29fe518239af647a88f8680e6
 %global ver 1.8.69
-%global commit_date 20261021
+%global commit_date 20261022
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:          tdlib-nightly
