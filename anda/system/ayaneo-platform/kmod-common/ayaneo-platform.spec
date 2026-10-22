@@ -24,7 +24,7 @@ between the akmod and DKMS variants.
 
 %install
 install -D -m 0644 %{SOURCE1} \
-    %{buildroot}%{_datadir}/metainfo/com.github.ShadowBlip.ayaneo-platform.metainfo.xml
+    %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 %terra_appstream
 
 %files
