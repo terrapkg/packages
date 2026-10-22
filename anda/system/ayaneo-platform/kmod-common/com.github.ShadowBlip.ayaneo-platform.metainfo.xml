@@ -1,0 +1,33 @@
+<component type="driver">
+  <id>com.github.ShadowBlip.ayaneo-platform</id>
+  <name>ayaneo-platform</name>
+  <pkgname>ayaneo-platform</pkgname>
+  <summary>Platform driver for AYANEO x86 handhelds</summary>
+  <description>
+    <p>
+      Provides RGB LED control and bypass charging through sysfs on supported
+      AYANEO x86 handhelds.
+    </p>
+  </description>
+  <url type="homepage">https://github.com/ShadowBlip/ayaneo-platform</url>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-or-later</project_license>
+  <developer id="io.github.shadowblip">
+    <name>ShadowBlip</name>
+  </developer>
+  <provides>
+    <modalias>dmi*:rvn*AYANEO*:rn*AIR*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AIR1S*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AIR1SLimited*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AB05-AMD*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AB05-Mendocino*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AIRPro*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AYANEO2*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AYANEO2S*:</modalias>
+    <modalias>dmi*:rvn*MystenLabs,Inc.*:rn*SuiPlay0X1*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*GEEK*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*GEEK1S*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AYANEOKUN*:</modalias>
+    <modalias>dmi*:rvn*AYANEO*:rn*AS01*:</modalias>
+  </provides>
+</component>
