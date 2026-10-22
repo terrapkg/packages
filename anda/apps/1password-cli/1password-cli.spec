@@ -7,7 +7,7 @@
 %endif
 
 Name:           1password-cli
-Version:        2.41.0
+Version:        2.41.1
 Release:        1%{?dist}
 Summary:        1Password command-line tool
 
