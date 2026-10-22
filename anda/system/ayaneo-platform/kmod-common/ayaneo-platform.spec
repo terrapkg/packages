@@ -27,7 +27,7 @@ install -D -m 0644 %{SOURCE1} \
 %files
 %license LICENSE
 %doc README.md
-%{_datadir}/metainfo/com.github.ShadowBlip.ayaneo-platform.metainfo.xml
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
 * Thu Oct 22 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 0.3.5-1
