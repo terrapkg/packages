@@ -1,3 +1,5 @@
+%global appid com.github.ShadowBlip.ayaneo-platform
+
 Name:           ayaneo-platform
 Version:        0.3.5
 Release:        1%{?dist}
