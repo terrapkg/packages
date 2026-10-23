@@ -7,8 +7,9 @@ metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-multimedia
 metadata_expire=6h
 type=rpm
 gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever-multimedia
-repo_gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terrael$releasever-multimedia
+# Terra currently uses a CDN based on the origin repo, so this is safe
+repo_gpgcheck=0
 enabled=1
 enabled_metadata=1
 countme=1
@@ -21,8 +22,9 @@ metalink=https://tetsudou.fyralabs.com/metalink?repo=terra$releasever-multimedia
 metadata_expire=6h
 type=rpm
 gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terra$releasever-multimedia-source
-repo_gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-terrael$releasever-multimedia-source
+# Terra currently uses a CDN based on the origin repo, so this is safe
+repo_gpgcheck=0
 enabled=0
 enabled_metadata=0
 priority=80
