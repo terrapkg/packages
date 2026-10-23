@@ -1,5 +1,5 @@
 Name:           cicpoffs
-Version:        1.0.0
+Version:        master
 Release:        1%{?dist}
 Summary:        Case-insensitive case-preserving overlay FUSE file system
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
