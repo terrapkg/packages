@@ -11,7 +11,7 @@ URL:            https://github.com/hakavlad/nohang
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 Conflicts:      nohang-nightly
 
-Packager:       Mizuki Nguyen <pridefulmizuki@gmail.com>
+Packager:       Mizuki Nguyen <acertaindrizzle@proton.me>
 
 BuildArch:      noarch
 
@@ -129,7 +129,7 @@ sed -i '
 
 
 %changelog
-* Thu Jan 01 2026 Mizuki Nguyen <pridefulmizuki@gmail.com> - 0.3.0-1
+* Thu Jan 01 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0-1
 - build(update): 0.3.0
 - Patch Makefile to merge /sbin into /bin
 

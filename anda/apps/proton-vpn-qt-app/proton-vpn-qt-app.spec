@@ -8,7 +8,7 @@ Summary:        Qt GUI frontend for the ProtonVPN Linux CLI.
 License:        GPL-3.0-only
 URL:            https://github.com/wheat32/%{name}
 Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Packager:       Mizuki Nguyen <tcbnmzk@proton.me>
+Packager:       Mizuki Nguyen <acertaindrizzle@proton.me>
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(Qt6Core)
@@ -66,9 +66,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 * Sun Oct 18 2026 Owen Zimmerman <owen@fyralabs.com> - 1.12.1-2 
 - Add proton-vpn-cli system dep, remove warning about broken package
 
-* Wed Oct 7 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.1-1
+* Wed Oct 7 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.12.1-1
 - Bump to 1.12.1
 - Upstream fixed appstream validation
 
-* Mon Oct 5 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.0-1
+* Mon Oct 5 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.12.0-1
 - Initial package
