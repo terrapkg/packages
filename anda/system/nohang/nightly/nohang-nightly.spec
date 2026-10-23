@@ -6,14 +6,14 @@
 
 Name:           nohang-nightly
 Version:        %{ver}^%{commit_date}.git%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
 URL:            https://github.com/hakavlad/nohang
 Source0:        %{url}/archive/%{commit}/nohang-%{commit}.tar.gz
 Conflicts:      nohang
 
-Packager:       Mizuki Nguyen <pridefulmizuki@gmail.com>
+Packager:       Mizuki Nguyen <acertaindrizzle@proton.me>
 
 BuildArch:      noarch
 
@@ -123,7 +123,10 @@ sed -i '
 
 
 %changelog
-* Wed Sep 02 2026 Mizuki Nguyen <pridefulmizuki@gmail.com> - 0.3.0_20260805.git50fad94-1
+* Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-2
+- Update maintainer contact info
+
+* Wed Sep 02 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-1
 - Update to HEAD
 - * Makefile patch fixed upstream
   * Add support for doas instead of sudo
@@ -131,7 +134,7 @@ sed -i '
   * Fix notification: https://github.com/hakavlad/nohang/issues/147
   * Fix ignore_positive_oom_score_adj option may not work properly on Linux 5.9+
 
-* Thu Jan 01 2026 Mizuki Nguyen <pridefulmizuki@gmail.com> - 0.3.0-1
+* Thu Jan 01 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0-1
 - build(update): 0.3.0
 - Patch Makefile to merge /sbin into /bin
 
