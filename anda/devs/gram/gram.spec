@@ -8,7 +8,7 @@
 %global appid app.liten.Gram
 
 Name:          gram
-Version:       3.4.0
+Version:       3.4.1
 Release:       1%{?dist}
 Summary:       The Gram Code Editor
 # This changes next release. :))))
