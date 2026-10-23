@@ -2,7 +2,7 @@
 
 Name:           terra-release
 Version:        %{?fedora:%{fedora}}%{?rhel:%{rhel}}
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Release package for Terra
 
 License:        GPL-3.0-or-later
