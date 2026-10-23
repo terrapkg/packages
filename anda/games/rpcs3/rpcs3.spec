@@ -98,7 +98,7 @@ export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
     -DUSE_SYSTEM_CURL=ON                                                             \
     -DUSE_SYSTEM_PUGIXML=OFF                                                         \
     -DUSE_SYSTEM_WOLFSSL=OFF                                                         \
-    -DCMAKE_LINKER=ld.lld                                                            \
+    -DCMAKE_LINKER=ld.lld{?llvm_major}                                               \
     -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld%{?llvm_major:-%{llvm_major}}" \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld%{?llvm_major:-%{llvm_major}}"
 
