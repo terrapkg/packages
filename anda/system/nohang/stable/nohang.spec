@@ -3,7 +3,7 @@
 
 Name:           nohang
 Version:        0.3.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Sophisticated low memory handler for Linux
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
@@ -129,6 +129,9 @@ sed -i '
 
 
 %changelog
+* Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0-3
+- Update maintainer contact info
+
 * Thu Jan 01 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0-1
 - build(update): 0.3.0
 - Patch Makefile to merge /sbin into /bin

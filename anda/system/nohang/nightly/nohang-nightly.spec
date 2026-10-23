@@ -6,7 +6,7 @@
 
 Name:           nohang-nightly
 Version:        %{ver}^%{commit_date}.git%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
 URL:            https://github.com/hakavlad/nohang
@@ -123,6 +123,9 @@ sed -i '
 
 
 %changelog
+* Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-2
+- Update maintainer contact info
+
 * Wed Sep 02 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-1
 - Update to HEAD
 - * Makefile patch fixed upstream
