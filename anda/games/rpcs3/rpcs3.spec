@@ -79,28 +79,28 @@ Packager:       Gilver E. <roachy@fyralabs.com>
 %if %{defined llvm_major}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
 %endif
-%cmake -DDISABLE_LTO=TRUE                                             \
-    -DZSTD_BUILD_STATIC=ON                                            \
-    -DCMAKE_SKIP_RPATH=ON                                             \
-    -DBUILD_SHARED_LIBS:BOOL=OFF                                      \
-    -DUSE_NATIVE_INSTRUCTIONS=OFF                                     \
-    -DSTATIC_LINK_LLVM=OFF                                            \
-    -DUSE_SYSTEM_FAUDIO=ON                                            \
-    -DUSE_SDL=ON                                                      \
-    -DUSE_SYSTEM_SDL=ON                                               \
-    -DBUILD_LLVM=OFF                                                  \
-    -DUSE_PRECOMPILED_HEADERS=OFF                                     \
-    -DUSE_DISCORD_RPC=ON                                              \
-    -DUSE_SYSTEM_FFMPEG=ON                                            \
-    -DUSE_SYSTEM_LIBPNG=ON                                            \
-    -DUSE_SYSTEM_ZLIB=ON                                              \
-    -DUSE_SYSTEM_OPENCV=ON                                            \
-    -DUSE_SYSTEM_CURL=ON                                              \
-    -DUSE_SYSTEM_PUGIXML=OFF                                          \
-    -DUSE_SYSTEM_WOLFSSL=OFF                                          \
-    -DCMAKE_LINKER=ld.lld                                             \
-    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld%{?llvm_major}" \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld%{?llvm_major}"
+%cmake -DDISABLE_LTO=TRUE                                                            \
+    -DZSTD_BUILD_STATIC=ON                                                           \
+    -DCMAKE_SKIP_RPATH=ON                                                            \
+    -DBUILD_SHARED_LIBS:BOOL=OFF                                                     \
+    -DUSE_NATIVE_INSTRUCTIONS=OFF                                                    \
+    -DSTATIC_LINK_LLVM=OFF                                                           \
+    -DUSE_SYSTEM_FAUDIO=ON                                                           \
+    -DUSE_SDL=ON                                                                     \
+    -DUSE_SYSTEM_SDL=ON                                                              \
+    -DBUILD_LLVM=OFF                                                                 \
+    -DUSE_PRECOMPILED_HEADERS=OFF                                                    \
+    -DUSE_DISCORD_RPC=ON                                                             \
+    -DUSE_SYSTEM_FFMPEG=ON                                                           \
+    -DUSE_SYSTEM_LIBPNG=ON                                                           \
+    -DUSE_SYSTEM_ZLIB=ON                                                             \
+    -DUSE_SYSTEM_OPENCV=ON                                                           \
+    -DUSE_SYSTEM_CURL=ON                                                             \
+    -DUSE_SYSTEM_PUGIXML=OFF                                                         \
+    -DUSE_SYSTEM_WOLFSSL=OFF                                                         \
+    -DCMAKE_LINKER=ld.lld                                                            \
+    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld%{?llvm_major:-%{llvm_major}}" \
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld%{?llvm_major:-%{llvm_major}}"
 
 %build
 %cmake_build
