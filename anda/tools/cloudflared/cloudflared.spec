@@ -1,5 +1,5 @@
 %global goipath         github.com/cloudflare/cloudflared
-Version:                2026.10.1
+Version:                2026.10.3
 
 %gometa -f
 
@@ -9,7 +9,7 @@ Version:                2026.10.1
 %endif
 
 Name:           cloudflared
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Cloudflare Tunnel client
 
 License:        Apache-2.0

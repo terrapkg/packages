@@ -11,7 +11,7 @@
 %define _package_note_flags %nil
 %undefine _package_note_status
 %define terra_rustflags %build_rustflags
-%global __terra_use_lld 0
+%bcond_with lld
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 %global _distro_extra_cxxflags -fno-permissive
 

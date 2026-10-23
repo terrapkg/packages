@@ -1,7 +1,7 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           inputplumber
-Version:        0.82.0
+Version:        0.83.0
 Release:        2%{?dist}
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
@@ -9,6 +9,7 @@ URL:            https://github.com/ShadowBlip/InputPlumber
 Source0:        %{url}/archive/refs/tags/v%version.tar.gz
 Patch0:         make-install-dont-build.patch
 Patch1:         gpd_fixup.patch
+Patch2:         generic-hidraw.patch
 BuildRequires:  libevdev-devel libiio-devel git make cargo libudev-devel llvm-devel clang-devel
 BuildRequires:  rust-packaging cargo-rpm-macros rpm_macro(cargo_prep_online) systemd-rpm-macros
 Requires:       libevdev libiio
