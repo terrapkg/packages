@@ -1,8 +1,8 @@
 # RPCS3 builds often break with GCC
 %global toolchain clang
 # Define which LLVM/Clang version RPCS3 needs
-%if 0%{?fedora} >= 46
-%global llvm_major 21
+%if 0%{?fedora} >= 45
+%global llvm_major 22
 %global __cc clang-%{llvm_major}
 %global __cxx clang++-%{llvm_major}
 %endif
@@ -19,10 +19,20 @@ Summary:        PlayStation 3 emulator and debugger
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
 Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
-BuildRequires:  anda-srpm-macros glew openal-soft cmake vulkan-validation-layers git-core
-BuildRequires:  llvm%{?llvm_major}-devel
+BuildRequires:  anda-srpm-macros
 # Looking at the CMakeLists.txt, this is the intended compiler and there are no fixes for GCC on aarch64
 BuildRequires:  clang%{?llvm_major}
+BuildRequires:  cmake
+BuildRequires:  doxygen
+BuildRequires:  git-core
+BuildRequires:  glew
+BuildRequires:  jack-audio-connection-kit-devel
+BuildRequires:  llvm%{?llvm_major}-devel
+BuildRequires:  lld%{?llvm_major}
+BuildRequires:  openal-soft
+BuildRequires:  qt6-qtbase-private-devel
+BuildRequires:  vulkan-devel
+BuildRequires:  vulkan-validation-layers
 BuildRequires:  cmake(FAudio)
 BuildRequires:  cmake(OpenAL)
 BuildRequires:  cmake(OpenCV)
@@ -57,8 +67,6 @@ BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(wayland-cursor)
 BuildRequires:  pkgconfig(xkbcommon-x11)
 #BuildRequires:  pkgconfig(wayland-eglstream)
-BuildRequires:  doxygen
-BuildRequires:  qt6-qtbase-private-devel vulkan-devel jack-audio-connection-kit-devel
 Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
@@ -71,28 +79,28 @@ Packager:       Gilver E. <roachy@fyralabs.com>
 %if %{defined llvm_major}
 export LLVM_DIR=%{_libdir}/llvm%{?llvm_major}/%{_lib}/cmake
 %endif
-%cmake -DDISABLE_LTO=TRUE                                     \
-    -DZSTD_BUILD_STATIC=ON                                    \
-    -DCMAKE_SKIP_RPATH=ON                                     \
-    -DBUILD_SHARED_LIBS:BOOL=OFF                              \
-    -DUSE_NATIVE_INSTRUCTIONS=OFF                             \
-    -DSTATIC_LINK_LLVM=OFF                                    \
-    -DUSE_SYSTEM_FAUDIO=ON                                    \
-    -DUSE_SDL=ON                                              \
-    -DUSE_SYSTEM_SDL=ON                                       \
-    -DBUILD_LLVM=OFF                                          \
-    -DUSE_PRECOMPILED_HEADERS=OFF                             \
-    -DUSE_DISCORD_RPC=ON                                      \
-    -DUSE_SYSTEM_FFMPEG=ON                                    \
-    -DUSE_SYSTEM_LIBPNG=ON                                    \
-    -DUSE_SYSTEM_ZLIB=ON                                      \
-    -DUSE_SYSTEM_OPENCV=ON                                    \
-    -DUSE_SYSTEM_CURL=ON                                      \
-    -DUSE_SYSTEM_PUGIXML=OFF                                  \
-    -DUSE_SYSTEM_WOLFSSL=OFF                                  \
-    -DCMAKE_LINKER=ld.lld                                     \
-    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld"      \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld" 
+%cmake -DDISABLE_LTO=TRUE                                                            \
+    -DZSTD_BUILD_STATIC=ON                                                           \
+    -DCMAKE_SKIP_RPATH=ON                                                            \
+    -DBUILD_SHARED_LIBS:BOOL=OFF                                                     \
+    -DUSE_NATIVE_INSTRUCTIONS=OFF                                                    \
+    -DSTATIC_LINK_LLVM=OFF                                                           \
+    -DUSE_SYSTEM_FAUDIO=ON                                                           \
+    -DUSE_SDL=ON                                                                     \
+    -DUSE_SYSTEM_SDL=ON                                                              \
+    -DBUILD_LLVM=OFF                                                                 \
+    -DUSE_PRECOMPILED_HEADERS=OFF                                                    \
+    -DUSE_DISCORD_RPC=ON                                                             \
+    -DUSE_SYSTEM_FFMPEG=ON                                                           \
+    -DUSE_SYSTEM_LIBPNG=ON                                                           \
+    -DUSE_SYSTEM_ZLIB=ON                                                             \
+    -DUSE_SYSTEM_OPENCV=ON                                                           \
+    -DUSE_SYSTEM_CURL=ON                                                             \
+    -DUSE_SYSTEM_PUGIXML=OFF                                                         \
+    -DUSE_SYSTEM_WOLFSSL=OFF                                                         \
+    -DCMAKE_LINKER=lld%{?llvm_major:-%{llvm_major}}                                  \
+    -DCMAKE_SHARED_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld%{?llvm_major:-%{llvm_major}}" \
+    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS -fuse-ld=lld%{?llvm_major:-%{llvm_major}}"
 
 %build
 %cmake_build
