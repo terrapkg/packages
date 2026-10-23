@@ -3,10 +3,10 @@
 %global name_pretty %{quote:Prism Launcher (Nightly)}
 %global appid org.prismlauncher.PrismLauncher-nightly
 
-%global commit 1b09df1ddc426caa399efa3b710c8a98ef1d63d3
+%global commit 6f5723937f558b06eb6795d16e0994299ba9c040
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
-%global commit_date 20261020
+%global commit_date 20261023
 %global snapshot_info %{commit_date}.%{shortcommit}
 
 # Change this variables if you want to use custom keys
