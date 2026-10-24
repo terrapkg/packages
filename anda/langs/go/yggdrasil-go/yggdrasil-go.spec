@@ -1,5 +1,5 @@
 %global goipath     github.com/yggdrasil-network/yggdrasil-go
-Version:            0.5.14
+Version:            0.5.15
 
 %global golicenses  LICENSE
 %global godocs      README.md
