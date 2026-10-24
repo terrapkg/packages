@@ -6,11 +6,13 @@
 
 Name:           nohang-nightly
 Version:        %{ver}^%{commit_date}.git%{shortcommit}
-Release:        2%{?dist}
+Release:        4%{?dist}
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
 URL:            https://github.com/hakavlad/nohang
 Source0:        %{url}/archive/%{commit}/nohang-%{commit}.tar.gz
+Patch0:         10-fix-root-security.patch
+Patch1:         11-ignore-zfs-on-lxc.patch
 Conflicts:      nohang
 
 Packager:       Mizuki Nguyen <acertaindrizzle@proton.me>
@@ -25,11 +27,7 @@ BuildRequires:  systemd
 BuildRequires:  systemd-rpm-macros
 %endif
 
-Requires:       logrotate python >= 3.3
-
-%if 0%{?fedora} || 0%{?rhel} >= 8
-Recommends:     %{pkgname}-desktop
-%endif
+Requires:       libnotify logrotate python >= 3.3
 
 %{?systemd_requires}
 
@@ -38,39 +36,11 @@ Nohang is a highly configurable daemon for Linux which is able to correctly
 prevent out of memory (OOM) and keep system responsiveness in low memory
 conditions.
 
-To enable and start:
-
-  systemctl enable --now %{pkgname}
-
-
-%package        desktop
-Summary:        Desktop version of %{name}
-BuildArch:      noarch
-
-Requires:       %{name} = %{version}-%{release}
-Requires:       libnotify
-
-%description    desktop
-Desktop version of %{pkgname}.
-
-
 %prep
 %autosetup -p1 -n nohang-%{commit}
 
-# E: zero-length /etc/nohang/version
-# * https://github.com/hakavlad/nohang/issues/52
-sed -i '
-        s|-git describe.* >|echo "v%{version}-0-g%{shortcommit}" >|;
-        s|chcon -t.*|true|;
-        s|systemctl.*|true|;
-        s|.*README.md.*||;
-        s|.*CHANGELOG.md.*||;
-    ' \
-    Makefile
-
 %build
 # Not required
-
 
 %install
 %make_install \
@@ -80,49 +50,50 @@ sed -i '
     SYSCONFDIR=%{_sysconfdir} \
     SYSTEMDUNITDIR=%{_unitdir}
 
+%posttrans
+To enable and start for servers:
+  systemctl enable --now %{pkgname}
+Or for workstations (regular desktop):
+  systemctl enable --now %{pkgname}-desktop
 
 %post
-%systemd_post %{pkgname}.service
+%systemd_post %{pkgname}.service %{pkgname}-desktop.service
 
 %preun
-%systemd_preun %{pkgname}.service
+%systemd_preun %{pkgname}.service %{pkgname}-desktop.service
 
 %postun
-%systemd_postun_with_restart %{pkgname}.service
-
-# Desktop
-%post desktop
-%systemd_post %{pkgname}-desktop.service
-
-%preun desktop
-%systemd_preun %{pkgname}-desktop.service
-
-%postun desktop
-%systemd_postun_with_restart %{pkgname}-desktop.service
-
+%systemd_postun_with_restart %{pkgname}.service %{pkgname}-desktop.service
 
 %files
 %license LICENSE
-%doc README.md CHANGELOG.md
 %{_bindir}/oom-sort
 %{_bindir}/psi2log
 %{_bindir}/psi-top
 %{_sbindir}/%{pkgname}
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{pkgname}
 %config(noreplace) %{_sysconfdir}/%{pkgname}/%{pkgname}.conf
+%config(noreplace) %{_sysconfdir}/%{pkgname}/%{pkgname}-desktop.conf
 %{_datadir}/%{pkgname}/%{pkgname}.conf
+%{_datadir}/%{pkgname}/%{pkgname}-desktop.conf
 %{_datadir}/%{pkgname}/version
+%{_datadir}/doc/%{pkgname}/README.md
+%{_datadir}/doc/%{pkgname}/CHANGELOG.md
 %{_mandir}/man1/*.1.*
 %{_mandir}/man8/*.8.*
 %{_unitdir}/%{pkgname}.service
-
-%files desktop
-%config(noreplace) %{_sysconfdir}/%{pkgname}/%{pkgname}-desktop.conf
-%{_datadir}/%{pkgname}/%{pkgname}-desktop.conf
 %{_unitdir}/%{pkgname}-desktop.service
 
 
 %changelog
+* Sat Oct 24 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-4
+- Combine the -desktop files in, "nohang-nightly-desktop" is unintuitive and legacy
+
+* Sat Oct 24 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-3
+- * Apply PRs:
+  * #158: fix: user-controlled process/service names can affect root command arguments
+  * #160: implement ignore_zfs inside lxc
+
 * Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-2
 - Update maintainer contact info
 
