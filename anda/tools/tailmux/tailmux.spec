@@ -2,6 +2,8 @@
 %define debug_package %{nil}
 %endif
 
+%undefine __brp_mangle_shebangs
+
 %global goipath github.com/GrowlyX/tailmux
 Version:        1.2.0
 
