@@ -1,6 +1,7 @@
 name: Manual Builds
 permissions:
   contents: read
+  actions: read
   attestations: write
   artifact-metadata: write
   id-token: write
