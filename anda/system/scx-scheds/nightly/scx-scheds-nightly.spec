@@ -13,12 +13,16 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 URL:            https://github.com/sched-ext/scx
 Source0:        %{URL}/archive/%{commit}/scx-%{commit}.tar.gz
 BuildRequires:  anda-srpm-macros
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  bison
 BuildRequires:  bpftool
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  clang >= 17
 BuildRequires:  elfutils-libelf
 BuildRequires:  elfutils-libelf-devel
+BuildRequires:  flex
 BuildRequires:  gcc
 BuildRequires:  git
 BuildRequires:  jq
