@@ -94,7 +94,6 @@ Desktop version of %{pkgname}.
 
 %files
 %license LICENSE
-%doc README.md CHANGELOG.md
 %{_bindir}/oom-sort
 %{_bindir}/psi2log
 %{_bindir}/psi-top
@@ -103,6 +102,8 @@ Desktop version of %{pkgname}.
 %config(noreplace) %{_sysconfdir}/%{pkgname}/%{pkgname}.conf
 %{_datadir}/%{pkgname}/%{pkgname}.conf
 %{_datadir}/%{pkgname}/version
+%{_datadir}/%{pkgname}/README.md
+%{_datadir}/%{pkgname}/CHANGELOG.md
 %{_mandir}/man1/*.1.*
 %{_mandir}/man8/*.8.*
 %{_unitdir}/%{pkgname}.service
