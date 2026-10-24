@@ -2,9 +2,9 @@
 
 %global ver 5.3.0
 
-%global commit          6423cc232e5b0900f28852b97f50d2836f4d39b7
+%global commit          67a649f775ef71976bdca69d361e0c26a9591dc7
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20261023
+%global commitdate      20261024
 
 Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -110,9 +110,13 @@ done
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
 %{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Sat Oct 24 2026 Owen Zimmerman <owen@fyralabs.com>
+- add %%{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
+
 * Tue Oct 20 2026 Cypress Reed <cypress@fyralabs.com>
 - Use stb-devel subpackages instead of metapackages (fedora removed it)
 

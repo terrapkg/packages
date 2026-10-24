@@ -1,5 +1,5 @@
-%global commit 7bbf603833e167712e9cc7ae3432001dc26817d0
-%global commit_date 20261020
+%global commit 2ec8e9cad48a9305317e1ee76c2f61e896a62da0
+%global commit_date 20261024
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global latest_stable_version 2021.01
 

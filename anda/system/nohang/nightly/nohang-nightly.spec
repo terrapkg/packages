@@ -6,7 +6,7 @@
 
 Name:           nohang-nightly
 Version:        %{ver}^%{commit_date}.git%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
 URL:            https://github.com/hakavlad/nohang
@@ -114,10 +114,13 @@ Desktop version of %{pkgname}.
 
 
 %changelog
-* Sat Oct 24 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-2
+* Sat Oct 24 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-3
 - * Apply PRs:
   * #158: fix: user-controlled process/service names can affect root command arguments
   * #160: implement ignore_zfs inside lxc
+
+* Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-2
+- Update maintainer contact info
 
 * Wed Sep 02 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-1
 - Update to HEAD

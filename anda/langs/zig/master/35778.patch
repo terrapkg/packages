@@ -1,0 +1,25 @@
+From ffa3d0ab3110800848ac944f52e501eb372e69dd Mon Sep 17 00:00:00 2001
+From: Jan200101 <sentrycraft123@gmail.com>
+Date: Mon, 15 Jun 2026 12:10:08 +0200
+Subject: [PATCH] compiler: don't include lib directory as rpath for native OS
+
+---
+ src/main.zig | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main.zig b/src/main.zig
+index 607cd7b643..eaaeaf6fd5 100644
+--- a/src/main.zig
++++ b/src/main.zig
+@@ -4214,7 +4214,7 @@ fn createModule(
+         }
+         create_module.framework_dir_args = undefined; // From here we use framework_directories instead.
+ 
+-        if (create_module.each_lib_rpath orelse resolved_target.is_native_os) {
++        if (create_module.each_lib_rpath orelse false) {
+             try create_module.rpath_list.ensureUnusedCapacity(arena, create_module.lib_directories.items.len);
+             for (create_module.lib_directories.items) |lib_directory| {
+                 create_module.rpath_list.appendAssumeCapacity(lib_directory.path.?);
+-- 
+2.55.0
+
