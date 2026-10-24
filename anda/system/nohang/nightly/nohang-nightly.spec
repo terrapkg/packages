@@ -57,16 +57,13 @@ Or for workstations (regular desktop):
   systemctl enable --now %{pkgname}-desktop
 
 %post
-%systemd_post %{pkgname}.service
-%systemd_post %{pkgname}-desktop.service
+%systemd_post %{pkgname}.service %{pkgname}-desktop.service
 
 %preun
-%systemd_preun %{pkgname}.service
-%systemd_preun %{pkgname}-desktop.service
+%systemd_preun %{pkgname}.service %{pkgname}-desktop.service
 
 %postun
-%systemd_postun_with_restart %{pkgname}.service
-%systemd_postun_with_restart %{pkgname}-desktop.service
+%systemd_postun_with_restart %{pkgname}.service %{pkgname}-desktop.service
 
 %files
 %license LICENSE
