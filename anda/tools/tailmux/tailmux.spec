@@ -20,6 +20,9 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 BuildRequires:  golang
 BuildRequires:  gcc
 BuildRequires:  go-rpm-macros
+BuildRequires:  tauri
+BuildRequires:  %{tauri_buildrequires}
+BuildRequires:  pnpm
 
 %description
 %{summary}.
@@ -31,10 +34,6 @@ Summary:        Desktop app for tailmux
 Requires:       %{name} = %{evr}
 SourceLicense:  BSD-3-Clause
 License:        (BSD-3-Clause OR MIT OR Apache-2.0) AND (Apache-2.0 OR ISC OR MIT) AND Apache-2.0 AND MIT AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND CDLA-Permissive-2.0 AND Zlib AND MIT AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND Apache-2.0 AND ISC AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND MIT AND BSL-1.0 AND ISC AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
-License:        %{sourcelicense}
-BuildRequires:  tauri
-BuildRequires:  %{tauri_buildrequires}
-BuildRequires:  pnpm
 
 %description    desktop
 Desktop app for tailmux.
