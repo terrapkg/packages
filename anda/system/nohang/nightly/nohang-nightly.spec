@@ -102,8 +102,8 @@ Desktop version of %{pkgname}.
 %config(noreplace) %{_sysconfdir}/%{pkgname}/%{pkgname}.conf
 %{_datadir}/%{pkgname}/%{pkgname}.conf
 %{_datadir}/%{pkgname}/version
-%{_datadir}/%{pkgname}/README.md
-%{_datadir}/%{pkgname}/CHANGELOG.md
+%{_datadir}/doc/%{pkgname}/README.md
+%{_datadir}/doc/%{pkgname}/CHANGELOG.md
 %{_mandir}/man1/*.1.*
 %{_mandir}/man8/*.8.*
 %{_unitdir}/%{pkgname}.service
