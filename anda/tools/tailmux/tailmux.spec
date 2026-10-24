@@ -54,7 +54,7 @@ export GOTOOLCHAIN=auto
 pushd desktop
 %{tauri_cargo_license} > LICENSE.dependencies
 %{pnpm_build}
-%{__pnpm} tauri build
+%dnl %{__pnpm} tauri build
 popd
 
 %install
