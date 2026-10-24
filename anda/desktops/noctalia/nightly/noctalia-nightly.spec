@@ -110,9 +110,13 @@ done
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
 %{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Sat Oct 24 2026 Owen Zimmerman <owen@fyralabs.com>
+- add %%{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
+
 * Tue Oct 20 2026 Cypress Reed <cypress@fyralabs.com>
 - Use stb-devel subpackages instead of metapackages (fedora removed it)
 
