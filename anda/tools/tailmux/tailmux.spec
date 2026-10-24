@@ -54,18 +54,19 @@ export GOTOOLCHAIN=auto
 pushd desktop
 %{tauri_cargo_license} > LICENSE.dependencies
 %{pnpm_build}
-%dnl %{__pnpm} tauri build
+ls -laH
 popd
 
 %install
 install -Dm755 %{gobuilddir}/cmd/tailmux            %{buildroot}%{_bindir}/tailmux
-install -Dm755 desktop/target/rpm/tailmmux-desktop  %{buildroot}%{_bindir}/tailmux-desktop
+install -Dm755 desktop/src-tauri/target/rpm/tailmux-desktop   %{buildroot}%{_bindir}/tailmux-desktop
 install -Dm644 desktop/src-tauri/icons/icon.png     %{buildroot}%{_hicolordir}/512x512/apps/tailmux.png
 %desktop_file_install packaging/linux/tailmux.desktop
+ls -laH
 
 %files
-%license LICENSE LICENSE.dependencies
-%doc README.md docs/*.md
+%license LICENSE desktop/LICENSE.dependencies
+%doc README.md docs/*.md SECURITY.md
 %{_bindir}/tailmux
 
 %files desktop
