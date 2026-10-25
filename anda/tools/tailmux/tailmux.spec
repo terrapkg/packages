@@ -4,18 +4,21 @@
 
 %undefine __brp_mangle_shebangs
 
+%global appid com.github.GrowlyX.tailmux
+
 %global goipath github.com/GrowlyX/tailmux
 Version:        1.2.0
 
 %gometa -f
 
 Name:           tailmux
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Be on all your tailnets at once
 
 License:        BSD-3-Clause
 URL:            https://github.com/GrowlyX/tailmux
 Source0:        https://github.com/GrowlyX/tailmux/archive/refs/tags/v%{version}.tar.gz
+Source1:        %{appid}.metainfo.xml
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
@@ -64,6 +67,8 @@ install -Dm755 desktop/src-tauri/target/rpm/tailmux-desktop   %{buildroot}%{_bin
 install -Dm644 desktop/src-tauri/icons/icon.png     %{buildroot}%{_hicolordir}/512x512/apps/tailmux.png
 %desktop_file_install packaging/linux/tailmux.desktop
 
+%terra_appstream -o %{S:1}
+
 %files
 %license LICENSE LICENSE.dependencies
 %doc README.md docs/*.md SECURITY.md
@@ -74,7 +79,11 @@ install -Dm644 desktop/src-tauri/icons/icon.png     %{buildroot}%{_hicolordir}/5
 %{_bindir}/tailmux-desktop
 %{_hicolordir}/512x512/apps/tailmux.png
 %{_appsdir}/tailmux.desktop
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
-* Fri Dec 05 2025 Owen Zimmerman <owen@fyralabs.com> - 1.2.0-1
+* Sun Oct 25 2026 Owen Zimmerman <owen@fyralabs.com> - 1.2.0-2
+- Add metainfo
+
+* Sun Oct 25 2026 Owen Zimmerman <owen@fyralabs.com> - 1.2.0-1
 - Initial commit
