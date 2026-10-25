@@ -1,6 +1,6 @@
 Name:           cglm
-Version:        0.9.6
-Release:        2%{?dist}
+Version:        0.9.7
+Release:        1%{?dist}
 Summary:        Highly Optimized Graphics Math (glm) for C
 Packager:       Jan200101 <sentrycraft123@gmail.com>
 
