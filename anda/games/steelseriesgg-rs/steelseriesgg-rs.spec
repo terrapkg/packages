@@ -26,7 +26,7 @@ GameSense-compatible server, profiles, and
 %install
 install -Dm755 target/rpm/ssgg              %{buildroot}%{_bindir}/ssgg
 install -Dm644 assets/ssgg.service          %{buildroot}%{_unitdir}/ssgg.service
-install -Dm644 assets/99-steelseries.rules  %{buildroot}%{_udevrulesdir}/99-steelseries.rules
+install -Dm644 assets/70-steelseries.rules  %{buildroot}%{_udevrulesdir}/70-steelseries.rules
 
 %{cargo_license_online} > LICENSE.dependencies
 
@@ -44,7 +44,7 @@ install -Dm644 assets/99-steelseries.rules  %{buildroot}%{_udevrulesdir}/99-stee
 %license LICENSE
 %{_bindir}/ssgg
 %{_unitdir}/ssgg.service
-%{_udevrulesdir}/99-steelseries.rules
+%{_udevrulesdir}/70-steelseries.rules
 
 %changelog
 * Mon Aug 10 2026 Owen Zimmerman <owen@fyralabs.com>
