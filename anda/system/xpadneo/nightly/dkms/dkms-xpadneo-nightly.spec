@@ -1,7 +1,7 @@
-%global commit 547eb90cd9f01de64db888b558f7e1a606c71965
+%global commit 39625746fff63c997eeb53fe3a6fc1a3de08702e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20261018
-%global ver 0.10.4
+%global commitdate 20261025
+%global ver 0.10.5
 %global modulename xpadneo
 
 Name:           dkms-%{modulename}-nightly
