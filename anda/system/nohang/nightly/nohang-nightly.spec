@@ -1,12 +1,12 @@
 %global commit      50fad9429ff03e759f8a9405c383339683dbe7f4
-%global commit_date 20260805
+%global commitdate  20260805
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global pkgname     nohang
-%global ver         v0.3.0
+%global ver         0.3.0
 
 Name:           nohang-nightly
 Version:        %{ver}^%{commit_date}.git%{shortcommit}
-Release:        4%{?dist}
+Release:        5%{?dist}
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
 URL:            https://github.com/hakavlad/nohang
@@ -86,6 +86,9 @@ Or for workstations (regular desktop):
 
 
 %changelog
+* Sun Oct 25 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-5
+- Packaging: fix .rhai version format
+
 * Sat Oct 24 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 0.3.0_20260805.git50fad94-4
 - Combine the -desktop files in, "nohang-nightly-desktop" is unintuitive and legacy
 
