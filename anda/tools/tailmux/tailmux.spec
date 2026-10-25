@@ -7,12 +7,12 @@
 %global appid com.github.GrowlyX.tailmux
 
 %global goipath github.com/GrowlyX/tailmux
-Version:        1.2.0
+Version:        1.3.0
 
 %gometa -f
 
 Name:           tailmux
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Be on all your tailnets at once
 
 License:        BSD-3-Clause
