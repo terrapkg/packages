@@ -1,4 +1,4 @@
-%global v v2.0.0-alpha.6
+%global v v2.0.0-alpha.7
 
 Name:           zrythm
 Version:        %(echo %v | sed 's@-@~@g' | sed 's@^v@@')
