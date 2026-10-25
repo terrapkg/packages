@@ -1,5 +1,5 @@
 %global commit      50fad9429ff03e759f8a9405c383339683dbe7f4
-%global commit_date 20260805
+%global commitdate  20260805
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global pkgname     nohang
 %global ver         0.3.0
