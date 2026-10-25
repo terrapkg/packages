@@ -10,6 +10,7 @@ BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(gdk-3.0)
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
