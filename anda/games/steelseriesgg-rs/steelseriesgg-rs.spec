@@ -8,10 +8,14 @@ SourceLicense:  MIT
 License:        (Apache-2.0 OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND MIT AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND MIT AND BSD-3-Clause AND (Unlicense OR MIT)
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
+
+# GUI
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(gdk-3.0)
 BuildRequires:  pkgconfig(javascriptcoregtk-4.1)
+BuildRequires:  pkgconfig(libsoup-3.0)
+
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
