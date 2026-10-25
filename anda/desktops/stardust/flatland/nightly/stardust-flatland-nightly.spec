@@ -1,12 +1,12 @@
-%global commit 05ea6429208b832a36c2f8e606a22ebc3e898fa5
-%global commit_date 20261013
+%global commit 34b79afa4acf603fc67a730fff4deb8fd36400b1
+%global commit_date 20261025
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           stardust-xr-flatland-nightly
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Flatland for Stardust XR
 URL:            https://github.com/StardustXR/flatland
 Source0:        %url/archive/%commit/flatland-%commit.tar.gz
