@@ -9,6 +9,7 @@ License:        (Apache-2.0 OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND MIT AND 
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils
+BuildRequires:  pkgconfig(glib-2.0)
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
