@@ -10,6 +10,7 @@ Name:           grub2-distro-themes-nightly
 Version:        3.2~%{commit_date}git.%{shortcommit}
 Release:        1%{?dist}
 Summary:        Distro themes for GRUB
+SourceLicense:  GPL-3.0-or-later
 License:        GPL-3.0-or-later
 URL:            https://github.com/AdisonCavani/distro-grub-themes
 Source0:        %url/archive/%commit/distro-grub-themes-%commit.tar.gz
@@ -41,7 +42,7 @@ GRUB2 theme for arco-linux.
 
 %package        debian
 Requires:       %{name}%{?_isa} = %{evr}
-License:        %{sourcelicense} AND (%{sourcelicense} OR CC-BY-SA-3.0)
+License:        %{sourcelicense} AND (LGPL-3.0-or-later OR CC-BY-SA-3.0)
 Summary:        GRUB2 theme for debian
 
 %description    debian
@@ -145,7 +146,7 @@ GRUB2 theme for ubuntu-mate.
 
 %package        ultramarine
 Requires:       %{name}%{?_isa} = %{evr}
-License:        %{sourcelicense} AND LicenseRef-Propriatary
+License:        %{sourcelicense} AND LicenseRef-Fyra-Labs-Proprietary
 Summary:        GRUB2 theme for ultramarine
 
 %description    ultramarine
@@ -235,6 +236,9 @@ done
 
 %files pop-os
 %{_grubthemedir}/pop-os
+
+%files ultramarine
+%{_grubthemedir}/ultramarine
 
 %files ubuntu-mate
 %{_grubthemedir}/ubuntu-mate
