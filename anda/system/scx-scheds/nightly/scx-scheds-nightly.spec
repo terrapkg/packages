@@ -6,7 +6,7 @@
 
 Name:           scx-scheds-nightly
 Version:        %{ver}^%{commitdate}.git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Nightly builds of sched_ext schedulers and tools
 SourceLicense:  GPL-2.0-only
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-2-Clause AND BSD-3-Clause AND BSL-1.0 AND GPL-2.0-only AND ISC AND (LGPL-2.1-only OR BSD-2-Clause) AND LGPL-2.1-only AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR MIT OR Apache-2.0) AND MPL-2.0-or-later AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
@@ -42,10 +42,9 @@ Requires:       libseccomp
 Requires:       protobuf
 Requires:       zlib
 Conflicts:      rust-scx_utils-devel
-Conflicts:      scx_c_schedulers
-Conflicts:      scx_layered
-Conflicts:      scx_rustland
-Conflicts:      scx_rusty
+Obsoletes:      scx_rustland < 1.0
+Obsoletes:      scx_rusty < 1.0
+Obsoletes:      scx_layered < 1.0
 Conflicts:      scx-scheds
 Provides:       rust-scx_utils-devel
 Provides:       scx_c_schedulers
