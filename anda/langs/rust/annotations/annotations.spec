@@ -1,7 +1,7 @@
 %global crate annotations
 
 Name:		annotations
-Version:	0.2.0
+Version:	0.3.0
 Release:	1%{?dist}
 Summary:	Minimal terminal tool for annotating code
 URL:		https://crates.io/crates/annotations
