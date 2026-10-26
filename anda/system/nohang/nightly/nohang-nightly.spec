@@ -5,7 +5,7 @@
 %global ver         0.3.0
 
 Name:           nohang-nightly
-Version:        %{ver}^%{commit_date}.git%{shortcommit}
+Version:        %{ver}^%{commitdate}.git%{shortcommit}
 Release:        5%{?dist}
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
