@@ -1,8 +1,8 @@
 %global debug_package   %{nil}
 
-%global commit          b93ed3d2f9eef54e593e29066d1a4ecf057888c2
+%global commit          fd0a6e9a2335355d3848290d805e9bb50efcbb74
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20261020
+%global commitdate      20261025
 
 Name:   	umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
@@ -22,7 +22,6 @@ BuildRequires:  pkgconfig(sdbus-c++)
 BuildRequires:  pkgconfig(tomlplusplus)
 BuildRequires:  pkgconfig(nlohmann_json)
 BuildRequires:  pkgconfig(md4c)
-BuildRequires:  stb-devel
 BuildRequires:  pkgconfig(glib-2.0)
 BuildRequires:  pkgconfig(jemalloc)
 BuildRequires:  pkgconfig(wayland-client)
@@ -30,6 +29,7 @@ BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(pangocairo)
+BuildRequires:  pkgconfig(libdisplay-info)
 
 Requires:       xwayland-satellite
 Requires:       xdg-desktop-portal-umbriel-nightly

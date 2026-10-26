@@ -2,13 +2,13 @@
 
 %global ver 5.3.0
 
-%global commit          dc3e8816ed224242411cf56b23fd928ca4447459
+%global commit          aaae4059d42284f3da05b5e3c1cd26f83470aaa1
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20261020
+%global commitdate      20261026
 
 Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	2%{?dist}
+Release:	1%{?dist}
 Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
@@ -110,9 +110,13 @@ done
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
 %{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Sat Oct 24 2026 Owen Zimmerman <owen@fyralabs.com>
+- add %%{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
+
 * Tue Oct 20 2026 Cypress Reed <cypress@fyralabs.com>
 - Use stb-devel subpackages instead of metapackages (fedora removed it)
 

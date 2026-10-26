@@ -1,5 +1,6 @@
-%global commit 7e9729d439dee8c80daeb8f95f129a92c9495094
-%global commit_date 20261020
+%global toolchain clang
+%global commit 0c135ce2f36fdd3467d5a58daa92283810705a51
+%global commit_date 20261021
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           porffor-nightly
@@ -12,7 +13,7 @@ Source0:		    https://github.com/CanadaHonk/porffor/archive/%commit/porffor-%com
 Packager:       madonuko <mado@fyralabs.com>
 Provides:       porffor = %evr
 Provides:       porf = %evr
-BuildRequires:  clang mold compiler-rt llvm
+BuildRequires:  clang compiler-rt llvm
 BuildRequires:  nodejs
 
 %description
@@ -25,13 +26,13 @@ Porffor is a 100% AOT compiled JS engine/runtime. There is nothing interpreted o
 node selfhosted/build.mjs
 node runtime/index.js c --compress-data selfhosted/bundle.js -o selfhosted/stage1.c
 
-clang -O0 -fuse-ld=mold -fno-sanitize=undefined -w \
+clang -O0 -fuse-ld=lld -fno-sanitize=undefined -w \
   -fprofile-instr-generate=release.profraw \
   selfhosted/stage1.c -o pgo-porf -lm
 ./pgo-porf c selfhosted/bundle.js -o selfhosted/stage2.c
 llvm-profdata merge -o release.profdata release.profraw
 
-clang %build_cflags -fuse-ld=mold \
+clang %build_cflags -fuse-ld=lld \
   -fprofile-instr-use=release.profdata \
   -mllvm -force-attribute=porf_strict_eq:noinline \
   selfhosted/stage1.c -o porf -lm

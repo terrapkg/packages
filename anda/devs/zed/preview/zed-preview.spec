@@ -7,7 +7,7 @@
 %global debug_package %{nil}
 %endif
 
-%global ver 1.25.1-pre
+%global ver 1.26.2-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
@@ -41,7 +41,6 @@ BuildRequires:  gcc-c++
 BuildRequires:  gettext-envsubst
 BuildRequires:  clang
 BuildRequires:  cmake
-BuildRequires:  mold
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  wayland-devel
@@ -109,7 +108,7 @@ export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Preview from Terra."
 echo "preview" > crates/zed/RELEASE_CHANNEL
 
 %cargo_build -- --package zed --package cli
-ALLOW_MISSING_LICENSES=1 script/generate-licenses
+ALLOW_MISSING_LICENSES=1 CARGO_NET_OFFLINE=false script/generate-licenses
 %endif
 
 %install

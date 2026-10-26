@@ -1,5 +1,5 @@
 Name:           logitech-trueforce
-Version:        0.42.5
+Version:        0.42.6
 Release:        1%{?dist}
 Summary:        kernel driver for Logitech racing wheels (RS50, G PRO, G923)
 License:        GPL-2.0-only

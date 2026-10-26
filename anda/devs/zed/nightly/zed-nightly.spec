@@ -1,7 +1,7 @@
-%global commit e39fb7c2e0560d013df0e77bce1922bf5cce1ad9
+%global commit 08cbb88a152c3751a43e853425a70e9f631a5918
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20261020
-%global ver 1.26.0
+%global commit_date 20261026
+%global ver 1.27.0
 
 %bcond_with check
 %bcond_with debug_no_build
@@ -45,7 +45,6 @@ BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  gettext-envsubst
 BuildRequires:  clang
-BuildRequires:  mold
 BuildRequires:  cmake
 BuildRequires:  alsa-lib-devel
 BuildRequires:  fontconfig-devel
@@ -120,7 +119,7 @@ export ZED_UPDATE_EXPLANATION="Run dnf up to update Zed Nightly from Terra."
 echo "nightly" > crates/zed/RELEASE_CHANNEL
 
 %cargo_build -- --package zed --package cli
-ALLOW_MISSING_LICENSES=1 script/generate-licenses
+ALLOW_MISSING_LICENSES=1 CARGO_NET_OFFLINE=false script/generate-licenses
 %endif
 
 %install

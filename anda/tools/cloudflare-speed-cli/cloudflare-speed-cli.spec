@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           cloudflare-speed-cli
-Version:        1.0.10
+Version:        1.0.11
 Release:        1%{?dist}
 Summary:        CLI for internet speed test via cloudflare
 
@@ -10,7 +10,6 @@ URL:            https://github.com/kavehtehrani/cloudflare-speed-cli
 Source0:        %url/archive/refs/tags/v%version.tar.gz
 
 BuildRequires:  cargo-rpm-macros
-BuildRequires:  mold
 
 %description
 %summary.

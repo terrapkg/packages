@@ -3,7 +3,7 @@
 %global appid       org.gnome.shell.extensions.%{extension}
 
 Name:           gnome-shell-extension-%{extension}
-Version:        2.4.3
+Version:        2.5.0
 Release:        1%{?dist}
 Summary:        Advanced tiling window management extension for GNOME
 License:        GPL-3.0-only

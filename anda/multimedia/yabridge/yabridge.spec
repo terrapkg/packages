@@ -62,7 +62,6 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  uuid-devel
 BuildRequires:  cmake
 BuildRequires:  cargo
-BuildRequires:  mold
 BuildRequires:  clang-devel
 BuildRequires:  git-core
 BuildRequires:  meson >= 0.56
@@ -174,8 +173,8 @@ export LDFLAGS="%{build_ldflags}"
 %define bitbridge false
 %endif
 
-export CC_LD=mold
-export LD=mold
+export CC_LD=lld
+export LD=lld
 
 %if %{with_32bit}
 %meson --cross-file cross-wine.conf \

@@ -1,8 +1,8 @@
 %global toolchain clang
 
 Name:           wpewebkit
-Version:        2.54.1
-Release:        2%{?dist}
+Version:        2.54.2
+Release:        1%{?dist}
 Summary:        A WebKit port optimized for low-end devices
 
 SourceLicense:  BSD-2-Clause AND BSD-3-Clause AND LGPL-2.0-or-later AND LGPL-2.1-or-later
