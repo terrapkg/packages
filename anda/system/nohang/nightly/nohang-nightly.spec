@@ -51,10 +51,12 @@ conditions.
     SYSTEMDUNITDIR=%{_unitdir}
 
 %posttrans
+cat <<'EOF'
 To enable and start for servers:
   systemctl enable --now %{pkgname}
 Or for workstations (regular desktop):
   systemctl enable --now %{pkgname}-desktop
+EOF
 
 %post
 %systemd_post %{pkgname}.service %{pkgname}-desktop.service
