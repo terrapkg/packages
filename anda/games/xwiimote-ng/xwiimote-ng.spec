@@ -23,6 +23,13 @@ Requires:      systemd-udev
 %description
 An open-source device driver for Nintendo Wii / Wii U remotes.
 
+%package devel
+Summary:       Development files for %{name}
+Requires:      %{name}%{?_isa} = %{version}-%{release}
+
+%description devel
+Headers and development files for %{name}.
+
 %prep
 %autosetup -p1 -n %{name}-%{version}
 
@@ -39,6 +46,8 @@ An open-source device driver for Nintendo Wii / Wii U remotes.
 %license LICENSE
 %{_libdir}/lib%{name}.so.%{version}
 %{_libdir}/lib%{name}.so.3
+
+%files devel
 %{_libdir}/lib%{name}.so
 %{_includedir}/%{name}.h
 %{_datadir}/pkgconfig/lib%{name}.pc
