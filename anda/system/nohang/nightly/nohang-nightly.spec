@@ -6,7 +6,7 @@
 
 Name:           nohang-nightly
 Version:        %{ver}^%{commitdate}.git%{shortcommit}
-Release:        5%{?dist}
+Release:        6%{?dist}
 License:        MIT
 Summary:        Sophisticated low memory handler for Linux
 URL:            https://github.com/hakavlad/nohang
