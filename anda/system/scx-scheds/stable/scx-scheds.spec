@@ -9,19 +9,27 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 URL:            https://github.com/sched-ext/scx
 Source0:        %{URL}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  anda-srpm-macros
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  bison
+BuildRequires:  cmake
 BuildRequires:  bpftool
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  clang >= 17
 BuildRequires:  elfutils-libelf
 BuildRequires:  elfutils-libelf-devel
+BuildRequires:  flex
+BuildRequires:  gawk
 BuildRequires:  gcc
+BuildRequires:  gettext-devel
 BuildRequires:  git
 BuildRequires:  jq
 BuildRequires:  jq-devel
 BuildRequires:  libseccomp-devel
 BuildRequires:  lld >= 17
 BuildRequires:  llvm >= 17
+BuildRequires:  make
 BuildRequires:  meson >= 1.2
 BuildRequires:  protobuf-compiler
 BuildRequires:  python3
@@ -45,11 +53,10 @@ Conflicts:      scx_rusty
 Conflicts:      scx-scheds-git
 Conflicts:      scx-scheds-nightly
 Provides:       rust-scx_utils-devel
-Provides:       scx_c_schedulers
 Provides:       scxctl = %{version}
-Provides:       scx_layered
-Provides:       scx_rustland
-Provides:       scx_rusty
+Provides:       scx_layered = %{evr}
+Provides:       scx_rustland = %{evr}
+Provides:       scx_rusty = %{evr}
 Obsoletes:      scxctl <= 0.3.4
 Packager:       Gilver E. <roachy@fyralabs.com>
 
@@ -68,10 +75,12 @@ License:       GPL-2.0-only
 %cargo_prep_online
 
 %build
+export AWS_LC_SYS_NO_JITTER_ENTROPY=1
 %{cargo_build -a} \
      --workspace \
      --exclude scx_rlfifo \
      --exclude scx_mitosis \
+     --exclude scx_nitosis \
      --exclude scx_wd40 \
      --exclude xtask \
      --exclude scxcash \
