@@ -1,3 +1,4 @@
+%global toolchain clang
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds
