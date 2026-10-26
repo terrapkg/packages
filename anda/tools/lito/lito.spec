@@ -26,7 +26,7 @@ It also discovers named module sources and drives Clang, LLD, and LLVM tools.
 %autosetup
 sed -i 's/\bartifact_failure\b/registry_blob_failure/g' driver/src/registry/blob.cppm
 
-%build
+%conf
 CXXFLAGS="${CXXFLAGS//-Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3/}"
 %if 0%{?fedora} >= 45
 %global _lto_cflags %{nil}
@@ -35,6 +35,8 @@ CXXFLAGS="${CXXFLAGS//-Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3/}"
 %else
 %cmake -G Ninja -DLITO_USE_SYSTEM_ZSTD=ON -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 %endif
+
+%build
 %cmake_build
 
 %install
