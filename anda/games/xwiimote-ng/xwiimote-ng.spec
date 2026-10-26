@@ -26,8 +26,10 @@ An open-source device driver for Nintendo Wii / Wii U remotes.
 %prep
 %autosetup -p1 -n %{name}-%{version}
 
-%build
+%conf
 %cmake
+
+%build
 %cmake_build
 
 %install
