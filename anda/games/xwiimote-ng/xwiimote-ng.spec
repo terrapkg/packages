@@ -1,5 +1,5 @@
 Name:          xwiimote-ng
-Summary:       An open-source device driver for Nintendo Wii / Wii U remotes.
+Summary:       An open-source device driver for Nintendo Wii / Wii U remotes
 
 Version:       3.0.1
 Release:       1%{?dist}
