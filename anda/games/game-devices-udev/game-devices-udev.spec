@@ -23,9 +23,9 @@ accessible with user-level permissions.
 %autosetup -n %{name}
 
 %conf
+%meson
 
 %build
-%meson
 %meson_build
 
 %install
