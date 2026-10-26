@@ -41,7 +41,7 @@ GRUB2 theme for arco-linux.
 
 %package        debian
 Requires:       %{name}%{?_isa} = %{evr}
-License:        %{sourcelicense} AND (L%{sourcelicense} OR CC-BY-SA-3.0)
+License:        %{sourcelicense} AND (%{sourcelicense} OR CC-BY-SA-3.0)
 Summary:        GRUB2 theme for debian
 
 %description    debian
