@@ -16,6 +16,7 @@ BuildRequires:  anda-srpm-macros
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  bison
+BuildRequires:  cmake
 BuildRequires:  bpftool
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
@@ -23,13 +24,16 @@ BuildRequires:  clang >= 17
 BuildRequires:  elfutils-libelf
 BuildRequires:  elfutils-libelf-devel
 BuildRequires:  flex
+BuildRequires:  gawk
 BuildRequires:  gcc
+BuildRequires:  gettext-devel
 BuildRequires:  git
 BuildRequires:  jq
 BuildRequires:  jq-devel
 BuildRequires:  libseccomp-devel
 BuildRequires:  lld >= 17
 BuildRequires:  llvm >= 17
+BuildRequires:  make
 BuildRequires:  meson >= 1.2
 BuildRequires:  protobuf-compiler
 BuildRequires:  python3
@@ -39,7 +43,7 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
 BuildRequires:  pkgconfig(openssl)
 Requires:       (scx-tools or scx-tools-nightly)
-Suggests:       scx-tools-nightly
+Suggests:       scx-tools
 Requires:       elfutils-libelf
 Requires:       jq
 Requires:       libseccomp
@@ -50,20 +54,18 @@ Conflicts:      scx_c_schedulers
 Conflicts:      scx_layered
 Conflicts:      scx_rustland
 Conflicts:      scx_rusty
-Conflicts:      scx-scheds
+Conflicts:      scx-scheds-git
+Conflicts:      scx-scheds-nightly
 Provides:       rust-scx_utils-devel
-Provides:       scx_c_schedulers
 Provides:       scxctl = %{version}
-Provides:       scx_layered
-Provides:       scx_rustland
-Provides:       scx_rusty
+Provides:       scx_layered = %{evr}
+Provides:       scx_rustland = %{evr}
+Provides:       scx_rusty = %{evr}
 Obsoletes:      scxctl <= 0.3.4
 Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them.
-
-This package contains nightly builds of the sched_ext schedulers.
 
 %package devel
 License:       GPL-2.0-only
@@ -73,15 +75,16 @@ License:       GPL-2.0-only
 %license LICENSE
 
 %prep
-%autosetup -p1 -n scx-%{commit}
-
+%autosetup -n scx-%{version} -p1
 %cargo_prep_online
 
 %build
+export AWS_LC_SYS_NO_JITTER_ENTROPY=1
 %{cargo_build -a} \
      --workspace \
      --exclude scx_rlfifo \
      --exclude scx_mitosis \
+     --exclude scx_nitosis \
      --exclude scx_wd40 \
      --exclude xtask \
      --exclude scxcash \
