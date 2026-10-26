@@ -4,7 +4,7 @@
 
 %global debug_package   %{nil}
 
-%global themes archcraft arco-linux debian deepin endeavouros garuda gentoo kde-neon kubuntu linux-mint lubuntu nixos opensuse pop-os ubuntu-mate vanilla-os void-linux xero-linux
+%global themes archcraft arco-linux debian deepin endeavouros garuda gentoo kde-neon kubuntu linux-mint lubuntu nixos opensuse pop-os ubuntu-mate ultramarine vanilla-os void-linux xero-linux
 
 Name:           grub2-distro-themes-nightly
 Version:        3.2~%{commit_date}git.%{shortcommit}
@@ -25,7 +25,7 @@ Packager:       Its-J <jonah@fyralabs.com>, Owen Zimmerman <owen@fyralabs.com>
 
 %package        archcraft
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND GPL-3.0-only
+License:        %{sourcelicense} AND GPL-3.0-only
 Summary:        GRUB2 theme for archcraft
 
 %description    archcraft
@@ -33,7 +33,7 @@ GRUB2 theme for archcraft.
 
 %package        arco-linux
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND GPL-3.0-only
+License:        %{sourcelicense} AND GPL-3.0-only
 Summary:        GRUB2 theme for arco-linux
 
 %description    arco-linux
@@ -41,7 +41,7 @@ GRUB2 theme for arco-linux.
 
 %package        debian
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND (LGPL-3.0-or-later OR CC-BY-SA-3.0)
+License:        %{sourcelicense} AND (L%{sourcelicense} OR CC-BY-SA-3.0)
 Summary:        GRUB2 theme for debian
 
 %description    debian
@@ -49,7 +49,7 @@ GRUB2 theme for debian.
 
 %package        deepin
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later
+License:        %{sourcelicense}
 Summary:        GRUB2 theme for deepin
 
 %description    deepin
@@ -57,7 +57,7 @@ GRUB2 theme for deepin.
 
 %package        endeavouros
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND GPL-3.0-only
+License:        %{sourcelicense} AND GPL-3.0-only
 Summary:        GRUB2 theme for endeavouros
 
 %description    endeavouros
@@ -65,7 +65,7 @@ GRUB2 theme for endeavouros.
 
 %package        garuda
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND GPL-3.0-only
+License:        %{sourcelicense} AND GPL-3.0-only
 Summary:        GRUB2 theme for garuda
 
 %description    garuda
@@ -73,7 +73,7 @@ GRUB2 theme for garuda.
 
 %package        gentoo
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND CC-BY-SA-4.0
+License:        %{sourcelicense} AND CC-BY-SA-4.0
 Summary:        GRUB2 theme for gentoo
 
 %description    gentoo
@@ -81,7 +81,7 @@ GRUB2 theme for gentoo.
 
 %package        kde-neon
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND CC-BY-SA-4.0
+License:        %{sourcelicense} AND CC-BY-SA-4.0
 Summary:        GRUB2 theme for kde-neon
 
 %description    kde-neon
@@ -89,7 +89,7 @@ GRUB2 theme for kde-neon.
 
 %package        kubuntu
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later
+License:        %{sourcelicense}
 Summary:        GRUB2 theme for kubuntu
 
 %description    kubuntu
@@ -97,7 +97,7 @@ GRUB2 theme for kubuntu.
 
 %package        linux-mint
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later
+License:        %{sourcelicense}
 Summary:        GRUB2 theme for linux-mint
 
 %description    linux-mint
@@ -105,7 +105,7 @@ GRUB2 theme for linux-mint.
 
 %package        lubuntu
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND GPL-2.0-or-later
+License:        %{sourcelicense} AND GPL-2.0-or-later
 Summary:        GRUB2 theme for lubuntu
 
 %description    lubuntu
@@ -113,7 +113,7 @@ GRUB2 theme for lubuntu.
 
 %package        nixos
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND CC-BY-4.0
+License:        %{sourcelicense} AND CC-BY-4.0
 Summary:        GRUB2 theme for nixos
 
 %description    nixos
@@ -121,7 +121,7 @@ GRUB2 theme for nixos.
 
 %package        opensuse
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND CC-BY-SA-4.0
+License:        %{sourcelicense} AND CC-BY-SA-4.0
 Summary:        GRUB2 theme for opensuse
 
 %description    opensuse
@@ -129,7 +129,7 @@ GRUB2 theme for opensuse.
 
 %package        pop-os
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND CC-BY-SA-4.0
+License:        %{sourcelicense} AND CC-BY-SA-4.0
 Summary:        GRUB2 theme for pop-os
 
 %description    pop-os
@@ -137,15 +137,23 @@ GRUB2 theme for pop-os.
 
 %package        ubuntu-mate
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND CC-BY-SA-4.0
+License:        %{sourcelicense} AND CC-BY-SA-4.0
 Summary:        GRUB2 theme for ubuntu-mate
 
 %description    ubuntu-mate
 GRUB2 theme for ubuntu-mate.
 
+%package        ultramarine
+Requires:       %{name}%{?_isa} = %{evr}
+License:        %{sourcelicense} AND LicenseRef-Propriatary
+Summary:        GRUB2 theme for ultramarine
+
+%description    ultramarine
+GRUB2 theme for ultramarine.
+
 %package        vanilla-os
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND CC-BY-SA-4.0
+License:        %{sourcelicense} AND CC-BY-SA-4.0
 Summary:        GRUB2 theme for vanilla-os
 
 %description    vanilla-os
@@ -153,7 +161,7 @@ GRUB2 theme for vanilla-os.
 
 %package        void-linux
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND LicenseRef-Fedora-Public-Domain
+License:        %{sourcelicense} AND LicenseRef-Fedora-Public-Domain
 Summary:        GRUB2 theme for void-linux
 
 %description    void-linux
@@ -161,7 +169,7 @@ GRUB2 theme for void-linux.
 
 %package        xero-linux
 Requires:       %{name}%{?_isa} = %{evr}
-License:        GPL-3.0-or-later AND GPL-3.0-only
+License:        %{sourcelicense} AND GPL-3.0-only
 Summary:        GRUB2 theme for xero-linux
 
 %description    xero-linux
