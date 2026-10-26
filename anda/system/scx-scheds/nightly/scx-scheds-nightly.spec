@@ -42,9 +42,9 @@ Requires:       libseccomp
 Requires:       protobuf
 Requires:       zlib
 Conflicts:      rust-scx_utils-devel
-Obsoletes:      scx_rustland < 1.0
-Obsoletes:      scx_rusty < 1.0
-Obsoletes:      scx_layered < 1.0
+Obsoletes:      scx_rustland < 1.0-1
+Obsoletes:      scx_rusty < 1.0-1
+Obsoletes:      scx_layered < 1.0-1
 Conflicts:      scx-scheds
 Provides:       rust-scx_utils-devel
 Provides:       scx_c_schedulers
