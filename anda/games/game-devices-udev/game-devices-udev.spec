@@ -22,6 +22,8 @@ accessible with user-level permissions.
 %prep
 %autosetup -n %{name}
 
+%conf
+
 %build
 %meson
 %meson_build
