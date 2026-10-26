@@ -75,7 +75,7 @@ License:       GPL-2.0-only
 %license LICENSE
 
 %prep
-%autosetup -n scx-%{version} -p1
+%autosetup -p1 -n scx-%{commit}
 %cargo_prep_online
 
 %build
