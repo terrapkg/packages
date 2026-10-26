@@ -43,7 +43,7 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  zlib-ng-compat
 BuildRequires:  pkgconfig(openssl)
 Requires:       (scx-tools or scx-tools-nightly)
-Suggests:       scx-tools
+Suggests:       scx-tools-nightly
 Requires:       elfutils-libelf
 Requires:       jq
 Requires:       libseccomp
@@ -77,6 +77,16 @@ License:       GPL-2.0-only
 %prep
 %autosetup -p1 -n scx-%{commit}
 %cargo_prep_online
+# libbpf-sys 1.7.0 vendors a libbpf whose linux/types.h shadows the kernel's and lacks __u128,
+# which newer arm64 uapi headers (asm/sigcontext.h, asm/ptrace.h) use. Backport libbpf f90a9c487d75.
+for h in $(find . %{_builddir} -path '*/libbpf-sys-*/libbpf/include/linux/types.h' 2>/dev/null | sort -u); do
+  grep -q '__u128' "$h" || sed -i '/#include <asm\/posix_types.h>/a\
+\
+#ifdef __SIZEOF_INT128__\
+typedef __signed__ __int128 __s128 __attribute__((aligned(16)));\
+typedef unsigned __int128 __u128 __attribute__((aligned(16)));\
+#endif' "$h"
+done
 
 %build
 export AWS_LC_SYS_NO_JITTER_ENTROPY=1
