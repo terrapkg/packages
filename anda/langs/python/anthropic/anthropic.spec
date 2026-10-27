@@ -14,6 +14,7 @@ BuildRequires:      python3-devel
 BuildRequires:      python3-setuptools
 BuildRequires:      python3-hatchling
 BuildRequires:      python3-hatch-fancy-pypi-readme
+BuildRequires:      python3-pip
 
 Packager:	        Its-J <jonah@fyralabs.com>
 
