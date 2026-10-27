@@ -47,5 +47,5 @@ Summary:            %{summary}
 %license            LICENSE LICENSE-MIT
 
 %changelog
-* Mon Oct 26 2026 Its-J <jonah@fyralabs.com> - 2.3.0-1
+* Tue Oct 27 2026 Its-J <jonah@fyralabs.com> - 2.3.0-1
 - Initial package
