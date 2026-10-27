@@ -3,11 +3,11 @@
 
 Name:			    python-%{pypi_name}
 Version:		    2.3.0
-Release:		    1%?dist
-Summary:		    The Claude SDK for Python provides access to the Claude API from Python applications.
+Release:		    2%{?dist}
+Summary:		    The Claude SDK for Python provides access to the Claude API from Python applications
 License:		    Apache-2.0 AND MIT
 URL:			    https://github.com/anthropics/anthropic-sdk-python
-Source0:		    %{pypi_source anthropic}
+Source0:		    %{pypi_source}
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
@@ -31,9 +31,6 @@ Summary:            %{summary}
 %prep
 %autosetup -C
 %pyproject_patch_dependency hatchling:drop_constraints
-
-%generate_buildrequires
-%pyproject_buildrequires -R
 
 %build
 %pyproject_wheel
