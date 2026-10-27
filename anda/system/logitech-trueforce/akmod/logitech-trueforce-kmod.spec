@@ -5,7 +5,7 @@
 
 Name:           %{modulename}-kmod
 Version:        0.42.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Kernel module for Logitech racing wheels (RS50, G PRO, G923)
 License:        GPL-2.0-only
 URL:            https://github.com/mescon/logitech-trueforce-linux-driver
