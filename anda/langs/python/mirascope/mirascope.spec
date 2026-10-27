@@ -7,7 +7,7 @@ Release:		    1%?dist
 Summary:		    Use any frontier LLM with one unified interface
 License:		    MIT
 URL:			    https://mirascope.com/
-Source0:		    %{pypi_source mirascope}
+Source0:		    %{pypi_source}
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
