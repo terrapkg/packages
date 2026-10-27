@@ -1,0 +1,61 @@
+name: Quaterdaily Update
+permissions:
+  contents: read
+
+concurrency:
+  group: update-nightly-quaterdaily
+  cancel-in-progress: false
+
+on:
+  schedule:
+    - cron: "0 3,9,15,21 * * *"
+  workflow_dispatch:
+
+jobs:
+  autoupdate-quaterdaily:
+    runs-on: arc-runner-set
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+      options: --cap-add=SYS_ADMIN --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+
+      - name: Install SSH signing key & Set up git repository
+        run: |
+          mkdir -p ${{ runner.temp }}
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > ${{ runner.temp }}/signing_key
+          chmod 0700 ${{ runner.temp }}/signing_key
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Run Quaterdaily Update
+        run: anda update --filters quaterdaily=1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUST_BACKTRACE: full
+
+      - name: Save
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "Raboneko"
+            git config user.email "raboneko@fyralabs.com"
+            git config gpg.format "ssh"
+            git config user.signingkey "${{ runner.temp }}/signing_key"
+            patch="${{ runner.temp }}/quaterdaily.patch"
+            git diff --binary > "$patch"
+            msg="bump(quaterdaily): $(anda run andax/ci/update_commit_message.rhai)"
+            git add anda
+            git commit -S -m "$msg"
+            for branch in f45 f44 f43 el10; do
+              git checkout "$branch"
+              if git apply "$patch"; then
+                git add anda
+                git commit -S -m "$msg"
+              fi
+            done
+            git checkout frawhide
+            git push -u origin --all
+          fi
