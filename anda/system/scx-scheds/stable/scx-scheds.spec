@@ -1,3 +1,4 @@
+%global toolchain clang
 %undefine __brp_mangle_shebangs
 
 Name:           scx-scheds
@@ -9,19 +10,27 @@ License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) 
 URL:            https://github.com/sched-ext/scx
 Source0:        %{URL}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  anda-srpm-macros
+BuildRequires:  autoconf
+BuildRequires:  automake
+BuildRequires:  bison
+BuildRequires:  cmake
 BuildRequires:  bpftool
 BuildRequires:  cargo
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  clang >= 17
 BuildRequires:  elfutils-libelf
 BuildRequires:  elfutils-libelf-devel
+BuildRequires:  flex
+BuildRequires:  gawk
 BuildRequires:  gcc
+BuildRequires:  gettext-devel
 BuildRequires:  git
 BuildRequires:  jq
 BuildRequires:  jq-devel
 BuildRequires:  libseccomp-devel
 BuildRequires:  lld >= 17
 BuildRequires:  llvm >= 17
+BuildRequires:  make
 BuildRequires:  meson >= 1.2
 BuildRequires:  protobuf-compiler
 BuildRequires:  python3
@@ -45,11 +54,10 @@ Conflicts:      scx_rusty
 Conflicts:      scx-scheds-git
 Conflicts:      scx-scheds-nightly
 Provides:       rust-scx_utils-devel
-Provides:       scx_c_schedulers
 Provides:       scxctl = %{version}
-Provides:       scx_layered
-Provides:       scx_rustland
-Provides:       scx_rusty
+Provides:       scx_layered = %{evr}
+Provides:       scx_rustland = %{evr}
+Provides:       scx_rusty = %{evr}
 Obsoletes:      scxctl <= 0.3.4
 Packager:       Gilver E. <roachy@fyralabs.com>
 
@@ -66,12 +74,24 @@ License:       GPL-2.0-only
 %prep
 %autosetup -n scx-%{version} -p1
 %cargo_prep_online
+# libbpf-sys 1.7.0 vendors a libbpf whose linux/types.h shadows the kernel's and lacks __u128,
+# which newer arm64 uapi headers (asm/sigcontext.h, asm/ptrace.h) use. Backport libbpf f90a9c487d75.
+for h in $(find . %{_builddir} -path '*/libbpf-sys-*/libbpf/include/linux/types.h' 2>/dev/null | sort -u); do
+  grep -q '__u128' "$h" || sed -i '/#include <asm\/posix_types.h>/a\
+\
+#ifdef __SIZEOF_INT128__\
+typedef __signed__ __int128 __s128 __attribute__((aligned(16)));\
+typedef unsigned __int128 __u128 __attribute__((aligned(16)));\
+#endif' "$h"
+done
 
 %build
+export AWS_LC_SYS_NO_JITTER_ENTROPY=1
 %{cargo_build -a} \
      --workspace \
      --exclude scx_rlfifo \
      --exclude scx_mitosis \
+     --exclude scx_nitosis \
      --exclude scx_wd40 \
      --exclude xtask \
      --exclude scxcash \
