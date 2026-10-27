@@ -3,7 +3,7 @@
 
 Name:			    python-%{pypi_name}
 Version:		    2.8.2
-Release:		    1%?dist
+Release:		    1%{?dist}
 Summary:		    Use any frontier LLM with one unified interface
 License:		    MIT
 URL:			    https://mirascope.com/
@@ -12,6 +12,7 @@ BuildArch:          noarch
 
 BuildRequires:      python3-devel
 BuildRequires:      python3-pip
+BuildRequires:      python3-hatchling
 
 Packager:	        Its-J <jonah@fyralabs.com>
 
