@@ -29,6 +29,10 @@ Summary:            %{summary}
 
 %prep
 %autosetup -C
+%pyproject_patch_dependency hatchling:drop_constraints
+
+%generate_buildrequires
+%pyproject_buildrequires -R
 
 %build
 %pyproject_wheel
@@ -39,8 +43,8 @@ Summary:            %{summary}
 
 %files -n           python3-%{pypi_name} -f %{pyproject_files}
 %doc                README.md
-%license            LICENSE
+%license            LICENSE LICENSE-MIT
 
 %changelog
-* Mon Oct 26 2026 Its-J <jonah@fyralabs.com> - 0.10.16-1
+* Mon Oct 26 2026 Its-J <jonah@fyralabs.com> - 2.3.0-1
 - Initial package
