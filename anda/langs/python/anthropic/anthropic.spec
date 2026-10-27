@@ -32,9 +32,6 @@ Summary:            %{summary}
 %autosetup -C
 %pyproject_patch_dependency hatchling:drop_constraints
 
-%dnl %generate_buildrequires
-%dnl %pyproject_buildrequires -R
-
 %build
 %pyproject_wheel
 
