@@ -1,12 +1,12 @@
-%global commit a7325808ad17249b356824102c4c0e917352b686
+%global commit 83fb95624b0439ee660c2679b43b38c8b63769cd
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
-%global ver 1.3.2
+%global ver 1.4.1
 %global base_name ghostty
 %global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-tip
-Version:        202610271506
+Version:        202610271558
 Release:        1%{?dist}
 %if 0%{?fedora} <= 46
 Epoch:          1
