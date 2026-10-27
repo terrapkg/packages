@@ -493,10 +493,10 @@ Added support for GPD Win Mini 2025
  create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_winmini_2025.yaml
 
 diff --git a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
-index b3af837..d0187be 100644
+index 7f0f696..914cbe4 100644
 --- a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
 +++ b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
-@@ -68,6 +68,7 @@ dmi:*svnGPD:pnG1618-05:*
+@@ -70,6 +70,7 @@ dmi:*svnGPD:pnG1618-05:*
  dmi:*svnGPD:pnG1619-04:*
  # GPD Win Mini
  dmi:*svnGPD:pnG1617-01:*
@@ -771,10 +771,10 @@ Subject: [PATCH 4/7] fix(Hardware Support): Add GPD Win Max Support
  create mode 100644 rootfs/usr/share/inputplumber/devices/50-gpd_winmax.yaml
 
 diff --git a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
-index d0187be..5ba555f 100644
+index 914cbe4..97b356d 100644
 --- a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
 +++ b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
-@@ -64,6 +64,8 @@ dmi:*svnGPD:pnG1618-03:*
+@@ -66,6 +66,8 @@ dmi:*svnGPD:pnG1618-03:*
  dmi:*svnGPD:pnG1618-04:*
  # GPD Win 5
  dmi:*svnGPD:pnG1618-05:*
@@ -854,10 +854,10 @@ Separate 2022, 2023, and unknown year into their own files.
  rename rootfs/usr/share/inputplumber/devices/{50-gpd_winmax2.yaml => 55-gpd_winmax2.yaml} (64%)
 
 diff --git a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
-index 5ba555f..2dfb549 100644
+index 97b356d..cc2c9e8 100644
 --- a/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
 +++ b/rootfs/usr/lib/udev/hwdb.d/60-inputplumber-autostart.hwdb
-@@ -68,6 +68,7 @@ dmi:*svnGPD:pnG1618-05:*
+@@ -70,6 +70,7 @@ dmi:*svnGPD:pnG1618-05:*
  dmi:*svnGPD:pnG1619-01:*
  # GPD Win Max 2
  dmi:*svnGPD:pnG1619-04:*
@@ -1331,4 +1331,3 @@ index 66f8f70..a53d96a 100644
  options:
 -- 
 2.56.0
-
