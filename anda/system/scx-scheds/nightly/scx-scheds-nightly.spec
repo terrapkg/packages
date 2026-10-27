@@ -56,8 +56,7 @@ Conflicts:      scx_c_schedulers
 Conflicts:      scx_layered
 Conflicts:      scx_rustland
 Conflicts:      scx_rusty
-Conflicts:      scx-scheds-git
-Conflicts:      scx-scheds-nightly
+Conflicts:      scx-scheds
 Provides:       rust-scx_utils-devel
 Provides:       scxctl = %{version}
 Provides:       scx_layered = %{evr}
@@ -68,6 +67,8 @@ Packager:       Gilver E. <roachy@fyralabs.com>
 
 %description
 sched_ext is a Linux kernel feature which enables implementing kernel thread schedulers in BPF and dynamically loading them.
+
+This package contains nightly builds of the sched_ext schedulers.
 
 %package devel
 License:       GPL-2.0-only
