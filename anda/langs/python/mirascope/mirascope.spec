@@ -1,5 +1,5 @@
 %global pypi_name   mirascope
-%global _desc       Use any frontier LLM with one unified interface
+%global _desc       Use any frontier LLM with one unified interface.
 
 Name:			    python-%{pypi_name}
 Version:		    2.8.2
