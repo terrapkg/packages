@@ -11,6 +11,7 @@ Source0:		    %{pypi_source mirascope}
 BuildArch:          noarch
 
 BuildRequires:      python3-devel
+BuildRequires:      python3-pip
 
 Packager:	        Its-J <jonah@fyralabs.com>
 
