@@ -1,13 +1,13 @@
-%global commit 489470e666d64c1205b69033267faca6d90999a1
+%global commit 2283cef45f00efb1ca50d4038068813b437aad06
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260927
+%global commitdate 20261028
 %global ver 0
 %global debug_package %{nil}
 %global modulename sc0710
 
 Name:           dkms-%{modulename}
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Elgato 4K60 Pro MK.2 / 4K Pro capture card driver (DKMS)
 License:        GPL-2.0-only
 URL:            https://github.com/Nakildias/%{modulename}
