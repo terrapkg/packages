@@ -2,8 +2,8 @@
 %global _desc FFMPEG wrapper for Python.
 
 Name:			python-%{pypi_name}
-Version:		0.6.0
-Release:		2%?dist
+Version:		0.7.0
+Release:		1%{?dist}
 Summary:		FFMPEG wrapper for Python
 License:		BSD-2-Clause
 URL:			https://github.com/imageio/imageio-ffmpeg
