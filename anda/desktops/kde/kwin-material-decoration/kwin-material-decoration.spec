@@ -57,6 +57,8 @@ Requires:       kwin
 %{_qt6_plugindir}/org.kde.kdecoration3.kcm/materialdecoration_kcm.so
 %{_appsdir}/materialdecoration_kcm.desktop
 %{_metainfodir}/materialdecoration_kcm.json
+%{_datadir}/kwin/scripts/material-tiling/contents/code/main.js
+%{_datadir}/kwin/scripts/material-tiling/metadata.json
 
 %changelog
 * Wed Sep 16 2026 Cypress Reed <cypress@fyralabs.com>
