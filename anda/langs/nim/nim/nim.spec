@@ -147,9 +147,9 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 
 %files tools
 %license copying.txt
-%dnl %_bindir/nimgrep
-%dnl %_bindir/nimsuggest
-%dnl %_bindir/nimpretty
+%_bindir/nimgrep
+%_bindir/nimsuggest
+%_bindir/nimpretty
 %_mandir/man1/nimgrep.1*
 %_mandir/man1/nimsuggest.1*
 
