@@ -49,7 +49,7 @@ BuildRequires:  git-core
 BuildRequires:  gperf
 # genbrk, genccode and gencmn
 BuildRequires:  icu
-BuildRequires:  libappstream-glib
+BuildRequires:  terra-appstream-helper
 BuildRequires:  libtool
 BuildRequires:  lld
 BuildRequires:  make
@@ -124,7 +124,7 @@ and drawings in OpenDocument and Microsoft Office formats, with the Collabora
 Online interface running in a Qt WebEngine window.
 
 %prep
-%autosetup -n online.mirror-%{srctag}
+%autosetup -p1 -n online.mirror-%{srctag}
 mkdir -p brand
 tar -xzf %{SOURCE1} -C brand --strip-components=1
 
@@ -182,6 +182,7 @@ mkdir -p %{buildroot}%{lodir}
 cp -a engine/inst/lib/collaboraoffice/. %{buildroot}%{lodir}/
 
 %make_install
+%terra_appstream -o qt/%{appid}.metainfo.xml
 
 python3 scripts/insert-coda-license.py \
     %{buildroot}%{lodir}/LICENSE.html CODA-THIRDPARTYLICENSES.html
