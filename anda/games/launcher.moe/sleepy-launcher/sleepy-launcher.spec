@@ -44,7 +44,7 @@ BuildRequires: cargo-rpm-macros
 
 %prep
 %autosetup -n sleepy-launcher-%{version}
-%cargo_prep_online
+%cargo_prep_online -u
 
 %build
 %cargo_build
