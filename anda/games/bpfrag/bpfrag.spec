@@ -80,7 +80,6 @@ install -Dpm0644 dist/bpfrag.toml %{buildroot}%{_sysconfdir}/bpfrag/bpfrag.toml
 %doc README.md
 %{_bindir}/bpfrag
 %{_unitdir}/bpfrag.service
-%{_presetdir}/80-bpfrag.preset
 %{_mandir}/man8/bpfrag.8*
 %dir %{_sysconfdir}/bpfrag
 %config(noreplace) %{_sysconfdir}/bpfrag/bpfrag.toml
