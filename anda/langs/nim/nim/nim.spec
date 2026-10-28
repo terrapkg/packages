@@ -135,6 +135,8 @@ cp -r %buildroot%_prefix/lib/nim/dist %buildroot%_datadir/nim/
 %_bindir/nim
 %_bindir/nimble
 %_bindir/nim_csources_*
+%_bindir/nifler
+%_bindir/nifmake
 %_mandir/man1/nim.1*
 %_mandir/man1/nimble.1*
 %_prefix/lib/nim/
