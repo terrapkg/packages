@@ -12,6 +12,7 @@ Summary:        eBPF network tuning for competitive gaming that undoes itself
 # bpfrag is MIT and its BPF program is GPL-2.0-only OR MIT. Crates linked
 # into the binary: MIT OR Apache-2.0, MIT, Unlicense OR MIT, BSD-2-Clause
 # (libbpf-sys) and LGPL-2.1-only OR BSD-2-Clause (libbpf-rs, libbpf).
+SourceLicense: MIT AND (GPL-2.0-only OR MIT)
 License:        MIT AND (GPL-2.0-only OR MIT) AND (MIT OR Apache-2.0) AND (Unlicense OR MIT) AND BSD-2-Clause AND (LGPL-2.1-only OR BSD-2-Clause)
 URL:            https://github.com/shanefagan/bpfrag
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
