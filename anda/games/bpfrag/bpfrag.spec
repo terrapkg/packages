@@ -62,7 +62,6 @@ install -Dpm0644 dist/bpfrag.service %{buildroot}%{_unitdir}/bpfrag.service
 install -Dpm0644 dist/bpfrag.8 %{buildroot}%{_mandir}/man8/bpfrag.8
 install -Dpm0644 dist/bpfrag.default %{buildroot}%{_sysconfdir}/default/bpfrag
 install -Dpm0644 dist/bpfrag.toml %{buildroot}%{_sysconfdir}/bpfrag/bpfrag.toml
-install -Dpm0644 dist/bpfrag.preset %{buildroot}%{_presetdir}/80-bpfrag.preset
 
 %check
 %cargo_test
