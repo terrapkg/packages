@@ -2,7 +2,7 @@
 %global _desc Python API Client for Jellyfin.
 
 Name:			python-%{pypi_name}
-Version:		1.20.2
+Version:		1.21.0
 Release:		1%{?dist}
 Summary:		Python API Client for Jellyfin
 License:		GPL-3.0-or-later
