@@ -4,8 +4,8 @@
 %global         cuda_version 13
 
 Name:           libnvjpeg2k
-Version:        0.11.0.51
-Release:        2%{?dist}
+Version:        0.12.0.58
+Release:        1%{?dist}
 Summary:        NVIDIA JPEG 2K decoder (nvJPEG2000)
 License:        NVIDIA EULA
 URL:            https://developer.nvidia.com/nvjpeg
