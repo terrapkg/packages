@@ -10,6 +10,7 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/an-anime-team/sleepy-launcher
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
+ExclusiveArch:  x86_64
 
 
 # Allow migrate path from Maroxy's OBS repo
@@ -37,6 +38,9 @@ BuildRequires: rust-packaging
 BuildRequires: desktop-file-utils
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
+BuildRequires: protobuf-devel
+BuildRequires: protobuf-compiler
+
 
 
 %description
