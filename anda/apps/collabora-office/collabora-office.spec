@@ -18,7 +18,7 @@
 # list of names is written in %%install, so this macro stays lazy (%%define,
 # not %%global) and is only read when the dependency generators run.
 %global __provides_exclude_from ^%{lodir}/.*$
-%global __requires_exclude %(cat %{_builddir}/%{name}-requires-exclude 2>/dev/null)
+%define __requires_exclude %(cat %{_builddir}/%{name}-requires-exclude 2>/dev/null)
 
 Name:           collabora-office
 Version:        26.04.4.3
@@ -32,6 +32,9 @@ URL:            https://www.collaboraoffice.com
 Source0:        https://github.com/CollaboraOnline/online.mirror/archive/refs/tags/%{srctag}.tar.gz
 # Online UI theme and branding assets, as shipped by the Flathub build.
 Source1:        https://www.collaboraoffice.com/downloads/collabora-office-brand/collabora-office-brand-%{version}.tar.gz
+# OpenSSL 4 returns const X509_NAME pointers from X509_get_subject_name and
+# X509_get_issuer_name.
+Patch0:         openssl4-const-x509-name.patch
 Packager:       Cypress Reed <cypress@fyralabs.com>
 ExclusiveArch:  x86_64 aarch64
 
@@ -130,7 +133,7 @@ tar -xzf %{SOURCE1} -C brand --strip-components=1
 git clone --depth=1 --branch=%{srctag} \
     https://gerrit.collaboraoffice.com/translations engine/translations
 
-%build
+%conf
 pushd engine
 # Like Fedora's libreoffice.spec, drop the flags the engine sets itself.
 # configure probes the compiler without CFLAGS, so the hardened-ld spec
@@ -171,6 +174,7 @@ autoreconf -vfi
 # generates the shrinkwrap, so give npm the lockfile name it wants.
 cp browser/npm-shrinkwrap.json browser/package-lock.json
 
+%build
 %make_build
 
 %install
@@ -187,7 +191,7 @@ cp -a brand/branding* brand/images brand/welcome \
     %{buildroot}%{_datadir}/coolwsd/browser/dist/
 
 # Every library the engine ships for itself, as a requires filter.
-find %{buildroot}%{lodir} -name '*.so*' -printf '%%f\n' | sort -u \
+find %{buildroot}%{lodir} \( -name '*.so' -o -name '*.so.*' \) -printf '%%f\n' | sort -u \
     | sed 's/\./\\./g; s/$/.*/' | paste -sd'|' \
     | sed 's/^/^(/; s/$/)$/' > %{_builddir}/%{name}-requires-exclude
 
