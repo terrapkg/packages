@@ -37,6 +37,9 @@ BuildRequires: rust-packaging
 BuildRequires: desktop-file-utils
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
+BuildRequires: protobuf-devel
+BuildRequires: protobuf-compiler
+
 
 
 %description
