@@ -9,7 +9,7 @@
 %endif
 
 Name:           zotero
-Version:        10.0.6
+Version:        10.0.7
 Release:        1%{?dist}
 Summary:        Collect, organize, cite, and share your research sources
 URL:            https://www.zotero.org/
