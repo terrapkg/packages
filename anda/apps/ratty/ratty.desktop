@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Ratty
+Comment=A GPU-rendered terminal emulator with inline 3D graphics
+Exec=ratty
+TryExec=ratty
+Icon=ratty
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;
