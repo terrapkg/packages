@@ -13,6 +13,7 @@ BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  python3-pip
 BuildRequires:  python3-setuptools
+Requires:       patchelf
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -29,6 +30,8 @@ Summary:        %{summary}
 %prep
 %autosetup -C
 %pyproject_patch_dependency filelock:drop_constraints
+# We are pulling in the proper patchelf package instead of a python wrapper.
+%pyproject_patch_dependency patchelf:ignore
 
 %build
 %pyproject_wheel
