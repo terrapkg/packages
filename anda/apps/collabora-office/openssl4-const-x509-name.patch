@@ -1,0 +1,38 @@
+--- a/net/Socket.cpp
++++ b/net/Socket.cpp
+@@ -237,7 +237,7 @@
+ #endif //ENABLE_DEBUG
+ 
+ #if ENABLE_SSL
+-static std::string X509_NAME_to_utf8(X509_NAME* name)
++static std::string X509_NAME_to_utf8(const X509_NAME* name)
+ {
+     BIO* bio = BIO_new(BIO_s_mem());
+     X509_NAME_print_ex(bio, name, 0,
+--- a/net/Ssl.cpp
++++ b/net/Ssl.cpp
+@@ -257,7 +257,15 @@
+     X509_gmtime_adj(X509_getm_notAfter(x509.get()), 60L * 60 * 24 * 9131);
+     X509_set_pubkey(x509.get(), pkey.get());
+ 
+-    X509_NAME* name = X509_get_subject_name(x509.get());
++    // OpenSSL 4 returns the subject name as const, so build a new one.
++    std::unique_ptr<X509_NAME, decltype(&X509_NAME_free)> nameOwner(X509_NAME_new(),
++                                                                    X509_NAME_free);
++    if (!nameOwner)
++    {
++        LOG_ERR("Failed to allocate the X509 subject name");
++        return false;
++    }
++    X509_NAME* name = nameOwner.get();
+     X509_NAME_add_entry_by_txt(name, "C", MBSTRING_ASC,
+                                reinterpret_cast<const unsigned char*>("DE"), -1, -1, 0);
+     X509_NAME_add_entry_by_txt(name, "O", MBSTRING_ASC,
+@@ -265,6 +273,7 @@
+     X509_NAME_add_entry_by_txt(name, "CN", MBSTRING_ASC,
+                                reinterpret_cast<const unsigned char*>(commonName.c_str()), -1, -1,
+                                0);
++    X509_set_subject_name(x509.get(), name);
+     // Self-signed: issuer == subject.
+     X509_set_issuer_name(x509.get(), name);
+ 
