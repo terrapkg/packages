@@ -3,4 +3,7 @@ project pkg {
   rpm {
     spec = "anthropic.spec"
   }
+  labels {
+    updbranch = 1
+  }
 }
