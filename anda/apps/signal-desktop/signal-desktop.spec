@@ -99,7 +99,7 @@ mv LICENSE LICENSE.signal-desktop
 %{_metainfodir}/org.signal.Signal.metainfo.xml
 
 %changelog
-* Thu Oct 29 2026 Owen Zimmerman <owen@fyralabs.com> - 8.33.0-1
+* Thu Oct 29 2026 Owen Zimmerman <owen@fyralabs.com> - 8.33.0-2
 - Update icon name to respect global themes
 
 * Thu Oct 08 2026 Owen Zimmerman <owen@fyralabs.com> - 8.30.0-1
