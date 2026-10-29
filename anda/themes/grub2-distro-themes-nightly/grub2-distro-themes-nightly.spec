@@ -3,6 +3,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global debug_package   %{nil}
+%global spdx_url        https://raw.githubusercontent.com/spdx/license-list-data/main/text
 
 %global themes archcraft arco-linux debian deepin endeavouros garuda gentoo kde-neon kubuntu linux-mint lubuntu nixos opensuse pop-os ubuntu-mate ultramarine vanilla-os void-linux xero-linux
 
@@ -14,6 +15,11 @@ SourceLicense:  GPL-3.0-or-later
 License:        GPL-3.0-or-later
 URL:            https://github.com/AdisonCavani/distro-grub-themes
 Source0:        %url/archive/%commit/distro-grub-themes-%commit.tar.gz
+Source1:        %{spdx_url}/CC-BY-SA-4.0.txt
+Source2:        %{spdx_url}/CC-BY-SA-3.0.txt
+Source3:        %{spdx_url}/CC-BY-4.0.txt
+Source4:        %{spdx_url}/LGPL-3.0-or-later.txt
+Source5:        %{spdx_url}/GPL-2.0-or-later.txt
 Provides:       grub2-distro-themes
 
 %ifnarch aarch64
@@ -181,6 +187,7 @@ GRUB2 theme for xero-linux.
 
 %prep
 %autosetup -C
+cp -p %{S:1} %{S:2} %{S:3} %{S:4} %{S:5} .
 
 %build
 
@@ -202,6 +209,7 @@ done
 %{_grubthemedir}/arco-linux
 
 %files debian
+%license LGPL-3.0-or-later.txt CC-BY-SA-3.0.txt
 %{_grubthemedir}/debian
 
 %files deepin
@@ -214,9 +222,11 @@ done
 %{_grubthemedir}/garuda
 
 %files gentoo
+%license CC-BY-SA-4.0.txt
 %{_grubthemedir}/gentoo
 
 %files kde-neon
+%license CC-BY-SA-4.0.txt
 %{_grubthemedir}/kde-neon
 
 %files kubuntu
@@ -226,24 +236,30 @@ done
 %{_grubthemedir}/linux-mint
 
 %files lubuntu
+%license GPL-2.0-or-later.txt
 %{_grubthemedir}/lubuntu
 
 %files nixos
+%license CC-BY-4.0.txt
 %{_grubthemedir}/nixos
 
 %files opensuse
+%license CC-BY-SA-4.0.txt
 %{_grubthemedir}/opensuse
 
 %files pop-os
+%license CC-BY-SA-4.0.txt
 %{_grubthemedir}/pop-os
 
 %files ultramarine
 %{_grubthemedir}/ultramarine
 
 %files ubuntu-mate
+%license CC-BY-SA-4.0.txt
 %{_grubthemedir}/ubuntu-mate
 
 %files vanilla-os
+%license CC-BY-SA-4.0.txt
 %{_grubthemedir}/vanilla-os
 
 %files void-linux
