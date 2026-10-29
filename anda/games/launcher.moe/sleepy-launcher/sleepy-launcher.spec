@@ -2,7 +2,7 @@
 %global crate sleepy-launcher
 %global appid moe.launcher.sleepy-launcher
 Name:           %{crate}
-Version:        1.7.1
+Version:        1.9.0
 Release:        1%{?dist}
 Summary:        Sleepy Game Launcher for Linux with automatic patching and telemetry disabling 
 
@@ -10,6 +10,7 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/an-anime-team/sleepy-launcher
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
+ExclusiveArch:  x86_64
 
 
 # Allow migrate path from Maroxy's OBS repo
@@ -32,11 +33,14 @@ BuildRequires: python3
 BuildRequires: python3-gobject
 BuildRequires: libadwaita-devel
 BuildRequires: cmake
-BuildRequires: gcc clang-devel mold
+BuildRequires: gcc clang-devel
 BuildRequires: rust-packaging
 BuildRequires: desktop-file-utils
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
+BuildRequires: protobuf-devel
+BuildRequires: protobuf-compiler
+
 
 
 %description

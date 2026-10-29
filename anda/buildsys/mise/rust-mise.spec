@@ -5,7 +5,7 @@
 %global crate mise
 
 Name:           rust-mise
-Version:        2026.10.8
+Version:        2026.10.22
 Release:        1%{?dist}
 Summary:        Front-end to your dev env
 
@@ -18,7 +18,7 @@ Source3:        https://raw.githubusercontent.com/jdx/mise/main/completions/mise
 Source4:        https://raw.githubusercontent.com/jdx/mise/main/completions/_mise
 Packager:       madonuko <mado@fyralabs.com>
 
-BuildRequires:  anda-srpm-macros cmake mold cargo-rpm-macros >= 24
+BuildRequires:  anda-srpm-macros cmake cargo-rpm-macros >= 24
 BuildRequires:  pkgconfig(openssl)
 
 %global _description %{expand:
@@ -90,7 +90,7 @@ Zsh command line completion support for %{crate}.
 export LDFLAGS="$LDFLAGS -fPIE"
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
 %crate_install_bin

@@ -16,7 +16,7 @@ Source4:        %{raw_forgeurl}/%{version}/assets/%{crate}-256x256.png
 Requires:       fontconfig freetype libglvnd
 Requires:       neovim >= 0.10.0
 
-BuildRequires:	anda-srpm-macros cargo-rpm-macros >= 24 cmake gtk3 python3 SDL2 mold
+BuildRequires:	anda-srpm-macros cargo-rpm-macros >= 24 cmake gtk3 python3 SDL2
 BuildRequires:	fontconfig-devel freetype-devel libX11-xcb libX11-devel libstdc++-static libstdc++-devel
 ExclusiveArch:	x86_64
 

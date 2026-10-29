@@ -5,7 +5,7 @@ Summary:        Beautiful, useful, configurable MOTD generation with zero runtim
 URL:            https://github.com/rust-motd/rust-motd
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
-BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold perl
+BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros perl
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 

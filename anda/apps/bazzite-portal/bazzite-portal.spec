@@ -1,5 +1,5 @@
 Name:           bazzite-portal
-Version:        0.2.5
+Version:        0.2.6
 Release:        1%{?dist}
 Summary:        Bazzite Portal is a tabbed frontend for curated script execution, with a focus on distro specific QOL shortcuts
 URL:            https://github.com/ublue-os/yafti-gtk

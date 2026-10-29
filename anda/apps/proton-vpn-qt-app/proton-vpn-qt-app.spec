@@ -1,14 +1,14 @@
 %global appid io.github.wheat32.ProtonVPNQt
 
 Name:           proton-vpn-qt-app
-Version:        1.12.1
-Release:        1%{?dist}
+Version:        1.13.0
+Release:        2%{?dist}
 Summary:        Qt GUI frontend for the ProtonVPN Linux CLI.
 
 License:        GPL-3.0-only
 URL:            https://github.com/wheat32/%{name}
 Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Packager:       Mizuki Nguyen <tcbnmzk@proton.me>
+Packager:       Mizuki Nguyen <acertaindrizzle@proton.me>
 
 BuildRequires:  desktop-file-utils
 BuildRequires:  cmake(Qt6Core)
@@ -20,8 +20,7 @@ BuildRequires:  cmake(Qt6SvgWidgets)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6LinguistTools)
 
-# Disabled until Terra's proton-vpn-cli is fixed
-# Requires:     (proton-vpn-cli >= 1.0.0 and proton-vpn-cli <= 1.0.5)
+Requires:       (proton-vpn-cli >= 1.0.0 and proton-vpn-cli <= 1.0.5)
 Recommends:     curl
 Recommends:     libnatpmp
 
@@ -63,19 +62,16 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 %{_scalableiconsdir}/%{appid}.svg
 %{_metainfodir}/%{appid}.metainfo.xml
 
-%posttrans
-cat <<'EOF'
-Install 'proton-vpn-cli' with:
-  dnf install https://repo.protonvpn.com/fedora-$(rpm -E '%%{fedora}')-stable/protonvpn-stable-release/protonvpn-stable-release-1.0.4-1.noarch.rpm
-  dnf install --from-repo=protonvpn-fedora-stable proton-vpn-cli
-Recommends:
-  'curl': fetches your public IP address when already connected on launch
-  'libnatpmp': enable port forwarding capability
-EOF
-
 %changelog
-* Wed Oct 7 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.1-1
+* Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.0-2
+- Update maintainer contact info
+
+* Sun Oct 18 2026 Owen Zimmerman <owen@fyralabs.com> - 1.12.1-2 
+- Add proton-vpn-cli system dep, remove warning about broken package
+
+* Wed Oct 7 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.12.1-1
 - Bump to 1.12.1
 - Upstream fixed appstream validation
-* Mon Oct 5 2026 Mizuki Nguyen <tcbnmzk@proton.me> - 1.12.0-1
+
+* Mon Oct 5 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.12.0-1
 - Initial package

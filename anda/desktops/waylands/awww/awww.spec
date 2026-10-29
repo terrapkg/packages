@@ -7,7 +7,7 @@ License:        (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR MIT) AND (Apache-
 URL:            https://codeberg.org/LGFae/awww
 Source0:		%url/archive/v%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
-BuildRequires:  anda-srpm-macros rust-packaging rpm_macro(bash_completions_dir) mold
+BuildRequires:  anda-srpm-macros rust-packaging rpm_macro(bash_completions_dir)
 BuildRequires:  scdoc
 BuildRequires:  zstd
 BuildRequires:  pkgconfig(liblz4)

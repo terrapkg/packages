@@ -3,7 +3,7 @@
 %global name_pretty Chatterino7
 
 Name:           chatterino7
-Version:        7.5.5
+Version:        2.5.6
 Release:        1%{?dist}
 Summary:        Twitch chat client with 7TV subscriber features
 

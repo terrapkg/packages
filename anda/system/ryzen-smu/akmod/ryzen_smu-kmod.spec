@@ -14,7 +14,7 @@
 
 Name:           %{modulename}-kmod
 Version:        0.1.7^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Linux kernel driver that exposes access to the SMU (System Management Unit) for certain AMD Ryzen processors
 License:        GPL-2.0-only
 URL:            https://github.com/amkillam/ryzen_smu

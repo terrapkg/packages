@@ -2,10 +2,10 @@
 %global appstream_component desktop-application
 %global name_pretty Chatterino7
 
-%global ver 7.5.5
-%global commit 919a6c1fd2b4750e8fc718c164ed3d5d4d688dde
+%global ver 2.5.6
+%global commit 49f9b31cff599e88c6a64efea808ae1521186413
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20261009
+%global commit_date 20261027
 
 Name:           chatterino7-nightly
 Version:        %{ver}^%{commit_date}git.%{shortcommit}

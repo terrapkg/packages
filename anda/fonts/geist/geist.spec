@@ -1,8 +1,8 @@
-%global ver v1.7.2
+%global ver v1.8.2
 
 Name:		    geist-font
 Version:	    %(echo %ver | sed 's/^geist@//')
-Release:	    1%?dist
+Release:	    1%{?dist}
 URL:		    https://vercel.com/font
 Source0:	    https://github.com/vercel/geist-font/archive/refs/tags/%ver.tar.gz
 License:	    OFL-1.1
@@ -30,7 +30,7 @@ Geist Mono is a monospaced typeface that has been crafted to be the perfect part
 It is designed to be used in code editors, diagrams, terminals, and other textbased interfaces where code is represented.
 
 %prep
-%autosetup
+%autosetup -C
 
 %build
 %make_build

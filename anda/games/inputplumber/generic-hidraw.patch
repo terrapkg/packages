@@ -1,0 +1,1786 @@
+From 99d14861f504326e1a8cea2734dcd9d5e3610b3c Mon Sep 17 00:00:00 2001
+From: William Edwards <shadowapex@gmail.com>
+Date: Sun, 26 Jul 2026 23:06:59 -0700
+Subject: [PATCH 1/2] feat(CapabilityMap): add generic hidraw driver
+
+---
+ .../schema/capability_map_v2.json             | 172 ++++-
+ src/config/capability_map.rs                  |   6 +-
+ src/config/capability_map/hidraw.rs           | 175 ++++-
+ src/input/event/hidraw.rs                     |   3 +
+ src/input/event/hidraw/translator.rs          | 304 ++++++++
+ src/input/event/hidraw/translator_test.rs     | 682 ++++++++++++++++++
+ src/input/event/mod.rs                        |   1 +
+ src/input/event/value.rs                      |   2 +-
+ src/input/source/hidraw.rs                    |  53 +-
+ src/input/source/hidraw/generic.rs            |  77 ++
+ 10 files changed, 1450 insertions(+), 25 deletions(-)
+ create mode 100644 src/input/event/hidraw.rs
+ create mode 100644 src/input/event/hidraw/translator.rs
+ create mode 100644 src/input/event/hidraw/translator_test.rs
+ create mode 100644 src/input/source/hidraw/generic.rs
+
+diff --git a/rootfs/usr/share/inputplumber/schema/capability_map_v2.json b/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
+index 38d2139..8de5229 100644
+--- a/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
++++ b/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
+@@ -239,6 +239,21 @@
+         "name"
+       ]
+     },
++    "Endianness": {
++      "description": "Endianness is the order in which a multi-byte number is represented.",
++      "oneOf": [
++        {
++          "description": "Least significant byte ordering",
++          "type": "string",
++          "const": "lsb"
++        },
++        {
++          "description": "Most significant byte ordering",
++          "type": "string",
++          "const": "msb"
++        }
++      ]
++    },
+     "EvdevConfig": {
+       "description": "An [EvdevConfig] defines a matching evdev input event",
+       "type": "object",
+@@ -1191,30 +1206,66 @@
+       "type": "object",
+       "properties": {
+         "bit_offset": {
+-          "type": "integer",
++          "description": "Optional bit offset to start reading from. Only used with\n`value_type: bool` — other value types are decoded byte-granular.",
++          "type": [
++            "integer",
++            "null"
++          ],
+           "format": "uint8",
+           "maximum": 255,
+           "minimum": 0
+         },
+         "byte_start": {
++          "description": "The byte where the data begins",
+           "type": "integer",
+-          "format": "uint64",
++          "format": "uint",
+           "minimum": 0
+         },
+-        "input_type": {
+-          "type": "string"
++        "endian": {
++          "description": "Optional endianness of the value being decoded. Defaults to LSB.",
++          "anyOf": [
++            {
++              "$ref": "#/$defs/Endianness"
++            },
++            {
++              "type": "null"
++            }
++          ]
++        },
++        "max_value": {
++          "description": "Optional maximum value used for normalizing the value. InputPlumber\ntypically normalizes input values from 0.0 - 1.0 or from -1.0 - 1.0.",
++          "type": [
++            "integer",
++            "null"
++          ],
++          "format": "int64"
++        },
++        "min_value": {
++          "description": "Optional minimum value used for normalizing the value. InputPlumber\ntypically normalizes input values from 0.0 - 1.0 or from -1.0 - 1.0.",
++          "type": [
++            "integer",
++            "null"
++          ],
++          "format": "int64"
+         },
+         "report_id": {
+-          "type": "integer",
+-          "format": "uint32",
++          "description": "Optional report ID of the input report. This is typically the first byte\nof the input report.",
++          "type": [
++            "integer",
++            "null"
++          ],
++          "format": "uint8",
++          "maximum": 255,
+           "minimum": 0
++        },
++        "value_type": {
++          "description": "Data type of the input. This is used to decode the value of the input\nreport.",
++          "$ref": "#/$defs/ValueType2"
+         }
+       },
+       "required": [
+-        "report_id",
+-        "input_type",
+-        "byte_start",
+-        "bit_offset"
++        "value_type",
++        "byte_start"
+       ]
+     },
+     "MappingType": {
+@@ -1444,6 +1495,105 @@
+         "imu_y",
+         "imu_z"
+       ]
++    },
++    "ValueType2": {
++      "oneOf": [
++        {
++          "description": "Bool values take up 1 bit in the input report",
++          "type": "string",
++          "const": "bool"
++        },
++        {
++          "description": "Uint8 values take up 1 byte in the input report",
++          "type": "string",
++          "const": "uint8"
++        },
++        {
++          "description": "Uint16 values take up 2 bytes in the input report",
++          "type": "string",
++          "const": "uint16"
++        },
++        {
++          "description": "Uint32 values take up 4 bytes in the input report",
++          "type": "string",
++          "const": "uint32"
++        },
++        {
++          "description": "Int8 values take up 1 byte in the input report",
++          "type": "string",
++          "const": "int8"
++        },
++        {
++          "description": "Int16 values take up 2 bytes in the input report",
++          "type": "string",
++          "const": "int16"
++        },
++        {
++          "description": "Int32 values take up 4 bytes in the input report",
++          "type": "string",
++          "const": "int32"
++        },
++        {
++          "description": "UInt8Vector2 values take up 2 bytes in the input report",
++          "type": "string",
++          "const": "vector2_uint8"
++        },
++        {
++          "description": "UInt16Vector2 values take up 4 bytes in the input report",
++          "type": "string",
++          "const": "vector2_uint16"
++        },
++        {
++          "description": "UInt32Vector2 values take up 8 bytes in the input report",
++          "type": "string",
++          "const": "vector2_uint32"
++        },
++        {
++          "description": "Int8Vector2 values take up 2 bytes in the input report",
++          "type": "string",
++          "const": "vector2_int8"
++        },
++        {
++          "description": "Int16Vector2 values take up 4 bytes in the input report",
++          "type": "string",
++          "const": "vector2_int16"
++        },
++        {
++          "description": "Int32Vector2 values take up 8 bytes in the input report",
++          "type": "string",
++          "const": "vector2_int32"
++        },
++        {
++          "description": "UInt8Vector3 values take up 3 bytes in the input report",
++          "type": "string",
++          "const": "vector3_uint8"
++        },
++        {
++          "description": "UInt16Vector3 values take up 6 bytes in the input report",
++          "type": "string",
++          "const": "vector3_uint16"
++        },
++        {
++          "description": "UInt32Vector3 values take up 12 bytes in the input report",
++          "type": "string",
++          "const": "vector3_uint32"
++        },
++        {
++          "description": "Int8Vector3 values take up 3 bytes in the input report",
++          "type": "string",
++          "const": "vector3_int8"
++        },
++        {
++          "description": "Int16Vector3 values take up 6 bytes in the input report",
++          "type": "string",
++          "const": "vector3_int16"
++        },
++        {
++          "description": "Int32Vector3 values take up 12 bytes in the input report",
++          "type": "string",
++          "const": "vector3_int32"
++        }
++      ]
+     }
+   }
+-}
++}
+\ No newline at end of file
+diff --git a/src/config/capability_map.rs b/src/config/capability_map.rs
+index 1fed72c..658fa0d 100644
+--- a/src/config/capability_map.rs
++++ b/src/config/capability_map.rs
+@@ -201,7 +201,7 @@ pub struct CapabilityConfig {
+     pub accelerometer: Option<SourceCapability>,
+ }
+ 
+-#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq)]
++#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq, Default)]
+ #[serde(rename_all = "snake_case")]
+ pub struct GamepadCapability {
+     #[serde(skip_serializing_if = "Option::is_none")]
+@@ -218,7 +218,7 @@ pub struct GamepadCapability {
+     pub dial: Option<DialCapability>,
+ }
+ 
+-#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq)]
++#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq, Default)]
+ #[serde(rename_all = "snake_case")]
+ pub struct AxisCapability {
+     pub name: String,
+@@ -238,7 +238,7 @@ pub struct AxisCapability {
+     pub invert: Option<bool>,
+ }
+ 
+-#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq)]
++#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq, Default)]
+ #[serde(rename_all = "snake_case")]
+ pub struct TriggerCapability {
+     pub name: String,
+diff --git a/src/config/capability_map/hidraw.rs b/src/config/capability_map/hidraw.rs
+index 3d680b3..523f5d3 100644
+--- a/src/config/capability_map/hidraw.rs
++++ b/src/config/capability_map/hidraw.rs
+@@ -3,11 +3,176 @@ use serde::{Deserialize, Serialize};
+ 
+ /// A [HidrawConfig] defines how to decode a particular event in an HID input
+ /// report.
+-#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq)]
++#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq, Default)]
+ #[serde(rename_all = "snake_case")]
+ pub struct HidrawConfig {
+-    pub report_id: u32,
+-    pub input_type: String,
+-    pub byte_start: u64,
+-    pub bit_offset: u8,
++    /// Optional report ID of the input report. This is typically the first byte
++    /// of the input report.
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub report_id: Option<u8>,
++    /// Data type of the input. This is used to decode the value of the input
++    /// report.
++    pub value_type: ValueType,
++    /// The byte where the data begins
++    pub byte_start: usize,
++    /// Optional maximum value used for normalizing the value. InputPlumber
++    /// typically normalizes input values from 0.0 - 1.0 or from -1.0 - 1.0.
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub max_value: Option<i64>,
++    /// Optional minimum value used for normalizing the value. InputPlumber
++    /// typically normalizes input values from 0.0 - 1.0 or from -1.0 - 1.0.
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub min_value: Option<i64>,
++    /// Optional bit offset to start reading from. Only used with
++    /// `value_type: bool` — other value types are decoded byte-granular.
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub bit_offset: Option<u8>,
++    /// Optional endianness of the value being decoded. Defaults to LSB.
++    #[serde(skip_serializing_if = "Option::is_none")]
++    pub endian: Option<Endianness>,
++}
++
++/// Endianness is the order in which a multi-byte number is represented.
++#[derive(Default, Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq)]
++pub enum Endianness {
++    /// Least significant byte ordering
++    #[default]
++    #[serde(rename = "lsb")]
++    Lsb,
++    /// Most significant byte ordering
++    #[serde(rename = "msb")]
++    Msb,
++}
++
++#[derive(Debug, Deserialize, Serialize, Clone, JsonSchema, PartialEq, Default)]
++pub enum ValueType {
++    /// Bool values take up 1 bit in the input report
++    #[serde(rename = "bool")]
++    #[default]
++    Bool,
++
++    /// Uint8 values take up 1 byte in the input report
++    #[serde(rename = "uint8")]
++    UInt8,
++    /// Uint16 values take up 2 bytes in the input report
++    #[serde(rename = "uint16")]
++    UInt16,
++    /// Uint32 values take up 4 bytes in the input report
++    #[serde(rename = "uint32")]
++    UInt32,
++    /// Int8 values take up 1 byte in the input report
++    #[serde(rename = "int8")]
++    Int8,
++    /// Int16 values take up 2 bytes in the input report
++    #[serde(rename = "int16")]
++    Int16,
++    /// Int32 values take up 4 bytes in the input report
++    #[serde(rename = "int32")]
++    Int32,
++
++    /// UInt8Vector2 values take up 2 bytes in the input report
++    #[serde(rename = "vector2_uint8")]
++    UInt8Vector2,
++    /// UInt16Vector2 values take up 4 bytes in the input report
++    #[serde(rename = "vector2_uint16")]
++    UInt16Vector2,
++    /// UInt32Vector2 values take up 8 bytes in the input report
++    #[serde(rename = "vector2_uint32")]
++    UInt32Vector2,
++    /// Int8Vector2 values take up 2 bytes in the input report
++    #[serde(rename = "vector2_int8")]
++    Int8Vector2,
++    /// Int16Vector2 values take up 4 bytes in the input report
++    #[serde(rename = "vector2_int16")]
++    Int16Vector2,
++    /// Int32Vector2 values take up 8 bytes in the input report
++    #[serde(rename = "vector2_int32")]
++    Int32Vector2,
++
++    /// UInt8Vector3 values take up 3 bytes in the input report
++    #[serde(rename = "vector3_uint8")]
++    UInt8Vector3,
++    /// UInt16Vector3 values take up 6 bytes in the input report
++    #[serde(rename = "vector3_uint16")]
++    UInt16Vector3,
++    /// UInt32Vector3 values take up 12 bytes in the input report
++    #[serde(rename = "vector3_uint32")]
++    UInt32Vector3,
++    /// Int8Vector3 values take up 3 bytes in the input report
++    #[serde(rename = "vector3_int8")]
++    Int8Vector3,
++    /// Int16Vector3 values take up 6 bytes in the input report
++    #[serde(rename = "vector3_int16")]
++    Int16Vector3,
++    /// Int32Vector3 values take up 12 bytes in the input report
++    #[serde(rename = "vector3_int32")]
++    Int32Vector3,
++}
++
++impl ValueType {
++    /// Whether this value type is signed.
++    pub fn is_signed(&self) -> bool {
++        matches!(
++            self,
++            ValueType::Int8
++                | ValueType::Int16
++                | ValueType::Int32
++                | ValueType::Int8Vector2
++                | ValueType::Int16Vector2
++                | ValueType::Int32Vector2
++                | ValueType::Int8Vector3
++                | ValueType::Int16Vector3
++                | ValueType::Int32Vector3
++        )
++    }
++
++    /// Number of values in this type (1 for scalars, 2 or 3 for vectors).
++    pub fn dimensions(&self) -> usize {
++        match self {
++            ValueType::Bool
++            | ValueType::UInt8
++            | ValueType::UInt16
++            | ValueType::UInt32
++            | ValueType::Int8
++            | ValueType::Int16
++            | ValueType::Int32 => 1,
++            ValueType::UInt8Vector2
++            | ValueType::UInt16Vector2
++            | ValueType::UInt32Vector2
++            | ValueType::Int8Vector2
++            | ValueType::Int16Vector2
++            | ValueType::Int32Vector2 => 2,
++            ValueType::UInt8Vector3
++            | ValueType::UInt16Vector3
++            | ValueType::UInt32Vector3
++            | ValueType::Int8Vector3
++            | ValueType::Int16Vector3
++            | ValueType::Int32Vector3 => 3,
++        }
++    }
++
++    /// Size in bytes of a single value of this type.
++    pub fn component_size(&self) -> usize {
++        match self {
++            ValueType::UInt8
++            | ValueType::Int8
++            | ValueType::UInt8Vector2
++            | ValueType::Int8Vector2
++            | ValueType::UInt8Vector3
++            | ValueType::Int8Vector3 => 1,
++            ValueType::UInt16
++            | ValueType::Int16
++            | ValueType::UInt16Vector2
++            | ValueType::Int16Vector2
++            | ValueType::UInt16Vector3
++            | ValueType::Int16Vector3 => 2,
++            ValueType::UInt32
++            | ValueType::Int32
++            | ValueType::UInt32Vector2
++            | ValueType::Int32Vector2
++            | ValueType::UInt32Vector3
++            | ValueType::Int32Vector3 => 4,
++            ValueType::Bool => 1,
++        }
++    }
+ }
+diff --git a/src/input/event/hidraw.rs b/src/input/event/hidraw.rs
+new file mode 100644
+index 0000000..b64a64d
+--- /dev/null
++++ b/src/input/event/hidraw.rs
+@@ -0,0 +1,3 @@
++pub mod translator;
++#[cfg(test)]
++pub mod translator_test;
+diff --git a/src/input/event/hidraw/translator.rs b/src/input/event/hidraw/translator.rs
+new file mode 100644
+index 0000000..ef73540
+--- /dev/null
++++ b/src/input/event/hidraw/translator.rs
+@@ -0,0 +1,304 @@
++use std::collections::HashMap;
++
++use thiserror::Error;
++
++use crate::{
++    config::capability_map::{
++        hidraw::{Endianness, HidrawConfig, ValueType},
++        CapabilityMapConfigV2,
++    },
++    input::{
++        capability::Capability,
++        event::{
++            native::NativeEvent,
++            value::{normalize_signed_value, normalize_unsigned_value, InputValue},
++        },
++    },
++};
++
++#[derive(Error, Debug, Clone)]
++pub enum DecodeError {
++    #[error("Read zero bytes from input report")]
++    EmptyInputReport,
++    #[error("Input report id {0} does not match expected report id: {1}")]
++    UnexpectedReportId(u8, u8),
++    #[error("Tried to read byte {0} from input report, but report is only {1} bytes")]
++    StartByteExceedsReportSize(usize, usize),
++    #[error("Tried to read a {0} sized value from byte {1} in input report, but report is only {2} bytes")]
++    ValueExceedsReportSize(usize, usize, usize),
++}
++
++/// Used to translate hidraw input reports into native inputplumber events using a
++/// capability map.
++#[derive(Debug)]
++pub struct HidrawEventTranslator {
++    mappings: Vec<(Capability, HidrawConfig)>,
++    last_state: HashMap<u8, Vec<u8>>,
++}
++
++impl HidrawEventTranslator {
++    pub fn new(capability_map: &CapabilityMapConfigV2) -> Self {
++        // Build a list of hidraw mappings
++        let mut mappings = vec![];
++        for mapping in capability_map.mapping.iter() {
++            for source_event in mapping.source_events.iter() {
++                let Some(hidraw_mapping) = source_event.hidraw.as_ref() else {
++                    continue;
++                };
++                if hidraw_mapping.bit_offset.is_some()
++                    && !matches!(hidraw_mapping.value_type, ValueType::Bool)
++                {
++                    log::warn!(
++                        "bit_offset only applies to bool value types, but mapping '{}' uses value_type {:?}",
++                        mapping.name,
++                        hidraw_mapping.value_type
++                    );
++                }
++                let capability: Capability = mapping.target_event.clone().into();
++                mappings.push((capability, hidraw_mapping.clone()));
++            }
++        }
++
++        Self {
++            mappings,
++            last_state: HashMap::new(),
++        }
++    }
++
++    /// Translates hidraw input reports into native inputplumber events.
++    pub fn translate(&mut self, report: &[u8]) -> Vec<NativeEvent> {
++        // Key the last state by report id (the first byte of the report; reports
++        // with no report id map to 0) so that devices emitting multiple report
++        // types never compare values across different report layouts.
++        let report_id = report.first().copied().unwrap_or(0);
++        let last_state = self.last_state.get(&report_id).cloned();
++
++        // We should only emit events on state change. If no last state exists
++        // for this report id, then wait until the next translation cycle.
++        let Some(last_state) = last_state else {
++            self.last_state.insert(report_id, report.to_vec());
++            return vec![];
++        };
++
++        // Decode the input report according to the mappings
++        let mut events = vec![];
++        for (target_capability, mapping) in self.mappings.iter() {
++            let value = match Self::decode_value(report, mapping) {
++                Ok(value) => value,
++                Err(e) => {
++                    if matches!(
++                        e,
++                        DecodeError::EmptyInputReport | DecodeError::UnexpectedReportId(..)
++                    ) {
++                        log::trace!("{e}");
++                    } else {
++                        log::warn!("{e}");
++                    }
++                    continue;
++                }
++            };
++            let Ok(last_value) = Self::decode_value(&last_state, mapping) else {
++                continue;
++            };
++
++            // Only emit events on state change
++            if value == last_value {
++                continue;
++            }
++
++            let event = NativeEvent::new(target_capability.clone(), value);
++            events.push(event);
++        }
++
++        // Keep a copy of the last state per report id to determine if an
++        // event needs to be emitted.
++        self.last_state.insert(report_id, report.to_vec());
++
++        events
++    }
++
++    /// Return the decoded value for the given input report and mapping
++    fn decode_value(report: &[u8], mapping: &HidrawConfig) -> Result<InputValue, DecodeError> {
++        // Check if the input report id matches
++        if let Some(expected_report_id) = mapping.report_id {
++            let Some(report_id) = report.first() else {
++                return Err(DecodeError::EmptyInputReport);
++            };
++            if *report_id != expected_report_id {
++                return Err(DecodeError::UnexpectedReportId(
++                    *report_id,
++                    expected_report_id,
++                ));
++            }
++        }
++
++        // Ensure that the input report is in range of the value
++        if mapping.byte_start >= report.len() {
++            return Err(DecodeError::StartByteExceedsReportSize(
++                mapping.byte_start,
++                report.len(),
++            ));
++        }
++
++        // Translate the event based on the value type
++        match &mapping.value_type {
++            ValueType::Bool => {
++                let value = Self::decode_bool(report, mapping);
++                Ok(InputValue::Bool(value))
++            }
++            value_type => Self::decode_typed(report, value_type, mapping),
++        }
++    }
++
++    /// Decode a value according to the given integer value type.
++    fn decode_typed(
++        report: &[u8],
++        value_type: &ValueType,
++        mapping: &HidrawConfig,
++    ) -> Result<InputValue, DecodeError> {
++        let value = Self::decode_int(
++            report,
++            value_type,
++            mapping.byte_start,
++            mapping.min_value,
++            mapping.max_value,
++            mapping.endian.as_ref(),
++        )?;
++        Ok(match value_type {
++            ValueType::UInt8
++            | ValueType::Int8
++            | ValueType::UInt16
++            | ValueType::Int16
++            | ValueType::UInt32
++            | ValueType::Int32 => InputValue::Float(value[0]),
++            ValueType::UInt8Vector2
++            | ValueType::UInt16Vector2
++            | ValueType::UInt32Vector2
++            | ValueType::Int8Vector2
++            | ValueType::Int16Vector2
++            | ValueType::Int32Vector2 => InputValue::Vector2 {
++                x: Some(value[0]),
++                y: Some(value[1]),
++            },
++            ValueType::UInt8Vector3
++            | ValueType::UInt16Vector3
++            | ValueType::UInt32Vector3
++            | ValueType::Int8Vector3
++            | ValueType::Int16Vector3
++            | ValueType::Int32Vector3 => InputValue::Vector3 {
++                x: Some(value[0]),
++                y: Some(value[1]),
++                z: Some(value[2]),
++            },
++            ValueType::Bool => unreachable!("bool values are decoded by [decode_bool]"),
++        })
++    }
++
++    /// Decode the integer(s) for the given value type, returning normalized
++    /// values (one per axis for vector types).
++    fn decode_int(
++        report: &[u8],
++        value_type: &ValueType,
++        byte_start: usize,
++        min_value: Option<i64>,
++        max_value: Option<i64>,
++        endian: Option<&Endianness>,
++    ) -> Result<Vec<f64>, DecodeError> {
++        let is_signed = value_type.is_signed();
++        let component_size = value_type.component_size();
++        let dimensions = value_type.dimensions();
++
++        // Ensure the value(s) don't exceed the report size
++        if byte_start + component_size * dimensions > report.len() {
++            return Err(DecodeError::ValueExceedsReportSize(
++                component_size * dimensions,
++                byte_start,
++                report.len(),
++            ));
++        }
++
++        let mut values = vec![0.0; dimensions];
++        for (i, value) in values.iter_mut().enumerate() {
++            let start = byte_start + i * component_size;
++            let raw_value = match component_size {
++                1 => {
++                    let byte_value = report[start];
++                    if is_signed {
++                        byte_value.cast_signed() as i64
++                    } else {
++                        byte_value as i64
++                    }
++                }
++                2 => {
++                    let bytes: [u8; 2] = report[start..start + 2].try_into().unwrap();
++                    if is_signed {
++                        match endian {
++                            Some(Endianness::Msb) => i16::from_be_bytes(bytes) as i64,
++                            _ => i16::from_le_bytes(bytes) as i64,
++                        }
++                    } else {
++                        match endian {
++                            Some(Endianness::Msb) => u16::from_be_bytes(bytes) as i64,
++                            _ => u16::from_le_bytes(bytes) as i64,
++                        }
++                    }
++                }
++                4 => {
++                    let bytes: [u8; 4] = report[start..start + 4].try_into().unwrap();
++                    if is_signed {
++                        match endian {
++                            Some(Endianness::Msb) => i32::from_be_bytes(bytes) as i64,
++                            _ => i32::from_le_bytes(bytes) as i64,
++                        }
++                    } else {
++                        match endian {
++                            Some(Endianness::Msb) => u32::from_be_bytes(bytes) as i64,
++                            _ => u32::from_le_bytes(bytes) as i64,
++                        }
++                    }
++                }
++                _ => unreachable!(),
++            };
++
++            // Normalize the value
++            let (min, max) = if is_signed {
++                match component_size {
++                    1 => (
++                        min_value.unwrap_or(i8::MIN as i64) as f64,
++                        max_value.unwrap_or(i8::MAX as i64) as f64,
++                    ),
++                    2 => (
++                        min_value.unwrap_or(i16::MIN as i64) as f64,
++                        max_value.unwrap_or(i16::MAX as i64) as f64,
++                    ),
++                    _ => (
++                        min_value.unwrap_or(i32::MIN as i64) as f64,
++                        max_value.unwrap_or(i32::MAX as i64) as f64,
++                    ),
++                }
++            } else {
++                match component_size {
++                    1 => (0.0, max_value.unwrap_or(u8::MAX as i64) as f64),
++                    2 => (0.0, max_value.unwrap_or(u16::MAX as i64) as f64),
++                    _ => (0.0, max_value.unwrap_or(u32::MAX as i64) as f64),
++                }
++            };
++            if is_signed {
++                *value = normalize_signed_value(raw_value as f64, min, max);
++            } else {
++                *value = normalize_unsigned_value(raw_value as f64, max);
++            }
++        }
++
++        Ok(values)
++    }
++
++    fn decode_bool(report: &[u8], mapping: &HidrawConfig) -> bool {
++        let byte_value = report[mapping.byte_start];
++        if let Some(bit_offset) = mapping.bit_offset {
++            (byte_value & (1 << bit_offset)) != 0
++        } else {
++            byte_value != 0
++        }
++    }
++}
+diff --git a/src/input/event/hidraw/translator_test.rs b/src/input/event/hidraw/translator_test.rs
+new file mode 100644
+index 0000000..62334b0
+--- /dev/null
++++ b/src/input/event/hidraw/translator_test.rs
+@@ -0,0 +1,682 @@
++use std::error::Error;
++
++use packed_struct::PackedStructSlice;
++
++use crate::{
++    config::capability_map::{
++        hidraw::{Endianness, HidrawConfig, ValueType},
++        AxisCapability, CapabilityConfig, CapabilityMapConfig, CapabilityMapConfigV2,
++        CapabilityMapping, GamepadCapability, SourceMapping, TriggerCapability,
++    },
++    drivers::dualsense::hid_report::InputState,
++    input::{
++        capability::{Capability, Gamepad, GamepadAxis, GamepadButton, GamepadTrigger},
++        event::{
++            hidraw::translator::HidrawEventTranslator, native::NativeEvent, value::InputValue,
++        },
++    },
++};
++
++#[tokio::test]
++async fn test_ds_translation() -> Result<(), Box<dyn Error>> {
++    let capability_map_str = r#"
++version: 2
++kind: CapabilityMap
++name: GPD HID Type 1
++id: gpd_v2_hid1
++mapping:
++  - name: Cross
++    source_events:
++      - hidraw:
++          value_type: bool
++          byte_start: 7
++          bit_offset: 5
++    target_event:
++      gamepad:
++        button: South
++"#;
++    let capability_map = CapabilityMapConfig::from_yaml(capability_map_str.into()).unwrap();
++    let CapabilityMapConfig::V2(capability_map) = capability_map else {
++        panic!("A v2 capability map was not used");
++    };
++
++    let mut translator = HidrawEventTranslator::new(&capability_map);
++    let mut report = InputState::default();
++
++    let report_bytes = report.pack_to_vec().unwrap();
++    let events = translator.translate(&report_bytes);
++    assert_eq!(events.len(), 0, "No events should be emitted");
++
++    // Press the X button
++    report.cross = true;
++    let report_bytes = report.pack_to_vec().unwrap();
++    let events = translator.translate(&report_bytes);
++    assert_eq!(events.len(), 1, "A button down event should be emitted");
++
++    Ok(())
++}
++
++/// One mapping of every single-value type in a 16-byte report. Byte 0 is the
++/// state key (report id) and never decoded.
++fn single_value_map() -> CapabilityMapConfigV2 {
++    let mut map = new_map();
++    add_mapping(&mut map, "u8", button_capability("DPadUp"), {
++        let value_type = ValueType::UInt8;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    });
++    add_mapping(&mut map, "i8", button_capability("DPadDown"), {
++        let value_type = ValueType::Int8;
++        HidrawConfig {
++            value_type,
++            byte_start: 2,
++            ..Default::default()
++        }
++    });
++    add_mapping(&mut map, "u16", button_capability("DPadLeft"), {
++        let value_type = ValueType::UInt16;
++        HidrawConfig {
++            value_type,
++            byte_start: 3,
++            ..Default::default()
++        }
++    });
++    add_mapping(&mut map, "i16", button_capability("DPadRight"), {
++        let value_type = ValueType::Int16;
++        HidrawConfig {
++            value_type,
++            byte_start: 5,
++            ..Default::default()
++        }
++    });
++    add_mapping(&mut map, "u32", button_capability("East"), {
++        let value_type = ValueType::UInt32;
++        HidrawConfig {
++            value_type,
++            byte_start: 7,
++            ..Default::default()
++        }
++    });
++    add_mapping(&mut map, "i32", button_capability("West"), {
++        let value_type = ValueType::Int32;
++        HidrawConfig {
++            value_type,
++            byte_start: 11,
++            ..Default::default()
++        }
++    });
++    map
++}
++
++const SINGLE_VALUE_SEED: [u8; 16] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
++
++#[test]
++fn test_single_value_decoding() {
++    let map = single_value_map();
++    // u8 = 0xFF -> 1.0; i8 = 0x80 (-128) -> -1.0; u16 = 0xFFFF (LE) -> 1.0;
++    // i16 = 0x7FFF (32767, LE) -> 1.0; u32 = 0xFFFFFFFF (LE) -> 1.0;
++    // i32 = i32::MIN (LE) -> -1.0
++    let mut report = SINGLE_VALUE_SEED;
++    report[1] = 0xFF;
++    report[2] = 0x80;
++    report[3] = 0xFF;
++    report[4] = 0xFF;
++    report[5] = 0xFF;
++    report[6] = 0x7F;
++    report[7] = 0xFF;
++    report[8] = 0xFF;
++    report[9] = 0xFF;
++    report[10] = 0xFF;
++    report[11] = 0x00;
++    report[12] = 0x00;
++    report[13] = 0x00;
++    report[14] = 0x80;
++    let events = translate(&map, &SINGLE_VALUE_SEED, &report);
++
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::DPadUp)),
++            0
++        ),
++        Some(InputValue::Float(1.0))
++    );
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::DPadDown)),
++            0
++        ),
++        Some(InputValue::Float(-1.0))
++    );
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::DPadLeft)),
++            0
++        ),
++        Some(InputValue::Float(1.0))
++    );
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::DPadRight)),
++            0
++        ),
++        Some(InputValue::Float(1.0))
++    );
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::East)),
++            0
++        ),
++        Some(InputValue::Float(1.0))
++    );
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::West)),
++            0
++        ),
++        Some(InputValue::Float(-1.0))
++    );
++}
++
++#[test]
++fn test_unsigned_midrange() {
++    let map = single_value_map();
++    let mut report = SINGLE_VALUE_SEED;
++    report[1] = 0x80;
++    let events = translate(&map, &SINGLE_VALUE_SEED, &report);
++
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::DPadUp)),
++            0
++        ),
++        Some(InputValue::Float(128.0 / 255.0))
++    );
++    // DPadDown (i8) is still 0 in both reports -> no event
++    assert!(events.iter().all(|event| event.as_capability()
++        != Capability::Gamepad(Gamepad::Button(GamepadButton::DPadDown))));
++}
++
++#[test]
++fn test_int8_vector2_decoding() {
++    let mut map = new_map();
++    add_mapping(&mut map, "axis", axis_capability("LeftStick"), {
++        let value_type = ValueType::Int8Vector2;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    });
++    // x = 127 at the top of the [-128, 127] range -> 1.0, y = -128 -> -1.0
++    let events = translate(&map, &[0u8; 3], &[0, 127, 0x80]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Axis(GamepadAxis::LeftStick)),
++            0
++        ),
++        Some(InputValue::Vector2 {
++            x: Some(1.0),
++            y: Some(-1.0),
++        })
++    );
++}
++
++#[test]
++fn test_uint16_vector2_decoding() {
++    let mut map = new_map();
++    add_mapping(&mut map, "axis", axis_capability("LeftStick"), {
++        let value_type = ValueType::UInt16Vector2;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    });
++    // LE: x = 0x0100 = 256 -> 256/65535, y = 0xFFFF -> 1.0
++    let events = translate(&map, &[0u8; 5], &[0, 0x00, 0x01, 0xFF, 0xFF]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Axis(GamepadAxis::LeftStick)),
++            0
++        ),
++        Some(InputValue::Vector2 {
++            x: Some(256.0 / 65535.0),
++            y: Some(1.0),
++        })
++    );
++}
++
++#[test]
++fn test_int16_vector3_decoding() {
++    let mut map = new_map();
++    add_mapping(&mut map, "axis", axis_capability("LeftStick"), {
++        let value_type = ValueType::Int16Vector3;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    });
++    // LE: x = i16::MIN -> -1.0, y = 32767 -> 1.0, z = 0 -> 0.5/32767.5
++    // (signed normalization is midpoint-based, so 0 is slightly above -1.0..1.0
++    // midpoint, not exactly 0.0)
++    let events = translate(&map, &[0u8; 7], &[0, 0x00, 0x80, 0xFF, 0x7F, 0x00, 0x00]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Axis(GamepadAxis::LeftStick)),
++            0
++        ),
++        Some(InputValue::Vector3 {
++            x: Some(-1.0),
++            y: Some(1.0),
++            z: Some(0.5 / 32767.5),
++        })
++    );
++}
++
++#[test]
++fn test_trigger_value() {
++    let mut map = new_map();
++    add_mapping(&mut map, "ltrigger", trigger_capability("LeftTrigger"), {
++        let value_type = ValueType::UInt16;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    });
++    let events = translate(&map, &[0u8; 3], &[0, 0xFF, 0xFF]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Trigger(GamepadTrigger::LeftTrigger)),
++            0
++        ),
++        Some(InputValue::Float(1.0))
++    );
++}
++
++#[test]
++fn test_msb_endianness() {
++    let mut map = new_map();
++    let mut config = {
++        let value_type = ValueType::UInt16;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    };
++    config.endian = Some(Endianness::Msb);
++    add_mapping(&mut map, "axis", trigger_capability("LeftTrigger"), config);
++
++    // MSB: [0xFF, 0x00] -> 0xFF00 = 65280 -> 65280/65535
++    let events = translate(&map, &[0u8; 3], &[0, 0xFF, 0x00]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Trigger(GamepadTrigger::LeftTrigger)),
++            0
++        ),
++        Some(InputValue::Float(0xFF00 as f64 / 65535.0))
++    );
++}
++
++#[test]
++fn test_unsigned_custom_max() {
++    let mut map = new_map();
++    let mut config = {
++        let value_type = ValueType::UInt8;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    };
++    config.max_value = Some(200);
++    add_mapping(&mut map, "u8", button_capability("East"), config);
++
++    // 100 in an explicit [0, 200] range normalizes to 0.5
++    let events = translate(&map, &[0u8; 2], &[0, 100]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::East)),
++            0
++        ),
++        Some(InputValue::Float(0.5))
++    );
++}
++
++#[test]
++fn test_signed_custom_min_max() {
++    let mut map = new_map();
++    let mut config = {
++        let value_type = ValueType::Int16;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    };
++    config.min_value = Some(-100);
++    config.max_value = Some(100);
++    add_mapping(&mut map, "axis", axis_capability("LeftStick"), config);
++
++    // -28 (LE 0xFFE4, bytes [0xE4, 0xFF]) in a [-100, 100] range normalizes to -0.28
++    let events = translate(&map, &[0u8; 3], &[0, 0xE4, 0xFF]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Axis(GamepadAxis::LeftStick)),
++            0
++        ),
++        Some(InputValue::Float(-28.0 / 100.0))
++    );
++}
++
++#[test]
++fn test_bool_with_bit_offset() {
++    let mut map = new_map();
++    let mut config = {
++        let value_type = ValueType::Bool;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    };
++    config.bit_offset = Some(2);
++    add_mapping(&mut map, "u8", button_capability("East"), config);
++
++    // bit 2 of 0x04 is set -> true
++    let events = translate(&map, &[0u8, 0x00], &[0, 0x04]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::East)),
++            0
++        ),
++        Some(InputValue::Bool(true))
++    );
++
++    // clearing bit 2 -> back to false
++    let events = translate(&map, &[0u8, 0x04], &[0, 0x00]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::East)),
++            0
++        ),
++        Some(InputValue::Bool(false))
++    );
++}
++
++#[test]
++fn test_bool_without_bit_offset() {
++    let mut map = new_map();
++    let config = {
++        let value_type = ValueType::Bool;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    };
++    add_mapping(&mut map, "u8", button_capability("East"), config);
++
++    // nonzero byte -> true
++    let events = translate(&map, &[0u8, 0x00], &[0, 0x01]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::East)),
++            0
++        ),
++        Some(InputValue::Bool(true))
++    );
++}
++
++/// A report whose first byte doesn't match the mapping's report_id is skipped
++/// and must not update the per-report-id last state.
++#[test]
++fn test_report_id_mismatch_is_skipped() {
++    let mut map = new_map();
++    let mut config = {
++        let value_type = ValueType::UInt8;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    };
++    config.report_id = Some(1);
++    add_mapping(&mut map, "u8", button_capability("East"), config);
++
++    let mut translator = HidrawEventTranslator::new(&map);
++    // Seed the report-id-1 state with the value at byte 1 = 0
++    assert_eq!(translator.translate(&[1u8, 0x00]).len(), 0);
++    // A report with a mismatching report id is ignored entirely and does not
++    // disturb the report-id-1 state
++    let events = translator.translate(&[2u8, 0xFF]);
++    assert_eq!(events.len(), 0);
++    // The report-id-1 state is unchanged, so a change to it still works
++    let events = translator.translate(&[1u8, 0xFF]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::East)),
++            0
++        ),
++        Some(InputValue::Float(1.0))
++    );
++}
++
++/// Reports with distinct report ids must keep independent last-states: changing
++/// one report id's contents must only emit events for that id's mappings.
++#[test]
++fn test_separate_state_per_report_id() {
++    let mut map = new_map();
++    let mut config_a = {
++        let value_type = ValueType::UInt8;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    };
++    config_a.report_id = Some(1);
++    add_mapping(&mut map, "a", button_capability("East"), config_a);
++    let mut config_b = {
++        let value_type = ValueType::UInt8;
++        HidrawConfig {
++            value_type,
++            byte_start: 1,
++            ..Default::default()
++        }
++    };
++    config_b.report_id = Some(2);
++    add_mapping(&mut map, "b", button_capability("West"), config_b);
++
++    let mut translator = HidrawEventTranslator::new(&map);
++    assert_eq!(translator.translate(&[1u8, 0xFF]).len(), 0);
++    assert_eq!(translator.translate(&[2u8, 0xFF]).len(), 0);
++
++    // Changing report id 2's value emits West only
++    let events = translator.translate(&[2u8, 0x00]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::West)),
++            0
++        ),
++        Some(InputValue::Float(0.0))
++    );
++    assert!(events
++        .iter()
++        .all(|event| event.as_capability()
++            != Capability::Gamepad(Gamepad::Button(GamepadButton::East))));
++
++    // Changing report id 1's value emits East only
++    let events = translator.translate(&[1u8, 0x00]);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::East)),
++            0
++        ),
++        Some(InputValue::Float(0.0))
++    );
++    assert!(events
++        .iter()
++        .all(|event| event.as_capability()
++            != Capability::Gamepad(Gamepad::Button(GamepadButton::West))));
++}
++
++/// Only capabilities whose decoded value actually changed between reports
++/// should emit events.
++#[test]
++fn test_no_event_on_unchanged_capability() {
++    let map = single_value_map();
++    // Seed and report differ only in byte 1 (u8 -> DPadUp); byte 2 (i8 ->
++    // DPadDown) is 1 in both reports, so it must not emit.
++    let seed = [0u8, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
++    let mut report = seed;
++    report[1] = 42;
++    let events = translate(&map, &seed, &report);
++
++    assert_eq!(events.len(), 1);
++    assert_eq!(
++        event_value(
++            &events,
++            &Capability::Gamepad(Gamepad::Button(GamepadButton::DPadUp)),
++            0
++        ),
++        Some(InputValue::Float(42.0 / 255.0))
++    );
++}
++
++/// A `byte_start` past the end of the report must not panic; the mapping is
++/// skipped with a logged warning instead.
++#[test]
++fn test_byte_start_exceeds_report() {
++    let mut map = new_map();
++    let config = {
++        let value_type = ValueType::UInt8;
++        HidrawConfig {
++            value_type,
++            byte_start: 100,
++            ..Default::default()
++        }
++    };
++    add_mapping(&mut map, "u8", button_capability("East"), config);
++
++    let mut translator = HidrawEventTranslator::new(&map);
++    assert_eq!(translator.translate(&[0u8; 4]).len(), 0);
++    let events = translator.translate(&[1, 2, 3, 4]);
++    assert_eq!(events.len(), 0);
++}
++
++/// Seed the translator's per-report-id state, then translate a different report.
++/// Events are only emitted on state change, so the seed report's first byte
++/// (the report id used as the state key) must match the test report's.
++fn translate(map: &CapabilityMapConfigV2, seed: &[u8], report: &[u8]) -> Vec<NativeEvent> {
++    assert_eq!(seed[0], report[0]);
++    let mut translator = HidrawEventTranslator::new(map);
++    assert_eq!(
++        translator.translate(seed).len(),
++        0,
++        "the seed report should never emit events"
++    );
++    translator.translate(report)
++}
++
++fn button_capability(button: &str) -> CapabilityConfig {
++    CapabilityConfig {
++        gamepad: Some(GamepadCapability {
++            button: Some(button.to_string()),
++            ..Default::default()
++        }),
++        ..Default::default()
++    }
++}
++
++fn axis_capability(name: &str) -> CapabilityConfig {
++    CapabilityConfig {
++        gamepad: Some(GamepadCapability {
++            axis: Some(AxisCapability {
++                name: name.to_string(),
++                ..Default::default()
++            }),
++            ..Default::default()
++        }),
++        ..Default::default()
++    }
++}
++
++fn trigger_capability(name: &str) -> CapabilityConfig {
++    CapabilityConfig {
++        gamepad: Some(GamepadCapability {
++            trigger: Some(TriggerCapability {
++                name: name.to_string(),
++                ..Default::default()
++            }),
++            ..Default::default()
++        }),
++        ..Default::default()
++    }
++}
++
++fn add_mapping(
++    map: &mut CapabilityMapConfigV2,
++    name: &str,
++    target: CapabilityConfig,
++    hidraw: HidrawConfig,
++) {
++    map.mapping.push(CapabilityMapping {
++        name: name.to_string(),
++        mapping_type: None,
++        source_events: vec![SourceMapping {
++            evdev: None,
++            hidraw: Some(hidraw),
++            capability: None,
++        }],
++        target_event: target,
++    });
++}
++
++fn new_map() -> CapabilityMapConfigV2 {
++    CapabilityMapConfigV2 {
++        version: 2,
++        kind: "generic".to_string(),
++        name: "test".to_string(),
++        id: "test".to_string(),
++        mapping: vec![],
++    }
++}
++
++/// Get the value of the `index`-th event (0-based) for the given capability.
++fn event_value(
++    events: &[NativeEvent],
++    capability: &Capability,
++    index: usize,
++) -> Option<InputValue> {
++    events
++        .iter()
++        .filter(|event| &event.as_capability() == capability)
++        .nth(index)
++        .map(|event| event.get_value())
++}
+diff --git a/src/input/event/mod.rs b/src/input/event/mod.rs
+index 84bcc77..4f61240 100644
+--- a/src/input/event/mod.rs
++++ b/src/input/event/mod.rs
+@@ -1,6 +1,7 @@
+ pub mod context;
+ pub mod dbus;
+ pub mod evdev;
++pub mod hidraw;
+ pub mod native;
+ pub mod value;
+ 
+diff --git a/src/input/event/value.rs b/src/input/event/value.rs
+index 253579d..b46e632 100644
+--- a/src/input/event/value.rs
++++ b/src/input/event/value.rs
+@@ -21,7 +21,7 @@ pub enum TranslationError {
+ }
+ 
+ /// InputValue represents different ways to represent a value from an input event.
+-#[derive(Debug, Clone)]
++#[derive(Debug, Clone, PartialEq)]
+ pub enum InputValue {
+     None,
+     /// Bool values are typically used by button input.
+diff --git a/src/input/source/hidraw.rs b/src/input/source/hidraw.rs
+index 168a8cc..aaaa0b8 100644
+--- a/src/input/source/hidraw.rs
++++ b/src/input/source/hidraw.rs
+@@ -3,6 +3,7 @@ pub mod blocked;
+ pub mod dualsense;
+ pub mod flydigi_vader_4_pro;
+ pub mod fts3528;
++pub mod generic;
+ pub mod gpd_device;
+ pub mod horipad_steam;
+ pub mod legion_go;
+@@ -19,13 +20,20 @@ pub mod zotac_zone;
+ use std::{error::Error, time::Duration};
+ 
+ use crate::{
+-    config,
++    config::{
++        self,
++        capability_map::{load_capability_mappings, CapabilityMapConfig},
++    },
+     constants::BUS_SOURCES_PREFIX,
+     drivers::{self},
+     input::{
+-        capability::Capability, composite_device::client::CompositeDeviceClient,
+-        info::DeviceInfoRef, output_capability::OutputCapability,
+-        source::hidraw::legion_go::touchpad::LegionGoTouchpad,
++        capability::Capability,
++        composite_device::client::CompositeDeviceClient,
++        info::DeviceInfoRef,
++        output_capability::OutputCapability,
++        source::hidraw::{
++            generic::GenericDevice, legion_go::touchpad::LegionGoTouchpad,
++        },
+     },
+     udev::device::UdevDevice,
+ };
+@@ -93,6 +101,7 @@ pub enum HidRawDevice {
+     Blocked(SourceDriver<BlockedHidrawDevice>),
+     DualSense(SourceDriver<DualSenseController>),
+     Fts3528Touchscreen(SourceDriver<Fts3528Touchscreen>),
++    GenericDevice(SourceDriver<GenericDevice>),
+     GpdMacroKeyboard(SourceDriver<GpdMacroKeyboard>),
+     GpdTouchpad2023(SourceDriver<GpdTouchpad2023>),
+     GpdTouchpad2024(SourceDriver<GpdTouchpad2024>),
+@@ -121,6 +130,7 @@ impl SourceDeviceCompatible for HidRawDevice {
+             HidRawDevice::Blocked(source_driver) => source_driver.info_ref(),
+             HidRawDevice::DualSense(source_driver) => source_driver.info_ref(),
+             HidRawDevice::Fts3528Touchscreen(source_driver) => source_driver.info_ref(),
++            HidRawDevice::GenericDevice(source_driver) => source_driver.info_ref(),
+             HidRawDevice::GpdMacroKeyboard(source_driver) => source_driver.info_ref(),
+             HidRawDevice::GpdTouchpad2023(source_driver) => source_driver.info_ref(),
+             HidRawDevice::GpdTouchpad2024(source_driver) => source_driver.info_ref(),
+@@ -149,6 +159,7 @@ impl SourceDeviceCompatible for HidRawDevice {
+             HidRawDevice::Blocked(source_driver) => source_driver.get_id(),
+             HidRawDevice::DualSense(source_driver) => source_driver.get_id(),
+             HidRawDevice::Fts3528Touchscreen(source_driver) => source_driver.get_id(),
++            HidRawDevice::GenericDevice(source_driver) => source_driver.get_id(),
+             HidRawDevice::GpdMacroKeyboard(source_driver) => source_driver.get_id(),
+             HidRawDevice::GpdTouchpad2023(source_driver) => source_driver.get_id(),
+             HidRawDevice::GpdTouchpad2024(source_driver) => source_driver.get_id(),
+@@ -177,6 +188,7 @@ impl SourceDeviceCompatible for HidRawDevice {
+             HidRawDevice::Blocked(source_driver) => source_driver.client(),
+             HidRawDevice::DualSense(source_driver) => source_driver.client(),
+             HidRawDevice::Fts3528Touchscreen(source_driver) => source_driver.client(),
++            HidRawDevice::GenericDevice(source_driver) => source_driver.client(),
+             HidRawDevice::GpdMacroKeyboard(source_driver) => source_driver.client(),
+             HidRawDevice::GpdTouchpad2023(source_driver) => source_driver.client(),
+             HidRawDevice::GpdTouchpad2024(source_driver) => source_driver.client(),
+@@ -205,6 +217,7 @@ impl SourceDeviceCompatible for HidRawDevice {
+             HidRawDevice::Blocked(source_driver) => source_driver.run().await,
+             HidRawDevice::DualSense(source_driver) => source_driver.run().await,
+             HidRawDevice::Fts3528Touchscreen(source_driver) => source_driver.run().await,
++            HidRawDevice::GenericDevice(source_driver) => source_driver.run().await,
+             HidRawDevice::GpdMacroKeyboard(source_driver) => source_driver.run().await,
+             HidRawDevice::GpdTouchpad2023(source_driver) => source_driver.run().await,
+             HidRawDevice::GpdTouchpad2024(source_driver) => source_driver.run().await,
+@@ -233,6 +246,7 @@ impl SourceDeviceCompatible for HidRawDevice {
+             HidRawDevice::Blocked(source_driver) => source_driver.get_capabilities(),
+             HidRawDevice::DualSense(source_driver) => source_driver.get_capabilities(),
+             HidRawDevice::Fts3528Touchscreen(source_driver) => source_driver.get_capabilities(),
++            HidRawDevice::GenericDevice(source_driver) => source_driver.get_capabilities(),
+             HidRawDevice::GpdMacroKeyboard(source_driver) => source_driver.get_capabilities(),
+             HidRawDevice::GpdTouchpad2023(source_driver) => source_driver.get_capabilities(),
+             HidRawDevice::GpdTouchpad2024(source_driver) => source_driver.get_capabilities(),
+@@ -263,6 +277,7 @@ impl SourceDeviceCompatible for HidRawDevice {
+             HidRawDevice::Fts3528Touchscreen(source_driver) => {
+                 source_driver.get_output_capabilities()
+             }
++            HidRawDevice::GenericDevice(source_driver) => source_driver.get_output_capabilities(),
+             HidRawDevice::GpdMacroKeyboard(source_driver) => {
+                 source_driver.get_output_capabilities()
+             }
+@@ -299,6 +314,7 @@ impl SourceDeviceCompatible for HidRawDevice {
+             HidRawDevice::Blocked(source_driver) => source_driver.get_device_path(),
+             HidRawDevice::DualSense(source_driver) => source_driver.get_device_path(),
+             HidRawDevice::Fts3528Touchscreen(source_driver) => source_driver.get_device_path(),
++            HidRawDevice::GenericDevice(source_driver) => source_driver.get_device_path(),
+             HidRawDevice::GpdMacroKeyboard(source_driver) => source_driver.get_device_path(),
+             HidRawDevice::GpdTouchpad2023(source_driver) => source_driver.get_device_path(),
+             HidRawDevice::GpdTouchpad2024(source_driver) => source_driver.get_device_path(),
+@@ -335,7 +351,34 @@ impl HidRawDevice {
+         let driver_type = HidRawDevice::get_driver_type(&device_info, is_blocked);
+ 
+         match driver_type {
+-            DriverType::Unknown => Err("No driver for hidraw interface found".into()),
++            DriverType::Unknown => {
++                // A capability map is required to use the generic driver
++                let Some(source_conf) = conf.as_ref() else {
++                    return Err(
++                        "No driver or source device config for hidraw interface found".into(),
++                    );
++                };
++                let Some(map_id) = source_conf.capability_map_id.as_ref() else {
++                    return Err("No driver or capability map id for hidraw interface found".into());
++                };
++                let mappings = load_capability_mappings();
++                let Some(CapabilityMapConfig::V2(capability_map)) = mappings.get(map_id) else {
++                    return Err("No driver or capability map v2 for hidraw interface found".into());
++                };
++                let device = GenericDevice::new(device_info.clone(), capability_map)?;
++                let options = SourceDriverOptions {
++                    poll_rate: Duration::from_millis(0),
++                    buffer_size: 1024,
++                };
++                let source_device = SourceDriver::new_with_options(
++                    composite_device,
++                    device,
++                    device_info.into(),
++                    options,
++                    conf,
++                );
++                Ok(Self::GenericDevice(source_device))
++            }
+             DriverType::AyaneoHaptics => {
+                 let device = AyaneoHaptics::new(device_info.clone())?;
+                 let source_device =
+diff --git a/src/input/source/hidraw/generic.rs b/src/input/source/hidraw/generic.rs
+new file mode 100644
+index 0000000..5ae7a05
+--- /dev/null
++++ b/src/input/source/hidraw/generic.rs
+@@ -0,0 +1,77 @@
++use std::{error::Error, ffi::CString};
++
++use hidapi::HidDevice;
++
++use crate::{
++    config::capability_map::CapabilityMapConfigV2,
++    input::{
++        capability::Capability,
++        event::{hidraw::translator::HidrawEventTranslator, native::NativeEvent},
++        source::{InputError, SourceInputDevice, SourceOutputDevice},
++    },
++    udev::device::UdevDevice,
++};
++
++const READ_BUFFER_SIZE: usize = 256;
++// HID buffer read timeout
++const HID_TIMEOUT: i32 = 10;
++
++#[derive(Debug)]
++pub struct GenericDevice {
++    device: HidDevice,
++    translator: HidrawEventTranslator,
++    capabilities: Vec<Capability>,
++}
++
++impl GenericDevice {
++    pub fn new(
++        device_info: UdevDevice,
++        capability_map: &CapabilityMapConfigV2,
++    ) -> Result<Self, Box<dyn Error + Send + Sync>> {
++        // Open a handle to the hidraw device
++        let path = device_info.devnode();
++        let c_path = CString::new(path)?;
++        let api = hidapi::HidApi::new()?;
++        let device = api.open_path(&c_path)?;
++
++        // Generate the capabilities based on the capability map
++        let mut capabilities = vec![];
++        for mapping in capability_map.mapping.iter() {
++            let capability = mapping.target_event.clone().into();
++            capabilities.push(capability);
++        }
++
++        // Create a translator instance which will translate hidraw input reports
++        // into inputplumber events
++        let translator = HidrawEventTranslator::new(capability_map);
++
++        Ok(Self {
++            device,
++            translator,
++            capabilities,
++        })
++    }
++}
++
++impl SourceInputDevice for GenericDevice {
++    fn poll(&mut self) -> Result<Vec<NativeEvent>, InputError> {
++        let mut buf = [0u8; READ_BUFFER_SIZE];
++        let bytes_read = self
++            .device
++            .read_timeout(&mut buf[..], HID_TIMEOUT)
++            .map_err(|e| InputError::DeviceError(e.to_string()))?;
++
++        if bytes_read == 0 {
++            return Ok(vec![]);
++        }
++
++        let events = self.translator.translate(&buf[..bytes_read]);
++        Ok(events)
++    }
++
++    fn get_capabilities(&self) -> Result<Vec<Capability>, InputError> {
++        Ok(self.capabilities.clone())
++    }
++}
++
++impl SourceOutputDevice for GenericDevice {}
+-- 
+2.55.0
+
+
+From 25d3e948c232a25abe5f9d289c2b8a98bb04fed5 Mon Sep 17 00:00:00 2001
+From: William Edwards <shadowapex@gmail.com>
+Date: Mon, 21 Sep 2026 15:06:58 -0700
+Subject: [PATCH 2/2] fix(GPD): add capability map for back buttons from honjow
+
+---
+ .../capability_maps/gpd_hid_type1.yaml        | 44 +++++++++++++++++++
+ .../inputplumber/devices/50-gpd_win5.yaml     |  6 +++
+ 2 files changed, 50 insertions(+)
+ create mode 100644 rootfs/usr/share/inputplumber/capability_maps/gpd_hid_type1.yaml
+
+diff --git a/rootfs/usr/share/inputplumber/capability_maps/gpd_hid_type1.yaml b/rootfs/usr/share/inputplumber/capability_maps/gpd_hid_type1.yaml
+new file mode 100644
+index 0000000..badeb88
+--- /dev/null
++++ b/rootfs/usr/share/inputplumber/capability_maps/gpd_hid_type1.yaml
+@@ -0,0 +1,44 @@
++# yaml-language-server: $schema=https://raw.githubusercontent.com/ShadowBlip/InputPlumber/main/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
++# Schema version number
++version: 2
++
++# The type of configuration schema
++kind: CapabilityMap
++
++# Name for the device event map
++name: GPD HID Type 1
++
++id: gpd_hid_type1
++
++# GPD Win 5 vendor HID report (VID 0x2f24, PID 0x0137, Usage Page 0xFF00)
++# Idle:  01 a5 00 5a ff 00 01 09 00 00 00 00
++# BUF[8]  = 0x68 mode switch, 0x00 released
++# BUF[9]  = 0x69 left back,   0x00 released
++# BUF[10] = 0x6a right back,  0x00 released
++mapping:
++  - name: Mode Switch
++    source_events:
++      - hidraw:
++          value_type: bool
++          byte_start: 8
++    target_event:
++      gamepad:
++        button: QuickAccess
++
++  - name: Left Back
++    source_events:
++      - hidraw:
++          value_type: bool
++          byte_start: 9
++    target_event:
++      gamepad:
++        button: LeftPaddle1
++
++  - name: Right Back
++    source_events:
++      - hidraw:
++          value_type: bool
++          byte_start: 10
++    target_event:
++      gamepad:
++        button: RightPaddle1
+diff --git a/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml b/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
+index 600c91c..c5c285f 100644
+--- a/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
++++ b/rootfs/usr/share/inputplumber/devices/50-gpd_win5.yaml
+@@ -42,6 +42,12 @@ source_devices:
+         - Keyboard:KeyF3
+         - Keyboard:KeyLeftCtrl
+         - Keyboard:KeyLeftShift
++  - group: keyboard
++    hidraw:
++      vendor_id: 0x2f24
++      product_id: 0x0137
++      interface_num: 0
++    capability_map_id: gpd_hid_type1
+   - group: keyboard
+     evdev:
+       name: AT Translated Set 2 keyboard
+-- 
+2.55.0

@@ -11,7 +11,7 @@ License:        MIT
 URL:            https://crates.io/crates/felix
 Source:         %{terra_crates_source}
 
-BuildRequires:  anda-srpm-macros rust-packaging >= 21 mold
+BuildRequires:  anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
 Tui file manager with vim-like key mapping.}

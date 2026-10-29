@@ -7,7 +7,7 @@
 %endif
 
 Name:           %realname.bin
-Version:        5.2.0
+Version:        5.3.0
 Release:        1%{?dist}
 Summary:        An advanced subtitle editor and converter
 License:        GPL-3.0-only

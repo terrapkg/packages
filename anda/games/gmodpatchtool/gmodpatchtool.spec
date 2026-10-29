@@ -21,7 +21,6 @@ Source0:       https://github.com/solsticegamestudios/%{git_name}/archive/refs/t
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: git-lfs
-BuildRequires: mold
 Provides:      %{git_name}
 Packager:      Gilver E. <roachy@fyralabs.com>
 

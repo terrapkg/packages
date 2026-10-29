@@ -2,7 +2,7 @@
 %global _desc MLX: An array framework for Apple silicon.
 
 Name:			python-%{pypi_name}
-Version:		0.32.3
+Version:		0.32.4
 Release:		1%{?dist}
 Summary:		MLX: An array framework for Apple silicon
 License:		MIT

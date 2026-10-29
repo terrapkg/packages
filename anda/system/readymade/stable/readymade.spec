@@ -7,7 +7,7 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
-BuildRequires:	anda-srpm-macros rust-packaging mold
+BuildRequires:	anda-srpm-macros rust-packaging
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  glibc-all-langpacks
@@ -39,7 +39,7 @@ rmdir crates/taidan_proc_macros && mv rdms_proc_macros* crates/taidan_proc_macro
 %cargo_prep_online
 
 %build
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
 %crate_install_bin

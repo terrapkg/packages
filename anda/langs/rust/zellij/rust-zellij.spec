@@ -20,7 +20,6 @@ BuildRequires:  rust-packaging
 BuildRequires:  openssl-devel
 BuildRequires:  gcc
 BuildRequires:  perl
-BuildRequires:  mold
 
 #BuildRequires:  external:crate:sccache
 

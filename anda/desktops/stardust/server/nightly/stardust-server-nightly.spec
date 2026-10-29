@@ -1,5 +1,5 @@
-%global commit e4c9785f011184123fe67c71f114bf251aa52618
-%global commit_date 20261008
+%global commit 2c221077ce866ed74f5307ce745e4241dd2fc66f
+%global commit_date 20261025
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
@@ -16,7 +16,6 @@ License:        %{SourceLicense} AND (Apache-2.0 OR MIT) AND BSD-3-Clause AND (M
 BuildRequires:  cargo
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-BuildRequires:  mold
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros
 

@@ -13,7 +13,6 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  gtk4-devel
 BuildRequires:  libadwaita-devel
-BuildRequires:  mold
 Requires:       gtk4
 Requires:       falcond
 Requires:       falcond-profiles

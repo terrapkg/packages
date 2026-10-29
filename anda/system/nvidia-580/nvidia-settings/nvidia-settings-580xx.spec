@@ -1,7 +1,7 @@
 %global real_name nvidia-settings
 
 Name:           %{real_name}-580xx
-Version:        580.178.04
+Version:        580.196.07
 Release:        1%{?dist}
 Summary:        Configure the NVIDIA graphics driver
 Epoch:          3

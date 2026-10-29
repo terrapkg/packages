@@ -4,7 +4,7 @@
 %global crate starship
 
 Name:           rust-starship
-Version:        1.26.0
+Version:        1.27.0
 Release:        1%{?dist}
 Summary:        Minimal, blazing-fast, and infinitely customizable prompt for any shell! ☄🌌️
 
@@ -15,7 +15,6 @@ Source:         %{terra_crates_source}
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cmake
-BuildRequires:  mold
 BuildRequires:  git-core
 
 # Old devel packages

@@ -29,7 +29,6 @@ BuildRequires: pkgconfig(libarchive)
 BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xcb)
 BuildRequires: /usr/bin/ld
-BuildRequires: mold
 
 Requires:      cef
 

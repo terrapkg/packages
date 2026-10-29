@@ -9,7 +9,7 @@
 %undefine _debugsource_packages
 
 Name:           rust-deno
-Version:        2.9.7
+Version:        2.9.8
 Release:        1%{?dist}
 Summary:        Deno executable
 
@@ -70,7 +70,7 @@ cp %{S:2} gcc
 %build
 %{cargo_license_summary_online}
 %{cargo_license_online} > LICENSE.dependencies
-%{cargo_build} --locked
+%{cargo_build}
 
 %install
 %crate_install_bin

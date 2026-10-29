@@ -1,12 +1,12 @@
 %define debug_package %{nil}
 %define _unpackaged_files_terminate_build 0
 %define appid jp.veracrypt.veracrypt
-%global ver VeraCrypt_1.26.29
+%global ver VeraCrypt_1.26.30
 %global sanitized_ver %(echo %{ver} | sed 's/^VeraCrypt_//')
 
 Name:           veracrypt
 Version:        %{sanitized_ver}
-Release:        3%?dist
+Release:        1%{?dist}
 Summary:        Disk encryption with strong security based on TrueCrypt
 URL:            https://veracrypt.jp/en/Home.html
 Source0:        https://github.com/veracrypt/VeraCrypt/archive/refs/tags/VeraCrypt_%version.tar.gz

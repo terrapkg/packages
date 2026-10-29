@@ -3,6 +3,7 @@ project pkg {
 		spec = "zig-master.spec"
 	}
 	labels {
-	    updbranch = 1
+		updbranch = 1
+		large = 1
 	}
 }
