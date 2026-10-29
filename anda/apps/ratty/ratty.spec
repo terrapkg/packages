@@ -14,6 +14,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  wayland-devel
 BuildRequires:  ImageMagick
+BuildRequires:  desktop-file-utils
 Requires:       hicolor-icon-theme
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
