@@ -1,6 +1,6 @@
 %global _qt_major_version 6
-%global ver v6.8.1
-%global commit 1372245c96056ffaec986c57447a1805291e753e
+%global ver v6.8.2
+%global commit 4d1d3d8a3a17c4026b311797e7fef0129211c714
 
 Name:			kup
 Version:		%(echo %ver | sed -E 's/^kup-//')
