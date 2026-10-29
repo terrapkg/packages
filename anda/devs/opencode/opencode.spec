@@ -14,7 +14,7 @@ ExclusiveArch:  x86_64 aarch64
 %global appid ai.opencode.opencode
 
 Name:			opencode-cli
-Version:		2.2.1
+Version:		2.2.2
 Release:		1%{?dist}
 
 # v2 renamed the CLI package dir from packages/opencode to packages/cli,

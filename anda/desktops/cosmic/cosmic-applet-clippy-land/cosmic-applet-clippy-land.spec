@@ -1,7 +1,7 @@
 %global appid io.github.k33wee.clippy-land
 
 Name:           cosmic-applet-clippy-land
-Version:        1.1.2
+Version:        2.0.0
 Release:        1%{?dist}
 Summary:        A minimal COSMIC panel applet that keeps a history of the latest copied text and images entries
 URL:            https://github.com/k33wee/clippy-land
