@@ -13,6 +13,7 @@ Source0:		%{pypi_source freeze_core}
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
+BuildRequires:  gcc
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
