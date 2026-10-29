@@ -3,7 +3,7 @@
 
 Name:           kcgroups-dmemcg
 Version:        0.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        KDE library to manipulate cgroups - fork adding dmem cgroup support
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        LGPL-2.1-or-later AND MIT AND CC0-1.0

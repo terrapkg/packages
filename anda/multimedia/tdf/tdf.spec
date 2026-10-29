@@ -5,7 +5,7 @@ Summary:        A tui-based PDF viewer
 URL:            https://github.com/itsjunetime/tdf
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 License:        AGPL-3.0
-BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold fontconfig-devel mupdf glib2 libgcc clang python
+BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros fontconfig-devel mupdf glib2 libgcc clang python
 
 Packager:       Its-J <jonah@fyralabs.com>
 

@@ -1,6 +1,8 @@
+%global _default_patch_fuzz 3
+
 Name:       terra-wireplumber
 Version:    0.5.18
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    A modular session/policy manager for PipeWire
 Packager:   Kyle Gospodnetich <me@kylegospodneti.ch>
 

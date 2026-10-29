@@ -2,7 +2,7 @@
 
 Name:           sticky
 Version:        1.24
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A sticky notes app for the Linux desktop
 
 License:        GPL-2.0
@@ -51,7 +51,7 @@ mv -v %{buildroot}%{_prefix}/lib/%{name} %{buildroot}%{python3_sitelib}/%{name}
 %{_datadir}/icons/hicolor/scalable/apps/%{name}*.svg
 %{_datadir}/icons/hicolor/scalable/status/%{name}*.svg
 %{_datadir}/locale/*/LC_MESSAGES/%{name}.mo
-%{_datadir}/%{name}/*
+%{_datadir}/%{name}/
 %{_sysconfdir}/xdg/autostart/%{name}.desktop
 %{_datadir}/dbus-1/services/org.x.%{name}.service
 %{python3_sitelib}/%{name}/*.py

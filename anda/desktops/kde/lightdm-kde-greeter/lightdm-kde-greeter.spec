@@ -1,14 +1,13 @@
-%global commit b58d624095da102fef99b5825ad6dc78a5cec5a1
-
+%global toolchain clang
 Name:           lightdm-kde-greeter
-Version:        6.1.6
+Version:        6.1.7
 Release:        1%{?dist}
 Summary:        Login screen using the LightDM framework
 License:        GPL-3.0-or-later
 URL:            https://invent.kde.org/plasma/%name
 Source0:        %url/-/archive/v%version.tar.gz
 Packager:       madonuko <mado@fyralabs.com>
-BuildRequires:  gcc gcc-c++ mold
+BuildRequires:  clang
 BuildRequires:  cmake extra-cmake-modules
 BuildRequires:  cmake(Qt6Core5Compat)
 BuildRequires:  cmake(Qt6ShaderTools)
@@ -21,6 +20,7 @@ BuildRequires:  cmake(KF6I18n)
 BuildRequires:  cmake(KF6Auth)
 BuildRequires:  cmake(KF6NetworkManagerQt)
 BuildRequires:  cmake(Plasma)
+BuildRequires:	cmake(Qt6CorePrivate)
 BuildRequires:  pkgconfig(gtk+-2.0)
 BuildRequires:  pkgconfig(libei-1.0)
 BuildRequires:  pkgconfig(liblightdm-gobject-1)
@@ -33,19 +33,19 @@ Provides: lightdm-greeter
 %description
 %summary.
 
-
 %prep
-# why the heck do you torture me for godsake.
-%autosetup -n %name-v%version-%commit
+%autosetup -C
 sed 's/sbin/bin/' -i greeter/CMakeLists.txt
 
-
-%build
-export LDFLAGS="$LDFLAGS -fuse-ld=mold"
+%conf
+sed 's/add_compile_options(-Werror=pedantic)/add_compile_options(-Werror=pedantic -Wno-error=keyword-macro)/' -i CMakeLists.txt
+export LDFLAGS="$LDFLAGS -fuse-ld=lld"
 %cmake_kf6 \
 	-DGREETER_WAYLAND_SESSIONS_FIRST=ON \
 	-DGREETER_IMAGES_DIR=%_sharedstatedir/%name/images \
 	-DBUILD_TESTING=OFF
+
+%build
 %cmake_build
 
 
@@ -56,8 +56,6 @@ export LDFLAGS="$LDFLAGS -fuse-ld=mold"
 %find_lang lightdm_kde_greeter   --with-kde
 %find_lang lightdm_theme_userbar --with-kde
 
-# FIXME: why does it installs to the wrong dir
-mv %buildroot/%name %buildroot%_datadir/
 mkdir -p %buildroot%_sharedstatedir/%name
 
 %post
@@ -76,8 +74,8 @@ mkdir -p %buildroot%_sharedstatedir/%name
 %config(noreplace) %_sysconfdir/lightdm/%name.conf
 %dir %_sharedstatedir/%name
 %_bindir/%name
-%_bindir/lightdm-kde-greeter-rootimage
-%_bindir/lightdm-kde-greeter-wifikeeper
+%_libexecdir/lightdm-kde-greeter-rootimage
+%_libexecdir/lightdm-kde-greeter-wifikeeper
 %_datadir/applications/kcm_lightdm.desktop
 %_datadir/dbus-1/system-services/org.kde.kcontrol.kcmlightdm.service
 %_datadir/dbus-1/system.d/org.kde.kcontrol.kcmlightdm.conf
@@ -90,5 +88,9 @@ mkdir -p %buildroot%_sharedstatedir/%name
 %_userunitdir/lightdm-kde-greeter-wifikeeper.service
 
 %changelog
+* Fri Oct 16 2026 Owen Zimmerman <owen@fyralabs.com> - 6.1.7-1
+- Update for 6.1.7
+- Use %%autosetup -C so we don't need to track commits
+
 * Tue Dec 24 2024 madonuko <mado@fyralabs.com> - 6.0.1-1
 - Initial package

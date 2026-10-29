@@ -1,8 +1,8 @@
 %global appid io.elementary.capnet-assist
 
 Name:           capnet-assist
-Version:        8.0.2
-Release:        1%?dist
+Version:        9.0.0
+Release:        1%{?dist}
 Summary:        Captive Network Assistant automatically opens to help you get connected
 License:        GPL-3.0-only
 URL:            https://github.com/elementary/capnet-assist

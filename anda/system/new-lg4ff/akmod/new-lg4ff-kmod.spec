@@ -8,7 +8,7 @@
 
 Name:           %{modulename}-kmod
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Logitech force feedback kernel module
 License:        GPL-2.0-only
 URL:            https://github.com/berarma/%{modulename}

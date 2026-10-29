@@ -1,5 +1,5 @@
 Name:           logi-wheel-gui
-Version:        0.42.5
+Version:        0.42.6
 Release:        1%{?dist}
 Summary:        Graphical settings app for the Logitech racing wheel driver
 License:        GPL-3.0-or-later

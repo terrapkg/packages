@@ -1,6 +1,8 @@
-%global commit c15d3f5a5de6e3ba5839822c451152e5e18bb700
-%global ver 1.8.68
-%global commit_date 20261009
+%global toolchain clang
+%global _pkg_extra_ldflags -fuse-ld=lld
+%global commit 4c6377aa7386c39217878a9a56d581922ad37ca4
+%global ver 1.8.69
+%global commit_date 20261029
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:          tdlib-nightly
@@ -12,13 +14,12 @@ Summary:       Cross-platform library for building Telegram clients
 Source0:       %url/archive/%commit/tdlib-%commit.tar.gz
 
 BuildRequires: gperftools-devel
+BuildRequires: clang
 BuildRequires: openssl-devel
 BuildRequires: ninja-build
 BuildRequires: zlib-devel
-BuildRequires: gcc-c++
 BuildRequires: gperf
 BuildRequires: cmake
-BuildRequires: gcc
 
 Provides:      bundled(sqlite) = 3.31.0
 
@@ -56,7 +57,8 @@ sed -e 's/"DEFAULT"/"PROFILE=SYSTEM"/g' -i tdnet/td/net/SslStream.cpp
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_LIBDIR=%_lib \
     -DTD_ENABLE_JNI:BOOL=OFF \
-    -DTD_ENABLE_DOTNET:BOOL=OFF
+    -DTD_ENABLE_DOTNET:BOOL=OFF \
+    -DBUILD_TESTING:BOOL=OFF
 %cmake_build
 
 %install

@@ -1,4 +1,4 @@
-%global ver v0.2.5
+%global ver v1.0.4
 %global appid com.github.librepods
 
 Name:           librepods
@@ -56,7 +56,7 @@ popd
 %terra_appstream -o %{SOURCE1}
 
 %files
-%doc README.md linux/README.md CHANGELOG.md
+%doc README.md linux/README.md
 %license LICENSE
 %{_bindir}/librepods
 %{_bindir}/librepods-ctl

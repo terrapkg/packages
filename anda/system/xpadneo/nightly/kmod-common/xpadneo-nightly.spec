@@ -1,7 +1,7 @@
-%global commit 3879ba0f44e9bcfd500a5b92d02f83885f6b23c7
+%global commit 39625746fff63c997eeb53fe3a6fc1a3de08702e
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260919
-%global ver 0.10.4
+%global commitdate 20261025
+%global ver 0.10.5
 %global appid io.github.atar_axis.xpadneo
 
 Name:           xpadneo-nightly

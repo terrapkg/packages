@@ -1,8 +1,8 @@
 %global csrc_commit 561b417c65791cd8356b5f73620914ceff845d10
-%global commit b081880000a4d708cdce6afcc4c4124a60a5c62e
+%global commit 15dd344680bf9bd6f7388cb4056d81b5b700c15f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver 2.3.1
-%global commit_date 20261010
+%global commit_date 20261027
 %global debug_package %nil
 
 Name:			nim-nightly
@@ -12,7 +12,7 @@ Summary:		Imperative, multi-paradigm, compiled programming language
 License:		MIT and BSD
 URL:			https://nim-lang.org
 Source0:		https://github.com/nim-lang/Nim/archive/%commit.tar.gz
-BuildRequires:	gcc mold git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel help2man
+BuildRequires:	gcc git gcc-c++ nodejs openssl-devel pkgconfig(bash-completion) gc-devel help2man
 Requires:		redhat-rpm-config gcc
 Conflicts:		choosenim
 # somehow wrong name and never noticed
@@ -64,8 +64,6 @@ and its standard library.
 
 %prep
 %autosetup -n Nim-%commit
-# hack
-cp /usr/bin/mold /usr/bin/ld
 
 
 %build
@@ -96,7 +94,7 @@ wait
 export PATH="$(pwd):$(pwd)/bin:${PATH}"
 
 # --main:compiler/nim.nim
-mold -run bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:version=%ver --var:mingw=none scripts compiler/installer.ini
+bin/nim cc -d:nimCallDepthLimit=10000 -r tools/niminst/niminst --var:version=%ver --var:mingw=none scripts compiler/installer.ini
 
 sh ./install.sh %buildroot/usr/bin
 

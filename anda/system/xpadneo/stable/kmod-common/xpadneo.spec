@@ -1,7 +1,7 @@
 %global appid io.github.atar_axis.xpadneo
 
 Name:           xpadneo
-Version:        0.10.4
+Version:        0.10.5
 Release:        1%{?dist}
 %if 0%{?fedora} <= 45
 Epoch:          1

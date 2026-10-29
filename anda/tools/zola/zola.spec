@@ -5,7 +5,7 @@ Summary:        A fast static site generator in a single binary with everything 
 URL:            https://www.getzola.org
 Source0:        https://github.com/getzola/%{name}/archive/refs/tags/v%{version}.tar.gz
 License:        MIT
-BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold glib2 libgcc clang
+BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros glib2 libgcc clang
 
 Packager:       arbormoss <arbormoss@woodsprite.dev>
 

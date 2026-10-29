@@ -1,15 +1,15 @@
 %global debug_package %{nil}
-%global ver v0.3.11-1
+%global ver v0.3.12-1
 
 Name:           surface-dtx-daemon
 Version:        %(echo %ver | sed 's/^v//;s/-/./g')
-Release:        5%{?dist}
+Release:        1%{?dist}
 Summary:        Surface Detachment System (DTX) Daemon
 SourceLicense:  MIT
 License:        %{sourcelicense} AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (MIT OR Apache-2.0) AND (Unlicense OR MIT)
 URL:            https://github.com/linux-surface/surface-dtx-daemon
 Source:         %{url}/archive/refs/tags/%{ver}.tar.gz
-BuildRequires:  rust cargo dbus-devel anda-srpm-macros cargo-rpm-macros mold
+BuildRequires:  rust cargo dbus-devel anda-srpm-macros cargo-rpm-macros
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 Obsoletes:      terra-surface-dtx-daemon <= v0.3.11~1-4
 
@@ -26,7 +26,7 @@ lack of driver-support on the Surface Book 1. This may change in the future.
 
 %build
 export CARGO_TARGET_DIR="$PWD/target"
-%cargo_build -- --locked
+%cargo_build
 
 %install
 

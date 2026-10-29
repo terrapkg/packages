@@ -10,7 +10,7 @@ URL:            https://github.com/danyspin97/wpaperd
 Source0:		%url/archive/refs/tags/%version.tar.gz
 Provides:       wpaperctl = %version-%release
 Recommends:     %name-doc
-BuildRequires:  cargo-rpm-macros rust-packaging anda-srpm-macros mold
+BuildRequires:  cargo-rpm-macros rust-packaging anda-srpm-macros
 BuildRequires:  pkgconfig(dav1d)
 BuildRequires:  pkgconfig(egl)
 BuildRequires:  pkgconfig(wayland-client)

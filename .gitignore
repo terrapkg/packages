@@ -8,3 +8,4 @@ anda-build/
 **/*.rpm
 **/*.kate-swp
 **/.DS_Store
+**/*.deb

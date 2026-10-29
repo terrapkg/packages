@@ -2,15 +2,15 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20260314
 %global relver 0.5.7-ogc1
-%global ver %(echo %{relver} | sed 's/-/^/g')
+%global ver %(echo %{relver} | sed 's/-/~/g')
 %global debug_package %{nil}
 %global modulename xonedo
 
 Name:           dkms-%{modulename}-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        5%{?dist}
-%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Epoch:          1
+%if 0%{?fedora} <= 46 || 0%{?rhel} <= 10
+Epoch:          2
 %endif
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories
 License:        GPL-2.0-or-later

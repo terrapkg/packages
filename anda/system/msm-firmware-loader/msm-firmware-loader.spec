@@ -1,13 +1,11 @@
 Name:           msm-firmware-loader
-Version:        1.8.0
+Version:        1.9.0
 Release:        1%{?dist}
 Summary:        Loads DSP/modem/WiFi firmware from Qualcomm firmware partitions
 
 License:        MIT
 URL:            https://gitlab.postmarketos.org/postmarketOS/msm-firmware-loader
 Source0:        %{url}/-/archive/%{version}/msm-firmware-loader-%{version}.tar.gz
-
-Patch1:         0001-load-hexagonrpcd-firmware.patch
 
 BuildArch:      noarch
 BuildRequires:  systemd-rpm-macros
@@ -26,7 +24,7 @@ firmware_class loader at. This lets one rootfs boot on multiple devices
 without baking in per-device firmware.
 
 %prep
-%autosetup -C -p1
+%autosetup -C
 
 %build
 
@@ -54,5 +52,8 @@ install -Dm644 msm-firmware-loader-unpack.service %{buildroot}%{_unitdir}/msm-fi
 %{_unitdir}/msm-firmware-loader-unpack.service
 
 %changelog
+* Fri Oct 16 2026 Owen Zimmerman <owen@fyralabs.com>
+- Drop upstreamed patch
+
 * Tue Sep 15 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit

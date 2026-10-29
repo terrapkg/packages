@@ -2,11 +2,11 @@
 %global         zig_arches x86_64 aarch64 riscv64 %{mips64}
 # Signing key from https://ziglang.org/download/
 %global         public_key RWSGOq2NVecA2UPNdBUZykf1CCb147pkmdtYxgb3Ti+JO/wCYvhbAb/U
-%if 0%{?fedora} >= 46
+%if 0%{?fedora} >= 47
 %define         llvm_compat 23
 %endif
 %global         llvm_version 23.0.0
-%global         ver 0.18.0-dev.146+35accc06e
+%global         ver 0.18.0-dev.738+ae9a8acc7
 %bcond bootstrap 1
 %bcond docs      %{without bootstrap}
 %bcond test      1
@@ -49,7 +49,8 @@ License:        MIT AND NCSA AND LGPL-2.1-or-later AND LGPL-2.1-or-later WITH GC
 URL:            https://ziglang.org
 Source0:        %{archive_name}
 Source1:        %{archive_name}.minisig
-Patch0:         0000-remove-native-lib-directories-from-rpath.patch
+# https://codeberg.org/ziglang/zig/pulls/35778
+Patch0:         35778.patch
 %if %{defined rhel}
 Patch1:         0001-Remove-unsupported-LLVM-targets-for-EPEL.patch
 %endif

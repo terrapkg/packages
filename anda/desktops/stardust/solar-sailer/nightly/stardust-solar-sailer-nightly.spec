@@ -1,5 +1,5 @@
-%global commit cb839a71bb442717329bc598aeab95ab3b4e925b
-%global commit_date 20261010
+%global commit e9a2fb75cbaa160b13a6c2ec39780b0134c0712e
+%global commit_date 20261014
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 # Exclude input files from mangling
@@ -13,7 +13,7 @@ URL:            https://github.com/StardustXR/solar-sailer
 Source0:        %url/archive/%commit.tar.gz
 SourceLicense:  MIT
 License:        %{SourceLicense} AND (MIT OR Apache-2.0) AND Unicode-3.0 AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSD-3-Clause AND (MIT AND BSD-3-Clause) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT)
-BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold python3-devel
+BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros python3-devel
 
 Provides:       solar-sailer-nightly stardust-solar-sailer-nightly
 Conflicts:      stardust-xr-solar-sailer

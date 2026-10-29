@@ -2,7 +2,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commitdate 20260314
 %global relver 0.5.7-ogc1
-%global ver %(echo %{relver} | sed 's/-/^/g')
+%global ver %(echo %{relver} | sed 's/-/~/g')
 %global modulename xonedo
 %global _dracutconfdir %{_prefix}/lib/dracut/dracut.conf.d
 %global firmware_hash0 080ce4091e53a4ef3e5fe29939f51fd91f46d6a88be6d67eb6e99a5723b3a223
@@ -13,8 +13,8 @@
 Name:           xonedo-nightly
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
 Release:        5%{?dist}
-%if 0%{?fedora} <= 43 || 0%{?rhel} <= 10
-Epoch:          1
+%if 0%{?fedora} <= 46 || 0%{?rhel} <= 10
+Epoch:          2
 %endif
 Summary:        Linux kernel driver for Xbox One and Xbox Series X|S accessories common files
 License:        GPL-2.0-or-later

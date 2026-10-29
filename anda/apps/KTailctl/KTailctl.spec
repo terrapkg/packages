@@ -1,6 +1,6 @@
 Name:       ktailctl
 Version:    0.22.3
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    A GUI to monitor and manage Tailscale on your Linux desktop
 License:    GPL-3.0-only
 URL:        https://github.com/f-koehler/KTailctl

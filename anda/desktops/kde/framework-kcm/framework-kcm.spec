@@ -1,6 +1,6 @@
 Name:           framework-kcm
-Version:        0.1.2
-Release:        2%{?dist}
+Version:        0.2.0
+Release:        1%{?dist}
 Summary:        KDE System Settings module for Framework laptops
 
 License:        GPL-3.0-or-later

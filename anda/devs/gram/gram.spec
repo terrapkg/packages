@@ -8,7 +8,7 @@
 %global appid app.liten.Gram
 
 Name:          gram
-Version:       3.3.0
+Version:       3.4.1
 Release:       1%{?dist}
 Summary:       The Gram Code Editor
 # This changes next release. :))))
@@ -29,7 +29,6 @@ BuildRequires: gcc-c++
 %endif
 BuildRequires: gettext-envsubst
 BuildRequires: libxkbcommon-x11-devel
-BuildRequires: mold
 BuildRequires: openssl-devel
 Packager:      Gilver E. <roachy@fyralabs.com>
 

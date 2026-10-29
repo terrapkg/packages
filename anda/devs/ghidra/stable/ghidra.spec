@@ -38,9 +38,9 @@
 %global         __provides_exclude_from %{__requires_exclude_from}
 
 Name:           ghidra
-Version:        12.1.4
+Version:        12.2
 %global         short_version %{version}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        a software reverse engineering (SRE) framework
 Packager:       Jan200101 <sentrycraft123@gmail.com>
 

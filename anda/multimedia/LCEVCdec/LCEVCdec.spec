@@ -9,7 +9,7 @@
 %bcond docs 0
 
 Name:           LCEVCdec
-Version:        4.2.2
+Version:        4.3.1
 Release:        1%{?dist}
 Summary:        MPEG-5 LCEVC Decoder
 License:        BSD-3-Clause-Clear
@@ -86,7 +86,7 @@ sed -i \
     src/func_tests/config.ini
 %endif
 
-%build
+%conf
 %cmake \
   -DBUILD_SHARED_LIBS=ON \
   -DCMAKE_BUILD_TYPE=RelWithDebInfo \
@@ -100,6 +100,7 @@ sed -i \
   -DVN_SDK_DOCS=OFF
 %endif
 
+%build
 %cmake_build
 
 %install
@@ -121,6 +122,7 @@ python3 src/func_tests/run_tests.py
 %files
 %license LICENSE.md COPYING
 %doc README.md
+%{_bindir}/lcevc_dec_extract_test_unit
 %{_libdir}/liblcevc_dec_api.so.4
 %{_libdir}/liblcevc_dec_api.so.%{version}
 %{_libdir}/liblcevc_dec_pipeline_cpu.so.1

@@ -4,7 +4,7 @@
 
 Name:           %{modulename}-kmod
 Version:        3.12.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Kernel modules (kmod) for Razer devices
 License:        GPL-2.0-or-later
 URL:            https://openrazer.github.io
