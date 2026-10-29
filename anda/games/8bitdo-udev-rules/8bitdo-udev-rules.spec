@@ -3,12 +3,13 @@
 
 Name:           8bitdo-udev-rules
 Version:        1.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Udev rules for 8Bitdo controllers
 Provides: 8bitdo-udev = %{version}-%{release}
 License:        Unlicense
 Source0:        71-8bitdo.rules
 Source1:        com.8bitdo.Udev.metainfo.xml
+Packager:       Cappy Ishihara <cappy@fyralabs.com>
 BuildArch:      noarch
 BuildRequires:  systemd
 BuildRequires:  anda-srpm-macros
