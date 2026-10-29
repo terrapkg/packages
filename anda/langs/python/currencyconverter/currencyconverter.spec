@@ -7,7 +7,7 @@ Release:		    1%?dist
 Summary:		    Currency converter that uses historical rates against a reference currency
 License:		    Apache-2.0
 URL:			    https://github.com/alexprengere/currencyconverter
-Source0:		    %{pypi_source currencyconverter}
+Source0:		    %{pypi_source}
 BuildArch:          noarch
 
 BuildRequires:      python3-devel

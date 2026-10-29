@@ -1,6 +1,5 @@
 project pkg {
-    arches = ["x86_64"]
-    mock = 1
+    arches = ["aarch64"]
   rpm {
     spec = "anthropic.spec"
   }
