@@ -8,6 +8,7 @@ Release:        1%{?dist}
 URL:            https://github.com/guiodic/appmenu-gtk-module-wayland
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildSystem:    cmake
+BuildRequires:  cmake
 BuildRequires:  cmake-rpm-macros
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
