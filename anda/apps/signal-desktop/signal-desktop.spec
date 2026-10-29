@@ -4,7 +4,7 @@
 Name:			signal-desktop
 %electronmeta -aD
 Version:		8.33.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A private messenger for Windows, macOS, and Linux
 URL:			https://signal.org
 Source0:		https://github.com/signalapp/Signal-Desktop/archive/refs/tags/v%{version}.tar.gz
@@ -79,7 +79,7 @@ mv ./packages/windows-ucv/LICENSE ./packages/windows-ucv/LICENSE.windows-ucv
 mv ./packages/types/LICENSE ./packages/types/LICENSE.types
 mv ./packages/lame/LICENSE ./packages/lame/LICENSE.lame
 mv LICENSE LICENSE.signal-desktop
-%electron_install -i signal -l -I build/icons/png
+%electron_install -l -I build/icons/png
 
 %desktop_file_install %{SOURCE1}
 
@@ -95,10 +95,13 @@ mv LICENSE LICENSE.signal-desktop
 %{_bindir}/signal-desktop
 %{_libdir}/signal-desktop/
 %{_appsdir}/signal.desktop
-%{_hicolordir}/*x*/apps/signal.png
+%{_hicolordir}/*x*/apps/signal-desktop.png
 %{_metainfodir}/org.signal.Signal.metainfo.xml
 
 %changelog
+* Thu Oct 29 2026 Owen Zimmerman <owen@fyralabs.com> - 8.33.0-2
+- Update icon name to respect global themes
+
 * Thu Oct 08 2026 Owen Zimmerman <owen@fyralabs.com> - 8.30.0-1
 - Dep on pnpm11
 - Fix arch-specific builds
