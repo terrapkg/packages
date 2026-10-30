@@ -16,7 +16,8 @@ BuildRequires:  python3-setuptools
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
-%_desc
+spec-cleaner is a tool that cleans the given RPM
+spec file according to the style guide and returns the result.
 
 %prep
 %autosetup -C
