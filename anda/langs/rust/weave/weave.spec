@@ -1,5 +1,5 @@
 Name:           weave
-Version:        0.6.2
+Version:        0.7.0
 Release:        1%{?dist}
 Summary:        Entity-level git merge driver
 
