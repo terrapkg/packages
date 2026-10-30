@@ -31,7 +31,10 @@ BuildRequires:   pkgconfig(gtk4) >= 4.10
 Packager:        L1oly <lid2011@ukr.net>
 
 %description
-Desktop integration for the waywallen wallpaper daemon — lets KDE Plasma, GNOME Shell, and other Linux desktop shells display waywallen wallpaper output as a regular surface, with zero-copy GPU sharing via DMA-BUF.
+Desktop integration for the waywallen wallpaper daemon —
+ lets KDE Plasma, GNOME Shell, and other Linux desktop shells
+ display waywallen wallpaper output as a regular surface,
+ with zero-copy GPU sharing via DMA-BUF.
 
 %package         devel
 %pkg_devel_files
