@@ -16,7 +16,9 @@
         "rhai",
         "rpmspec",
         "terraform",
-        "xml"
+        "xml",
+        "desktop",
+        "lua"
       ]
     }
   }
