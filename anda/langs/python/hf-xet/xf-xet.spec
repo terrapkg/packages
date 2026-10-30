@@ -2,7 +2,7 @@
 %global _desc xet client tech, used in huggingface_hub.
 
 Name:			python-%{pypi_name}
-Version:		1.7.1
+Version:		1.8.0
 Release:		1%{?dist}
 Summary:		xet client tech, used in huggingface_hub
 License:		Apache-2.0
