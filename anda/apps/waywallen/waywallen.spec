@@ -77,6 +77,8 @@ mkdir -p %{buildroot}%{_libdir}
 mv %{buildroot}%{_prefix}/lib/* %{buildroot}%{_libdir}/
 rmdir %{buildroot}%{_prefix}/lib
 
+%terra_appstream
+
 %files
 %license LICENSE
 %doc README.md
