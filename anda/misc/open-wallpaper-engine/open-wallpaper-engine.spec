@@ -41,7 +41,6 @@ Packager:       L1oly <lid2011@ukr.net>
 
 %prep
 %autosetup
-#lito fetch --all-features
 mkdir -p .lito
 cat > .lito/config.toml <<'EOF'
 [tools.cmake.overrides.Eigen3]
