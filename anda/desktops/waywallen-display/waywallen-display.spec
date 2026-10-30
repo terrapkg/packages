@@ -44,8 +44,8 @@ Desktop integration for the waywallen wallpaper daemon —
 
 %package         kde-plugin
 Summary:         %{summary} (KDE Plasma plugin)
-Requires:        %{name}%{?_isa} = %{version}-%{release}
-Requires:        %{name}-kde-plugin-libs%{?_isa} = %{version}-%{release}
+Requires:        %{name}%{?_isa} = %{evr}
+Requires:        %{name}-kde-plugin-libs%{?_isa} = %{evr}
 Requires:        plasma-workspace >= 6
 Supplements:     (%{name} and plasma-workspace)
 %description     kde-plugin
