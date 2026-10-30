@@ -1,1 +1,3 @@
-rpm.version(gh_rawfile("oven-sh/bun", "main", "LATEST"));
+let v = gh("oven-sh/bun");
+v.crop(5); // `bun-v` prefix
+rpm.version(v);
