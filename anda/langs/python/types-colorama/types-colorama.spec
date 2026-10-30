@@ -42,7 +42,7 @@ install -Dm755 stubs/colorama/colorama/*.pyi          %{buildroot}%{python3_site
 install -Dm755 stubs/colorama/METADATA.toml         %{buildroot}%{python3_sitelib}/colorama-stubs/METADATA.toml
 
 %files -n python3-%{pypi_name}
-%doc README.md MAINTAINERS.md CONTRIBUTING.md
+%doc README.md CONTRIBUTING.md
 %license LICENSE
 %python3_sitelib/colorama-stubs/METADATA.toml
 %{python3_sitelib}/colorama-stubs/*.pyi
