@@ -90,6 +90,7 @@ rmdir %{buildroot}%{_prefix}/lib
 %{_appsdir}/%{appid}.desktop
 %{_scalableiconsdir}/%{appid}.svg
 %{_datadir}/metainfo/%{appid}.metainfo.xml
+%dir %{_datadir}/waywallen
 %{_datadir}/waywallen/
 
 %files libs
