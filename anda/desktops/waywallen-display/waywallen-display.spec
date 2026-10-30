@@ -53,8 +53,8 @@ Supplements:     (%{name} and plasma-workspace)
 
 %package -n      gnome-shell-extension-%{name}
 Summary:         %{summary} (GNOME Shell extension)
-Requires:        %{name}%{?_isa} = %{version}-%{release}
-Requires:        gnome-shell-extension-%{name}-libs%{?_isa} = %{version}-%{release}
+Requires:        %{name}%{?_isa} = %{evr}
+Requires:        gnome-shell-extension-%{name}-libs%{?_isa} = %{evr}
 Requires:        gnome-shell >= 48
 Supplements:     (%{name} and gnome-shell)
 %description -n  gnome-shell-extension-%{name}
