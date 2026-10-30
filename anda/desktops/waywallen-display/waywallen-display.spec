@@ -101,7 +101,6 @@ install -Dm0755 target/rpm/waywallen-layer-shell    %{buildroot}%{_bindir}/waywa
 mkdir -p %{buildroot}%{_datadir}/plasma/wallpapers/
 mv %{buildroot}%{_prefix}/org.waywallen.kde %{buildroot}%{_datadir}/plasma/wallpapers/
 # We move cuz kde plugin install path (org.waywallen.kde) is hard coded
-ls -Ra %{buildroot}
 rm -rf %{buildroot}%{_gnomeextensionsdir}/schemas
 %find_lang waywallen-layer-shell
 %find_lang plasma_wallpaper_org.waywallen.kde
