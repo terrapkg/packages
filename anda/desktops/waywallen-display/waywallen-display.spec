@@ -87,7 +87,7 @@ Supplements:     (%{name} and (hyprland or niri or wayfire or cosmic-comp or swa
 
 %conf
 %{cargo_license_online} > LICENSE.dependencies
-%cmake --DWAYWALLEN_DISPLAY_PLUGIN_QML=ON -DWAYWALLEN_DISPLAY_QML_URI=Waywallen.DisplayEmbed -DWAYWALLEN_DISPLAY_PLUGIN_GOBJECT=ON -DWAYWALLEN_DISPLAY_PLUGIN_GNOME=ON
+%cmake -DWAYWALLEN_DISPLAY_PLUGIN_QML=ON -DWAYWALLEN_DISPLAY_QML_URI=Waywallen.DisplayEmbed -DWAYWALLEN_DISPLAY_PLUGIN_GOBJECT=ON -DWAYWALLEN_DISPLAY_PLUGIN_GNOME=ON
 
 %build
 %cargo_build -- --package waywallen-display --bin waywallen-layer-shell
