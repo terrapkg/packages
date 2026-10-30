@@ -41,6 +41,8 @@ Requires:       waywallen-libs
 Requires:       vulkan-loader >= 1.1
 Requires:       qt6-qtgrpc >= 6.10
 
+Recommends:     open-wallpaper-engine
+
 Packager:       L1oly <lid2011@ukr.net>
 
 %description
