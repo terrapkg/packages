@@ -30,6 +30,7 @@ BuildRequires:  make
 BuildRequires:  /usr/bin/pkg-config
 BuildRequires:  pkgconfig(libelf)
 BuildRequires:  pkgconfig(zlib)
+BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  systemd-rpm-macros
 
 Recommends:     ethtool
