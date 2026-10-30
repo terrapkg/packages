@@ -2,7 +2,7 @@
 %global bootstrap_version 1.17.1
 
 Name:          crystal
-Version:       1.22.1
+Version:       1.22.2
 Release:       1%{?dist}
 Summary:       A general-purpose, object-oriented programming language
 License:       Apache-2.0
