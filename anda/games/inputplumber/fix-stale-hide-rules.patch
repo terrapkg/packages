@@ -1,0 +1,121 @@
+From ec14259a42da78565f2e3a4795b49142bb5ddc26 Mon Sep 17 00:00:00 2001
+From: griffi-gh <prasol258@gmail.com>
+Date: Wed, 28 Oct 2026 16:51:20 +0100
+Subject: [PATCH] fix(udev): fix stale hide rules hiding unrelated hidraw
+ devices
+
+Assisted-by: LLM
+---
+ src/input/composite_device/mod.rs |  8 +++++++-
+ src/udev/device.rs                |  4 +++-
+ src/udev/mod.rs                   | 27 +++++++++++++++------------
+ 3 files changed, 25 insertions(+), 14 deletions(-)
+
+diff --git a/src/input/composite_device/mod.rs b/src/input/composite_device/mod.rs
+index f797d5e7f..b7045ba52 100644
+--- a/src/input/composite_device/mod.rs
++++ b/src/input/composite_device/mod.rs
+@@ -9,6 +9,7 @@ use std::{
+         BTreeSet, HashSet,
+     },
+     error::Error,
++    path::Path,
+ };
+ 
+ use evdev::InputEvent;
+@@ -40,7 +41,7 @@ use crate::{
+         },
+         target::TargetDeviceTypeId,
+     },
+-    udev::{hide_device, unhide_device, HideFlag},
++    udev::{hide_device, remove_hide_rules, unhide_device, HideFlag},
+ };
+ 
+ use self::{client::CompositeDeviceClient, command::CompositeCommand};
+@@ -1613,6 +1614,11 @@ impl CompositeDevice {
+         let path = device.path();
+         let id = device.get_id();
+ 
++        // The device node is gone, so drop its hide rules
++        if let Some(name) = Path::new(&path).file_name() {
++            remove_hide_rules(&name.to_string_lossy());
++        }
++
+         // Remove any ffb effects this device registered
+         let mut freed_effect_ids = Vec::new();
+ 
+diff --git a/src/udev/device.rs b/src/udev/device.rs
+index 719a91ab8..4b59d8e28 100644
+--- a/src/udev/device.rs
++++ b/src/udev/device.rs
+@@ -791,8 +791,10 @@ impl Device {
+         let match_rule = match subsystem.as_str() {
+             "hidraw" => {
+                 let name = self.name.clone();
++                // match by parent device name too to prevent killing our own output device
++                let device_name = self.get_parent_device_name()?;
+                 Some(format!(
+-                    r#"ACTION=="add|change", SUBSYSTEMS=="{subsystem}", KERNEL=="{name}""#
++                    r#"ACTION=="add|change", SUBSYSTEMS=="{subsystem}", KERNEL=="{name}", KERNELS=="{device_name}""#
+                 ))
+             }
+             "input" => {
+diff --git a/src/udev/mod.rs b/src/udev/mod.rs
+index d6d779c5c..ed83f2c4a 100644
+--- a/src/udev/mod.rs
++++ b/src/udev/mod.rs
+@@ -126,7 +126,6 @@ GOTO="inputplumber_end"
+ LABEL="inputplumber_valid"
+ {chmod_early_rule}
+ {mv_early_rule}
+-GOTO="inputplumber_hide_{name}_late"
+ LABEL="inputplumber_end"
+ "#
+     );
+@@ -142,7 +141,6 @@ LABEL="inputplumber_end"
+     let rule = format!(
+         r#"# Hides devices stemming from {name}
+ # Managed by InputPlumber, this file will be autoremoved during configuration changes.
+-LABEL="inputplumber_hide_{name}_late"
+ {match_rule}, GOTO="inputplumber_valid"
+ GOTO="inputplumber_end"
+ LABEL="inputplumber_valid"
+@@ -162,16 +160,8 @@ LABEL="inputplumber_end"
+     Ok(())
+ }
+ 
+-/// Unhide the given device
+-pub async fn unhide_device(path: String) -> Result<(), Box<dyn Error>> {
+-    // Get the device to unhide
+-    let device = get_device(path.clone()).await?;
+-    let name = device.name.as_str();
+-    let Some(parent) = device.get_parent() else {
+-        return Err("Unable to determine parent for device".into());
+-    };
+-
+-    // Remove all created udev rules
++/// Remove the hide rules created for the device with the given name (e.g. "hidraw5").
++pub fn remove_hide_rules(name: &str) {
+     let rule_path = format!(
+         "{RULES_PREFIX}/{RULE_HIDE_DEVICE_EARLY_PRIORITY}-inputplumber-hide-{name}-early.rules"
+     );
+@@ -182,6 +172,19 @@ pub async fn unhide_device(path: String) -> Result<(), Box<dyn Error>> {
+     );
+     log::debug!("Removing hide rule: {rule_path}");
+     let _ = fs::remove_file(&rule_path);
++}
++
++/// Unhide the given device
++pub async fn unhide_device(path: String) -> Result<(), Box<dyn Error>> {
++    // Get the device to unhide
++    let device = get_device(path.clone()).await?;
++    let name = device.name.as_str();
++    let Some(parent) = device.get_parent() else {
++        return Err("Unable to determine parent for device".into());
++    };
++
++    // Remove all created udev rules
++    remove_hide_rules(name);
+ 
+     let hidden_symlink = format!("/dev/inputplumber/by-hidden/{name}");
+     if Path::new(&hidden_symlink).exists() {
