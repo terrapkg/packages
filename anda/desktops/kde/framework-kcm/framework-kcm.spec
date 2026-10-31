@@ -1,5 +1,5 @@
 Name:           framework-kcm
-Version:        0.2.0
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        KDE System Settings module for Framework laptops
 
