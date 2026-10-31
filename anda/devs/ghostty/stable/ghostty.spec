@@ -10,6 +10,8 @@ License:        MIT AND MPL-2.0 AND OFL-1.1 AND (WTFPL OR CC0-1.0) AND Apache-2.
 URL:            https://ghostty.org/
 Source0:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz
 Source1:        https://release.files.ghostty.org/%{version}/ghostty-%{version}.tar.gz.minisig
+Source2:        strip.sh
+Patch0:         %{name}-translate.patch
 BuildRequires:  anda-srpm-macros >= 0.2.15
 BuildRequires:  gettext
 BuildRequires:  gtk4-devel
@@ -20,8 +22,8 @@ BuildRequires:  ncurses
 BuildRequires:  ncurses-devel
 BuildRequires:  pandoc-cli
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  zig0.15
-BuildRequires:  zig0.15-rpm-macros
+BuildRequires:  zig
+BuildRequires:  zig-rpm-macros
 BuildRequires:  pkgconfig(blueprint-compiler)
 BuildRequires:  pkgconfig(bzip2)
 BuildRequires:  pkgconfig(freetype2)
@@ -165,11 +167,23 @@ Requires:       libghostty-vt = %{evr}
 %description -n libghostty-vt-devel
 This package contains the libraries and header files that are needed for developing with libghostty-vt.
 
+%package -n     libghostty-vt-static
+Summary:        Static files for libghostty-vt
+Requires:       libghostty-vt = %{evr}
+
+%description -n libghostty-vt-static
+This package contains the static files that are used for developing with libghostty-vt.
+
 %prep
 /usr/bin/minisign -V -m %{SOURCE0} -x %{SOURCE1} -P %{public_key}
-%autosetup
+%setup -qn %{name}-%{version}
 
 ZIG_GLOBAL_CACHE_DIR="%{_zig_cache_dir}" ./nix/build-support/fetch-zig-cache.sh
+
+# Patch Ghostty's broken translate_c fork
+pushd zig-pkg/translate_c*
+%autopatch -p1
+popd
 
 %build
 
@@ -270,6 +284,10 @@ rm -rf %{buildroot}%{_datadir}/terminfo/g/%{name}
 %files -n libghostty-vt-devel
 %{_libdir}/libghostty-vt.so
 %{_datadir}/pkgconfig/libghostty-vt.pc
+
+%files -n libghostty-vt-static
+%{_libdir}/libghostty-vt.a
+%{_datadir}/pkgconfig/libghostty-vt-static.pc
 
 %changelog
 * Tue Oct 28 2025 Gilver E. <rockgrub@disroot.org> - 1.2.3-2
