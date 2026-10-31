@@ -1,11 +1,13 @@
 Name:           cog
 Version:        0.18.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Small single "window" launcher for the WebKit WPE port
 
 License:        MIT
 URL:            https://github.com/Igalia/cog
 Source0:        https://wpewebkit.org/releases/cog-%{version}.tar.xz
+# libwpe dlopen()s the backend, use the runtime soname instead of the -devel symlink
+Patch0:         cog-wpebackend-fdo-soname.patch
 
 BuildRequires:  gcc
 BuildRequires:  meson
@@ -45,6 +47,8 @@ WPE backend being used.
 %package       libs
 Summary:       Core library and platform plug-ins for %{name}
 
+Requires:      wpebackend-fdo%{?_isa}
+
 %description   libs
 The %{name}-libs package contains the libcogcore library and the platform
 plug-ins used by %{name} and applications embedding it.
@@ -58,7 +62,7 @@ The %{name}-devel package contains libraries, build data, and header
 files for developing applications that use %{name}.
 
 %prep
-%autosetup -n cog-%{version}
+%autosetup -n cog-%{version} -p1
 
 %conf
 %meson \
@@ -98,5 +102,8 @@ files for developing applications that use %{name}.
 %{_pkgconfigdir}/cogcore.pc
 
 %changelog
+* Fri Oct 30 2026 Cypress Reed <cypress@fyralabs.com>
+- Load wpebackend-fdo by its runtime soname and require it
+
 * Sat Oct 17 2026 Cypress Reed <cypress@fyralabs.com>
 - Initial package
