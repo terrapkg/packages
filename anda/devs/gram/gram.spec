@@ -12,12 +12,11 @@ Version:       3.4.1
 Release:       1%{?dist}
 Summary:       The Gram Code Editor
 # This changes next release. :))))
-SourceLicense: Apache-2.0 AND GPL-3.0-or-later
-License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Apache-2.0) AND ((MIT OR Apache-2.0) AND NCSA) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT OR BSL-1.0 OR CC0-1.0) AND (Apache-2.0 OR MIT OR BSL-1.0 OR CC0-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND BSL-1.0 AND (CC0-1.0 OR Apache-2.0) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND CDLA-Permissive-2.0 AND GPL-3.0-or-later AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND (ISC AND (Apache-2.0 OR ISC)) AND ISC AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR BSD-3-Clause) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND WTFPL AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
+SourceLicense: Apache-2.0 AND CC-BY-SA-4.0 GPL-3.0-or-later AND MIT AND OFL
+License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT OR BSL-1.0 OR CC0-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR MIT OR Apache-2.0) AND BSD-2-Clause AND (BSD-3-Clause OR Apache-2.0) AND BSD-3-Clause AND BSL-1.0 AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND CDLA-Permissive-2.0 AND GPL-3.0-or-later AND ISC AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR BSD-3-Clause) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Unlicense AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
 URL:           https://gram-editor.com
 Source0:       https://codeberg.org/GramEditor/gram/archive/%{version}.tar.gz
 BuildRequires: anda-srpm-macros
-BuildRequires: cargo-about
 BuildRequires: cargo-rpm-macros
 BuildRequires: cmake
 BuildRequires: desktop-file-utils
@@ -64,14 +63,11 @@ sed -i "s|@release_info@||g" "crates/gram/resources/flatpak/gram.metainfo.xml.in
 
 envsubst < "crates/gram/resources/flatpak/gram.metainfo.xml.in" > %{appid}.metainfo.xml
 
-sed -i 's@CARGO_ABOUT_VERSION=".*"@CARGO_ABOUT_VERSION="$(cargo-about --version | sed "s/cargo-about //g")"@g' script/generate-licenses
-
 %build
 export GRAM_UPDATE_EXPLANATION="Run dnf up to update Gram from Terra."
 echo "stable" > crates/gram/RELEASE_CHANNEL
 
 %cargo_build -- --package gram --package cli
-ALLOW_MISSING_LICENSES=1 script/generate-licenses
 
 %install
 install -Dm755 target/rpm/gram %{buildroot}%{_libexecdir}/gram-editor
@@ -97,32 +93,17 @@ install -Dm644 %{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
     | sort -u                                                            \
 > LICENSE.dependencies
 
-# All of these are currently commented because they affect the NEXT release of Gram, afterwards they have to be added. For now the commands below it are correct.
-
-#cp assets/icons/LICENSE LICENSE.icons
-
-# We love actual proper attribution, but holy hell is it a lot of licenses.
-#for folder in assets/fonts/*; do
-#  font=$(basename $folder)
-#  cp $folder/LICENSE ./LICENSE.$font
-#done
-
-#for folder in assets/themes/*; do
-#  theme=$(basename $folder)
-#  cp $folder/LICENSE ./LICENSE.$theme
-#done
-
-# Remove next release.
-cp assets/icons/LICENSES ./LICENSE.icons
-cp assets/themes/LICENSES ./LICENSE.themes
-cp assets/fonts/fira-sans/OFL.txt ./LICENSE.fira-sans
-cp assets/fonts/myna/LICENSE ./LICENSE.myna
+for file in assets/licenses/*; do
+  license=$(basename $file)
+  cp $file ./LICENSE-${license}
+done
 
 %check
 %desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
 %license LICENSE*
+%license assets/licenses.md
 %doc README.md
 %doc CODE_OF_CONDUCT.md
 %doc SECURITY.md
