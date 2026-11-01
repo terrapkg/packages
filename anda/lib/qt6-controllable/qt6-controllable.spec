@@ -2,7 +2,7 @@
 
 Name:           qt6-controllable
 Version:        0.2.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        QML module for controller support
 
 License:        GPL-2.0-or-later
@@ -23,6 +23,7 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6QuickControls2)
 
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6I18n)
 
 Requires:       kf6-ki18n
