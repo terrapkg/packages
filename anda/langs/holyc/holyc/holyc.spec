@@ -1,7 +1,7 @@
 %global ver 0.0.17-beta-release
 
 Name:          holyc
-Version:       0.0.17~beta~release
+Version:       0.0.17~beta
 Release:       1%{?dist}
 Summary:       HolyC compiler and transpiler
 License:       BSD-2-Clause
