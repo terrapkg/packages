@@ -1,3 +1,5 @@
+%global appid com.github.framework-settings
+
 Name:           framework-kcm
 Version:        1.0.0
 Release:        1%{?dist}
@@ -53,6 +55,7 @@ a companion system service for hardware access.
 %install
 %cmake_install
 %find_lang kcm_framework
+%terra_appstream
 
 %pre
 # Up to 0.1.1 the daemon was called framework-kcmd. Its unit file is still
@@ -83,8 +86,8 @@ fi
 %systemd_postun_with_restart frameworkd.service
 
 %files -f kcm_framework.lang
-%license LICENSE
-%doc README.md
+%license LICENSE %{_defaultdocdir}/frameworkd/LICENSE %{_defaultdocdir}/framework-settings/LICENSE %{_defaultdocdir}/framework-settings-translations/LICENSE %{_defaultdocdir}/framework-kcm/LICENSE %{_defaultdocdir}/framework-gui/LICENSE
+%doc README.md %{_defaultdocdir}/framework-settings/README.md
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_framework.so
 %{_appsdir}/kcm_framework.desktop
 %{_datadir}/dbus-1/system.d/io.github.frameworkkcm.Daemon1.conf
@@ -93,8 +96,15 @@ fi
 %{_libexecdir}/frameworkd
 %{_datadir}/polkit-1/actions/io.github.frameworkkcm.policy
 %{_scalableiconsdir}/framework-kcm.svg
+%{_scalableiconsdir}/framework-gui.svg
+%{_bindir}/framework-settings
+%{_appsdir}/%{appid}.desktop
+%{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Sun Nov 01 2026 Owen Zimmerman <owen@fyralabs.com> - 1.0.0-1 
+- Update for 1.0.0
+
 * Sun Oct 04 2026 Cypress Reed <cypress@fyralabs.com>
 - handle frameworkd rename
 
