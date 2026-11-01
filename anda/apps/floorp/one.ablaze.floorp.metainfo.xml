@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>one.ablaze.floorp</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MPL-2.0</project_license>
+  <name>Floorp</name>
+  <summary>Privacy-focused web browser based on Firefox</summary>
+
+  <developer id="one.ablaze">
+    <name>Ablaze</name>
+  </developer>
+
+  <description>
+    <p>
+      Floorp is a privacy-focused web browser based on Firefox, with additional
+      customization and productivity features.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">one.ablaze.floorp.desktop</launchable>
+
+  <!-- Use the package-installed Floorp icon rather than a generic stock icon. -->
+  <icon
+        type="local"
+    >/usr/share/icons/hicolor/128x128/apps/one.ablaze.floorp.png</icon>
+
+  <url type="homepage">https://floorp.app/</url>
+  <url type="bugtracker">https://github.com/Floorp-Projects/Floorp/issues</url>
+  <url type="vcs-browser">https://github.com/Floorp-Projects/Floorp</url>
+
+  <categories>
+    <category>Network</category>
+    <category>WebBrowser</category>
+  </categories>
+
+  <releases>
+    <release version="12.19.0" date="2026-09-30" />
+  </releases>
+
+  <content_rating type="oars-1.1" />
+</component>
