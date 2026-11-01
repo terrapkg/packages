@@ -1,7 +1,7 @@
 %global appid io.github.rfrench3.bazzite-updater
 
 Name:           bazzite-updater
-Version:        0.10.4
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        Update your system
 
