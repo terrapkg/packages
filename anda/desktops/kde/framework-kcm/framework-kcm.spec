@@ -92,7 +92,8 @@ fi
 %license %{_defaultdocdir}/framework-settings-translations/LICENSE
 %license %{_defaultdocdir}/framework-kcm/LICENSE
 %license %{_defaultdocdir}/framework-gui/LICENSE
-%doc README.md %{_defaultdocdir}/framework-settings/README.md
+%doc README.md
+%doc %{_defaultdocdir}/framework-settings/README.md
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_framework.so
 %{_appsdir}/kcm_framework.desktop
 %{_datadir}/dbus-1/system.d/io.github.frameworkkcm.Daemon1.conf
