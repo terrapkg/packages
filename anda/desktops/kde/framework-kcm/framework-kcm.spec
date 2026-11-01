@@ -86,7 +86,12 @@ fi
 %systemd_postun_with_restart frameworkd.service
 
 %files -f kcm_framework.lang
-%license LICENSE %{_defaultdocdir}/frameworkd/LICENSE %{_defaultdocdir}/framework-settings/LICENSE %{_defaultdocdir}/framework-settings-translations/LICENSE %{_defaultdocdir}/framework-kcm/LICENSE %{_defaultdocdir}/framework-gui/LICENSE
+%license LICENSE
+%license %{_defaultdocdir}/frameworkd/LICENSE
+%license %{_defaultdocdir}/framework-settings/LICENSE
+%license %{_defaultdocdir}/framework-settings-translations/LICENSE
+%license %{_defaultdocdir}/framework-kcm/LICENSE
+%license %{_defaultdocdir}/framework-gui/LICENSE
 %doc README.md %{_defaultdocdir}/framework-settings/README.md
 %{_kf6_qtplugindir}/plasma/kcms/systemsettings/kcm_framework.so
 %{_appsdir}/kcm_framework.desktop
