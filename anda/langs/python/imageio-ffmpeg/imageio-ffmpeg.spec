@@ -2,7 +2,7 @@
 %global _desc FFMPEG wrapper for Python.
 
 Name:			python-%{pypi_name}
-Version:		0.7.0
+Version:		0.8.0
 Release:		1%{?dist}
 Summary:		FFMPEG wrapper for Python
 License:		BSD-2-Clause
