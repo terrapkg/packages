@@ -3,4 +3,7 @@ project pkg {
   rpm {
 	spec = "omegaconf.spec"
   }
+	labels {
+		updbranch = 1
+	}
 }
