@@ -1,10 +1,10 @@
-%global commit b56d9ce15a1975b3eb5576bf19426bdaefbaf94a
-%global commit_date 20260713
+%global commit 4217eefefde22419fc88a0d1e76f726fdb3638c0
+%global commit_date 20261102
 %global shortcommit %{sub %commit 1 7}
 
 Name:			grabnim
 Version:		0~%{commit_date}git.%{shortcommit}
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		Simple tool to install and manage multiple nim compiler versions
 License:		MIT
 URL:			https://codeberg.org/janAkali/grabnim
