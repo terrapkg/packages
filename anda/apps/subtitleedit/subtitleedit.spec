@@ -11,7 +11,7 @@
 
 Name:           %realname.bin
 Version:        5.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An advanced subtitle editor and converter
 License:        GPL-3.0-only
 URL:            https://www.nikse.dk/SubtitleEdit
@@ -20,7 +20,6 @@ Source1:        https://raw.githubusercontent.com/SubtitleEdit/subtitleedit/v%{v
 Packager:       madonuko <mado@fyralabs.com>
 Provides:       %realname = %evr
 Conflicts:      %realname
-Requires:       dejavu-sans-mono-fonts mono-core
 
 %description
 %summary.
