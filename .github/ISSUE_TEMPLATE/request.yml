@@ -36,9 +36,9 @@ body:
       description: If this is packaged in Fedora and you believe it should be added, please describe why in the "Describe the Package" section.
       options:
           - label: This is not packaged in Fedora
+            required: false
           - label: This is packaged in Fedora
-    validations:
-      required: true
+            required: false
   - type: input
     id: llm
     attributes:
