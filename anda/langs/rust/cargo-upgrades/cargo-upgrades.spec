@@ -12,6 +12,8 @@ Source0:                %{terra_crates_source}
 Source1:                https://github.com/sundarnagarajan/licenses/blob/master/GPL-3.txt
 BuildSystem:            terra_cargo
 BuildRequires:          cargo-rpm-macros
+# Temporary
+BuildRequires:          cargo4rpm
 Packager:               Owen Zimmerman <owen@fyralabs.com>
 
 %description
