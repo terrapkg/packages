@@ -63,6 +63,8 @@ jobs:
 
       - name: Build cargo4rpm
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/cargo4rpm
+      - name: Install cargo4rpm
+        run: dnf5 install -y anda-build/rpm/rpms/cargo4rpm*.rpm
 
       - name: Build terra-cli-tools
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/cli-tools/pkg
