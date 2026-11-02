@@ -1,8 +1,8 @@
 %global appid io.github.rfrench3.controllable
 
 Name:           qt6-controllable
-Version:        0.2.0
-Release:        2%{?dist}
+Version:        0.2.1
+Release:        1%{?dist}
 Summary:        QML module for controller support
 
 License:        GPL-2.0-or-later
