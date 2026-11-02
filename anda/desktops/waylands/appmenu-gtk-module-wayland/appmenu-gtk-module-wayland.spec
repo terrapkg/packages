@@ -3,7 +3,7 @@
 Name:           appmenu-gtk-module-wayland
 License:        LGPL-3.0-or-later
 Summary:        GTK global menu on Plasma Wayland
-Version:        26.08.03
+Version:        26.11.02
 Release:        1%{?dist}
 URL:            https://github.com/guiodic/appmenu-gtk-module-wayland
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
