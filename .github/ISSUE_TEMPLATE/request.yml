@@ -29,6 +29,16 @@ body:
       description: Provide the link to source code, website, spec files, etc.
     validations:
       required: true
+  - type: checkboxes
+    id: fedora
+    attributes:
+      label: I have verified this is not packaged in Fedora
+      description: If this is packaged in Fedora and you believe it should be added, please describe why in the "Describe the Package" section.
+      options:
+          - label: This is not packaged in Fedora
+          - label: This is packaged in Fedora
+    validations:
+      required: true
   - type: input
     id: llm
     attributes:
