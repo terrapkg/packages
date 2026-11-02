@@ -2,7 +2,7 @@
 %global _desc A simple S-expression parser.
 
 Name:			python-%{pypi_name}
-Version:		0.3.1
+Version:		0.3.2
 Release:		1%{?dist}
 Summary:		A simple S-expression parser
 License:		MIT
