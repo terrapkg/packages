@@ -3,9 +3,9 @@
 %global name_pretty Chatterino7
 
 %global ver 2.5.6
-%global commit 49f9b31cff599e88c6a64efea808ae1521186413
+%global commit 910b01dd428c4ac042028708704278b93227491b
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20261027
+%global commit_date 20261102
 
 Name:           chatterino7-nightly
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
