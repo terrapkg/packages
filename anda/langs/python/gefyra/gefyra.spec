@@ -2,7 +2,7 @@
 %global _desc Blazingly-fast, rock-solid, local application development with Kubernetes.
 
 Name:			python-%{pypi_name}
-Version:		2.5.6
+Version:		2.5.7
 Release:		1%{?dist}
 Summary:		Blazingly-fast, rock-solid, local application development with Kubernetes.
 License:		Apache-2.0
