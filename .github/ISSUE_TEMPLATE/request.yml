@@ -32,7 +32,7 @@ body:
   - type: checkboxes
     id: fedora
     attributes:
-      label: I have verified this is not packaged in Fedora
+      label: I have verified this is not packaged in [Fedora](https://packages.fedoraproject.org/)
       description: If this is packaged in Fedora and you believe it should be added, please describe why in the "Describe the Package" section.
       options:
           - label: This is not packaged in Fedora
