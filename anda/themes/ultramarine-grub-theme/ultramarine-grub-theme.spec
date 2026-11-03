@@ -1,15 +1,15 @@
-%global themes breeze-dark breeze-light breeze-darker
+%global themes light dark darker
 %global debug_package %{nil}
+%global regen_grub [ -f /boot/grub2/grub.cfg ] && grub2-mkconfig -o /boot/grub2/grub.cfg >/dev/null 2>&1 || :
 
 Name:           ultramarine-grub-theme
-Version:        1.0.0
+Version:        0.1.0
 Release:        1%{?dist}
-Summary:        KDE Breeze style GRUB themes for Ultramarine Linux
-SourceLicense:  AGPL-3.0-or-later
-License:        %{sourcelicense} AND OFL-1.1 AND GPL-3.0-only AND GPL-3.0-or-later AND GPL-2.0-or-later AND (LGPL-3.0-or-later OR CC-BY-SA-3.0) AND CC-BY-SA-4.0 AND CC-BY-4.0 AND LicenseRef-Fedora-Public-Domain
+Summary:        KDE-style GRUB themes for Ultramarine Linux
+License:        GPL-3.0-or-later
 URL:            https://github.com/Ultramarine-Linux/grub-theme
-Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-BuildRequires:  anda-srpm-macros
+Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+
 BuildRequires:  grub2-tools-extra
 BuildRequires:  google-noto-sans-fonts
 
@@ -18,35 +18,42 @@ Requires:       grub2
 %else
 Requires:       grub2-efi
 %endif
+Requires:       grub2-tools
 
 Packager:       Its-J <jonah@fyralabs.com>
 
 %description
 %{summary}.
 
-%package        breeze-dark
-Requires:       %{name}%{?_isa} = %{evr}
-License:        %{sourcelicense}
-Summary:        Breeze Dark GRUB theme for Ultramarine Linux
+%package        light
+Summary:        KDE-style Light GRUB theme for Ultramarine Linux
+License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
+Requires:       %{name} = %{evr}
+Conflicts:      %{name}-dark %{name}-darker
+BuildArch:      noarch
 
-%description    breeze-dark
-GRUB theme for Ultramarine Linux using KDE's Breeze Dark colours.
+%description    light
+GRUB theme for Ultramarine Linux using KDE Plasma's default light colours.
 
-%package        breeze-light
-Requires:       %{name}%{?_isa} = %{evr}
-License:        %{sourcelicense}
-Summary:        Breeze Light GRUB theme for Ultramarine Linux
+%package        dark
+Summary:        KDE-style Dark GRUB theme for Ultramarine Linux
+License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
+Requires:       %{name} = %{evr}
+Conflicts:      %{name}-light %{name}-darker
+BuildArch:      noarch
 
-%description    breeze-light
-GRUB theme for Ultramarine Linux using KDE's Breeze Light colours.
+%description    dark
+GRUB theme for Ultramarine Linux using KDE Plasma's default dark colours.
 
-%package        breeze-darker
-Requires:       %{name}%{?_isa} = %{evr}
-License:        %{sourcelicense}
-Summary:        Breeze Darker GRUB theme for Ultramarine Linux
+%package        darker
+Summary:        KDE-style Darker GRUB theme for Ultramarine Linux
+License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
+Requires:       %{name} = %{evr}
+Conflicts:      %{name}-light %{name}-dark
+BuildArch:      noarch
 
-%description    breeze-darker
-GRUB theme for Ultramarine Linux using the Xela Breeze Darker colours.
+%description    darker
+GRUB theme for Ultramarine Linux with darker variant of KDE Plasma's default dark colors.
 
 %prep
 %autosetup -n grub-theme-%{version}
@@ -64,22 +71,31 @@ for t in %{themes}; do
 done
 install -Dm755 -t %{buildroot}%{_sysconfdir}/grub.d grub.d/*
 
+%transfiletriggerin -- %{_grubthemedir}/ultramarine- %{_sysconfdir}/grub.d/06_ultramarine-theme
+%{regen_grub}
+
+%transfiletriggerpostun -- %{_grubthemedir}/ultramarine-
+%{regen_grub}
+
+%postun
+[ $1 -eq 0 ] && %{regen_grub}
+
 %files
-%license LICENSE licenses/*
+%license LICENSE LICENSE.notosans
 %doc README.md
-%config(noreplace) %{_sysconfdir}/grub.d/06_ultramarine-theme
-%config(noreplace) %{_sysconfdir}/grub.d/30_uefi-class
-%config(noreplace) %{_sysconfdir}/grub.d/30_uefi-firmware-z
+%config %{_sysconfdir}/grub.d/06_ultramarine-theme
+%config %{_sysconfdir}/grub.d/30_uefi-class
+%config %{_sysconfdir}/grub.d/30_uefi-firmware-z
 
-%files breeze-dark
-%{_grubthemedir}/ultramarine-breeze-dark
+%files light
+%{_grubthemedir}/ultramarine-light
 
-%files breeze-light
-%{_grubthemedir}/ultramarine-breeze-light
+%files dark
+%{_grubthemedir}/ultramarine-dark
 
-%files breeze-darker
-%{_grubthemedir}/ultramarine-breeze-darker
+%files darker
+%{_grubthemedir}/ultramarine-darker
 
 %changelog
-* Mon Nov 02 2026 Its-J <jonah@fyralabs.com> - 1.0.0-1
+* Mon Nov 02 2026 Its-J <jonah@fyralabs.com> - 0.1.0-1
 - Initial package
