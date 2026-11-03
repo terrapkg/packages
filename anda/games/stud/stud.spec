@@ -13,7 +13,7 @@
 %global __provides_exclude_from ^%{_prefix}/lib/stud/.*|^%{_libexecdir}/stud/lib64/.*|^%{_libexecdir}/stud/libstud_present_layer\.so$
 
 Name:           stud
-Version:        1.2.8
+Version:        1.2.9
 Release:        2%{?dist}
 Summary:        An Unofficial Open-Source Roblox Launcher for Linux
 
