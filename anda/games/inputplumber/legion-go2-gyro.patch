@@ -1,0 +1,104 @@
+From aac18d434d573b38b25bbab74cdc0b319263f82d Mon Sep 17 00:00:00 2001
+From: Christopher Lott <lott.ch@gmail.com>
+Date: Sun, 1 Nov 2026 20:01:46 +0100
+Subject: [PATCH 1/2] fix(udev): use imu_bypass_enabled for Legion Go
+ controllers
+
+hid-lenovo-go names the sysfs attributes imu_bypass_enabled and
+vibration_enabled, but the rule writes imu_bypass_enable and
+vibration_enable. udev fails with "Could not chase sysfs attribute",
+the IMU bypass stays off and the controllers send no gyro or
+accelerometer data.
+
+Use the attribute names the driver provides.
+
+Tested on a Legion Go 2 (83N0) with kernel 7.2.7-valve2.
+
+Assisted-by: LLM
+---
+ rootfs/usr/lib/udev/rules.d/99-inputplumber-device-setup.rules | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rootfs/usr/lib/udev/rules.d/99-inputplumber-device-setup.rules b/rootfs/usr/lib/udev/rules.d/99-inputplumber-device-setup.rules
+index 6cd221b1..3d1918c2 100644
+--- a/rootfs/usr/lib/udev/rules.d/99-inputplumber-device-setup.rules
++++ b/rootfs/usr/lib/udev/rules.d/99-inputplumber-device-setup.rules
+@@ -8,7 +8,7 @@ ACTION=="add|change|bind", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="e31[01]",
+ ACTION=="add|change|bind", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="e31[01]", SUBSYSTEM=="hid", DRIVER=="hid-lenovo-go-s", ATTR{gamepad/auto_sleep_time}="0", ATTR{gamepad/dpad_mode}="8-way", ATTR{gamepad/poll_rate}="250", ATTR{os_mode}="linux", ATTR{touchpad/linux_mode}="absolute", GOTO="inputplumber_setup_end"
+ 
+ # Legion Go/Go2 Controller Settings
+-ACTION=="add|change|bind", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="61e[bcde]", SUBSYSTEM=="hid", DRIVER=="hid-lenovo-go", ATTR{os_mode}="linux", ATTR{left_handle/imu_bypass_enable}="true", ATTR{right_handle/imu_bypass_enable}="true", ATTR{touchpad/vibration_enable}="false", GOTO="inputplumber_setup_end"
++ACTION=="add|change|bind", ATTRS{idVendor}=="17ef", ATTRS{idProduct}=="61e[bcde]", SUBSYSTEM=="hid", DRIVER=="hid-lenovo-go", ATTR{os_mode}="linux", ATTR{left_handle/imu_bypass_enabled}="true", ATTR{right_handle/imu_bypass_enabled}="true", ATTR{touchpad/vibration_enabled}="false", GOTO="inputplumber_setup_end"
+ 
+ # ASUS
+ # ROG Ally Controller Settings
+
+From f63f90ac924798e2b22dbd8d016d677931fd379a Mon Sep 17 00:00:00 2001
+From: Christopher Lott <lott.ch@gmail.com>
+Date: Sun, 1 Nov 2026 20:01:46 +0100
+Subject: [PATCH 2/2] fix(Legion Go 2): invert gyro yaw
+
+Turning the Legion Go 2 left or right while holding it upright moves
+the aim the wrong way, e.g. gyro aiming in Zelda: Tears of the Kingdom
+through the DualSense target. Pitch and roll are correct.
+
+The gyro axis in bytes 43 (left) and 54 (right) counts the opposite way
+to the accelerometer axis it lines up with (bytes 37 and 48), so it
+needs the opposite sign. Raw readings from both controllers:
+
+  accel at rest (g)        left 35/37/39    right 50/48/52
+  flat, screen up           0 / 0 / -1       0 / 0 / -1
+  upright                   0 / 1 /  0       0 / -1 / 0
+  on the right side         1 / 0 /  0       1 / 0 /  0
+
+  gyro (deg/s)             left 41/43/45    right 56/54/58
+  flat -> upright        -165 / 0 /   0   -169 /  0 /   0
+  upright -> right side     0 / 0 / 110      0 /  0 / 109
+  upright, turn            0 / -25 /  0      0 / -25 /  0
+
+Gen1 is unchanged.
+
+Tested on a Legion Go 2 (83N0) with the ds5-edge target.
+
+Assisted-by: LLM
+---
+ src/drivers/legion_go/go2_driver.rs | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/drivers/legion_go/go2_driver.rs b/src/drivers/legion_go/go2_driver.rs
+index 2a802693..c0605376 100644
+--- a/src/drivers/legion_go/go2_driver.rs
++++ b/src/drivers/legion_go/go2_driver.rs
+@@ -532,10 +532,7 @@ impl Driver {
+                     Event::Axis(AxisEvent::LeftGyro(ImuAxisInput {
+                         pitch: -state.left_gyro_x,
+                         roll: -state.left_gyro_y,
+-                        yaw: match self.gen {
+-                            LegionGoGen::Gen2 => -state.left_gyro_z,
+-                            LegionGoGen::Gen1 => state.left_gyro_z,
+-                        },
++                        yaw: state.left_gyro_z,
+                     })),
+                 )
+             }
+@@ -548,7 +545,10 @@ impl Driver {
+                     Event::Axis(AxisEvent::RightGyro(ImuAxisInput {
+                         pitch: -state.right_gyro_x,
+                         roll: -state.right_gyro_y,
+-                        yaw: -state.right_gyro_z,
++                        yaw: match self.gen {
++                            LegionGoGen::Gen2 => state.right_gyro_z,
++                            LegionGoGen::Gen1 => -state.right_gyro_z,
++                        },
+                     })),
+                 )
+             }
+@@ -566,7 +566,7 @@ impl Driver {
+                         pitch: -(state.left_gyro_x + state.right_gyro_x) / 2,
+                         roll: -(state.left_gyro_y + state.right_gyro_y) / 2,
+                         yaw: match self.gen {
+-                            LegionGoGen::Gen2 => -(state.left_gyro_z + state.right_gyro_z) / 2,
++                            LegionGoGen::Gen2 => (state.left_gyro_z + state.right_gyro_z) / 2,
+                             LegionGoGen::Gen1 => (state.left_gyro_z - state.right_gyro_z) / 2,
+                         },
+                     })),
