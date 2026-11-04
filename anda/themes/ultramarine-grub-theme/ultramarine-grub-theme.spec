@@ -56,7 +56,7 @@ BuildArch:      noarch
 GRUB theme for Ultramarine Linux with darker variant of KDE Plasma's default dark colors.
 
 %prep
-%autosetup -n grub-theme-%{version}
+%autosetup -n grub-themes-%{version}
 
 %build
 for t in %{themes}; do
