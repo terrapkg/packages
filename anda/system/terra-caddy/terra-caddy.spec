@@ -35,7 +35,7 @@
 %global gomodulesmode GO111MODULE=on
 
 Name:           terra-caddy
-Version:        2.11.7
+Version:        2.11.8
 Release:        1%{?dist}
 Summary:        Web server with automatic HTTPS and DNS provider modules
 # Caddy and the caddy-dns modules are Apache-2.0 and MIT; the rest covers
