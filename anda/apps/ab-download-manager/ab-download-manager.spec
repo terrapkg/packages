@@ -9,7 +9,7 @@
 %global __requires_exclude libfreetype\.so.*|libj.*\.so.*|libawt.*\.so.*|libnet\.so.*
 
 Name:           ab-download-manager
-Version:        1.11.2
+Version:        1.11.4
 Release:        1%{?dist}
 Summary:        A fast, open-source download manager
 URL:            https://abdownloadmanager.com
