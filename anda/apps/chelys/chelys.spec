@@ -3,7 +3,7 @@
 %global appid io.github.texlyre.chelys
 
 Name:           chelys
-Version:        1.3.0
+Version:        1.4.0
 Release:        1%{?dist}
 Summary:        A local desktop companion app for TeXlyre
 URL:            https://github.com/TeXlyre/chelys
