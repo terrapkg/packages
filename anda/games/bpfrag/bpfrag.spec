@@ -5,8 +5,8 @@
 %global _lto_cflags %{nil}
 
 Name:           bpfrag
-Version:        0.11.1
-Release:        2%{?dist}
+Version:        0.12.0
+Release:        1%{?dist}
 Summary:        eBPF network tuning for competitive gaming that undoes itself
 
 # bpfrag is MIT and its BPF program is GPL-2.0-only OR MIT. Crates linked
