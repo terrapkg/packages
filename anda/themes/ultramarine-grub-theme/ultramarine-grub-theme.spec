@@ -1,5 +1,4 @@
 %global themes light dark darker
-%global debug_package %{nil}
 %global regen_grub [ -f /boot/grub2/grub.cfg ] && grub2-mkconfig -o /boot/grub2/grub.cfg >/dev/null 2>&1 || :
 
 Name:           ultramarine-grub-theme
@@ -9,15 +8,12 @@ Summary:        KDE-style GRUB themes for Ultramarine Linux
 License:        GPL-3.0-or-later
 URL:            https://github.com/Ultramarine-Linux/grub-themes
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+BuildArch:      noarch
 
 BuildRequires:  grub2-tools-extra
 BuildRequires:  google-noto-sans-fonts
 
-%ifnarch aarch64
-Requires:       grub2
-%else
-Requires:       grub2-efi
-%endif
+Requires:       (grub2 or grub2-efi)
 Requires:       grub2-tools
 
 Packager:       Its-J <jonah@fyralabs.com>
@@ -30,7 +26,6 @@ Summary:        KDE-style Light GRUB theme for Ultramarine Linux
 License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
 Requires:       %{name} = %{evr}
 Conflicts:      %{name}-dark %{name}-darker
-BuildArch:      noarch
 
 %description    light
 GRUB theme for Ultramarine Linux using KDE Plasma's default light colours.
@@ -40,7 +35,6 @@ Summary:        KDE-style Dark GRUB theme for Ultramarine Linux
 License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
 Requires:       %{name} = %{evr}
 Conflicts:      %{name}-light %{name}-darker
-BuildArch:      noarch
 
 %description    dark
 GRUB theme for Ultramarine Linux using KDE Plasma's default dark colours.
@@ -50,7 +44,6 @@ Summary:        KDE-style Darker GRUB theme for Ultramarine Linux
 License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
 Requires:       %{name} = %{evr}
 Conflicts:      %{name}-light %{name}-dark
-BuildArch:      noarch
 
 %description    darker
 GRUB theme for Ultramarine Linux with darker variant of KDE Plasma's default dark colors.
