@@ -15,7 +15,7 @@
 
 Name:           1password
 Version:        8.12.44
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Password manager and secure wallet
 
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
@@ -81,9 +81,10 @@ ln -sr %{buildroot}%{appdir}/1Password-LastPass-Exporter %{buildroot}%{_libexecd
 ln -sr %{buildroot}%{appdir}/op-ssh-sign %{buildroot}%{_libexecdir}/op-ssh-sign
 chmod 4755 %{buildroot}%{appdir}/chrome-sandbox
 chmod 2755 %{buildroot}%{appdir}/1Password-BrowserSupport
-if [ -f %{buildroot}%{appdir}/onepassword-mcp ]; then
-  ln -sr %{buildroot}%{appdir}/onepassword-mcp %{buildroot}%{_libexecdir}/onepassword-mcp
-  chmod 2755 %{buildroot}%{appdir}/onepassword-mcp
+if [ -f %{buildroot}%{appdir}/1password-mcp ]; then
+  ln -sr %{buildroot}%{appdir}/1password-mcp %{buildroot}%{_libexecdir}/1password-mcp
+  ln -sr %{buildroot}%{appdir}/1password-mcp %{buildroot}%{_bindir}/1password-mcp
+  chmod 2755 %{buildroot}%{appdir}/1password-mcp
 fi
 find %{buildroot}%{appdir} -type f \
   ! -name chrome-sandbox \
@@ -91,7 +92,7 @@ find %{buildroot}%{appdir} -type f \
   ! -name 1Password-BrowserSupport \
   ! -name 1Password-LastPass-Exporter \
   ! -name op-ssh-sign \
-  ! -name onepassword-mcp \
+  ! -name 1password-mcp \
   -printf '/%%P\n' | sed "s|^/|%{appdir}/|" > app.files
 
 %pre
@@ -100,21 +101,24 @@ find %{buildroot}%{appdir} -type f \
 %post
 /usr/bin/chown root:onepassword %{appdir}/1Password-BrowserSupport
 /usr/bin/chmod 2755 %{appdir}/1Password-BrowserSupport
-/usr/bin/chown root:onepassword-mcp %{appdir}/onepassword-mcp
-/usr/bin/chmod 2755 %{appdir}/onepassword-mcp
+/usr/bin/chown root:onepassword-mcp %{appdir}/1password-mcp
+/usr/bin/chmod 2755 %{appdir}/1password-mcp
 
 %files -f app.files
 %{_bindir}/%{name}
+%{_bindir}/1password-mcp
 %{_libexecdir}/1Password-Crash-Handler
 %{_libexecdir}/1Password-BrowserSupport
 %{_libexecdir}/1Password-LastPass-Exporter
 %{_libexecdir}/op-ssh-sign
+%{_libexecdir}/1password-mcp
 %dir %{appdir}
 %attr(4755,root,root) %{appdir}/chrome-sandbox
 %{appdir}/1Password-Crash-Handler
 %{appdir}/1Password-BrowserSupport
 %{appdir}/1Password-LastPass-Exporter
 %{appdir}/op-ssh-sign
+%attr(2755,root,onepassword-mcp) %{appdir}/1password-mcp
 %{_datadir}/icons/hicolor/32x32/apps/1password.png
 %{_datadir}/icons/hicolor/64x64/apps/1password.png
 %{_datadir}/icons/hicolor/256x256/apps/1password.png
