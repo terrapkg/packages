@@ -44,7 +44,7 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n %{crate}-%{version}
-%cargo_prep_online
+%cargo_prep_online -u
 
 %build
 %cargo_license_summary_online
