@@ -7,7 +7,7 @@ Version:        0.1.0
 Release:        1%{?dist}
 Summary:        KDE-style GRUB themes for Ultramarine Linux
 License:        GPL-3.0-or-later
-URL:            https://github.com/Ultramarine-Linux/grub-theme
+URL:            https://github.com/Ultramarine-Linux/grub-themes
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  grub2-tools-extra
