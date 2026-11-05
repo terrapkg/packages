@@ -12,7 +12,7 @@ Version:        1.5.0
 %gometa -f
 
 Name:           tailmux
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Be on all your tailnets at once
 
 License:        BSD-3-Clause
@@ -54,6 +54,7 @@ popd
 %if 0%{?fedora} <= 44
 export GOTOOLCHAIN=auto
 %endif
+%define currentgoldflags -X main.version=%version
 %gobuild -o %{gobuilddir}/cmd/tailmux %{goipath}/cmd/tailmux
 
 pushd desktop
