@@ -261,6 +261,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_bindir}/quadenc
 %{_bindir}/rp1sm
 %{_bindir}/blink
+%{_bindir}/mirror
 %{_libdir}/libpio.so.0
 
 %files piolib-devel
