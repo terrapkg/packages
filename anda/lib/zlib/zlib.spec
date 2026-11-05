@@ -1,6 +1,6 @@
 Name:           zlib
-Version:        1.3.2
-Release:        2%?dist
+Version:        1.4
+Release:        1%{?dist}
 License:        Zlib
 URL:            https://zlib.net
 Source:         https://github.com/madler/zlib/archive/v%{version}.tar.gz
