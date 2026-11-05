@@ -8,7 +8,7 @@
 Name:		vesktop
 Obsoletes:  VencordDesktop < 1.5.8-1
 Obsoletes:  vencord-desktop < 1.5.8-1
-Version:	1.6.8
+Version:	1.6.9
 %electronmeta -aD
 Release:	1%{?dist}
 License:	GPL-3.0-or-later
