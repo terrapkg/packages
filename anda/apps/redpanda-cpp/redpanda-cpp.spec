@@ -48,16 +48,16 @@ can only running under Windows.
 %cmake_install
 
 %check
-desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
+%desktop_file_validate %{buildroot}%{_appsdir}/%{appid}.desktop
 
 %files
-/usr/bin/RedPandaIDE
-/usr/libexec/RedPandaCPP/*
-/usr/share/RedPandaCPP/*
-/usr/share/doc/RedPandaCPP/*
-/usr/share/applications/RedPandaIDE.desktop
-/usr/share/icons/hicolor/scalable/apps/redpandaide.svg
-/usr/share/mime/packages/redpandaide.xml
+%{_bindir}/RedPandaIDE
+%{_libexecdir}/RedPandaCPP/*
+%{_datadir}/RedPandaCPP/*
+%{_docdir}/RedPandaCPP/*
+%{_appsdir}/RedPandaIDE.desktop
+%{_scalableiconsdir}/redpandaide.svg
+%{_datadir}/mime/packages/redpandaide.xml
 
 %changelog
 * Wed Nov 11 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 3.5-1
