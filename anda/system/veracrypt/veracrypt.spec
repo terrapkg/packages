@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 %define _unpackaged_files_terminate_build 0
 %define appid jp.veracrypt.veracrypt
-%global ver VeraCrypt_1.26.30
+%global ver VeraCrypt_1.26.31
 %global sanitized_ver %(echo %{ver} | sed 's/^VeraCrypt_//')
 
 Name:           veracrypt
