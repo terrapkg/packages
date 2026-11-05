@@ -22,7 +22,6 @@ Packager:               Owen Zimmerman <owen@fyralabs.com>
 
 %install -a
 cp %{S:1} LICENSE
-%cargo_license_summary_online
 
 %files
 %doc README.md
