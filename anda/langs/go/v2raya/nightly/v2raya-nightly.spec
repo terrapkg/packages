@@ -12,7 +12,7 @@ Version:                %{ver}^%{commit_date}git.%{shortcommit}
 %gometa -f
 
 Name:           v2raya-nightly
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan, Tuic and Juicity protocols
 License:        AGPL-3.0-only
 Packager:       veuxit <erroor234@gmail.com>
@@ -37,6 +37,12 @@ pushd gui
 yarn --ignore-engines && OUTPUT_DIR=$(pwd)/../service/server/router/web yarn --ignore-engines build
 popd
 
+pushd core
+%define gomodulesmode GO111MODULE=on
+%define currentgoldflags -X main.Version=%{version}
+%gobuild -o ../v2raya_core ./main
+popd
+
 pushd service
 %define currentgoldflags -X github.com/v2rayA/v2rayA/conf.Version=%{version}
 export GO_BUILDTAGS="with_gvisor"
@@ -45,11 +51,13 @@ export GO_BUILDTAGS="with_gvisor"
 %install
 %gopkginstall
 install -Dm 755 v2raya -t %{buildroot}/%{_bindir}
+install -Dm 755 v2raya_core -t %{buildroot}/%{_bindir}
 install -Dm 644 install/universal/v2raya.desktop -t %{buildroot}/%{_appsdir}/
 install -Dm 644 install/universal/v2raya.service -t %{buildroot}/%{_unitdir}/
 install -Dm 644 install/universal/v2raya-lite.service -t %{buildroot}/%{_userunitdir}/
 install -Dm 644 install/universal/v2raya.default -t %{buildroot}/%{_sysconfdir}/default/v2raya.conf
 install -Dm 644 gui/public/img/icons/android-chrome-512x512.png %{buildroot}/%{_hicolordir}/512x512/apps/v2raya.png
+ln -s %{_datadir}/v2ray %{buildroot}%{_datadir}/v2raya
 
 %check
 %desktop_file_validate %{buildroot}/%{_appsdir}/v2raya.desktop
@@ -67,6 +75,8 @@ install -Dm 644 gui/public/img/icons/android-chrome-512x512.png %{buildroot}/%{_
 %doc README.md
 %license LICENSE
 %{_bindir}/v2raya
+%{_bindir}/v2raya_core
+%{_datadir}/v2raya
 %{_unitdir}/v2raya.service
 %{_userunitdir}/v2raya-lite.service
 %{_sysconfdir}/default/v2raya.conf
