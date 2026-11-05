@@ -17,7 +17,8 @@ Conflicts:      v2raya-nightly
 
 Requires:       v2ray-geoip v2ray-domain-list-community
 
-BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg desktop-file-utils
+BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs (yarnpkg-berry or yarnpkg) desktop-file-utils
+BuildRequires:  systemd-rpm-macros
 
 %description
 %summary.
@@ -29,7 +30,7 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 
 %build
 pushd gui
-yarn --ignore-engines && OUTPUT_DIR=$(pwd)/../service/server/router/web yarn --ignore-engines build
+yarn install && OUTPUT_DIR=$(pwd)/../service/server/router/web yarn build
 popd
 
 pushd core
