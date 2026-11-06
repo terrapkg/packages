@@ -30,9 +30,9 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 mkdir -p %{buildroot}%{_metainfodir}
 install -Dm0755 target/rpm/cosmic-ext-applet-logomenu           %{buildroot}%{_bindir}/cosmic-ext-applet-logomenu
 install -Dm0755 target/rpm/cosmic-ext-logomenu-settings         %{buildroot}%{_bindir}/cosmic-ext-logomenu-settings
-install -Dm0644 res/%{appid}.desktop                            %{buildroot}%{_appsdir}/%{appid}.desktop
-install -Dm0644 res/%{appid}.Settings.desktop                   %{buildroot}%{_appsdir}/%{appid}.Settings.desktop
-install -Dm0644 res/%{appid}.metainfo.xml                       %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
+install -Dm0644 metadata/app.desktop                            %{buildroot}%{_appsdir}/%{appid}.desktop
+install -Dm0644 metadata/%{appid}.Settings.desktop              %{buildroot}%{_appsdir}/%{appid}.Settings.desktop
+install -Dm0644 metadata/%{appid}.metainfo.xml                  %{buildroot}%{_metainfodir}/%{appid}.metainfo.xml
 install -Dm0644 res/icons/hicolor/scalable/apps/%{appid}.svg    %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 install -m0644 -t %{buildroot}%{_scalableiconsdir} res/icons/*.svg
 
