@@ -13,7 +13,6 @@ BuildRequires:  cmake-rpm-macros
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  pkgconfig(dbusmenu-gtk3-0.4)
-BuildRequires:  systemd-rpm-macros
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
