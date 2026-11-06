@@ -3,6 +3,7 @@
 name: Automatically build packages
 permissions:
   contents: read
+  actions: read
   attestations: write
   artifact-metadata: write
   id-token: write
@@ -28,8 +29,11 @@ on:
 jobs:
   manifest:
     runs-on: arc-runner-set
+    permissions:
+      contents: read
+      actions: write # to cancel unfinished PR builds
     outputs:
-      build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
+      build_matrix: ${{ steps.reuse.outputs.build_matrix || steps.generate_build_matrix.outputs.build_matrix }}
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
@@ -43,6 +47,13 @@ jobs:
       - name: Generate build matrix
         id: generate_build_matrix
         run: anda ci >> $GITHUB_OUTPUT
+      - name: Reuse packages built for the merged PR
+        id: reuse
+        if: github.event_name == 'push'
+        env:
+          BUILD_MATRIX: ${{ steps.generate_build_matrix.outputs.build_matrix }}
+          GH_TOKEN: ${{ github.token }}
+        run: ./.github/scripts/reuse-pr-builds.sh
   build:
     needs: manifest
     uses: ./.github/workflows/json-build.yml
