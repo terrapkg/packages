@@ -30,6 +30,7 @@ BuildRequires:  systemd-rpm-macros
 
 %build
 pushd gui
+export YARN_ENABLE_HARDENED_MODE=0 YARN_ENABLE_IMMUTABLE_INSTALLS=0
 yarn install && OUTPUT_DIR=$(pwd)/../service/server/router/web yarn build
 popd
 
