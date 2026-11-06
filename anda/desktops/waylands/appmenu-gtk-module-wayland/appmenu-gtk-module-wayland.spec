@@ -27,7 +27,7 @@ install -Dm755 appmenu-gtk-module-wayland.sh                            %{buildr
 %license LICENSE
 %{_libdir}/gtk-3.0/modules/libappmenu-gtk-module-wayland.so
 %{_sysconfdir}/profile.d/appmenu-gtk-module-wayland.sh
-%{_datadir}/glib-2.0/schemas/org.appmenu.gtk-module.gschema.xml
+%{_datadir}/glib-2.0/schemas/org.appmenu.gtk-module.wayland.gschema.xml
 
 %changelog
 * Tue Oct 27 2026 Owen Zimmerman <owen@fyralabs.com> - 26.08.03-1
