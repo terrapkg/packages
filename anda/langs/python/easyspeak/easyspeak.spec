@@ -4,7 +4,7 @@
 %define _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
-Version:		0.14.0
+Version:		0.15.0
 Release:		1%{?dist}
 Summary:		Voice control for Linux desktops. Fully local, no cloud, Wayland-native
 License:		GPL-3.0-or-later
