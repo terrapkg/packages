@@ -22,12 +22,22 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 install -Dm644 redhat-linux-build/libappmenu-gtk-module-wayland.so      %{buildroot}%{_libdir}/gtk-3.0/modules/libappmenu-gtk-module-wayland.so
 install -Dm755 appmenu-gtk-module-wayland.sh                            %{buildroot}%{_sysconfdir}/profile.d/appmenu-gtk-module-wayland.sh
 
+%post
+%systemd_user_post appmenu-gtk-module-wayland.service
+
+%preun
+%systemd_user_preun appmenu-gtk-module-wayland.service
+
+%postun
+%systemd_user_postun_with_restart appmenu-gtk-module-wayland.service
+
 %files
 %doc README.md
 %license LICENSE
 %{_libdir}/gtk-3.0/modules/libappmenu-gtk-module-wayland.so
 %{_sysconfdir}/profile.d/appmenu-gtk-module-wayland.sh
-%{_datadir}/glib-2.0/schemas/org.appmenu.gtk-module.gschema.xml
+%{_userunitdir}/appmenu-gtk-module-wayland.service
+%{_datadir}/glib-2.0/schemas/org.appmenu.gtk-module.wayland.gschema.xml
 
 %changelog
 * Tue Oct 27 2026 Owen Zimmerman <owen@fyralabs.com> - 26.08.03-1
