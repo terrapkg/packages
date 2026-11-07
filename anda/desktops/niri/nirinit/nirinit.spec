@@ -10,10 +10,6 @@ SourceLicense:  MPL-2.0
 License:        %{sourcelicense} AND (MIT OR Apache-2.0) AND MIT AND GPL-3.0-or-later AND EUPL-1.2 AND (Unlicense OR MIT)
 BuildSystem:    terra_cargo
 BuildRequires:  cargo-rpm-macros
-
-%dnl # Temporary
-%dnl BuildRequires:  cargo4rpm
-
 Packager:       Its-J <jonah@fyralabs.com>
 
 %description
