@@ -21,7 +21,7 @@
 %define __requires_exclude %(cat %{_builddir}/%{name}-requires-exclude 2>/dev/null)
 
 Name:           collabora-office
-Version:        26.04.4.3
+Version:        26.04.5.3
 Release:        1%{?dist}
 Summary:        Office suite based on Collabora Online and LibreOffice technology
 # Collabora Online and the Qt app are MPL-2.0. The engine is LibreOffice-based
