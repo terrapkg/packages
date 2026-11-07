@@ -1,1 +1,1 @@
-rpm.version(gh("amaanq/nirinit"));
+rpm.version(crates("nirinit"));
