@@ -29,7 +29,7 @@ jobs:
   manifest:
     runs-on: arc-runner-set
     outputs:
-      build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
+      build_units: ${{ steps.generate_build_matrix.outputs.build_units }}
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
@@ -42,13 +42,18 @@ jobs:
           fetch-depth: 0
       - name: Generate build matrix
         id: generate_build_matrix
-        run: anda ci >> $GITHUB_OUTPUT
+        run: anda ci >> "$GITHUB_OUTPUT"
   build:
     needs: manifest
+    strategy:
+      fail-fast: false
+      matrix:
+        unit: ${{ fromJson(needs.manifest.outputs.build_units) }}
     uses: ./.github/workflows/json-build.yml
     secrets: inherit
     with:
-      packages: ${{ needs.manifest.outputs.build_matrix }}
+      packages: ${{ toJSON(matrix.unit.packages) }}
+      unit_id: ${{ matrix.unit.name }}
       publish: ${{ github.event_name == 'push' }}
 
   appstream:
