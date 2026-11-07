@@ -5,7 +5,7 @@ Name:           ultramarine-grub-theme
 Version:        0.1.0
 Release:        1%{?dist}
 Summary:        KDE-style GRUB themes for Ultramarine Linux
-License:        GPL-3.0-or-later
+License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
 URL:            https://github.com/Ultramarine-Linux/grub-themes
 Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 BuildArch:      noarch
@@ -23,7 +23,6 @@ Packager:       Its-J <jonah@fyralabs.com>
 
 %package        light
 Summary:        KDE-style Light GRUB theme for Ultramarine Linux
-License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
 Requires:       %{name} = %{evr}
 Conflicts:      %{name}-dark %{name}-darker
 
@@ -32,7 +31,6 @@ GRUB theme for Ultramarine Linux using KDE Plasma's default light colours.
 
 %package        dark
 Summary:        KDE-style Dark GRUB theme for Ultramarine Linux
-License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
 Requires:       %{name} = %{evr}
 Conflicts:      %{name}-light %{name}-darker
 
@@ -41,7 +39,6 @@ GRUB theme for Ultramarine Linux using KDE Plasma's default dark colours.
 
 %package        darker
 Summary:        KDE-style Darker GRUB theme for Ultramarine Linux
-License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
 Requires:       %{name} = %{evr}
 Conflicts:      %{name}-light %{name}-dark
 
