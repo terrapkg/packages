@@ -15,7 +15,7 @@
 
 Name:           1password
 Version:        8.12.44
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Password manager and secure wallet
 
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
@@ -25,6 +25,7 @@ URL:            https://1password.com
 Source0:        https://downloads.1password.com/linux/tar/stable/%{_arch}/%{name}-%{version}.%{tararch}.tar.gz
 Source1:        https://downloads.1password.com/linux/tar/stable/%{_arch}/%{name}-%{version}.%{tararch}.tar.gz.sig
 Source2:        1password.sysusers
+Source3:        1password.tmpfiles
 ExclusiveArch:  x86_64 aarch64
 
 BuildRequires:  desktop-file-utils
@@ -62,6 +63,7 @@ install -Dm0644 resources/custom_allowed_browsers -t %{buildroot}%{_datadir}/doc
 sed -i 's|^Exec=/opt/1Password/1password|Exec=%{_bindir}/1password|' resources/%{appid}.desktop
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications resources/%{appid}.desktop
 install -Dm0644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
+install -Dm0644 %{SOURCE3} %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
 # Install application payload under /usr for immutable-system compatibility.
 mkdir -p %{buildroot}%{appdir}
@@ -99,6 +101,7 @@ find %{buildroot}%{appdir} -type f \
 %sysusers_create_package %{name} %{SOURCE2}
 
 %post
+%tmpfiles_create %{name}.conf
 /usr/bin/chown root:onepassword %{appdir}/1Password-BrowserSupport
 /usr/bin/chmod 2755 %{appdir}/1Password-BrowserSupport
 /usr/bin/chown root:onepassword-mcp %{appdir}/1password-mcp
@@ -126,6 +129,7 @@ find %{buildroot}%{appdir} -type f \
 %{_datadir}/applications/%{appid}.desktop
 %{_datadir}/polkit-1/actions/com.1password.1Password.policy
 %{_sysusersdir}/%{name}.conf
+%{_tmpfilesdir}/%{name}.conf
 %config(noreplace) %{_sysconfdir}/1password/custom_allowed_browsers
 %{_datadir}/doc/1password/
 
