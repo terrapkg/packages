@@ -1,5 +1,3 @@
-%dnl %undefine __brp_mangle_shebangs
-
 Name:           nirinit
 Version:        0.3.1
 Release:        1%{?dist}
