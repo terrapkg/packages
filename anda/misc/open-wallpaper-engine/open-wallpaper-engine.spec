@@ -2,7 +2,7 @@
 # no matter what i did build makes no debug info
 
 Name:           open-wallpaper-engine
-Version:        0.3.2
+Version:        0.3.3
 Release:        1%{?dist}
 License:        GPL-2.0-only
 Summary:        Open source wallpaper engine implement mostly for linux (waywallen plugin)
