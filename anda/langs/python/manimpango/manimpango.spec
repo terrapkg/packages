@@ -4,7 +4,7 @@
 %global _desc ManimPango is a C binding for Pango using Cython
 
 Name:           python-%{pypi_name}
-Version:        0.7.0
+Version:        0.7.1
 Release:        1%{?dist}
 Summary:        ManimPango is a C binding for Pango using Cython
 License:        MIT
