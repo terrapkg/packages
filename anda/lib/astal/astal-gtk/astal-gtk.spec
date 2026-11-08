@@ -1,6 +1,6 @@
-%global commit c6b4d08dd671065757ed0571de5b777f236ca157
+%global commit b7aaf4ce69ebb3c5b1818d524e04b23bc755a97d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20261107
+%global commit_date 20261108
 
 Name:			astal
 Version:		0^%{commit_date}git.%{shortcommit}
