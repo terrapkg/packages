@@ -1,5 +1,5 @@
 %global pypi_name grub2-theme-preview
-%global _desc Beautiful spinners for terminal, IPython and Jupyter.
+%global _desc Preview a GRUB 2.x theme using KVM/QEMU.
 
 Name:			python-%{pypi_name}
 Version:		2.10.1
