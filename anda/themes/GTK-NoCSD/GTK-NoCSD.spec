@@ -33,7 +33,7 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 %files
 %doc README.md
 %license LICENSE
-%license %{_defaultlicensedir}/gtk-nocsd/LICENSE
+%exclude %license %{_defaultlicensedir}/gtk-nocsd/LICENSE
 %{_libdir}/libgtk-nocsd.so.0
 
 %changelog
