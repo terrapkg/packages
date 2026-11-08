@@ -1,10 +1,9 @@
 %global pypi_name nwg-displays
-%global _desc Output management utility for sway, Hyprland, Niri and mangowm, inspired by wdisplays and wlay. Part of the nwg-shell project.
-
+%global _desc Output management utility for Sway, Hyprland, Niri and MangoWM
 Name:			python-%{pypi_name}
 Version:		0.5.0
 Release:		1%{?dist}
-Summary:		Output management utility for sway, Hyprland, Niri and mangowm
+Summary:		Output management utility for Sway, Hyprland, Niri and MangoWM
 License:		MIT
 URL:			https://github.com/nwg-piotr/nwg-displays
 Source0:		%{url}/archive/refs/tags/v%{version}.tar.gz
