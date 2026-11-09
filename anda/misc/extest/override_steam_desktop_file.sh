@@ -1,5 +1,6 @@
 #!/bin/bash -x
 EXTEST="/usr/lib/extest/libextest.so"
+EXTEST64="/usr/lib64/extest/libextest.so"
 STEAM_DESKTOP_FILE="/usr/share/applications/steam.desktop"
 
 if ! [ -f $STEAM_DESKTOP_FILE ]; then
@@ -7,7 +8,7 @@ if ! [ -f $STEAM_DESKTOP_FILE ]; then
 	exit 1
 fi
 
-sed -i "s,Exec=/usr/bin/steam,Exec=env LD_PRELOAD=$EXTEST /usr/bin/steam," $STEAM_DESKTOP_FILE
+sed -i "s,Exec=/usr/bin/steam,Exec=env LD_PRELOAD=$EXTEST:$EXTEST64 /usr/bin/steam," $STEAM_DESKTOP_FILE
 
 echo $STEAM_DESKTOP_FILE
 echo "Extest has been set up, enjoy!"
