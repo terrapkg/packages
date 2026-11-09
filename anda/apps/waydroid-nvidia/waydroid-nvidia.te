@@ -5,6 +5,7 @@ require {
 	type unconfined_t;
 	type unconfined_service_t;
 	type dma_device_t;
+	type dri_device_t;
 	type binder_device_t;
 	type binderfs_t;
 	type abrt_t;
@@ -176,3 +177,6 @@ optional_policy(`
 	}
 	dontaudit waydroid_t snappy_var_lib_t:dir search_dir_perms;
 ')
+
+# NVIDIA render nodes: grant access to the dri nodes the guest opens
+allow waydroid_t dri_device_t:chr_file { getattr open read write ioctl map };
