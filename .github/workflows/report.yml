@@ -55,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
-          common=(-m . -u --fedora -v --ignore-file .github/oglyad-ignores.json --fail-on never)
+          common=(-m . -u --fedora -v --fail-on never)
           oglyad "${common[@]}" --format markdown > "$RUNNER_TEMP/report.md"
           oglyad "${common[@]}" --format json > "$RUNNER_TEMP/report.json"
           cat "$RUNNER_TEMP/report.md" >> "$GITHUB_STEP_SUMMARY"
