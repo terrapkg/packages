@@ -1,0 +1,97 @@
+name: Report
+
+# a nightly oglyad health report on every maintained release branch, posted
+# to the run's job summary and kept as an artifact
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: arc-runner-set
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up git repository
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      # meson's macros are needed just to parse specs using its declarative
+      # BuildSystem, and the builder image doesn't ship them
+      - name: Install oglyad
+        run: |
+          dnf5 -y -q install oglyad meson
+          oglyad --version
+
+      # spec evaluations, repodata and upstream answers carry over between
+      # runs. extracted release branches are left out because they're faster to
+      # extract than to restore
+      - name: Restore cache
+        id: cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cache/oglyad
+            !~/.cache/oglyad/trees
+          key: oglyad-report-${{ github.run_id }}
+          restore-keys: oglyad-report-
+
+      - name: Run oglyad
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          common=(-m . -u --fedora -v --ignore-file .github/oglyad-ignores.json --fail-on never)
+          oglyad "${common[@]}" --format markdown > "$RUNNER_TEMP/report.md"
+          oglyad "${common[@]}" --format json > "$RUNNER_TEMP/report.json"
+          cat "$RUNNER_TEMP/report.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Save cache
+        if: always()
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.cache/oglyad
+            !~/.cache/oglyad/trees
+          key: ${{ steps.cache.outputs.cache-primary-key }}
+
+      - name: Upload report
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: oglyad-report
+          path: |
+            ${{ runner.temp }}/report.md
+            ${{ runner.temp }}/report.json
+          retention-days: 30
+
+      # a summary with the errors listed and the full markdown report as an
+      # attachment. skipped when the webhook secret isn't set, like on forks
+      - name: Post to Discord
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_REPORT_WEBHOOK }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        shell: bash
+        run: |
+          if [[ -z "$WEBHOOK" ]]; then
+            echo "DISCORD_REPORT_WEBHOOK isn't set, skipping"
+            exit 0
+          fi
+          jq --arg url "$RUN_URL" -f .github/scripts/oglyad-discord.jq "$RUNNER_TEMP/report.json" > "$RUNNER_TEMP/payload.json"
+          curl -sS --fail-with-body \
+            -F "payload_json=<$RUNNER_TEMP/payload.json;type=application/json" \
+            -F "files[0]=@$RUNNER_TEMP/report.md;filename=oglyad-report.md;type=text/markdown" \
+            "$WEBHOOK" > /dev/null

@@ -1,0 +1,24 @@
+{
+  "ignore": [
+    {
+      "check": "duplicate-name",
+      "path": "anda/langs/zig/master-bootstrap",
+      "reason": "bootstrap build of zig-master, replaced by the real build once it exists"
+    },
+    {
+      "check": "duplicate-name",
+      "path": "anda/langs/zig/master",
+      "reason": "built on top of its bootstrap package, which shares the name on purpose"
+    },
+    {
+      "check": "duplicate-name",
+      "path": "anda/lib/apparmor-libs32",
+      "reason": "32-bit build of apparmor's libraries for multilib, same source package by design"
+    },
+    {
+      "check": "duplicate-name",
+      "path": "anda/lib/apparmor",
+      "reason": "shares its name with the apparmor-libs32 multilib build on purpose"
+    }
+  ]
+}
