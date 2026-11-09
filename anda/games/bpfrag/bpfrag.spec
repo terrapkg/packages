@@ -5,7 +5,7 @@
 %global _lto_cflags %{nil}
 
 Name:           bpfrag
-Version:        0.12.5
+Version:        0.13.0
 Release:        1%{?dist}
 Summary:        eBPF network tuning for competitive gaming that undoes itself
 
