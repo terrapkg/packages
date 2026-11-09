@@ -1,6 +1,6 @@
 Name:           zlib
 Version:        1.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        Zlib
 URL:            https://zlib.net
 Source:         https://github.com/madler/zlib/archive/v%{version}.tar.gz
@@ -13,6 +13,7 @@ BuildRequires:  gcc
 %summary.
 
 %package devel
+Requires:       %{name}%{?_isa} = %{evr}
 %pkg_devel_files
 
 %package static
@@ -37,6 +38,9 @@ BuildRequires:  gcc
 %_libdir/libz.so.*
 
 %changelog
+* Mon Nov 9 2026 Cypress Reed <cypress@fyralabs.com> - 1.4-2
+- Make zlib-devel require the matching zlib, so libz.so isn't left dangling
+
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 1.3.2-2
 - Update packager
 
