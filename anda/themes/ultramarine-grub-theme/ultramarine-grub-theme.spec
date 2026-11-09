@@ -1,22 +1,24 @@
-%global themes light dark darker
-%global regen_grub [ -f /boot/grub2/grub.cfg ] && grub2-mkconfig -o /boot/grub2/grub.cfg >/dev/null 2>&1 || :
+%global themes         light dark darker
+%global regen_grub     [ -f /boot/grub2/grub.cfg ] && grub2-mkconfig -o /boot/grub2/grub.cfg >/dev/null 2>&1 || :
 
-Name:           ultramarine-grub-theme
-Version:        0.1.0
-Release:        1%{?dist}
-Summary:        KDE-style GRUB themes for Ultramarine Linux
-License:        GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
-URL:            https://github.com/Ultramarine-Linux/grub-themes
-Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
-BuildArch:      noarch
+Name:                   ultramarine-grub-theme
+Version:                0.1.0
+Release:                1%{?dist}
+Summary:                KDE-style GRUB themes for Ultramarine Linux
+License:                GPL-3.0-or-later AND OFL-1.1 AND LicenseRef-Fyra-Labs-Proprietary
+URL:                    https://github.com/Ultramarine-Linux/grub-themes
+Source0:                %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
+BuildArch:              noarch
 
-BuildRequires:  grub2-tools-extra
-BuildRequires:  google-noto-sans-fonts
+BuildRequires:          grub2-tools-extra
+BuildRequires:          google-noto-sans-fonts
 
-Requires:       (grub2 or grub2-efi)
-Requires:       grub2-tools
+Requires:               (grub2 or grub2-efi)
+Requires:               grub2-tools
 
-Packager:       Its-J <jonah@fyralabs.com>
+Requires(postun):       grub2-tools
+
+Packager:               Its-J <jonah@fyralabs.com>
 
 %description
 %{summary}.
