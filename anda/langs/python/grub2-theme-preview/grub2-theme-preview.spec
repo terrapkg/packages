@@ -22,6 +22,9 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 Requires:       qemu-kvm
+Requires:       grub2-tools-extra
+Requires:       edk2-ovmf
+Requires:       mtools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
