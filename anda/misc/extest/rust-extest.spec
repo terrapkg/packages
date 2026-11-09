@@ -19,7 +19,7 @@
 
 Name:           extest
 Version:        %{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        X11 XTEST reimplementation primarily for Steam Controller on Wayland
 
 License:        MIT
