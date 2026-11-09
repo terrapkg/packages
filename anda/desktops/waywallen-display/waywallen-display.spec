@@ -2,7 +2,7 @@
 %global uuid        %{extension}@waywallen.io
 
 Name:            waywallen-display
-Version:         0.4.5
+Version:         0.4.6
 Summary:         Desktop integration for waywallen
 Release:         1%{?dist}
 License:         MIT
