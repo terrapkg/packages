@@ -1,5 +1,5 @@
 Name:           buildprof
-Version:        untagged.fcf1bdc3e0a0e64c4de3
+Version:        0.3.0
 Release:        1%{?dist}
 Summary:        Records every process and file access in a build and shows it as an interactive timeline
 URL:            https://buildprof.lalitm.com
