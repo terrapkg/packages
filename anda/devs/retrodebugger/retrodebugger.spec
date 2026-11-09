@@ -34,7 +34,7 @@ Packager:      Stefan Kaps <st0ff.npl@gmail.com>
 # The old SPEC used a special build-project to make the SPECfile-calls much simpler.
 # but that is not required, it'd be bloat.
 %prep
-%git_clone --branch=Terra-linux-deployment https://github.com/St0fF-NPL-ToM/RetroDebugger
+%git clone --branch=Terra-linux-deployment https://github.com/St0fF-NPL-ToM/RetroDebugger %name
 
 %build
 cd %name && /bin/sh build-linux.sh
