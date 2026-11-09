@@ -82,6 +82,9 @@ jobs:
       - name: Build terra-scripts
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/terra-scripts/pkg
 
+      - name: Build oglyad
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/oglyad/pkg
+
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
       - name: Install Subatomic
