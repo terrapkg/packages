@@ -1,5 +1,5 @@
 project pkg {
-	arches = ["x86_64"]
+	arches = ["aarch64"]
 	rpm {
 		spec = "ultramarine-grub-theme.spec"
 	}
