@@ -23,7 +23,6 @@ BuildRequires: alsa-lib-devel
 BuildRequires: glew-devel
 BuildRequires: sndio-devel
 BuildRequires: terra-appstream-helper
-BuildRequires: glibc-2.43
 Requires:      glibc-2.43
 Requires:      libGLEW
 Requires:      sndio-libs
