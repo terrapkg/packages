@@ -39,18 +39,14 @@ git clone --branch=Terra-linux-deployment https://github.com/St0fF-NPL-ToM/Retro
 cd %name && /bin/sh build-linux.sh
 
 %install
-install -Dm 755 target/rpm/rush %{buildroot}%{_bindir}/rush
+install -Dm 755 %name/build/retrodebugger       %{buildroot}%{_bindir}/retrodebugger
+install -Dm 644 %name/README.md                 %{buildroot}%{_docdir}/retrodebugger/README.md
+install -Dm 644 %name/docs                      %{buildroot}%{_docdir}/retrodebugger
+install -Dm 644 %name/assets/icons/%{name}.svg  %{buildroot}%{_scalableiconsdir}/%{name}.svg
 
-install -Dm644 extra/desktop/tracy.desktop %buildroot%_datadir/applications/tracy.desktop
-install -Dm644 icon/icon.svg %buildroot%_iconsdir/hicolor/scalable/apps/tracy.svg
-install -Dm644 extra/desktop/application-tracy.xml %buildroot%_datadir/mime/packages/application-tracy.xml
-install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/apps/application-tracy.svg
-
-%terra_appstream -o RetroDebugger/assets/%appid.metainfo.xml
-%__desktop_file_edit retrodebugger/assets/%appid.desktop \
-    --set-key=Exec --set-value=%{_bindir}/retrodebugger \
-    --set-key=Type --set-value=Application \
-    --set-icon=RetroDebugger
+%terra_appstream -o %name/assets/%appid.metainfo.xml
+%desktop_file_install -k Exec,Type,Icon -v %{_bindir}/retrodebugger,Application,%name \
+    %{_appsdir}/%appid.desktop
 
 %files
 %{_bindir}/retrodebugger
@@ -58,7 +54,13 @@ install -Dm644 icon/application-tracy.svg %buildroot%_iconsdir/hicolor/scalable/
 %{_docdir}/retrodebugger/docs/
 %{_scalableiconsdir}/%{name}.svg
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_appsdir}/%{name}.desktop
+%{_appsdir}/%{appid}.desktop
+
+%post
+%update_desktop_database
+
+%postun
+%update_desktop_database
 
 %changelog
 * Sun Nov 01 2026 Stefan Kaps <st0ff.npl@gmail.com> - 1.0.0
