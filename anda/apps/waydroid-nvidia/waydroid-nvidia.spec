@@ -88,8 +88,8 @@ patch -p1 < ../patches/waydroid/0001-nvidia-integration.patch
 # mounts /dev/nvidia* do modo nvidia-prolapse + helper que os gera
 patch -p1 < ../waydroid/0001-lxc-nvidia-native-mounts.patch
 cmp ../waydroid/nvidia_native.py tools/helpers/nvidia_native.py
-# Fedora: contexto SELinux no mount do rootfs (era o antigo mount-secontext.patch)
-sed -i 's/^    opt_args = \[\]$/    opt_args = ["context=\\"system_u:object_r:waydroid_rootfs_t:s0\\""]/' tools/helpers/mount.py
+# Fedora: o contexto SELinux do rootfs vem de rootfs_context() (0001-nvidia-integration):
+# não fixar context= aqui, ou o mount sai com a opção duplicada e o fallback "sem contexto" morre.
 # Fedora: LXC sem AppArmor (era o antigo no-apparmor.patch)
 sed -i '/^lxc\.aa_profile = unconfined$/d; /^lxc\.apparmor\.profile = unconfined$/d' data/configs/config_1 data/configs/config_3
 sed -i '/^    if get_apparmor_status(args):$/,+2d' tools/helpers/lxc.py
