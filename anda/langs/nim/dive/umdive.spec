@@ -15,13 +15,13 @@ Provides:       dive = %version-%release
 
 %prep
 %autosetup -n dive-%version
-%nim_prep
+%nimble_prep
 
 %build
-%nim_c src/dive
+%nimble_build
 
 %install
-install -Dpm755 src/dive %buildroot%_bindir/dive
+%nimble_install
 
 %files
 %doc README.md

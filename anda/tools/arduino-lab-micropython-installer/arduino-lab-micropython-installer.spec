@@ -1,6 +1,5 @@
-
 Name:           lab-micropython-installer
-%electronmeta
+%electronmeta -D
 Version:        1.4.0
 Release:        1%?dist
 License:        AGPL-3.0 AND %electron_license
@@ -27,7 +26,7 @@ and Windows and is built using the Electron framework.
 %npm_build -r package
 
 %install
-%electron_install -i micropython-installer -s micropython-installer -d micropython-installer -b micropython-installer
+%electron_install -I -i micropython-installer -s micropython-installer -d micropython-installer -b micropython-installer
 install -Dm644 %{SOURCE1} %{buildroot}%{_appsdir}/micropython-installer.desktop
 
 %check
