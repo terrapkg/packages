@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: event-list explicit-exception non-negative utility-ht
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.2.2.6
@@ -111,6 +111,12 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files
