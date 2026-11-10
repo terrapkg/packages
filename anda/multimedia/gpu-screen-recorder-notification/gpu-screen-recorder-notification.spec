@@ -1,5 +1,5 @@
 Name:           gpu-screen-recorder-notification
-Version:        1.3.8
+Version:        1.3.9
 Release:        1%{?dist}
 Summary:        Notification in the style of ShadowPlay
 
@@ -10,6 +10,7 @@ URL:            https://git.dec05eba.com/%{name}/about
 Source:         https://dec05eba.com/snapshot/%{name}.git.%{version}.tar.gz
 
 BuildRequires:  gcc gcc-c++
+BuildRequires:  meson
 BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(xrandr)
 BuildRequires:  pkgconfig(xrender)

@@ -1,7 +1,7 @@
 %global appid org.waywallen.waywallen
 
 Name:           waywallen
-Version:        0.5.0
+Version:        0.6.0
 Release:        1%{?dist}
 License:        MIT
 Summary:        Wallpaper Manager for Linux
@@ -89,11 +89,14 @@ rmdir %{buildroot}%{_prefix}/lib
 %{_bindir}/waywallen-image-renderer
 %{_bindir}/waywallen-ui
 %{_bindir}/waywallen-video-renderer
+%{_bindir}/waywallen-gltf-renderer
+%{_bindir}/waywallen-probe
 %{_appsdir}/%{appid}.desktop
 %{_scalableiconsdir}/%{appid}.svg
 %{_datadir}/metainfo/%{appid}.metainfo.xml
 %dir %{_datadir}/waywallen
 %{_datadir}/waywallen/
+%{_datadir}/qml/waywallen/
 
 %files libs
 %{_libdir}/libwaywallen-bridge.so

@@ -7,7 +7,7 @@
 %global appid com.github.GrowlyX.tailmux
 
 %global goipath github.com/GrowlyX/tailmux
-Version:        1.4.0
+Version:        1.6.0
 
 %gometa -f
 
@@ -54,6 +54,7 @@ popd
 %if 0%{?fedora} <= 44
 export GOTOOLCHAIN=auto
 %endif
+%define currentgoldflags -X main.version=%version
 %gobuild -o %{gobuilddir}/cmd/tailmux %{goipath}/cmd/tailmux
 
 pushd desktop

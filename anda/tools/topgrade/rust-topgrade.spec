@@ -3,7 +3,7 @@
 
 Name:           rust-topgrade
 # renovate: datasource=github-releases depName=topgrade-rs/topgrade
-Version:        17.14.1
+Version:        17.16.0
 Release:        1%{?dist}
 Summary:        Upgrade all the things
 
@@ -44,7 +44,7 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n %{crate}-%{version}
-%cargo_prep_online
+%cargo_prep_online -u
 
 %build
 %cargo_license_summary_online

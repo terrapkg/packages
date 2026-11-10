@@ -5,7 +5,7 @@
 %global _lto_cflags %{nil}
 
 Name:           bpfrag
-Version:        0.9.2
+Version:        0.14.0
 Release:        1%{?dist}
 Summary:        eBPF network tuning for competitive gaming that undoes itself
 
@@ -33,6 +33,7 @@ BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(dbus-1)
 BuildRequires:  systemd-rpm-macros
 
+Requires:       dbus-common
 Recommends:     ethtool
 Recommends:     iw
 
@@ -63,6 +64,7 @@ install -Dpm0644 dist/bpfrag.service %{buildroot}%{_unitdir}/bpfrag.service
 install -Dpm0644 dist/bpfrag.8 %{buildroot}%{_mandir}/man8/bpfrag.8
 install -Dpm0644 dist/bpfrag.default %{buildroot}%{_sysconfdir}/default/bpfrag
 install -Dpm0644 dist/bpfrag.toml %{buildroot}%{_sysconfdir}/bpfrag/bpfrag.toml
+install -Dpm0644 dist/com.performativenonsense.Bpfrag1.conf %{buildroot}%{_datadir}/dbus-1/system.d/com.performativenonsense.Bpfrag1.conf
 
 %check
 %cargo_test
@@ -81,6 +83,7 @@ install -Dpm0644 dist/bpfrag.toml %{buildroot}%{_sysconfdir}/bpfrag/bpfrag.toml
 %doc README.md
 %{_bindir}/bpfrag
 %{_unitdir}/bpfrag.service
+%{_datadir}/dbus-1/system.d/com.performativenonsense.Bpfrag1.conf
 %{_mandir}/man8/bpfrag.8*
 %dir %{_sysconfdir}/bpfrag
 %config(noreplace) %{_sysconfdir}/bpfrag/bpfrag.toml

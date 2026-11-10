@@ -1,7 +1,7 @@
 %global debug_package %{nil}
 
 Name:           tidal-hifi
-Version:        9.0.0
+Version:        9.0.1
 Release:        1%{?dist}
 Summary:        The web version of Tidal running in electron with hifi support thanks to widevine
 %electronmeta

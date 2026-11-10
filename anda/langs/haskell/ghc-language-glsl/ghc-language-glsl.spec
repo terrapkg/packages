@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: HUnit parsec prettyclass test-framework test-framework-hunit
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.3.0
@@ -29,6 +29,11 @@ BuildRequires:  ghc-prettyclass-devel
 BuildRequires:  ghc-base-prof
 BuildRequires:  ghc-parsec-prof
 BuildRequires:  ghc-prettyclass-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-HUnit-devel
+BuildRequires:  ghc-test-framework-devel
+BuildRequires:  ghc-test-framework-hunit-devel
 %endif
 # End cabal-rpm deps
 
@@ -91,6 +96,13 @@ cp -bp %{SOURCE1} %{pkg_name}.cabal
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+PATH=%{buildroot}%{_bindir}:$PATH
+%cabal_test
+%endif
 
 
 %files -f %{name}.files

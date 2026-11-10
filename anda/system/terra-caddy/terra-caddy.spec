@@ -17,7 +17,7 @@
 # caddy-dns/duckdns and caddy-dns/namecheap are left out on purpose: they have
 # no license, so they can't be redistributed.
 %global xcaddy_ver          v0.4.7
-%global dist_ver            v2.11.7
+%global dist_ver            v2.11.9
 %global cloudflare_ver      v0.2.4
 %global porkbun_ver         v0.3.1
 %global desec_ver           v1.1.0
@@ -35,8 +35,8 @@
 %global gomodulesmode GO111MODULE=on
 
 Name:           terra-caddy
-Version:        2.11.7
-Release:        1%{?dist}
+Version:        2.11.9
+Release:        2%{?dist}
 Summary:        Web server with automatic HTTPS and DNS provider modules
 # Caddy and the caddy-dns modules are Apache-2.0 and MIT; the rest covers
 # their vendored Go dependencies (vendor-modules.txt lists them).

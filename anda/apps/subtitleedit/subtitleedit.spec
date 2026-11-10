@@ -10,7 +10,7 @@
 %global __strip /bin/true
 
 Name:           %realname.bin
-Version:        5.3.0
+Version:        5.4.0
 Release:        1%{?dist}
 Summary:        An advanced subtitle editor and converter
 License:        GPL-3.0-only
@@ -20,7 +20,6 @@ Source1:        https://raw.githubusercontent.com/SubtitleEdit/subtitleedit/v%{v
 Packager:       madonuko <mado@fyralabs.com>
 Provides:       %realname = %evr
 Conflicts:      %realname
-Requires:       dejavu-sans-mono-fonts mono-core
 
 %description
 %summary.
