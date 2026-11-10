@@ -12,6 +12,8 @@ Requires:       libdrm libxcb
 BuildRequires:  anda-srpm-macros
 BuildRequires:  desktop-file-utils
 BuildRequires:  pnpm
+BuildRequires:  python3dist(distlib)
+BuildRequires:  python3-distutils-extra
 Provides:       arduino-lab-micropython-installer
 
 %description
