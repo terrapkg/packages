@@ -1,6 +1,6 @@
 %global toolchain clang
 Name:           lightdm-kde-greeter
-Version:        6.1.7
+Version:        6.1.8
 Release:        1%{?dist}
 Summary:        Login screen using the LightDM framework
 License:        GPL-3.0-or-later
