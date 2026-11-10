@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: tasty tasty-hunit
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.1.0.0
@@ -29,6 +29,10 @@ BuildRequires:  ghc-bytestring-devel
 BuildRequires:  ghc-attoparsec-prof
 BuildRequires:  ghc-base-prof
 BuildRequires:  ghc-bytestring-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-tasty-devel
+BuildRequires:  ghc-tasty-hunit-devel
 %endif
 # End cabal-rpm deps
 
@@ -90,6 +94,12 @@ cp -bp %{SOURCE1} %{pkg_name}.cabal
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files
