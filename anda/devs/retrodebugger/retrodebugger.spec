@@ -8,7 +8,7 @@
 A visual Debugger/debugging Host for 8 bit systems:<li>C64 (VICE emulation)</li><li>NES ()</li><li>Atari 800</li><li>C64Ultimate</li>}
 
 Name:          %{name}
-Version:       0.0.1
+Version:       1.0.0
 Release:       1%{?dist}
 Summary:       A visual debugger/debugging host for 8 bit systems.
 License:       ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND BSD-2-Clause AND BSL-1.0 AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CC0-1.0 AND ISC AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND (MPL-2.0 OR GPL-3.0-only) AND MPL-2.0+ AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Zlib
@@ -22,8 +22,8 @@ BuildRequires: sdl2-compat-devel
 BuildRequires: alsa-lib-devel
 BuildRequires: glew-devel
 BuildRequires: sndio-devel
+BuildRequires: desktop-file-utils
 BuildRequires: terra-appstream-helper
-Requires:      glibc-2.43
 Requires:      libGLEW
 Requires:      sndio-libs
 Packager:      Stefan Kaps <st0ff.npl@gmail.com>
@@ -33,26 +33,36 @@ Packager:      Stefan Kaps <st0ff.npl@gmail.com>
 # The old SPEC used a special build-project to make the SPECfile-calls much simpler.
 # but that is not required, it'd be bloat.
 %prep
-git clone --verbose --progress --branch=Terra-linux-deployment https://github.com/St0fF-NPL-ToM/RetroDebugger %name
+# INTENAL TESTING SPEEDUP: git config --global url."http://192.168.2.192:8080/".insteadOf  "https://github.com/"
+# final URL will point to main repository, use the named branch, but tags for versioning.
+git clone --depth 1 --recurse-submodules --verbose --progress --branch=Terra-linux-deployment https://github.com/St0fF-NPL-ToM/RetroDebugger %name
 
 %build
 cd %name && /bin/sh build-linux.sh
+# obviously, %desktop_file_wurst needs an existing file, even if it is empty …
+touch ./build/%appid.desktop
 
 %install
 install -Dm 755 %name/build/retrodebugger       %{buildroot}%{_bindir}/retrodebugger
-install -Dm 644 %name/README.md                 %{buildroot}%{_docdir}/retrodebugger/README.md
-install -Dm 644 %name/docs                      %{buildroot}%{_docdir}/retrodebugger
 install -Dm 644 %name/assets/icons/%{name}.svg  %{buildroot}%{_scalableiconsdir}/%{name}.svg
+install -Dm 644 %name/README.md                 %{buildroot}%{_docdir}/retrodebugger/README.md
+cp -a           %name/docs                   -t %{buildroot}%{_docdir}/retrodebugger/
 
 %terra_appstream -o %name/assets/%appid.metainfo.xml
-%desktop_file_install -k Exec,Type,Icon -v %{_bindir}/retrodebugger,Application,%name \
-    %{_appsdir}/%appid.desktop
+
+desktop-file-install --set-name=%name --copy-name-to-generic-name \
+    --set-icon=%name    --set-key=Type  --set-value=Application \
+    --set-key=Exec                      --set-value=%{_bindir}/retrodebugger \
+    --set-key=Version                   --set-value=%{version} \
+    --set-key=Comment                   --set-value="%summary" \
+    --set-key=PrefersNonDefaultGPU      --set-value=1 \
+    --set-key=SingleMainWindow          --set-value=1 \
+    %name/build/%{appid}.desktop
 
 %files
 %{_bindir}/retrodebugger
-%{_docdir}/retrodebugger/README.md
-%{_docdir}/retrodebugger/docs/
 %{_scalableiconsdir}/%{name}.svg
+%{_docdir}/retrodebugger/
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_appsdir}/%{appid}.desktop
 
