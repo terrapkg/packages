@@ -8,7 +8,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        1.10.0.0
+Version:        1.14.3.0
 Release:        1%{?dist}
 Summary:        ExactPrint for GHC
 
