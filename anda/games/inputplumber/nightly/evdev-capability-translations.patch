@@ -1,4 +1,4 @@
-From c8ec1669ac9f56b7254e461a12341b427085bece Mon Sep 17 00:00:00 2001
+From 71f1052ba9847016ccd7b7081c15de34777c5939 Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Sat, 24 Oct 2026 14:15:08 -0700
 Subject: [PATCH 1/7] fix(Input): Shift EvdevEvent to use EventCapability
@@ -14,7 +14,7 @@ with a new EventCapability trait, matching the pattern used by hidraw.
  4 files changed, 387 insertions(+), 381 deletions(-)
 
 diff --git a/src/input/event/evdev.rs b/src/input/event/evdev.rs
-index fe46059..75a1a22 100644
+index fe460599c..75a1a2233 100644
 --- a/src/input/event/evdev.rs
 +++ b/src/input/event/evdev.rs
 @@ -9,6 +9,8 @@ use crate::input::capability::{
@@ -842,7 +842,7 @@ index fe46059..75a1a22 100644
  
  /// Returns a translated evdev input event from the given [InputValue].
 diff --git a/src/input/event/native.rs b/src/input/event/native.rs
-index af045d2..e3713b4 100644
+index af045d2e9..e3713b4b9 100644
 --- a/src/input/event/native.rs
 +++ b/src/input/event/native.rs
 @@ -3,6 +3,7 @@ use std::time::{Duration, Instant};
@@ -872,7 +872,7 @@ index af045d2..e3713b4 100644
          NativeEvent {
              capability,
 diff --git a/src/input/source/evdev/gamepad.rs b/src/input/source/evdev/gamepad.rs
-index ecb8c79..9baaad9 100644
+index ecb8c79d4..9baaad973 100644
 --- a/src/input/source/evdev/gamepad.rs
 +++ b/src/input/source/evdev/gamepad.rs
 @@ -24,8 +24,8 @@ use crate::{
@@ -914,7 +914,7 @@ index ecb8c79..9baaad9 100644
                              capabilities
                                  .push(Capability::Gamepad(Gamepad::Button(GamepadButton::DPadUp)));
 diff --git a/src/input/source/evdev/keyboard.rs b/src/input/source/evdev/keyboard.rs
-index abf9de5..6544546 100644
+index abf9de555..6544546c5 100644
 --- a/src/input/source/evdev/keyboard.rs
 +++ b/src/input/source/evdev/keyboard.rs
 @@ -14,7 +14,7 @@ use crate::{
@@ -936,7 +936,7 @@ index abf9de5..6544546 100644
                      }
                  }
 
-From 9c2bd48769940fc0599c891f2a4e4f1f75ad7a7b Mon Sep 17 00:00:00 2001
+From 7e9f03137fbd14e2f000c40d90bdc1cd0dede44b Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Mon, 2 Nov 2026 18:17:46 -0800
 Subject: [PATCH 2/7] feat: Cache device configs and capability maps in the
@@ -949,7 +949,7 @@ Subject: [PATCH 2/7] feat: Cache device configs and capability maps in the
  3 files changed, 72 insertions(+), 23 deletions(-)
 
 diff --git a/src/input/composite_device/mod.rs b/src/input/composite_device/mod.rs
-index b7045ba..e67add2 100644
+index b7045ba52..e67add228 100644
 --- a/src/input/composite_device/mod.rs
 +++ b/src/input/composite_device/mod.rs
 @@ -94,6 +94,9 @@ pub struct CompositeDevice {
@@ -1009,7 +1009,7 @@ index b7045ba..e67add2 100644
                      }
                      "hidraw" => {
 diff --git a/src/input/manager.rs b/src/input/manager.rs
-index 5003528..dd89bf3 100644
+index 500352896..dd89bf34d 100644
 --- a/src/input/manager.rs
 +++ b/src/input/manager.rs
 @@ -21,7 +21,7 @@ use super::info::DeviceInfo;
@@ -1115,7 +1115,7 @@ index 5003528..dd89bf3 100644
              log::trace!("Checking if config {path:?} matches device",);
  
 diff --git a/src/input/source/evdev.rs b/src/input/source/evdev.rs
-index 2db1cad..440eb3a 100644
+index 2db1cada7..440eb3ae1 100644
 --- a/src/input/source/evdev.rs
 +++ b/src/input/source/evdev.rs
 @@ -10,10 +10,7 @@ use keyboard::KeyboardEventDevice;
@@ -1160,7 +1160,7 @@ index 2db1cad..440eb3a 100644
          match driver_type {
              DriverType::Blocked => {
 
-From 40c8afae2774dca7233c188bf66ef7b7018075c5 Mon Sep 17 00:00:00 2001
+From 99e886bbc76c3684523478bb47169281ab008f6c Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Fri, 30 Oct 2026 20:22:34 -0700
 Subject: [PATCH 3/7] feat: add generic capability translation to the evdev
@@ -1199,7 +1199,7 @@ translated outputs.
  .../schema/capability_map_v2.json             |   5 -
  src/config/capability_map.rs                  |   3 -
  src/input/event/evdev.rs                      |  17 +-
- src/input/event/evdev/maps.rs                 | 345 +++++++
+ src/input/event/evdev/maps.rs                 | 316 ++++++
  src/input/event/evdev/translator.rs           | 900 ++++++++++--------
  src/input/event/mod.rs                        |  17 +
  src/input/source/evdev.rs                     |  42 +-
@@ -1207,14 +1207,14 @@ translated outputs.
  src/input/source/evdev/keyboard.rs            |  94 +-
  src/input/source/evdev/touchscreen.rs         |  90 +-
  src/input/source/mod.rs                       |  17 +-
- 11 files changed, 1039 insertions(+), 578 deletions(-)
+ 11 files changed, 1010 insertions(+), 578 deletions(-)
  create mode 100644 src/input/event/evdev/maps.rs
 
 diff --git a/rootfs/usr/share/inputplumber/schema/capability_map_v2.json b/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
-index 8de5229..8be722e 100644
+index 38d213931..f51f5463b 100644
 --- a/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
 +++ b/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
-@@ -301,11 +301,6 @@
+@@ -286,11 +286,6 @@
            "type": "string",
            "const": "chord"
          },
@@ -1227,7 +1227,7 @@ index 8de5229..8be722e 100644
            "description": "Multiple source events will emit the same inputplumber event. Useful for mapping\naxis where different directions are triggered by separate events or multiple\nevents to the same inputplumber event.",
            "type": "string",
 diff --git a/src/config/capability_map.rs b/src/config/capability_map.rs
-index 658fa0d..74b7bbf 100644
+index 1fed72c9f..fc9664cae 100644
 --- a/src/config/capability_map.rs
 +++ b/src/config/capability_map.rs
 @@ -148,9 +148,6 @@ pub enum EvdevMappingType {
@@ -1241,7 +1241,7 @@ index 658fa0d..74b7bbf 100644
      /// axis where different directions are triggered by separate events or multiple
      /// events to the same inputplumber event.
 diff --git a/src/input/event/evdev.rs b/src/input/event/evdev.rs
-index 75a1a22..555310a 100644
+index 75a1a2233..555310aa3 100644
 --- a/src/input/event/evdev.rs
 +++ b/src/input/event/evdev.rs
 @@ -1,3 +1,4 @@
@@ -1303,10 +1303,10 @@ index 75a1a22..555310a 100644
          return 0.0;
 diff --git a/src/input/event/evdev/maps.rs b/src/input/event/evdev/maps.rs
 new file mode 100644
-index 0000000..f6f5aab
+index 000000000..dc74ef545
 --- /dev/null
 +++ b/src/input/event/evdev/maps.rs
-@@ -0,0 +1,345 @@
+@@ -0,0 +1,316 @@
 +use std::collections::{HashMap, HashSet};
 +
 +use evdev::InputEvent;
@@ -1361,38 +1361,9 @@ index 0000000..f6f5aab
 +        .flatten()
 +        .collect();
 +
-+    let mut duplicates: HashSet<String> = HashSet::new();
-+    let mut names: HashSet<String> = HashSet::new();
-+    for map in &maps {
-+        let mapping_names: Vec<&str> = match map {
-+            CapabilityMapConfig::V1(config) => config
-+                .mapping
-+                .iter()
-+                .map(|mapping| mapping.name.as_str())
-+                .collect(),
-+            CapabilityMapConfig::V2(config) => config
-+                .mapping
-+                .iter()
-+                .map(|mapping| mapping.name.as_str())
-+                .collect(),
-+        };
-+        for name in mapping_names {
-+            if !names.insert(name.to_owned()) {
-+                duplicates.insert(name.to_owned());
-+            }
-+        }
-+    }
-+    for name in &duplicates {
-+        log::warn!("Duplicate capability mapping name: {name}; dropping both");
-+    }
-+
 +    let mut mappings = Vec::new();
 +    for map in &maps {
-+        mappings.extend(
-+            extract_map(map)
-+                .into_iter()
-+                .filter(|mapping| !duplicates.contains(&mapping.name)),
-+        );
++        mappings.extend(extract_map(map));
 +    }
 +    let mut mappings = build_mappings(mappings);
 +    mappings = exclude_mismatches(mappings, supported);
@@ -1653,7 +1624,7 @@ index 0000000..f6f5aab
 +    true
 +}
 diff --git a/src/input/event/evdev/translator.rs b/src/input/event/evdev/translator.rs
-index d922d9a..77dcadd 100644
+index d922d9a4d..77dcaddbd 100644
 --- a/src/input/event/evdev/translator.rs
 +++ b/src/input/event/evdev/translator.rs
 @@ -1,133 +1,89 @@
@@ -2669,10 +2640,10 @@ index d922d9a..77dcadd 100644
      }
  }
 diff --git a/src/input/event/mod.rs b/src/input/event/mod.rs
-index 4f61240..97177aa 100644
+index 84bcc77cb..3c4b2a208 100644
 --- a/src/input/event/mod.rs
 +++ b/src/input/event/mod.rs
-@@ -8,6 +8,23 @@ pub mod value;
+@@ -7,6 +7,23 @@ pub mod value;
  #[cfg(test)]
  pub mod value_test;
  
@@ -2697,7 +2668,7 @@ index 4f61240..97177aa 100644
  /// TODO: Remove this enum in favor of directly using NativeEvent
  #[derive(Debug, Clone)]
 diff --git a/src/input/source/evdev.rs b/src/input/source/evdev.rs
-index 440eb3a..965ed1a 100644
+index 440eb3ae1..965ed1a18 100644
 --- a/src/input/source/evdev.rs
 +++ b/src/input/source/evdev.rs
 @@ -3,7 +3,11 @@ pub mod gamepad;
@@ -2764,7 +2735,7 @@ index 440eb3a..965ed1a 100644
  pub fn get_capabilities(handler: &str) -> Result<HashMap<EventType, Vec<u16>>, Box<dyn Error>> {
      if !handler.contains("input/event") {
 diff --git a/src/input/source/evdev/gamepad.rs b/src/input/source/evdev/gamepad.rs
-index 9baaad9..9cb136e 100644
+index 9baaad973..9cb136ec9 100644
 --- a/src/input/source/evdev/gamepad.rs
 +++ b/src/input/source/evdev/gamepad.rs
 @@ -1,6 +1,9 @@
@@ -2933,7 +2904,7 @@ index 9baaad9..9cb136e 100644
  
  impl SourceOutputDevice for GamepadEventDevice {
 diff --git a/src/input/source/evdev/keyboard.rs b/src/input/source/evdev/keyboard.rs
-index 6544546..e85226f 100644
+index 6544546c5..e85226f9d 100644
 --- a/src/input/source/evdev/keyboard.rs
 +++ b/src/input/source/evdev/keyboard.rs
 @@ -1,17 +1,21 @@
@@ -3102,7 +3073,7 @@ index 6544546..e85226f 100644
  
  impl SourceOutputDevice for KeyboardEventDevice {}
 diff --git a/src/input/source/evdev/touchscreen.rs b/src/input/source/evdev/touchscreen.rs
-index ae8d8b5..9d44d56 100644
+index ae8d8b51b..9d44d56ff 100644
 --- a/src/input/source/evdev/touchscreen.rs
 +++ b/src/input/source/evdev/touchscreen.rs
 @@ -9,10 +9,11 @@ use evdev::{
@@ -3262,7 +3233,7 @@ index ae8d8b5..9d44d56 100644
  }
  
 diff --git a/src/input/source/mod.rs b/src/input/source/mod.rs
-index 9264752..8e38df7 100644
+index 926475213..8e38df743 100644
 --- a/src/input/source/mod.rs
 +++ b/src/input/source/mod.rs
 @@ -29,7 +29,7 @@ use self::{
@@ -3297,7 +3268,7 @@ index 9264752..8e38df7 100644
  /// Nominal percent played at 0 dB for deck haptic click, tick, and pulse levels
  pub const HAPTIC_NOMINAL_PERCENT: f64 = 32.0;
 
-From 0ae1074e2e989df8d91399a809025c71071c6863 Mon Sep 17 00:00:00 2001
+From 16b23231231179adccecb459b18691750d8d718e Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Sat, 31 Oct 2026 10:39:04 -0700
 Subject: [PATCH 4/7] feat: Push combined capability map into sources, remove
@@ -3338,7 +3309,7 @@ exists.
  9 files changed, 104 insertions(+), 402 deletions(-)
 
 diff --git a/src/input/composite_device/client.rs b/src/input/composite_device/client.rs
-index dae8bd9..55c8be0 100644
+index dae8bd93c..55c8be0cf 100644
 --- a/src/input/composite_device/client.rs
 +++ b/src/input/composite_device/client.rs
 @@ -472,22 +472,6 @@ impl CompositeDeviceClient {
@@ -3365,7 +3336,7 @@ index dae8bd9..55c8be0 100644
      /// "PASS" mode.
      pub async fn set_intercept_activation(
 diff --git a/src/input/composite_device/command.rs b/src/input/composite_device/command.rs
-index 7c175de..d1e97e3 100644
+index 7c175de21..d1e97e3c9 100644
 --- a/src/input/composite_device/command.rs
 +++ b/src/input/composite_device/command.rs
 @@ -34,12 +34,10 @@ pub enum CompositeCommand {
@@ -3382,7 +3353,7 @@ index 7c175de..d1e97e3 100644
      SetInterceptMode(InterceptMode),
      SetTargetDevices(Vec<TargetDeviceTypeId>),
 diff --git a/src/input/composite_device/mod.rs b/src/input/composite_device/mod.rs
-index e67add2..6994e30 100644
+index e67add228..6994e3020 100644
 --- a/src/input/composite_device/mod.rs
 +++ b/src/input/composite_device/mod.rs
 @@ -10,6 +10,7 @@ use std::{
@@ -3870,7 +3841,7 @@ index e67add2..6994e30 100644
              }
              self.capabilities_by_source.insert(id.clone(), capabilities);
 diff --git a/src/input/event/evdev/translator.rs b/src/input/event/evdev/translator.rs
-index 77dcadd..2b1a851 100644
+index 77dcaddbd..2b1a851bf 100644
 --- a/src/input/event/evdev/translator.rs
 +++ b/src/input/event/evdev/translator.rs
 @@ -104,6 +104,14 @@ impl EventTranslator {
@@ -3889,7 +3860,7 @@ index 77dcadd..2b1a851 100644
      /// mapping consumes the event's signature.
      pub fn translate(&mut self, event: &InputEvent) -> Option<Vec<NativeEvent>> {
 diff --git a/src/input/source/evdev.rs b/src/input/source/evdev.rs
-index 965ed1a..1fa8620 100644
+index 965ed1a18..1fa862017 100644
 --- a/src/input/source/evdev.rs
 +++ b/src/input/source/evdev.rs
 @@ -18,7 +18,7 @@ use crate::{
@@ -3962,7 +3933,7 @@ index 965ed1a..1fa8620 100644
                      SourceDriver::new(composite_device, device, device_info.into(), conf);
                  Ok(Self::Keyboard(source_device))
 diff --git a/src/input/source/evdev/gamepad.rs b/src/input/source/evdev/gamepad.rs
-index 9cb136e..7d8eb0e 100644
+index 9cb136ec9..7d8eb0ee2 100644
 --- a/src/input/source/evdev/gamepad.rs
 +++ b/src/input/source/evdev/gamepad.rs
 @@ -13,13 +13,11 @@ use nix::fcntl::{FcntlArg, OFlag};
@@ -4018,7 +3989,7 @@ index 9cb136e..7d8eb0e 100644
      fn poll(&mut self) -> Result<Vec<NativeEvent>, InputError> {
          let mut native_events = vec![];
 diff --git a/src/input/source/evdev/keyboard.rs b/src/input/source/evdev/keyboard.rs
-index e85226f..7d7f06e 100644
+index e85226f9d..7d7f06ed7 100644
 --- a/src/input/source/evdev/keyboard.rs
 +++ b/src/input/source/evdev/keyboard.rs
 @@ -8,14 +8,12 @@ use std::{
@@ -4074,7 +4045,7 @@ index e85226f..7d7f06e 100644
      fn poll(&mut self) -> Result<Vec<NativeEvent>, InputError> {
          let mut native_events = vec![];
 diff --git a/src/input/source/evdev/touchscreen.rs b/src/input/source/evdev/touchscreen.rs
-index 9d44d56..7da6b87 100644
+index 9d44d56ff..7da6b876a 100644
 --- a/src/input/source/evdev/touchscreen.rs
 +++ b/src/input/source/evdev/touchscreen.rs
 @@ -9,11 +9,9 @@ use evdev::{
@@ -4128,7 +4099,7 @@ index 9d44d56..7da6b87 100644
      fn poll(&mut self) -> Result<Vec<NativeEvent>, InputError> {
          let mut native_events = vec![];
 diff --git a/src/input/source/mod.rs b/src/input/source/mod.rs
-index 8e38df7..c8fa578 100644
+index 8e38df743..c8fa578ac 100644
 --- a/src/input/source/mod.rs
 +++ b/src/input/source/mod.rs
 @@ -122,6 +122,11 @@ pub trait SourceInputDevice {
@@ -4188,7 +4159,7 @@ index 8e38df7..c8fa578 100644
                          let result = self
                              .composite_device
 
-From 7f3cfa4e95be971328e13dbe3d504fdf35a69f88 Mon Sep 17 00:00:00 2001
+From fcc0774f46c661dfdfaae06ebdf258af8ad0c02a Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Sun, 1 Nov 2026 06:47:33 -0800
 Subject: [PATCH 5/7] feat: account for every kernel input event code
@@ -4218,24 +4189,24 @@ they don't have an analogous usage in InputPumber defined targets.
 
 Assisted-by: LLM
 ---
- .../schema/capability_map_v2.json             | 1468 ++++++++--------
- src/config/capability_map/evdev.rs            | 1470 +++++++++--------
- src/input/capability.rs                       |  198 ++-
+ .../schema/capability_map_v2.json             | 1622 +++++++++--------
+ src/config/capability_map/evdev.rs            | 1470 +++++++--------
+ src/input/capability.rs                       |  198 +-
  src/input/composite_device/mod.rs             |    2 +-
  src/input/event/dbus.rs                       |    4 +-
- src/input/event/evdev.rs                      |  207 +--
+ src/input/event/evdev.rs                      |  207 ++-
  src/input/event/value.rs                      |  150 +-
  src/input/target/dualsense.rs                 |    1 +
  src/input/target/steam_deck.rs                |    2 +
  src/input/target/steam_deck_uhid.rs           |    2 +
  src/input/target/unified_gamepad.rs           |   16 +-
- 11 files changed, 1910 insertions(+), 1610 deletions(-)
+ 11 files changed, 1987 insertions(+), 1687 deletions(-)
 
 diff --git a/rootfs/usr/share/inputplumber/schema/capability_map_v2.json b/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
-index 8be722e..05814d9 100644
+index f51f5463b..bc890373e 100644
 --- a/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
 +++ b/rootfs/usr/share/inputplumber/schema/capability_map_v2.json
-@@ -309,731 +309,19 @@
+@@ -294,731 +294,19 @@
        ]
      },
      "EventCode": {
@@ -4980,10 +4951,163 @@ index 8be722e..05814d9 100644
        ]
      },
      "EventType": {
-@@ -1589,6 +877,734 @@
-           "const": "vector3_int32"
-         }
+@@ -1212,83 +500,811 @@
+         "bit_offset"
        ]
+     },
+-    "MappingType": {
+-      "description": "[MappingType] defines how source events should be translated",
+-      "type": "object",
+-      "properties": {
+-        "evdev": {
+-          "anyOf": [
+-            {
+-              "$ref": "#/$defs/EvdevMappingType"
+-            },
+-            {
+-              "type": "null"
+-            }
+-          ]
+-        }
+-      }
+-    },
+-    "MouseCapability": {
+-      "type": "object",
+-      "properties": {
+-        "button": {
+-          "type": [
+-            "string",
+-            "null"
+-          ]
+-        },
+-        "motion": {
+-          "anyOf": [
+-            {
+-              "$ref": "#/$defs/MouseMotionCapability"
+-            },
+-            {
+-              "type": "null"
+-            }
+-          ]
+-        },
+-        "wheel": {
+-          "anyOf": [
+-            {
+-              "$ref": "#/$defs/MouseWheelCapability"
+-            },
+-            {
+-              "type": "null"
+-            }
+-          ]
+-        }
+-      }
+-    },
+-    "MouseMotionCapability": {
+-      "type": "object",
+-      "properties": {
+-        "direction": {
+-          "type": [
+-            "string",
+-            "null"
+-          ]
+-        },
+-        "speed_pps": {
+-          "type": [
+-            "integer",
+-            "null"
+-          ],
+-          "format": "uint64",
+-          "minimum": 0
+-        }
+-      }
+-    },
+-    "MouseWheelCapability": {
+-      "type": "object",
+-      "properties": {
+-        "direction": {
+-          "type": [
+-            "string",
+-            "null"
+-          ]
+-        }
+-      }
+-    },
++    "MappingType": {
++      "description": "[MappingType] defines how source events should be translated",
++      "type": "object",
++      "properties": {
++        "evdev": {
++          "anyOf": [
++            {
++              "$ref": "#/$defs/EvdevMappingType"
++            },
++            {
++              "type": "null"
++            }
++          ]
++        }
++      }
++    },
++    "MouseCapability": {
++      "type": "object",
++      "properties": {
++        "button": {
++          "type": [
++            "string",
++            "null"
++          ]
++        },
++        "motion": {
++          "anyOf": [
++            {
++              "$ref": "#/$defs/MouseMotionCapability"
++            },
++            {
++              "type": "null"
++            }
++          ]
++        },
++        "wheel": {
++          "anyOf": [
++            {
++              "$ref": "#/$defs/MouseWheelCapability"
++            },
++            {
++              "type": "null"
++            }
++          ]
++        }
++      }
++    },
++    "MouseMotionCapability": {
++      "type": "object",
++      "properties": {
++        "direction": {
++          "type": [
++            "string",
++            "null"
++          ]
++        },
++        "speed_pps": {
++          "type": [
++            "integer",
++            "null"
++          ],
++          "format": "uint64",
++          "minimum": 0
++        }
++      }
++    },
++    "MouseWheelCapability": {
++      "type": "object",
++      "properties": {
++        "direction": {
++          "type": [
++            "string",
++            "null"
++          ]
++        }
++      }
 +    },
 +    "NamedEventCode": {
 +      "type": "string",
@@ -5712,13 +5836,19 @@ index 8be722e..05814d9 100644
 +        "SND_BELL",
 +        "SND_TONE"
 +      ]
++    },
+     "SourceCapability": {
+       "type": "object",
+       "properties": {
+@@ -1441,4 +1457,4 @@
+       ]
      }
    }
 -}
-\ No newline at end of file
 +}
+\ No newline at end of file
 diff --git a/src/config/capability_map/evdev.rs b/src/config/capability_map/evdev.rs
-index 12a7435..7f3c5d7 100644
+index 12a7435d4..7f3c5d729 100644
 --- a/src/config/capability_map/evdev.rs
 +++ b/src/config/capability_map/evdev.rs
 @@ -79,9 +79,29 @@ impl EventType {
@@ -7210,7 +7340,7 @@ index 12a7435..7f3c5d7 100644
      }
  }
 diff --git a/src/input/capability.rs b/src/input/capability.rs
-index c9de417..159df91 100644
+index c9de417ae..159df9109 100644
 --- a/src/input/capability.rs
 +++ b/src/input/capability.rs
 @@ -55,6 +55,7 @@ impl Capability {
@@ -7563,7 +7693,7 @@ index c9de417..159df91 100644
          }
      }
 diff --git a/src/input/composite_device/mod.rs b/src/input/composite_device/mod.rs
-index 6994e30..a19e8f4 100644
+index 6994e3020..a19e8f4a7 100644
 --- a/src/input/composite_device/mod.rs
 +++ b/src/input/composite_device/mod.rs
 @@ -959,7 +959,7 @@ impl CompositeDevice {
@@ -7576,7 +7706,7 @@ index 6994e30..a19e8f4 100644
                          if !self.is_new_active_event(&cap, is_pressed) {
                              continue;
 diff --git a/src/input/event/dbus.rs b/src/input/event/dbus.rs
-index 2f775ea..64a5499 100644
+index 2f775eaf6..64a549925 100644
 --- a/src/input/event/dbus.rs
 +++ b/src/input/event/dbus.rs
 @@ -218,6 +218,7 @@ fn actions_from_capability(capability: Capability) -> Vec<Action> {
@@ -7602,7 +7732,7 @@ index 2f775ea..64a5499 100644
          Capability::Gyroscope(_) => vec![Action::None],
          Capability::Accelerometer(_) => vec![Action::None],
 diff --git a/src/input/event/evdev.rs b/src/input/event/evdev.rs
-index 555310a..9ffee43 100644
+index 555310aa3..9ffee4304 100644
 --- a/src/input/event/evdev.rs
 +++ b/src/input/event/evdev.rs
 @@ -167,6 +167,8 @@ impl EventCapability for EvdevEvent {
@@ -8030,7 +8160,7 @@ index 555310a..9ffee43 100644
      }
  
 diff --git a/src/input/event/value.rs b/src/input/event/value.rs
-index b46e632..27ea570 100644
+index 253579dab..eac3200af 100644
 --- a/src/input/event/value.rs
 +++ b/src/input/event/value.rs
 @@ -227,7 +227,9 @@ impl InputValue {
@@ -8419,7 +8549,7 @@ index b46e632..27ea570 100644
              Capability::Gyroscope(_) => Err(TranslationError::NotImplemented),
              Capability::Accelerometer(_) => Err(TranslationError::NotImplemented),
 diff --git a/src/input/target/dualsense.rs b/src/input/target/dualsense.rs
-index 4a787d2..a0a9003 100644
+index 4a787d205..a0a900337 100644
 --- a/src/input/target/dualsense.rs
 +++ b/src/input/target/dualsense.rs
 @@ -592,6 +592,7 @@ impl DualSenseDevice {
@@ -8431,7 +8561,7 @@ index 4a787d2..a0a9003 100644
              }
              Capability::Gyroscope(_) => {
 diff --git a/src/input/target/steam_deck.rs b/src/input/target/steam_deck.rs
-index 7ae5ccd..471cccc 100644
+index 7ae5ccde7..471cccc78 100644
 --- a/src/input/target/steam_deck.rs
 +++ b/src/input/target/steam_deck.rs
 @@ -807,6 +807,7 @@ impl SteamDeckDevice {
@@ -8451,7 +8581,7 @@ index 7ae5ccd..471cccc 100644
                  }
              },
 diff --git a/src/input/target/steam_deck_uhid.rs b/src/input/target/steam_deck_uhid.rs
-index 4cf8421..c3eee95 100644
+index 4cf842190..c3eee955b 100644
 --- a/src/input/target/steam_deck_uhid.rs
 +++ b/src/input/target/steam_deck_uhid.rs
 @@ -331,6 +331,7 @@ impl SteamDeckUhidDevice {
@@ -8471,7 +8601,7 @@ index 4cf8421..c3eee95 100644
                  }
              },
 diff --git a/src/input/target/unified_gamepad.rs b/src/input/target/unified_gamepad.rs
-index 05ac759..0ec90cd 100644
+index 05ac7594c..0ec90cd68 100644
 --- a/src/input/target/unified_gamepad.rs
 +++ b/src/input/target/unified_gamepad.rs
 @@ -535,6 +535,7 @@ impl From<NativeEvent> for StateUpdate {
@@ -8577,7 +8707,7 @@ index 05ac759..0ec90cd 100644
              Capability::Gyroscope(_) => Self::new(capability, ValueType::Int16Vector3),
              Capability::Accelerometer(_) => Self::new(capability, ValueType::Int16Vector3),
 
-From 75cb85ef3f4d781b1ba1e7ad8c84abd845cddfd3 Mon Sep 17 00:00:00 2001
+From 926a0a793b750a369caeaa424cd2d1f70e8e8f9a Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Sun, 1 Nov 2026 07:29:40 -0800
 Subject: [PATCH 6/7] fix(Switch Pro): Add Capability map for guide button
@@ -8590,7 +8720,7 @@ Subject: [PATCH 6/7] fix(Switch Pro): Add Capability map for guide button
 
 diff --git a/rootfs/usr/share/inputplumber/capability_maps/switch_pro.yaml b/rootfs/usr/share/inputplumber/capability_maps/switch_pro.yaml
 new file mode 100644
-index 0000000..3246e5c
+index 000000000..3246e5c3c
 --- /dev/null
 +++ b/rootfs/usr/share/inputplumber/capability_maps/switch_pro.yaml
 @@ -0,0 +1,24 @@
@@ -8619,7 +8749,7 @@ index 0000000..3246e5c
 +      gamepad:
 +        button: QuickAccess
 diff --git a/rootfs/usr/share/inputplumber/devices/60-switch_pro.yaml b/rootfs/usr/share/inputplumber/devices/60-switch_pro.yaml
-index a036916..4ff4bdf 100644
+index a036916dd..4ff4bdffb 100644
 --- a/rootfs/usr/share/inputplumber/devices/60-switch_pro.yaml
 +++ b/rootfs/usr/share/inputplumber/devices/60-switch_pro.yaml
 @@ -20,6 +20,7 @@ matches: []
@@ -8631,7 +8761,7 @@ index a036916..4ff4bdf 100644
        vendor_id: "057e"
        product_id: "2009"
 
-From 534066f1b9406be37a1b1578ca4a3ce72dce5180 Mon Sep 17 00:00:00 2001
+From 1d068c26f60aa84345ffd3074aa7852431bb65c2 Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Sun, 1 Nov 2026 14:34:34 -0800
 Subject: [PATCH 7/7] feat: Support Capability maps on hidraw, iio, and tty
@@ -8647,7 +8777,7 @@ Assisted-by: LLM
 ---
  src/config/capability_map.rs                  | 139 +++++++++++++++++-
  src/input/composite_device/mod.rs             |  25 +++-
- src/input/source/hidraw.rs                    |  45 +++---
+ src/input/source/hidraw.rs                    |  42 +++---
  src/input/source/hidraw/dualsense.rs          |  19 ++-
  .../source/hidraw/flydigi_vader_4_pro.rs      |  29 +++-
  src/input/source/hidraw/fts3528.rs            |  29 +++-
@@ -8673,10 +8803,10 @@ Assisted-by: LLM
  src/input/source/tty.rs                       |  10 +-
  src/input/source/tty/oxp_serial/onexfly.rs    |  25 +++-
  src/input/source/tty/oxp_serial/x1.rs         |  25 +++-
- 28 files changed, 682 insertions(+), 128 deletions(-)
+ 28 files changed, 680 insertions(+), 127 deletions(-)
 
 diff --git a/src/config/capability_map.rs b/src/config/capability_map.rs
-index 74b7bbf..3177f58 100644
+index fc9664cae..6896c3074 100644
 --- a/src/config/capability_map.rs
 +++ b/src/config/capability_map.rs
 @@ -1,7 +1,11 @@
@@ -8844,7 +8974,7 @@ index 74b7bbf..3177f58 100644
 +        .collect()
 +}
 diff --git a/src/input/composite_device/mod.rs b/src/input/composite_device/mod.rs
-index a19e8f4..e23eeb3 100644
+index a19e8f4a7..e23eeb3d2 100644
 --- a/src/input/composite_device/mod.rs
 +++ b/src/input/composite_device/mod.rs
 @@ -1473,13 +1473,24 @@ impl CompositeDevice {
@@ -8891,21 +9021,18 @@ index a19e8f4..e23eeb3 100644
                      }
                      _ => {
 diff --git a/src/input/source/hidraw.rs b/src/input/source/hidraw.rs
-index aaaa0b8..78e1909 100644
+index 168a8cc41..a1b617bf2 100644
 --- a/src/input/source/hidraw.rs
 +++ b/src/input/source/hidraw.rs
-@@ -22,7 +22,9 @@ use std::{error::Error, time::Duration};
+@@ -20,6 +20,7 @@ use std::{error::Error, time::Duration};
+ 
  use crate::{
-     config::{
-         self,
--        capability_map::{load_capability_mappings, CapabilityMapConfig},
-+        capability_map::{
-+            get_capability_translations, load_capability_mappings, CapabilityMapConfig,
-+        },
-     },
+     config,
++    config::capability_map::{get_capability_translations, CapabilityMapConfig},
      constants::BUS_SOURCES_PREFIX,
      drivers::{self},
-@@ -346,9 +348,12 @@ impl HidRawDevice {
+     input::{
+@@ -330,9 +331,12 @@ impl HidRawDevice {
          device_info: UdevDevice,
          composite_device: CompositeDeviceClient,
          conf: Option<config::SourceDevice>,
@@ -8917,8 +9044,8 @@ index aaaa0b8..78e1909 100644
 +        let map = get_capability_translations(capability_map.as_ref(), source_map.as_ref());
  
          match driver_type {
-             DriverType::Unknown => {
-@@ -405,7 +410,7 @@ impl HidRawDevice {
+             DriverType::Unknown => Err("No driver for hidraw interface found".into()),
+@@ -362,7 +366,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(1),
                      buffer_size: 2048,
                  };
@@ -8927,7 +9054,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -420,7 +425,7 @@ impl HidRawDevice {
+@@ -377,7 +381,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -8936,7 +9063,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -435,7 +440,7 @@ impl HidRawDevice {
+@@ -392,7 +396,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -8945,7 +9072,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -450,7 +455,7 @@ impl HidRawDevice {
+@@ -407,7 +411,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -8954,7 +9081,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -465,7 +470,7 @@ impl HidRawDevice {
+@@ -422,7 +426,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -8963,7 +9090,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -480,7 +485,7 @@ impl HidRawDevice {
+@@ -437,7 +441,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -8972,7 +9099,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -495,7 +500,7 @@ impl HidRawDevice {
+@@ -452,7 +456,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -8981,7 +9108,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -510,7 +515,7 @@ impl HidRawDevice {
+@@ -467,7 +471,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -8990,7 +9117,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -525,7 +530,7 @@ impl HidRawDevice {
+@@ -482,7 +486,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -8999,7 +9126,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -540,7 +545,7 @@ impl HidRawDevice {
+@@ -497,7 +501,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -9008,7 +9135,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -551,7 +556,7 @@ impl HidRawDevice {
+@@ -508,7 +512,7 @@ impl HidRawDevice {
                  Ok(Self::OrangePiNeo(source_device))
              }
              DriverType::Fts3528Touchscreen => {
@@ -9017,7 +9144,7 @@ index aaaa0b8..78e1909 100644
                  let source_device =
                      SourceDriver::new(composite_device, device, device_info.into(), conf);
                  Ok(Self::Fts3528Touchscreen(source_device))
-@@ -561,7 +566,7 @@ impl HidRawDevice {
+@@ -518,7 +522,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 1024,
                  };
@@ -9026,7 +9153,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -591,7 +596,7 @@ impl HidRawDevice {
+@@ -548,7 +552,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 2048,
                  };
@@ -9035,7 +9162,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -602,7 +607,7 @@ impl HidRawDevice {
+@@ -559,7 +563,7 @@ impl HidRawDevice {
                  Ok(Self::HoripadSteam(source_device))
              }
              DriverType::Vader4Pro => {
@@ -9044,7 +9171,7 @@ index aaaa0b8..78e1909 100644
                  let options = SourceDriverOptions {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 1024,
-@@ -636,7 +641,7 @@ impl HidRawDevice {
+@@ -593,7 +597,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 1024,
                  };
@@ -9053,7 +9180,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -651,7 +656,7 @@ impl HidRawDevice {
+@@ -608,7 +612,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 1024,
                  };
@@ -9062,7 +9189,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -666,7 +671,7 @@ impl HidRawDevice {
+@@ -623,7 +627,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 1024,
                  };
@@ -9071,7 +9198,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -681,7 +686,7 @@ impl HidRawDevice {
+@@ -638,7 +642,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 1024,
                  };
@@ -9080,7 +9207,7 @@ index aaaa0b8..78e1909 100644
                  let source_device = SourceDriver::new_with_options(
                      composite_device,
                      device,
-@@ -697,7 +702,7 @@ impl HidRawDevice {
+@@ -654,7 +658,7 @@ impl HidRawDevice {
                      poll_rate: Duration::from_millis(0),
                      buffer_size: 1024,
                  };
@@ -9090,7 +9217,7 @@ index aaaa0b8..78e1909 100644
                      composite_device,
                      device,
 diff --git a/src/input/source/hidraw/dualsense.rs b/src/input/source/hidraw/dualsense.rs
-index 8770919..42dbeaa 100644
+index 8770919f2..42dbeaa1a 100644
 --- a/src/input/source/hidraw/dualsense.rs
 +++ b/src/input/source/hidraw/dualsense.rs
 @@ -13,6 +13,7 @@ use crate::drivers::steam_deck::hid_report::PackedTriggerVibration;
@@ -9155,7 +9282,7 @@ index 8770919..42dbeaa 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/flydigi_vader_4_pro.rs b/src/input/source/hidraw/flydigi_vader_4_pro.rs
-index a09ccae..21439df 100644
+index a09ccaee0..21439df12 100644
 --- a/src/input/source/hidraw/flydigi_vader_4_pro.rs
 +++ b/src/input/source/hidraw/flydigi_vader_4_pro.rs
 @@ -1,6 +1,11 @@
@@ -9224,7 +9351,7 @@ index a09ccae..21439df 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/fts3528.rs b/src/input/source/hidraw/fts3528.rs
-index 8871a91..f06c104 100644
+index 8871a913c..f06c10498 100644
 --- a/src/input/source/hidraw/fts3528.rs
 +++ b/src/input/source/hidraw/fts3528.rs
 @@ -1,6 +1,11 @@
@@ -9288,7 +9415,7 @@ index 8871a91..f06c104 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/gpd_device/macro_keyboard.rs b/src/input/source/hidraw/gpd_device/macro_keyboard.rs
-index a2ca823..a70e340 100644
+index a2ca8230c..a70e34056 100644
 --- a/src/input/source/hidraw/gpd_device/macro_keyboard.rs
 +++ b/src/input/source/hidraw/gpd_device/macro_keyboard.rs
 @@ -1,6 +1,11 @@
@@ -9352,7 +9479,7 @@ index a2ca823..a70e340 100644
  }
  
 diff --git a/src/input/source/hidraw/gpd_device/touchpad_2023.rs b/src/input/source/hidraw/gpd_device/touchpad_2023.rs
-index ee64fa9..57c3124 100644
+index ee64fa9f7..57c3124af 100644
 --- a/src/input/source/hidraw/gpd_device/touchpad_2023.rs
 +++ b/src/input/source/hidraw/gpd_device/touchpad_2023.rs
 @@ -1,6 +1,11 @@
@@ -9416,7 +9543,7 @@ index ee64fa9..57c3124 100644
  }
  
 diff --git a/src/input/source/hidraw/gpd_device/touchpad_2024.rs b/src/input/source/hidraw/gpd_device/touchpad_2024.rs
-index 691a2bb..ac49e35 100644
+index 691a2bb71..ac49e35a3 100644
 --- a/src/input/source/hidraw/gpd_device/touchpad_2024.rs
 +++ b/src/input/source/hidraw/gpd_device/touchpad_2024.rs
 @@ -1,6 +1,11 @@
@@ -9480,7 +9607,7 @@ index 691a2bb..ac49e35 100644
  }
  
 diff --git a/src/input/source/hidraw/horipad_steam.rs b/src/input/source/hidraw/horipad_steam.rs
-index 593ecdf..4e2668e 100644
+index 593ecdfab..4e2668e48 100644
 --- a/src/input/source/hidraw/horipad_steam.rs
 +++ b/src/input/source/hidraw/horipad_steam.rs
 @@ -1,6 +1,11 @@
@@ -9546,7 +9673,7 @@ index 593ecdf..4e2668e 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/legion_go/go1.rs b/src/input/source/hidraw/legion_go/go1.rs
-index 982fa78..a275180 100644
+index 982fa78c3..a275180a2 100644
 --- a/src/input/source/hidraw/legion_go/go1.rs
 +++ b/src/input/source/hidraw/legion_go/go1.rs
 @@ -1,7 +1,8 @@
@@ -9611,7 +9738,7 @@ index 982fa78..a275180 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/legion_go/go2.rs b/src/input/source/hidraw/legion_go/go2.rs
-index e2c126b..ec8b8c5 100644
+index e2c126b18..ec8b8c540 100644
 --- a/src/input/source/hidraw/legion_go/go2.rs
 +++ b/src/input/source/hidraw/legion_go/go2.rs
 @@ -1,7 +1,8 @@
@@ -9686,7 +9813,7 @@ index e2c126b..ec8b8c5 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/legion_go/touchpad.rs b/src/input/source/hidraw/legion_go/touchpad.rs
-index 3895c70..eddbf49 100644
+index 3895c7067..eddbf496a 100644
 --- a/src/input/source/hidraw/legion_go/touchpad.rs
 +++ b/src/input/source/hidraw/legion_go/touchpad.rs
 @@ -1,7 +1,8 @@
@@ -9750,7 +9877,7 @@ index 3895c70..eddbf49 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/legion_go_s/imu.rs b/src/input/source/hidraw/legion_go_s/imu.rs
-index b4755a4..7b06ef2 100644
+index b4755a484..7b06ef2da 100644
 --- a/src/input/source/hidraw/legion_go_s/imu.rs
 +++ b/src/input/source/hidraw/legion_go_s/imu.rs
 @@ -1,6 +1,11 @@
@@ -9817,7 +9944,7 @@ index b4755a4..7b06ef2 100644
  }
  
 diff --git a/src/input/source/hidraw/legion_go_s/touchpad.rs b/src/input/source/hidraw/legion_go_s/touchpad.rs
-index 2975641..d5e5f4c 100644
+index 29756414a..d5e5f4cd1 100644
 --- a/src/input/source/hidraw/legion_go_s/touchpad.rs
 +++ b/src/input/source/hidraw/legion_go_s/touchpad.rs
 @@ -1,6 +1,11 @@
@@ -9884,7 +10011,7 @@ index 2975641..d5e5f4c 100644
  }
  
 diff --git a/src/input/source/hidraw/legion_go_s/xinput.rs b/src/input/source/hidraw/legion_go_s/xinput.rs
-index f042bd1..6853948 100644
+index f042bd122..6853948ec 100644
 --- a/src/input/source/hidraw/legion_go_s/xinput.rs
 +++ b/src/input/source/hidraw/legion_go_s/xinput.rs
 @@ -9,6 +9,7 @@ use evdev::{FFEffectData, FFEffectKind, InputEvent};
@@ -9952,7 +10079,7 @@ index f042bd1..6853948 100644
  }
  
 diff --git a/src/input/source/hidraw/msi_claw.rs b/src/input/source/hidraw/msi_claw.rs
-index fae6db2..51f5643 100644
+index fae6db219..51f5643ec 100644
 --- a/src/input/source/hidraw/msi_claw.rs
 +++ b/src/input/source/hidraw/msi_claw.rs
 @@ -9,6 +9,7 @@ use evdev::{FFEffectData, FFEffectKind, InputEvent};
@@ -10017,7 +10144,7 @@ index fae6db2..51f5643 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/opineo_touchpad.rs b/src/input/source/hidraw/opineo_touchpad.rs
-index d21a95a..6269e0c 100644
+index d21a95a7c..6269e0c4e 100644
 --- a/src/input/source/hidraw/opineo_touchpad.rs
 +++ b/src/input/source/hidraw/opineo_touchpad.rs
 @@ -1,6 +1,11 @@
@@ -10086,7 +10213,7 @@ index d21a95a..6269e0c 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/oxp_hid.rs b/src/input/source/hidraw/oxp_hid.rs
-index d561b01..9edd994 100644
+index d561b0109..9edd9946e 100644
 --- a/src/input/source/hidraw/oxp_hid.rs
 +++ b/src/input/source/hidraw/oxp_hid.rs
 @@ -1,6 +1,11 @@
@@ -10150,7 +10277,7 @@ index d561b01..9edd994 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/hidraw/steam_deck.rs b/src/input/source/hidraw/steam_deck.rs
-index 74900f6..2f11327 100644
+index 74900f6ef..2f113270c 100644
 --- a/src/input/source/hidraw/steam_deck.rs
 +++ b/src/input/source/hidraw/steam_deck.rs
 @@ -10,6 +10,7 @@ use std::{
@@ -10219,7 +10346,7 @@ index 74900f6..2f11327 100644
  }
  
 diff --git a/src/input/source/hidraw/ultimate_2.rs b/src/input/source/hidraw/ultimate_2.rs
-index c2832da..833556b 100644
+index c2832da7f..833556b06 100644
 --- a/src/input/source/hidraw/ultimate_2.rs
 +++ b/src/input/source/hidraw/ultimate_2.rs
 @@ -9,6 +9,7 @@ use evdev::{FFEffectData, FFEffectKind};
@@ -10287,7 +10414,7 @@ index c2832da..833556b 100644
  }
  
 diff --git a/src/input/source/hidraw/xpad_uhid.rs b/src/input/source/hidraw/xpad_uhid.rs
-index eedc198..d54e103 100644
+index eedc19865..d54e103fd 100644
 --- a/src/input/source/hidraw/xpad_uhid.rs
 +++ b/src/input/source/hidraw/xpad_uhid.rs
 @@ -9,6 +9,7 @@ use evdev::{FFEffectData, FFEffectKind};
@@ -10355,7 +10482,7 @@ index eedc198..d54e103 100644
  }
  
 diff --git a/src/input/source/iio.rs b/src/input/source/iio.rs
-index fae452f..8e35c25 100644
+index fae452f38..8e35c25a7 100644
 --- a/src/input/source/iio.rs
 +++ b/src/input/source/iio.rs
 @@ -8,6 +8,7 @@ use glob_match::glob_match;
@@ -10397,7 +10524,7 @@ index fae452f..8e35c25 100644
                      composite_device,
                      device,
 diff --git a/src/input/source/iio/accel_gyro_3d.rs b/src/input/source/iio/accel_gyro_3d.rs
-index 53af26e..e564692 100644
+index 53af26eef..e56469290 100644
 --- a/src/input/source/iio/accel_gyro_3d.rs
 +++ b/src/input/source/iio/accel_gyro_3d.rs
 @@ -1,7 +1,12 @@
@@ -10468,7 +10595,7 @@ index 53af26e..e564692 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/iio/bmi_imu.rs b/src/input/source/iio/bmi_imu.rs
-index 3456115..6682a8e 100644
+index 3456115b8..6682a8e2b 100644
 --- a/src/input/source/iio/bmi_imu.rs
 +++ b/src/input/source/iio/bmi_imu.rs
 @@ -1,7 +1,12 @@
@@ -10539,7 +10666,7 @@ index 3456115..6682a8e 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/tty.rs b/src/input/source/tty.rs
-index cf9fd91..9f48101 100644
+index cf9fd9165..9f4810199 100644
 --- a/src/input/source/tty.rs
 +++ b/src/input/source/tty.rs
 @@ -5,6 +5,7 @@ pub mod oxp_serial;
@@ -10583,7 +10710,7 @@ index cf9fd91..9f48101 100644
                      composite_device,
                      device,
 diff --git a/src/input/source/tty/oxp_serial/onexfly.rs b/src/input/source/tty/oxp_serial/onexfly.rs
-index 44134ed..98513e8 100644
+index 44134eda3..98513e876 100644
 --- a/src/input/source/tty/oxp_serial/onexfly.rs
 +++ b/src/input/source/tty/oxp_serial/onexfly.rs
 @@ -1,6 +1,11 @@
@@ -10644,7 +10771,7 @@ index 44134ed..98513e8 100644
  
      fn update_event_filter(&mut self, events: HashSet<Capability>) -> Result<(), InputError> {
 diff --git a/src/input/source/tty/oxp_serial/x1.rs b/src/input/source/tty/oxp_serial/x1.rs
-index 031dd04..41cd6b2 100644
+index 031dd0460..41cd6b242 100644
 --- a/src/input/source/tty/oxp_serial/x1.rs
 +++ b/src/input/source/tty/oxp_serial/x1.rs
 @@ -1,6 +1,11 @@

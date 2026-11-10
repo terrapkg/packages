@@ -1,7 +1,7 @@
-From 5a2385e86ecf65734eb7b531a974dfb3f619d612 Mon Sep 17 00:00:00 2001
+From b8949ada8487a25e08a2d9e90f415c7f12f76dfa Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Thu, 5 Nov 2026 23:24:02 -0800
-Subject: [PATCH 1/5] fix: Stop and remove source drivers when their device is
+Subject: [PATCH 1/4] fix: Stop and remove source drivers when their device is
  removed
 
 When a source device is removed, on_source_device_removed() cleans up hide
@@ -29,10 +29,10 @@ Assisted-by: LLM
  1 file changed, 14 insertions(+)
 
 diff --git a/src/input/composite_device/mod.rs b/src/input/composite_device/mod.rs
-index e23eeb3..4d23a4c 100644
+index b7045ba5..0f6d62bd 100644
 --- a/src/input/composite_device/mod.rs
 +++ b/src/input/composite_device/mod.rs
-@@ -1290,6 +1290,20 @@ impl CompositeDevice {
+@@ -1614,6 +1614,20 @@ impl CompositeDevice {
          let path = device.path();
          let id = device.get_id();
  
@@ -54,25 +54,28 @@ index e23eeb3..4d23a4c 100644
          if let Some(name) = Path::new(&path).file_name() {
              remove_hide_rules(&name.to_string_lossy());
 
-From 1349d3d5bf20a180632aad259dbc56c63bdd80d1 Mon Sep 17 00:00:00 2001
+From 38fcc95779f1f3ef88beaebbedf648e7ce06c667 Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Thu, 5 Nov 2026 23:24:05 -0800
-Subject: [PATCH 2/5] fix: Evict userspace clients when hiding devices and
- reannounce on unhide
+Subject: [PATCH 2/4] fix: Prompt userspace clients to release hidden devices
+ and reannounce on unhide
 
 Since systemd 256, udevadm trigger events no longer unlink or recreate
-devnodes, so the remove/add retrigger no longer breaks ioctl for hidden
-devices. Because of this, there are some breakages in how device
+devnodes, so the remove/add retrigger no longer prompts clients to drop
+hidden devices. Because of this, there are some breakages in how device
 hide/unhide is handled.
-  - Hiding a node no longer evicts userspace clients that already have
-    the device open, bypassing the virtual device.
+  - Hiding a node no longer causes userspace clients that already have
+    the device open to release it, bypassing the virtual device.
   - Unhiding via the retrigger no longer delivers a real node change, so
     clients holding a hidden node are not prompted to re-open the restored
     one.
 
 Resolve these issues by:
-  - After writing the hide rule and reloading rules, rm the devnode and
-    recreate it with mkdev as a character device with mode 000.
+  - After writing the hide rule and reloading rules, unlink the devnode and
+    recreate it with mknod as a character device with mode 000. Clients
+    watching the node (e.g. Steam) see it replaced and close their fd, and
+    new opens by non-root users fail. Existing fds are not revoked, so
+    clients that ignore the node change keep access.
   - Only do this for ChangePermissions hides as MoveSourceDevice moves the
     node, bypassing the problem.
   - Split the reload plumbing into reload_rules() for a plain rules reload
@@ -91,7 +94,7 @@ Assisted-by: LLM
  3 files changed, 66 insertions(+), 12 deletions(-)
 
 diff --git a/Cargo.lock b/Cargo.lock
-index e1efd66..055ed2e 100644
+index e1efd660..055ed2e8 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
 @@ -1047,6 +1047,7 @@ dependencies = [
@@ -103,7 +106,7 @@ index e1efd66..055ed2e 100644
   "mio",
   "nix 0.30.1",
 diff --git a/Cargo.toml b/Cargo.toml
-index 061ad89..1fda530 100644
+index 061ad89c..1fda5303 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -122,6 +122,7 @@ glob-match = "0.2.1"
@@ -115,7 +118,7 @@ index 061ad89..1fda530 100644
  log = { version = "0.4.29", features = [
    "max_level_trace",
 diff --git a/src/udev/mod.rs b/src/udev/mod.rs
-index ed83f2c..dcce49c 100644
+index ed83f2c4..8fc25829 100644
 --- a/src/udev/mod.rs
 +++ b/src/udev/mod.rs
 @@ -9,7 +9,8 @@ pub mod device;
@@ -145,7 +148,7 @@ index ed83f2c..dcce49c 100644
 -    reload_children(parent).await?;
 +    reload_rules().await?;
 +
-+    // Unlink and recreate the node to break ioctl.
++    // Replace the node so clients watching it drop their fd.
 +    if flags.contains(&HideFlag::ChangePermissions) && !flags.contains(&HideFlag::MoveSourceDevice)
 +    {
 +        // Strip any prefix before parsing.
@@ -240,10 +243,10 @@ index ed83f2c..dcce49c 100644
      for action in ["remove", "add"] {
          for subsystem in ["input", "hidraw"] {
 
-From 182d4ab6c2bc9448049409b6ac8b7a3c0107c78c Mon Sep 17 00:00:00 2001
+From 3c0595e331e623e0f1a3fe0c2642e8e95f74dfc8 Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Thu, 5 Nov 2026 23:24:05 -0800
-Subject: [PATCH 3/5] fix: Restore node ownership when unhiding devices
+Subject: [PATCH 3/4] fix: Restore node ownership when unhiding devices
 
 When a device is hidden, SAVED_PERMISSIONS only saves the mode bits.
 On unhide the restored node comes back owned by the daemon
@@ -264,7 +267,7 @@ Assisted-by: LLM
  1 file changed, 37 insertions(+), 27 deletions(-)
 
 diff --git a/src/udev/mod.rs b/src/udev/mod.rs
-index dcce49c..9daa43a 100644
+index 8fc25829..cad5ffce 100644
 --- a/src/udev/mod.rs
 +++ b/src/udev/mod.rs
 @@ -11,7 +11,7 @@ use std::{
@@ -387,10 +390,10 @@ index dcce49c..9daa43a 100644
              }
          }
 
-From 80d5da8e9557d5a67404524d431d1df7439d2e6f Mon Sep 17 00:00:00 2001
+From 626fc5d22f4871a4e8411d2a2a4fabeb882b407f Mon Sep 17 00:00:00 2001
 From: "Derek J. Clark" <derekjohn.clark@gmail.com>
 Date: Thu, 5 Nov 2026 23:24:05 -0800
-Subject: [PATCH 4/5] fix: monitor input devices via udev instead of inotify
+Subject: [PATCH 4/4] fix: monitor input devices via udev instead of inotify
 
 Device discovery runs two inotify watchers over /dev and /dev/input plus
 a separate udev monitor for iio only. The inotify path needs a retry loop
@@ -419,7 +422,7 @@ Assisted-by: LLM
  delete mode 100644 src/watcher/mod.rs
 
 diff --git a/Cargo.lock b/Cargo.lock
-index 055ed2e..86694d7 100644
+index 055ed2e8..86694d7f 100644
 --- a/Cargo.lock
 +++ b/Cargo.lock
 @@ -1013,28 +1013,6 @@ dependencies = [
@@ -460,7 +463,7 @@ index 055ed2e..86694d7 100644
   "log",
   "mio",
 diff --git a/Cargo.toml b/Cargo.toml
-index 1fda530..0113e12 100644
+index 1fda5303..0113e12b 100644
 --- a/Cargo.toml
 +++ b/Cargo.toml
 @@ -121,7 +121,6 @@ futures = "0.3.31"
@@ -472,7 +475,7 @@ index 1fda530..0113e12 100644
  # Omit trace logging for release builds
  log = { version = "0.4.29", features = [
 diff --git a/src/input/manager.rs b/src/input/manager.rs
-index dd89bf3..688d9a4 100644
+index 50035289..aa144be1 100644
 --- a/src/input/manager.rs
 +++ b/src/input/manager.rs
 @@ -42,15 +42,12 @@ use crate::udev::{
@@ -526,7 +529,7 @@ index dd89bf3..688d9a4 100644
              self.events_loop()
          );
  
-@@ -735,7 +711,7 @@ impl Manager {
+@@ -725,7 +701,7 @@ impl Manager {
      }
  
      /// Create a [CompositeDevice] from the given configuration
@@ -535,7 +538,7 @@ index dd89bf3..688d9a4 100644
          &mut self,
          path: PathBuf,
          config: &CompositeDeviceConfig,
-@@ -1322,9 +1298,7 @@ impl Manager {
+@@ -1287,9 +1263,7 @@ impl Manager {
                      "Found a matching {} device {id} in config {path:?}, creating CompositeDevice",
                      device.kind()
                  );
@@ -546,7 +549,7 @@ index dd89bf3..688d9a4 100644
  
                  // Get the target input devices from the config
                  let target_devices_config = config.target_devices.clone();
-@@ -1701,12 +1675,16 @@ impl Manager {
+@@ -1666,12 +1640,16 @@ impl Manager {
          Err(Box::from("No available dbus path left"))
      }
  
@@ -566,7 +569,7 @@ index dd89bf3..688d9a4 100644
  
              let mut poll = Poll::new()?;
              let mut events = Events::with_capacity(1024);
-@@ -1723,11 +1701,15 @@ impl Manager {
+@@ -1688,11 +1666,15 @@ impl Manager {
                      let device = event.device();
                      let dev_name = device.name();
                      let dev_sysname = device.sysname().to_string_lossy();
@@ -583,7 +586,7 @@ index dd89bf3..688d9a4 100644
                              );
                              cmd_tx.blocking_send(ManagerCommand::DeviceAdded {
                                  device: device.into(),
-@@ -1735,14 +1717,16 @@ impl Manager {
+@@ -1700,14 +1682,16 @@ impl Manager {
                          }
                          "remove" => {
                              log::debug!(
@@ -602,7 +605,7 @@ index dd89bf3..688d9a4 100644
                          }
                      }
                  }
-@@ -1751,112 +1735,6 @@ impl Manager {
+@@ -1716,112 +1700,6 @@ impl Manager {
          })
      }
  
@@ -716,7 +719,7 @@ index dd89bf3..688d9a4 100644
      async fn discover_all_devices(
          cmd_tx: &mpsc::Sender<ManagerCommand>,
 diff --git a/src/lib.rs b/src/lib.rs
-index dddfe88..9bf514b 100644
+index dddfe88b..9bf514bb 100644
 --- a/src/lib.rs
 +++ b/src/lib.rs
 @@ -8,4 +8,3 @@ pub mod drivers;
@@ -725,7 +728,7 @@ index dddfe88..9bf514b 100644
  pub mod udev;
 -pub mod watcher;
 diff --git a/src/main.rs b/src/main.rs
-index 20c6b95..9ef35cf 100644
+index 20c6b95b..9ef35cf4 100644
 --- a/src/main.rs
 +++ b/src/main.rs
 @@ -21,7 +21,6 @@ mod drivers;
@@ -738,7 +741,7 @@ index 20c6b95..9ef35cf 100644
  async fn main() -> Result<(), Box<dyn Error>> {
 diff --git a/src/watcher/mod.rs b/src/watcher/mod.rs
 deleted file mode 100644
-index d78aaa3..0000000
+index d78aaa3e..00000000
 --- a/src/watcher/mod.rs
 +++ /dev/null
 @@ -1,69 +0,0 @@
@@ -811,29 +814,3 @@ index d78aaa3..0000000
 -        }
 -    }
 -}
-
-From 9b9625f919af6097cf4521cc8e8e4e1a5036ce13 Mon Sep 17 00:00:00 2001
-From: Copilot <223556219+Copilot@users.noreply.github.com>
-Date: Fri, 6 Nov 2026 14:27:39 -0800
-Subject: [PATCH 5/5] style: format combined generic and mapped hidraw imports
-
-Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
----
- src/input/source/hidraw.rs | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/src/input/source/hidraw.rs b/src/input/source/hidraw.rs
-index 78e1909..8e928b9 100644
---- a/src/input/source/hidraw.rs
-+++ b/src/input/source/hidraw.rs
-@@ -33,9 +33,7 @@ use crate::{
-         composite_device::client::CompositeDeviceClient,
-         info::DeviceInfoRef,
-         output_capability::OutputCapability,
--        source::hidraw::{
--            generic::GenericDevice, legion_go::touchpad::LegionGoTouchpad,
--        },
-+        source::hidraw::{generic::GenericDevice, legion_go::touchpad::LegionGoTouchpad},
-     },
-     udev::device::UdevDevice,
- };
