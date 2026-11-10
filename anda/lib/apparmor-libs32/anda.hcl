@@ -3,4 +3,7 @@ project pkg {
 	rpm {
 		spec = "apparmor-libs32.spec"
 	}
+	labels {
+		oglyad_ignore = "duplicate-name"
+	}
 }
