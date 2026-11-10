@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: tasty-hunit tasty-quickcheck
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.5.3.0
@@ -27,10 +27,13 @@ BuildRequires:  ghc-bytestring-devel
 BuildRequires:  ghc-base-prof
 BuildRequires:  ghc-bytestring-prof
 %endif
+%if %{with tests}
+BuildRequires:  ghc-QuickCheck-devel
+BuildRequires:  ghc-tasty-devel
+BuildRequires:  ghc-tasty-quickcheck-devel
+%endif
 BuildRequires:  bzip2-devel
 # End cabal-rpm deps
-
-Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 This package provides a pure interface for compressing and decompressing
@@ -53,6 +56,8 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 # Begin cabal-rpm deps:
 Requires:       bzip2-devel%{?_isa}
 # End cabal-rpm deps
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description devel
 This package provides the Haskell %{pkg_name} library development files.
@@ -96,6 +101,12 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files
