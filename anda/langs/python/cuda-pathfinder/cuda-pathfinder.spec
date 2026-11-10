@@ -4,7 +4,7 @@
 %define _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
-Version:		
+Version:		13.5.0
 Release:		1%{?dist}
 Summary:		Pathfinder for CUDA components
 License:		Apache-2.0
