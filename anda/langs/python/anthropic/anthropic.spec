@@ -2,7 +2,7 @@
 %global _desc       The Claude SDK for Python provides access to the Claude API from Python applications.
 
 Name:			    python-%{pypi_name}
-Version:		    2.6.0
+Version:		    2.7.0
 Release:		    1%{?dist}
 Summary:		    The Claude SDK for Python provides access to the Claude API from Python applications
 License:		    Apache-2.0 AND MIT
