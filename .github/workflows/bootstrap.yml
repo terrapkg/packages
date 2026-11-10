@@ -45,7 +45,7 @@ jobs:
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
       - name: Install build dependencies
-        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper,cli-tools}/*.spec anda/{buildsys/anda,tools/subatomic,tools/cargo4rpm}/*.spec
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper,cli-tools,oglyad}/*.spec anda/{buildsys/anda,tools/subatomic,tools/cargo4rpm}/*.spec
 
       - name: Install Anda
         run: |
@@ -80,6 +80,9 @@ jobs:
 
       - name: Build terra-scripts
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/terra-scripts/pkg
+
+      - name: Build oglyad
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/oglyad/pkg
 
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg
