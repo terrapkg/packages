@@ -4,12 +4,12 @@
 %define _python_dist_allow_version_zero 1
 
 Name:			python-%{pypi_name}
-Version:		
+Version:		13.5.0
 Release:		1%{?dist}
 Summary:		Pathfinder for CUDA components
 License:		Apache-2.0
 URL:			https://nvidia.github.io/cuda-python/latest/
-Source0:        https://github.com/NVIDIA/cuda-python/archive/refs/tags/cuda-core-v%{version}.tar.gz
+Source0:        https://github.com/NVIDIA/cuda-python/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
