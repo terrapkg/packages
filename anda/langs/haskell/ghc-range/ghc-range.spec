@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: test-framework-quickcheck2 doctest
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        1.0.0.0
@@ -22,14 +22,23 @@ Source0:        https://hackage.haskell.org/package/%{pkgver}/%{pkgver}.tar.gz
 BuildRequires:  ghc-rpm-macros
 BuildRequires:  ghc-Cabal-devel
 BuildRequires:  ghc-base-devel
+BuildRequires:  ghc-containers-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-free-devel
 BuildRequires:  ghc-parsec-devel
 %if %{with ghc_prof}
 BuildRequires:  ghc-base-prof
+BuildRequires:  ghc-containers-prof
 BuildRequires:  ghc-deepseq-prof
 BuildRequires:  ghc-free-prof
 BuildRequires:  ghc-parsec-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-QuickCheck-devel
+BuildRequires:  ghc-doctest-devel
+BuildRequires:  ghc-random-devel
+BuildRequires:  ghc-test-framework-devel
+BuildRequires:  ghc-test-framework-quickcheck2-devel
 %endif
 # End cabal-rpm deps
 
@@ -97,6 +106,12 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files

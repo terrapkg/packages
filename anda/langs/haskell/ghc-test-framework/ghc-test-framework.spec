@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: regex-posix
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.8.2.3
@@ -41,6 +41,10 @@ BuildRequires:  ghc-random-prof
 BuildRequires:  ghc-regex-posix-prof
 BuildRequires:  ghc-time-prof
 BuildRequires:  ghc-xml-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-HUnit-devel
+BuildRequires:  ghc-QuickCheck-devel
 %endif
 # End cabal-rpm deps
 
@@ -106,6 +110,12 @@ cp -bp %{SOURCE1} %{pkg_name}.cabal
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files

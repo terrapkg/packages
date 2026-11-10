@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: aeson hspec lens lens-aeson unordered-containers vector microlens should-not-typecheck
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.14.3
@@ -18,8 +18,6 @@ URL:            https://hackage.haskell.org/package/vinyl
 Source0:        https://hackage.haskell.org/package/%{pkgver}/%{pkgver}.tar.gz
 # End cabal-rpm sources
 
-Packager:       Owen Zimmerman <owen@fyralabs.com>
-
 # Begin cabal-rpm deps:
 BuildRequires:  ghc-rpm-macros
 BuildRequires:  ghc-Cabal-devel
@@ -31,7 +29,21 @@ BuildRequires:  ghc-array-prof
 BuildRequires:  ghc-base-prof
 BuildRequires:  ghc-deepseq-prof
 %endif
+%if %{with tests}
+BuildRequires:  ghc-aeson-devel
+BuildRequires:  ghc-hspec-devel
+BuildRequires:  ghc-lens-aeson-devel
+BuildRequires:  ghc-lens-devel
+BuildRequires:  ghc-microlens-devel
+BuildRequires:  ghc-mtl-devel
+BuildRequires:  ghc-should-not-typecheck-devel
+BuildRequires:  ghc-text-devel
+BuildRequires:  ghc-unordered-containers-devel
+BuildRequires:  ghc-vector-devel
+%endif
 # End cabal-rpm deps
+
+Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
 Extensible records for Haskell with lenses.
@@ -88,6 +100,12 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files
