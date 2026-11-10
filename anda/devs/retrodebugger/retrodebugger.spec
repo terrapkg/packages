@@ -26,6 +26,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: terra-appstream-helper
 Requires:      libGLEW
 Requires:      sndio-libs
+Requires:      desktop-file-utils
 Packager:      Stefan Kaps <st0ff.npl@gmail.com>
 
 %description %_description
@@ -33,9 +34,10 @@ Packager:      Stefan Kaps <st0ff.npl@gmail.com>
 # The old SPEC used a special build-project to make the SPECfile-calls much simpler.
 # but that is not required, it'd be bloat.
 %prep
-# INTENAL TESTING SPEEDUP: git config --global url."http://192.168.2.192:8080/".insteadOf  "https://github.com/"
+# INTENAL TESTING SPEEDUP:
+git config --global url."http://192.168.2.192:8080/".insteadOf  "https://github.com/"
 # final URL will point to main repository, use the named branch, but tags for versioning.
-git clone --depth 1 --recurse-submodules --verbose --progress --branch=Terra-linux-deployment https://github.com/St0fF-NPL-ToM/RetroDebugger %name
+git clone --depth 1 --recurse-submodules --branch=Terra-linux-deployment https://github.com/St0fF-NPL-ToM/RetroDebugger %name
 
 %build
 cd %name && /bin/sh build-linux.sh
@@ -49,15 +51,18 @@ install -Dm 644 %name/README.md                 %{buildroot}%{_docdir}/retrodebu
 cp -a           %name/docs                   -t %{buildroot}%{_docdir}/retrodebugger/
 
 %terra_appstream -o %name/assets/%appid.metainfo.xml
+%desktop_file_install -k Exec,Name,Type,Categories,PrefersNonDefaultGPU,SingleMainWindow -v %{_bindir}/retrodebugger,%name_pretty,Application,Development,1,1 -u %f %name/build/%{appid}.desktop
 
-desktop-file-install --set-name=%name --copy-name-to-generic-name \
-    --set-icon=%name    --set-key=Type  --set-value=Application \
-    --set-key=Exec                      --set-value=%{_bindir}/retrodebugger \
-    --set-key=Version                   --set-value=%{version} \
-    --set-key=Comment                   --set-value="%summary" \
-    --set-key=PrefersNonDefaultGPU      --set-value=1 \
-    --set-key=SingleMainWindow          --set-value=1 \
-    %name/build/%{appid}.desktop
+#desktop-file-install --set-name=%name --copy-name-to-generic-name \
+#    --set-icon=%name    --set-key=Type  --set-value=Application \
+#    --set-key=Exec                      --set-value=%{_bindir}/retrodebugger \
+#    --set-key=Comment                   --set-value="%summary" \
+#    --set-key=PrefersNonDefaultGPU      --set-value=1 \
+#    --set-key=SingleMainWindow          --set-value=1 \
+#    --set-key=Categories                --set-value=Development \
+#    %name/build/%{appid}.desktop
+#
+#    --set-key=Version                   --set-value=%{version} \
 
 %files
 %{_bindir}/retrodebugger
