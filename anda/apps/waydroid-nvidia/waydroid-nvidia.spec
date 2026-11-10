@@ -33,6 +33,9 @@ Source8:        %{url}/releases/download/%{tag}/waydroid-nvidia-native-x86_64-%{
 Source9:        %{url}/releases/download/%{tag}/waydroid-nvidia-vendor-x86_64-%{tag}.zip
 Source10:       %{url}/releases/download/%{tag}/waydroid-nvidia-vendor-ota-%{tag}.json
 
+Patch0:         %{url}/raw/%{tag}/patches/waydroid/0001-nvidia-integration.patch
+Patch1:         %{url}/raw/%{tag}/waydroid/0001-lxc-nvidia-native-mounts.patch
+
 
 ExclusiveArch:  x86_64
 
@@ -84,13 +87,13 @@ This package contains the SELinux policy module necessary to run Waydroid.
 %setup -q -n waydroid-nvidia-%{version} -a 1
 
 pushd waydroid-%{waydroid_commit}
-patch -p1 < ../patches/waydroid/0001-nvidia-integration.patch
-# mounts /dev/nvidia* do modo nvidia-prolapse + helper que os gera
-patch -p1 < ../waydroid/0001-lxc-nvidia-native-mounts.patch
+%autopatch -p1
+# The helper installed by the patch must be byte-identical to the one shipped in the release tarball.
 cmp ../waydroid/nvidia_native.py tools/helpers/nvidia_native.py
-# Fedora: o contexto SELinux do rootfs vem de rootfs_context() (0001-nvidia-integration):
-# não fixar context= aqui, ou o mount sai com a opção duplicada e o fallback "sem contexto" morre.
-# Fedora: LXC sem AppArmor (era o antigo no-apparmor.patch)
+# The rootfs SELinux context comes from rootfs_context() (0001-nvidia-integration); do not pin
+# context= here, or every mount carries it twice and the "no context" fallback is lost.
+# Fedora has no AppArmor: drop lxc.apparmor.profile from the shipped LXC configs and the
+# get_apparmor_status() branch (replaces the old no-apparmor.patch).
 sed -i '/^lxc\.aa_profile = unconfined$/d; /^lxc\.apparmor\.profile = unconfined$/d' data/configs/config_1 data/configs/config_3
 sed -i '/^    if get_apparmor_status(args):$/,+2d' tools/helpers/lxc.py
 popd
@@ -113,8 +116,10 @@ popd
 %{__make} -C SELinux NAME=%{selinuxtype} -f /usr/share/selinux/devel/Makefile
 
 %install
-# As libs Android do bundle carregam RUNPATH do CI do upstream; libera só
-# "invalid runpath" (0x0002) no check-rpaths e mantém os outros brp ativos.
+# The bundled Android (bionic) libraries carry RUNPATH entries pointing at the upstream CI build
+# directories. Only the "invalid runpath" check (0x0002) is relaxed; the other brp checks stay on,
+# the files are loaded by the guest's linker (not the host's), and stripping them would break the
+# vendor image gate, which requires the bundle binaries to remain byte-identical.
 export QA_RPATHS=$(( 0x0002 | ${QA_RPATHS:-0} ))
 %{__make} -C waydroid-%{waydroid_commit} install \
     DESTDIR=%{buildroot} USE_SYSTEMD=1 USE_DBUS_ACTIVATION=1 USE_NFTABLES=1
@@ -152,7 +157,7 @@ done
 %{__install} -D -p -m 0755 guest/system/bin/surfaceflinger \
     %{buildroot}%{_prefix}/lib/waydroid-nvidia/guest/system/bin/surfaceflinger
 
-# nvidia-prolapse (modo default do 0.2.0): bundle native + vendor image + OTA channel
+# nvidia-prolapse (the 0.2.0 default mode): native bundle + vendor image + OTA channel
 %{__install} -d %{buildroot}%{_prefix}/lib/waydroid-nvidia
 packaging/native/install-native.sh "$PWD" %{SOURCE8} %{SOURCE9} %{SOURCE10} %{buildroot} %{tag}
 
@@ -190,7 +195,7 @@ if [ "$1" -eq 0 ]; then
 fi
 
 %post
-# /var/lib/waydroid-nvidia e criado em runtime pelo setup: aplica o fcontext novo
+# /var/lib/waydroid-nvidia is created at runtime by the setup: apply the new fcontext
 restorecon -R /var/lib/waydroid-nvidia > /dev/null 2>&1 || :
 waydroid upgrade -o > /dev/null || :
 %systemd_post waydroid-container.service
@@ -236,7 +241,7 @@ udevadm trigger --subsystem-match=drm > /dev/null 2>&1 || :
 %{_datadir}/selinux/%{selinuxtype}/waydroid-nvidia.pp
 
 %changelog
-* Mon Nov 09 2026 Local build <local@localhost> - 0.2.0-1
+* Mon Nov 09 2026 nklowns <nklowns@users.noreply.github.com> - 0.2.0-1
 - Package the nvidia-prolapse default mode: native bundle, vendor image, OTA channel
 - Apply waydroid/0001-lxc-nvidia-native-mounts.patch and install the nvidia_native helper
 - Ship 70-waydroid-nvidia-gpu.rules (systemd alias for the NVIDIA render node)
