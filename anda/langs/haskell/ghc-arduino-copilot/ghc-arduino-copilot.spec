@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: temporary
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        1.7.9
@@ -44,6 +44,9 @@ BuildRequires:  ghc-mtl-prof
 BuildRequires:  ghc-optparse-applicative-prof
 BuildRequires:  ghc-sketch-frp-copilot-prof
 BuildRequires:  ghc-temporary-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-process-devel
 %endif
 # End cabal-rpm deps
 
@@ -124,6 +127,12 @@ sed -i \
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files

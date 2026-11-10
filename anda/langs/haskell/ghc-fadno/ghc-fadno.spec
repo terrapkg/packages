@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: HUnit fadno-xml hspec hspec-contrib lens
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        1.1.9.1
@@ -54,6 +54,10 @@ BuildRequires:  ghc-text-prof
 BuildRequires:  ghc-unordered-containers-prof
 BuildRequires:  ghc-vector-prof
 BuildRequires:  ghc-xml-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-hspec-contrib-devel
+BuildRequires:  ghc-hspec-devel
 %endif
 # End cabal-rpm deps
 
@@ -104,7 +108,7 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm setup:
 %setup -q -n %{pkgver}
 # End cabal-rpm setup
-sed -i 's/base >= 4.9 && < 4.20/base >= 4.9 \&\& < 4.21/' fadno.cabal
+cabal-tweak-remove-upperbound base
 
 %build
 # Begin cabal-rpm build:
@@ -116,6 +120,12 @@ sed -i 's/base >= 4.9 && < 4.20/base >= 4.9 \&\& < 4.21/' fadno.cabal
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files

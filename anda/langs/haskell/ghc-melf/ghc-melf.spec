@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: tasty tasty-golden tasty-hunit prettyprinter
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        1.3.1
@@ -41,6 +41,13 @@ BuildRequires:  ghc-mtl-prof
 BuildRequires:  ghc-optparse-applicative-prof
 BuildRequires:  ghc-prettyprinter-prof
 BuildRequires:  ghc-template-haskell-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-directory-devel
+BuildRequires:  ghc-filepath-devel
+BuildRequires:  ghc-tasty-devel
+BuildRequires:  ghc-tasty-golden-devel
+BuildRequires:  ghc-tasty-hunit-devel
 %endif
 # End cabal-rpm deps
 
@@ -102,6 +109,13 @@ cp -bp %{SOURCE1} %{pkg_name}.cabal
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+PATH=%{buildroot}%{_bindir}:$PATH
+%cabal_test
+%endif
 
 
 %files -f %{name}.files
