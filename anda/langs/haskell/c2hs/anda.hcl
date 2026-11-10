@@ -1,5 +1,5 @@
 project pkg {
   rpm {
-    spec = "ghc-c2hs.spec"
+    spec = "c2hs.spec"
   }
 }
