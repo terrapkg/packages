@@ -108,7 +108,7 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm setup:
 %setup -q -n %{pkgver}
 # End cabal-rpm setup
-
+cabal-tweak-remove-upperbound base
 
 %build
 # Begin cabal-rpm build:

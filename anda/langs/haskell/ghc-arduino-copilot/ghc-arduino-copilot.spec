@@ -157,5 +157,5 @@ sed -i \
 
 
 %changelog
-* Tue Nov 10 2026 Owen Zimmerman <owen@fyralabs.com> - 1.7.9-1
+* Mon Jul 20 Owen Zimmerman <owen@fyralabs.com> - 1.7.9-1
 - Initial commit
