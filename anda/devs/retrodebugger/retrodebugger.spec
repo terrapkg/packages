@@ -35,7 +35,8 @@ Packager:      Stefan Kaps <st0ff.npl@gmail.com>
 # but that is not required, it'd be bloat.
 %prep
 # INTENAL TESTING SPEEDUP:
-git config --global url."http://192.168.2.192:8080/".insteadOf  "https://github.com/"
+# git config --global url."http://192.168.2.192:8080/".insteadOf  "https://github.com/"
+
 # final URL will point to main repository, use the named branch, but tags for versioning.
 git clone --depth 1 --recurse-submodules --branch=Terra-linux-deployment https://github.com/St0fF-NPL-ToM/RetroDebugger %name
 
