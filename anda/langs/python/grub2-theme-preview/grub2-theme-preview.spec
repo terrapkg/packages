@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.10.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Preview a GRUB 2.x theme using KVM/QEMU
 License:		GPL-2.0-or-later
 URL:			https://pypi.org/project/grub2-theme-preview/
@@ -22,6 +22,9 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 Requires:       qemu-kvm
+Requires:       grub2-tools-extra
+Requires:       edk2-ovmf
+Requires:       mtools
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
