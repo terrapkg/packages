@@ -41,8 +41,6 @@ git clone --depth 1 --recurse-submodules --branch=Terra-linux-deployment https:/
 
 %build
 cd %name && /bin/sh build-linux.sh
-# obviously, %desktop_file_wurst needs an existing file, even if it is empty …
-touch ./build/%appid.desktop
 
 %install
 install -Dm 755 %name/build/retrodebugger       %{buildroot}%{_bindir}/retrodebugger
@@ -51,18 +49,7 @@ install -Dm 644 %name/README.md                 %{buildroot}%{_docdir}/retrodebu
 cp -a           %name/docs                   -t %{buildroot}%{_docdir}/retrodebugger/
 
 %terra_appstream -o %name/assets/%appid.metainfo.xml
-%desktop_file_install -k Exec,Name,Type,Categories,PrefersNonDefaultGPU,SingleMainWindow -v %{_bindir}/retrodebugger,%name_pretty,Application,Development,1,1 -u %f %name/build/%{appid}.desktop
-
-#desktop-file-install --set-name=%name --copy-name-to-generic-name \
-#    --set-icon=%name    --set-key=Type  --set-value=Application \
-#    --set-key=Exec                      --set-value=%{_bindir}/retrodebugger \
-#    --set-key=Comment                   --set-value="%summary" \
-#    --set-key=PrefersNonDefaultGPU      --set-value=1 \
-#    --set-key=SingleMainWindow          --set-value=1 \
-#    --set-key=Categories                --set-value=Development \
-#    %name/build/%{appid}.desktop
-#
-#    --set-key=Version                   --set-value=%{version} \
+%desktop_file_install -k Exec,Icon -v %{_bindir}/retrodebugger,%{_scalableiconsdir}/%{name}.svg -u %f %name/assets/%{appid}.desktop
 
 %files
 %{_bindir}/retrodebugger
