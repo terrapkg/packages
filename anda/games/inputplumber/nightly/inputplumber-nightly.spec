@@ -7,17 +7,16 @@
 
 Name:           inputplumber-nightly
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/InputPlumber
 Source0:        %{url}/archive/%{commit}/InputPlumber-%{commit}.tar.gz
 Patch0:         make-install-dont-build.patch
 Patch1:         gpd_fixup.patch
-Patch2:         generic-hidraw.patch
-Patch3:         legion-go2-gyro.patch
-Patch4:         evdev-capability-translations.patch
-Patch5:         udev-device-lifecycle.patch
+Patch2:         legion-go2-gyro.patch
+Patch3:         evdev-capability-translations.patch
+Patch4:         udev-device-lifecycle.patch
 BuildRequires:  libevdev-devel libiio-devel git make cargo libudev-devel llvm-devel clang-devel
 BuildRequires:  rust-packaging cargo-rpm-macros rpm_macro(cargo_prep_online) systemd-rpm-macros
 Requires:       libevdev libiio
