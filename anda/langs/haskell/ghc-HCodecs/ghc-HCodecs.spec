@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: QuickCheck fail random semigroups
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.5.2
@@ -33,6 +33,7 @@ BuildRequires:  ghc-QuickCheck-prof
 BuildRequires:  ghc-array-prof
 BuildRequires:  ghc-base-prof
 BuildRequires:  ghc-bytestring-prof
+BuildRequires:  ghc-fail-prof
 BuildRequires:  ghc-random-prof
 BuildRequires:  ghc-semigroups-prof
 %endif
@@ -101,6 +102,12 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files
