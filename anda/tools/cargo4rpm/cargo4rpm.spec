@@ -14,6 +14,9 @@ BuildRequires:  clang
 %else
 BuildRequires:  gcc
 %endif
+%if %{defined rhel} && 0%{?rhel} <= 10
+BuildRequires:  rustup
+%endif
 BuildRequires:  pkgconfig(openssl)
 Packager:       Gilver E. <roachy@fyralabs.com>
 
@@ -22,6 +25,11 @@ Packager:       Gilver E. <roachy@fyralabs.com>
 
 %prep
 %autosetup -n %{name}
+
+%if %{defined rhel} && 0%{?rhel} <= 10
+%vendor_rust -t stable
+%endif
+
 %cargo_prep_online
 
 %build
