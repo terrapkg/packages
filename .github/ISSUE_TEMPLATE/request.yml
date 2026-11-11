@@ -37,8 +37,6 @@ body:
       options:
           - label: This is not packaged in Fedora
             required: false
-          - label: This is packaged in Fedora
-            required: false
   - type: input
     id: llm
     attributes:
