@@ -1,7 +1,7 @@
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
 Name:           codex
-Version:        0.167.1
+Version:        0.167.2
 Release:        1%{?dist}
 Summary:        Lightweight coding agent that runs in your terminal
 
