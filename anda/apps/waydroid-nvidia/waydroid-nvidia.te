@@ -22,6 +22,7 @@ require {
 	role rpm_script_roles;
 	type iptables_t;
 	type systemd_systemctl_exec_t;
+	type security_t;
 }
 
 # Define domain
@@ -88,6 +89,13 @@ manage_fifo_files_pattern(iptables_t, waydroid_t, waydroid_t)
 type waydroid_rootfs_t;
 files_type(waydroid_rootfs_t)
 read_files_pattern(waydroid_t, waydroid_rootfs_t, waydroid_rootfs_t)
+
+# rootfs_context() in the Waydroid tools validates the mount context with
+# security_check_context() before mounting the Android rootfs; without this the mount
+# carries no context, the rootfs stays unlabeled and the container cannot start.
+allow waydroid_t security_t:security check_context;
+allow waydroid_t security_t:file { open read write getattr };
+allow waydroid_t security_t:dir { search getattr read open };
 
 # Read android data
 allow waydroid_t self:capability { dac_read_search };
