@@ -3,7 +3,7 @@
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   battery_time
-%global uuid        %{extension}@typeof.pw
+%global uuid        batterytime@typeof.pw
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
