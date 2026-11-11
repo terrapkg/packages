@@ -7,7 +7,7 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Battery remaining time extension for GNOME Shell
 License:        GPL-2.0-only
 URL:            https://github.com/pomoke/battery_time
@@ -41,5 +41,8 @@ cp %{SOURCE1} LICENSE
 %{_gnomeextensionsdir}
 
 %changelog
+* Wed Nov 11 2026 Adil Hanney <adilhanney@disroot.org>
+- Fixed UUID. Extension will now be recognized by GNOME.
+
 * Mon Jan 05 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
