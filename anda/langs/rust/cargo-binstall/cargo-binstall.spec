@@ -3,7 +3,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           cargo-binstall
-Version:        1.26.2
+Version:        1.27.0
 Release:        1%{?dist}
 Summary:        Binary installation for rust projects
 SourceLicense:  GPL-3.0-only
