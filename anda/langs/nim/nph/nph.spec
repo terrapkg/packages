@@ -7,7 +7,6 @@ Summary:        An opinionated code formatter for Nim
 License:        MIT
 URL:            https://github.com/arnetheduck/nph
 Source0:        %url/archive/refs/tags/v%version.tar.gz
-SourceLicense:  MIT
 Packager:       madonuko <mado@fyralabs.com>
 BuildRequires:  anda-srpm-macros
 BuildRequires:  nim
