@@ -1,5 +1,5 @@
 Name:           powerstation
-Version:        0.10.1
+Version:        0.10.2
 Release:        1%{?dist}
 Summary:        Daemon for controlling TDP and performance over DBus
 
