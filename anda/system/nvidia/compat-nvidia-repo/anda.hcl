@@ -5,6 +5,7 @@ project pkg {
 	}
 	labels {
 	   subrepo = "nvidia"
+	   group = "nvidia"
 	   weekly = 3
     }
 }
