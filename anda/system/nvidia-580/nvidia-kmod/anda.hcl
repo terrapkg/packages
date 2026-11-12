@@ -6,6 +6,6 @@ project "pkg" {
         mock = 1
         subrepo = "nvidia"
         group = "nvidia-580"
-        updbranch = 1
+        weekly = 4
     }
 }
