@@ -1,5 +1,5 @@
 %global goipath         github.com/cloudflare/cloudflared
-Version:                2026.10.7
+Version:                2026.11.0
 
 %gometa -f
 
