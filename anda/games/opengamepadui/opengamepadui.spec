@@ -2,8 +2,8 @@
 %global _default_patch_fuzz 2
 
 Name:           opengamepadui
-Version:        0.46.1
-Release:        8%{?dist}
+Version:        0.47.0
+Release:        1%{?dist}
 Summary:        Open source gamepad-native game launcher and overlay
 
 License:        GPL-3.0-or-later
