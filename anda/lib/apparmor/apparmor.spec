@@ -1,6 +1,6 @@
 %{?python_enable_dependency_generator}
 
-%global normver v6.0.0-alpha1
+%global normver v6.0.0-alpha2
 %global __arch_install_post /bin/true
 %global _sbindir /usr/sbin
 
@@ -14,7 +14,7 @@
 %bcond_with tests
 
 Name:           apparmor
-Version:        6.0.0~alpha1
+Version:        6.0.0~alpha2
 Release:        1%{?dist}
 Summary:        AppArmor userspace components
 

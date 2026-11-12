@@ -10,10 +10,10 @@
 # collision on Rakuos's fork of this spec. Disabled defensively.
 %global debug_package %{nil}
 
-%global normver v6.0.0-alpha1
+%global normver v6.0.0-alpha2
 
 Name:           apparmor
-Version:        6.0.0~alpha1
+Version:        6.0.0~alpha2
 Release:        1%{?dist}
 Summary:        AppArmor userspace components (32-bit multilib libs)
 
