@@ -1,11 +1,11 @@
 %global pypi_name pitop
 %global _desc A simple, modular interface for interacting with a pi-top and its related accessories and components.
-%global ver 0.35.0-4
+%global ver 0.35.0-5
 %global sanitized_ver %(echo %{ver} | sed 's/-/^/g')
 
 Name:			python-%{pypi_name}
 Version:		%{sanitized_ver}
-Release:		1%?dist
+Release:		1%{?dist}
 Summary:		pi-top's Python SDK pitop package
 License:		Apache-2.0
 URL:			https://github.com/pi-top/pi-top-Python-SDK
