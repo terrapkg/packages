@@ -1,7 +1,7 @@
 %global appid io.github.rfrench3.controllable
 
 Name:           qt6-controllable
-Version:        0.2.0
+Version:        0.2.1
 Release:        1%{?dist}
 Summary:        QML module for controller support
 
@@ -23,6 +23,7 @@ BuildRequires:  cmake(Qt6Gui)
 BuildRequires:  cmake(Qt6Qml)
 BuildRequires:  cmake(Qt6QuickControls2)
 
+BuildRequires:  cmake(KF6Config)
 BuildRequires:  cmake(KF6I18n)
 
 Requires:       kf6-ki18n

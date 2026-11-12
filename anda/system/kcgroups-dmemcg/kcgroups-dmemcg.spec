@@ -1,16 +1,16 @@
-%global kcgroups_src kcgroups-kcgroups-dmemcg-experimental
-%global booster_src kcgroups-booster-dmemcg-experimental
+%define kcgroups_src kcgroups-kcgroups-dmemcg-experimental-%{version}
+%define booster_src kcgroups-booster-dmemcg-experimental-%{version}
 
 Name:           kcgroups-dmemcg
-Version:        0.1
-Release:        3%{?dist}
+Version:        0.2
+Release:        1%{?dist}
 Summary:        KDE library to manipulate cgroups - fork adding dmem cgroup support
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        LGPL-2.1-or-later AND MIT AND CC0-1.0
 URL:            https://github.com/pixelcluster/kcgroups
 
-Source0:        %{url}/archive/refs/tags/kcgroups-dmemcg-experimental.tar.gz
-Source1:        %{url}/archive/refs/tags/booster-dmemcg-experimental.tar.gz
+Source0:        %{url}/archive/refs/tags/kcgroups-dmemcg-experimental-%{version}.tar.gz
+Source1:        %{url}/archive/refs/tags/booster-dmemcg-experimental-%{version}.tar.gz
 Source2:        %{url}/tree/dmemcg/LICENSES
 
 BuildRequires:  cmake

@@ -1,5 +1,5 @@
-%global commit 6a25c5bc6e98a426549d047585fef66bc0ad5a32
-%global commit_date 20261008
+%global commit 77af031702958e401040332b42da9068836e998e
+%global commit_date 20261104
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           yabs

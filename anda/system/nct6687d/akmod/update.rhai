@@ -1,9 +1,5 @@
- let c = sh("cat anda/system/nct6687d/kmod-common/nct6687d.spec | grep '%global commit ' | sed -E 's/.+commit //'", #{"stdout": "piped"}).ctx.stdout;
-c.pop();
-rpm.global("commit", c);
-if rpm.changed() {
-    rpm.release();
-    let d = sh("cat anda/system/nct6687d/kmod-common/nct6687d.spec | grep '%global commitdate' | sed -E 's/.+commitdate //'", #{"stdout": "piped"}).ctx.stdout;
-    d.pop();
-    rpm.global("commitdate", d);
-}
+let common = sh("cat anda/system/nct6687d/kmod-common/nct6687d.spec", #{"stdout": "piped"}).ctx.stdout;
+rpm.global("commit", find(`(?m)^%global commit\s+(\S+)`, common, 1));
+rpm.global("commitdate", find(`(?m)^%global commitdate\s+(\S+)`, common, 1));
+rpm.version(find(`(?m)^Version:\s*(\S+)`, common, 1));
+rpm.release(find(`(?m)^Release:\s*(\d+)`, common, 1).parse_int());

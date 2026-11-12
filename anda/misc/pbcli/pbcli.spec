@@ -11,7 +11,6 @@ URL:            https://github.com/Mydayyy/%{name}
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  anda-srpm-macros
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  mold
 BuildRequires:  openssl-libs
 BuildRequires:  perl-ExtUtils-MM-Utils
 BuildRequires:  perl-FindBin

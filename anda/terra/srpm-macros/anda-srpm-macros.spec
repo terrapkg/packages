@@ -1,5 +1,5 @@
 Name:           anda-srpm-macros
-Version:        0.3.26
+Version:        0.4.9
 Release:        1%{?dist}
 Summary:        SRPM macros for extra Fedora packages
 
@@ -9,6 +9,9 @@ Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 
 Recommends:     rust-packaging
 Requires:       git-core
+%if %{defined fedora}
+Requires:       toml-cli
+%endif
 Obsoletes:      fyra-srpm-macros < 0.1.1-1
 Provides:       fyra-srpm-macros = %{version}-%{release}
 BuildArch:      noarch
@@ -43,8 +46,12 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %{_rpmmacrodir}/macros.zig_extra
 %{_rpmmacrodir}/macros.tauri
 %{_rpmmacrodir}/macros.webapps
+%{_rpmmacrodir}/macros.terra-buildsys
 
 %changelog
+* Tue Oct 20 2026 Owen Zimmerman <owen@fyralabs.com> - 0.3.27-1 
+- Add macros.terra-buildsys file
+
 * Wed Aug 14 2024 madonuko <mado@fyralabs.com> - 0.1.7-2
 - Move sources outside of packages repo
 

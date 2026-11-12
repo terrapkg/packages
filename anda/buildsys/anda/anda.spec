@@ -3,7 +3,7 @@
 %global crate anda
 
 Name:           anda
-Version:        0.8.13
+Version:        0.8.14
 Release:        1%{?dist}
 Summary:        Andaman Build toolchain
 SourceLicense:  AGPL-3.0-or-later
@@ -21,7 +21,6 @@ BuildRequires:  openssl-devel
 BuildRequires:  git-core
 BuildRequires:  pkgconfig(libgit2)
 BuildRequires:  libssh2-devel
-BuildRequires:  mold
 Requires:       mock
 Requires:       rpm-build
 Requires:       createrepo_c

@@ -1,6 +1,6 @@
-%global commit d83c2a216e565ac519767e4efee3b6108798c079
+%global commit 136cb2d65ae3db0f1ad75d4f6d6a688d8688699c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20261018
+%global commitdate 20261107
 %global ver 0.2.3
 
 Name:           hid-fanatecff

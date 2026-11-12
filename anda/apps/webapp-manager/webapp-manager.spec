@@ -1,6 +1,6 @@
 Name:       webapp-manager
-Version:    master.mint22
-Release:    2%?dist
+Version:    master.mint27
+Release:    1%{?dist}
 Summary:    Web Application Manager
 License:    GPL-3.0-or-later
 URL:        https://github.com/linuxmint/webapp-manager
@@ -38,7 +38,7 @@ cp -r usr/share/locale/* %{buildroot}%{_datadir}/locale
 install -Dm 755 usr/bin/%{name} -t %{buildroot}%{_bindir}
 install -Dm 755 usr/lib/%{name}/*.py -t %{buildroot}%{_libdir}/%{name}/
 install -Dm 644 usr/share/applications/%{name}.desktop -t %{buildroot}%{_appsdir}
-install -Dm 644 usr/share/desktop-directories/webapps-webapps.directory -t %{buildroot}%{_datadir}/desktop-directories/webapps-webapps.directory
+install -Dm 644 usr/share/desktop-directories/webapps-webapps.directory -t %{buildroot}%{_datadir}/desktop-directories
 install -Dm 644 usr/share/glib-2.0/schemas/org.x.%{name}.gschema.xml -t %{buildroot}%{_datadir}/glib-2.0/schemas
 install -Dm 644 usr/share/icons/hicolor/scalable/apps/webapp-manager.svg -t %{buildroot}%{_scalableiconsdir}
 install -Dm 644 usr/share/icons/hicolor/scalable/categories/applications-webapps.svg -t %{buildroot}%{_hicolordir}/scalable/categories

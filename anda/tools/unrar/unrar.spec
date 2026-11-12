@@ -1,5 +1,5 @@
 Name:           unrar
-Version:        7.3.1
+Version:        7.3.2
 Release:        1%{?dist}
 Summary:        Utility for extracting, testing and viewing RAR archives
 

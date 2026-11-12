@@ -1,6 +1,6 @@
 Name:           hollywood
-Version:        1.25
-Release:        1%?dist
+Version:        1.26
+Release:        1%{?dist}
 Summary:        Fill your console with Hollywood melodrama technobabble
 URL:            https://github.com/dustinkirkland/hollywood
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz

@@ -14,7 +14,7 @@ Source:         %{terra_crates_source}
 Source1:        https://raw.githubusercontent.com/typstyle-rs/typstyle/v%{version}/LICENSE
 Packager:       Olivia <git@olivia.sh>
 
-BuildRequires:  anda-srpm-macros rust-packaging >= 24 mold
+BuildRequires:  anda-srpm-macros rust-packaging >= 24
 
 %global _description %{expand:
 The CLI for Typstyle.}

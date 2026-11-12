@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>com.github.GrowlyX.tailmux</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>BSD-3-Clause</project_license>
+  <icon type="local">/usr/share/icons/hicolor/512x512/apps/tailmux.png</icon>
+
+  <name>tailmux</name>
+  <summary>Be on all your tailnets at once</summary>
+
+  <screenshots>
+    <screenshot type="default"><image>https://github.com/GrowlyX/tailmux/blob/main/desktop/screenshots/tailnets-dark.png</image></screenshot>
+  </screenshots>
+
+  <description>
+    <p>
+        Be on all your tailnets at once.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">tailmux.desktop</launchable>
+
+  <url type="homepage">https://github.com/GrowlyX/tailmux</url>
+  <provides>
+    <binary>tailmux</binary>
+    <binary>tailmux-desktop</binary>
+  </provides>
+
+  <keywords>
+    <keyword>tailscale</keyword>
+    <keyword>tailnet</keyword>
+  </keywords>
+
+  <releases>
+    <release version="1.2.0" />
+  </releases>
+</component>

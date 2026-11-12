@@ -1,0 +1,60 @@
+diff -ruN cog-0.18.5.orig/platform/drm/cog-platform-drm.c cog-0.18.5/platform/drm/cog-platform-drm.c
+--- cog-0.18.5.orig/platform/drm/cog-platform-drm.c	2025-05-29 15:05:15.000000000 -0600
++++ cog-0.18.5/platform/drm/cog-platform-drm.c	2026-10-30 17:48:41.408708354 -0600
+@@ -1409,7 +1409,7 @@
+     init_config(COG_DRM_PLATFORM(platform), shell, params);
+     g_signal_connect(shell, "notify::device-scale-factor", G_CALLBACK(cog_drm_platform_shell_device_factor_changed), NULL);
+ 
+-    if (!wpe_loader_init ("libWPEBackend-fdo-1.0.so")) {
++    if (!wpe_loader_init ("libWPEBackend-fdo-1.0.so.1")) {
+         g_set_error_literal (error,
+                              COG_PLATFORM_WPE_ERROR,
+                              COG_PLATFORM_WPE_ERROR_INIT,
+diff -ruN cog-0.18.5.orig/platform/gtk4/cog-platform-gtk4.c cog-0.18.5/platform/gtk4/cog-platform-gtk4.c
+--- cog-0.18.5.orig/platform/gtk4/cog-platform-gtk4.c	2025-05-29 15:05:15.000000000 -0600
++++ cog-0.18.5/platform/gtk4/cog-platform-gtk4.c	2026-10-30 17:48:41.409437697 -0600
+@@ -672,7 +672,7 @@
+ {
+     g_assert_nonnull(platform);
+ 
+-    wpe_loader_init("libWPEBackend-fdo-1.0.so");
++    wpe_loader_init("libWPEBackend-fdo-1.0.so.1");
+     if (!gtk_init_check()) {
+         g_set_error_literal(error, COG_PLATFORM_EGL_ERROR, 0,
+             "GTK initialization failed");
+diff -ruN cog-0.18.5.orig/platform/headless/cog-platform-headless.c cog-0.18.5/platform/headless/cog-platform-headless.c
+--- cog-0.18.5.orig/platform/headless/cog-platform-headless.c	2025-05-29 15:05:15.000000000 -0600
++++ cog-0.18.5/platform/headless/cog-platform-headless.c	2026-10-30 17:48:41.409896538 -0600
+@@ -72,7 +72,7 @@
+ {
+     CogHeadlessPlatform *self = COG_HEADLESS_PLATFORM(platform);
+ 
+-    wpe_loader_init("libWPEBackend-fdo-1.0.so");
++    wpe_loader_init("libWPEBackend-fdo-1.0.so.1");
+     wpe_fdo_initialize_shm();
+ 
+     if (params && params[0] != '\0') {
+diff -ruN cog-0.18.5.orig/platform/wayland/cog-platform-wl.c cog-0.18.5/platform/wayland/cog-platform-wl.c
+--- cog-0.18.5.orig/platform/wayland/cog-platform-wl.c	2025-05-29 15:05:15.000000000 -0600
++++ cog-0.18.5/platform/wayland/cog-platform-wl.c	2026-10-30 17:48:41.410167552 -0600
+@@ -2514,7 +2514,7 @@
+ {
+     g_return_val_if_fail (COG_IS_SHELL (shell), FALSE);
+ 
+-    if (!wpe_loader_init ("libWPEBackend-fdo-1.0.so")) {
++    if (!wpe_loader_init ("libWPEBackend-fdo-1.0.so.1")) {
+         g_set_error_literal (error,
+                              COG_PLATFORM_WPE_ERROR,
+                              COG_PLATFORM_WPE_ERROR_INIT,
+diff -ruN cog-0.18.5.orig/platform/x11/cog-platform-x11.c cog-0.18.5/platform/x11/cog-platform-x11.c
+--- cog-0.18.5.orig/platform/x11/cog-platform-x11.c	2025-05-29 15:05:15.000000000 -0600
++++ cog-0.18.5/platform/x11/cog-platform-x11.c	2026-10-30 17:48:41.411626860 -0600
+@@ -772,7 +772,7 @@
+     s_display = calloc (sizeof (struct CogX11Display), 1);
+     s_window = calloc (sizeof (struct CogX11Window), 1);
+ 
+-    if (!wpe_loader_init ("libWPEBackend-fdo-1.0.so")) {
++    if (!wpe_loader_init ("libWPEBackend-fdo-1.0.so.1")) {
+         g_set_error_literal (error,
+                              COG_PLATFORM_WPE_ERROR,
+                              COG_PLATFORM_WPE_ERROR_INIT,

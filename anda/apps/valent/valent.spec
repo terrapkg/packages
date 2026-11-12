@@ -37,8 +37,6 @@ BuildRequires:      pkgconfig(tracker-sparql-3.0)
 
 %package devel
 %pkg_devel_files
-%{_datadir}/vala/vapi/libvalent-1.deps
-%{_datadir}/vala/vapi/libvalent-1.vapi
 
 %package langpacks
 Summary:           Translations for %{name}

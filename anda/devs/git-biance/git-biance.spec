@@ -10,7 +10,7 @@ URL:            https://crates.io/crates/git-biance
 Source:         %{terra_crates_source}
 
 Packager:       xiaoshihou <xiaoshihou@tutamail.com>
-BuildRequires:  anda-srpm-macros cargo-rpm-macros mold
+BuildRequires:  anda-srpm-macros cargo-rpm-macros
 
 %global _description %{expand:
 biance（鞭策，biān cè，spur）is a small rust

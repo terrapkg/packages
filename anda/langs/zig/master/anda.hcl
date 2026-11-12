@@ -3,6 +3,8 @@ project pkg {
 		spec = "zig-master.spec"
 	}
 	labels {
-	    updbranch = 1
+		oglyad_ignore = "duplicate-name"
+		updbranch = 1
+		large = 1
 	}
 }

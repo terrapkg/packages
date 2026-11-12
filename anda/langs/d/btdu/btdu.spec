@@ -9,7 +9,7 @@ URL:			https://github.com/CyberShadow/btdu
 Source0:		%url/archive/refs/tags/v%version.tar.gz
 # gcc-gdc is built using ldc ironically
 # let's just use ldc instead, they have the funny macros
-BuildRequires:	dub ldc mold
+BuildRequires:	dub ldc
 BuildRequires:	pkgconfig(ncurses)
 ExclusiveArch:	%ldc_arches
 
@@ -22,7 +22,7 @@ ExclusiveArch:	%ldc_arches
 %build
 # see macro _d_optflags
 # got rid of -release
-export DFLAGS="-O -gc -wi --linker=mold"
+export DFLAGS="-O -gc -wi --linker=lld"
 dub build -b release --parallel -n -y --compiler=ldmd2 # release-debug doesn't work
 
 %install

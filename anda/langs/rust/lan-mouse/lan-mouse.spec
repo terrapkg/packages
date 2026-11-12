@@ -15,7 +15,7 @@ Packager:       ayykamp <kamp@ayyy.dev>
 Requires:       gtk4
 BuildRequires:  cargo-rpm-macros >= 24
 BuildRequires:  anda-srpm-macros
-BuildRequires:  cargo mold
+BuildRequires:  cargo
 BuildRequires:  pkgconfig(glib-2.0) >= 2.66
 BuildRequires:  pkgconfig(gtk4) >= 4.2
 BuildRequires:  pkgconfig(libadwaita-1) >= 1.1

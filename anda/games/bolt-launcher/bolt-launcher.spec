@@ -29,7 +29,6 @@ BuildRequires: pkgconfig(libarchive)
 BuildRequires: pkgconfig(x11)
 BuildRequires: pkgconfig(xcb)
 BuildRequires: /usr/bin/ld
-BuildRequires: mold
 
 Requires:      cef
 
@@ -81,7 +80,7 @@ export LD_LIBRARY_PATH="%{_libdir}/cef${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
 %{_scalableiconsdir}/%{appid}.svg
 
 %changelog
-* Fri Sep 11 2026 Caleb Jones <owen@fyralabs.com> - 0.24.0-1
+* Fri Sep 11 2026 Caleb Jones <caleb@fyralabs.com> - 0.24.0-1
 - Change CEF root so it works with various cef versons.
 - Various improvements
 
