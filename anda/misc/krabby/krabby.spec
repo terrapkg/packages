@@ -8,7 +8,6 @@ URL:           https://github.com/yannjor/krabby
 Source0:       %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
-BuildRequires: mold
 Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description

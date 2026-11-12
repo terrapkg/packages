@@ -1,5 +1,5 @@
 Name:           wasm-pack
-Version:        0.15.0
+Version:        0.15.1
 Release:        1%{?dist}
 Summary:        Your favorite Rust → Wasm workflow tool!
 SourceLicense:  MIT OR Apache-2.0

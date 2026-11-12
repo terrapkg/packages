@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: tasty tasty-golden tasty-hunit
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        1.0.1.2
@@ -27,7 +27,15 @@ BuildRequires:  ghc-bytestring-devel
 BuildRequires:  ghc-base-prof
 BuildRequires:  ghc-bytestring-prof
 %endif
-BuildRequires:  c2hs
+#BuildRequires:  c2hs
+%if %{with tests}
+BuildRequires:  ghc-deepseq-devel
+BuildRequires:  ghc-directory-devel
+BuildRequires:  ghc-filepath-devel
+BuildRequires:  ghc-tasty-devel
+BuildRequires:  ghc-tasty-golden-devel
+BuildRequires:  ghc-tasty-hunit-devel
+%endif
 # End cabal-rpm deps
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
@@ -76,6 +84,7 @@ This package provides the Haskell %{pkg_name} profiling library.
 %setup -q -n %{pkgver}
 # End cabal-rpm setup
 
+
 %build
 # Begin cabal-rpm build:
 %ghc_lib_build
@@ -86,6 +95,12 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+%cabal_test
+%endif
 
 
 %files -f %{name}.files

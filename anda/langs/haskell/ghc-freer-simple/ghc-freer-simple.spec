@@ -5,7 +5,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# testsuite missing deps: QuickCheck tasty tasty-hunit tasty-quickcheck
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        1.2.1.2
@@ -31,6 +31,12 @@ BuildRequires:  ghc-base-prof
 BuildRequires:  ghc-natural-transformation-prof
 BuildRequires:  ghc-template-haskell-prof
 BuildRequires:  ghc-transformers-base-prof
+%endif
+%if %{with tests}
+BuildRequires:  ghc-QuickCheck-devel
+BuildRequires:  ghc-tasty-devel
+BuildRequires:  ghc-tasty-hunit-devel
+BuildRequires:  ghc-tasty-quickcheck-devel
 %endif
 # End cabal-rpm deps
 
@@ -93,6 +99,7 @@ This package provides the Haskell %{pkg_name} profiling library.
 %setup -q -n %{pkgver}
 cp -bp %{SOURCE1} %{pkg_name}.cabal
 # End cabal-rpm setup
+cabal-tweak-remove-upperbound template-haskell
 
 
 %build
@@ -105,6 +112,13 @@ cp -bp %{SOURCE1} %{pkg_name}.cabal
 # Begin cabal-rpm install
 %ghc_lib_install
 # End cabal-rpm install
+
+
+%check
+%if %{with tests}
+PATH=%{buildroot}%{_bindir}:$PATH
+%cabal_test
+%endif
 
 
 %files -f %{name}.files

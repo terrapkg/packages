@@ -20,7 +20,7 @@ Handles composite glyphs, UTF-8, OpenType variable fonts. Part of CHasm.
 %autosetup -C
 
 %build
-%make_build NASM="nasm -g" LD="gcc -nostdlib -fuse-ld=mold -Wl,-z,muldefs %build_ldflags"
+%make_build NASM="nasm -g" LD="gcc -nostdlib -fuse-ld=lld -Wl,-z,muldefs %build_ldflags"
 
 %install
 install -Dm755 glyph %{buildroot}%{_bindir}/glyph

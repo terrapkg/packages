@@ -2,7 +2,7 @@
 %global _desc RAW image processing for Python, a wrapper for libraw.
 
 Name:			python-%{pypi_name}
-Version:		0.27.1
+Version:		0.28.0
 Release:		1%{?dist}
 Summary:		RAW image processing for Python, a wrapper for libraw
 License:		MIT AND LGPL-2.1-or-later

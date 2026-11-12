@@ -1,5 +1,5 @@
-%global commit b57c48e97f7f43d95d86334798650cfda1ebc8a1
-%global commit_date 20261016
+%global commit 3c3d651cff772de3847ad34c18f6176fad645fab
+%global commit_date 20261111
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:			rpi-utils
@@ -260,6 +260,8 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_bindir}/txsink
 %{_bindir}/quadenc
 %{_bindir}/rp1sm
+%{_bindir}/blink
+%{_bindir}/mirror
 %{_libdir}/libpio.so.0
 
 %files piolib-devel

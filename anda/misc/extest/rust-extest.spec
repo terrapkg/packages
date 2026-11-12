@@ -19,7 +19,7 @@
 
 Name:           extest
 Version:        %{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        X11 XTEST reimplementation primarily for Steam Controller on Wayland
 
 License:        MIT
@@ -42,7 +42,6 @@ BuildRequires:  perl
 BuildRequires:  rust-packaging
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  clang
-BuildRequires:  mold
 Recommends:     %{name}-steam
 %ifarch x86_64
 Recommends:     %{name}(x86-32)

@@ -2,7 +2,7 @@
 %global cargo_features cover
 
 Name:           ncspot
-Version:        1.5.0
+Version:        1.5.1
 Release:        1%{?dist}
 Summary:        Cross-platform ncurses Spotify client written in Rust
 Packager:       like-engels <higashikataengels@icloud.com>

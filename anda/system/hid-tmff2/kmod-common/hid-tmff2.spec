@@ -1,11 +1,11 @@
-%global commit d890a93105a0aa52028ac49282fa1b579e12566e
+%global commit 7a1274d25b2304deed326c5a43bf3617fedcb990
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260826
+%global commitdate 20261110
 %global ver 0.83
 
 Name:           hid-tmff2
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Thrustmaster Force Feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/Kimplul/%{name}
@@ -45,5 +45,9 @@ install -Dm644 %{name}.conf -t %{buildroot}%{_modulesloaddir}
 %{_modulesloaddir}/%{name}.conf
 
 %changelog
+* Tue Oct 20 2026 Potajito <potajito@gmail.com> - 0.83^20260826git.d890a93-3
+- Sync release bump with kmod packages now shipping hid-tminit-new and
+- usb-tminit-new (https://github.com/ublue-os/bazzite/issues/3555)
+
 * Thu Apr 02 2026 Kyle Gospodnetich <me@kylegospodneti.ch>
 - Initial package

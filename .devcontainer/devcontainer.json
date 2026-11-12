@@ -8,7 +8,9 @@
         "rhaiscript.vscode-rhai",
         "1dot75cm.rpmspec",
         "hashicorp.hcl",
-        "redhat.vscode-xml"
+        "redhat.vscode-xml",
+        "sumneko.lua",
+        "nico-castell.linux-desktop-file"
       ],
     },
     "zed": {
@@ -16,7 +18,9 @@
         "rhai",
         "rpmspec",
         "terraform",
-        "xml"
+        "xml",
+        "desktop",
+        "lua"
       ]
     }
   }

@@ -32,7 +32,7 @@ them and switches GC foreground per text-run.
 %prep
 %autosetup -C
 
-sed '/^\s*nasm/s/nasm /nasm -g /;/^\s*ld/s@ld @gcc -nostdlib -fuse-ld=mold -Wl,-z,muldefs %build_ldflags@' -i Makefile
+sed '/^\s*nasm/s/nasm /nasm -g /;/^\s*ld/s@ld @gcc -nostdlib -fuse-ld=lld -Wl,-z,muldefs %build_ldflags@' -i Makefile
 
 %build
 %make_build

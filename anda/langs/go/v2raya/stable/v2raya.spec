@@ -1,5 +1,5 @@
 %global goipath         github.com/v2rayA/v2rayA
-Version:                2.5.10
+Version:                2.5.14
 
 %global golicenses      LICENSE
 %global godocs          README.md 
@@ -15,9 +15,10 @@ Source:         %{gosource}
 Packager:       veuxit <erroor234@gmail.com>
 Conflicts:      v2raya-nightly
 
-Requires:       v2ray-geoip v2ray-domain-list-community ((v2ray or v2ray-nightly) or (xray or xray-nightly))
+Requires:       v2ray-geoip v2ray-domain-list-community
 
-BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg desktop-file-utils
+BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs (yarnpkg-berry or yarnpkg) desktop-file-utils
+BuildRequires:  systemd-rpm-macros
 
 %description
 %summary.
@@ -29,7 +30,14 @@ BuildRequires:  go go-rpm-macros go-srpm-macros anda-srpm-macros nodejs yarnpkg 
 
 %build
 pushd gui
-yarn --ignore-engines && OUTPUT_DIR=$(pwd)/../service/server/router/web yarn --ignore-engines build
+export YARN_ENABLE_HARDENED_MODE=0 YARN_ENABLE_IMMUTABLE_INSTALLS=0
+yarn install && OUTPUT_DIR=$(pwd)/../service/server/router/web yarn build
+popd
+
+pushd core
+%define gomodulesmode GO111MODULE=on
+%define currentgoldflags -X main.Version=%{version}
+%gobuild -o ../v2raya_core ./main
 popd
 
 pushd service
@@ -41,11 +49,13 @@ export GO_BUILDTAGS="with_gvisor"
 %install
 %gopkginstall
 install -Dm 755 v2raya -t %{buildroot}/%{_bindir}
+install -Dm 755 v2raya_core -t %{buildroot}/%{_bindir}
 install -Dm 644 install/universal/v2raya.desktop -t %{buildroot}/%{_appsdir}/
 install -Dm 644 install/universal/v2raya.service -t %{buildroot}/%{_unitdir}/
 install -Dm 644 install/universal/v2raya-lite.service -t %{buildroot}/%{_userunitdir}/
 install -Dm 644 install/universal/v2raya.default -t %{buildroot}/%{_sysconfdir}/default/v2raya.conf
 install -Dm 644 gui/public/img/icons/android-chrome-512x512.png %{buildroot}/%{_hicolordir}/512x512/apps/v2raya.png
+ln -s %{_datadir}/v2ray %{buildroot}%{_datadir}/v2raya
 
 %check
 %desktop_file_validate %{buildroot}/%{_appsdir}/v2raya.desktop
@@ -63,6 +73,8 @@ install -Dm 644 gui/public/img/icons/android-chrome-512x512.png %{buildroot}/%{_
 %doc README.md
 %license LICENSE
 %{_bindir}/v2raya
+%{_bindir}/v2raya_core
+%{_datadir}/v2raya
 %{_unitdir}/v2raya.service
 %{_userunitdir}/v2raya-lite.service
 %{_sysconfdir}/default/v2raya.conf

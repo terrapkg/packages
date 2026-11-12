@@ -4,14 +4,14 @@
 %global __brp_mangle_shebangs %{nil}
 
 Name:           jujutsu
-Version:        0.46.0
+Version:        0.47.1
 Release:        1%{?dist}
 Summary:        Git-compatible DVCS that is both simple and powerful
 License:        Apache-2.0 AND CC-BY-4.0
 URL:            https://www.jj-vcs.dev/latest/
 Source0:        https://github.com/jj-vcs/jj/archive/refs/tags/v%version.tar.gz
 BuildRequires:  cargo >= 1.89
-BuildRequires:  git-core cargo-rpm-macros binutils gcc mold
+BuildRequires:  git-core cargo-rpm-macros binutils gcc
 BuildRequires:  gnupg
 BuildRequires:  gpgme
 BuildRequires:  openssh

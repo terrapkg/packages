@@ -1,8 +1,8 @@
 %global debug_package %{nil}
-%global raw_version 0.0-4296-g0f262651
+%global raw_version 0.0-4298-g085eef05
 
 Name:        verible
-Version:     0.0~4296~g0f262651
+Version:     0.0~4298~g085eef05
 Release:     1%{?dist}
 Summary:     SystemVerilog development tool suite, including a parser, formatter, linter, and language server
 License:     Apache

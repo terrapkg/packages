@@ -8,5 +8,6 @@ if rpm.changed() {
   let c = release.tag_name;
   c.crop(6);
   rpm.global("commit", c);
+  rpm.global("llvm_major", find(`LLVM_COMPILER_VER: '([\d.]+)'`, gh_rawfile("RPCS3/rpcs3", "master", ".github/workflows/rpcs3.yml"), 1));
   rpm.release();
 }

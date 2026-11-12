@@ -1,5 +1,5 @@
-%global commit a5f0a9c3b5d6adab74e203656ed8b51bd831ccb2
-%global commit_date 20261018
+%global commit d6095250200bbdb5064d55c344acae35283bb927
+%global commit_date 20261111
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 # terrible evil no good very bad hack
 # fix one day

@@ -1,6 +1,6 @@
 # https://github.com/hashicorp/terraform-ls
 %global goipath         github.com/hashicorp/terraform-ls
-Version:                0.39.0
+Version:                0.39.1
 
 %gometa -f
 

@@ -3,7 +3,7 @@
   <id>org.signal.Signal</id>
   <name>Signal Desktop</name>
   <project_license>AGPL-3.0-only</project_license>
-  <icon type="local">/usr/share/icons/hicolor/1024x1024/apps/signal.png</icon>
+  <icon type="local">/usr/share/icons/hicolor/1024x1024/apps/signal-desktop.png</icon>
   <developer id="org.Signal">
     <name>Signal Foundation</name>
   </developer>
@@ -14,7 +14,7 @@
   <url type="donation">https://signal.org/donate/</url>
   <url
         type="contribute"
-    >https://github.com/signalapp/Signal-Desktop/blob/main/CONTRIBUTING.md</url>
+    >https://github.com/signalapp/Signal-Desktop/raw/main/CONTRIBUTING.md</url>
   <launchable type="desktop-id">org.signal.Signal.desktop</launchable>
   <description>
     <p>
