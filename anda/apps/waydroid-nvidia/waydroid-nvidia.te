@@ -112,6 +112,8 @@ allow waydroid_t self:unix_dgram_socket { create setopt getopt };
 # Use binder devices
 allow waydroid_t binderfs_t:dir search_dir_perms;
 allow waydroid_t binder_device_t:chr_file { getattr setattr ioctl map open read write };
+# The anbox-* nodes are binderfs_t, not binder_device_t; the manager stats/chmods them too.
+allow waydroid_t binderfs_t:chr_file { getattr setattr ioctl map open read write };
 allow waydroid_t container_runtime_t:binder { call transfer };
 allow container_runtime_t waydroid_t:binder call;
 allow container_runtime_t self:binder { call set_context_mgr transfer };
