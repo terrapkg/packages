@@ -1,6 +1,7 @@
 name: Test update scripts
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: test-update-${{ github.event.pull_request.number }}
@@ -14,6 +15,7 @@ on:
 jobs:
   test-update:
     runs-on: arc-runner-set
+    timeout-minutes: 30
     container:
       image: ghcr.io/terrapkg/builder:frawhide
       options: --cap-add=SYS_ADMIN --privileged
@@ -29,17 +31,61 @@ jobs:
 
       - name: Find changed projects with update scripts
         id: changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          MAX_PROJECTS: "50"
         run: |
           set -euo pipefail
+
+          last_tested_sha=$(
+            curl -fsSL -G \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "$GITHUB_API_URL/repos/$REPO/actions/workflows/test-update.yml/runs" \
+              --data-urlencode event=pull_request \
+              --data-urlencode status=success \
+              --data-urlencode "branch=$HEAD_REF" \
+              --data-urlencode per_page=50 \
+            | jq -r --arg repo "$HEAD_REPO" \
+              '[.workflow_runs[] | select(.head_repository.full_name == $repo)][0].head_sha // empty'
+          ) || last_tested_sha=""
+
+          if [[ -n $last_tested_sha ]] && ! git fetch --no-tags --depth=1 origin "$last_tested_sha"; then
+            last_tested_sha=""
+          fi
+
+          if [[ -n $last_tested_sha ]]; then
+            echo "Only testing update scripts changed since $last_tested_sha"
+          fi
+
+          blob_of() {
+            git rev-parse -q --verify "$1:$2" || true
+          }
+
+          update_script_changed_since_last_test() {
+            local script="$1/update.rhai"
+            [[ -z $last_tested_sha ]] || [[ $(blob_of "$last_tested_sha" "$script") != $(blob_of "$HEAD_SHA" "$script") ]]
+          }
+
           matrix=$(anda ci | sed -n 's/^build_matrix=//p')
           projects=()
           for proj in $(jq -r '.[].pkg' <<< "${matrix:-[]}" | sort -u); do
             dir=$(dirname "$proj")
-            # only projects that actually have an update script
-            if [[ -f "$dir/update.rhai" ]] || grep -qE '^\s*update\s*=' "$dir/anda.hcl"; then
+            if [[ -f "$dir/update.rhai" ]] && update_script_changed_since_last_test "$dir"; then
               projects+=("$proj")
             fi
           done
+
+          if (( ${#projects[@]} > MAX_PROJECTS )); then
+            message="${#projects[@]} changed update scripts is over the limit of $MAX_PROJECTS, skipping"
+            echo "::warning title=Too many update scripts::$message"
+            echo "$message" >> "$GITHUB_STEP_SUMMARY"
+            projects=()
+          fi
 
           printf '%s\n' "${projects[@]}"
           echo "projects=${projects[*]}" >> "$GITHUB_OUTPUT"
