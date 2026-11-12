@@ -35,6 +35,8 @@ Source10:       %{url}/releases/download/%{tag}/waydroid-nvidia-vendor-ota-%{tag
 
 Patch0:         %{url}/raw/%{tag}/patches/waydroid/0001-nvidia-integration.patch
 Patch1:         %{url}/raw/%{tag}/waydroid/0001-lxc-nvidia-native-mounts.patch
+# Backport of Shiro836/waydroid-nvidia#46; drop when v0.2.1 ships.
+Patch2:         0001-source-native-execstartpre.patch
 
 
 ExclusiveArch:  x86_64
@@ -86,8 +88,12 @@ This package contains the SELinux policy module necessary to run Waydroid.
 %prep
 %setup -q -n waydroid-nvidia-%{version} -a 1
 
+# Patch2 touches dev/source-native at the top of the release tarball; the Waydroid patches
+# live inside waydroid-<commit>, so each group gets its own %%autopatch range.
+%autopatch -m2 -M2 -p1
+
 pushd waydroid-%{waydroid_commit}
-%autopatch -p1
+%autopatch -m0 -M1 -p1
 # The helper installed by the patch must be byte-identical to the one shipped in the release tarball.
 cmp ../waydroid/nvidia_native.py tools/helpers/nvidia_native.py
 # The rootfs SELinux context comes from rootfs_context() (0001-nvidia-integration); do not pin
