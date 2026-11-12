@@ -3,7 +3,7 @@
 %global __cargo_license_avoid_dev_deps 0
 
 Name:           resolvematrix
-Version:        1.4.0
+Version:        1.4.1
 Release:        1%{?dist}
 Summary:        A handy Matrix server resolution tool
 URL:            https://forgejo.ellis.link/continuwuation/resolvematrix
