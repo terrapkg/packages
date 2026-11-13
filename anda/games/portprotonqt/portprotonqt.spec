@@ -1,4 +1,6 @@
 %global appid ru.linux_gaming.PortProtonQt
+%global name_pretty PortProtonQt
+%global appstream_component desktop-application
 %global _python_no_extras_requires 1
 
 Name:           portprotonqt
@@ -99,6 +101,7 @@ install -Dpm 0644 ./completions/portprotonqt -t %{buildroot}%{bash_completions_d
 install -Dpm 0644 ./completions/portprotonqt.fish -t %{buildroot}%{fish_completions_dir}
 install -Dpm 0644 ./completions/_portprotonqt -t %{buildroot}%{zsh_completions_dir}
 %find_lang %{name}
+%terra_appstream
 
 %files -f %{name}.lang
 %license LICENSE
