@@ -310,7 +310,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %files rpi-manufacture-info
 %{_bindir}/rpi-manufacture-info
 %doc rpi-manufacture-info/README.md
-%license LICENSE
+%license LICENCE
 
 %files splashasm
 %license LICENCE
