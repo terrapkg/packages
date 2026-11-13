@@ -1,5 +1,5 @@
-%global commit bb8f2e646679f592bd50a175ea784f1a1d69dc8b
-%global commit_date 20260519
+%global commit 215e4d191ffb5cb2cb4bc69a6b092d7a2111f627
+%global commit_date 20261111
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global extension   battery_time
@@ -7,10 +7,10 @@
 
 Name:           gnome-shell-extension-%{extension}
 Version:        0~%{commit_date}git.%{shortcommit}
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        Battery remaining time extension for GNOME Shell
 License:        GPL-2.0-only
-URL:            https://github.com/pomoke/battery_time
+URL:            https://github.com/Owen-sz/battery_time
 
 BuildArch:      noarch
 
@@ -41,6 +41,9 @@ cp %{SOURCE1} LICENSE
 %{_gnomeextensionsdir}
 
 %changelog
+* Thu Nov 12 2026 Owen Zimmerman <owen@fyralabs.com>
+- Switch to my fork to enable 51 support
+
 * Wed Nov 11 2026 Adil Hanney <adilhanney@disroot.org>
 - Fixed UUID. Extension will now be recognized by GNOME.
 
