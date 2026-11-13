@@ -72,7 +72,8 @@ Recommends:     python3-qrcode
 Recommends:     squashfs-tools
 
 %description
-An application for managing a game library and launching games on Linux. It brings games from different sources together in one place.
+An application for managing a game library and launching games on Linux.
+It brings games from different sources together in one place.
 
 # Disable automatic Python requirements to avoid unnecessary version pins from pyproject.toml.
 # Runtime dependencies are listed explicitly above.
