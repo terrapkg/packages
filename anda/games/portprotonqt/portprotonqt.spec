@@ -7,7 +7,7 @@ Version:        %{pypi_version}
 Release:        1%{?dist}
 Summary:        Game library manager and launcher for Linux
 
-License:        GPL-3.0
+License:        GPL-3.0-only
 URL:            https://git.linux-gaming.ru/Linux-Gaming/PortProtonQt
 Source0:        %{url}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Packager:       Boris Yumankulov <boriabloger@gmail.com>
