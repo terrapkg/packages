@@ -1,6 +1,8 @@
 %global goipath         github.com/cloudflare/cloudflared
 Version:                2026.11.0
 
+%undefine _debugsource_packages
+
 %gometa -f
 
 # Older Fedora and RHEL's debugedit can't parse the DWARF from the Go 1.27 toolchain
