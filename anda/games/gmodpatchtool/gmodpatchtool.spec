@@ -30,11 +30,8 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 
 %prep
 %git_clone https://github.com/solsticegamestudios/%{git_name}.git %{version}
-
-git-lfs checkout
-
+/usr/bin/git-lfs checkout
 %autopatch -p1
-
 %cargo_prep_online
 
 %build
