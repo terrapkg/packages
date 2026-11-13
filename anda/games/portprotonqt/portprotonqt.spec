@@ -118,5 +118,9 @@ install -Dpm 0644 ./completions/_portprotonqt -t %{buildroot}%{zsh_completions_d
 %{zsh_completions_dir}/_portprotonqt
 
 %changelog
+
+%changelog
+* Fri Nov 13 2026 Boris Yumankulov <boriabloger@gmail.com> - 1.5.0-1
+- Initial package
 * Fri Nov 13 2026 Boris Yumankulov <boriabloger@gmail.com> - 1.5.0-1
 - Initial package
