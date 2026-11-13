@@ -7,6 +7,8 @@ URL:            https://github.com/gentoo/cpuid2cpuflags
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 BuildRequires:  make
 BuildRequires:  gcc
+BuildRequires:  autoconf
+BuildRequires:  automake
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
