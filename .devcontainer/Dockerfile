@@ -1,4 +1,4 @@
-FROM ghcr.io/terrapkg/builder:frawhide
+FROM ghcr.io/terrapkg/builder:f43
 
 ARG USERNAME=$USERNAME
 ARG USER_UID=1000
