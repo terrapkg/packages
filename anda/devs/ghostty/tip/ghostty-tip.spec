@@ -6,7 +6,7 @@
 %global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-tip
-Version:        202611131704
+Version:        202611131734
 Release:        1%{?dist}
 %if 0%{?fedora} <= 46
 Epoch:          1
