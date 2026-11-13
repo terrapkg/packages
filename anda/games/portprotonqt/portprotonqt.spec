@@ -60,6 +60,7 @@ Requires:       psmisc
 Requires:       7zip
 Requires:       python3-dbus-fast
 Requires:       desktop-file-utils
+Requires:       hicolor-icon-theme
 
 # System Tab
 Recommends:     NetworkManager
@@ -78,6 +79,8 @@ It brings games from different sources together in one place.
 # Disable automatic Python requirements to avoid unnecessary version pins from pyproject.toml.
 # Runtime dependencies are listed explicitly above.
 %{?python_disable_dependency_generator}
+
+%pkg_completion -Bfz
 
 %prep
 %autosetup -n %{name}
@@ -103,7 +106,7 @@ install -Dpm 0644 ./completions/_portprotonqt -t %{buildroot}%{zsh_completions_d
 %{_bindir}/%{pypi_name}
 %{_bindir}/vk_gpu_info
 %{python3_sitelib}/%{pypi_name}/
-%{_hicolordir}/scalable/apps/ru.linux_gaming.PortProtonQt.svg
+%{_scalableiconsdir}/ru.linux_gaming.PortProtonQt.svg
 %{_metainfodir}/ru.linux_gaming.PortProtonQt.metainfo.xml
 %{_udevrulesdir}/60-portprotonqt.rules
 %{_sysusersdir}/portprotonqt.conf
@@ -114,9 +117,6 @@ install -Dpm 0644 ./completions/_portprotonqt -t %{buildroot}%{zsh_completions_d
 %{_datadir}/mime/packages/ru.linux_gaming.PortProtonQt.xml
 %{_datadir}/portproton/scripts/
 %{_datadir}/portproton/conf/
-%{bash_completions_dir}/portprotonqt
-%{fish_completions_dir}/portprotonqt.fish
-%{zsh_completions_dir}/_portprotonqt
 
 %changelog
 * Fri Nov 13 2026 Boris Yumankulov <boriabloger@gmail.com> - 1.5.0-1
