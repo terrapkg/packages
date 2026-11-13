@@ -1,3 +1,4 @@
+%global appid ru.linux_gaming.PortProtonQt
 %global pypi_name portprotonqt
 %global pypi_version 1.5.0
 %global _python_no_extras_requires 1
@@ -106,15 +107,15 @@ install -Dpm 0644 ./completions/_portprotonqt -t %{buildroot}%{zsh_completions_d
 %{_bindir}/%{pypi_name}
 %{_bindir}/vk_gpu_info
 %{python3_sitelib}/%{pypi_name}/
-%{_scalableiconsdir}/ru.linux_gaming.PortProtonQt.svg
-%{_metainfodir}/ru.linux_gaming.PortProtonQt.metainfo.xml
+%{_scalableiconsdir}/%{appid}.svg
+%{_metainfodir}/%{appid}.metainfo.xml
 %{_udevrulesdir}/60-portprotonqt.rules
 %{_sysusersdir}/portprotonqt.conf
-%{_datadir}/polkit-1/rules.d/ru.linux_gaming.PortProtonQt.rules
-%{_appsdir}/ru.linux_gaming.PortProtonQt.desktop
-%{_appsdir}/ru.linux_gaming.PortProtonQt.log.desktop
-%{_appsdir}/ru.linux_gaming.PortProtonQt.silent.desktop
-%{_datadir}/mime/packages/ru.linux_gaming.PortProtonQt.xml
+%{_datadir}/polkit-1/rules.d/%{appid}.rules
+%{_appsdir}/%{appid}.desktop
+%{_appsdir}/%{appid}.log.desktop
+%{_appsdir}/%{appid}.silent.desktop
+%{_datadir}/mime/packages/%{appid}.xml
 %{_datadir}/portproton/scripts/
 %{_datadir}/portproton/conf/
 
