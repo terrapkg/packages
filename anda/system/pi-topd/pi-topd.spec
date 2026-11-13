@@ -1,5 +1,5 @@
 %global pypi_name pi-topd
-%global ver 5.7.0-1
+%global ver 5.8.0-1
 %global sanitized_ver %(echo %{ver} | sed 's/-/^/g')
 
 Name:           python-%{pypi_name}
