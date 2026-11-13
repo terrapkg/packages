@@ -1,10 +1,8 @@
 %global appid ru.linux_gaming.PortProtonQt
-%global pypi_name portprotonqt
-%global pypi_version 1.5.0
 %global _python_no_extras_requires 1
 
-Name:           %{pypi_name}
-Version:        %{pypi_version}
+Name:           portprotonqt
+Version:        1.5.0
 Release:        1%{?dist}
 Summary:        Game library manager and launcher for Linux
 
@@ -100,13 +98,13 @@ bash ./dev-scripts/generate-completions.sh
 install -Dpm 0644 ./completions/portprotonqt -t %{buildroot}%{bash_completions_dir}
 install -Dpm 0644 ./completions/portprotonqt.fish -t %{buildroot}%{fish_completions_dir}
 install -Dpm 0644 ./completions/_portprotonqt -t %{buildroot}%{zsh_completions_dir}
-%find_lang %{pypi_name}
+%find_lang %{name}
 
-%files -f %{pypi_name}.lang
+%files -f %{name}.lang
 %license LICENSE
-%{_bindir}/%{pypi_name}
+%{_bindir}/%{name}
 %{_bindir}/vk_gpu_info
-%{python3_sitelib}/%{pypi_name}/
+%{python3_sitelib}/%{name}/
 %{_scalableiconsdir}/%{appid}.svg
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_udevrulesdir}/60-portprotonqt.rules
