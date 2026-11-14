@@ -1,6 +1,6 @@
-%global commit 247fd055eac75a376258a274c52c8b05819657c8
+%global commit 259bb6c6d7c235903fe7b57665489d6e9f5af484
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260924
+%global commitdate 20261030
 %global ver 1.1.3
 %global appid com.sched_ext.scx
 %global developer "sched-ext Contributors"
@@ -24,7 +24,6 @@ BuildRequires:  git
 BuildRequires:  libseccomp-devel
 BuildRequires:  lld >= 17
 BuildRequires:  llvm >= 17
-BuildRequires:  mold
 BuildRequires:  python3
 BuildRequires:  rust
 BuildRequires:  systemd

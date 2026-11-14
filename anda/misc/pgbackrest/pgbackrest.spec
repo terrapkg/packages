@@ -1,5 +1,5 @@
 Name:           pgbackrest
-Version:        2.59.3
+Version:        2.60.0
 Release:        1%{?dist}
 Summary:        Reliable PostgreSQL Backup & Restore
 URL:            https://github.com/pgbackrest/pgbackrest
@@ -10,6 +10,7 @@ BuildRequires:  meson
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  bzip2-devel
+BuildRequires:  python3-pyyaml
 BuildRequires:  pkgconfig(liblz4)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libpq)
@@ -40,7 +41,7 @@ that seamlessly scales up to the largest databases and workloads.
 %meson_install
 
 %files
-%doc README.md CODING.md CONTRIBUTING.md doc/*
+%doc README.md CONTRIBUTING.md doc/*
 %license LICENSE
 %{_bindir}/pgbackrest
 

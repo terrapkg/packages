@@ -1,11 +1,11 @@
-%global commit bc2601ba230bae3bcc33f1ca51d722569b588d16
+%global commit 136cb2d65ae3db0f1ad75d4f6d6a688d8688699c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20260927
+%global commitdate 20261107
 %global ver 0.2.3
 
 Name:           hid-fanatecff
 Version:        %{ver}^%{commitdate}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Fanatec force feedback driver common files
 License:        GPL-2.0-only
 URL:            https://github.com/gotzl/%{name}

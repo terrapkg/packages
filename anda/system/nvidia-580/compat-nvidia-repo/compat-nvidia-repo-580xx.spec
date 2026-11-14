@@ -1,5 +1,5 @@
 Name:           compat-nvidia-repo-580xx
-Version:        580.178.04
+Version:        580.196.07
 Epoch:          3
 Release:        1%{?dist}
 Summary:        Compatibility package required by official CUDA packages

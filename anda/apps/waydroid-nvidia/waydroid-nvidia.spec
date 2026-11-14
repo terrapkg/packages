@@ -8,10 +8,10 @@
 %global __provides_exclude_from ^%{_prefix}/lib/waydroid-nvidia/.*$
 
 Name:           waydroid-nvidia
-Version:        0.1.2
+Version:        0.2.0
 %global tag v%{version}
 
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        Waydroid with NVIDIA GPU acceleration
 License:        GPL-3.0-or-later AND MIT
 URL:            https://github.com/Shiro836/waydroid-nvidia

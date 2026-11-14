@@ -1,6 +1,7 @@
 %global debug_package %{nil}
 %global policy_owners unix-group:wheel
 %global appdir %{_datadir}/1password
+%global appid com.onepassword.OnePassword
 
 # Exclude private Electron libraries bundled in the app payload.
 %global __provides_exclude libffmpeg.so|libvk_swiftshader.so|libvulkan.so|libEGL.so|libGLESv2.so
@@ -13,8 +14,8 @@
 %endif
 
 Name:           1password
-Version:        8.12.40
-Release:        1%{?dist}
+Version:        8.12.44
+Release:        3%{?dist}
 Summary:        Password manager and secure wallet
 
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
@@ -24,6 +25,7 @@ URL:            https://1password.com
 Source0:        https://downloads.1password.com/linux/tar/stable/%{_arch}/%{name}-%{version}.%{tararch}.tar.gz
 Source1:        https://downloads.1password.com/linux/tar/stable/%{_arch}/%{name}-%{version}.%{tararch}.tar.gz.sig
 Source2:        1password.sysusers
+Source3:        1password.tmpfiles
 ExclusiveArch:  x86_64 aarch64
 
 BuildRequires:  desktop-file-utils
@@ -58,9 +60,10 @@ sed 's|${POLICY_OWNERS}|%{policy_owners}|g' \
 install -Dm0644 com.1password.1Password.policy -t %{buildroot}%{_datadir}/polkit-1/actions/
 install -Dm0644 resources/custom_allowed_browsers -t %{buildroot}%{_sysconfdir}/1password/
 install -Dm0644 resources/custom_allowed_browsers -t %{buildroot}%{_datadir}/doc/1password/examples/
-sed -i 's|^Exec=/opt/1Password/1password|Exec=%{_bindir}/1password|' resources/1password.desktop
-desktop-file-install --dir=%{buildroot}%{_datadir}/applications resources/1password.desktop
+sed -i 's|^Exec=/opt/1Password/1password|Exec=%{_bindir}/1password|' resources/%{appid}.desktop
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications resources/%{appid}.desktop
 install -Dm0644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
+install -Dm0644 %{SOURCE3} %{buildroot}%{_tmpfilesdir}/%{name}.conf
 
 # Install application payload under /usr for immutable-system compatibility.
 mkdir -p %{buildroot}%{appdir}
@@ -80,9 +83,10 @@ ln -sr %{buildroot}%{appdir}/1Password-LastPass-Exporter %{buildroot}%{_libexecd
 ln -sr %{buildroot}%{appdir}/op-ssh-sign %{buildroot}%{_libexecdir}/op-ssh-sign
 chmod 4755 %{buildroot}%{appdir}/chrome-sandbox
 chmod 2755 %{buildroot}%{appdir}/1Password-BrowserSupport
-if [ -f %{buildroot}%{appdir}/onepassword-mcp ]; then
-  ln -sr %{buildroot}%{appdir}/onepassword-mcp %{buildroot}%{_libexecdir}/onepassword-mcp
-  chmod 2755 %{buildroot}%{appdir}/onepassword-mcp
+if [ -f %{buildroot}%{appdir}/1password-mcp ]; then
+  ln -sr %{buildroot}%{appdir}/1password-mcp %{buildroot}%{_libexecdir}/1password-mcp
+  ln -sr %{buildroot}%{appdir}/1password-mcp %{buildroot}%{_bindir}/1password-mcp
+  chmod 2755 %{buildroot}%{appdir}/1password-mcp
 fi
 find %{buildroot}%{appdir} -type f \
   ! -name chrome-sandbox \
@@ -90,39 +94,42 @@ find %{buildroot}%{appdir} -type f \
   ! -name 1Password-BrowserSupport \
   ! -name 1Password-LastPass-Exporter \
   ! -name op-ssh-sign \
-  ! -name onepassword-mcp \
+  ! -name 1password-mcp \
   -printf '/%%P\n' | sed "s|^/|%{appdir}/|" > app.files
 
 %pre
 %sysusers_create_package %{name} %{SOURCE2}
 
 %post
+%tmpfiles_create %{name}.conf
 /usr/bin/chown root:onepassword %{appdir}/1Password-BrowserSupport
 /usr/bin/chmod 2755 %{appdir}/1Password-BrowserSupport
-/usr/bin/chown root:onepassword-mcp %{appdir}/onepassword-mcp
-/usr/bin/chmod 2755 %{appdir}/onepassword-mcp
+/usr/bin/chown root:onepassword-mcp %{appdir}/1password-mcp
+/usr/bin/chmod 2755 %{appdir}/1password-mcp
 
 %files -f app.files
 %{_bindir}/%{name}
+%{_bindir}/1password-mcp
 %{_libexecdir}/1Password-Crash-Handler
 %{_libexecdir}/1Password-BrowserSupport
 %{_libexecdir}/1Password-LastPass-Exporter
 %{_libexecdir}/op-ssh-sign
-%{_libexecdir}/onepassword-mcp
+%{_libexecdir}/1password-mcp
 %dir %{appdir}
 %attr(4755,root,root) %{appdir}/chrome-sandbox
 %{appdir}/1Password-Crash-Handler
 %{appdir}/1Password-BrowserSupport
 %{appdir}/1Password-LastPass-Exporter
 %{appdir}/op-ssh-sign
-%{appdir}/onepassword-mcp
+%attr(2755,root,onepassword-mcp) %{appdir}/1password-mcp
 %{_datadir}/icons/hicolor/32x32/apps/1password.png
 %{_datadir}/icons/hicolor/64x64/apps/1password.png
 %{_datadir}/icons/hicolor/256x256/apps/1password.png
 %{_datadir}/icons/hicolor/512x512/apps/1password.png
-%{_datadir}/applications/%{name}.desktop
+%{_datadir}/applications/%{appid}.desktop
 %{_datadir}/polkit-1/actions/com.1password.1Password.policy
 %{_sysusersdir}/%{name}.conf
+%{_tmpfilesdir}/%{name}.conf
 %config(noreplace) %{_sysconfdir}/1password/custom_allowed_browsers
 %{_datadir}/doc/1password/
 

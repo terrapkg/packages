@@ -9,8 +9,8 @@
 %undefine _debugsource_packages
 
 Name:           rust-deno
-Version:        2.9.7
-Release:        2%{?dist}
+Version:        2.9.8
+Release:        1%{?dist}
 Summary:        Deno executable
 
 License:        MIT

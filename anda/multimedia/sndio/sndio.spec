@@ -1,6 +1,6 @@
 Name:		sndio
-Version:	1.10.0
-Release:	1%?dist
+Version:	1.11.0
+Release:	1%{?dist}
 Summary:	A sound library
 #Group:		Sound/Utilities
 

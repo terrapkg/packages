@@ -1,7 +1,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           subatomic
-Version:        1.1.4
+Version:        1.1.5
 Release:        1%{?dist}
 Summary:        A modern package delivery system
 SourceLicense:  AGPL-3.0-or-later

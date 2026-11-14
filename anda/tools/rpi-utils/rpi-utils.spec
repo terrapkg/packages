@@ -1,5 +1,5 @@
-%global commit 7d644432cdb26073411b71021aab9f926f99c563
-%global commit_date 20261014
+%global commit 4284bd7418aa696d72a8df243211cf256dad70cb
+%global commit_date 20261113
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:			rpi-utils
@@ -24,6 +24,7 @@ Requires:       %{name}-piolib = %{evr}
 Requires:       %{name}-raspinfo = %{evr}
 Requires:       %{name}-rpieepromab = %{evr}
 Requires:       %{name}-rpi-gpu-usage = %{evr}
+Requires:       %{name}-rpi-manufacture-info = %{evr}
 Requires:       %{name}-rpifwcrypto = %{evr}
 Requires:       %{name}-splashasm = %{evr}
 Requires:       %{name}-vcgencmd = %{evr}
@@ -144,6 +145,13 @@ It works by parsing the /proc/*/fdinfo/* information to find the processes that 
 
 %pkg_completion -Bn %name-rpi-gpu-usage rpi-gpu-usage
 
+%package        rpi-manufacture-info
+Summary:        Displays the Raspberry Pi manufacturing information
+%description    rpi-manufacture-info
+Displays the manufacturing information provisioned in
+the OTP of BCM2711 (Raspberry Pi 4 family) and BCM2712
+(Raspberry Pi 5 family) devices during production.
+
 %package        splashasm
 Summary:        A toy language and binary format for describing SPI & I2C dumps
 %description    splashasm
@@ -260,6 +268,8 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_bindir}/txsink
 %{_bindir}/quadenc
 %{_bindir}/rp1sm
+%{_bindir}/blink
+%{_bindir}/mirror
 %{_libdir}/libpio.so.0
 
 %files piolib-devel
@@ -297,6 +307,11 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %doc rpi-gpu-usage/README.md
 %license LICENCE
 
+%files rpi-manufacture-info
+%{_bindir}/rpi-manufacture-info
+%doc rpi-manufacture-info/README.md
+%license LICENCE
+
 %files splashasm
 %license LICENCE
 %doc splashasm/README.md
@@ -322,6 +337,9 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %{_mandir}/man7/raspirev.7.gz
 
 %changelog
+* Fri Nov 13 2026 Owen Zimmerman <owen@fyralabs.com>
+- Add new rpi-manufacture-info subpackages
+
 * Thu May 14 2026 Owen Zimmerman <owen@fyralabs.com>
 - Add new subpackages, tidy up
 

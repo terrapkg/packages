@@ -1,0 +1,68 @@
+From 41711beb6776923a84c06fad76964e5932333bd7 Mon Sep 17 00:00:00 2001
+From: Carl George <carl@george.computer>
+Date: Wed, 16 Feb 2022 11:45:03 -0600
+Subject: [PATCH] Disable commands that can alter the binary
+
+Taken from Fedora's caddy package, with the test hunk dropped since the
+vendored module does not ship _test.go files.
+
+---
+ cmd/commands.go | 45 ---------------------------------------------
+ 1 file changed, 45 deletions(-)
+
+diff --git a/cmd/commands.go b/cmd/commands.go
+index c9ea636b..791ddf6d 100644
+--- a/cmd/commands.go
++++ b/cmd/commands.go
+@@ -404,51 +404,6 @@ is always printed to stdout.
+ 		},
+ 	})
+ 
+-	RegisterCommand(Command{
+-		Name:  "upgrade",
+-		Short: "Upgrade Caddy (EXPERIMENTAL)",
+-		Long: `
+-Downloads an updated Caddy binary with the same modules/plugins at the
+-latest versions. EXPERIMENTAL: May be changed or removed.
+-`,
+-		CobraFunc: func(cmd *cobra.Command) {
+-			cmd.Flags().BoolP("keep-backup", "k", false, "Keep the backed up binary, instead of deleting it")
+-			cmd.RunE = WrapCommandFuncForCobra(cmdUpgrade)
+-		},
+-	})
+-
+-	RegisterCommand(Command{
+-		Name:  "add-package",
+-		Usage: "<package[@version]...>",
+-		Short: "Adds Caddy packages (EXPERIMENTAL)",
+-		Long: `
+-Downloads an updated Caddy binary with the specified packages (module/plugin)
+-added, with an optional version specified (e.g., "package@version"). Retains
+-existing packages. Returns an error if any of the specified packages are already
+-included. EXPERIMENTAL: May be changed or removed.
+-`,
+-		CobraFunc: func(cmd *cobra.Command) {
+-			cmd.Flags().BoolP("keep-backup", "k", false, "Keep the backed up binary, instead of deleting it")
+-			cmd.RunE = WrapCommandFuncForCobra(cmdAddPackage)
+-		},
+-	})
+-
+-	RegisterCommand(Command{
+-		Name:  "remove-package",
+-		Func:  cmdRemovePackage,
+-		Usage: "<packages...>",
+-		Short: "Removes Caddy packages (EXPERIMENTAL)",
+-		Long: `
+-Downloads an updated Caddy binaries without the specified packages (module/plugin).
+-Returns an error if any of the packages are not included.
+-EXPERIMENTAL: May be changed or removed.
+-`,
+-		CobraFunc: func(cmd *cobra.Command) {
+-			cmd.Flags().BoolP("keep-backup", "k", false, "Keep the backed up binary, instead of deleting it")
+-			cmd.RunE = WrapCommandFuncForCobra(cmdRemovePackage)
+-		},
+-	})
+-
+ 	defaultFactory.Use(func(rootCmd *cobra.Command) {
+ 		manpageCommand := Command{
+ 			Name:  "manpage",

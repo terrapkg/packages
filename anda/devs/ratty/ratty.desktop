@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=Ratty
+Comment=A GPU-rendered terminal emulator with inline 3D graphics
+Exec=ratty
+TryExec=ratty
+Icon=ratty
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;
+Keywords=terminal;tty;pty;
+StartupNotify=true
+StartupWMClass=ratty
+X-GNOME-UsesNotifications=true
+X-TerminalArgExec=-e
+X-TerminalArgTitle=--title=
+X-TerminalArgAppId=--class=
+X-TerminalArgDir=--working-directory=
+X-TerminalArgHold=--wait-after-command
+X-KDE-Shortcuts=Ctrl+Alt+T

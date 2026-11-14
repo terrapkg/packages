@@ -4,6 +4,8 @@
     "RPM Spec": true,
     "XML": true,
     "rhai": true,
-    "Terraform": true
+    "Terraform": true,
+    "Desktop Entry": true,
+    "Lua": true
   }
 }

@@ -4,7 +4,7 @@
 
 Name:           t3code
 %electronmeta -D
-Version:        0.1.0
+Version:        0.1.9
 Release:        1%{?dist}
 Summary:        Minimal web GUI for coding agents
 License:        MIT AND %{electron_license}
@@ -18,6 +18,30 @@ BuildRequires:  ImageMagick
 BuildRequires:  pnpm
 BuildRequires:  pkgconfig(libsecret-1)
 BuildRequires:  desktop-file-utils
+# Electron runtime libs: upstream runs the packaged binary during the build
+BuildRequires:  alsa-lib
+BuildRequires:  at-spi2-atk
+BuildRequires:  at-spi2-core
+BuildRequires:  atk
+BuildRequires:  cairo
+BuildRequires:  cups-libs
+BuildRequires:  dbus-libs
+BuildRequires:  expat
+BuildRequires:  glib2
+BuildRequires:  gtk3
+BuildRequires:  libX11
+BuildRequires:  libXcomposite
+BuildRequires:  libXdamage
+BuildRequires:  libXext
+BuildRequires:  libXfixes
+BuildRequires:  libXrandr
+BuildRequires:  libxcb
+BuildRequires:  libxkbcommon
+BuildRequires:  mesa-libgbm
+BuildRequires:  nspr
+BuildRequires:  nss
+BuildRequires:  nss-util
+BuildRequires:  pango
 
 Requires:       git-core
 Suggests:       azure-cli
@@ -90,6 +114,9 @@ chmod 644 %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 %{_metainfodir}/%appid.metainfo.xml
 
 %changelog
+* Thu Nov 12 2026 Zeeshan Ahmad <itexpert120@outlook.com>
+- Add Electron runtime libraries as build dependencies for upstream's afterPack hook
+
 * Fri Oct 02 2026 Cypress Reed <cypress@fyralabs.com> - 0.0.45-1
 - use separate desktop file and add appstream metainfo
 

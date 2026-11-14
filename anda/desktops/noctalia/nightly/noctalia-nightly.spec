@@ -1,10 +1,10 @@
 %global debug_package   %{nil}
 
-%global ver 5.3.0
+%global ver 5.5.0
 
-%global commit          eeea6ff75cd71f9dbcd3acea6035449fefe3c71a
+%global commit          4933674079ecf7545cc23cd5f1cd77c3e74f8e09
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20261016
+%global commitdate      20261114
 
 Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -25,7 +25,13 @@ BuildRequires:  sdbus-cpp-devel
 BuildRequires:  tomlplusplus-devel
 BuildRequires:  json-devel
 BuildRequires:  md4c-devel
+%if 0%{?fedora} >= 46
+BuildRequires:  stb_image-devel
+BuildRequires:  stb_image_write-devel
+BuildRequires:  stb_image_resize2-devel
+%else
 BuildRequires:  stb-devel
+%endif
 BuildRequires:  wireplumber-devel
 BuildRequires:  pkgconfig(cairo)
 BuildRequires:  pkgconfig(egl)
@@ -104,9 +110,16 @@ done
 %{_bindir}/noctalia
 %{_datadir}/noctalia/
 %{_appsdir}/dev.noctalia.Noctalia.desktop
+%{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
 %{_scalableiconsdir}/noctalia.svg
 
 %changelog
+* Sat Oct 24 2026 Owen Zimmerman <owen@fyralabs.com>
+- add %%{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
+
+* Tue Oct 20 2026 Cypress Reed <cypress@fyralabs.com>
+- Use stb-devel subpackages instead of metapackages (fedora removed it)
+
 * Mon Aug 24 2026 Cypress Reed <cypress@fyralabs.com>
 - Rename package to noctalia-nightly
 

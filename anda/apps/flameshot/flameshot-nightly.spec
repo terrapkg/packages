@@ -1,12 +1,13 @@
+%global toolchain clang
 #? https://github.com/flameshot-org/flameshot/blob/master/packaging/rpm/fedora/flameshot.spec
 
 %global ver 14.0.0
-%global commit e4357e38c36491a58db346c91a4559fc6dd98968
+%global commit e8092a105a5fb5d28abe1501db3dd9b1d4152315
 %global shortcommit %{sub %{commit} 1 7}
-%global commit_date 20261014
+%global commit_date 20261107
 %global devel_name QtColorWidgets
-%global _distro_extra_cflags -fuse-ld=mold
-%global _distro_extra_cxxflags -fuse-ld=mold
+%global _distro_extra_cflags -fuse-ld=lld
+%global _distro_extra_cxxflags -fuse-ld=lld
 
 Name:			flameshot.nightly
 Version:		%ver^%{commit_date}git.%shortcommit
@@ -18,12 +19,11 @@ Source0:		https://github.com/flameshot-org/flameshot/archive/%commit/flameshot-%
 Packager:  madonuko <mado@fyralabs.com>
 
 BuildRequires:	cmake >= 3.13.0
-BuildRequires:	gcc-c++ >= 7
+BuildRequires:	clang
 BuildRequires:	fdupes
 BuildRequires:	libappstream-glib
 BuildRequires:	ninja-build
 BuildRequires:	desktop-file-utils
-BuildRequires:	mold
 
 BuildRequires:	cmake(Qt6Core) >= 6.0.0
 BuildRequires:	cmake(KF6GuiAddons) >= 6.7.0

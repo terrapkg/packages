@@ -2,11 +2,11 @@
 
 %global appid gg.ping.T3Code-nightly
 
-%global ver 0.1.1
+%global ver 0.1.10
 %global commit 0fcd5f90611451cca842689faea53b5450c022da
-%global date 20261016
-%global run 3190
-%global tag 0.1.1-nightly.20261016.3190
+%global date 20261113
+%global run 4643
+%global tag 0.1.10-nightly.20261113.4643
 %global electron_version %{ver}-nightly.%{date}.%{run}
 
 Name:           t3code-nightly
@@ -26,6 +26,30 @@ BuildRequires:  pnpm
 BuildRequires:  nodejs24
 BuildRequires:  pkgconfig(libsecret-1)
 BuildRequires:  desktop-file-utils
+# Electron runtime libs: upstream runs the packaged binary during the build
+BuildRequires:  alsa-lib
+BuildRequires:  at-spi2-atk
+BuildRequires:  at-spi2-core
+BuildRequires:  atk
+BuildRequires:  cairo
+BuildRequires:  cups-libs
+BuildRequires:  dbus-libs
+BuildRequires:  expat
+BuildRequires:  glib2
+BuildRequires:  gtk3
+BuildRequires:  libX11
+BuildRequires:  libXcomposite
+BuildRequires:  libXdamage
+BuildRequires:  libXext
+BuildRequires:  libXfixes
+BuildRequires:  libXrandr
+BuildRequires:  libxcb
+BuildRequires:  libxkbcommon
+BuildRequires:  mesa-libgbm
+BuildRequires:  nspr
+BuildRequires:  nss
+BuildRequires:  nss-util
+BuildRequires:  pango
 
 Requires:       git-core
 Suggests:       azure-cli
@@ -98,6 +122,9 @@ chmod 644 %{buildroot}%{_hicolordir}/512x512/apps/%{name}.png
 %{_metainfodir}/%appid.metainfo.xml
 
 %changelog
+* Thu Nov 12 2026 Zeeshan Ahmad <itexpert120@outlook.com>
+- Add Electron runtime libraries as build dependencies for upstream's afterPack hook
+
 * Fri Oct 02 2026 Cypress Reed <cypress@fyralabs.com>
 - Switch to using upstream nightly tags, fix desktop files for policy, add appstream metainfo
 

@@ -1,6 +1,6 @@
-%global commit 3f58a566c2edf92b4c9d63223ca9bb6cfa566450
+%global commit 051c0748ee7efc14a0e7d0c06a7308ff507b10da
 %global shortcommit %{sub %{commit} 0 7}
-%global commitdate 20261015
+%global commitdate 20261031
 
 %global steamos_manager_systemd_user_units steamos-manager.service steamos-manager-configure-cecd.service steamos-manager-session-cleanup.service
 
@@ -18,7 +18,6 @@ BuildRequires:    anda-srpm-macros
 BuildRequires:    cargo-rpm-macros
 BuildRequires:    clang-devel
 BuildRequires:    rust
-BuildRequires:    mold
 BuildRequires:    glib2-devel
 BuildRequires:    speech-dispatcher-devel
 BuildRequires:    pkgconfig(libudev)

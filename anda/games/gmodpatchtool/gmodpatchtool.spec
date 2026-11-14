@@ -12,16 +12,17 @@ Automatically patches Garry's Mod's internal Chromium Embedded Framework to:
 
 Name:          gmodpatchtool
 Version:       20260722
-Release:       1%{?dist}
+Release:       2%{?dist}
 SourceLicense: GPL-3.0-only
-License:       ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 AND MIT) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSL-1.0 AND CC0-1.0 AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND GPL-3.0-only AND ISC AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR CC0-1.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT) AND bzip2-1.0.6
-Summary:       Automatic Patching/Updating of GMod CEF. Fixes macOS/Linux launch issues.
+License:       ((MIT OR Apache-2.0) AND Unicode-3.0) AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND MIT) AND (Apache-2.0 OR GPL-2.0-only) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND BSD-2-Clause AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR Apache-2.0) AND (BSD-3-Clause OR MIT) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND BSL-1.0 AND CC0-1.0 AND (CC0-1.0 OR Apache-2.0 OR Apache-2.0 WITH LLVM-exception) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND CDLA-Permissive-2.0 AND GPL-3.0-only AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND MIT AND (MIT OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT) AND bzip2-1.0.6
+Summary:       Automatic patching/updating of GMod CEF; fixes macOS/Linux launch issues
 URL:           https://solsticegamestudios.com/fixmedia
 Source0:       https://github.com/solsticegamestudios/%{git_name}/archive/refs/tags/%{version}.tar.gz
+# Update dependencies to fix an issue with aws-lc-rs compiling when PIE is set in CFLAGS/LDFLAGS
+Patch0:        https://github.com/solsticegamestudios/GModPatchTool/commit/4ed5aaae4441a46c665fcb83187f3a39516de37b.patch
 BuildRequires: anda-srpm-macros
 BuildRequires: cargo-rpm-macros
 BuildRequires: git-lfs
-BuildRequires: mold
 Provides:      %{git_name}
 Packager:      Gilver E. <roachy@fyralabs.com>
 
@@ -29,16 +30,15 @@ Packager:      Gilver E. <roachy@fyralabs.com>
 
 %prep
 %git_clone https://github.com/solsticegamestudios/%{git_name}.git %{version}
-git-lfs checkout
+/usr/bin/git-lfs checkout
+%autopatch -p1
 %cargo_prep_online
 
 %build
 %cargo_build
 
 %install
-find target/rpm \
-    -maxdepth 1 -type f -executable ! -name '*.so' \
-    -exec install -Dm755 -t %{buildroot}%{_bindir} {} +
+%terra_cargo_install
 %cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 

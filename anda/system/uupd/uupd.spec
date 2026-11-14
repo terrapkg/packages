@@ -1,8 +1,8 @@
 %global goipath github.com/ublue-os/%{name}
 
 Name:           uupd
-Version:        1.5.0
-Release:        4%{?dist}
+Version:        1.5.7
+Release:        2%{?dist}
 Summary:        Centralized update service/checker made for Universal Blue
 License:        Apache-2.0
 URL:            https://github.com/ublue-os/%{name}
@@ -24,18 +24,14 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 
 %build
 %define gomodulesmode GO111MODULE=on
-%gobuild -o %{name}
+%define currentgoldflags -X %{goipath}/cmd.version=%{version}
+%gobuild -o output/%{name}
 
 %install
-install -Dpm0755 -t %{buildroot}%{_bindir}/ %{name}
-install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}.service
-install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}-manual.service
-install -Dpm0644 -t %{buildroot}%{_unitdir}/ %{name}.timer
-install -Dpm0644 -t %{buildroot}%{_datadir}/polkit-1/rules.d/ %{name}.rules
-install -Dpm0644 -t %{buildroot}/%{_sysconfdir}/%{name}/ config.json
+%make_install
 
 %check
-go test -v ./...
+%make_build test
 
 %post
 %systemd_post %{name}.service
@@ -54,6 +50,9 @@ go test -v ./...
 %config(noreplace) %{_sysconfdir}/%{name}/config.json
 
 %changelog
+* Wed Oct 28 2026 Hec <hec@heccraft.com> - 1.5.7-2
+- Use %make_install and set the version in build
+
 * Wed Oct 14 2026 renner <renner0@posteo.de> - 1.5.0-4
 - move %global goipath to top
 

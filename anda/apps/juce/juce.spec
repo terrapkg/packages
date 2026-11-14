@@ -1,5 +1,5 @@
 Name:           juce
-Version:        9.0.4
+Version:        9.0.5
 Release:        1%{?dist}
 License:        AGPL-3.0-or-later
 Summary:        framework for audio application and plug-in development
@@ -70,12 +70,12 @@ popd
 %license LICENSE.md
 %{_bindir}/juceaide
 %{_bindir}/juce_lv2_helper
-%{_libdir}/cmake/%{name}/*
-%{_datadir}/%{name}/modules/*
+%{_libdir}/cmake/%{name}/
+%{_datadir}/%{name}/modules/
 
 %files doc
 %license LICENSE.md
-%doc %{_pkgdocdir}/*
+%doc %{_pkgdocdir}/
 
 %changelog
 * Sun Jul 19 2026 Olivia <git@olivia.sh> - 8.0.14-2

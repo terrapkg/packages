@@ -1,7 +1,7 @@
 %global toolchain clang
 
 Name: iptsd
-Version: 3.1.0
+Version: 3.1.1
 Release: 1%{?dist}
 Summary: Userspace daemon for Intel Precise Touch & Stylus
 License: GPL-2.0-or-later

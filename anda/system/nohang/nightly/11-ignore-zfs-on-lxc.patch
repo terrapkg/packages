@@ -1,0 +1,64 @@
+From a3c5a292f5bdbccf026c17ef11ab11e7d4838743 Mon Sep 17 00:00:00 2001
+From: Peter Gervai <grin@grin.hu>
+Date: Mon, 5 Oct 2026 15:42:30 +0200
+Subject: [PATCH] Implement ignore_zfs
+
+---
+ conf/nohang/nohang.conf.in |  5 +++++
+ src/nohang                 | 13 +++++++++++--
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/conf/nohang/nohang.conf.in b/conf/nohang/nohang.conf.in
+index f850524..74910d7 100644
+--- a/conf/nohang/nohang.conf.in
++++ b/conf/nohang/nohang.conf.in
+@@ -303,6 +303,11 @@ exe_timeout = 20
+ ##  Type: float; valid values: >= 0.1
+ ##  Default value: 20
+ 
++ignore_zfs = True
++##  Type: boolean; valid values: True | False
++##  Default value: False
++##  If True, nohang will completely bypass ZFS arcstats checks. Useful for LXC containers.
++
+ ###############################################################################
+ 
+ ##   10. Verbosity, debug, logging
+diff --git a/src/nohang b/src/nohang
+index c82e1fa..3abc191 100755
+--- a/src/nohang
++++ b/src/nohang
+@@ -695,6 +695,8 @@ def check_config():
+     log('    victim_cache_time:          {} sec'.format(victim_cache_time))
+     log('    exe_timeout:                {} sec'.format(exe_timeout))
+ 
++    log('    ignore_zfs:                 {}'.format(ignore_zfs))
++
+     log('\n10. Verbosity')
+ 
+     log('    print_config_at_startup:    {}'.format(print_config_at_startup))
+@@ -3517,6 +3519,11 @@ CHECK_PSI = bool(PSI_KERNEL_OK and psi_checking_enabled)
+ 
+ zram_checking_enabled = conf_parse_bool('zram_checking_enabled')
+ 
++if 'ignore_zfs' in config_dict:
++    ignore_zfs = conf_parse_bool('ignore_zfs')
++else:
++    ignore_zfs = False
++
+ debug_gui_notifications = conf_parse_bool('debug_gui_notifications')
+ ignore_positive_oom_score_adj = conf_parse_bool(
+     'ignore_positive_oom_score_adj')
+@@ -3931,8 +3938,10 @@ fd['mi'] = open('/proc/meminfo', 'rb', buffering=0)
+ arcstats_path = '/proc/spl/kstat/zfs/arcstats'
+ # arcstats_path = './arcstats'
+ 
+-ZFS = os.path.exists(arcstats_path)
+-
++if ignore_zfs:
++    ZFS = False
++else:
++    ZFS = os.path.exists(arcstats_path)
+ 
+ kmsg_path = '/dev/kmsg'
+ 

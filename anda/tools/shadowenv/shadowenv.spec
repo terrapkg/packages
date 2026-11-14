@@ -1,11 +1,11 @@
 Name:           shadowenv
-Version:        3.5.1
+Version:        3.6.0
 Release:        1%{?dist}
 License:        MIT
 Summary:        Reversible directory-local environment variable manipulations
 URL:            https://shopify.github.io/shadowenv/
 Source0:        https://github.com/Shopify/shadowenv/archive/refs/tags/%version.tar.gz
-BuildRequires:  cargo cargo-rpm-macros mold
+BuildRequires:  cargo cargo-rpm-macros
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 

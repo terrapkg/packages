@@ -1,5 +1,5 @@
-%global commit f501bb8ba0ea3f14d5b02dd2dcd02e08ded8dd15
-%global commit_date 20261016
+%global commit 42a84e0ff3d99cb5beb283389c9274a393779900
+%global commit_date 20261031
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           libsingularity
@@ -68,6 +68,7 @@ sed -i 's/Gtk\.DragIcon\.get_for_drag(drag) as Gtk\.DragIcon/new Gtk.DragIcon.ge
 %{_datadir}/vala/vapi/singularity-1.0.deps
 %{_datadir}/vala/vapi/singularity-system-1.0.deps
 %{_datadir}/vala/vapi/singularity-system-1.0.vapi
+%{_datadir}/vala/vapi/upower-glib.vapi
 %{_datadir}/themes/Singularity/
 %{_datadir}/singularity
 %{_datadir}/dbus-1/interfaces/dev.sinty.UpdateProvider1.xml

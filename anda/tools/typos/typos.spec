@@ -2,7 +2,7 @@
 %define debug_package %{nil}
 
 Name:           typos
-Version:        1.51.1
+Version:        1.52.2
 Release:        1%{?dist}
 Summary:        Source Code Spelling Correction
 
@@ -13,7 +13,6 @@ Source1:        https://raw.githubusercontent.com/crate-ci/%{name}/refs/tags/v%{
 Source2:        https://raw.githubusercontent.com/crate-ci/%{name}/refs/tags/v%{version}/LICENSE-APACHE
 
 BuildRequires:  cargo-rpm-macros >= 24
-BuildRequires:  mold
 
 Packager:       Olivia <git@olivia.sh>
 

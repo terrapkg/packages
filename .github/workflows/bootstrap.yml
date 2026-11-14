@@ -47,7 +47,7 @@ jobs:
           dnf5 install -y ./anda-build/rpm/rpms/anda-*.rpm
 
       - name: Install build dependencies
-        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper,cli-tools}/*.spec anda/{buildsys/anda,tools/subatomic}/*.spec
+        run: dnf5 builddep -y anda/terra/{mock-configs,srpm-macros,appstream-helper,cli-tools,oglyad}/*.spec anda/{buildsys/anda,tools/subatomic,tools/cargo4rpm}/*.spec
 
       - name: Install Anda
         run: |
@@ -62,9 +62,11 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           anda build -D "vendor Terra" -rrpmbuild anda/terra/mock-configs/pkg
 
+      - name: Build cargo4rpm
+        run: anda build -D "vendor Terra" -rrpmbuild anda/tools/cargo4rpm
+
       - name: Build terra-cli-tools
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/cli-tools/pkg
-
       - name: Install terra-mock-configs
         run: dnf5 install -y anda-build/rpm/rpms/terra-mock-configs*.rpm
 
@@ -76,6 +78,12 @@ jobs:
 
       - name: Build terra-appstream-helper
         run: anda build -D "vendor Terra" -rrpmbuild anda/terra/appstream-helper/pkg
+
+      - name: Build terra-scripts
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/terra-scripts/pkg
+
+      - name: Build oglyad
+        run: anda build -D "vendor Terra" -rrpmbuild anda/terra/oglyad/pkg
 
       - name: Build Subatomic
         run: anda build -D "vendor Terra" -rrpmbuild anda/tools/subatomic/pkg

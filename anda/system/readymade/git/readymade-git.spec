@@ -1,5 +1,5 @@
-%global commit 96c26827bd6df2288300d4a3043ab26331aba397
-%global commit_date 20261016
+%global commit 2ad23d6c425456d277ba3f8572066ba38f53da69
+%global commit_date 20261020
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global crate readymade
 Name:           readymade-git
@@ -10,7 +10,7 @@ License:        GPL-3.0-or-later
 URL:            https://github.com/FyraLabs/readymade
 Source0:        %url/archive/%commit.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/HEAD.tar.gz
-BuildRequires:	anda-srpm-macros rust-packaging mold
+BuildRequires:	anda-srpm-macros rust-packaging
 BuildRequires:  pkgconfig(libhelium-1)
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(libacl)

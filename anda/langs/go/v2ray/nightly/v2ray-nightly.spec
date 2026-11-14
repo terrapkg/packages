@@ -1,7 +1,7 @@
-%global commit  e29ac2e65af1ccdbdf85477fd87530d0d8f7c693
+%global commit  ec5ce8ba78e8a70167b5b1f003287f1340ecc19a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global ver v5.53.0
-%global commit_date 20260923
+%global commit_date 20261104
 
 %global goipath         github.com/v2fly/v2ray-core
 Version:                %(echo %ver | sed -E 's/^v//')^%{commit_date}git.%{shortcommit}

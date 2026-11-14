@@ -1,6 +1,11 @@
 {
   "name": "Terra Devcontainer",
-  "image": "ghcr.io/terrapkg/builder:frawhide",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "USERNAME": "${localEnv:USER}"
+    }
+  },
   "runArgs": ["--privileged"],
   "customizations": {
     "vscode": {
@@ -8,16 +13,13 @@
         "rhaiscript.vscode-rhai",
         "1dot75cm.rpmspec",
         "hashicorp.hcl",
-        "redhat.vscode-xml"
-      ],
+        "redhat.vscode-xml",
+        "sumneko.lua",
+        "nico-castell.linux-desktop-file"
+      ]
     },
     "zed": {
-      "extensions": [
-        "rhai",
-        "rpmspec",
-        "terraform",
-        "xml"
-      ]
+      "extensions": ["rhai", "rpmspec", "terraform", "xml", "desktop", "lua"]
     }
   }
 }

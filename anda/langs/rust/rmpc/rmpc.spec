@@ -7,7 +7,7 @@ Summary:        A modern, configurable, terminal based MPD Client with album art
 URL:            https://rmpc.mierak.dev/
 Source0:        https://github.com/mierak/rmpc/archive/refs/tags/v%version.tar.gz
 License:        BSD-3-Clause
-BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros mold
+BuildRequires:  cargo anda-srpm-macros cargo-rpm-macros
 
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
