@@ -1,0 +1,42 @@
+#!/usr/bin/bash
+# Distribution launcher for Floorp.
+
+MOZ_ARCH=$(uname -m)
+case $MOZ_ARCH in
+    x86_64 | s390x | sparc64)
+        MOZ_LIB_DIR="__PREFIX__/lib64"
+        SECONDARY_LIB_DIR="__PREFIX__/lib"
+        ;;
+    *)
+        MOZ_LIB_DIR="__PREFIX__/lib"
+        SECONDARY_LIB_DIR="__PREFIX__/lib64"
+        ;;
+esac
+
+MOZ_APP_FILE="__APP_FILE__"
+
+if [ ! -r "$MOZ_LIB_DIR/__APP_DIR__/$MOZ_APP_FILE" ]; then
+    if [ ! -r "$SECONDARY_LIB_DIR/__APP_DIR__/$MOZ_APP_FILE" ]; then
+        echo "Error: $MOZ_LIB_DIR/__APP_DIR__/$MOZ_APP_FILE not found" >&2
+        exit 1
+    fi
+    MOZ_LIB_DIR="$SECONDARY_LIB_DIR"
+fi
+
+MOZ_DIST_BIN="$MOZ_LIB_DIR/__APP_DIR__"
+MOZ_PROGRAM="$MOZ_DIST_BIN/$MOZ_APP_FILE"
+
+export MOZ_APP_LAUNCHER="__PREFIX__/bin/__APP_FILE__"
+export MOZ_USE_XINPUT2=${MOZ_USE_XINPUT2-1}
+export NSS_SSL_CBC_RANDOM_IV=${NSS_SSL_CBC_RANDOM_IV-1}
+
+if [ -z "$MOZ_APP_REMOTINGNAME" ]; then
+    export MOZ_APP_REMOTINGNAME=__APP_NAME__
+fi
+
+
+if [ "$#" -eq 0 ]; then
+    set -- --new-window about:home
+fi
+
+exec "$MOZ_PROGRAM" "$@"
