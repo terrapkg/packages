@@ -7,7 +7,7 @@
 %global appid com.github.GrowlyX.tailmux
 
 %global goipath github.com/GrowlyX/tailmux
-Version:        1.7.0
+Version:        1.7.1
 
 %gometa -f
 
