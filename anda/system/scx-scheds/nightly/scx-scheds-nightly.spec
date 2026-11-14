@@ -1,6 +1,6 @@
-%global commit 2da8ddc6996620d09caae6bdd51f29bb87d81382
+%global commit 8820f95ed56da7bae2966477fa457cb488a7207d
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20261112
+%global commitdate 20261114
 %global ver 1.1.4
 
 %global toolchain clang
