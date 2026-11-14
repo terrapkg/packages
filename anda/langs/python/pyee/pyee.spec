@@ -2,7 +2,7 @@
 %global _desc A rough port of Node.js's EventEmitter to Python with a few tricks of its own.
 
 Name:			python-%{pypi_name}
-Version:		16.0.2
+Version:		16.1.0
 Release:		1%{?dist}
 Summary:		A rough port of Node.js's EventEmitter to Python with a few tricks of its own
 License:		MIT
