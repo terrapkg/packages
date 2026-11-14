@@ -5,6 +5,7 @@ project "pkg" {
     }
     labels = {
         subrepo = "nvidia"
-        updbranch = 1
+        group = "nvidia-580"
+        weekly = 4
     }
 }

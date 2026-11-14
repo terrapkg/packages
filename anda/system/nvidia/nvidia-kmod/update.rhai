@@ -1,3 +1,3 @@
-import "andax/bump_extras.rhai" as bump;
+import "andax/nvidia.rhai" as nvidia;
 
-rpm.version(bump::madoguchi("nvidia-kmod-common", labels.branch));
+rpm.version(nvidia::nvidia_driver_version());

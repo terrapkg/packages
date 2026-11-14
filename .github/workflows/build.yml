@@ -25,7 +25,7 @@ run-name: ${{ inputs.packages }}
 jobs:
   manifest:
     outputs:
-      build_matrix: ${{ steps.parsing.outputs.build_matrix }}
+      build_units: ${{ steps.parsing.outputs.build_units }}
     runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/builder:frawhide
@@ -42,26 +42,35 @@ jobs:
           git config user.email "raboneko@fyralabs.com"
       - name: Parse Input
         id: parsing
+        env:
+          ARCHITECTURES: ${{ inputs.architecture }}
+          CUSTOM_BUILDER: ${{ inputs.custom_builder }}
         run: |
           for pkg in ${{ inputs.packages }}; do
             touch anda/$pkg/.build
           done
           git add --all
           git commit -a -m "tmp"
-          b=$(anda ci | sed -E 's@^build_matrix=@@')
-          if [ "${{ inputs.architecture }}" != "" ]; then
-            # e.g.: [ unique_by(.pkg)[] | (.arch="x86_64", .arch="aarch64") ]
-            filter=`echo -n "${{ inputs.architecture }}" | tr '[:space:]' '\n' | sed -E '/^$/d; s@^.+$@.arch="\0"@' | tr '\n' ', '`
-            b=`echo $b | jq -c '[unique_by(.pkg)[] | ('"$filter"')]'`
-          elif [ "${{ inputs.custom_builder }}" != "" ]; then
-            b=`echo $b | jq -c 'unique_by(.pkg)'`
+
+          args=()
+          if [[ -n "$ARCHITECTURES" ]]; then
+            while IFS= read -r arch; do
+              [[ -z "$arch" ]] || args+=(--arch "$arch")
+            done < <(printf '%s' "$ARCHITECTURES" | tr '[:space:]' '\n')
+          elif [[ -n "$CUSTOM_BUILDER" ]]; then
+            args+=(--unique-packages)
           fi
-          echo "build_matrix=$b" >> $GITHUB_OUTPUT
+          anda ci "${args[@]}" >> "$GITHUB_OUTPUT"
 
   build:
     needs: manifest
+    strategy:
+      fail-fast: false
+      matrix:
+        unit: ${{ fromJson(needs.manifest.outputs.build_units) }}
     uses: ./.github/workflows/json-build.yml
     secrets: inherit
     with:
-      packages: ${{ needs.manifest.outputs.build_matrix }}
+      packages: ${{ toJSON(matrix.unit.packages) }}
+      unit_id: ${{ matrix.unit.name }}
       custom_builder: ${{ inputs.custom_builder }}
