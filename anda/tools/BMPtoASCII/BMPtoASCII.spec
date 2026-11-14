@@ -25,7 +25,7 @@ the given set of characters ordered
 from "fullest" to "empty" (black to white).
 
 %install -a
-install -Dm755 redhat-linux-build/BMPtoASCII %{buildroot}%{_bindir}/BMPtoASCII
+install -Dm755 %{__cmake_builddir}/%{name} %{buildroot}%{_bindir}/%{name}
 
 %files
 %doc README.md
