@@ -26,6 +26,7 @@ jobs:
   manifest:
     outputs:
       build_matrix: ${{ steps.parsing.outputs.build_matrix }}
+      nvidia_matrix: ${{ steps.parsing.outputs.nvidia_matrix }}
     runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/builder:frawhide
@@ -56,12 +57,23 @@ jobs:
           elif [ "${{ inputs.custom_builder }}" != "" ]; then
             b=`echo $b | jq -c 'unique_by(.pkg)'`
           fi
-          echo "build_matrix=$b" >> $GITHUB_OUTPUT
+          printf '%s\n' "$b" | jq -r -f .github/scripts/split-build-matrix.jq >> "$GITHUB_OUTPUT"
 
   build:
     needs: manifest
+    if: needs.manifest.outputs.build_matrix != '[]'
     uses: ./.github/workflows/json-build.yml
     secrets: inherit
     with:
       packages: ${{ needs.manifest.outputs.build_matrix }}
+      custom_builder: ${{ inputs.custom_builder }}
+
+  nvidia:
+    needs: manifest
+    if: needs.manifest.outputs.nvidia_matrix != '[]'
+    uses: ./.github/workflows/nvidia-build.yml
+    secrets: inherit
+    with:
+      # Publication always requires all configured architectures, even for a manual build.
+      packages: ${{ needs.manifest.outputs.nvidia_matrix }}
       custom_builder: ${{ inputs.custom_builder }}
