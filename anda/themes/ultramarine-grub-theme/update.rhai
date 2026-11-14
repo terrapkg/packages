@@ -1,1 +1,1 @@
-rpm.version(gh("Ultramarine-Linux/grub-theme"));
+rpm.version(gh("Ultramarine-Linux/grub-themes"));
