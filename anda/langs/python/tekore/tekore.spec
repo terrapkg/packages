@@ -2,7 +2,7 @@
 %global _desc Spotify Web API client for Python 3.
 
 Name:			python-%{pypi_name}
-Version:		6.2.1
+Version:		7.0.0
 Release:		1%{?dist}
 Summary:		Spotify Web API client for Python 3
 License:		MIT
