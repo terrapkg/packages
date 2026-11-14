@@ -49,7 +49,7 @@ Provides:       sidepulse
 %license LICENSE
 %{python3_sitelib}/agent_monitor/*
 %{python3_sitelib}/sidepulse_cli/*
-%{_bindir}/agent-monitor
+%{_bindir}/sp
 # macOS only
 %ghost %{_bindir}/agent-status-bar
 %{_bindir}/sidepulse
