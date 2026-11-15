@@ -44,7 +44,7 @@ Requires:       libwayland-client
 Requires:       libwayland-cursor
 Requires:       libwayland-egl
 Requires:       libglvnd-egl
-BuildRequires:  anda-srpm-macros mold cargo rust-packaging perl systemd-rpm-macros
+BuildRequires:  anda-srpm-macros lld cargo rust-packaging perl systemd-rpm-macros
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(libxcrypt)
