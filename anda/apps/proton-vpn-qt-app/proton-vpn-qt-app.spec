@@ -3,7 +3,7 @@
 Name:           proton-vpn-qt-app
 Version:        1.13.1
 Release:        1%{?dist}
-Summary:        Qt GUI frontend for the ProtonVPN Linux CLI.
+Summary:        Qt GUI frontend for the ProtonVPN Linux CLI
 
 License:        GPL-3.0-only
 URL:            https://github.com/wheat32/%{name}
