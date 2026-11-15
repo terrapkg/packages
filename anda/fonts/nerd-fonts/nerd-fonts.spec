@@ -1,10 +1,13 @@
-%global flist 0xProto 3270 Agave AnonymousPro Arimo AurulentSansMono BigBlueTerminal BitstreamVeraSansMono CascadiaCode CascadiaMono CodeNewRoman ComicShannsMono CommitMono Cousine D2Coding DaddyTimeMono DejaVuSansMono DepartureMono DroidSansMono EnvyCodeR FantasqueSansMono FiraCode FiraMono GeistMono Go-Mono Gohu Hack Hasklig HeavyData Hermit iA-Writer IBMPlexMono Inconsolata InconsolataGo InconsolataLGC IntelOneMono Iosevka IosevkaTerm IosevkaTermSlab JetBrainsMono Lekton LiberationMono Lilex MartianMono Meslo Monaspace Monofur Monoid Mononoki MPlus NerdFontsSymbolsOnly Noto OpenDyslexic Overpass ProFont ProggyClean Recursive RobotoMono ShareTechMono SourceCodePro SpaceMono Terminus Tinos Ubuntu UbuntuMono UbuntuSans VictorMono ZedMono
 %global desc %{expand:
 Nerd Fonts is a project that patches developer targeted fonts with a high
 number of glyphs (icons).}
 
 Name:		nerd-fonts
 Version:	3.5.1
+
+%global flist %(curl -fsSL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/tags/v%version |\
+	jq -r '[.assets.[].name | select(type == "string" and contains(".tar.xz")) | gsub(".tar.xz"; "")] | join(" ")')
+
 Release:	1%{?dist}
 URL:		https://nerdfonts.com/
 Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/readme.md
@@ -25,7 +28,7 @@ BuildRequires:	unzip
 local url = rpm.expand(": https://github.com/ryanoasis/nerd-fonts/releases/download/v%{version}/");
 local n = 2;
 for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
-	print("Source"..n..url..font..".zip\n")
+	print("Source"..n..url..font..".tar.xz\n")
 	n = n + 1
 end
 }
@@ -59,7 +62,7 @@ local dest = rpm.expand("%buildroot/usr/share/fonts/nerd-fonts/");
 local n = 2;
 for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 	local src = rpm.expand("%SOURCE"..n)
-	print("unzip "..src.." -d "..dest..font.." &\n")
+	print("mkdir -p "..dest..font.." && tar -xJf "..src.." -C "..dest..font.." &\n")
 	n = n + 1
 end
 }
@@ -86,5 +89,9 @@ end
 
 
 %changelog
+* Sun Nov 15 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 3.5.1-1
+- Automate fetching list of fonts
+- Use smaller .tar.xz archive
+
 * Wed Jan 4 2023 madonuko <mado@fyralabs.com> - 2.2.2-1
 - Initial package
