@@ -61,7 +61,6 @@ Linux, written in Rust and the Slint toolkit.
 %package default-configs
 Summary:        Default configurations for Taidan
 Provides:       %{name}-configs
-Requires:       umcli
 BuildArch:      noarch
 
 %description default-configs
@@ -81,6 +80,7 @@ This package contains the default configuration files for Taidan.
 %cargo_install
 install -Dpm755 target/rpm/taidan-helper %{buildroot}%{_libexecdir}/taidan-helper
 DESTDIR=%buildroot ./scripts/install.sh
+rm -rf %buildroot%{_datadir}/taidan/tweaks/*
 install -d %buildroot%{_sharedstatedir}/taidan
 
 %post
@@ -113,7 +113,7 @@ install -d %buildroot%{_sharedstatedir}/taidan
 
 %files default-configs
 %dir %{_datadir}/taidan/
-%{_datadir}/taidan/tweaks/
+%dir %{_datadir}/taidan/tweaks/
 
 %changelog
 * Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.0-2
