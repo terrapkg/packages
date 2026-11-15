@@ -20,7 +20,7 @@ BuildRequires:  cmake(Qt6SvgWidgets)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6LinguistTools)
 
-Requires:       (proton-vpn-cli >= 1.0.0 and proton-vpn-cli <= 1.0.5)
+Requires:       proton-vpn-cli >= 1.0.0
 Recommends:     curl
 Recommends:     libnatpmp
 
@@ -63,6 +63,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Mon Nov 16 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.1-1
+- Remove cap on proton-vpn-cli version, it should work fine and no need for manual checking/bumping
+
 * Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.0-2
 - Update maintainer contact info
 
