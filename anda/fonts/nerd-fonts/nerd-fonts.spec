@@ -8,7 +8,7 @@ Version:	3.5.1
 %global flist %(curl -fsSL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/tags/v%version |\
 	jq -r '[.assets.[].name | select(type == "string" and contains(".tar.xz")) | gsub(".tar.xz"; "")] | join(" ")')
 
-Release:	1%{?dist}
+Release:	2%{?dist}
 URL:		https://nerdfonts.com/
 Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/readme.md
 Source1:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/LICENSE
@@ -89,7 +89,7 @@ end
 
 
 %changelog
-* Sun Nov 15 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 3.5.1-1
+* Sun Nov 15 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 3.5.1-2
 - Automate fetching list of fonts
 - Use smaller .tar.xz archive
 
