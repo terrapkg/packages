@@ -1,10 +1,13 @@
-%global flist 0xProto 3270 Agave AnonymousPro Arimo AurulentSansMono BigBlueTerminal BitstreamVeraSansMono CascadiaCode CascadiaMono CodeNewRoman ComicShannsMono CommitMono Cousine D2Coding DaddyTimeMono DejaVuSansMono DepartureMono DroidSansMono EnvyCodeR FantasqueSansMono FiraCode FiraMono GeistMono Go-Mono Gohu Hack Hasklig HeavyData Hermit iA-Writer IBMPlexMono Inconsolata InconsolataGo InconsolataLGC IntelOneMono Iosevka IosevkaTerm IosevkaTermSlab JetBrainsMono Lekton LiberationMono Lilex MartianMono Meslo Monaspace Monofur Monoid Mononoki MPlus NerdFontsSymbolsOnly Noto OpenDyslexic Overpass ProFont ProggyClean Recursive RobotoMono ShareTechMono SourceCodePro SpaceMono Terminus Tinos Ubuntu UbuntuMono UbuntuSans VictorMono ZedMono
 %global desc %{expand:
 Nerd Fonts is a project that patches developer targeted fonts with a high
 number of glyphs (icons).}
 
 Name:		nerd-fonts
 Version:	3.5.1
+
+%global flist %(jq -r '[.assets.[].name | select(type == "string" and contains(".tar.xz")) | gsub(".tar.xz"; "")] | join(" ")' \
+    <(curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/tags/v%version)
+
 Release:	1%{?dist}
 URL:		https://nerdfonts.com/
 Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/readme.md
@@ -20,12 +23,12 @@ for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 end
 print(x)
 }
-BuildRequires:	unzip
+BuildRequires:	tar xz jq curl
 %{lua:
 local url = rpm.expand(": https://github.com/ryanoasis/nerd-fonts/releases/download/v%{version}/");
 local n = 2;
 for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
-	print("Source"..n..url..font..".zip\n")
+	print("Source"..n..url..font..".tar.xz\n")
 	n = n + 1
 end
 }
@@ -56,11 +59,20 @@ cp %SOURCE1 .
 mkdir -p %buildroot/usr/share/fonts/nerd-fonts/
 %{lua:
 local dest = rpm.expand("%buildroot/usr/share/fonts/nerd-fonts/");
+local fontconfig = rpm.expand("%buildroot/usr/share/fontconfig/conf.avail/");
+local etc = rpm.expand("%buildroot/etc/fonts/conf.d/");
+local file = "10-nerd-font-symbols.conf"
 local n = 2;
 for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 	local src = rpm.expand("%SOURCE"..n)
-	print("unzip "..src.." -d "..dest..font.." &\n")
+	print("mkdir -p "..dest..font.." &\n")
+	print("tar -xJf "..src.." -C "..dest..font.." &\n")
 	n = n + 1
+end
+for font in (rpm.expand("%flist")):gmatch("NerdFontsSymbolsOnly") do
+	print("mkdir -p "..fontconfig.." "..etc.." &\n")
+	print("mv "..dest..font..file.." "..fontconfig..file.." &\n")
+	print("ln -s "..fontconfig..file.." "..etc..file.." &\n")
 end
 }
 wait
@@ -82,9 +94,17 @@ for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 	print("%license LICENSE\n")
 	print("/usr/share/fonts/nerd-fonts/"..font.."\n")
 end
+for font in (rpm.expand("%flist")):gmatch("NerdFontsSymbolsOnly") do
+	print("/usr/share/fontconfig/conf.avail/"..font.."\n")
+	print("/etc/fonts/conf.d/""\n")
+end
 }
 
-
 %changelog
+* Sun Nov 15 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 3.5.1-1
+- Automate font list retrieval
+- Enable NerdFontsSymbolsOnly fontconfig fallback
+- Use smaller .tar.xz archive instead of .zip
+
 * Wed Jan 4 2023 madonuko <mado@fyralabs.com> - 2.2.2-1
 - Initial package
