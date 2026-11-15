@@ -1,0 +1,51 @@
+name: Backport to EL10
+
+permissions:
+  contents: read
+
+on:
+  pull_request_target:
+    types: [labeled, closed]
+
+jobs:
+  backport:
+    name: Backport PR to packages-el
+    if: >-
+      github.event.pull_request.merged &&
+      contains(github.event.pull_request.labels.*.name, 'sync-el10-testing')
+    runs-on: arc-runner-set
+    steps:
+      - name: Install SSH signing key
+        run: |
+          mkdir -p "${{ runner.temp }}"
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > "${{ runner.temp }}/signing_key"
+          chmod 0700 "${{ runner.temp }}/signing_key"
+
+      - name: Configure Git
+        run: |
+          git config --global gpg.format ssh
+          git config --global user.signingkey "${{ runner.temp }}/signing_key"
+          git config --global commit.gpgsign true
+          git config --global user.name "Raboneko"
+          git config --global user.email "raboneko@fyralabs.com"
+
+      - name: Cherry-pick into packages-el
+        env:
+          GH_TOKEN: ${{ secrets.RABONEKO_BACKPORT_GITHUB_TOKEN }}
+          MERGE_COMMIT: ${{ github.event.pull_request.merge_commit_sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          branch="backport/${PR_NUMBER}-el10"
+          git clone --branch el10 "https://x-access-token:${GH_TOKEN}@github.com/terrapkg/packages-el.git" packages-el
+          git -C packages-el remote add source "https://x-access-token:${GH_TOKEN}@github.com/terrapkg/packages.git"
+          git -C packages-el fetch source "${MERGE_COMMIT}"
+          git -C packages-el switch --create "${branch}"
+          git -C packages-el cherry-pick "${MERGE_COMMIT}"
+          git -C packages-el push origin "${branch}"
+          gh pr create \
+            --repo terrapkg/packages-el \
+            --base el10 \
+            --head "${branch}" \
+            --title "${PR_TITLE} (EL10)" \
+            --body "Backport of terrapkg/packages#${PR_NUMBER}."
