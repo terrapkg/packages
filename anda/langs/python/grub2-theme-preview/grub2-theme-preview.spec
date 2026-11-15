@@ -2,8 +2,8 @@
 %global _desc Preview a GRUB 2.x theme using KVM/QEMU.
 
 Name:			python-%{pypi_name}
-Version:		2.10.1
-Release:		2%{?dist}
+Version:		2.10.2
+Release:		1%{?dist}
 Summary:		Preview a GRUB 2.x theme using KVM/QEMU
 License:		GPL-2.0-or-later
 URL:			https://pypi.org/project/grub2-theme-preview/
