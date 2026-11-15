@@ -59,10 +59,20 @@ cp %SOURCE1 .
 mkdir -p %buildroot/usr/share/fonts/nerd-fonts/
 %{lua:
 local dest = rpm.expand("%buildroot/usr/share/fonts/nerd-fonts/");
+local fontconfig = rpm.expand("%buildroot/usr/share/fontconfig/conf.avail/");
+local etc = rpm.expand("%buildroot/etc/fonts/conf.d/");
+local file = "10-nerd-font-symbols.conf"
 local n = 2;
 for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 	local src = rpm.expand("%SOURCE"..n)
-	print("mkdir -p "..dest..font.." && tar -xJf "..src.." -C "..dest..font.." &\n")
+	if font:find("NerdFontsSymbolsOnly", 1, true) then
+		print("mkdir -p "..dest..font.." && tar -xJf "..src.." -C "..dest..font.."\n")
+		print("mkdir -p "..fontconfig.." "..etc.."\n")
+		print("mv "..dest..font.."/"..file.." "..fontconfig..file.."\n")
+		print("ln -s ../usr/share/fontconfig/conf.avail/"..file.." "..etc..file.."\n")
+	else
+		print("mkdir -p "..dest..font.." && tar -xJf "..src.." -C "..dest..font.." &\n")
+	end
 	n = n + 1
 end
 }
@@ -72,7 +82,6 @@ find %buildroot/usr/share/fonts/nerd-fonts/ -name "* Windows Compatible.*" -dele
 find %buildroot/usr/share/fonts/nerd-fonts/ -name "*.txt" -delete &
 find %buildroot/usr/share/fonts/nerd-fonts/ -name "readme.md" -delete &
 wait
-
 
 %files
 %doc readme.md
@@ -84,6 +93,10 @@ for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 	print("%doc readme.md\n")
 	print("%license LICENSE\n")
 	print("/usr/share/fonts/nerd-fonts/"..font.."\n")
+	if font:find("NerdFontsSymbolsOnly", 1, true) then
+		print("/usr/share/fontconfig/conf.avail/10-nerd-font-symbols.conf\n")
+		print("/etc/fonts/conf.d/10-nerd-font-symbols.conf\n")
+	end
 end
 }
 
@@ -91,6 +104,7 @@ end
 %changelog
 * Sun Nov 15 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 3.5.1-2
 - Automate fetching list of fonts
+- Enable NerdFontsSymbolsOnly fontconfig fallback
 - Use smaller .tar.xz archive
 
 * Wed Jan 4 2023 madonuko <mado@fyralabs.com> - 2.2.2-1
