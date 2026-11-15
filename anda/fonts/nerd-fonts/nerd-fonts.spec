@@ -23,7 +23,7 @@ for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 end
 print(x)
 }
-BuildRequires:	unzip
+BuildRequires:	tar xz
 %{lua:
 local url = rpm.expand(": https://github.com/ryanoasis/nerd-fonts/releases/download/v%{version}/");
 local n = 2;
