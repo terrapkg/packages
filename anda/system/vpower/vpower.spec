@@ -1,5 +1,5 @@
 Name:           vpower
-Version:        1.6.3
+Version:        1.6.4
 Release:        1%{?dist}
 Summary:        Service that calculates battery metrics and handles critical battery scenarios
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
