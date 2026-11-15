@@ -5,7 +5,7 @@
 %global __requires_exclude libffmpeg\\.so.*|libEGL\\.so.*|libGLESv2\\.so.*|libvk_swiftshader\\.so.*|libvulkan\\.so.*
 
 Name:           pear-desktop
-Version:        3.12.0
+Version:        3.12.1
 Release:        1%{?dist}
 Summary:        Pear Desktop, a YouTube Music desktop app with custom plugins
 Source1:        com.github.th-ch.youtube-music.desktop
