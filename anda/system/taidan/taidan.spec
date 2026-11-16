@@ -2,15 +2,14 @@
 %global rustflags_debuginfo 1
 
 Name:           taidan
-Version:        1.0.0
+Version:        1.0.1
 Release:        2%{?dist}
 Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 SourceLicense:  GPL-3.0-or-later AND GPL-2.0-or-later
 License:        (%{sourcelicense}) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND Apache-2.0 AND MIT AND (MIT OR Apache-2.0 OR Zlib) AND (0BSD OR MIT OR Apache-2.0) AND BSD-2-Clause AND Zlib AND MIT AND (Apache-2.0 OR GPL-2.0-only) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND GPL-3.0-or-later AND Apache-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND (CC0-1.0 OR Apache-2.0) AND (BSD-3-Clause OR Apache-2.0) AND BSL-1.0 AND ISC AND (GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0) AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 URL:            https://github.com/Ultramarine-Linux/taidan
 Packager:       Terra Packaging Team <terra@fyralabs.com>
-Requires:       %{name}-configs
-Suggests:       %{name}-default-configs
+Obsoletes:      %{name}-default-configs < 1.0.1-2
 Requires:       kwin
 Requires:       dbus-daemon
 Requires:       swaybg
@@ -61,14 +60,6 @@ BuildRequires:  clang-devel
 Taidan is a GUI Out-Of-Box-Experience (OOBE) and Welcome App for Ultramarine
 Linux, written in Rust and the Slint toolkit.
 
-%package default-configs
-Summary:        Default configurations for Taidan
-Provides:       %{name}-configs
-BuildArch:      noarch
-
-%description default-configs
-This package contains the default configuration files for Taidan.
-
 %prep
 %git_clone
 %cargo_prep_online
@@ -82,7 +73,7 @@ This package contains the default configuration files for Taidan.
 install -Dpm755 target/rpm/taidan %{buildroot}%{_bindir}/taidan
 install -Dpm755 target/rpm/taidan-helper %{buildroot}%{_libexecdir}/taidan-helper
 DESTDIR=%buildroot ./scripts/install.sh
-rm -rf %buildroot%{_datadir}/taidan/tweaks/*
+rm -rf %buildroot%{_datadir}/taidan/tweaks
 install -d %buildroot%{_sharedstatedir}/taidan
 
 %post
@@ -112,10 +103,6 @@ install -d %buildroot%{_sharedstatedir}/taidan
 %{_datadir}/taidan/avatars/
 %{_datadir}/taidan/po/
 %{_datadir}/taidan/session-config/
-
-%files default-configs
-%dir %{_datadir}/taidan/
-%dir %{_datadir}/taidan/tweaks/
 
 %changelog
 * Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.0-2
