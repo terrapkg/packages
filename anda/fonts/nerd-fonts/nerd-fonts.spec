@@ -8,7 +8,7 @@ Version:	3.5.1
 %global flist %(curl -fsSL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/tags/v%version |\
 	jq -r '[.assets.[].name | select(type == "string" and contains(".tar.xz")) | gsub(".tar.xz"; "")] | join(" ")')
 
-Release:	2%{?dist}
+Release:	3%{?dist}
 URL:		https://nerdfonts.com/
 Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/readme.md
 Source1:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/LICENSE
