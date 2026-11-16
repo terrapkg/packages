@@ -2,7 +2,7 @@
 
 Name:           proton-vpn-qt-app
 Version:        1.13.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Qt GUI frontend for the ProtonVPN Linux CLI
 
 License:        GPL-3.0-only
@@ -63,7 +63,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
-* Mon Nov 16 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.1-1
+* Mon Nov 16 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.1-2
 - Remove cap on proton-vpn-cli version, it should work fine and no need for manual checking/bumping
 
 * Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.0-2
