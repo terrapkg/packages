@@ -57,8 +57,8 @@ BuildRequires:  pkgconfig(libjxl)
 BuildRequires:  pkgconfig(libical)
 BuildRequires:  pkgconfig(sndfile)
 
-Provides:       desktop-notification-daemon
-Provides:       PolicyKit-authentication-agent
+Provides:       desktop-notification-daemon = %{evr}
+Provides:       PolicyKit-authentication-agent = %{evr}
 
 Requires:       hicolor-icon-theme
 Requires:       dejavu-sans-fonts
