@@ -20,7 +20,7 @@ Requires:       terra-upower
 Service that calculates battery metrics and handles critical battery scenarios
 
 %prep
-%autosetup -n %{name}-%{version} -S git_am -p1
+%autosetup -n %{name}-%{version}
 %cargo_prep_online
 
 %build
