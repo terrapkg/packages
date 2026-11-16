@@ -1,1 +1,1 @@
-rpm.version(gh("evlav/vpower"));
+rpm.version(gh_tag("evlav/vpower"));
