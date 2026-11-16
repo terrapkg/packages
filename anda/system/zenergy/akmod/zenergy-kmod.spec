@@ -5,14 +5,14 @@
 %global buildforkernels akmod
 %global debug_package %{nil}
 
-%global commit 58f2fda7184fbde95033f492f7c54990552ef86f
-%global commitdate 20250831
+%global commit 2a40d24d9253298b3b7a7098e07895e72fef291c
+%global commitdate 20261116
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global modulename zenergy
 
 Name:           %{modulename}-kmod
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        5%{?dist}
+Release:        1%{?dist}
 Summary:        Exposes the energy counters that are reported via the Running Average Power Limit (RAPL) Model-specific Registers (MSRs) via the hardware monitor (HWMON) sysfs interface.
 License:        GPL-2.0
 URL:            https://github.com/BoukeHaarsma23/zenergy
