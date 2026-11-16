@@ -64,7 +64,7 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 
 %changelog
 * Mon Nov 16 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.1-2
-- Remove cap on proton-vpn-cli version, it should work fine and no need for manual checking/bumping
+- Remove cap on proton-vpn-cli version
 
 * Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.0-2
 - Update maintainer contact info
