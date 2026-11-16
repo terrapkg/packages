@@ -1,6 +1,6 @@
 Name:           sniffnet
-Version:        1.5.1
-Release:        2%{?dist}
+Version:        1.6.0
+Release:        1%{?dist}
 Summary:        Comfortably monitor your Internet traffic
 URL:            https://github.com/GyulyVGC/sniffnet
 Source0:        %url/archive/refs/tags/v%version.tar.gz
