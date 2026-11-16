@@ -8,7 +8,7 @@ Version:	3.5.1
 %global flist %(curl -fsSL https://api.github.com/repos/ryanoasis/nerd-fonts/releases/tags/v%version |\
 	jq -r '[.assets.[].name | select(type == "string" and contains(".tar.xz")) | gsub(".tar.xz"; "")] | join(" ")')
 
-Release:	2%{?dist}
+Release:	3%{?dist}
 URL:		https://nerdfonts.com/
 Source0:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/readme.md
 Source1:	https://raw.githubusercontent.com/ryanoasis/nerd-fonts/v%version/LICENSE
@@ -69,7 +69,7 @@ for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 		print("mkdir -p "..dest..font.." && tar -xJf "..src.." -C "..dest..font.."\n")
 		print("mkdir -p "..fontconfig.." "..etc.."\n")
 		print("mv "..dest..font.."/"..file.." "..fontconfig..file.."\n")
-		print("ln -s ../usr/share/fontconfig/conf.avail/"..file.." "..etc..file.."\n")
+		print("ln -s /usr/share/fontconfig/conf.avail/"..file.." "..etc..file.."\n")
 	else
 		print("mkdir -p "..dest..font.." && tar -xJf "..src.." -C "..dest..font.." &\n")
 	end
