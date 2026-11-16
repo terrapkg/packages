@@ -1,11 +1,14 @@
 Name:           vpower
 Version:        1.6.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Service that calculates battery metrics and handles critical battery scenarios
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT
 URL:            https://github.com/evlav/vpower
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
+
+# See: https://github.com/ublue-os/bazzite/issues/6346
+Patch0:         battery-discover-hwmon-path.patch
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  systemd-rpm-macros
@@ -17,7 +20,7 @@ Requires:       terra-upower
 Service that calculates battery metrics and handles critical battery scenarios
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n %{name}-%{version} -S git_am -p1
 %cargo_prep_online
 
 %build
