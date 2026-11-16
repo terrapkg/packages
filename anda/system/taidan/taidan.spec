@@ -73,11 +73,10 @@ This package contains the default configuration files for Taidan.
 %build
 %{cargo_license_online} > LICENSE.dependencies
 %cargo_license_summary_online
-# %%cargo_install skips libtaidan's binaries
-%{__cargo} build %{__cargo_common_opts} --profile rpm -p libtaidan --bin taidan-helper
+%cargo_build -- -p taidan -p libtaidan --bin taidan --bin taidan-helper
 
 %install
-%cargo_install
+install -Dpm755 target/rpm/taidan %{buildroot}%{_bindir}/taidan
 install -Dpm755 target/rpm/taidan-helper %{buildroot}%{_libexecdir}/taidan-helper
 DESTDIR=%buildroot ./scripts/install.sh
 rm -rf %buildroot%{_datadir}/taidan/tweaks/*
