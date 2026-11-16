@@ -46,7 +46,7 @@ Flexible QtQuick based desktop shell toolkit.
 %prep
 %autosetup -n %{name}-%{version}
 
-%build
+%conf
 %cmake  -GNinja \
         -DBUILD_SHARED_LIBS=OFF \
         -DCMAKE_BUILD_TYPE=RelWithDebInfo \
@@ -54,6 +54,8 @@ Flexible QtQuick based desktop shell toolkit.
         -DDISTRIBUTOR_DEBUGINFO_AVAILABLE=YES \
         -DGIT_REVISION=%{commit} \
         -DINSTALL_QML_PREFIX=%{_lib}/qt6/qml
+
+%build
 %cmake_build
 
 %install
