@@ -4,7 +4,7 @@
 
 Name: fx-autoconfig
 Version: 0~%{commit_date}git.%{shortcommit}
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Firefox userChrome.js manager
 Packager: Anna Simmons <anna@simmons.ovh>
 
@@ -35,5 +35,8 @@ cp -pr program/defaults %{buildroot}%{_prefix}/lib64/firefox/defaults
 %{_prefix}/lib64/firefox/defaults/
 
 %changelog
-* Thu May 21 2026 Anna Simmons <anna@simmons.ovh>
+* Sun Nov 15 2026 Anna Simmons <anna@simmons.ovh> - 2
+- Fix install location to lib64 from lib
+
+* Thu May 21 2026 Anna Simmons <anna@simmons.ovh> - 1
 - Initial package build
