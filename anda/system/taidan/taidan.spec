@@ -1,3 +1,6 @@
+# stop OOMing
+%global rustflags_debuginfo 1
+
 Name:           taidan
 Version:        1.0.0
 Release:        2%{?dist}
