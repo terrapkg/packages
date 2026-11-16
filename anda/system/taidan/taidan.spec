@@ -105,7 +105,7 @@ install -d %buildroot%{_sharedstatedir}/taidan
 %{_datadir}/taidan/session-config/
 
 %changelog
-* Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.0-2
+* Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.1-2
 - Update packaging for slint rewrite
 
 * Tue Jun 17 2026 madonuko <mado@fyralabs.com> - 0.2.1-2
