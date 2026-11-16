@@ -23,16 +23,16 @@ BuildArch: noarch
 %build
 
 %install
-mkdir -p %{buildroot}%{_libdir}/firefox
+mkdir -p %{buildroot}%{_prefix}/lib64/firefox
 
-install -Dm644 program/config.js %{buildroot}%{_libdir}/firefox/
-cp -pr program/defaults %{buildroot}%{_libdir}/firefox/defaults
+install -Dm644 program/config.js %{buildroot}%{_prefix}/lib64/firefox/
+cp -pr program/defaults %{buildroot}%{_prefix}/lib64/firefox/defaults
 
 %files
 %license LICENSE
 %doc readme.md
-%{_libdir}/firefox/config.js
-%{_libdir}/firefox/defaults/
+%{_prefix}/lib64/firefox/config.js
+%{_prefix}/lib64/firefox/defaults/
 
 %changelog
 * Thu May 21 2026 Anna Simmons <anna@simmons.ovh>
