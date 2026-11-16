@@ -8,7 +8,7 @@
 
 Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A sleek, customizable desktop shell crafted for Wayland
 
 License:	MIT
@@ -57,7 +57,6 @@ BuildRequires:  pkgconfig(libjxl)
 BuildRequires:  pkgconfig(libical)
 BuildRequires:  pkgconfig(sndfile)
 
-Provides:       desktop-notification-daemon = %{evr}
 Provides:       PolicyKit-authentication-agent = %{evr}
 
 Requires:       hicolor-icon-theme
