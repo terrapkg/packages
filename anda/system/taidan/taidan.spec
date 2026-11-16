@@ -4,7 +4,7 @@
 %global proc_macros_commit 7306a90996eaa89284f3e271dbb04152e3eedf96
 
 Name:           taidan
-Version:        1.0.2
+Version:        1.0.3
 Release:        2%{?dist}
 Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 # https://scancode-licensedb.aboutcode.org/unsplash
@@ -13,7 +13,6 @@ License:        (%{sourcelicense}) AND (BSD-3-Clause OR MIT OR Apache-2.0) AND A
 URL:            https://github.com/Ultramarine-Linux/taidan
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 Source1:        https://github.com/FyraLabs/rdms_proc_macros/archive/%{proc_macros_commit}/rdms_proc_macros-%{proc_macros_commit}.tar.gz
-Source2:        LICENSE.unsplash
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 Obsoletes:      %{name}-default-configs < 1.0.1-2
 Requires:       kwin
@@ -75,7 +74,6 @@ tar -xzf %{SOURCE1} -C taidan_proc_macros --strip-components=1
 
 %build
 %{cargo_license_online} > LICENSE.dependencies
-%cargo_license_summary_online
 %cargo_build -- -p taidan -p libtaidan --bin taidan --bin taidan-helper
 
 %install
@@ -84,7 +82,6 @@ install -Dpm755 target/rpm/taidan-helper %{buildroot}%{_libexecdir}/taidan-helpe
 DESTDIR=%buildroot ./scripts/install.sh
 rm -rf %buildroot%{_datadir}/taidan/tweaks
 install -d %buildroot%{_sharedstatedir}/taidan
-cp %{S:2} LICENSE.unsplash
 
 %post
 %systemd_post taidan-initial-setup.service taidan-initial-setup-reconfiguration.service
@@ -97,7 +94,7 @@ cp %{S:2} LICENSE.unsplash
 
 %files
 %doc README.md
-%license LICENSE.md LICENSE-GPL-2.0-or-later.md LICENSE.dependencies LICENSE.unsplash
+%license LICENSE.md LICENSE-GPL-2.0-or-later.md LICENSE.dependencies data/avatars/LICENSE.unsplash
 %{_bindir}/taidan
 %{_libexecdir}/start-taidan
 %{_libexecdir}/taidan-helper
@@ -114,7 +111,7 @@ cp %{S:2} LICENSE.unsplash
 %{_datadir}/taidan/session-config/
 
 %changelog
-* Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.2-2
+* Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.3-2
 - Update packaging for slint rewrite
 
 * Wed Jun 17 2026 madonuko <mado@fyralabs.com> - 0.2.1-2
