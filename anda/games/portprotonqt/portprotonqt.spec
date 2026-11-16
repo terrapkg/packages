@@ -1,7 +1,6 @@
 %global appid ru.linux_gaming.PortProtonQt
 %global name_pretty PortProtonQt
 %global appstream_component desktop-application
-%global _python_no_extras_requires 1
 
 Name:           portprotonqt
 Version:        1.5.0
@@ -73,13 +72,17 @@ Recommends:     python3-qrcode
 # For legacy PortProton prefix backup support
 Recommends:     squashfs-tools
 
+# For Gamescope configuration
+Recommends:     gamescope
+
+# For use system not bundled components
+Suggests:     mangohud
+Suggests:     vkBasalt
+Suggests:     gamemode
+
 %description
 An application for managing a game library and launching games on Linux.
 It brings games from different sources together in one place.
-
-# Disable automatic Python requirements to avoid unnecessary version pins from pyproject.toml.
-# Runtime dependencies are listed explicitly above.
-%{?python_disable_dependency_generator}
 
 %pkg_completion -Bfz
 
