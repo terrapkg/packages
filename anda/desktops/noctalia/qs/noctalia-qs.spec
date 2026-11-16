@@ -37,8 +37,8 @@ BuildRequires: polkit-devel
 
 Conflicts:    quickshell
 
-Provides:     desktop-notification-daemon
-Provides:     PolicyKit-authentication-agent
+Provides:     desktop-notification-daemon = %{evr}
+Provides:     PolicyKit-authentication-agent = %{evr}
 
 %description
 Flexible QtQuick based desktop shell toolkit.
