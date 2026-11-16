@@ -69,7 +69,7 @@ for font in (rpm.expand("%flist")):gmatch("[^ ]+") do
 		print("mkdir -p "..dest..font.." && tar -xJf "..src.." -C "..dest..font.."\n")
 		print("mkdir -p "..fontconfig.." "..etc.."\n")
 		print("mv "..dest..font.."/"..file.." "..fontconfig..file.."\n")
-		print("ln -s ../usr/share/fontconfig/conf.avail/"..file.." "..etc..file.."\n")
+		print("ln -s /usr/share/fontconfig/conf.avail/"..file.." "..etc..file.."\n")
 	else
 		print("mkdir -p "..dest..font.." && tar -xJf "..src.." -C "..dest..font.." &\n")
 	end
