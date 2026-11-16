@@ -112,7 +112,7 @@ done
 %{_appsdir}/dev.noctalia.Noctalia.desktop
 %{_appsdir}/dev.noctalia.Noctalia.Annotator.desktop
 %{_scalableiconsdir}/noctalia.svg
-%{_libexecdir}/noctalia-pam-helper
+%dnl %{_libexecdir}/noctalia-pam-helper
 
 %changelog
 * Sat Oct 24 2026 Owen Zimmerman <owen@fyralabs.com>
