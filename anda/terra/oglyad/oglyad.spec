@@ -4,7 +4,7 @@
 %bcond tests 1
 
 Name:           oglyad
-Version:        0.1.3.1
+Version:        0.1.4.0
 Release:        1%{?dist}
 Summary:        Repository metadata and health checker for Terra
 
