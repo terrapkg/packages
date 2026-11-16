@@ -9,10 +9,10 @@
 
 Name:           grub2-distro-themes-nightly
 Version:        3.2~%{commit_date}git.%{shortcommit}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Distro themes for GRUB
 SourceLicense:  GPL-3.0-or-later
-License:        GPL-3.0-or-later
+License:        GPL-3.0-or-later AND CC-BY-SA-4.0 AND CC-BY-SA-3.0 AND CC-BY-4.0 AND LGPL-3.0-or-later AND GPL-2.0-or-later
 URL:            https://github.com/AdisonCavani/distro-grub-themes
 Source0:        %url/archive/%commit/distro-grub-themes-%commit.tar.gz
 Source1:        %{spdx_url}/CC-BY-SA-4.0.txt
