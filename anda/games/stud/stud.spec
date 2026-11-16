@@ -1,20 +1,10 @@
 %global appid io.github.catpieleaf.Stud
 
-# Installs the release archive Stud's CI builds, prebuilt ANGLE and bionic
-# included.
 %global debug_package %{nil}
 
-# Prebuilt bionic and ANGLE binaries, not safe to strip.
-%global __brp_strip %{nil}
-%global __brp_strip_comment_note %{nil}
-%global __brp_strip_static_archive %{nil}
-
-%global __requires_exclude_from ^%{_prefix}/lib/stud/android-bionic/.*|^%{_prefix}/lib/stud/gfxstream-guest/.*|^%{_libexecdir}/stud/lib64/.*|^%{_libexecdir}/stud/stud-runtime-bionic$
-%global __provides_exclude_from ^%{_prefix}/lib/stud/.*|^%{_libexecdir}/stud/lib64/.*|^%{_libexecdir}/stud/libstud_present_layer\.so$
-
 Name:           stud
-Version:        1.2.14
-Release:        1%{?dist}
+Version:        2.0.1
+Release:        2%{?dist}
 Summary:        An Unofficial Open-Source Roblox Launcher for Linux
 
 License:        AGPL-3.0-or-later
@@ -27,43 +17,36 @@ ExclusiveArch:  x86_64
 BuildRequires:  anda-srpm-macros
 BuildRequires:  zstd
 
-Requires:       bubblewrap
 Requires:       hicolor-icon-theme
-Recommends:     (libavcodec-free or ffmpeg-libs)
-Requires:       libEGL.so.1()(64bit)
-Requires:       libGLESv2.so.2()(64bit)
-Recommends:     libxkbcommon-x11.so.0()(64bit)
-Recommends:     libX11-xcb.so.1()(64bit)
+Requires:       SDL3 >= 3.4.0
+Requires:       libvulkan.so.1()(64bit)
+Requires:       libavcodec-free
+Requires:       libavutil-free
+Requires:       gamemode
+Suggests:       mangohud
 
-Provides:       bundled(bionic)
-Provides:       bundled(gfxstream)
-Provides:       bundled(mesa)
+Provides:       bundled(rosemary)
 Provides:       bundled(fidelityfx-fsr1)
 Provides:       bundled(snapdragon-gsr)
 Provides:       bundled(mpv-prescalers)
 Provides:       bundled(volk)
-Provides:       bundled(xxhash)
-Provides:       bundled(miniaudio)
 Provides:       bundled(miniz)
 Provides:       bundled(json)
-Provides:       bundled(libjnivm)
-Provides:       bundled(zydis)
-Provides:       bundled(zycore)
 
 %description
-Stud runs the unmodified Roblox app in its own window on a Linux desktop,
-played with a mouse and keyboard. It doesn't use a browser, an emulator or
-a virtual machine.
+Stud runs the real, unmodified Roblox macOS client on your Linux desktop, in
+its own window, with your mouse and keyboard, through Rosemary. No virtual
+machine, no emulator.
 
-Links from a browser open straight into the experience, and the mouse and
-keyboard work the way they do in the desktop client. The game can render
-below the screen's resolution and still fill it. Discord Rich Presence
-shows a button friends can join through, and when you join a server, the
-tray menu shows which country it's in.
+It downloads and updates the client from Roblox's own servers before each
+launch, and runs Roblox Studio too. Links from a browser open straight into
+the experience. FastFlags, customizations, Discord Rich Presence with a join
+button, game history and an optional note of the server's country come with
+it.
 
-Roblox isn't included. You supply the Android application package yourself,
-and Roblox remains subject to its own terms. Stud is an independent project
-and isn't affiliated with, endorsed by or approved by Roblox Corporation.
+Roblox is not included: Stud downloads it from Roblox's own servers, and
+Roblox remains subject to its own terms. Stud is an independent project, not
+affiliated with, endorsed by or approved by Roblox Corporation.
 
 %prep
 %autosetup -c -n %{name}-%{version}
@@ -78,14 +61,83 @@ cp -a usr %{buildroot}/
 %doc %{_datadir}/doc/%{name}/README.md
 %doc %{_datadir}/doc/%{name}/copyright
 %{_bindir}/%{name}
-%{_prefix}/lib/%{name}/
 %{_libexecdir}/%{name}/
-%{_datadir}/applications/%{appid}.desktop
+%{_datadir}/applications/%{appid}*.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
-%{_datadir}/icons/hicolor/*/apps/%{appid}.png
+%{_datadir}/mime/packages/%{appid}.xml
+%{_datadir}/icons/hicolor/*/apps/%{appid}*.png
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sun Nov 15 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.1-1
+- Fixed: Roblox could close on its own every time you launched it after logging in
+- Fixed: Discord Rich Presence switched to "In the Roblox app" after a game teleported you, for example into a lobby
+- New: a Debug page in Settings, to export logs, copy system info, repair Roblox and clear Stud's data
+- When Roblox puts your account on a test channel, Stud now installs that channel's build
+- When Roblox closes before its window opens, Stud now says so instead of closing silently
+
+* Sun Nov 15 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.0-1
+- Stud now runs the real Roblox macOS desktop client on Rosemary, instead of the Android app
+- No more APKs: Stud downloads Roblox from Roblox's own servers and keeps it up to date before every launch
+- Stud now has a welcome screen, offering to choose between Roblox Studio and Roblox Player
+- .rbxl and .rbxlx place files open straight in Studio
+- Customizations: textures, sounds, fonts and cursors, plus import from Bloxstrap, Fishstrap and Froststrap
+- FastFlags: profiles, presets, and a warning for non whitelisted fflags.
+- Roblox's own settings (volume, sensitivity, camera...) editable from Stud
+- Server history: see where each server was, and rejoin it
+- Launch wrapper and environment variables, for gamescope, prime-run and the like
+- The AppImage now updates itself
+- Updating from 1.x frees gigabytes: the Android engine, APK and caches are removed, and your settings, FFlags, customizations and logs are kept
+
+* Sun Nov 08 2026 CatPieLeaf <catpieleaf@proton.me> - 1.2.14-1
+- Fixed: Stud froze for about 8 seconds at every launch, on every GPU
+- Fixed: voice chat stayed on "connecting" forever, or timed out saying it couldn't use the microphone
+- Fixed: Roblox could make every other application's sound crackle or clip
+- Improved: faster loading on AMD GPUs
+- Improved: many more controllers are recognised and mapped correctly
+
+* Fri Nov 06 2026 CatPieLeaf <catpieleaf@proton.me> - 1.2.13-1
+- Fixed: Windows Graphical Parity turned off without saying so when your APK was older than the Windows client
+- Changed: the README now points to Uptodown and APKMirror for getting an APK
+
+* Fri Nov 06 2026 CatPieLeaf <catpieleaf@proton.me> - 1.2.12-1
+- Fixed: Plastic surfaces in Windows Graphical Parity could break up into big flat triangles, and looked wrong up close
+- New: Stud reopens the way you left it: windowed, maximized or fullscreen, at the same size
+- New: Roblox's own Fullscreen option in the in-game menu now works
+- F11 and the in-game Fullscreen option now stay in step
+- Better: Windows Graphical Parity looks closer to Windows
+- Better: Stud no longer runs with limits meant for phones
+
+* Thu Nov 05 2026 CatPieLeaf <catpieleaf@proton.me> - 1.2.11-1
+- Fixed: the game could look blurry in a window on a scaled display (125%%, 130%%...)
+- Fixed: Discord Rich Presence didn't show if Equibop, Vesktop or Discord opened or restarted after Stud
+- Voice chat: Stud now gives Roblox what it needs for the microphone and calls
+- Fixed: failed launches that left an empty window, or an invisible Stud running forever
+- Fixed: saving Settings could reset settings you'd edited by hand
+- Fixed: the pointer could stay trapped in the window after Alt-Tab or leaving a game
+- Fixed: Ctrl+A, C, X and V in text boxes on AZERTY and Dvorak
+- Fixed: the first paste of a session did nothing on Wayland
+- Old APK copies are now cleaned up, which can free gigabytes
+- Roblox's sandbox is stricter, and logs no longer carry join tickets or your account name
+- Dozens of safety and stability fixes
+
+* Thu Nov 05 2026 CatPieLeaf <catpieleaf@proton.me> - 1.2.10-1
+- New: logging in and creating accounts now happen on Roblox's own website, inside a Stud window
+- Fixed: the login security check that never finished
+- New: Stud checks a Roblox APK before importing it, and says what's missing if it can't run it
+- Fixed: a crafted link could make Stud send your Roblox session to another website
+- Fixed: music no longer lags for a moment when you open the Esc menu
+- The microphone now only runs while Roblox is actually using it
+- X11: text boxes stay inside Stud's window, OpenGL mode shows its window again, and MangoHud no longer breaks it
+- Discord: Rich Presence now finds Flatpak, Vesktop/Equibop and Snap Discord
+- Multiple monitors: rotated screens and refresh rates are now correct
+- Fixed: rare random crashes, and freezes that never ended
+- Dozens of safety and stability fixes
+
+* Mon Nov 02 2026 CatPieLeaf <catpieleaf@proton.me> - 1.2.9-1
+- Fixed: the Flatpak started, but Roblox never opened
+- New defaults: HiDPI off, upscaling on (RAVU on Vulkan, SGSR on OpenGL)
+
 * Mon Nov 02 2026 CatPieLeaf <catpieleaf@proton.me> - 1.2.8-1
 - New setting: HQ Textures (Unstable), in Settings > Graphics
 - Textures and game cursors (like Regretevator's) are sharp instead of blurry and blocky
