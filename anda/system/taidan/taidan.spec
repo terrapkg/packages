@@ -4,7 +4,7 @@
 %global proc_macros_commit 7306a90996eaa89284f3e271dbb04152e3eedf96
 
 Name:           taidan
-Version:        1.0.1
+Version:        1.0.2
 Release:        2%{?dist}
 Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 # https://scancode-licensedb.aboutcode.org/unsplash
@@ -102,8 +102,6 @@ cp %{S:2} LICENSE.unsplash
 %{_libexecdir}/start-taidan
 %{_libexecdir}/taidan-helper
 %{_datadir}/taidan/polkit/
-# Being removed soon. Already defined on our properly vendored preset files
-%ghost %{_presetdir}/95-taidan.preset
 %config(noreplace) %{_sysconfdir}/pam.d/taidan
 %{_sysusersdir}/taidan.conf
 %{_unitdir}/taidan-initial-setup.service
@@ -116,7 +114,7 @@ cp %{S:2} LICENSE.unsplash
 %{_datadir}/taidan/session-config/
 
 %changelog
-* Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.1-2
+* Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.2-2
 - Update packaging for slint rewrite
 
 * Wed Jun 17 2026 madonuko <mado@fyralabs.com> - 0.2.1-2
