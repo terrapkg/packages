@@ -2,8 +2,8 @@
 
 Name:           proton-vpn-qt-app
 Version:        1.13.1
-Release:        1%{?dist}
-Summary:        Qt GUI frontend for the ProtonVPN Linux CLI.
+Release:        2%{?dist}
+Summary:        Qt GUI frontend for the ProtonVPN Linux CLI
 
 License:        GPL-3.0-only
 URL:            https://github.com/wheat32/%{name}
@@ -20,7 +20,7 @@ BuildRequires:  cmake(Qt6SvgWidgets)
 BuildRequires:  cmake(Qt6DBus)
 BuildRequires:  cmake(Qt6LinguistTools)
 
-Requires:       (proton-vpn-cli >= 1.0.0 and proton-vpn-cli <= 1.0.5)
+Requires:       proton-vpn-cli >= 1.0.0
 Recommends:     curl
 Recommends:     libnatpmp
 
@@ -63,6 +63,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Mon Nov 16 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.1-2
+- Remove cap on proton-vpn-cli version
+
 * Fri Oct 23 2026 Mizuki Nguyen <acertaindrizzle@proton.me> - 1.13.0-2
 - Update maintainer contact info
 
