@@ -1,4 +1,5 @@
 %global pypi_name solidpython
+%global release_commit 0a4f539c31a25df52a42bab2ceeffafd45596f73
 
 %global _desc SolidPython is a generalization of Phillip Tiefenbacher's openscad module. It generates valid OpenSCAD code from Python code.
 
@@ -10,9 +11,10 @@ License:        LGPL-2.1-or-later
 URL:            https://github.com/SolidCode/SolidPython
 Source0:        %{pypi_source}
 Source1:        https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
+Source2:        https://raw.githubusercontent.com/SolidCode/SolidPython/%{release_commit}/README.rst
 Patch0:         importlib-metadata.patch
 Patch1:         invalid-escapes.patch
-Patch2:         poetry-core.patch
+Patch2:         %{url}/commit/d6568ee7e1f85025725597d1cdcb62b3d0a1ded1.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -39,6 +41,7 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
 cp %{SOURCE1} LICENSE
+cp %{SOURCE2} .
 %py3_shebang_fix solid
 find solid -depth \( -name .mypy_cache -o -name .vscode -o -name '*.egg-info' \) -exec rm -rf {} +
 %pyproject_patch_dependency prettytable:drop_upper
@@ -55,6 +58,7 @@ find solid -depth \( -name .mypy_cache -o -name .vscode -o -name '*.egg-info' \)
 %pytest solid/test -k 'not test_generator_scad and not test_generator_no_scad'
 
 %files -n python3-%{pypi_name} -f %{pyproject_files}
+%doc README.rst
 %license LICENSE
 
 %changelog
