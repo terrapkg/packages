@@ -14,9 +14,6 @@ Source0:		%url/archive/refs/tags/%version.tar.gz
 BuildRequires:  python3-devel
 BuildRequires:  cargo-rpm-macros
 
-# Really cursed but there is no pyproject.toml or setup.py in this package to auto-provide this, and proton-vpn needs this
-Provides:       python%{python3_version}dist(proton-vpn-local-agent)
-
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
 %description
@@ -25,6 +22,9 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 Provides:       %{pypi_name}
+# Really cursed but there is no pyproject.toml or setup.py in this package to auto-provide this, and proton-vpn needs this
+Provides:       python%{python3_pkgversion}dist(proton-vpn-local-agent)
+Provides:       python%{python3_version}dist(proton-vpn-local-agent)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
