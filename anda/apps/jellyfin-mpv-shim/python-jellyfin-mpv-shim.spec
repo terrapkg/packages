@@ -24,7 +24,7 @@ BuildRequires:  python3dist(certifi)
 BuildRequires:  python3dist(pypresence)
 
 %global _description %{expand:
-This is package 'jellyfin-mpv-shim' generated automatically by pyp2spec.}
+Jellyfin MPV Shim is a fully featured Jellyfin client built on top of MPV with support for offline sync, media browsing, background casting, syncplay, music, live TV, books, and photos. It does not depend on or use a webview and doesn't mess with MPV's video output pipeline, allowing for HDR and tone mapping support.}
 
 %description %_description
 
