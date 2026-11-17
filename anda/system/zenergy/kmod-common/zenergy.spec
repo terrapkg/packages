@@ -1,11 +1,11 @@
 %global commit 2a40d24d9253298b3b7a7098e07895e72fef291c
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commitdate 20261115
+%global commitdate 20261116
 
 Name:           zenergy
 Version:        1.0^%{commitdate}git.%{shortcommit}
-Release:        1%{?dist}
-Summary:        Exposes the energy counters that are reported via the Running Average Power Limit (RAPL) Model-specific Registers (MSRs) via the hardware monitor (HWMON) sysfs interface.
+Release:        2%{?dist}
+Summary:        Exposes the energy counters that are reported via the Running Average Power Limit (RAPL) Model-specific Registers (MSRs) via the hardware monitor (HWMON) sysfs interface
 License:        GPL-2.0
 URL:            https://github.com/BoukeHaarsma23/zenergy
 Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
