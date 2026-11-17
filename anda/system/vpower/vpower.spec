@@ -1,6 +1,6 @@
 Name:           vpower
 Version:        1.6.4
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Service that calculates battery metrics and handles critical battery scenarios
 Packager:       Kyle Gospodnetich <me@kylegospodneti.ch>
 License:        MIT
@@ -14,7 +14,7 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  lm_sensors-devel
 
-Requires:       terra-upower
+Requires:       upower
 
 %description
 Service that calculates battery metrics and handles critical battery scenarios
