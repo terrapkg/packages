@@ -10,6 +10,8 @@ License:        MIT
 URL:            https://github.com/vaidik/commentjson
 # using the github source because the pypi source is missing the test file
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
+Patch0:         use-lark.patch
+Patch1:         drop-six.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -32,12 +34,7 @@ Summary:        %{summary}
 %{_desc}
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
-sed -i "s/'lark-parser>=0.7.1,<0.8.0'/'lark>=0.7.1'/" setup.py
-sed -i \
-  -e '/^from six import iteritems$/d' \
-  -e 's/iteritems(self\.test_json)/self.test_json.items()/' \
-  commentjson/tests/test_commentjson.py
+%autosetup -n %{pypi_name}-%{version} -p1
 
 %build
 %pyproject_wheel
