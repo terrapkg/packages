@@ -47,6 +47,8 @@ mv %{buildroot}%{_datadir}/lito/lito.schema.json %{buildroot}%{_datadir}/lito.sc
 %license LICENSE-MIT LICENSE-APACHE
 %license %{_datadir}/licenses/licrypto/LICENSE-MIT
 %license %{_datadir}/licenses/licrypto/LICENSE-APACHE
+%license %{_datadir}/licenses/liresto/LICENSE-MIT
+%license %{_datadir}/licenses/liresto/LICENSE-APACHE
 %doc README.md
 %{_bindir}/lito
 %{_datadir}/lito.schema.json
