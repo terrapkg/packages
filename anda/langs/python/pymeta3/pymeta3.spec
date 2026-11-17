@@ -8,7 +8,7 @@ Release:        1%{?dist}
 Summary:        Pattern-matching language based on OMeta for Python 3 and 2
 License:        MIT
 URL:            https://github.com/wbond/pymeta3
-Source0:        %{pypi_source %{pypi_name}}
+Source0:        %{pypi_source}
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
