@@ -1,5 +1,5 @@
 Name:             nvidia-container-toolkit
-Version:          1.20.1
+Version:          1.20.2
 Release:          1%{?dist}
 Summary:          NVIDIA Container Toolkit
 License:          Apache-2.0
