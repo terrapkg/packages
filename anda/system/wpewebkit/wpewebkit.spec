@@ -1,7 +1,7 @@
 %global toolchain clang
 
 Name:           wpewebkit
-Version:        2.54.2
+Version:        2.54.3
 Release:        1%{?dist}
 Summary:        A WebKit port optimized for low-end devices
 
