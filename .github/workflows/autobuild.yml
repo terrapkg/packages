@@ -11,6 +11,7 @@ on:
     branches:
       - el10
   pull_request:
+    types: [opened, synchronize, reopened, closed]
     paths:
       - "anda/**"
       - "!**/update.rhai"
@@ -22,8 +23,13 @@ on:
   workflow_dispatch:
   workflow_call:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.base_ref, github.event.pull_request.head.sha) || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   manifest:
+    if: github.event.action != 'closed'
     runs-on: arc-runner-set
     outputs:
       build_matrix: ${{ steps.generate_build_matrix.outputs.build_matrix }}
