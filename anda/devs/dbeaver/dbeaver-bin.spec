@@ -9,7 +9,7 @@
 
 Name:           dbeaver-bin
 Version:        26.2.5
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Free universal database tool and SQL client
 License:        Apache-2.0
 URL:            https://dbeaver.io
@@ -43,6 +43,8 @@ ln -s %_datadir/%name/dbeaver.png %buildroot%_hicolordir/256x256/apps/dbeaver.pn
 mv %buildroot{%_datadir/%name,%_appsdir}/dbeaver-ce.desktop
 mv %buildroot%_datadir/%name/readme.txt .
 
+mv %buildroot%_datadir/{%name,dbeaver-ce}
+
 %terra_appstream
 
 %files
@@ -50,7 +52,7 @@ mv %buildroot%_datadir/%name/readme.txt .
 %license %_licensedir/%name
 %_appsdir/dbeaver-ce.desktop
 %_bindir/dbeaver
-%_datadir/%name/
+%_datadir/dbeaver-ce/
 %_hicolordir/256x256/apps/dbeaver.png
 %_metainfodir/%appid.metainfo.xml
 
