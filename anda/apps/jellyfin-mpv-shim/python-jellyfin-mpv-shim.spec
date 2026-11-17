@@ -1,7 +1,7 @@
 Name:           python-jellyfin-mpv-shim
 Version:        3.3.0
 Release:        1%{?dist}
-Summary:        Cast media from Jellyfin Mobile and Web apps to MPV.
+Summary:        Cast media from Jellyfin Mobile and Web apps to MPV
 
 License:        GPL-3.0-or-later
 Packager:       kiritanya <kiritanya@proton.me>
@@ -15,6 +15,13 @@ BuildRequires:  python3dist(packaging)
 BuildRequires:  python3dist(pip) >= 19
 BuildRequires:  python3dist(setuptools) >= 77
 BuildRequires:  python3dist(wheel)
+BuildRequires:  python3dist(mpv) >= 1.0.8
+BuildRequires:  python3dist(jellyfin-apiclient-python) >= 1.20.2
+BuildRequires:  python3dist(python-mpv-jsonipc) >= 1.5
+BuildRequires:  python3dist(requests)
+BuildRequires:  python3dist(pillow)
+BuildRequires:  python3dist(certifi)
+BuildRequires:  python3dist(pypresence)
 
 %global _description %{expand:
 This is package 'jellyfin-mpv-shim' generated automatically by pyp2spec.}
@@ -23,6 +30,8 @@ This is package 'jellyfin-mpv-shim' generated automatically by pyp2spec.}
 
 %package -n     python3-jellyfin-mpv-shim
 Summary:        %{summary}
+%{?python_provide:%python_provide python3-%{pypi_name}}
+Provides:       %{pypi_name} = %{evr}
 
 %description -n python3-jellyfin-mpv-shim %_description
 
@@ -30,6 +39,10 @@ Summary:        %{summary}
 
 %prep
 %autosetup -p1 -n jellyfin_mpv_shim-%{version}
+sed -i \
+    -e 's/"python-mpv>=/"mpv>=/' \
+    -e 's/"certifi>=[^"]*"/"certifi"/' \
+    pyproject.toml
 
 %build
 %pyproject_wheel
@@ -39,7 +52,7 @@ Summary:        %{summary}
 %pyproject_save_files -l jellyfin_mpv_shim
 
 %check
-%pyproject_check_import
+%pyproject_check_import -e jellyfin_mpv_shim.win_utils
 
 %files -n python3-jellyfin-mpv-shim -f %{pyproject_files}
 %{_bindir}/jellyfin-mpv-shim
