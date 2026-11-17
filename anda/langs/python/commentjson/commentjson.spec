@@ -34,6 +34,10 @@ Summary:        %{summary}
 %prep
 %autosetup -n %{pypi_name}-%{version}
 sed -i "s/'lark-parser>=0.7.1,<0.8.0'/'lark>=0.7.1'/" setup.py
+sed -i \
+  -e '/^from six import iteritems$/d' \
+  -e 's/iteritems(self\.test_json)/self.test_json.items()/' \
+  commentjson/tests/test_commentjson.py
 
 %build
 %pyproject_wheel
