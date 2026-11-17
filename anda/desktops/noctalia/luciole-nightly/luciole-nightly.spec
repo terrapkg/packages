@@ -65,7 +65,8 @@ Conflicts:      luciole-git
 Packager: Cypress Reed <cypress@fyralabs.com>
 
 %description
-Luciole is a native Wayland file manager with list, grid and optional Miller column views, tabs, split view and a side preview.
+Luciole is a native Wayland file manager with list,
+grid and optional Miller column views, tabs, split view and a side preview.
 
 %install -a
 %terra_appstream -o %{S:1}
