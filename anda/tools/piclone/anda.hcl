@@ -3,6 +3,6 @@ project pkg {
     spec = "piclone.spec"
   }
   labels {
-    nightly = 2
+    nightly = 3
   }
 }
