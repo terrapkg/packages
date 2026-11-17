@@ -10,7 +10,7 @@
 
 Name:           kmod-%{kmod_name}
 Version:        615.78.08
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3
 License:        NVIDIA License
