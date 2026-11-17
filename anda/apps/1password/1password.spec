@@ -14,8 +14,8 @@
 %endif
 
 Name:           1password
-Version:        8.12.44
-Release:        3%{?dist}
+Version:        8.12.46
+Release:        1%{?dist}
 Summary:        Password manager and secure wallet
 
 Packager:       Cappy Ishihara <cappy@fyralabs.com>
