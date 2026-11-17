@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component type="desktop-application">
+  <id>dev.noctalia.luciole</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <icon type="stock">dev.noctalia.luciole</icon>
+
+  <name>Luciole</name>
+  <summary>A native file manager with list, grid, and Miller column support for Wayland</summary>
+
+  <description>
+    <p>
+        Luciole is a native Wayland file manager with list, grid and optional Miller column views, tabs, split view and a side preview.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">dev.noctalia.luciole.desktop</launchable>
+
+  <url type="homepage">https://docs.noctalia.dev/luciole/</url>
+
+  <releases>
+    <release version="0" date="2026-11-16"/>
+  </releases>
+</component>
