@@ -3,8 +3,8 @@
 %global debug_package %{nil}
 
 Name:           stud
-Version:        2.0.1
-Release:        2%{?dist}
+Version:        2.0.2
+Release:        1%{?dist}
 Summary:        An Unofficial Open-Source Roblox Launcher for Linux
 
 License:        AGPL-3.0-or-later
