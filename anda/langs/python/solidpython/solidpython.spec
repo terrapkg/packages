@@ -12,12 +12,12 @@ Source0:        %{pypi_source}
 Source1:        https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
 Patch0:         importlib-metadata.patch
 Patch1:         invalid-escapes.patch
+Patch2:         poetry-core.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(pip)
-BuildRequires:  python3dist(setuptools)
-BuildRequires:  python3dist(wheel)
+BuildRequires:  python3dist(poetry-core)
 BuildRequires:  python3dist(euclid3)
 BuildRequires:  python3dist(ply)
 BuildRequires:  python3dist(prettytable)
@@ -38,14 +38,11 @@ Summary:        %{summary}
 
 %prep
 %autosetup -n %{pypi_name}-%{version} -p1
-rm pyproject.toml
 cp %{SOURCE1} LICENSE
 %py3_shebang_fix solid
 find solid -depth \( -name .mypy_cache -o -name .vscode -o -name '*.egg-info' \) -exec rm -rf {} +
-sed -i \
-  -e "s/'PrettyTable==0.7.2'/'PrettyTable'/" \
-  -e "s/'pypng>=0.0.19,<0.0.20'/'pypng>=0.0.19'/" \
-  setup.py
+%pyproject_patch_dependency prettytable:drop_upper
+%pyproject_patch_dependency pypng:drop_upper
 
 %build
 %pyproject_wheel
