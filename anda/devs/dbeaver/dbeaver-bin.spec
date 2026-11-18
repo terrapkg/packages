@@ -35,15 +35,14 @@ tar xf %{S:0}
 %build
 
 %install
+%global thisdir %_datadir/dbeaver-ce
 mkdir -p %buildroot{%_datadir,%_licensedir,%_bindir,%_hicolordir/256x256/apps,%_appsdir}
-cp -r . %buildroot%_datadir/dbeaver-bin/
-mv %buildroot%_datadir/%name/licenses %buildroot%_licensedir/%name
-ln -s %_datadir/%name/dbeaver %buildroot%_bindir/dbeaver
-ln -s %_datadir/%name/dbeaver.png %buildroot%_hicolordir/256x256/apps/dbeaver.png
-mv %buildroot{%_datadir/%name,%_appsdir}/dbeaver-ce.desktop
-mv %buildroot%_datadir/%name/readme.txt .
-
-mv %buildroot%_datadir/{%name,dbeaver-ce}
+cp -r . %buildroot%thisdir
+mv %buildroot%thisdir/licenses %buildroot%_licensedir/%name
+ln -s %thisdir/dbeaver %buildroot%_bindir/dbeaver
+ln -s %thisdir/dbeaver.png %buildroot%_hicolordir/256x256/apps/dbeaver.png
+mv %buildroot{%thisdir,%_appsdir}/dbeaver-ce.desktop
+mv %buildroot%thisdir/readme.txt .
 
 %terra_appstream
 
@@ -52,7 +51,7 @@ mv %buildroot%_datadir/{%name,dbeaver-ce}
 %license %_licensedir/%name
 %_appsdir/dbeaver-ce.desktop
 %_bindir/dbeaver
-%_datadir/dbeaver-ce/
+%thisdir
 %_hicolordir/256x256/apps/dbeaver.png
 %_metainfodir/%appid.metainfo.xml
 
