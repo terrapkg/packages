@@ -60,7 +60,7 @@ HCC="$PWD/hcc"
 LIBTOS_BUILDDIR="$PWD/libtos-build"
 SRCDIR="$PWD"
 
-mkdir -pv $LIBTOS_BUILDDIR/include libtos-build/%{_lib}
+mkdir -pv $LIBTOS_BUILDDIR/include $LIBTOS_BUILDDIR/%{_lib}
 cp -v ./holyc-lib/tos.HH -t $LIBTOS_BUILDDIR/include
 
 pushd holyc-lib
