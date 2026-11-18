@@ -5,7 +5,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        3.0.5
+Version:        3.0.6
 Release:        1%{?dist}
 Summary:        Libsoup 3.x bindings
 
