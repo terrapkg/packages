@@ -1,1 +1,1 @@
-rpm.version(hackage("ref-tf.spec"));
+rpm.version(hackage("ref-tf"));
