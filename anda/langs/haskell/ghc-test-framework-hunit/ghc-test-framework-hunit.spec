@@ -7,7 +7,7 @@
 
 Name:           ghc-%{pkg_name}
 Version:        0.3.0.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        HUnit support for the test-framework package
 
 License:        BSD-3-Clause

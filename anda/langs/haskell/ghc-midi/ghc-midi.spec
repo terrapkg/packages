@@ -9,7 +9,7 @@
 
 Name:           ghc-%{pkg_name}
 Version:        0.2.2.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Handling of MIDI messages and files
 
 License:        LicenseRef-GPL
