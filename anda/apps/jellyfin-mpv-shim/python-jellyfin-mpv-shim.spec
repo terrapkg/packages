@@ -55,7 +55,7 @@ sed -i \
 %pyproject_save_files -l jellyfin_mpv_shim
 
 %check
-%pyproject_check_import -e jellyfin_mpv_shim.win_utils
+%pyproject_check_import -t
 
 %files -n python3-jellyfin-mpv-shim -f %{pyproject_files}
 %{_bindir}/jellyfin-mpv-shim
