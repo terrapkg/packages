@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(libswscale)
 BuildRequires:  pkgconfig(libva)
 BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(libzstd)
+BuildRequires:  pkgconfig(lua5.5)
 BuildRequires:  protobuf-compiler
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  cmake(Qt6WebSockets) >= 6.10
