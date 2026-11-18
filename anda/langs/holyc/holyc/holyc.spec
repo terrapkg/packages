@@ -48,7 +48,9 @@ popd
 %cmake \
   -DCMAKE_BUILD_TYPE="Release" \
   -DHCC_ENABLE_JIT="ON" \
+%if %{with sqlite}
   -DHCC_LINK_SQLITE3="1" \
+%endif
   -DCMAKE_INSTALL_PREFIX="%{_prefix}"
 
 %build
