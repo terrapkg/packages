@@ -79,7 +79,9 @@ popd
 
 %{__cc} \
   $CFLAGS \
-  -shared -Wl,-Bsymbolic -Wl,-soname,libtos.so.0.0.1 \
+  -shared \
+  $LDFLAGS \
+  -Wl,-Bsymbolic -Wl,-soname,libtos.so.0.0.1 \
   ./tos.o -o "$LIBTOS_BUILDDIR/%{_lib}/libtos.so.0.0.1" -lpthread -lc -lm
 
 %install
