@@ -5,40 +5,7 @@ Version:        2.8.1
 Release:        1%{?dist}
 Summary:        A fast, modern, and easily configurable web server with automatic TLS
 SourceLicense:  MIT
-License:        %{shrink:
-    %{sourcelicense}
-    AND (0BSD OR MIT OR Apache-2.0)
-    AND Apache-2.0
-    AND (Apache-2.0 AND ISC)
-    AND (Apache-2.0 OR BSL-1.0)
-    AND (Apache-2.0 OR ISC OR MIT)
-    AND (Apache-2.0 OR MIT)
-    AND ((Apache-2.0 OR MIT) AND BSD-3-Clause)
-    AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT)
-    AND (BSD-2-Clause OR Apache-2.0 OR MIT)
-    AND BSD-3-Clause
-    AND (BSD-3-Clause AND MIT)
-    AND (BSD-3-Clause OR MIT)
-    AND BSL-1.0
-    AND CDLA-Permissive-2.0
-    AND ISC
-    AND (ISC AND (Apache-2.0 OR ISC))
-    AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0))
-    AND MIT
-    AND (MIT AND Apache-2.0)
-    AND (MIT AND Apache-2.0 AND BSD-3-Clause)
-    AND (MIT OR Apache-2.0)
-    AND ((MIT OR Apache-2.0) AND Apache-2.0)
-    AND ((MIT OR Apache-2.0) AND Unicode-3.0)
-    AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later)
-    AND (MIT OR Apache-2.0 OR Zlib)
-    AND (MIT OR Zlib OR Apache-2.0)
-    AND MPL-2.0
-    AND Unicode-3.0
-    AND (Unlicense OR MIT)
-    AND Zlib
-    AND (Zlib OR Apache-2.0 OR MIT)
-}
+License:        %{sourcelicense} AND (0BSD OR MIT OR Apache-2.0) AND Apache-2.0 AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND (BSD-3-Clause AND MIT) AND (BSD-3-Clause OR MIT) AND BSL-1.0 AND CDLA-Permissive-2.0 AND ISC AND (ISC AND (Apache-2.0 OR ISC)) AND (ISC AND (Apache-2.0 OR ISC) AND Apache-2.0 AND MIT AND BSD-3-Clause AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR ISC OR MIT-0)) AND MIT AND (MIT AND Apache-2.0) AND (MIT AND Apache-2.0 AND BSD-3-Clause) AND (MIT OR Apache-2.0) AND ((MIT OR Apache-2.0) AND Apache-2.0) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Zlib OR Apache-2.0) AND MPL-2.0 AND Unicode-3.0 AND (Unlicense OR MIT) AND Zlib AND (Zlib OR Apache-2.0 OR MIT)
 URL:            https://ferron.sh
 Source0:        https://github.com/ferronweb/ferron/archive/refs/tags/%{version}.tar.gz
 Source1:        ferron.sysusers
@@ -54,6 +21,8 @@ Requires:       ca-certificates
 Provides:       webserver
 Conflicts:      ferron3
 Conflicts:      ferron3-fips
+
+Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
 Ferron is a fast, modern, and easily configurable web server with automatic TLS.
@@ -104,3 +73,7 @@ install -dm0755 %{buildroot}%{_localstatedir}/log/ferron
 %config(noreplace) %{_localstatedir}/www/ferron/*
 %dir %attr(0755, ferron, ferron) %{_sharedstatedir}/ferron
 %dir %attr(0755, ferron, ferron) %{_localstatedir}/log/ferron
+
+%changelog
+* Tue Nov 17 2026 Cypress Reed <cypress@fyralabs.com>
+- Initial package

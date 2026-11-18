@@ -27,6 +27,8 @@ Provides:       webserver
 Conflicts:      ferron
 Conflicts:      ferron3
 
+Packager:       Cypress Reed <cypress@fyralabs.com>
+
 %description
 Ferron is a fast, modern web server built for production debugging.
 This build uses the FIPS 140-3 validated AWS-LC module.
@@ -41,9 +43,7 @@ This build uses the FIPS 140-3 validated AWS-LC module.
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-for bin in ferron ferron-fmt ferron-kdl2ferron ferron-passwd ferron-precompress ferron-serve; do
-    install -Dm0755 target/rpm/$bin %{buildroot}%{_bindir}/$bin
-done
+%terra_cargo_install
 install -Dm0644 configs/ferron.pkgunix.conf %{buildroot}%{_sysconfdir}/ferron/ferron.conf
 install -Dm0644 %{SOURCE1} %{buildroot}%{_sysusersdir}/ferron.conf
 install -Dm0644 packaging/rpm/ferron.service %{buildroot}%{_unitdir}/ferron.service
@@ -79,3 +79,7 @@ install -dm0755 %{buildroot}%{_localstatedir}/log/ferron
 %config(noreplace) %{_localstatedir}/www/ferron/*
 %dir %attr(0755, ferron, ferron) %{_sharedstatedir}/ferron
 %dir %attr(0755, ferron, ferron) %{_localstatedir}/log/ferron
+
+%changelog
+* Tue Nov 17 2026 Cypress Reed <cypress@fyralabs.com>
+- Initial package
