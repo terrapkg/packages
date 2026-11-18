@@ -17,6 +17,8 @@ BuildRequires:  gcc
 %if %{defined rhel} && 0%{?rhel} <= 10
 BuildRequires:  rustup
 %endif
+BuildRequires:  pkgconfig(libcurl)
+BuildRequires:  pkgconfig(libgit2)
 BuildRequires:  pkgconfig(openssl)
 Packager:       Gilver E. <roachy@fyralabs.com>
 
