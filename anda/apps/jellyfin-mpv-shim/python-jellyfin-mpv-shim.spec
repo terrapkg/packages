@@ -1,4 +1,4 @@
-%global pypi_name jellyfin_mpv_shim
+%global pypi_name jellyfin-mpv-shim
 
 Name:           python-jellyfin-mpv-shim
 Version:        3.3.0
