@@ -1,8 +1,8 @@
 %global debug_package   %{nil}
 
-%global commit          116e9485b39552a39e4e6088ff7cbe50e7504829
+%global commit          ed91d04331b03257d5bd58a075b9cd6743d3efb2
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20261116
+%global commitdate      20261118
 
 Name:   	xdg-desktop-portal-umbriel-nightly
 Version:	0^%{commitdate}git.%{shortcommit}
