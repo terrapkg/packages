@@ -26,10 +26,15 @@ on:
         required: false
         type: boolean
         default: false
+      driver_group:
+        description: "Build as part of the gated NVIDIA workflow; do not publish individually"
+        required: false
+        type: boolean
+        default: false
   workflow_dispatch:
     inputs:
       packages:
-        description: "Packages to Build"
+        description: "Packages as JSON; use NVIDIA Build for driver folders (this workflow will not publish them)"
         required: true
         type: string
       publish:
@@ -40,6 +45,7 @@ on:
 
 jobs:
   build:
+    if: inputs.packages != '[]'
     strategy:
       matrix:
         pkg: ${{ fromJson(inputs.packages) }}
@@ -100,6 +106,12 @@ jobs:
         run: |
           NAME=${{ matrix.pkg.pkg }}-${{ matrix.pkg.arch }}-${{ matrix.version }}
           x=${NAME//\//@}
+          if [[ "${{ inputs.driver_group }}" == "true" ]]; then
+            case "${{ matrix.pkg.pkg }}" in
+              anda/system/nvidia/*) x="driver-nvidia-$x" ;;
+              anda/system/nvidia-580/*) x="driver-nvidia-580-$x" ;;
+            esac
+          fi
           echo "name=$x" >> $GITHUB_OUTPUT
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
@@ -111,7 +123,7 @@ jobs:
             anda-build/rpm/srpm/*
 
       - name: Upload packages to subatomic
-        if: inputs.publish
+        if: inputs.publish && !inputs.driver_group && !startsWith(matrix.pkg.pkg, 'anda/system/nvidia/') && !startsWith(matrix.pkg.pkg, 'anda/system/nvidia-580/')
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -120,7 +132,7 @@ jobs:
             terra${{ matrix.version }}${{ matrix.pkg.labels['subrepo'] && '-$subrepo' || '' }} anda-build/rpm/rpms/*
 
       - name: Upload source packages to subatomic
-        if: inputs.publish && matrix.pkg.labels['no_upload_srpms'] != '1'
+        if: inputs.publish && !inputs.driver_group && !startsWith(matrix.pkg.pkg, 'anda/system/nvidia/') && !startsWith(matrix.pkg.pkg, 'anda/system/nvidia-580/') && matrix.pkg.labels['no_upload_srpms'] != '1'
         run: |
           subrepo="${{ matrix.pkg.labels.subrepo }}"
           subatomic-cli upload --prune \
@@ -142,3 +154,15 @@ jobs:
       - name: Notify Madoguchi (Failure)
         if: inputs.publish && (cancelled() || failure())
         run: ./.github/workflows/mg.sh false "${{matrix.pkg.pkg}}" "${{matrix.version}}" "${{matrix.pkg.arch}}" "${{github.run_id}}" "${{secrets.MADOGUCHI_JWT}}" "$GITHUB_SHA"
+
+      - name: Create NVIDIA build success marker
+        if: inputs.driver_group && success()
+        run: touch nvidia-build-success
+
+      - name: Upload NVIDIA build success marker
+        if: inputs.driver_group && success()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: ready-${{ steps.art.outputs.name }}
+          path: nvidia-build-success
+          if-no-files-found: error
