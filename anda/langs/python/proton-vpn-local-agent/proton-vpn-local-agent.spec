@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.6.3
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		Proton VPN local agent written in Rust
 License:		GPL-3.0-only
 URL:			https://github.com/ProtonVPN/local-agent-rs
@@ -13,9 +13,6 @@ Source0:		%url/archive/refs/tags/%version.tar.gz
 
 BuildRequires:  python3-devel
 BuildRequires:  cargo-rpm-macros
-
-# Really cursed but there is no pyproject.toml or setup.py in this package to auto-provide this, and proton-vpn needs this
-%dnl Provides:       python3.14dist(proton-vpn-local-agent)
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -25,6 +22,9 @@ Packager:	    Owen Zimmerman <owen@fyralabs.com>
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 Provides:       %{pypi_name}
+# Really cursed but there is no pyproject.toml or setup.py in this package to auto-provide this, and proton-vpn needs this
+Provides:       python%{python3_pkgversion}dist(proton-vpn-local-agent)
+Provides:       python%{python3_version}dist(proton-vpn-local-agent)
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
