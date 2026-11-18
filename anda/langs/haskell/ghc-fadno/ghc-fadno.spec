@@ -9,7 +9,7 @@
 
 Name:           ghc-%{pkg_name}
 Version:        1.1.9.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Minimal library for music generation and notation
 
 License:        BSD-3-Clause
