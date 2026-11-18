@@ -10,7 +10,7 @@ Summary:        Python interface to the OpenSCAD declarative geometry language
 License:        LGPL-2.1-or-later
 URL:            https://github.com/SolidCode/SolidPython
 Source0:        %{pypi_source}
-Source1:        https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
+Source1:        LICENSE
 Source2:        https://raw.githubusercontent.com/SolidCode/SolidPython/%{release_commit}/README.rst
 Patch0:         importlib-metadata.patch
 Patch1:         invalid-escapes.patch
