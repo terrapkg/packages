@@ -5,7 +5,7 @@ Summary:        disables the many OCaml compiler warnings having to do with some
 
 License:        MIT
 URL:            https://github.com/janestreet/ppx_disable_unused_warnings
-Source:         %{url}/archive/v%{version}/ppx_disable_unnused_warnings-%{version}.tar.gz
+Source:         %{url}/archive/v%{version}/ppx_disable_unused_warnings-%{version}.tar.gz
 
 BuildSystem:    dune
 BuildRequires:  ocaml
