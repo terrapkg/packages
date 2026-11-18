@@ -7,7 +7,7 @@
 
 Name:           ghc-%{pkg_name}
 Version:        0.10.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The Bluefin effect system
 
 License:        MIT
