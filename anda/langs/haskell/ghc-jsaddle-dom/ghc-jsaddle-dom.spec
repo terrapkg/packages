@@ -3,7 +3,7 @@
 %{?haskell_setup}
 
 Name:           ghc-%{pkg_name}
-Version:        0.9.9.3
+Version:        0.10.0.0
 Release:        1%{?dist}
 Summary:        DOM library that uses jsaddle to support both GHCJS and GHC
 
