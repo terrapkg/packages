@@ -1,1 +1,1 @@
-rpm.version(hackage("foreign-store.spec"));
+rpm.version(hackage("foreign-store"));
