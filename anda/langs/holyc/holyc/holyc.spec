@@ -39,7 +39,7 @@ sed -i "s|ROOT=.*|ROOT=$(dirname %{rpmbuilddir}%{?buildsubdir:/%{buildsubdir}})|
 
 # Fix the tests looking for hcc in a relative path
 pushd tests
-for file in $(rg --fixed-strings '../../hcc' --files-with-matches); do
+for file in $(rg '../../hcc' --files-with-matches); do
   sed -i 's|../../hcc|%{buildroot}%{_bindir}/hcc|g' $file
 done
 popd
