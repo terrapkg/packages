@@ -2,8 +2,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# hedgehog isn't packaged
-%bcond tests 0
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        0.0.8.4
