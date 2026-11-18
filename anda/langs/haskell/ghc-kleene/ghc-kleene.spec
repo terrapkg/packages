@@ -9,7 +9,7 @@
 
 Name:           ghc-%{pkg_name}
 Version:        0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Kleene algebra
 
 License:        BSD-3-Clause
