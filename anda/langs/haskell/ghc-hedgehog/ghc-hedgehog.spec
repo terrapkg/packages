@@ -8,7 +8,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        1.5
+Version:        1.7
 Release:        1%{?dist}
 Summary:        Release with confidence
 
