@@ -7,7 +7,7 @@
 
 Name:           ghc-%{pkg_name}
 Version:        0.3.0.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        QuickCheck-2 support for the test-framework package
 
 License:        BSD-3-Clause
