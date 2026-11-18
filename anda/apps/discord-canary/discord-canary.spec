@@ -1,5 +1,5 @@
 Name:           discord-canary
-Version:        1.0.2484
+Version:        1.0.2489
 Release:        1%{?dist}
 Summary:        Free Voice and Text Chat for Gamers
 URL:            discord.com
@@ -23,8 +23,11 @@ both your desktop and phone.
 
 %install
 install -Dpm755 updater_bootstrap -t %{buildroot}%{_datadir}/%{name}
-install -Dpm755 %{name} -t %{buildroot}%{_bindir}
+mkdir %{buildroot}%{_bindir}
+ln -s ../share/discord-canary/discord-canary %{buildroot}%{_bindir}/%{name}
+install -Dpm755 discord-canary -t %{buildroot}%{_datadir}/%{name}
 install -Dpm644 discord.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
+install -Dpm644 launcher.conf %{buildroot}%{_datadir}/%{name}
 %desktop_file_install %{name}.desktop
 cp %{SOURCE1} -t .
 

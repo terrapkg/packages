@@ -33,7 +33,7 @@ BuildRequires:  ffmpeg-free-devel
 %endif
 BuildRequires:  freeimage-devel
 BuildRequires:  freetype-devel
-BuildRequires:  libgit2-devel
+BuildRequires:  pkgconfig(libgit2)
 BuildRequires:  curl-devel
 BuildRequires:  pugixml-devel
 BuildRequires:  alsa-lib-devel

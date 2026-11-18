@@ -1,5 +1,5 @@
 Name:           nvidia-modprobe
-Version:        620.70.06
+Version:        620.73.04
 Release:        1%{?dist}
 Summary:        NVIDIA kernel module loader
 Epoch:          3
