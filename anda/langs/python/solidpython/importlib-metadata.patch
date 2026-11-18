@@ -1,0 +1,24 @@
+--- a/solid/solidpython.py
++++ b/solid/solidpython.py
+@@ -23,7 +23,7 @@
+ from types import ModuleType
+ from typing import Callable, Iterable, List, Optional, Sequence, Set, Union, Dict
+ 
+-import pkg_resources
++import importlib.metadata
+ import re
+ 
+ PathStr = Union[Path, str]
+@@ -569,10 +569,9 @@
+     """
+     version = '<Unknown>'
+     try:
+-        # if SolidPython is installed use `pkg_resources`
+-        version = pkg_resources.get_distribution('solidpython').version
++        version = importlib.metadata.version('solidpython')
+ 
+-    except pkg_resources.DistributionNotFound:
++    except importlib.metadata.PackageNotFoundError:
+         # if the running SolidPython is not the one installed via pip,
+         # try to read it from the project setup file
+         version_pattern = re.compile(r"version = ['\"]([^'\"]*)['\"]")
