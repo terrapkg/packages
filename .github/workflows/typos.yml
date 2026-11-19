@@ -1,0 +1,34 @@
+name: Typos
+
+on:
+  schedule:
+    - cron: "0 6 1 1,7 *"  # run on jan 1 and jul 1
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  typos:
+    name: Spell Check
+    runs-on: arc-runner-set
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check Spelling
+        uses: crate-ci/typos@276087d9a4f06398b3e04825487805e2d7375888 # v1.52.2
+        continue-on-error: true
+
+      - name: Post to Discord
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_REPORT_WEBHOOK }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          ~/bin/typos --format brief --color never . > "$RUNNER_TEMP/typos.txt" || [ $? -eq 2 ]
+          count=$(grep -c 'error:' "$RUNNER_TEMP/typos.txt" || true)
+          curl -sS --fail-with-body \
+            -F "content=typos: $count found $RUN_URL" \
+            -F "files[0]=@$RUNNER_TEMP/typos.txt;filename=typos.txt;type=text/plain" \
+            "$WEBHOOK" > /dev/null
