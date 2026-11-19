@@ -10,7 +10,7 @@ extend-exclude = [
   # upstream license text and man pages
   "anda/fonts/sipa/SIPA-LICENSE",
   "anda/lib/mesa*/Mesa-MLAA-License-Clarification-Email.txt",
-  "*.1",
+  "*.[1-9]",
 ]
 
 [default.extend-words]
