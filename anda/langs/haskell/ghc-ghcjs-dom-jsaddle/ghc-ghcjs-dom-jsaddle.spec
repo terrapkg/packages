@@ -5,7 +5,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        0.9.9.1
+Version:        0.10.0.0
 Release:        1%{?dist}
 Summary:        DOM library that supports both GHCJS and GHC using jsaddle
 
