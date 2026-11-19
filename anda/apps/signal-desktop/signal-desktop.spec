@@ -78,6 +78,7 @@ mv ./packages/mute-state-change/LICENSE ./packages/mute-state-change/LICENSE.mut
 mv ./packages/windows-ucv/LICENSE ./packages/windows-ucv/LICENSE.windows-ucv
 mv ./packages/types/LICENSE ./packages/types/LICENSE.types
 mv ./packages/lame/LICENSE ./packages/lame/LICENSE.lame
+mv ./packages/mock-server/LiCENSE ./packages/mock-server/LICENSE.mock-server
 mv LICENSE LICENSE.signal-desktop
 %electron_install -l -I build/icons/png
 
