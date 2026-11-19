@@ -53,7 +53,7 @@
 %else
 # Break chromaprint dependency cycle (Fedora-only):
 #   ffmpeg (libavcodec-free) → chromaprint → ffmpeg
-%bcond chromaprint %{without boostrap}
+%bcond chromaprint %{without bootstrap}
 %bcond flite 1
 %endif
 

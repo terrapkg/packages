@@ -2,7 +2,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# tests are broken in upstream pacakge. i'd PR but this hasn't had a commit since 2020.
+# tests are broken in upstream package. i'd PR but this hasn't had a commit since 2020.
 %bcond tests 0
 
 Name:           ghc-%{pkg_name}

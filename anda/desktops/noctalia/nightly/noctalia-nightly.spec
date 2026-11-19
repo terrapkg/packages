@@ -137,7 +137,7 @@ done
 - Add wireplumber build requirement
 
 * Tue Jun 30 2026 Cypress Reed <cypress@fyralabs.com>
-- Add tomlplusplus as a sytem library
+- Add tomlplusplus as a system library
 
 * Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
 - Add desktop file and icon

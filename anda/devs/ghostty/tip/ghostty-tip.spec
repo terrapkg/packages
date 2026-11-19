@@ -206,7 +206,7 @@ Obsoletes:      libghostty-vt-nightly <= 1.3.2~tip^20260812gitc54ec80
 %endif
 
 %description -n libghostty-vt-tip
-This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
+This package contains the libghostty-vt libraries, the first of many libghostty libraries in development.
 
 %package -n     libghostty-vt-tip-devel
 Summary:        Development files for libghostty-vt

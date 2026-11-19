@@ -37,4 +37,4 @@ install -Dm755 %{gobuilddir}/bin/%{name} %{buildroot}%{_bindir}/%{name}
 
 %changelog
 * Fri Dec 12 2025 arbormoss <arbormoss@woodsprite.dev>
-- Intial Commit
+- Initial Commit
