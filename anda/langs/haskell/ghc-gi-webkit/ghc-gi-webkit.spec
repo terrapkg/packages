@@ -5,7 +5,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        6.0.6
+Version:        6.0.5
 Release:        1%{?dist}
 Summary:        WebKit 6.x bindings
 
