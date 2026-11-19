@@ -5,7 +5,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        0.3.33
+Version:        0.4
 Release:        1%{?dist}
 Summary:        Common quickcheck instances
 
