@@ -29,6 +29,7 @@ BuildRequires:  pkgconfig(nlohmann_json)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libei-1.0)
 BuildRequires:  pkgconfig(epoxy)
+BuildRequires:  pkgconfig(xkbcommon)
 BuildRequires:  stb_image_resize2-devel
 BuildRequires:  systemd-rpm-macros
 
