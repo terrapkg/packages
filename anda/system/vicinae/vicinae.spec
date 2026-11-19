@@ -1,7 +1,7 @@
 Name:           vicinae
 License:        GPL-3.0-or-later
 Version:        0.30.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 URL:            https://docs.vicinae.com
 Source:         https://github.com/vicinaehq/%{name}/archive/refs/tags/v%{version}.tar.gz
 Summary:        A high-performance, native launcher for Linux
@@ -90,13 +90,17 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_libexecdir}/%{name}/vicinae-browser-link
 %{_libexecdir}/%{name}/vicinae-data-control-server
 %{_libexecdir}/%{name}/vicinae-server
-%dnl %{_libexecdir}/%{name}/vicinae-snippet-server
+%{_libexecdir}/%{name}/vicinae-mcp
 %{_libexecdir}/%{name}/vicinae-input-server
 %{_libexecdir}/%{name}/vicinae-file-indexer
+%dnl %{_libexecdir}/%{name}/vicinae-snippet-server
 %{_modulesloaddir}/vicinae.conf
 %dnl %{_udevrulesdir}/70-vicinae.rules
 
 %changelog
+* Wed Nov 18 2026 Jaiden Riordan <jade@fyralabs.com> - 0.30.1-2
+- Package new vicinae-mcp helper
+
 * Sun Jul 19 2026 Jaiden Riordan <jade@fyralabs.com> - 0.24.0-1
 - Remove GCC compats
 
