@@ -32,7 +32,7 @@ jobs:
 
       - name: Post to Discord
         env:
-          WEBHOOK: ${{ secrets.DISCORD_REPORT_WEBHOOK }}
+          WEBHOOK: ${{ secrets.DISCORD_TYPOS_WEBHOOK }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           count=$(grep -c 'error:' "$RUNNER_TEMP/typos.txt" || true)
