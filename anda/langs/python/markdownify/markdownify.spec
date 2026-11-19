@@ -2,7 +2,7 @@
 %global _desc Convert HTML to Markdown.
 
 Name:			python-%{pypi_name}
-Version:		1.2.3
+Version:		1.2.4
 Release:		1%{?dist}
 Summary:		Convert HTML to Markdown
 License:		MIT

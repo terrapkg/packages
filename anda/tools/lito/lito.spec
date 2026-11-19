@@ -1,5 +1,5 @@
 Name:           lito
-Version:        0.8.9
+Version:        0.8.10
 Release:        1%{?dist}
 License:        MIT OR Apache-2.0
 Summary:        Module-first C++ builder and package manager
