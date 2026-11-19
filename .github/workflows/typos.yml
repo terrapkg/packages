@@ -37,6 +37,6 @@ jobs:
         run: |
           count=$(grep -c 'error:' "$RUNNER_TEMP/typos.txt" || true)
           curl -sS --fail-with-body \
-            -F "content=typos: $count found $RUN_URL" \
+            -F "content=[$count typos found in Terra]($RUN_URL)" \
             -F "files[0]=@$RUNNER_TEMP/typos.txt;filename=typos.txt;type=text/plain" \
             "$WEBHOOK" > /dev/null
