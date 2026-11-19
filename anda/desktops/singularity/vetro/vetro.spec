@@ -1,5 +1,5 @@
-%global commit 233510257ea581b932d49303973ec627955fde0e
-%global commit_date 20261013
+%global commit 7aa0337f049f535e63ba30f73b85ce446ec17648
+%global commit_date 20261119
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global goipath github.com/singularityos-lab/vetro
