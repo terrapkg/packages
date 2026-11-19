@@ -3,7 +3,7 @@
 %global debug_package %{nil}
 
 Name:           stud
-Version:        2.0.2
+Version:        2.0.3
 Release:        1%{?dist}
 Summary:        An Unofficial Open-Source Roblox Launcher for Linux
 
