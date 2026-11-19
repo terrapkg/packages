@@ -90,12 +90,12 @@ install -Dm 644 extra/%{name}-url-handler.desktop -t %{buildroot}%{_appsdir}
 %{_libexecdir}/%{name}/vicinae-browser-link
 %{_libexecdir}/%{name}/vicinae-data-control-server
 %{_libexecdir}/%{name}/vicinae-server
-%dnl %{_libexecdir}/%{name}/vicinae-snippet-server
+%{_libexecdir}/%{name}/vicinae-mcp
 %{_libexecdir}/%{name}/vicinae-input-server
 %{_libexecdir}/%{name}/vicinae-file-indexer
+%dnl %{_libexecdir}/%{name}/vicinae-snippet-server
 %{_modulesloaddir}/vicinae.conf
 %dnl %{_udevrulesdir}/70-vicinae.rules
-%{_libexecdir}/%{name}/vicinae-mcp
 
 %changelog
 * Wed Nov 18 2026 Jaiden Riordan <jade@fyralabs.com> - 0.30.1-2
