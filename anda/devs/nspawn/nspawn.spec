@@ -1,5 +1,5 @@
 Name:           nspawn
-Version:        3.3.0
+Version:        3.3.1
 Release:        1%{?dist}
 Summary:        Docker-like management of systemd-nspawn machines
 
