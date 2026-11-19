@@ -60,8 +60,6 @@ install -Dm644 extra/com.github.taiko2k.tauonmb.metainfo.xml %{buildroot}%{_meta
 %files -n python3-tauon -f %{pyproject_files} -f tauon.lang
 %doc README.md CHANGELOG.md CONTRIBUTING.md
 %license LICENSE
-%{_bindir}/tauonmb
-%{python3_sitearch}/phazor.cpython-*-linux-gnu.so
 %dnl %{python3_sitearch}/phazor-pw.cpython-*-linux-gnu.so
 %{_appsdir}/tauonmb.desktop
 %{_scalableiconsdir}/tauonmb-symbolic.svg
