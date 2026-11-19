@@ -19,16 +19,22 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install typos
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/typos.tar.gz" https://github.com/crate-ci/typos/releases/download/v1.52.2/typos-v1.52.2-x86_64-unknown-linux-musl.tar.gz
+          echo "3b13d1291281d39d01822e54035636487a7a0f228e70097899b1e33aeb0e7e93  $RUNNER_TEMP/typos.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/typos.tar.gz" -C "$RUNNER_TEMP" ./typos
+
       - name: Check Spelling
-        uses: crate-ci/typos@276087d9a4f06398b3e04825487805e2d7375888 # v1.52.2
-        continue-on-error: true
+        run: |
+          "$RUNNER_TEMP/typos" --format brief --color never . > "$RUNNER_TEMP/typos.txt" || [ $? -eq 2 ]
+          cat "$RUNNER_TEMP/typos.txt"
 
       - name: Post to Discord
         env:
           WEBHOOK: ${{ secrets.DISCORD_REPORT_WEBHOOK }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          ~/bin/typos --format brief --color never . > "$RUNNER_TEMP/typos.txt" || [ $? -eq 2 ]
           count=$(grep -c 'error:' "$RUNNER_TEMP/typos.txt" || true)
           curl -sS --fail-with-body \
             -F "content=typos: $count found $RUN_URL" \
