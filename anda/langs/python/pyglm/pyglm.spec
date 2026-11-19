@@ -2,7 +2,7 @@
 %global _desc Fast OpenGL Mathematics (GLM) for Python.
 
 Name:           python-%{pypi_name}
-Version:        2.8.3
+Version:        2.8.4
 Release:        1%{?dist}
 Summary:        Fast OpenGL Mathematics (GLM) for Python
 License:        Zlib
