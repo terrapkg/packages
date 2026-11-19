@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 %global _desc A music player for the desktop. Designed to be powerful and streamlined, putting the user in control of their music collection.
 
 %undefine __brp_mangle_shebangs
