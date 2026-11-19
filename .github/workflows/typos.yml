@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "0 6 1 1,7 *"  # run on jan 1 and jul 1
   workflow_dispatch:
+  push:
+      branches: [j/add-typos-ci]  # TEMP: testing, remove before merge
 permissions:
   contents: read
 
