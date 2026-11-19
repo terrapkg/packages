@@ -1,0 +1,37 @@
+--- a/solid/objects.py
++++ b/solid/objects.py
+@@ -839,8 +839,8 @@
+             Path('/Applications/OpenSCAD.app/Contents/Resources/libraries')
+         ],
+         'Windows': [
+-            Path('My Documents\OpenSCAD\libraries'),
+-            Path('c:\Program Files\OpenSCAD\libraries')
++            Path(r'My Documents\OpenSCAD\libraries'),
++            Path(r'c:\Program Files\OpenSCAD\libraries')
+         ],
+     }
+ 
+--- a/solid/py_scadparser/scad_tokens.py
++++ b/solid/py_scadparser/scad_tokens.py
+@@ -52,8 +52,8 @@
+ t_GREATER_OR_EQUAL = ">="
+ t_LESS_OR_EQUAL = "<="
+ t_NOT_EQUAL = "!="
+-t_AND = "\&\&"
+-t_OR = "\|\|"
++t_AND = r"\&\&"
++t_OR = r"\|\|"
+ 
+ t_FILENAME = r'<[a-zA-Z_0-9/\\\.-]*>'
+ 
+--- a/solid/splines.py
++++ b/solid/splines.py
+@@ -381,7 +381,7 @@
+     return faces
+ 
+ def fan_endcap_list(cap_points:int=3, index_start:int=0) -> List[FaceTrio]:
+-    '''
++    r'''
+     Return a face-triangles list for the endpoint of a tube with cap_points points
+     We construct a fan of triangles all starting at point index_start and going
+     to each point in turn. 
