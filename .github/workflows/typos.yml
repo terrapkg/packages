@@ -1,4 +1,5 @@
 name: Typos
+# If this workflow detects false typos add them to the exclusions in typos.toml
 
 on:
   schedule:
