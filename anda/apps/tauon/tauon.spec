@@ -26,6 +26,7 @@ BuildRequires:  libsamplerate-devel
 BuildRequires:  libopenmpt-devel
 BuildRequires:  wavpack-devel
 BuildRequires:  game-music-emu-devel
+BuildRequires:  cmake(sdl3)
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
