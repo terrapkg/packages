@@ -28,6 +28,7 @@ BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(nlohmann_json)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libei-1.0)
+BuildRequires:  pkgconfig(epoxy)
 BuildRequires:  systemd-rpm-macros
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
