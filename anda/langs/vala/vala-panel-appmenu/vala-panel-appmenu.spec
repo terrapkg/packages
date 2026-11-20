@@ -1,10 +1,10 @@
 %global forgeurl https://gitlab.com/vala-panel-project/vala-panel-appmenu
-%global commit 63e63e7d57f10f3c3ea1e541a21f470e3c6fb996
+%global commit 239ba1a49ecdec8722a7d10c713ab3230959afa7
 %forgemeta
 
 Name:    vala-panel-appmenu
-Version: 25.04
-Release: 1%?dist
+Version: 26.11
+Release: 1%{?dist}
 License: LGPL-3.0-or-later
 Summary: Application Menu plugin for vala-panel
 Group:   System/GUI/Other
