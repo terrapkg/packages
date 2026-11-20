@@ -1,1 +1,1 @@
-rpm.version(hacakge("lsp-types"));
+rpm.version(hackage("lsp-types"));
