@@ -34,4 +34,4 @@ install -Dm644 %{S:2} %{buildroot}%{_docdir}/butler-bin/README.md
 
 %changelog
 * Sat Nov 22 2025 arbormoss <arbormoss@woodsprite.dev>
-- Intial Commit
+- Initial Commit

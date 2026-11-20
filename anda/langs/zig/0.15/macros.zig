@@ -24,7 +24,7 @@
 %_zig_target native
 %_zig_release_mode safe
 
-# seperated build options
+# separated build options
 %_zig_general_options --verbose --release=%{_zig_release_mode} --build-id=sha1 --summary all
 %_zig_project_options -Dtarget=%{_zig_target} -Dcpu=%{_zig_cpu}
 %_zig_system_integration --system "%{_zig_package_dir}"

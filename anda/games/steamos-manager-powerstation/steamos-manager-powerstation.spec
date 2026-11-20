@@ -105,4 +105,4 @@ fi
 - Properly handle wants for various gamescope-session-plus services
 
 * Wed Mar 18 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 26.0.1-1
-- Intial Commit
+- Initial Commit

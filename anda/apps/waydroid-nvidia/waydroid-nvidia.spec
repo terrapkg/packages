@@ -3,7 +3,7 @@
 %global selinuxtype targeted
 %global debug_package %{nil}
 
-# Prevent RPM depdendency generation from the prepackaged waydroid images
+# Prevent RPM dependency generation from the prepackaged waydroid images
 %global __requires_exclude_from ^%{_prefix}/lib/waydroid-nvidia/.*$
 %global __provides_exclude_from ^%{_prefix}/lib/waydroid-nvidia/.*$
 

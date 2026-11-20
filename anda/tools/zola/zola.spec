@@ -45,4 +45,4 @@ install -Dpm 0644 completions/_%{name} -t %{buildroot}%{zsh_completions_dir}
 - Add Shell Completions
 
 * Wed Nov 19 2025 arbormoss <arbormoss@woodsprite.dev>
-- Intial Commit
+- Initial Commit

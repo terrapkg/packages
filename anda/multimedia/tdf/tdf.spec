@@ -42,4 +42,4 @@ install -Dm755 target/rpm/tdf %{buildroot}%{_bindir}/tdf
 - Add email to my previous contributor attributions
 
 * Wed Oct 22 2025 Its-J <jonah@fyralabs.com>
-- Intial Commit
+- Initial Commit

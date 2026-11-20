@@ -53,7 +53,7 @@
 %else
 # Break chromaprint dependency cycle (Fedora-only):
 #   ffmpeg (libavcodec-free) → chromaprint → ffmpeg
-%bcond chromaprint %{without boostrap}
+%bcond chromaprint %{without bootstrap}
 %bcond flite 1
 %endif
 
@@ -108,7 +108,7 @@ Name:           ffmpeg
 %global pkg_name %{name}%{?pkg_suffix}
 
 Version:        9.0.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Epoch:          1
 Summary:        A complete solution to record, convert and stream audio and video
 License:        GPL-3.0-or-later
@@ -993,6 +993,9 @@ rm -rf %{buildroot}%{_datadir}
 
 
 %changelog
+* Thu Nov 19 2026 Its-J <jonah@fyralabs.com> - 1:0.9.2-2
+- Fix %%bcon
+
 * Sun May 31 2026 Gilver E. <roachy@fyralabs.com> - 1:8.1.1-1
 - Rebased build onto Fedora spec with full redistributable codec support
 - Ported to Terra with permission

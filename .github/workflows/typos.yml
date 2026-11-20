@@ -1,0 +1,41 @@
+name: Typos
+# If this workflow detects false typos add them to the exclusions in typos.toml
+
+on:
+  schedule:
+    - cron: "0 6 1 1,7 *"  # run on jan 1 and jul 1
+  workflow_dispatch:
+permissions:
+  contents: read
+
+jobs:
+  typos:
+    name: Spell Check
+    runs-on: arc-runner-set
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install typos
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/typos.tar.gz" https://github.com/crate-ci/typos/releases/download/v1.52.2/typos-v1.52.2-x86_64-unknown-linux-musl.tar.gz
+          echo "3b13d1291281d39d01822e54035636487a7a0f228e70097899b1e33aeb0e7e93  $RUNNER_TEMP/typos.tar.gz" | sha256sum -c -
+          tar -xzf "$RUNNER_TEMP/typos.tar.gz" -C "$RUNNER_TEMP" ./typos
+
+      - name: Check Spelling
+        run: |
+          "$RUNNER_TEMP/typos" --format brief --color never . > "$RUNNER_TEMP/typos.txt" || [ $? -eq 2 ]
+          cat "$RUNNER_TEMP/typos.txt"
+
+      - name: Post to Discord
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_TYPOS_WEBHOOK }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          count=$(grep -c 'error:' "$RUNNER_TEMP/typos.txt" || true)
+          curl -sS --fail-with-body \
+            -F "content=[$count typos found in Terra](<$RUN_URL>)" \
+            -F "files[0]=@$RUNNER_TEMP/typos.txt;filename=typos.txt;type=text/plain" \
+            "$WEBHOOK" > /dev/null
