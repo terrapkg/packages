@@ -41,7 +41,7 @@ Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
 
 %description -n python3-%{pypi_name}
-Python libaries for Arduino App Lab Bricks
+Python libraries for Arduino App Lab Bricks
 
 %prep
 %autosetup -C

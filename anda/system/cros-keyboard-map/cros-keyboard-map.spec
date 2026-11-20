@@ -65,7 +65,7 @@ chmod +x %buildroot%{_bindir}/um-generate-cros-keymap
 - Fix the systemd preset application
 
 * Sat Aug 24 2024 junefish <june@fyralabs.com>
-- Split off into seperate git repo.
+- Split off into separate git repo.
 
 * Sat May 4 2024 Owen Zimmerman <owen@fyralabs.com>
 - Initial package.

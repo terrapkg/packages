@@ -6,7 +6,7 @@
 Name:           rust-game-2048
 Version:        0.5.1
 Release:        %autorelease
-Summary:        Cli implementation of the popular 2048 game writen in rust
+Summary:        Cli implementation of the popular 2048 game written in rust
 
 License:        MIT
 URL:            https://crates.io/crates/game-2048
@@ -15,7 +15,7 @@ Source:         %{terra_crates_source}
 BuildRequires:  anda-srpm-macros rust-packaging >= 21
 
 %global _description %{expand:
-Cli implementation of the popular 2048 game writen in rust.}
+Cli implementation of the popular 2048 game written in rust.}
 
 %description %{_description}
 
