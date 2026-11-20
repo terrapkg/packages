@@ -2,9 +2,9 @@
 
 %global ver 5.5.0
 
-%global commit          4e1dcb6eb2dac494af63db9ab9a0017fcbf0f7c4
+%global commit          6fdf8858a1d3b1926df23e63a1ac1e75b6599586
 %global shortcommit     %(c=%{commit}; echo ${c:0:7})
-%global commitdate      20261118
+%global commitdate      20261120
 
 Name:   	noctalia-nightly
 Version:	%{ver}^%{commitdate}git.%{shortcommit}
@@ -137,7 +137,7 @@ done
 - Add wireplumber build requirement
 
 * Tue Jun 30 2026 Cypress Reed <cypress@fyralabs.com>
-- Add tomlplusplus as a sytem library
+- Add tomlplusplus as a system library
 
 * Wed Jun 24 2026 Cypress Reed <cypress@fyralabs.com>
 - Add desktop file and icon

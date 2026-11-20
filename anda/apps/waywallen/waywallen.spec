@@ -1,7 +1,7 @@
 %global appid org.waywallen.waywallen
 
 Name:           waywallen
-Version:        0.6.0
+Version:        0.6.1
 Release:        1%{?dist}
 License:        MIT
 Summary:        Wallpaper Manager for Linux
@@ -35,6 +35,7 @@ BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  sqlite-devel
 BuildRequires:  glslang
 BuildRequires:  git-lfs
+BuildRequires:  pkgconfig(lua) >= 5.5
 
 Requires:       waywallen-display
 Requires:       waywallen-libs
@@ -61,19 +62,18 @@ Summary:        Libs of Wallpaper Manager for Linux (waywallen-libs)
 
 %prep
 %autosetup
+mkdir -p %{_builddir}/pkgconfig
+ln -sf %{_libdir}/pkgconfig/lua.pc %{_builddir}/pkgconfig/lua5.5.pc
 
-%conf
-%if 0%{?fedora} >= 45
-export CXXFLAGS="${CXXFLAGS//-Wp,-D_FORTIFY_SOURCE=3/}"
-%endif
+%build
 export LIBSQLITE3_SYS_USE_PKG_CONFIG=1
 export ZSTD_SYS_USE_PKG_CONFIG=1
 export RUSTFLAGS="%{build_rustflags} -C link-arg=-fuse-ld=lld"
-
-%build
+export PKG_CONFIG_PATH="%{_builddir}/pkgconfig:${PKG_CONFIG_PATH}"
 lito build --profile release
 
 %install
+export PKG_CONFIG_PATH="%{_builddir}/pkgconfig:${PKG_CONFIG_PATH}"
 lito install --prefix %{buildroot}%{_prefix} --profile release
 mkdir -p %{buildroot}%{_libdir}
 mv %{buildroot}%{_prefix}/lib/* %{buildroot}%{_libdir}/
@@ -91,6 +91,7 @@ rmdir %{buildroot}%{_prefix}/lib
 %{_bindir}/waywallen-video-renderer
 %{_bindir}/waywallen-gltf-renderer
 %{_bindir}/waywallen-probe
+%{_bindir}/waywallen-web-helper
 %{_appsdir}/%{appid}.desktop
 %{_scalableiconsdir}/%{appid}.svg
 %{_datadir}/metainfo/%{appid}.metainfo.xml
@@ -102,5 +103,7 @@ rmdir %{buildroot}%{_prefix}/lib
 %{_libdir}/libwaywallen-bridge.so
 
 %changelog
+* Thu Nov 19 2026 L1oly <lid2011@ukr.net>
+- Use system lua >= 5.5, remove %conf
 * Thu Oct 29 2026 L1oly <lid2011@ukr.net>
 - Initial commit
