@@ -5,7 +5,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        6.0.5
+Version:        6.0.6
 Release:        1%{?dist}
 Summary:        JavaScriptCore 6.x bindings
 

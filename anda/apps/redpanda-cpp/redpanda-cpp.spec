@@ -32,7 +32,7 @@ Requires:       qt6-qtbase qt6-qtsvg
 A lightweight but powerful C/C++ IDE
 
 Red Panda C++ (Old name Red Panda Dev-C++ 7) is a full featured C/C++ IDE.
-It's the succesor of Red Panda Dev-C++ 6, which is developed by Delphi 7 and
+It's the successor of Red Panda Dev-C++ 6, which is developed by Delphi 7 and
 can only running under Windows.
 
 %prep
