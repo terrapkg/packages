@@ -19,7 +19,7 @@ BuildRequires: gettext
 BuildRequires: intltool
 
 %description
-Configuration schemas for lomiri desktop enviroment.
+Configuration schemas for lomiri desktop environment.
 
 %prep
 %autosetup -n %{name}-%{version}

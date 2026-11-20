@@ -1,4 +1,4 @@
-%global commit 7fa26e8b675f3248975479d88274c937d7e63905
+%global commit d69f9ed83ca7275fa5afbba0fa968d0d9ada9f5a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global public_key RWQlAjJC23149WL2sEpT/l0QKy7hMIFhYdQOFy0Z7z7PbneUgvlsnYcV
 %global ver 1.4.1
@@ -6,7 +6,7 @@
 %global appid com.mitchellh.%{base_name}
 
 Name:           %{base_name}-tip
-Version:        202611150428
+Version:        202611192236
 Release:        1%{?dist}
 %if 0%{?fedora} <= 46
 Epoch:          1
@@ -206,7 +206,7 @@ Obsoletes:      libghostty-vt-nightly <= 1.3.2~tip^20260812gitc54ec80
 %endif
 
 %description -n libghostty-vt-tip
-This package contains the libghostty-vt libraries, the first of many libghostty libaries in development.
+This package contains the libghostty-vt libraries, the first of many libghostty libraries in development.
 
 %package -n     libghostty-vt-tip-devel
 Summary:        Development files for libghostty-vt

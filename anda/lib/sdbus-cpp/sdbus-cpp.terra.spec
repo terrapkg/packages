@@ -144,7 +144,7 @@ rm -rf %{buildroot}%{_sysconfdir}
 - Repackaged into Terra
 
 * Fri Apr 11 2025 Marek Blaha <mblaha@redhat.com> - 2.1.0-2
-- Temoporarily bundle libsdbus-c++.so.1
+- Temporarily bundle libsdbus-c++.so.1
 
 * Fri Apr 04 2025 Jonathan Wright <jonathan@almalinux.org> - 2.1.0-1
 - update to 2.1.0 rhbz#2277126
