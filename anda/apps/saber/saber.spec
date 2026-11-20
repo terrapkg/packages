@@ -2,7 +2,7 @@
 
 Name:           saber
 Version:        1.37.2
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        The cross-platform notes app built for handwriting
 License:        GPL-3.0-only
 URL:            https://github.com/saber-notes/saber
@@ -87,7 +87,7 @@ done
 %files
 %license LICENSE.md
 %{_bindir}/%{name}
-/%{_datadir}/%{name}
+%{_datadir}/%{name}/
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_scalableiconsdir}/%{appid}.svg
