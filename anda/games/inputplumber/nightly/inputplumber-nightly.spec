@@ -1,13 +1,13 @@
 %global __brp_mangle_shebangs %{nil}
 
-%global commit 6aca9202fb8dfd6f31241c3f98b72df4a775c1a1
-%global commit_date 20261109
+%global commit 0f4b1995e9427463ac8af68ddcf316d07ca8a4dd
+%global commit_date 20261120
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global ver v0.84.0
+%global ver v0.85.0
 
 Name:           inputplumber-nightly
 Version:        %{ver}^%{commit_date}git.%{shortcommit}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Open source input router and remapper daemon for Linux
 License:        GPL-3.0-or-later
 URL:            https://github.com/ShadowBlip/InputPlumber
