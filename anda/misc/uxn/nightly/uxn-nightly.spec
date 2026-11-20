@@ -48,4 +48,4 @@ install -Dm755 bin/uxnasm %{buildroot}%{_bindir}/uxnasm
 - Adopt nightly package
 
 * Sun Dec 21 2025 arbormoss <arbormoss@woodsprite.dev>
-- Intial Commit
+- Initial Commit

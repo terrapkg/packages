@@ -18,7 +18,7 @@ set_vars() {
 run_file_get() {
     printf "Downloading installer ${RUN_FILE}... "
     if [[ ! -f $RUN_FILE ]]; then
-        # Orgininal comment from Negativo: "This is getting ridiculous"
+        # Original comment from Negativo: "This is getting ridiculous"
         # My comment: It sure fucking is.
         if wget -q -S --spider https://download.nvidia.com/XFree86/${PLATFORM}/${VERSION}/$RUN_FILE; then
             wget -q https://download.nvidia.com/XFree86/${PLATFORM}/${VERSION}/$RUN_FILE

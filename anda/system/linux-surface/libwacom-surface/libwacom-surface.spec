@@ -409,7 +409,7 @@ Utilities to handle and/or debug libwacom devices.
 - fix %%{_udevrulesdir} harder
 
 * Sat Jul 11 2015 Peter Robinson <pbrobinson@fedoraproject.org> 0.15-2
-- Use %%{_udevrulesdir} so rule.d doesn't inadvertantly end up in /
+- Use %%{_udevrulesdir} so rule.d doesn't inadvertently end up in /
 - Use %%license
 
 * Wed Jul 08 2015 Peter Hutterer <peter.hutterer@redhat.com> 0.15-1
@@ -516,7 +516,7 @@ Utilities to handle and/or debug libwacom devices.
 
 * Tue Mar 06 2012 Peter Hutterer <peter.hutterer@redhat.com> 0.3-4
 - libwacom-0.3-add-list-devices.patch: add API to list devices
-- libwacom-0.3-add-udev-generator.patch: add a udev rules generater tool
+- libwacom-0.3-add-udev-generator.patch: add a udev rules generator tool
 - libwacom-0.3-add-bamboo-one.patch: add Bamboo One definition
 
 * Tue Feb 21 2012 Olivier Fourdan <ofourdan@redhat.com> - 0.3-2

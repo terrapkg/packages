@@ -66,4 +66,4 @@ install -Dpm644 *.cfg -t %{buildroot}%{_sysconfdir}/mock/
 - Rename to terra-mock-configs and rename files to terra
 
 * Mon Oct 03 2022 Cappy Ishihara <cappy@cappuchino.xyz>
-- Intial Release
+- Initial Release

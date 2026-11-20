@@ -385,7 +385,7 @@ rm -f %{buildroot}%{_prefix}/%{realname}
 * Thu Feb 22 2018 Sérgio Basto <sergio@serjux.com> - 2.2.2-1
 - Update to 2.2.2
 - Readd no-local-includes.patch
-- Reorganize conditonal with_mp3, now have twolame, lame and libmad
+- Reorganize conditional with_mp3, now have twolame, lame and libmad
 - Readd desktop.in.patch
 - Add to configure --with-lv2 --with-midi --with-portmidi with some commentaries
 - Temporary fix to portaudio became permanent (--with-portaudio=local)

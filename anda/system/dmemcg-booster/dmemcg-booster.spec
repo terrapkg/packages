@@ -1,7 +1,7 @@
 Name:           dmemcg-booster
 Version:        0.1.3
 Release:        1%{?dist}
-Summary:        Userspace utility for controling VRAM utilization
+Summary:        Userspace utility for controlling VRAM utilization
 License:        MIT AND (Apache-2.0 OR MIT)
 URL:            https://gitlab.steamos.cloud/holo/dmemcg-booster
 Source0:        %url/-/archive/%version/dmemcg-booster-%version.tar.gz
@@ -44,4 +44,4 @@ install -Dpm0644 -t %{buildroot}%{_unitdir}/ ./dmemcg-booster-system.service
 
 %changelog
 * Thu May 05 2026 Tulip Blossom <tulilirockz@outlook.com> - 0.1.2-1
-- Intial Commit
+- Initial Commit
