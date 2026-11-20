@@ -160,4 +160,4 @@ This package provides the Haskell %{pkg_name} profiling library.
 
 %changelog
 * Wed Nov 18 2026 Cypress Reed <cypress@fyralabs.com>
-- initial pacakge
+- initial package

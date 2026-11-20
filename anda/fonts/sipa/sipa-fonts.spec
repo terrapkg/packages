@@ -1,5 +1,5 @@
 %global fontcontact depathailand@depa.or.th
-# note: SIPA is actually dead, superceded by depa
+# note: SIPA is actually dead, superseded by depa
 # This namespace is still kept for historical reasons,
 # kinda like how packages from Meta still use the `com.facebook`
 # namespace

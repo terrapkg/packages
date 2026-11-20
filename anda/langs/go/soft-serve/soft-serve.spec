@@ -44,4 +44,4 @@ install -Dm755 %{gobuilddir}/bin/%{cmd_name} %{buildroot}%{_bindir}/%{cmd_name}
 - Refactor to use go rpm macros
 
 * Fri Dec 12 2025 arbormoss <arbormoss@woodsprite.dev>
-- Intial Commit
+- Initial Commit

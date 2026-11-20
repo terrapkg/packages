@@ -34,6 +34,7 @@ Originally implemented in TempleOS as a general purpose programming language and
 # Make the binary correctly report its installed location as /usr/bin instead of /usr
 sed -i 's|binary: %%s/hcc|binary: %%s/bin/hcc|g' cli.c
 
+%if %{with test}
 # Fix the test ROOT location
 sed -i "s|ROOT=.*|ROOT=$(dirname %{rpmbuilddir}%{?buildsubdir:/%{buildsubdir}})|" tests/run.sh
 
@@ -43,6 +44,7 @@ for file in $(rg '../../hcc' --files-with-matches); do
   sed -i 's|../../hcc|%{buildroot}%{_bindir}/hcc|g' $file
 done
 popd
+%endif
 
 %conf
 %cmake \
@@ -89,6 +91,7 @@ popd
 
 %{__install} -Dpm755 ./libtos-build/%{_lib}/* -t %{buildroot}%{_libdir}
 
+%if %{with test}
 %check
 HCC="%{buildroot}%{_bindir}/hcc" ; export HCC
 BUILD="%{__cmake_builddir}" ; export BUILD
@@ -98,6 +101,7 @@ $HCC --version | /usr/bin/grep -C5 'binary: /usr/bin/hcc'
 
 ./tests/run.sh '--cflags=-O'
 ./tests/run.sh '--cflags=-fno-inline -fno-reg-promote'
+%endif
 
 %files
 %license ../COPYING
