@@ -4,7 +4,7 @@
 %global modulename nvidia
 
 Name:           dkms-%{modulename}
-Version:        615.71.09
+Version:        620.70.06
 Release:        1%{?dist}
 Summary:        NVIDIA display driver kernel module
 Epoch:          3

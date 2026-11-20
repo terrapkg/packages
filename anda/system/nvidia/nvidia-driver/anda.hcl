@@ -8,6 +8,7 @@ project "pkg" {
     arches = ["x86_64", "aarch64", "i386"]
     labels = {
         subrepo = "nvidia"
+        group = "nvidia"
         mock = 1
         weekly = 3
     }
