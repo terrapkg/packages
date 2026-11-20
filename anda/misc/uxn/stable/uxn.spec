@@ -45,4 +45,4 @@ install -Dm755 bin/%{name}emu %{buildroot}%{_bindir}/%{name}emu
 
 %changelog
 * Sun Dec 21 2025 arbormoss <arbormoss@woodsprite.dev>
-- Intial Commit
+- Initial Commit
