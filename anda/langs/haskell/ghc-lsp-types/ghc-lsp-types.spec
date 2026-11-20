@@ -6,7 +6,7 @@
 %bcond tests 0
 
 Name:           ghc-%{pkg_name}
-Version:        2.3.0.1
+Version:        2.4.0.0
 Release:        1%{?dist}
 Summary:        Haskell library for the Microsoft Language Server Protocol, data types
 
