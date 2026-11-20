@@ -1,6 +1,6 @@
 # https://github.com/yorukot/superfile
 %global goipath         github.com/yorukot/superfile
-Version:                1.6.0
+Version:                1.6.1
 
 %gometa -f
 
