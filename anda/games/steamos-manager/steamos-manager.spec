@@ -82,4 +82,4 @@ ln -s %{_userunitdir}/steamos-manager.service %{buildroot}%{_userunitdir}/gamesc
 - Fix systemd user units
 
 * Wed Feb 04 2026 Tulip Blossom <tulilirockz@outlook.com> - 25.12.0-1
-- Intial Commit
+- Initial Commit

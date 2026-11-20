@@ -81,7 +81,7 @@ export LD_LIBRARY_PATH="%{_libdir}/cef${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}"
 
 %changelog
 * Fri Sep 11 2026 Caleb Jones <caleb@fyralabs.com> - 0.24.0-1
-- Change CEF root so it works with various cef versons.
+- Change CEF root so it works with various cef versions.
 - Various improvements
 
 * Fri Sep 04 2026 Caleb Jones <caleb@fyralabs.com> - 0.23.2-2

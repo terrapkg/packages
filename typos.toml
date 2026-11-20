@@ -60,6 +60,30 @@ Nam = "Nam"
 ba = "ba"
 # "XDG thumbnailers" is correct
 thumbnailers = "thumbnailers"
+# stardust tool name
+simular = "simular"
+# nim-nightly old name in Obsoletes
+nighlty = "nighlty"
+# valid spelling in broadcom-wl
+Recomment = "Recomment"
+
+# translations in .desktop and .metainfo files
+# Indonesian
+populer = "populer"
+# Romanian
+populare = "populare"
+distractiv = "distractiv"
+# Spanish
+Requiere = "Requiere"
+# French
+sur = "sur"
+presse = "presse"
+# Portuguese
+momento = "momento"
+limite = "limite"
+oficial = "oficial"
+# Polish
+Nowe = "Nowe"
 
 [default.extend-identifiers]
 # packager identifier

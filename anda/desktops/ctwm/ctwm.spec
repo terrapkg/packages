@@ -41,7 +41,7 @@ desktop-file-validate %{buildroot}%{_datadir}/xsessions/%{name}.desktop
 * Wed Dec 24 2025 Owen Zimmerman <owen@fyralabs.com>
 - Add %check section
 * Tue Dec 17 2024 Owen Zimmerman <owen@fyralabs.com>
-- Add .desktop and .rhai file, fix dependancies, and switch to .tar.xz source (smaller download)
+- Add .desktop and .rhai file, fix dependencies, and switch to .tar.xz source (smaller download)
 * Thu Jun 27 2024 Jaiden Riordan <jade@fyralabs.com> - 4.1.0
 - Rewrite for Terra, Thanks RPMSphere
 * Tue Dec 24 2019 Wei-Lun Chao <bluebat@member.fsf.org> - 4.0.3

@@ -91,7 +91,7 @@ check() {
 
     elif [ ! -f /etc/default/grub ] && [ -f /etc/kernel/cmdline ]; then
 
-      # systemd-boot is installed, differnt path than Grub 2 with BootLoaderSpec patches
+      # systemd-boot is installed, different path than Grub 2 with BootLoaderSpec patches
       BLS_ENTRIES=/boot/efi/loader/entries
 
     else
