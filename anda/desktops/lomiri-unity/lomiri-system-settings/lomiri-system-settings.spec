@@ -37,7 +37,7 @@ Requires:      ayatana-indicator-datetime
 Requires:      lomiri-settings-components
 
 %description
-The system settings application (and library) for the Lomiri desktop enviroment.
+The system settings application (and library) for the Lomiri desktop environment.
 
 %package devel
 Summary: Development files for %{name}

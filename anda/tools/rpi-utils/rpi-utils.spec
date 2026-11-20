@@ -344,7 +344,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 - Add new subpackages, tidy up
 
 * Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com>
-- Seperate needed files into -devel packages, add more packages/files, install all files.
+- Separate needed files into -devel packages, add more packages/files, install all files.
 
 * Mon May 19 2025 Owen Zimmerman <owen@fyralabs.com>
 - Build shared libraries

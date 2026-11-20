@@ -56,7 +56,7 @@ test suite will tell him so, due to the now unexpectedly passing test, and he
 can remove the 'Test.Tasty.ExpectedFailure.expectFail' marker.
 
 The module also provides 'Test.Tasty.ExpectedFailure.ignoreTest' to avoid
-running a test. Both funtions are implemented via the more general
+running a test. Both functions are implemented via the more general
 'Test.Tasty.ExpectedFailure.wrapTest', which is also provided.
 
 

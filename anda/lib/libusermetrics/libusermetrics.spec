@@ -36,7 +36,7 @@ The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
 %package doc
-Summary: Documenation for %{name}
+Summary: Documentation for %{name}
 BuildArch: noarch
 
 %description doc
