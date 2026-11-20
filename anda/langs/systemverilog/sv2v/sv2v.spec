@@ -29,7 +29,7 @@ BuildRequires:  happy
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-A tool for coverting SystemVerilog to Verilog. Originally forked from the
+A tool for converting SystemVerilog to Verilog. Originally forked from the
 Verilog parser found at https://github.com/tomahawkins/verilog.
 
 

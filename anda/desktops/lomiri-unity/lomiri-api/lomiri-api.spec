@@ -33,7 +33,7 @@ Requires: %{name}%{?_isa} = %{version}-%{release}
 This package contains development files needed for Lomiri API.
 
 %package doc
-Summary: Documenation for %{name}
+Summary: Documentation for %{name}
 BuildArch: noarch
 
 %description doc

@@ -58,4 +58,4 @@ install -Dm644 doc/%{name}.desktop %{buildroot}%{_datadir}/applications/
 
 %changelog
 * Wed Dec 10 2025 arbormoss <arbormoss@woodsprite.dev>
-- Intial Commit
+- Initial Commit

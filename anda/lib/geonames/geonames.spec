@@ -33,7 +33,7 @@ Summary: Documentation for %{name}
 BuildArch: noarch
 
 %description doc
-The %{name}-doc package contains documenation for %{name}.
+The %{name}-doc package contains documentation for %{name}.
 
 %prep
 %autosetup -n geonames-%{version}

@@ -92,7 +92,7 @@ BuildRequires:  dbus-devel(x86-32)
 BuildRequires:  glibc-devel(x86-32)
 BuildRequires:  libstdc++-devel(x86-32)
 BuildRequires:  libxcb-devel(x86-32)
-# We need shell32 and ole32, for some reason terra wine just doens't have it
+# We need shell32 and ole32, for some reason terra wine just doesn't have it
 %dnl BuildRequires:  (wine-devel(x86-32) or wine-staging-devel(x86-32) or wine-stable-devel(x86-32) or wine-dev-devel(x86-32))
 BuildRequires:  wine-devel(x86-32)
 BuildRequires:  /usr/bin/winegcc

@@ -46,7 +46,7 @@ for enumerating them.
 ' class Universe a where universe :: [a] class Universe a => Finite a where
 universeF :: [a]; universeF = universe '
 
-This is slim package definiting only the type-classes and instances for types
+This is slim package defining only the type-classes and instances for types
 in GHC boot libraries. For more instances check 'universe-instances-*'
 packages.
 

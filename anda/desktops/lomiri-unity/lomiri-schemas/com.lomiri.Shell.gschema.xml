@@ -172,7 +172,7 @@
         'XF86AudioRaiseVolume',
         'XF86AudioLowerVolume'
         ]</default>
-      <summary>List of keycodes that should be processed even if auto-repated.</summary>
+      <summary>List of keycodes that should be processed even if auto-repeated.</summary>
       <description>These keycodes are processed even if they are auto-repeated.</description>
     </key>
     <key type="b" name="pam-check-account-type">

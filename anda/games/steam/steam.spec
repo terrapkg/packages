@@ -66,7 +66,7 @@ Requires:       steam-devices
 #   ~/.local/share/Steam/ubuntu12_32
 #   ~/.local/share/Steam/ubuntu12_64
 # Steam client uses the system ones if available; so override where there is a
-# benefit using the native system libaries or just to match when the native 64
+# benefit using the native system libraries or just to match when the native 64
 # bit packages are already installed.
 Requires:       bzip2-libs
 Requires:       bzip2-libs(x86-32)
@@ -134,7 +134,7 @@ Requires:       xdg-desktop-portal
 Recommends:     (xdg-desktop-portal-gtk if gnome-shell)
 Recommends:     (xdg-desktop-portal-kde if kwin)
 
-# Prevent log spam when thse are not pulled in as dependencies of full desktops
+# Prevent log spam when these are not pulled in as dependencies of full desktops
 Recommends:     dbus-x11
 Recommends:     xdg-user-dirs
 
