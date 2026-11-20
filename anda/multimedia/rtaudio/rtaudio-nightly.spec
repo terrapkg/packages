@@ -180,7 +180,7 @@ NOCONFIGURE=1 ./autogen.sh
 - Update source comments
 
 * Sun Oct 28 2012 Brendan Jones <brendan.jones.it@gmail.com> 4.0.11-2
-- Add pulse dependancies
+- Add pulse dependencies
 
 * Sun Oct 14 2012 Brendan Jones <brendan.jones.it@gmail.com> 4.0.11-1
 - Update to 4.011

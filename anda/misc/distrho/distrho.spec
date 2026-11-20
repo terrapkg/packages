@@ -65,7 +65,7 @@ Plugins from dRowAudio (distortion, distortionshaper, flanger, reverb, tremolo)
 Summary:    Arctican lv2 plugins
 
 %description Arctican
-Plugins from Arctican (The Functiom & The Pilgrim)
+Plugins from Arctican (The Function & The Pilgrim)
 
 
 %package LUFS

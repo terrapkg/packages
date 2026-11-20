@@ -43,4 +43,4 @@ install -Dm 0755 %{gobuilddir}/cmd/license-eye %{buildroot}%{_bindir}/license-ey
 
 %changelog
 * Wed Sep 16 2026 Its-J <jonah@fyralabs.com> - 0.9.0-1
-- Inital commit
+- Initial commit
