@@ -188,9 +188,9 @@ corresponding workspace.
 
 %package -n	budgie-applet-wallstreet
 Requires:       budgie-extras-common
-Summary:        A mini-app to switch wallpapers on regular intervalls
+Summary:        A mini-app to switch wallpapers on regular intervals
 %description -n	budgie-applet-wallstreet
-Budgie WallStreet is a mini-app to switch wallpapers on regular intervalls.
+Budgie WallStreet is a mini-app to switch wallpapers on regular intervals.
 
 %package -n	budgie-applet-weathershow
 Requires:       budgie-extras-common

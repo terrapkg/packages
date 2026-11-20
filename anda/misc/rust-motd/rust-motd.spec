@@ -32,4 +32,4 @@ Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %changelog
 * Thu Oct 23 2025 Owen Zimmerman <owen@fyralabs.com>
-- Intial Commit
+- Initial Commit

@@ -45,7 +45,7 @@ BuildRequires:  ghc-test-framework-quickcheck2-devel
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
-The range library alows the use of performant and versatile ranges in your
+The range library allows the use of performant and versatile ranges in your
 code. It supports bounded and unbounded ranges, ranges in a nested manner (like
 library versions), an efficient algebra of range computation and even a
 simplified interface for ranges for the common cases. This library is far more

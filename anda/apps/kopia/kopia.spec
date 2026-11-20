@@ -55,7 +55,7 @@ pushd app
 %electron_install -b %{gui_name} -d %{gui_name} -s %{gui_name} -I ../icons
 popd
 
-# the offical package for kopia-ui includes a bundled copy of the kopia binary
+# the official package for kopia-ui includes a bundled copy of the kopia binary
 # but we'll just symlink it
 mkdir -p %{buildroot}%{_libdir}/%{gui_name}/resources/server
 %{__ln_s} %{_bindir}/%{name} %{buildroot}%{_libdir}/%{gui_name}/resources/server/%{name}
