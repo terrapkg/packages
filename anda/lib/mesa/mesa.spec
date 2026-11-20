@@ -84,7 +84,7 @@
 
 Name:           %{srcname}
 Summary:        Mesa graphics libraries
-%global ver 26.2.7
+%global ver 26.3.1
 Epoch:          1
 Version:        %{lua:ver = string.gsub(rpm.expand("%{ver}"), "-", "~"); print(ver)}
 Release:        1%{?dist}

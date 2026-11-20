@@ -8,7 +8,7 @@
 %global appid sh.oven.bun
 
 Name:			bun-bin
-Version:		1.4.4
+Version:		1.4.5
 Release:		1%{?dist}
 Summary:		Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one
 License:		MIT

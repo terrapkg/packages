@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:           subatomic
-Version:        1.1.5
+Version:        1.1.7
 Release:        1%{?dist}
 Summary:        A modern package delivery system
 
@@ -53,4 +53,4 @@ install -pm 755 build/bin/subatomic %{buildroot}%{_bindir}/
 
 %changelog
 * Fri Sep 30 2022 Cappy Ishihara <cappy@cappuchino.xyz> - 0.1.0.200283ccd3cf7c90b6a9be565ce6ff52bdec977e-1
-- Intial release
+- Initial release

@@ -1,4 +1,4 @@
-# The original is dead and has vulnerabilities due to it, this fork is maintainted
+# The original is dead and has vulnerabilities due to it, this fork is maintained
 %global npm_name license-checker-rseidelsohn
 # Disabled for now. Requires ESLint.
 %bcond test 0
