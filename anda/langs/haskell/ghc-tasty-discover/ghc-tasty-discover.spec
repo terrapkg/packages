@@ -2,8 +2,7 @@
 %global pkgver %{pkg_name}-%{version}
 %{?haskell_setup}
 
-# need to package hedgehog, tasty-hedgehog, tasty-hspec, tasty-smallcheck
-%bcond tests 0
+%bcond tests 1
 
 Name:           ghc-%{pkg_name}
 Version:        5.0.2
