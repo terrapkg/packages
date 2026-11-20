@@ -1,5 +1,5 @@
-%global commit 1e60d9164a46a49f23370987388824caf73ebbdf
-%global commit_date 20261117
+%global commit acf84e7323f1692ba9c89b8721589f22e3c1d896
+%global commit_date 20261120
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %define _python_dist_allow_version_zero 1
