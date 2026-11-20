@@ -2,7 +2,7 @@
 
 Name:           saber
 Version:        1.37.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        The cross-platform notes app built for handwriting
 License:        GPL-3.0-only
 URL:            https://github.com/saber-notes/saber
@@ -35,7 +35,7 @@ Requires:       zenity
 %endif
 
 # Don't expose private libraries like "libapp.so"
-%global __provides_exclude_from ^/opt/%{name}/lib/.*$
+%global __provides_exclude_from ^/%{_datadir}/%{name}/lib/.*$
 # These must be manually listed: https://docs.fedoraproject.org/en-US/packaging-guidelines/AutoProvidesAndRequiresFiltering/#_private_libraries
 %global __requires_exclude ^(libapp|libdartjni|libflutter_linux_gtk|libpdfium|libpdfrx_pdfium_gate|libsuper_native_extensions_native|lib.*_plugin)\\.so.*$
 
@@ -67,17 +67,17 @@ export CXXFLAGS="${CXXFLAGS//-specs=\/usr\/lib\/rpm\/redhat\/redhat-annobin-cc1/
 ./submodules/flutter/bin/flutter build linux --no-pub --verbose
 
 %install
-mkdir -p %{buildroot}/opt/%{name}
-cp -a %{bundle_path}/* %{buildroot}/opt/%{name}
+mkdir -p %{buildroot}/%{_datadir}/%{name}
+cp -a %{bundle_path}/* %{buildroot}/%{_datadir}/%{name}
 mkdir -p %{buildroot}%{_bindir}
-ln -sr %{buildroot}/opt/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
+ln -sr %{buildroot}/%{_datadir}/%{name}/%{name} %{buildroot}%{_bindir}/%{name}
 %desktop_file_install flatpak/%{appid}.desktop
 install -Dm644 flatpak/%{appid}.metainfo.xml -t %{buildroot}%{_metainfodir}
 install -Dm644 assets/icon/icon_linux.svg %{buildroot}%{_scalableiconsdir}/%{appid}.svg
 %terra_appstream
 
 # Fix the rpaths of bundled libraries. Similar to `anda/apps/localsend-bin/localsend-bin.spec`
-for so in %{buildroot}/opt/%{name}/lib/*.so; do
+for so in %{buildroot}/%{_datadir}/%{name}/lib/*.so; do
     patchelf --set-rpath '$ORIGIN' "$so"
 done
 
@@ -87,7 +87,7 @@ done
 %files
 %license LICENSE.md
 %{_bindir}/%{name}
-/opt/%{name}
+/%{_datadir}/%{name}
 %{_appsdir}/%{appid}.desktop
 %{_metainfodir}/%{appid}.metainfo.xml
 %{_scalableiconsdir}/%{appid}.svg
