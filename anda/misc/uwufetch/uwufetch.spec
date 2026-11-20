@@ -1,6 +1,6 @@
-%global commit 1a138b7d838d13d714b9cf4943b6707a98790ad1
+%global commit 65aaed1489acf6094636d983b8531873ed78412a
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global fulldate 2026-10-20
+%global fulldate 2026-11-18
 %global commit_date %(echo %{fulldate} | sed 's/-//g')
 %global ver 2.1
 %global debug_package %{nil}
