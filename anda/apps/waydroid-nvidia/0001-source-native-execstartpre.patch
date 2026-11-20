@@ -1,0 +1,13 @@
+diff --git a/dev/source-native b/dev/source-native
+index a2284cb..f585b7a 100755
+--- a/dev/source-native
++++ b/dev/source-native
+@@ -227,7 +227,7 @@ def render_override(root):
+             f'Wants={RENDER_UNIT}\n'
+             f'After={RENDER_UNIT}\n'
+             '\n'
+-            '[Service]\nExecStartPre=\n'
++            '[Service]\n'
+             f'ExecStartPre={PYTHON} {REPO}/dev/driver-mode verify-active\n')
+     if PACKAGED:      # the unit's own ExecStart runs the packaged (patched) system Waydroid
+         return text

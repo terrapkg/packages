@@ -3,7 +3,12 @@
 %global selinuxtype targeted
 %global debug_package %{nil}
 
-# Prevent RPM depdendency generation from the prepackaged waydroid images
+# Keep RPM from inferring Provides/Requires out of the prepackaged Waydroid
+# binaries; the fallbacks cover build roots that do not define the
+# appstream/icon macros used by %files.
+%{!?_appsdir:%global _appsdir %{_datadir}/applications}
+%{!?_metainfodir:%global _metainfodir %{_datadir}/metainfo}
+%{!?_hicolordir:%global _hicolordir %{_datadir}/icons/hicolor}
 %global __requires_exclude_from ^%{_prefix}/lib/waydroid-nvidia/.*$
 %global __provides_exclude_from ^%{_prefix}/lib/waydroid-nvidia/.*$
 
@@ -24,13 +29,15 @@ Source4:        %{url}/releases/download/%{tag}/waydroid-nvidia-guest-prebuilts-
 Source5:        waydroid-nvidia.te
 Source6:        dev-binderfs.mount
 Source7:        waydroid-nvidia.fc
+Source8:        %{url}/releases/download/%{tag}/waydroid-nvidia-native-x86_64-%{tag}.tar.zst
+Source9:        %{url}/releases/download/%{tag}/waydroid-nvidia-vendor-x86_64-%{tag}.zip
+Source10:       %{url}/releases/download/%{tag}/waydroid-nvidia-vendor-ota-%{tag}.json
 
-# Assign the Waydroid network interface to the trusted firewalld zone
-Patch0:         setup-firewalld.patch
-# Mount the Android rootfs with the Waydroid SELinux context
-Patch1:         mount-secontext.patch
-# Fedora LXC is built without AppArmor support
-Patch2:         no-apparmor.patch
+Patch0:         %{url}/raw/%{tag}/patches/waydroid/0001-nvidia-integration.patch
+Patch1:         %{url}/raw/%{tag}/waydroid/0001-lxc-nvidia-native-mounts.patch
+# Backport of Shiro836/waydroid-nvidia#46; drop when v0.2.1 ships.
+Patch2:         0001-source-native-execstartpre.patch
+
 
 ExclusiveArch:  x86_64
 
@@ -50,7 +57,7 @@ Requires:       python3dist(dbus-python)
 Requires:       python3-gobject
 Requires:       lxc
 Requires:       gtk3
-Requires:       (%{name}-selinux = %{evr} if selinux-policy-%{selinuxtype})
+Requires:       (%{name}-selinux = %{version}-%{release} if selinux-policy-%{selinuxtype})
 Requires:       nftables
 Requires:       iproute
 Requires:       dnsmasq
@@ -71,7 +78,7 @@ NVIDIA open kernel modules with nvidia-drm.modeset=1.
 
 %package selinux
 Summary:        SELinux policy module for Waydroid
-Requires:       %{name} = %{evr}
+Requires:       %{name} = %{version}-%{release}
 Requires:       container-selinux
 %{?selinux_requires}
 
@@ -81,11 +88,20 @@ This package contains the SELinux policy module necessary to run Waydroid.
 %prep
 %setup -q -n waydroid-nvidia-%{version} -a 1
 
+# Patch2 touches dev/source-native at the top of the release tarball; the Waydroid patches
+# live inside waydroid-<commit>, so each group gets its own %%autopatch range.
+%autopatch -m2 -M2 -p1
+
 pushd waydroid-%{waydroid_commit}
-patch -p1 < ../patches/waydroid/0001-nvidia-integration.patch
-%patch -P 0 -p1
-%patch -P 1 -p1
-%patch -P 2 -p1
+%autopatch -m0 -M1 -p1
+# The helper installed by the patch must be byte-identical to the one shipped in the release tarball.
+cmp ../waydroid/nvidia_native.py tools/helpers/nvidia_native.py
+# The rootfs SELinux context comes from rootfs_context() (0001-nvidia-integration); do not pin
+# context= here, or every mount carries it twice and the "no context" fallback is lost.
+# Fedora has no AppArmor: drop lxc.apparmor.profile from the shipped LXC configs and the
+# get_apparmor_status() branch (replaces the old no-apparmor.patch).
+sed -i '/^lxc\.aa_profile = unconfined$/d; /^lxc\.apparmor\.profile = unconfined$/d' data/configs/config_1 data/configs/config_3
+sed -i '/^    if get_apparmor_status(args):$/,+2d' tools/helpers/lxc.py
 popd
 
 mkdir host guest SELinux
@@ -106,6 +122,11 @@ popd
 %{__make} -C SELinux NAME=%{selinuxtype} -f /usr/share/selinux/devel/Makefile
 
 %install
+# The bundled Android (bionic) libraries carry RUNPATH entries pointing at the upstream CI build
+# directories. Only the "invalid runpath" check (0x0002) is relaxed; the other brp checks stay on,
+# the files are loaded by the guest's linker (not the host's), and stripping them would break the
+# vendor image gate, which requires the bundle binaries to remain byte-identical.
+export QA_RPATHS=$(( 0x0002 | ${QA_RPATHS:-0} ))
 %{__make} -C waydroid-%{waydroid_commit} install \
     DESTDIR=%{buildroot} USE_SYSTEMD=1 USE_DBUS_ACTIVATION=1 USE_NFTABLES=1
 %py_byte_compile %{python3} %{buildroot}%{_prefix}/lib/waydroid
@@ -142,6 +163,10 @@ done
 %{__install} -D -p -m 0755 guest/system/bin/surfaceflinger \
     %{buildroot}%{_prefix}/lib/waydroid-nvidia/guest/system/bin/surfaceflinger
 
+# nvidia-prolapse (the 0.2.0 default mode): native bundle + vendor image + OTA channel
+%{__install} -d %{buildroot}%{_prefix}/lib/waydroid-nvidia
+packaging/native/install-native.sh "$PWD" %{SOURCE8} %{SOURCE9} %{SOURCE10} %{buildroot} %{tag}
+
 %global integration_dir packaging/aur/waydroid-nvidia-bin
 %{__install} -D -p -m 0644 %{integration_dir}/wd-venus.service \
     %{buildroot}%{_userunitdir}/wd-venus.service
@@ -149,6 +174,8 @@ done
     %{buildroot}%{_tmpfilesdir}/waydroid-venus.conf
 %{__install} -D -p -m 0644 %{integration_dir}/waydroid-nvidia.rules \
     %{buildroot}%{_udevrulesdir}/70-waydroid-nvidia.rules
+%{__install} -D -p -m 0644 %{integration_dir}/waydroid-nvidia-gpu.rules \
+    %{buildroot}%{_udevrulesdir}/70-waydroid-nvidia-gpu.rules
 %{__install} -D -p -m 0755 %{integration_dir}/waydroid-nvidia-setup \
     %{buildroot}%{_bindir}/waydroid-nvidia-setup
 
@@ -174,11 +201,14 @@ if [ "$1" -eq 0 ]; then
 fi
 
 %post
+# /var/lib/waydroid-nvidia is created at runtime by the setup: apply the new fcontext
+restorecon -R /var/lib/waydroid-nvidia > /dev/null 2>&1 || :
 waydroid upgrade -o > /dev/null || :
 %systemd_post waydroid-container.service
 %systemd_user_post wd-venus.service
 %tmpfiles_create waydroid-venus.conf
 udevadm control --reload > /dev/null 2>&1 || :
+udevadm trigger --subsystem-match=drm > /dev/null 2>&1 || :
 
 %preun
 %systemd_preun waydroid-container.service
@@ -205,6 +235,7 @@ udevadm control --reload > /dev/null 2>&1 || :
 %{_unitdir}/dev-binderfs.mount
 %{_tmpfilesdir}/waydroid-venus.conf
 %{_udevrulesdir}/70-waydroid-nvidia.rules
+%{_udevrulesdir}/70-waydroid-nvidia-gpu.rules
 %{_datadir}/dbus-1/system-services/id.waydro.Container.service
 %{_datadir}/dbus-1/system.d/id.waydro.Container.conf
 %{_datadir}/polkit-1/actions/id.waydro.Container.policy
@@ -216,6 +247,13 @@ udevadm control --reload > /dev/null 2>&1 || :
 %{_datadir}/selinux/%{selinuxtype}/waydroid-nvidia.pp
 
 %changelog
+* Mon Nov 09 2026 nklowns <nklowns@users.noreply.github.com> - 0.2.0-1
+- Package the nvidia-prolapse default mode: native bundle, vendor image, OTA channel
+- Apply waydroid/0001-lxc-nvidia-native-mounts.patch and install the nvidia_native helper
+- Ship 70-waydroid-nvidia-gpu.rules (systemd alias for the NVIDIA render node)
+- Label /var/lib/waydroid-nvidia with waydroid_data_t and restorecon it in %post
+- Drop setup-firewalld/mount-secontext/no-apparmor: superseded by 0001-nvidia-integration
+- Fix Requires using the unexpanded %{evr} macro
 * Sun Sep 13 2026 Kyle Gospodnetich <me@kylegospodneti.ch> - 0.1.2-1
 - Package waydroid-nvidia with its pinned Waydroid base and NVIDIA payloads
 - Preserve the Fedora patches and Waydroid SELinux policy

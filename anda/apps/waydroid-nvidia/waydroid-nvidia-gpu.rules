@@ -1,0 +1,15 @@
+# waydroid-nvidia: the NVIDIA GPU for the container start ordering. A file of its own, so an older
+# /etc/udev/rules.d/70-waydroid-nvidia.rules (same name as the udmabuf rule) cannot hide it.
+#
+# The NVIDIA GPU's DRM render node as the systemd device unit
+# sys-subsystem-waydroid_nvidia-render.device (systemd.device(5) SYSTEMD_ALIAS;
+# the /sys/subsystem/... name is only an identifier, like systemd's own
+# 99-systemd.rules aliases). The container unit drop-in written by
+# waydroid-nvidia-setup Wants= and is After= this unit, so at boot the
+# container starts once nvidia-drm registered the render node and udev
+# initialized it, instead of racing the NVIDIA kernel modules' init. Matched by
+# the PCI parent's vendor and driver (DRIVERS=="nvidia" also excludes nouveau),
+# never by a renderD number. ACTION!="remove" keeps the tag and alias across
+# "change" events (the udev database is rewritten on every event).
+ACTION!="remove", SUBSYSTEM=="drm", KERNEL=="renderD[0-9]*", ATTRS{vendor}=="0x10de", DRIVERS=="nvidia", \
+    TAG+="systemd", ENV{SYSTEMD_ALIAS}+="/sys/subsystem/waydroid_nvidia/render"
