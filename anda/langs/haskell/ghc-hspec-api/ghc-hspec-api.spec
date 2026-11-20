@@ -5,7 +5,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        2.11.16
+Version:        2.11.12
 Release:        1%{?dist}
 Summary:        A Testing Framework for Haskell
 
