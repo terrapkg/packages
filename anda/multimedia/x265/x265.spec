@@ -1,4 +1,4 @@
-%global api_version 216
+%global api_version 217
 
 %ifarch %{ix86}
 %global _pkg_extra_ldflags "-Wl,-z,notext"
@@ -6,13 +6,13 @@
 
 Summary:    H.265/HEVC encoder
 Name:       x265
-Version:    4.2
+Version:    4.3
 Release:    1%{?dist}
 Epoch:      1
 URL:        http://x265.org/
 License:    GPL-2.0-or-later
 
-Source0:    https://bitbucket.org/multicoreware/%{name}_git/downloads/%{name}_%{version}.tar.gz
+Source0:    https://github.com/Multicorewareinc/%{name}/releases/download/%{version}/%{name}_%{version}.tar.gz
 Patch0:     %{name}-high-bit-depth-soname.patch
 Patch1:     %{name}-vmaf.patch
 Patch2:     %{name}-fix-aarch64-build.patch
