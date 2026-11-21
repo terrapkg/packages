@@ -83,7 +83,7 @@ Lomiri, Previously Unity8 is a convergent desktop environment built with Qt.
 #BuildArch: noarch
 
 #description doc
-#The {name}-doc package contains documenation files for {name}.
+#The {name}-doc package contains documentation files for {name}.
 
 %package tests
 Summary: Test files for %{name}

@@ -2,7 +2,7 @@
 %global _desc Wrapper package for OpenCV python bindings.
 
 Name:			python-%{pypi_name}
-Version:		5.0.0.93
+Version:		5.1.0.95
 Release:		1%{?dist}
 Summary:		Wrapper package for OpenCV python bindings
 License:		MIT

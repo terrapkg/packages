@@ -1,5 +1,5 @@
-%global commit 7e9cdb55b7d782231c0d827151d2a5620ae0255c
-%global commit_date 20261116
+%global commit 05e8808e84ed99b168b14a4025dddb9118fa1c17
+%global commit_date 20261121
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:			rpi-utils
@@ -344,7 +344,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 - Add new subpackages, tidy up
 
 * Tue Jan 13 2026 Owen Zimmerman <owen@fyralabs.com>
-- Seperate needed files into -devel packages, add more packages/files, install all files.
+- Separate needed files into -devel packages, add more packages/files, install all files.
 
 * Mon May 19 2025 Owen Zimmerman <owen@fyralabs.com>
 - Build shared libraries

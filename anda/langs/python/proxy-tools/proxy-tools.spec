@@ -1,10 +1,10 @@
 %global pypi_name proxy_tools
-%global _desc Simple (hopefuly useful) Proxy (as in the GoF design pattern) implementation for Python.
+%global _desc Simple (hopefully useful) Proxy (as in the GoF design pattern) implementation for Python.
 
 Name:			python-%{pypi_name}
 Version:		0.1.0
 Release:		3%?dist
-Summary:		Simple (hopefuly useful) Proxy (as in the GoF design pattern) implementation for Python
+Summary:		Simple (hopefully useful) Proxy (as in the GoF design pattern) implementation for Python
 License:		BSD-2-clause
 URL:			https://github.com/jtushman/proxy_tools
 Source0:		%{pypi_source}

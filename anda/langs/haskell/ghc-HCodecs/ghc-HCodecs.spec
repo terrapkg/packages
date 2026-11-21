@@ -132,4 +132,4 @@ This package provides the Haskell %{pkg_name} profiling library.
 
 %changelog
 * Sun Jun 21 2026 Owen Zimmerman <owen@fyralabs.com> - 0.5.2-1
-- Inital commit
+- Initial commit

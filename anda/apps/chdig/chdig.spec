@@ -32,4 +32,4 @@ install -Dm755 target/rpm/chdig %{buildroot}%{_bindir}/chdig
 
 %changelog
 * Fri Nov 14 2025 Owen Zimmerman <owen@fyralabs.com>
-- Intial Commit
+- Initial Commit

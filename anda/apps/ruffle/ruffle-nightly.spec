@@ -1,4 +1,4 @@
-%global ver 2026-11-17
+%global ver 2026-11-21
 %global goodver %(echo %ver | sed 's/-//g')
 %global __brp_mangle_shebangs %{nil}
 %bcond_without lld

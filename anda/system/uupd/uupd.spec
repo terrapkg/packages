@@ -1,7 +1,7 @@
 %global goipath github.com/ublue-os/%{name}
 
 Name:           uupd
-Version:        1.5.7
+Version:        1.5.8
 Release:        2%{?dist}
 Summary:        Centralized update service/checker made for Universal Blue
 License:        Apache-2.0
@@ -47,9 +47,13 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 %{_unitdir}/%{name}.timer
 %{_unitdir}/%{name}-manual.service
 %{_datadir}/polkit-1/rules.d/%{name}.rules
-%config(noreplace) %{_sysconfdir}/%{name}/config.json
+%ghost %config(noreplace) %{_sysconfdir}/%{name}/config.json
+%config(noreplace) %{_prefix}/lib/%{name}/config.json
 
 %changelog
+* Sat Nov 21 2026 renner <renner0@posteo.de> - 1.5.8-2
+- Adjust packaging for new config in /usr
+
 * Wed Oct 28 2026 Hec <hec@heccraft.com> - 1.5.7-2
 - Use %make_install and set the version in build
 

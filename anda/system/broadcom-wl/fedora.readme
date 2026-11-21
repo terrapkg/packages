@@ -47,7 +47,7 @@ It prevents "CTRL-EVENT-SCAN-FAILED ret=-22 retry=1" messages in logs and the in
 
 The tradeoff of this setting is that scanning for wireless access point uses only the real MAC address of the device and produces is less anonymous.
 
-To disable this setting, reate an empty file with the exact same name in /etc/NetworkManager/conf.d
+To disable this setting, create an empty file with the exact same name in /etc/NetworkManager/conf.d
 
 In a terminal, type:
 sudo touch /etc/NetworkManager/conf.d/90-broadcom-wl.conf

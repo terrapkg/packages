@@ -3,9 +3,9 @@
 %global debug_package %{nil}
 
 Name:           stud
-Version:        2.0.1
+Version:        2.0.5
 Release:        2%{?dist}
-Summary:        An Unofficial Open-Source Roblox Launcher for Linux
+Summary:        Play and create games on Roblox
 
 License:        AGPL-3.0-or-later
 URL:            https://github.com/CatPieLeaf/Stud
@@ -20,18 +20,21 @@ BuildRequires:  zstd
 Requires:       hicolor-icon-theme
 Requires:       SDL3 >= 3.4.0
 Requires:       libvulkan.so.1()(64bit)
+Requires:       libcrypto.so.3()(64bit)
+Requires:       libsecret-1.so.0()(64bit)
 Requires:       libavcodec-free
 Requires:       libavutil-free
 Requires:       gamemode
+Recommends:     hwdata
+Recommends:     wl-clipboard
 Suggests:       mangohud
+Requires:       wpewebkit
 
 Provides:       bundled(rosemary)
 Provides:       bundled(fidelityfx-fsr1)
 Provides:       bundled(snapdragon-gsr)
 Provides:       bundled(mpv-prescalers)
-Provides:       bundled(volk)
 Provides:       bundled(miniz)
-Provides:       bundled(json)
 
 %description
 Stud runs the real, unmodified Roblox macOS client on your Linux desktop, in
@@ -69,6 +72,46 @@ cp -a usr %{buildroot}/
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Fri Nov 20 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.5-1
+- New: Roblox's sign-in and web pages run on WPE WebKit, replacing QtWebEngine
+- New: notifications show as a Mac-style banner inside Roblox while it's fullscreen
+- Changed: new installs use the desktop's own title bar by default
+- Changed: much smaller packages
+- Changed: on Fedora without Terrapkg, the welcome page shows how to add WPE WebKit when it's missing
+- Fixed: Settings could save "No GPUs found" as the chosen GPU
+- Fixed: the buttons that open folders and links did nothing in the cpak container
+- Stud is now on Flathub
+
+* Thu Nov 19 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.4-1
+- Fixed: the GPU setting showed no GPUs on some systems
+- Fixed: Alt-Tab away from Roblox brought Roblox straight back to the front
+- Fixed: Roblox could crash right after leaving a game
+
+* Thu Nov 19 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.3-1
+- New: classic cursors (2006 and 2013), character sounds and avatar editor background, downloaded from Bloxstrap
+- New: a Code font setting, separate from the game font
+- New: your Roblox avatar in Discord Rich Presence, in games and on the home screen
+- New: Close Roblox when leaving a game
+- New: your Roblox login is kept in your system keyring between sessions
+- New: GPUs are listed by name even without Vulkan, so OpenGL players can pick one
+- Fixed: a custom font turned Chinese, Japanese and Korean text into empty boxes
+- Flatpak: no longer asks for Discord or controller access by default; Settings shows how to allow them
+- cpak: the tray's Copy server link works, once cpak has the tray fix
+
+* Tue Nov 17 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.2-1
+- Fixed: Stud didn't start at all on X11 (#36)
+- Fixed: a Roblox window behind other windows took over the cursor, and the home screen reacted, just from the mouse passing over it
+- Fixed: closing Roblox from the Linux title bar froze it and skipped Roblox's own leave screen
+- Fixed: a PlayStation controller pressed every button twice
+- Fixed: Roblox could freeze when leaving a game
+- New: Roblox's sign-in and Studio's web panels now open inside the Roblox window
+- New: a Studio tab in Settings, with Studio's own FastFlags and buttons for its Plugins and Documents folders
+- New: Discord Rich Presence for Studio
+- New: a Presentation setting with VSync, Adaptive VSync, No VSync without tearing, and No VSync
+- New: Ctrl works as Command in Studio, like Studio on Windows
+- Faster: Roblox's main thread gets a higher priority, and its memory uses huge pages
+- Faster: on AMD X3D CPUs, Roblox runs on the cores with the large cache
+
 * Sun Nov 15 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.1-1
 - Fixed: Roblox could close on its own every time you launched it after logging in
 - Fixed: Discord Rich Presence switched to "In the Roblox app" after a game teleported you, for example into a lobby

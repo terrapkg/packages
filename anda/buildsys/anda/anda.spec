@@ -3,7 +3,7 @@
 %global crate anda
 
 Name:           anda
-Version:        0.8.14
+Version:        0.8.17
 Release:        1%{?dist}
 Summary:        Andaman Build toolchain
 SourceLicense:  AGPL-3.0-or-later
@@ -27,7 +27,6 @@ Requires:       createrepo_c
 Requires:       git-core
 %if 0%{?fedora} >= 42
 Requires:       mock-filesystem
-Requires:       util-linux-script
 %endif
 Packager:       Terra Packaging Team <terra@fyralabs.com>
 
