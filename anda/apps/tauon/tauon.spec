@@ -1,3 +1,5 @@
+%define debug_package %{nil}
+
 %global _desc A music player for the desktop. Designed to be powerful and streamlined, putting the user in control of their music collection.
 
 %undefine __brp_mangle_shebangs
@@ -14,7 +16,9 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-wheel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pip
+BuildRequires:  python3-scikit-build-core
 BuildRequires:  gcc
+BuildRequires:  gcc-c++
 BuildRequires:  make
 BuildRequires:  flac-devel
 BuildRequires:  mpg123-devel
@@ -24,6 +28,7 @@ BuildRequires:  libsamplerate-devel
 BuildRequires:  libopenmpt-devel
 BuildRequires:  wavpack-devel
 BuildRequires:  game-music-emu-devel
+BuildRequires:  cmake(sdl3)
 
 Packager:	    Owen Zimmerman <owen@fyralabs.com>
 
@@ -52,18 +57,17 @@ Summary:        %{summary}
 install -Dm644 extra/tauonmb.desktop %{buildroot}%{_appsdir}/tauonmb.desktop
 install -Dm644 extra/tauonmb-symbolic.svg %{buildroot}%{_scalableiconsdir}/tauonmb-symbolic.svg
 install -Dm644 extra/tauonmb.svg %{buildroot}%{_scalableiconsdir}/tauonmb.svg
-install -Dm755 extra/tauonmb.sh %{buildroot}/opt/tauon/tauonmb.sh
+install -Dm644 extra/com.github.taiko2k.tauonmb.metainfo.xml %{buildroot}%{_metainfodir}/com.github.taiko2k.tauonmb.metainfo.xml
 
 %files -n python3-tauon -f %{pyproject_files} -f tauon.lang
 %doc README.md CHANGELOG.md CONTRIBUTING.md
 %license LICENSE
-%{_bindir}/tauonmb
-%{python3_sitearch}/phazor.cpython-*-linux-gnu.so
+%{_bindir}/tauon
 %dnl %{python3_sitearch}/phazor-pw.cpython-*-linux-gnu.so
 %{_appsdir}/tauonmb.desktop
 %{_scalableiconsdir}/tauonmb-symbolic.svg
 %{_scalableiconsdir}/tauonmb.svg
-/opt/tauon/tauonmb.sh
+%{_metainfodir}/com.github.taiko2k.tauonmb.metainfo.xml
 
 %changelog
 * Sat Mar 28 2026 Owen Zimmerman <owen@fyralabs.com>
