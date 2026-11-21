@@ -1,4 +1,4 @@
-%global api_version 216
+%global api_version 217
 
 %ifarch %{ix86}
 %global _pkg_extra_ldflags "-Wl,-z,notext"
@@ -6,7 +6,7 @@
 
 Summary:    H.265/HEVC encoder
 Name:       x265
-Version:    4.2
+Version:    4.3
 Release:    1%{?dist}
 Epoch:      1
 URL:        http://x265.org/
