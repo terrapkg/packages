@@ -12,6 +12,8 @@ URL:            https://crates.io/crates/cargo-binstall
 Source:         %{terra_crates_source}
 BuildSystem:    terra_cargo
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  pkgconfig(openssl)
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
