@@ -5,7 +5,7 @@
 %bcond tests 1
 
 Name:           ghc-%{pkg_name}
-Version:        5.0.2
+Version:        5.2.0
 Release:        1%{?dist}
 Summary:        Test discovery for the tasty framework
 
