@@ -57,6 +57,8 @@ BuildRequires:  libcurl-devel
 Requires: (%name-cli-compat-zfs if zfs else %name-cli)
 Suggests: %name-cli
 
+Packager:       Terra Packaging Team <terra@fyralabs.com>
+
 %description
 Code at the speed of thought - Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.
 
