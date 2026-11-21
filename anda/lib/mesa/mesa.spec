@@ -60,6 +60,7 @@
 %endif
 
 %if !0%{?rhel}
+%global with_gfxstream 1
 %global with_libunwind 1
 %global with_lmsensors 1
 %global with_virtio    1
@@ -71,7 +72,7 @@
 %bcond_with valgrind
 %endif
 
-%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}%{?with_d3d12:,microsoft-experimental}
+%global vulkan_drivers swrast%{?base_vulkan}%{?intel_platform_vulkan}%{?asahi_platform_vulkan}%{?extra_platform_vulkan}%{?with_nvk:,nouveau}%{?with_virtio:,virtio}%{?with_gfxstream:,gfxstream}%{?with_d3d12:,microsoft-experimental}
 
 %if 0%{?with_nvk} && 0%{?rhel}
 %global vendor_nvk_crates 1
@@ -103,11 +104,11 @@ Source1:        Mesa-MLAA-License-Clarification-Email.txt
 # https://gitlab.freedesktop.org/mesa/mesa/-/tree/main/subprojects
 # but we generally want the latest compatible versions
 %global rust_paste_ver 1.0.15
-%global rust_proc_macro2_ver 1.0.106
-%global rust_quote_ver 1.0.44
-%global rust_syn_ver 2.0.115
-%global rust_unicode_ident_ver 1.0.23
-%global rustc_hash_ver 2.1.1
+%global rust_proc_macro2_ver 1.0.107
+%global rust_quote_ver 1.0.47
+%global rust_syn_ver 2.0.119
+%global rust_unicode_ident_ver 1.0.26
+%global rustc_hash_ver 2.1.3
 Source10:       https://static.crates.io/crates/paste/paste-%{rust_paste_ver}.crate
 Source11:       https://static.crates.io/crates/proc-macro2/proc-macro2-%{rust_proc_macro2_ver}.crate
 Source12:       https://static.crates.io/crates/quote/quote-%{rust_quote_ver}.crate
@@ -120,7 +121,7 @@ Patch30:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs
 Patch31:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/radv-defaults.patch
 Patch32:        https://raw.githubusercontent.com/OpenGamingCollective/mesa/refs/tags/%{ver}/vram-overcommit.patch
 
-BuildRequires:  meson >= 1.3.0
+BuildRequires:  meson >= 1.4.0
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  gettext
@@ -139,7 +140,7 @@ BuildRequires:  pkgconfig(expat)
 BuildRequires:  pkgconfig(zlib) >= 1.2.3
 BuildRequires:  pkgconfig(libzstd)
 BuildRequires:  pkgconfig(wayland-scanner)
-BuildRequires:  pkgconfig(wayland-protocols) >= 1.34
+BuildRequires:  pkgconfig(wayland-protocols) >= 1.41
 BuildRequires:  pkgconfig(wayland-client) >= 1.11
 BuildRequires:  pkgconfig(wayland-server) >= 1.11
 BuildRequires:  pkgconfig(wayland-egl-backend) >= 3
@@ -180,7 +181,6 @@ BuildRequires:  xtensor-devel
 %endif
 %if 0%{?with_opencl} || 0%{?with_nvk} || 0%{?with_asahi} || 0%{?with_panfrost}
 BuildRequires:  clang-devel
-BuildRequires:  pkgconfig(libclc)
 BuildRequires:  pkgconfig(SPIRV-Tools)
 BuildRequires:  pkgconfig(LLVMSPIRVLib)
 %endif
@@ -194,7 +194,8 @@ BuildRequires:  cargo-rpm-macros
 %endif
 %if 0%{?with_opencl}
 BuildRequires:  libstdc++-static
-%endif 
+BuildRequires:  pkgconfig(libclc)
+%endif
 %if 0%{?with_nvk}
 BuildRequires:  cbindgen
 %endif
@@ -212,6 +213,9 @@ BuildRequires:  pkgconfig(vulkan)
 %endif
 %if 0%{?with_d3d12}
 BuildRequires:  pkgconfig(DirectX-Headers) >= 1.619.1
+%endif
+%if 0%{?with_virtio}
+BuildRequires:  venus-protocol-devel
 %endif
 
 %description
@@ -308,7 +312,7 @@ Provides:       libgbm-devel%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 %package libOpenCL
 Summary:        Mesa OpenCL runtime library
 Requires:       (ocl-icd%{?_isa} or OpenCL-ICD-Loader%{?_isa})
-Requires:       libclc%{?_isa}
+Requires:       (libclc22%{?_isa} or (libclc%{?_isa} >= 22 with libclc%{?_isa} < 23))
 Requires:       %{name}-libgbm%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Requires:       opencl-filesystem
 
@@ -347,6 +351,7 @@ Summary:        Mesa Vulkan drivers
 Requires:       vulkan%{_isa}
 Requires:       %{name}-filesystem%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
 Obsoletes:      mesa-vulkan-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      VK_hdr_layer < 1
 
 %description vulkan-drivers
 The drivers with support for the Vulkan API.
@@ -450,7 +455,7 @@ rewrite_wrap_file rustc-hash
   -Dgallium-rusticl=true \
 %endif
   -Dvulkan-drivers=%{?vulkan_drivers} \
-  -Dvulkan-layers=device-select,anti-lag \
+  -Dvulkan-layers=device-select \
   -Dgles1=enabled \
   -Dgles2=enabled \
   -Dopengl=true \
@@ -702,16 +707,19 @@ ln -s libGLX_mesa.so.0 %{buildroot}%{_libdir}/libGLX_system.so.0
 %{_datadir}/drirc.d/00-lavapipe-defaults.conf
 %{_libdir}/libVkLayer_MESA_device_select.so
 %{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_device_select.json
-%{_libdir}/libVkLayer_MESA_anti_lag.so
-%{_datadir}/vulkan/implicit_layer.d/VkLayer_MESA_anti_lag.json 
 %if 0%{?with_virtio}
 %{_libdir}/libvulkan_virtio.so
 %{_datadir}/vulkan/icd.d/virtio_icd.*.json
 %{_datadir}/drirc.d/00-venus-defaults.conf
 %endif
+%if 0%{?with_gfxstream}
+%{_libdir}/libvulkan_gfxstream.so
+%{_datadir}/vulkan/icd.d/gfxstream_vk_icd.*.json
+%endif
 %if 0%{?with_vulkan_hw}
 %{_libdir}/libvulkan_radeon.so
 %{_datadir}/drirc.d/00-radv-defaults.conf
+%{_datadir}/drirc.d/01-radv-performance.conf
 %{_datadir}/vulkan/icd.d/radeon_icd.*.json
 %if 0%{?with_nvk}
 %{_libdir}/libvulkan_nouveau.so
