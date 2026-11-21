@@ -32,6 +32,8 @@ BuildRequires:  ghc-tasty-prof
 %endif
 # End cabal-rpm deps
 %if %{with tests}
+BuildRequires: ghc-bytestring-devel
+BuildRequires: ghc-tasty-golden-devel
 BuildRequires: ghc-hedgehog-devel
 BuildRequires: ghc-hspec-devel
 BuildRequires: ghc-hspec-core-devel
@@ -93,6 +95,9 @@ This package provides the Haskell %{pkg_name} profiling library.
 # Begin cabal-rpm setup:
 %setup -q -n %{pkgver}
 # End cabal-rpm setup
+%if %{with tests}
+sed -i -E 's/^(common +tasty-quickcheck.*>= *[0-9.]+) *&& *< *[0-9.]+/\1/' %{pkg_name}.cabal
+%endif
 
 
 %build
