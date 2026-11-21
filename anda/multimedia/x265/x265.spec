@@ -12,7 +12,7 @@ Epoch:      1
 URL:        http://x265.org/
 License:    GPL-2.0-or-later
 
-Source0:    https://bitbucket.org/multicoreware/%{name}_git/downloads/%{name}_%{version}.tar.gz
+Source0:    https://github.com/Multicorewareinc/%{name}/releases/download/%{version}/%{name}_%{version}.tar.gz
 Patch0:     %{name}-high-bit-depth-soname.patch
 Patch1:     %{name}-vmaf.patch
 Patch2:     %{name}-fix-aarch64-build.patch
