@@ -5,7 +5,7 @@
 /* A clear and concise description of why you want this package. */
 
 ## Context
-/* Any additional background. */
+/* Add any other context about the package submission here. Link to any relavent issues. */
 
 ## Checklist
 - [] This package is maintained OR there is a valid reason to add it (e.g. python dependency)
