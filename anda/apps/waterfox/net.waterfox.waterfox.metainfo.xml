@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>net.waterfox.waterfox</id>
+  <name>Waterfox</name>
+  <summary>Private web browser</summary>
+  <developer id="works.browser">
+    <name>BrowserWorks</name>
+  </developer>
+  <metadata_license>FSFAP</metadata_license>
+  <project_license>MPL-2.0</project_license>
+  <branding>
+    <color type="primary" scheme_preference="light">#ebebf6</color>
+    <color type="primary" scheme_preference="dark">#14325d</color>
+  </branding>
+  <description>
+    <p>
+      Waterfox is a privacy-focused browser built for power users who value customization and control over their online experience. It pairs a privacy-first foundation with the kind of deep customization normally reserved for extensions and hidden flags.
+    </p>
+    <p>
+      Telemetry, experiments, analytics, and ad feeds are stripped out. DNS-over-HTTPS goes through an Oblivious HTTP relay, HTTPS-First is enforced, Global Privacy Control is declared, and cookie banners are rejected automatically when possible.
+    </p>
+    <p>
+      Layout controls move tab bars, bookmark bars, and status bars without touching userChrome.css, and Private Tabs let you flip any tab into an isolated session with its own history and cookies.
+    </p>
+  </description>
+  <launchable type="desktop-id">net.waterfox.waterfox.desktop</launchable>
+  <url type="homepage">https://www.waterfox.com/</url>
+  <url type="bugtracker">https://github.com/BrowserWorks/waterfox/issues</url>
+  <url type="help">https://www.waterfox.com/support/waterfox-help/</url>
+  <url type="donation">https://buymeacoffee.com/waterfox</url>
+  <url type="translate">https://github.com/BrowserWorks/l10n</url>
+  <url type="vcs-browser">https://github.com/BrowserWorks/waterfox</url>
+  <content_rating type="oars-1.1"/>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://www.waterfox.com/images/flathub/welcome.png</image>
+      <caption>Waterfox onboarding</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://www.waterfox.com/images/flathub/newtab_vertical.png</image>
+      <caption>Waterfox home page with vertical tabs</caption>
+    </screenshot>
+  </screenshots>
+  <keywords>
+    <keyword>internet</keyword>
+    <keyword>browser</keyword>
+    <keyword>web</keyword>
+  </keywords>
+</component>
