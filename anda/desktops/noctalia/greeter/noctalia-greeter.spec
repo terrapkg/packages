@@ -1,7 +1,7 @@
 Name:   	noctalia-greeter
 Version:	1.7.1
-Release:	1%{?dist}
-Summary:	A minimal login greeter for greetd that matches the look and feel of Noctalia Shell.
+Release:	2%{?dist}
+Summary:	A minimal login greeter for greetd that matches the look and feel of Noctalia Shell
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/%{name}
@@ -36,10 +36,15 @@ BuildRequires:  stb-devel
 %endif
 BuildRequires:  polkit
 BuildRequires:  wlroots-devel >= 0.20
+# Greeter user creation
+BuildRequires:  systemd-rpm-macros
 
 Requires:       dbus
 Requires:       greetd
 Requires:       wlroots >= 0.20
+Requires(post): greetd
+Requires(post): systemd-tmpfiles
+Recommends:     polkit
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -58,8 +63,6 @@ It lets you pick a user, enter your password, choose a Wayland session, and pick
 
 %install
 %meson_install
-# Delete the unneeded tmpfiles.d fallback configuration
-rm -f %{buildroot}%{_tmpfilesdir}/noctalia-greeter.conf
 install -d %{buildroot}%{_licensedir}/%{name}/third_party
 find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTICE*" \) | while read -r file; do
     # Create the destination subdirectory
@@ -69,8 +72,16 @@ find third_party -type f \( -name "LICENSE*" -o -name "COPYING*" -o -name "NOTIC
     install -p -m 0644 "$file" "$dest_dir/"
 done
 
+# Fedora uses the greetd user
+sed -i 's/ greeter greeter / greetd greetd /' %{buildroot}%{_tmpfilesdir}/%{name}.conf
+install -d %{buildroot}%{_sharedstatedir}/%{name}
+
+%post
+%tmpfiles_create %{name}.conf
+GREETER_USER=greetd %{_bindir}/%{name}-apply-appearance --setup-system || :
+
 %files
-%doc README.md
+%doc README.md docs/user/*
 %license LICENSE
 %{_licensedir}/%{name}/third_party/
 %{_bindir}/%{name}
@@ -81,8 +92,13 @@ done
 %{_bindir}/noctalia-greeter-xsession
 %{_datadir}/%{name}/*
 %{_datadir}/polkit-1/actions/org.noctalia.greeter.apply-appearance.policy
+%{_tmpfilesdir}/noctalia-greeter.conf
+%ghost %dir %attr(0750,greetd,greetd) %{_sharedstatedir}/%{name}
 
 %changelog
+* Sat Nov 21 2026 Owen Zimmerman <owen@fyralabs.com> - 1.7.1-2
+- Add %%{_tmpfilesdir}/noctalia-greeter.conf file properly
+
 * Tue Oct 20 2026 Cypress Reed <cypress@fyralabs.com>
 - Use stb-devel subpackages instead of metapackages (fedora removed it)
 
