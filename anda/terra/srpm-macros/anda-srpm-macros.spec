@@ -47,6 +47,7 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %{_rpmmacrodir}/macros.tauri
 %{_rpmmacrodir}/macros.webapps
 %{_rpmmacrodir}/macros.terra-buildsys
+%{_rpmmacrodir}/macros.holyc
 
 %changelog
 * Tue Oct 20 2026 Owen Zimmerman <owen@fyralabs.com> - 0.3.27-1 
