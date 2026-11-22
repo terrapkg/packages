@@ -37,6 +37,7 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %doc README.md
 %license LICENSE
 %{_rpmmacrodir}/macros.anda
+%{_rpmmacrodir}/macros.asm
 %{_rpmmacrodir}/macros.caching
 %{_rpmmacrodir}/macros.cargo_extra
 %{_rpmmacrodir}/macros.electron
