@@ -1,4 +1,5 @@
 %global giturl          https://github.com/BrowserWorks/waterfox
+%global commit          4416ccc3421edf75265e987fa8e693a2639322c4
 %global l10n_commit     022908fe5b6236c6746d5e2810c9f4f346dd518f
 %global appid           net.waterfox.waterfox
 %global name_pretty     Waterfox
@@ -158,6 +159,8 @@ ac_add_options --with-distribution-id=net.waterfox
 ac_add_options --with-l10n-base=\$topsrcdir/%{l10ndir}
 ac_add_options --enable-update-channel=release
 ac_add_options --without-onnx-runtime
+export MOZ_SOURCE_REPO=%{giturl}
+export MOZ_SOURCE_CHANGESET=%{commit}
 
 ac_add_options --enable-release
 ac_add_options --enable-optimize
