@@ -76,7 +76,7 @@ done
 %sysusers_create_compat %{SOURCE1}
 
 %files
-%doc README.md
+%doc README.md docs/user/*
 %license LICENSE
 %{_licensedir}/%{name}/third_party/
 %{_bindir}/%{name}
