@@ -43,6 +43,7 @@ Requires:       dbus
 Requires:       greetd
 Requires:       wlroots >= 0.20
 Requires(post): greetd
+Requires(post): systemd-tmpfiles
 Recommends:     polkit
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
