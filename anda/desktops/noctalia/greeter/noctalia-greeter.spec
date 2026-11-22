@@ -95,7 +95,7 @@ GREETER_USER=greetd %{_bindir}/%{name}-apply-appearance --setup-system || :
 %ghost %dir %attr(0750,greetd,greetd) %{_sharedstatedir}/%{name}
 
 %changelog
-* Sat Nov 21 2026 Owen Zimmerman <owen@fyralabs.com> - 1.7.1-1
+* Sat Nov 21 2026 Owen Zimmerman <owen@fyralabs.com> - 1.7.1-2
 - Add %%{_tmpfilesdir}/noctalia-greeter.conf file properly
 
 * Tue Oct 20 2026 Cypress Reed <cypress@fyralabs.com>
