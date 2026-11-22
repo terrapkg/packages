@@ -60,6 +60,7 @@ BuildRequires:  python3-setuptools
 BuildRequires:  nodejs
 BuildRequires:  zip
 BuildRequires:  unzip
+BuildRequires:  libstdc++-static
 
 BuildRequires:  pkgconfig(gtk+-3.0)
 BuildRequires:  pkgconfig(pango)
