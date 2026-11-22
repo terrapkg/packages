@@ -192,7 +192,7 @@ DESTDIR=%{buildroot} ./mach install
 
 test -f %{buildroot}%{lwdir}/librewolf.cfg
 test -f %{buildroot}%{lwdir}/distribution/policies.json
-test -f %{buildroot}%{lwdir}/defaults/pref/local-settings.js
+%{__install} -Dpm644 lw/local-settings.js %{buildroot}%{lwdir}/defaults/pref/local-settings.js
 
 %{__rm} -f %{buildroot}%{lwdir}/updater \
            %{buildroot}%{lwdir}/updater.ini \
