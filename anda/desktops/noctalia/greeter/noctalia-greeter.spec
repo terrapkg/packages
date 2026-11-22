@@ -1,7 +1,7 @@
 Name:   	noctalia-greeter
 Version:	1.7.1
 Release:	2%{?dist}
-Summary:	A minimal login greeter for greetd that matches the look and feel of Noctalia Shell.
+Summary:	A minimal login greeter for greetd that matches the look and feel of Noctalia Shell
 
 License:	MIT
 URL:		https://github.com/noctalia-dev/%{name}
