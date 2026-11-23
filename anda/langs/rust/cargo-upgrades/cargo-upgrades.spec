@@ -9,7 +9,7 @@ SourceLicense:          GPL-3.0-or-later
 License:                %{sourcelicense} AND (Apache-2.0 OR MIT) AND (MIT OR Zlib OR Apache-2.0) AND (0BSD OR MIT OR Apache-2.0) AND MIT AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND Unicode-3.0 AND GPL-3.0+ AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 URL:                    https://crates.io/crates/cargo-upgrades
 Source0:                %{terra_crates_source}
-Source1:                https://github.com/sundarnagarajan/licenses/blob/master/GPL-3.txt
+Source1:                https://www.gnu.org/licenses/gpl-3.0.txt
 BuildSystem:            terra_cargo
 BuildRequires:          cargo-rpm-macros
 BuildRequires:          pkgconfig(openssl)
