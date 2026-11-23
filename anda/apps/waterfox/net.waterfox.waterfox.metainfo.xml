@@ -6,7 +6,7 @@
   <developer id="works.browser">
     <name>BrowserWorks</name>
   </developer>
-  <metadata_license>FSFAP</metadata_license>
+  <metadata_license>CC0-1.0</metadata_license>
   <project_license>MPL-2.0</project_license>
   <branding>
     <color type="primary" scheme_preference="light">#ebebf6</color>
