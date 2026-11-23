@@ -2,11 +2,11 @@
 
 Name:           capnet-assist
 Version:        9.0.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Captive Network Assistant automatically opens to help you get connected
 License:        GPL-3.0-only
 URL:            https://github.com/elementary/capnet-assist
-Source0:        %url/archive/refs/tags/%version.tar.gz
+Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:  meson gettext vala desktop-file-utils
 BuildRequires:  pkgconfig(gcr-4)
 BuildRequires:  pkgconfig(gio-2.0)
@@ -18,13 +18,17 @@ BuildRequires:  pkgconfig(libadwaita-1) >= 1.0.0
 BuildRequires:  pkgconfig(webkitgtk-6.0)
 
 %description
-Log into captive portals—like Wi-Fi networks at coffee shops, airports, and trains—with ease. Captive Network Assistant automatically opens to help you get connected.
+Log into captive portals—like Wi-Fi networks at coffee shops, airports,
+and trains—with ease. Captive Network Assistant
+automatically opens to help you get connected.
 
 %prep
 %autosetup
 
-%build
+%conf
 %meson
+
+%build
 %meson_build
 
 %install
