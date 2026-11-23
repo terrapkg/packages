@@ -1,1 +1,3 @@
-rpm.version(gh_tag("timlau/yumex-ng"));
+let v = gh_tag("timlau/yumex-ng");
+v.crop(6); // `yumex.` prefix
+rpm.version(v);
