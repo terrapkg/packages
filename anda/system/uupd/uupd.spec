@@ -2,7 +2,7 @@
 
 Name:           uupd
 Version:        1.5.8
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Centralized update service/checker made for Universal Blue
 License:        Apache-2.0
 URL:            https://github.com/ublue-os/%{name}
@@ -35,9 +35,11 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 
 %post
 %systemd_post %{name}.service
+%systemd_post %{name}.timer
 
 %preun
 %systemd_preun %{name}.service
+%systemd_preun %{name}.timer
 
 %files
 %license LICENSE
@@ -51,6 +53,9 @@ Packager:       Tulip Blossom <tulilirockz@outlook.com>
 %config(noreplace) %{_prefix}/lib/%{name}/config.json
 
 %changelog
+* Mon Nov 23 2026 renner <renner0@posteo.de> - 1.5.8-3
+- Enable timer in %post
+
 * Sat Nov 21 2026 renner <renner0@posteo.de> - 1.5.8-2
 - Adjust packaging for new config in /usr
 
