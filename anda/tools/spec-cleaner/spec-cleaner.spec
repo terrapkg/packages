@@ -1,7 +1,7 @@
 %global pypi_name spec-cleaner
 
 Name:			%{pypi_name}
-Version:		1.3.1
+Version:		1.3.2
 Release:		1%{?dist}
 Summary:		Tool that cleans the given RPM spec file according to the style guide
 License:		BSD-3-Clause
