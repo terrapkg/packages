@@ -9,7 +9,9 @@ Version:        0.62.0
 Release:        1%{?dist}
 Summary:        Command-line application for interacting with git repositories
 
-License:        MIT OR Apache-2.0
+SourceLicense:  MIT OR Apache-2.0
+License:        ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND (CC0-1.0 OR MIT-0 OR Apache-2.0) AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (MIT OR Apache-2.0) AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT) AND Apache-2.0 AND CC0-1.0 AND ISC AND MIT AND MPL-2.0 AND Zlib
+
 URL:            https://crates.io/crates/gitoxide
 Source:         %{terra_crates_source}
 
@@ -28,6 +30,7 @@ Summary:        %{summary}
 %files       -n %{crate}
 %license LICENSE-APACHE
 %license LICENSE-MIT
+%license LICENSE.dependencies
 %doc README.md
 %{_bindir}/ein
 %{_bindir}/gix
@@ -167,6 +170,42 @@ use the "gitoxide-core-tools" feature of the "%{crate}" crate.
 %files       -n %{name}+gitoxide-core-tools-devel
 %ghost %{crate_instdir}/Cargo.toml
 
+%package     -n %{name}+gitoxide-core-tools-archive-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+gitoxide-core-tools-archive-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "gitoxide-core-tools-archive" feature of the "%{crate}" crate.
+
+%files       -n %{name}+gitoxide-core-tools-archive-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+gitoxide-core-tools-clean-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+gitoxide-core-tools-clean-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "gitoxide-core-tools-clean" feature of the "%{crate}" crate.
+
+%files       -n %{name}+gitoxide-core-tools-clean-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+gitoxide-core-tools-corpus-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+gitoxide-core-tools-corpus-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "gitoxide-core-tools-corpus" feature of the "%{crate}" crate.
+
+%files       -n %{name}+gitoxide-core-tools-corpus-devel
+%ghost %{crate_instdir}/Cargo.toml
+
 %package     -n %{name}+gitoxide-core-tools-query-devel
 Summary:        %{summary}
 BuildArch:      noarch
@@ -177,6 +216,18 @@ This package contains library source intended for building other packages which
 use the "gitoxide-core-tools-query" feature of the "%{crate}" crate.
 
 %files       -n %{name}+gitoxide-core-tools-query-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+hashes-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+hashes-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "hashes" feature of the "%{crate}" crate.
+
+%files       -n %{name}+hashes-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %package     -n %{name}+http-client-curl-devel
@@ -191,6 +242,30 @@ use the "http-client-curl" feature of the "%{crate}" crate.
 %files       -n %{name}+http-client-curl-devel
 %ghost %{crate_instdir}/Cargo.toml
 
+%package     -n %{name}+http-client-curl-openssl-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+http-client-curl-openssl-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "http-client-curl-openssl" feature of the "%{crate}" crate.
+
+%files       -n %{name}+http-client-curl-openssl-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+http-client-curl-rustls-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+http-client-curl-rustls-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "http-client-curl-rustls" feature of the "%{crate}" crate.
+
+%files       -n %{name}+http-client-curl-rustls-devel
+%ghost %{crate_instdir}/Cargo.toml
+
 %package     -n %{name}+http-client-reqwest-devel
 Summary:        %{summary}
 BuildArch:      noarch
@@ -201,18 +276,6 @@ This package contains library source intended for building other packages which
 use the "http-client-reqwest" feature of the "%{crate}" crate.
 
 %files       -n %{name}+http-client-reqwest-devel
-%ghost %{crate_instdir}/Cargo.toml
-
-%package     -n %{name}+is-terminal-devel
-Summary:        %{summary}
-BuildArch:      noarch
-
-%description -n %{name}+is-terminal-devel %{_description}
-
-This package contains library source intended for building other packages which
-use the "is-terminal" feature of the "%{crate}" crate.
-
-%files       -n %{name}+is-terminal-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %package     -n %{name}+lean-devel
@@ -323,16 +386,28 @@ use the "prodash-render-line-crossterm" feature of the "%{crate}" crate.
 %files       -n %{name}+prodash-render-line-crossterm-devel
 %ghost %{crate_instdir}/Cargo.toml
 
-%package     -n %{name}+prodash-render-tui-devel
+%package     -n %{name}+sha1-devel
 Summary:        %{summary}
 BuildArch:      noarch
 
-%description -n %{name}+prodash-render-tui-devel %{_description}
+%description -n %{name}+sha1-devel %{_description}
 
 This package contains library source intended for building other packages which
-use the "prodash-render-tui" feature of the "%{crate}" crate.
+use the "sha1" feature of the "%{crate}" crate.
 
-%files       -n %{name}+prodash-render-tui-devel
+%files       -n %{name}+sha1-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+sha256-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+sha256-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "sha256" feature of the "%{crate}" crate.
+
+%files       -n %{name}+sha256-devel
 %ghost %{crate_instdir}/Cargo.toml
 
 %package     -n %{name}+small-devel
@@ -347,12 +422,49 @@ use the "small" feature of the "%{crate}" crate.
 %files       -n %{name}+small-devel
 %ghost %{crate_instdir}/Cargo.toml
 
+%package     -n %{name}+tix-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+tix-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "tix" feature of the "%{crate}" crate.
+
+%files       -n %{name}+tix-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+tracing-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+tracing-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "tracing" feature of the "%{crate}" crate.
+
+%files       -n %{name}+tracing-devel
+%ghost %{crate_instdir}/Cargo.toml
+
+%package     -n %{name}+tracing-cpu-time-devel
+Summary:        %{summary}
+BuildArch:      noarch
+
+%description -n %{name}+tracing-cpu-time-devel %{_description}
+
+This package contains library source intended for building other packages which
+use the "tracing-cpu-time" feature of the "%{crate}" crate.
+
+%files       -n %{name}+tracing-cpu-time-devel
+%ghost %{crate_instdir}/Cargo.toml
+
 %prep
 %autosetup -n %{crate}-%{version_no_tilde} -p1
 %cargo_prep_online
+%{cargo_license_preamble_online}
 
 %build
-%cargo_build
+%{cargo_license} > LICENSE.dependencies
 
 %install
 %cargo_install
@@ -361,6 +473,3 @@ use the "small" feature of the "%{crate}" crate.
 %check
 %cargo_test
 %endif
-
-%changelog
-%autochangelog
