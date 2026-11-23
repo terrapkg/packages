@@ -226,7 +226,7 @@ done
 
 %files
 %license LICENSE
-%doc README.txt
+%doc README.md
 %{lwdir}/
 %{_bindir}/%{lw_app_name}
 %{_appsdir}/%{appid}.desktop
