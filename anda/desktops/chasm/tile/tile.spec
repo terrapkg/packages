@@ -20,9 +20,9 @@ x86_64 Linux, no libc, X11 wire protocol, single static binary.
 %autosetup -C
 
 %build
-nasm -g -f elf64 tile.asm -o tile.o
+%{__nasm} -g -f elf64 tile.asm -o tile.o
 %{__cc} -nostdlib -fuse-ld=lld -Wl,-z,muldefs %build_ldflags tile.o -o tile
-nasm -g -f elf64 strip.asm -o strip.o
+%{__nasm} -g -f elf64 strip.asm -o strip.o
 %{__cc} -nostdlib -fuse-ld=lld -Wl,-z,muldefs %build_ldflags strip.o -o strip
 
 
