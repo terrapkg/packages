@@ -2,7 +2,7 @@
 %global commit 8ce4f2635a3b8f52687ec34625c8027e18024fe9
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global commit_date 20261029
-%global ver .0.1
+%global ver 6.0.1
 
 Name:           rtaudio-nightly
 Version:        %{ver}^%{commit_date}.git.%{shortcommit}
