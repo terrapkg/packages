@@ -3,7 +3,7 @@ pbcli is a command line client which allows to upload and download pastes from p
 
 Name:           pbcli
 Version:        2.10.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A PrivateBin commandline upload and download utility
 SourceLicense:  Unlicense OR MIT
 License:        ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND (0BSD OR MIT OR Apache-2.0) AND (Apache-2.0 AND ISC) AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND BSD-3-Clause AND ISC AND (MIT OR Apache-2.0 OR Zlib) AND (MIT OR Apache-2.0) AND (MIT OR Zlib OR Apache-2.0) AND MIT AND MPL-2.0 AND (Unlicense OR MIT) AND (Zlib OR Apache-2.0 OR MIT)
@@ -24,10 +24,17 @@ Packager:       Gilver E. <roachy@fyralabs.com>
 
 %package        devel
 Summary:        Development libraries for %{name}
-Requires:       %{name}
+Requires:       %{name}%{?_isa} = %{evr}
 
 %description    devel
 This package contains the development files for %{name}.
+
+%package        static
+Summary:        Static development libraries for %{name}
+Requires:       %{name}%{?_isa} = %{evr}
+
+%description    static
+This package contains the static development files for %{name}.
 
 %prep
 %autosetup -n %{name}-%{version}
@@ -50,8 +57,10 @@ install -Dm644 target/rpm/lib%{name}.a %{buildroot}%{_libdir}/lib%{name}.a
 %{_bindir}/%{name}
 
 %files devel
-%{_libdir}/lib%{name}.a
 %{_libdir}/lib%{name}.so
+
+%files static
+%{_libdir}/lib%{name}.a
 
 %changelog
 * Sat Mar 14 2025 Gilver E. <rockgrub@disroot.org>
