@@ -1,1 +1,1 @@
-rpm.version(crates("cargo-updates"));
+rpm.version(crates("cargo-upgrades"));

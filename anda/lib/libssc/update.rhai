@@ -1,1 +1,1 @@
-rpm.version(codeberg("DylanVanAssche/libssc"));
+rpm.version(codeberg_tag("DylanVanAssche/libssc"));
