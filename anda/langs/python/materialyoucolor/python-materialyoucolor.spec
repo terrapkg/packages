@@ -2,7 +2,7 @@
 %bcond test 0
 
 Name:           python-%{pypi_name}
-Version:        3.0.4
+Version:        3.1.0
 Release:        1%{?dist}
 Summary:        Material You color generation algorithms in pure python!
 License:        MIT
