@@ -6,7 +6,7 @@
 
 Name:          holyc
 Version:       0.0.17~beta
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       HolyC compiler and transpiler
 License:       BSD-2-Clause
 URL:           https://holyc-lang.com
