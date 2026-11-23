@@ -30,11 +30,11 @@ Requires:       %{name}%{?_isa} = %{evr}
 This package contains the development files for %{name}.
 
 %package        static
-Summary:        Development libraries for %{name}
+Summary:        Static development libraries for %{name}
 Requires:       %{name}%{?_isa} = %{evr}
 
 %description    static
-This package contains the development files for %{name}.
+This package contains the static development files for %{name}.
 
 %prep
 %autosetup -n %{name}-%{version}
