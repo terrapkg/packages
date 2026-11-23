@@ -1,5 +1,5 @@
 Name:           cachyos-ananicy-rules
-Version:        1.1.49
+Version:        1.1.50
 Release:        1%{?dist}
 Summary:        List of rules used to assign specific nice values to specific processes
 
