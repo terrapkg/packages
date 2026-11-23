@@ -1,5 +1,5 @@
 %global goipath         github.com/cloudflare/cloudflared
-Version:                2026.11.1
+Version:                2026.11.2
 
 %undefine _debugsource_packages
 
