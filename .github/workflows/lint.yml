@@ -1,0 +1,194 @@
+name: Lint specs
+
+on:
+  pull_request:
+    branches: ["frawhide"]
+    paths:
+      - "**/*.spec"
+      - ".rpmspecfmt.toml"
+  workflow_dispatch:
+    inputs:
+      paths:
+        description: "Pathspecs to format, space separated. Leave empty to format the .spec files of the last commit."
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rpmspecfmt-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  format:
+    name: Format changed specs
+    # a fork's pull request has no SSH key or signing secret; "check" reports
+    # the diff instead
+    if: |
+      !startsWith(github.event.head_commit.message, 'style: format spec') &&
+      (github.event_name != 'pull_request' || github.event.pull_request.maintainer_can_modify)
+    runs-on: arc-runner-set
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+          fetch-depth: 0
+          ssh-key: ${{ secrets.SSH_AUTHENTICATION_KEY }}
+
+      - name: Install SSH signing key & Set up git repository
+        run: |
+          mkdir -p "${{ runner.temp }}"
+          echo "${{ secrets.SSH_SIGNING_KEY }}" > "${{ runner.temp }}/signing_key"
+          chmod 0700 "${{ runner.temp }}/signing_key"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Manifest
+        id: specs
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          BEFORE: ${{ github.event.before }}
+          PATHS: ${{ inputs.paths }}
+        run: |
+          list="$RUNNER_TEMP/rpmspecfmt-format.z"
+          .github/scripts/changed-specs.sh "$list"
+          mapfile -d '' -t specs < "$list"
+          echo "files=${#specs[@]}" >> "$GITHUB_OUTPUT"
+
+      - name: Format
+        if: steps.specs.outputs.files != '0'
+        run: |
+          set -euo pipefail
+          mapfile -d '' -t specs < "$RUNNER_TEMP/rpmspecfmt-format.z"
+          if [ "${#specs[@]}" -ne 0 ]; then
+            rpmspecfmt -vw "${specs[@]}"
+          fi
+
+      - name: Commit and push
+        if: steps.specs.outputs.files != '0'
+        env:
+          BRANCH: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- '*.spec'; then
+            echo "all specs formatted"
+            exit 0
+          fi
+          git config user.name "Raboneko"
+          git config user.email "raboneko@fyralabs.com"
+          git config gpg.format "ssh"
+          git config user.signingkey "${{ runner.temp }}/signing_key"
+          git add -- '*.spec'
+          git commit -S -m "style: format spec files with rpmspecfmt"
+          git push origin "HEAD:$BRANCH"
+
+  check:
+    name: Report formatting for a fork PR
+    if: github.event_name == 'pull_request' && !github.event.pull_request.maintainer_can_modify
+    runs-on: arc-runner-set
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up git repository
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Manifest
+        id: specs
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          list="$RUNNER_TEMP/rpmspecfmt-format.z"
+          .github/scripts/changed-specs.sh "$list"
+          mapfile -d '' -t specs < "$list"
+          echo "files=${#specs[@]}" >> "$GITHUB_OUTPUT"
+
+      - name: Show the formatting diff
+        if: steps.specs.outputs.files != '0'
+        run: |
+          set -euo pipefail
+          mapfile -d '' -t specs < "$RUNNER_TEMP/rpmspecfmt-format.z"
+          diff_file="$RUNNER_TEMP/rpmspecfmt.diff"
+          log_file="$RUNNER_TEMP/rpmspecfmt.log"
+          rc=0
+          rpmspecfmt -v --diff "${specs[@]}" > "$diff_file" 2> "$log_file" || rc=$?
+          if [ "$rc" -gt 1 ]; then
+            echo "::error::rpmspecfmt exited with $rc"
+            cat "$log_file"
+            exit "$rc"
+          fi
+          [ ! -s $diff_file ] && exit 0
+          {
+            echo "### rpmspecfmt formatting"
+            echo ""
+            echo "The pull request author did not grant write permissions to maintainers, and the spec files were not formatted. Please run `rpmspecfmt` or apply the following diff manually:"
+            echo ""
+            echo '```diff'
+            head -n 400 "$diff_file"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  lint:
+    name: rpmspecfmt
+    runs-on: arc-runner-set
+    container:
+      image: ghcr.io/terrapkg/builder:frawhide
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+      security-events: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Set up git repository
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Manifest
+        id: specs
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          PATHS: ${{ inputs.paths }}
+        run: |
+          list="$RUNNER_TEMP/rpmspecfmt-lint.z"
+          .github/scripts/changed-specs.sh "$list"
+          mapfile -d '' -t specs < "$list"
+          printf 'files=%s\n' "${#specs[@]}" >> "$GITHUB_OUTPUT"
+
+      - name: Lint
+        id: lint
+        if: steps.specs.outputs.files != '0'
+        run: |
+          set -euo pipefail
+          mapfile -d '' -t specs < "$RUNNER_TEMP/rpmspecfmt-lint.z"
+          sarif="$RUNNER_TEMP/rpmspecfmt.sarif"
+          rc=0
+          rpmspecfmt --lint --diagnostic-format sarif "${specs[@]}" > "$sarif" || rc=$?
+          if [ "$rc" -gt 1 ]; then
+            echo "::error::rpmspecfmt exited with $rc"
+            exit "$rc"
+          fi
+
+      - name: Upload to code scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@33d7b85da1a04171e211befe2c739303b9a4c066 # v4
+        with:
+          sarif_file: ${{ runner.temp }}/rpmspecfmt.sarif
+          category: rpmspecfmt
