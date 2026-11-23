@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <metadata_license>CC0-1.0</metadata_license>
+
+  <developer id="net.librewolf">
+    <name>LibreWolf Community</name>
+  </developer>
+
+  <description>
+    <p>
+      LibreWolf is a custom version of Firefox, focused on privacy, security
+      and freedom. It removes telemetry, ships uBlock Origin, and uses
+      hardened defaults.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">librewolf.desktop</launchable>
+  <icon type="local">/usr/share/icons/hicolor/128x128/apps/librewolf.png</icon>
+
+  <url type="homepage">https://librewolf.net</url>
+  <url type="bugtracker">https://codeberg.org/librewolf/issues/issues</url>
+  <url type="help">https://librewolf.net/docs/faq/</url>
+  <url type="vcs-browser">https://codeberg.org/librewolf/source</url>
+
+  <categories>
+    <category>Network</category>
+    <category>WebBrowser</category>
+  </categories>
+
+  <content_rating type="oars-1.1"/>
+</component>

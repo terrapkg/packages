@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+MOZ_DIST_BIN="__LIBDIR__/__APP_DIR__"
+MOZ_PROGRAM="$MOZ_DIST_BIN/__APP_FILE__"
+
+if [ ! -x "$MOZ_PROGRAM" ]; then
+	echo "Error: $MOZ_PROGRAM not found" >&2
+	exit 1
+fi
+
+export MOZ_APP_LAUNCHER="__PREFIX__/bin/__APP_NAME__"
+export MOZ_USE_XINPUT2=${MOZ_USE_XINPUT2-1}
+export NSS_SSL_CBC_RANDOM_IV=${NSS_SSL_CBC_RANDOM_IV-1}
+export MOZ_APP_REMOTINGNAME=${MOZ_APP_REMOTINGNAME-__APP_NAME__}
+export MOZ_ALLOW_DOWNGRADE=1
+
+exec "$MOZ_PROGRAM" "$@"
