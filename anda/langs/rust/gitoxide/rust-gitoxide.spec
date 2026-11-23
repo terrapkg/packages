@@ -473,3 +473,7 @@ use the "tracing-cpu-time" feature of the "%{crate}" crate.
 %check
 %cargo_test
 %endif
+
+%changelog
+* Mon Nov 23 2026 madonuko <madonuko@outlook.com> - 0.62.0-1
+- bump
