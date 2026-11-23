@@ -37,7 +37,7 @@ fn as_bodhi_ver(branch) {
         }
         return `EPEL-${release}`;
     } else if branch == "frawhide" {
-        return "F45";
+        return "F46";
     } else if branch.starts_with("f") {
         branch.crop(1);
         return `F${branch}`;
@@ -48,7 +48,7 @@ fn as_bodhi_ver(branch) {
 }
 
 fn bodhi(pkg, branch) {
-    let url = `https://bodhi.fedoraproject.org/updates/?search=${pkg}&status=stable&releases=${branch}&rows_per_page=1&page=1`;
+    let url = `https://bodhi.fedoraproject.org/updates/?packages=${pkg}&status=stable&releases=${branch}&rows_per_page=1&page=1`;
     for entry in get(url).json().updates[0].title.split(' ') {
         let matches = find_all(`${pkg}-([\d.]+)-(\d+)\.[\w\d]+$`, entry);
         //                             ──────── ───── .fc??
@@ -60,7 +60,7 @@ fn bodhi(pkg, branch) {
 }
 
 fn bodhi_vr(pkg, branch) {
-    let url = `https://bodhi.fedoraproject.org/updates/?search=${pkg}&status=stable&releases=${branch}&rows_per_page=1&page=1`;
+    let url = `https://bodhi.fedoraproject.org/updates/?packages=${pkg}&status=stable&releases=${branch}&rows_per_page=1&page=1`;
 
     for entry in get(url).header("Accept", "*/").json().updates[0].title.split(' ') {
         let matches = find_all(`${pkg}-([\d.]+)-(\d+)\.[\w\d]+$`, entry);
