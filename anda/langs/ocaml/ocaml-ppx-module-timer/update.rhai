@@ -1,1 +1,1 @@
-rpm.version(opam("ppx_module-timer"));
+rpm.version(opam("ppx_module_timer"));

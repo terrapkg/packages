@@ -30,11 +30,13 @@ jobs:
       - name: Set up git repository
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
-      # meson's macros are needed just to parse specs using its declarative
-      # BuildSystem, and the builder image doesn't ship them
-      - name: Install oglyad
+      # the builder image doesn't ship these macros, but parsing specs needs
+      # them. meson's for its declarative BuildSystem, and cargo-rpm-macros
+      # because anda-srpm-macros extends %__cargo_common_opts, which recurses
+      # forever when it's undefined
+      - name: Install packages
         run: |
-          dnf5 -y -q install oglyad meson
+          dnf5 -y -q install oglyad meson cargo-rpm-macros
           oglyad --version
 
       # spec evaluations, repodata and upstream answers carry over between
