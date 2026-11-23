@@ -1,4 +1,6 @@
 %global ver 0.0.17-beta-release
+# Must be redefined to let HolyC build libtos when using %%{build_hcflags}
+%global __hcc_install_prefix $LIBTOS_BUILDDIR
 %bcond test 1
 %bcond sqlite 1
 
@@ -20,6 +22,7 @@ BuildRequires: ripgrep
 BuildRequires: pkgconfig(sqlite3)
 Requires:      pkgconfig(sqlite3)
 %endif
+ExclusiveArch: %{holyc_arches}
 Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
@@ -67,22 +70,21 @@ cp -v ./holyc-lib/tos.HH -t $LIBTOS_BUILDDIR/include
 
 pushd holyc-lib
 $HCC \
-  --target=%{_target_cpu}-unknown-linux-gnu \
-  --install-dir="$LIBTOS_BUILDDIR" \
-  -fPIC -S -o "$SRCDIR/tos.s" ./all.HC
+  %{build_hcflags} \
+  -S -o "$SRCDIR/tos.s" ./all.HC
 popd
 
 %{__cc} \
-  $CFLAGS \
+  %{build_cflags} \
   -c ./tos.s -o ./tos.o
 
 %{__ar} \
   rcs "$LIBTOS_BUILDDIR/%{_lib}/libtos.a" ./tos.o
 
 %{__cc} \
-  $CFLAGS \
+  %{build_cflags} \
   -shared \
-  $LDFLAGS \
+  %{?build_ldflags} \
   -Wl,-Bsymbolic -Wl,-soname,libtos.so.0.0.1 \
   ./tos.o -o "$LIBTOS_BUILDDIR/%{_lib}/libtos.so.0.0.1" -lpthread -lc -lm
 
