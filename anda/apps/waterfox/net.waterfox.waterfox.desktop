@@ -1,0 +1,27 @@
+[Desktop Entry]
+Type=Application
+Name=Waterfox
+GenericName=Web Browser
+Comment=Private web browser built for power users
+Exec=waterfox %u
+Icon=net.waterfox.waterfox
+Terminal=false
+StartupNotify=true
+StartupWMClass=waterfox
+Categories=Network;WebBrowser;
+Keywords=Internet;WWW;Browser;Web;Explorer;Waterfox;
+X-MultipleArgs=false
+MimeType=application/json;application/pdf;application/rdf+xml;application/rss+xml;application/x-xpinstall;application/xhtml+xml;application/xml;audio/flac;audio/ogg;audio/webm;image/avif;image/gif;image/jpeg;image/jxl;image/png;image/svg+xml;image/webp;text/html;text/mml;text/xml;video/ogg;video/webm;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;
+Actions=new-window;new-private-window;profilemanager;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=waterfox --new-window %u
+
+[Desktop Action new-private-window]
+Name=New Private Window
+Exec=waterfox --private-window %u
+
+[Desktop Action profilemanager]
+Name=Profile Manager
+Exec=waterfox --ProfileManager
