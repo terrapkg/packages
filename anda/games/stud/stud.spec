@@ -3,8 +3,8 @@
 %global debug_package %{nil}
 
 Name:           stud
-Version:        2.0.5
-Release:        2%{?dist}
+Version:        2.0.6
+Release:        1%{?dist}
 Summary:        Play and create games on Roblox
 
 License:        AGPL-3.0-or-later
