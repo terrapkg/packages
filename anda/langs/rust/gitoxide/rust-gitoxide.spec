@@ -475,5 +475,5 @@ use the "tracing-cpu-time" feature of the "%{crate}" crate.
 %endif
 
 %changelog
-* Mon Nov 23 2026 madonuko <madonuko@outlook.com> - 0.62.0-1
+* Mon Nov 23 2026 madonuko <mado@fyralabs.com> - 0.62.0-1
 - bump
