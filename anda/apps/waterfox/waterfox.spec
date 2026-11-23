@@ -102,7 +102,7 @@ BuildRequires:  pciutils-libs
 Requires:       hicolor-icon-theme
 Requires:       xdg-utils
 
-Recommends:     ffmpeg-free
+Recommends:     (ffmpeg-free or ffmpeg)
 Recommends:     libva
 Recommends:     libnotify
 Recommends:     xdg-desktop-portal
