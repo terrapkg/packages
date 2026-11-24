@@ -3,7 +3,7 @@
 %global debug_package %{nil}
 
 Name:           stud
-Version:        2.0.6
+Version:        2.0.8
 Release:        1%{?dist}
 Summary:        Play and create games on Roblox
 
