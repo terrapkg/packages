@@ -4,7 +4,7 @@
 
 Name:           stud
 Version:        2.0.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Play and create games on Roblox
 
 License:        AGPL-3.0-or-later
@@ -22,8 +22,8 @@ Requires:       SDL3 >= 3.4.0
 Requires:       libvulkan.so.1()(64bit)
 Requires:       libcrypto.so.3()(64bit)
 Requires:       libsecret-1.so.0()(64bit)
-Requires:       libavcodec-free
-Requires:       libavutil-free
+Requires:       (libavcodec-free or ffmpeg-libs)
+Requires:       (libavutil-free or ffmpeg-libs)
 Requires:       gamemode
 Recommends:     hwdata
 Recommends:     wl-clipboard
@@ -72,6 +72,32 @@ cp -a usr %{buildroot}/
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Tue Nov 24 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.8-1
+- Fixed: the AppImage crashed when Roblox opened a web page, such as signing in
+- Fixed: frames jittered back and forth on older NVIDIA cards under Wayland (#39)
+- Changed: environment variables set in Settings now apply to Stud itself too
+- New: clicking the logo on the welcome screen shows another quote
+
+* Tue Nov 24 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.7-1
+- Fixed: the AppImage crashed when Roblox opened a web page, such as signing in
+- Fixed: frames jittered back and forth on older NVIDIA cards under Wayland (#39)
+- Changed: environment variables set in Settings now apply to Stud itself too
+- New: clicking the logo on the welcome screen shows another quote
+
+* Mon Nov 23 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.6-1
+- New: the Customizations page is redesigned, with previews and ready-made cursors, avatar backgrounds and emoji fonts
+- New: a setting to use jsDelivr's mirror instead of GitHub, and Stud falls back to the other host when one fails
+- Changed: smaller downloads for every package
+- Changed: the Flatpak sends notifications through the desktop portal and no longer asks for direct access to the notification service
+- Changed: the app icons fit Flathub's icon grid
+- Fixed: web pages showed no hand over links or i-beams on ext boxes, and text boxes could need several clicks
+- Fixed: the upscaler didn't work properly when the render resolution was below 100%%
+- Fixed: movement could stop or get stuck while turning the camera with right-click (#42)
+- Fixed: a gamescope launch wrapper couldn't start in the Flatpak
+- Fixed: folder buttons did nothing in the Flatpak (broken in 2.0.5) and in cpak (#38)
+- Fixed: Export logs and other file dialogs froze in cpak
+- Fixed: the rpm conflicted with RPM Fusion's FFmpeg (#39)
+
 * Fri Nov 20 2026 CatPieLeaf <catpieleaf@proton.me> - 2.0.5-1
 - New: Roblox's sign-in and web pages run on WPE WebKit, replacing QtWebEngine
 - New: notifications show as a Mac-style banner inside Roblox while it's fullscreen
