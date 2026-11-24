@@ -2,7 +2,7 @@
 %global _desc       Currency converter that uses historical rates against a reference currency.
 
 Name:			    python-%{pypi_name}
-Version:		    0.18.23
+Version:		    0.18.24
 Release:		    1%{?dist}
 Summary:		    Currency converter that uses historical rates against a reference currency
 License:		    Apache-2.0
