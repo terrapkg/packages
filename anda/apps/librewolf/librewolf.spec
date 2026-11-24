@@ -18,6 +18,12 @@
 
 %global toolchain clang
 
+%if 0%{?rhel}
+%bcond system_nss 0
+%else
+%bcond system_nss 1
+%endif
+
 Name:           librewolf
 Version:        160.0.1
 Release:        1%{?dist}
@@ -69,8 +75,10 @@ BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(nspr)
+%if %{with system_nss}
 BuildRequires:  pkgconfig(nss)
 BuildRequires:  nss-static
+%endif
 BuildRequires:  pkgconfig(libevent)
 BuildRequires:  pkgconfig(libffi)
 BuildRequires:  pkgconfig(libwebp)
@@ -154,7 +162,9 @@ ac_add_options --disable-bootstrap
 ac_add_options --enable-jxl
 
 ac_add_options --with-system-nspr
+%if %{with system_nss}
 ac_add_options --with-system-nss
+%endif
 ac_add_options --with-system-zlib
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-libvpx
