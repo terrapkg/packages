@@ -1,7 +1,7 @@
 %global appid   com.adilhanney.saber
 
 Name:           saber
-Version:        1.37.2
+Version:        1.38.0
 Release:        1%{?dist}
 Summary:        The cross-platform notes app built for handwriting
 License:        GPL-3.0-only
@@ -23,7 +23,6 @@ BuildRequires:  libsecret-devel
 BuildRequires:  ninja-build
 BuildRequires:  patchelf
 BuildRequires:  rustup
-BuildRequires:  webkit2gtk4.1-devel
 
 Requires:       jsoncpp
 Requires:       zenity
