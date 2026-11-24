@@ -4,9 +4,9 @@
 
 %global ver 0.1.12
 %global commit 0fcd5f90611451cca842689faea53b5450c022da
-%global date 20261122
-%global run 5111
-%global tag 0.1.12-nightly.20261122.5111
+%global date 20261124
+%global run 5191
+%global tag 0.1.12-nightly.20261124.5191
 %global electron_version %{ver}-nightly.%{date}.%{run}
 
 Name:           t3code-nightly
@@ -19,6 +19,7 @@ URL:            https://github.com/pingdotgg/t3code
 Source0:        %{url}/archive/refs/tags/v%{tag}.tar.gz
 Source1:        %{name}.desktop
 Source2:        %{appid}.metainfo.xml
+Patch0:         glibc-ceiling.patch
 
 BuildRequires:  cargo
 BuildRequires:  ImageMagick
@@ -65,7 +66,7 @@ T3 Code is a minimal web GUI for coding agents such as Codex, Claude Code,
 Cursor, and OpenCode.
 
 %prep
-%autosetup -n t3code-%{tag}
+%autosetup -p1 -n t3code-%{tag}
 for manifest in apps/server/package.json apps/desktop/package.json apps/web/package.json packages/contracts/package.json; do
   node -e 'const fs = require("fs"); const [file, version] = process.argv.slice(1); const pkg = JSON.parse(fs.readFileSync(file, "utf8")); pkg.version = version; fs.writeFileSync(file, JSON.stringify(pkg, null, 2) + "\n");' "$manifest" %{electron_version}
 done

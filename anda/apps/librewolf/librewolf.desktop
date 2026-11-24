@@ -1,0 +1,27 @@
+[Desktop Entry]
+Type=Application
+Name=LibreWolf
+GenericName=Web Browser
+Comment=Browse the web privately and securely
+Exec=librewolf %u
+Icon=librewolf
+Terminal=false
+StartupNotify=true
+StartupWMClass=librewolf
+Categories=Network;WebBrowser;
+Keywords=Internet;WWW;Browser;Web;Explorer;LibreWolf;Firefox;
+X-MultipleArgs=false
+MimeType=application/json;application/pdf;application/rdf+xml;application/rss+xml;application/x-xpinstall;application/xhtml+xml;application/xml;audio/flac;audio/ogg;audio/webm;image/avif;image/gif;image/jpeg;image/png;image/svg+xml;image/webp;text/html;text/mml;text/xml;video/ogg;video/webm;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/mailto;
+Actions=new-window;new-private-window;profilemanager;
+
+[Desktop Action new-window]
+Name=New Window
+Exec=librewolf --new-window %u
+
+[Desktop Action new-private-window]
+Name=New Private Window
+Exec=librewolf --private-window %u
+
+[Desktop Action profilemanager]
+Name=Profile Manager
+Exec=librewolf --ProfileManager

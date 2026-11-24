@@ -9,8 +9,8 @@
 %global _default_patch_fuzz 3
 
 Name:     terra-bluez
-Version:  5.87+1.git8750129efca8
-Release:  2%{?dist}
+Version:  5.88
+Release:  1%{?dist}
 Packager: Kyle Gospodnetich <me@kylegospodneti.ch>
 Summary:  Bluetooth utilities
 License:  GPL-2.0-or-later
