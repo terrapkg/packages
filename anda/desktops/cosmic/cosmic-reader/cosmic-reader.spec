@@ -1,5 +1,5 @@
-%global commit 208c76f08199c19629efed630ca78aea2149a6e9
-%global commit_date 20261020
+%global commit 34e36871d628cb35db7dcf89d6066593c2568382
+%global commit_date 20261124
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 %global appid com.system76.CosmicReader

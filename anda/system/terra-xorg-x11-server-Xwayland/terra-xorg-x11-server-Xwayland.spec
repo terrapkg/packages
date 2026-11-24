@@ -8,8 +8,8 @@
 
 Summary:   Xwayland with gaming patches
 Name:      terra-xorg-x11-server-Xwayland
-Version:   24.1.13
-Release:   3%{?dist}
+Version:   26.0.99.904
+Release:   1%{?dist}
 Packager:  Kyle Gospodnetich <me@kylegospodneti.ch>
 
 URL:       http://www.x.org

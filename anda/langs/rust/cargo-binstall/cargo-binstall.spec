@@ -3,7 +3,7 @@
 %undefine __brp_mangle_shebangs
 
 Name:           cargo-binstall
-Version:        1.27.0
+Version:        1.28.0
 Release:        1%{?dist}
 Summary:        Binary installation for rust projects
 SourceLicense:  GPL-3.0-only
@@ -12,6 +12,8 @@ URL:            https://crates.io/crates/cargo-binstall
 Source:         %{terra_crates_source}
 BuildSystem:    terra_cargo
 BuildRequires:  cargo-rpm-macros
+BuildRequires:  cmake
+BuildRequires:  pkgconfig(openssl)
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 %description
