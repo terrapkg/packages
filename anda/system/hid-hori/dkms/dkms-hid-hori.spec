@@ -2,7 +2,7 @@
 %global modulename hid-hori
 
 Name:           dkms-%{modulename}
-Version:        0.0.7staging
+Version:        0.0.8
 Release:        1%{?dist}
 Summary:        HORI Truck Control System kernel module (DKMS)
 License:        GPL-2.0-only
