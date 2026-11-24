@@ -1,6 +1,6 @@
 Name:           discord
 Version:        1.0.171
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Free Voice and Text Chat for Gamers
 URL:            https://discord.com
 Source0:        https://dl.discordapp.net/apps/linux/%{version}/%{name}-%{version}.tar.gz
@@ -25,6 +25,7 @@ both your desktop and phone.
 install -Dpm755 updater_bootstrap -t %{buildroot}%{_datadir}/%{name}
 install -Dpm755 %{name} -t %{buildroot}%{_bindir}
 install -Dpm644 %{name}.png -t %{buildroot}%{_datadir}/pixmaps
+install -Dpm644 launcher.conf %{buildroot}%{_bindir}/launcher.conf
 %desktop_file_install %{name}.desktop
 cp %{SOURCE1} -t .
 
