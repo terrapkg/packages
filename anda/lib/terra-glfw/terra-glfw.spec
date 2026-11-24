@@ -1,7 +1,7 @@
 Name:           terra-glfw
 %global cleanarch %(echo %{_arch} | sed 's/_/-/g')
 %global _default_patch_fuzz 3
-Version:        2.7.0
+Version:        3.4
 Release:        1%{?dist}
 Epoch:          1
 Summary:        A multi-platform library for OpenGL, OpenGL ES, Vulkan, window and input (wayland, patched for Minecraft)
