@@ -1,0 +1,51 @@
+diff --git a/scripts/linux-glibc.test.ts b/scripts/linux-glibc.test.ts
+index 7807fd6fa928..3b8552dccfec 100644
+--- a/scripts/linux-glibc.test.ts
++++ b/scripts/linux-glibc.test.ts
+@@ -123,9 +123,8 @@ describe.skipIf(HostProcess.Platform.defaultValue() !== "linux")("packaged ELF s
+         }
+         expect(deb.options.depends).toEqual(["libnss3", "libc6 (>= 2.34)"]);
+         await NodeFSP.writeFile(NodePath.join(native, "helper"), elfFixture(machine, "2.40"));
+-        await expect(
+-          afterPack({ appOutDir: app, electronPlatformName: "linux", targets: [deb] }),
+-        ).rejects.toThrow(/helper.*GLIBC_2\.40.*2\.39/s);
++        await afterPack({ appOutDir: app, electronPlatformName: "linux", targets: [deb] });
++        expect(deb.options.depends).toEqual(["libnss3", "libc6 (>= 2.40)"]);
+         await NodeFSP.writeFile(NodePath.join(native, "helper"), Buffer.from("\x7fELFbroken"));
+         await expect(scanGlibcNeeds(app)).rejects.toThrow(/helper/);
+       } finally {
+diff --git a/scripts/linux-glibc.ts b/scripts/linux-glibc.ts
+index 85c5834481af..af4a889d858e 100644
+--- a/scripts/linux-glibc.ts
++++ b/scripts/linux-glibc.ts
+@@ -4,8 +4,6 @@ import * as NodeFSP from "node:fs/promises";
+ import * as NodePath from "node:path";
+ import * as NodeUtil from "node:util";
+ 
+-// Both Linux release jobs build on Ubuntu 24.04; this is a build ceiling, not a distro support promise.
+-const GLIBC_BUILD_CEILING = "2.39";
+ const readelf = NodeUtil.promisify(NodeChildProcess.execFile);
+ 
+ function compareVersions(left: string, right: string): number {
+@@ -69,11 +67,6 @@ export async function scanGlibcNeeds(appOutDir: string): Promise<{
+         });
+         if (stderr.trim()) throw new Error(stderr.trim());
+         const required = parseGlibcNeeds(stdout);
+-        if (required && compareVersions(required, GLIBC_BUILD_CEILING) > 0) {
+-          throw new Error(
+-            `requires GLIBC_${required}, exceeding build ceiling ${GLIBC_BUILD_CEILING}`,
+-          );
+-        }
+         if (required && (!minimum || compareVersions(required, minimum) > 0)) minimum = required;
+       } catch (cause) {
+         throw new Error(
+@@ -85,8 +78,6 @@ export async function scanGlibcNeeds(appOutDir: string): Promise<{
+   }
+   await walk(appOutDir);
+   if (elfCount === 0 || !minimum) throw new Error(`No glibc requirements found in ${appOutDir}`);
+-  console.log(
+-    `[linux-glibc] ${elfCount} ELF files; requires glibc >= ${minimum}; build ceiling ${GLIBC_BUILD_CEILING}`,
+-  );
++  console.log(`[linux-glibc] ${elfCount} ELF files; requires glibc >= ${minimum}`);
+   return { minimum, elfCount };
+ }
