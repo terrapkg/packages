@@ -32,6 +32,7 @@ cp %{SOURCE1} -t .
 %files
 %license terms.html
 %{_bindir}/%{name}
+%{_bindir}/launcher.conf
 %{_datadir}/%{name}/
 %{_appsdir}/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
