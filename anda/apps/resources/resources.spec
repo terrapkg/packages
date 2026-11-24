@@ -4,7 +4,7 @@ Release:        1%{?dist}
 Summary:        Keep an eye on system resources
 License:        GPL-3.0-or-later
 URL:            https://gitlab.gnome.org/GNOME/Incubator/resources
-Source0:        %{url}/-/archive/v%{version}/resources-v%{version}.tar.gz
+Source0:        %{url}/-/archive/%{version}/resources-%{version}.tar.gz
 Packager:       Owen Zimmerman <owen@fyralabs.com>
 
 BuildRequires:  meson
@@ -14,6 +14,7 @@ BuildRequires:  ninja-build
 BuildRequires:  desktop-file-utils
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:  pkgconfig(libsoup-3.0)
 
 Requires:         cairo
 Requires:         graphene
@@ -38,7 +39,7 @@ balanced user interface — showing you most of the information most
 of you need most of the time.
 
 %prep
-%autosetup -n %{name}-v%{version}
+%autosetup -n %{name}-%{version}
 
 %conf
 %meson
@@ -57,14 +58,17 @@ of you need most of the time.
 %{_libexecdir}/resources/resources-adjust
 %{_libexecdir}/resources/resources-kill
 %{_libexecdir}/resources/resources-processes
-%{_appsdir}/net.nokyan.Resources.Devel.desktop
-%{_datadir}/glib-2.0/schemas/net.nokyan.Resources.Devel.gschema.xml
-%{_datadir}/polkit-1/actions/net.nokyan.Resources.Devel.policy
+%{_appsdir}/org.gnome.Resources.desktop
+%{_datadir}/glib-2.0/schemas/org.gnome.Resources.gschema.xml
+%{_datadir}/polkit-1/actions/org.gnome.Resources.policy
 %{_datadir}/resources/resources.gresource
-%{_scalableiconsdir}/net.nokyan.Resources.Devel.svg
-%{_hicolordir}/symbolic/apps/net.nokyan.Resources.Devel-symbolic.svg
-%{_metainfodir}/net.nokyan.Resources.Devel.metainfo.xml
+%{_scalableiconsdir}/org.gnome.Resources.svg
+%{_hicolordir}/symbolic/apps/org.gnome.Resources-symbolic.svg
+%{_metainfodir}/org.gnome.Resources.metainfo.xml
 
 %changelog
+* Mon Nov 13 2026 Dave Vasilevsky <dave@vasilevsky.ca>
+- Update for version 51.0
+
 * Sat May 16 2026 Owen Zimmerman <owen@fyralabs.com>
 - Initial commit
