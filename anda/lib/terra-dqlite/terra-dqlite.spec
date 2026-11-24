@@ -1,7 +1,7 @@
 # Ported from Terra due to orphaning, only lxd from Terra will dep on it
 # Remove this package ASAP if fedora adds it back
 Name:           terra-dqlite
-Version:        1.18.7
+Version:        1.18.8
 Release:        1%{?dist}
 Summary:        Embeddable, replicated and fault tolerant SQL engine
 
