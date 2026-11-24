@@ -1,10 +1,12 @@
 %global ver 0.0.17-beta-release
+# Must be redefined to let HolyC build libtos when using %%{build_hcflags}
+%global __hcc_install_prefix $LIBTOS_BUILDDIR
 %bcond test 1
 %bcond sqlite 1
 
 Name:          holyc
 Version:       0.0.17~beta
-Release:       2%{?dist}
+Release:       4%{?dist}
 Summary:       HolyC compiler and transpiler
 License:       BSD-2-Clause
 URL:           https://holyc-lang.com
@@ -20,11 +22,20 @@ BuildRequires: ripgrep
 BuildRequires: pkgconfig(sqlite3)
 Requires:      pkgconfig(sqlite3)
 %endif
+Requires:      %{name}-static%{?_isa} = %{evr}
+ExclusiveArch: %{holyc_arches}
 Packager:      Gilver E. <roachy@fyralabs.com>
 
 %description
 HolyC is a fun recreational programming language designed by Terry A. Davis.
 Originally implemented in TempleOS as a general purpose programming language and scripting language for all manner of tasks.
+
+%package       static
+Summary:       Static libraries for %{name}
+Requires:      %{name}%{?_isa} = %{evr}
+
+%description   static
+This package contains the static files for %{name}.
 
 %prep
 # Currently needed to fetch the commit hash for hcc --version
@@ -67,22 +78,21 @@ cp -v ./holyc-lib/tos.HH -t $LIBTOS_BUILDDIR/include
 
 pushd holyc-lib
 $HCC \
-  --target=%{_target_cpu}-unknown-linux-gnu \
-  --install-dir="$LIBTOS_BUILDDIR" \
-  -fPIC -S -o "$SRCDIR/tos.s" ./all.HC
+  %{build_hcflags} \
+  -S -o "$SRCDIR/tos.s" ./all.HC
 popd
 
 %{__cc} \
-  $CFLAGS \
+  %{build_cflags} \
   -c ./tos.s -o ./tos.o
 
 %{__ar} \
   rcs "$LIBTOS_BUILDDIR/%{_lib}/libtos.a" ./tos.o
 
 %{__cc} \
-  $CFLAGS \
+  %{build_cflags} \
   -shared \
-  $LDFLAGS \
+  %{?build_ldflags} \
   -Wl,-Bsymbolic -Wl,-soname,libtos.so.0.0.1 \
   ./tos.o -o "$LIBTOS_BUILDDIR/%{_lib}/libtos.so.0.0.1" -lpthread -lc -lm
 
@@ -107,9 +117,11 @@ $HCC --version | /usr/bin/grep -C5 'binary: /usr/bin/hcc'
 %license ../COPYING
 %doc ../README.md
 %{_bindir}/hcc
-%{_libdir}/libtos.a
 %{_libdir}/libtos.so.0.0.1
 %{_includedir}/tos.HH
+
+%files static
+%{_libdir}/libtos.a
 
 %changelog
 * Sat Jul 4 2026 Gilver E. <roachy@fyralabs.com> - 0.0.14~beta-1

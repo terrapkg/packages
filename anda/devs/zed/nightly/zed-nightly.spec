@@ -1,6 +1,6 @@
-%global commit 7279c76ef71d45504d7cfea00ee054f852ca0fbf
+%global commit f62114596325320f5af71399e441cdb76bb9473b
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global commit_date 20261120
+%global commit_date 20261123
 %global ver 1.31.0
 
 %bcond_with check
@@ -63,6 +63,8 @@ BuildRequires:  rustup
 BuildRequires:  vulkan-loader
 Requires: (%name-cli-compat-zfs if zfs else %name-cli)
 Suggests: %name-cli
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 Code at the speed of thought - Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.

@@ -7,7 +7,7 @@
 %global debug_package %{nil}
 %endif
 
-%global ver 1.30.1-pre
+%global ver 1.30.2-pre
 # Exclude input files from mangling
 %global __brp_mangle_shebangs_exclude_from ^/usr/src/.*$
 
@@ -55,6 +55,8 @@ BuildRequires:  perl-lib
 BuildRequires:  vulkan-loader
 Requires: (%name-cli-compat-zfs if zfs else %name-cli)
 Suggests: %name-cli
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 Code at the speed of thought - Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.

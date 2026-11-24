@@ -3,6 +3,6 @@ project pkg {
     spec = "ghc-generic-lens.spec"
   }
   labels {
-    oglyad-ignore = "no-autoupdate"
+    oglyad_ignore = "no-autoupdate"
   }
 }

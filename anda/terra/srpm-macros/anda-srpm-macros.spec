@@ -1,13 +1,13 @@
 Name:           anda-srpm-macros
-Version:        0.4.10
-Release:        1%{?dist}
+Version:        0.4.14
+Release:        2%{?dist}
 Summary:        SRPM macros for extra Fedora packages
 
 License:        GPL-3.0-or-later
 URL:            https://github.com/terrapkg/srpm-macros
 Source0:        %url/archive/refs/tags/v%{version}.tar.gz
 
-Recommends:     rust-packaging
+Requires:       cargo-rpm-macros
 Requires:       git-core
 %if %{defined fedora}
 Requires:       toml-cli
@@ -37,6 +37,7 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %doc README.md
 %license LICENSE
 %{_rpmmacrodir}/macros.anda
+%{_rpmmacrodir}/macros.asm
 %{_rpmmacrodir}/macros.caching
 %{_rpmmacrodir}/macros.cargo_extra
 %{_rpmmacrodir}/macros.electron
@@ -47,6 +48,7 @@ install -Dpm755 *.sh -t %buildroot%_libexecdir/%name/
 %{_rpmmacrodir}/macros.tauri
 %{_rpmmacrodir}/macros.webapps
 %{_rpmmacrodir}/macros.terra-buildsys
+%{_rpmmacrodir}/macros.holyc
 
 %changelog
 * Tue Oct 20 2026 Owen Zimmerman <owen@fyralabs.com> - 0.3.27-1 

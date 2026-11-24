@@ -17,7 +17,7 @@
 %global rustflags_debuginfo 0
 
 Name:           zed
-Version:        1.29.2
+Version:        1.29.3
 Release:        1%{?dist}
 Summary:        Zed is a high-performance, multiplayer code editor
 SourceLicense:  Apache-2.0 AND GPL-3.0-or-later
@@ -56,6 +56,8 @@ BuildRequires:  vulkan-loader
 BuildRequires:  libcurl-devel
 Requires: (%name-cli-compat-zfs if zfs else %name-cli)
 Suggests: %name-cli
+
+Packager:       Terra Packaging Team <terra@fyralabs.com>
 
 %description
 Code at the speed of thought - Zed is a high-performance, multiplayer code editor from the creators of Atom and Tree-sitter.
