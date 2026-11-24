@@ -28,6 +28,10 @@ BuildRequires:  pkgconfig(gbm)
 BuildRequires:  pkgconfig(nlohmann_json)
 BuildRequires:  pkgconfig(gtk4)
 BuildRequires:  pkgconfig(libei-1.0)
+BuildRequires:  pkgconfig(epoxy)
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  dbus-daemon
+BuildRequires:  stb_image_resize2-devel
 BuildRequires:  systemd-rpm-macros
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
@@ -67,6 +71,7 @@ sed -i "s/'unknown'/'%{shortcommit}'/g" meson.build
 %{_libexecdir}/xdg-desktop-portal-umbriel
 %{_datadir}/dbus-1/services/org.freedesktop.impl.portal.desktop.umbriel.service
 %{_datadir}/xdg-desktop-portal/portals/umbriel.portal
+%{_datadir}/xdg-desktop-portal-umbriel/assets/fonts/
 %config %{_datadir}/xdg-desktop-portal/umbriel-portals.conf
 
 %changelog
