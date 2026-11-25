@@ -19,5 +19,6 @@ Provides:       dive = %{evr}
 %license LICENSE
 %_bindir/dive
 
+%changelog
 * Sat Nov 21 2026 Owen Zimmerman <owen@fyralabs.com> - 0.1.5-1
 - Switch to BuildSystem
