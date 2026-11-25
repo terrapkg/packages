@@ -20,12 +20,12 @@
 
 %global toolchain clang
 
-%if 0%{?rhel}
+%if %{defined rhel}
 %global _wf_cargo_home  %{_builddir}/.waterfox-cargo
 %global _wf_rustup_home %{_builddir}/.waterfox-rustup
 %endif
 
-%if 0%{?rhel}
+%if %{defined rhel}
 %bcond system_nss 0
 %else
 %bcond system_nss 1
@@ -144,7 +144,7 @@ available in the settings.
 
 echo '%{version}' > browser/config/version_display.txt
 
-%if 0%{?rhel}
+%if %{defined rhel}
 %{__rm} -rf %{_wf_cargo_home} %{_wf_rustup_home}
 /usr/bin/env CARGO_HOME=%{_wf_cargo_home} RUSTUP_HOME=%{_wf_rustup_home} \
     RUSTUP_INIT_SKIP_PATH_CHECK=yes RUSTUP_TERM_PROGRESS_WHEN=never \
@@ -152,7 +152,7 @@ echo '%{version}' > browser/config/version_display.txt
 %endif
 
 %build
-%if 0%{?rhel}
+%if %{defined rhel}
 export CARGO_HOME="%{_wf_cargo_home}"
 export RUSTUP_HOME="%{_wf_rustup_home}"
 export PATH="%{_wf_cargo_home}/bin:$PATH"
