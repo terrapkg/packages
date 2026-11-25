@@ -21,6 +21,10 @@
 %global toolchain clang
 
 %if 0%{?rhel}
+%global _cargo_home %{_builddir}/.cargo
+%endif
+
+%if 0%{?rhel}
 %bcond system_nss 0
 %else
 %bcond system_nss 1
