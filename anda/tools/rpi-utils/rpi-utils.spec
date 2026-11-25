@@ -321,7 +321,7 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %files rpi-pmic
 %{_bindir}/rpi-pmic
 %doc rpi-pmic/README.md
-%license LICENSE
+%license LICENCE
 
 %files splashasm
 %license LICENCE
