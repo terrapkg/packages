@@ -21,7 +21,8 @@
 %global toolchain clang
 
 %if 0%{?rhel}
-%global _cargo_home %{_builddir}/.cargo
+%global _wf_cargo_home  %{_builddir}/.waterfox-cargo
+%global _wf_rustup_home %{_builddir}/.waterfox-rustup
 %endif
 
 %if 0%{?rhel}
@@ -144,14 +145,17 @@ available in the settings.
 echo '%{version}' > browser/config/version_display.txt
 
 %if 0%{?rhel}
-%vendor_rust -t stable
+%{__rm} -rf %{_wf_cargo_home} %{_wf_rustup_home}
+/usr/bin/env CARGO_HOME=%{_wf_cargo_home} RUSTUP_HOME=%{_wf_rustup_home} \
+    RUSTUP_INIT_SKIP_PATH_CHECK=yes RUSTUP_TERM_PROGRESS_WHEN=never \
+    rustup-init --default-toolchain stable --profile minimal -y --no-modify-path
 %endif
 
 %build
 %if 0%{?rhel}
-export CARGO_HOME="%{_cargo_home}"
-export RUSTUP_HOME="%{_rustup_home}"
-export PATH="%{_cargo_home}/bin:$PATH"
+export CARGO_HOME="%{_wf_cargo_home}"
+export RUSTUP_HOME="%{_wf_rustup_home}"
+export PATH="%{_wf_cargo_home}/bin:$PATH"
 %endif
 export MOZBUILD_STATE_PATH="%{_builddir}/mozbuild"
 export MOZ_NOSPAM=1
