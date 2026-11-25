@@ -1,3 +1,5 @@
 project pkg {
-  spec = "hylki.spec"
+  rpm {
+    spec = "hylki.spec"
+  }
 }
