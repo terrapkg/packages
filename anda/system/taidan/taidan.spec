@@ -4,8 +4,8 @@
 %global proc_macros_commit 7306a90996eaa89284f3e271dbb04152e3eedf96
 
 Name:           taidan
-Version:        1.0.4
-Release:        2%{?dist}
+Version:        1.0.5
+Release:        1%{?dist}
 Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 # https://scancode-licensedb.aboutcode.org/unsplash
 SourceLicense:  GPL-3.0-or-later AND GPL-2.0-or-later AND MIT AND LicenseRef-scancode-unsplash
@@ -109,6 +109,7 @@ install -d %buildroot%{_sharedstatedir}/taidan
 %{_datadir}/taidan/avatars/
 %{_datadir}/taidan/po/
 %{_datadir}/taidan/session-config/
+%{_datadir}/taidan/wallpaper.png
 
 %changelog
 * Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.3-2
