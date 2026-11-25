@@ -59,7 +59,7 @@ BuildRequires:  llvm
 BuildRequires:  llvm-devel
 BuildRequires:  lld
 BuildRequires:  compiler-rt
-%if 0%{?rhel}
+%if %{defined rhel}
 BuildRequires:  rustup
 %else
 BuildRequires:  rust
