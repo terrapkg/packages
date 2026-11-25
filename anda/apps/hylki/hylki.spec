@@ -13,6 +13,8 @@ License:        %{sourcelicense}
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  terra-appstream-helper
 
+Packager:       Cypress Reed <cypress@fyralabs.com>
+
 %description
 %{summary}.
 
