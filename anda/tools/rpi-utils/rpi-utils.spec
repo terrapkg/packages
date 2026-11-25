@@ -25,6 +25,7 @@ Requires:       %{name}-raspinfo = %{evr}
 Requires:       %{name}-rpieepromab = %{evr}
 Requires:       %{name}-rpi-gpu-usage = %{evr}
 Requires:       %{name}-rpi-manufacture-info = %{evr}
+Requires:       %{name}-rpi-pmic = %{evr}
 Requires:       %{name}-rpifwcrypto = %{evr}
 Requires:       %{name}-splashasm = %{evr}
 Requires:       %{name}-vcgencmd = %{evr}
@@ -151,6 +152,11 @@ Summary:        Displays the Raspberry Pi manufacturing information
 Displays the manufacturing information provisioned in
 the OTP of BCM2711 (Raspberry Pi 4 family) and BCM2712
 (Raspberry Pi 5 family) devices during production.
+
+%package        rpi-pmic
+Summary:        Tool to report PMIC events on Raspberry Pi 5 family devices
+%description    rpi-pmic
+Tool to report PMIC events on Raspberry Pi 5 family devices.
 
 %package        splashasm
 Summary:        A toy language and binary format for describing SPI & I2C dumps
@@ -310,6 +316,11 @@ Summary:        A tool to get VideoCore 'assert' or 'msg' logs with optional -f 
 %files rpi-manufacture-info
 %{_bindir}/rpi-manufacture-info
 %doc rpi-manufacture-info/README.md
+%license LICENCE
+
+%files rpi-pmic
+%{_bindir}/rpi-pmic
+%doc rpi-pmic/README.md
 %license LICENCE
 
 %files splashasm
