@@ -1,5 +1,9 @@
 let v = gh_rawfile("Heroic-Games-Launcher/HeroicGamesLauncher", "main", "package.json").json()["version"];
-rpm.version(v);
+
+if !v.contains("beta") {
+    rpm.version(v);
+}
+
 // Versions for bundled binaries. Most important for Legendary as Fedora packages this.
 if rpm.changed() {
     let ts = gh_rawfile("Heroic-Games-Launcher/HeroicGamesLauncher", `v${v}`, "meta/downloadHelperBinaries.ts");
