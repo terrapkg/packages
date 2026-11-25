@@ -12,6 +12,21 @@ License:        %{sourcelicense}
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  terra-appstream-helper
+BuildRequires:  gettext
+BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
+BuildRequires:  pkgconfig(glib-2.0)
+BuildRequires:  pkgconfig(graphene-gobject-1.0)
+BuildRequires:  pkgconfig(gtk4)
+BuildRequires:  pkgconfig(javascriptcoregtk-6.0)
+BuildRequires:  pkgconfig(libadwaita-1)
+BuildRequires:  pkgconfig(libsoup-3.0)
+BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(pango)
+BuildRequires:  pkgconfig(pangocairo)
+BuildRequires:  pkgconfig(poppler-glib)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(webkitgtk-6.0)
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -20,7 +35,7 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %prep
 %autosetup
-%cargo_prep_setup
+%cargo_prep_online
 
 %build
 %cargo_build
@@ -28,25 +43,26 @@ Packager:       Cypress Reed <cypress@fyralabs.com>
 %{cargo_license_online} > LICENSE.dependencies
 
 %install
-install -Dm755 hylki %{buildroot}%{_bindir}/hylki
+install -Dm755 target/rpm/hylki %{buildroot}%{_bindir}/hylki
 
-install -Dm644 %{appid}.desktop %{buildroot}%{_appsdir}/%{appid}.desktop
-%terra_appstream -o %{appid}.metainfo.xml
+install -d %{buildroot}%{_appsdir}
+msgfmt --desktop --template=data/%{appid}.desktop -d po \
+    -o %{buildroot}%{_appsdir}/%{appid}.desktop
+%terra_appstream -o data/%{appid}.metainfo.xml
 
 for size in 256x256 512x512; do
-    install -Dm644 icons/$size/%{appid}.png \
+    install -Dm644 data/icons/hicolor/$size/apps/%{appid}.png \
         %{buildroot}%{_hicolordir}/$size/apps/%{appid}.png
 done
-
-install -Dm644 icons/scalable/%{appid}.svg \
+install -Dm644 data/icons/hicolor/scalable/apps/%{appid}.svg \
     %{buildroot}%{_scalableiconsdir}/%{appid}.svg
-
-install -Dm644 icons/symbolic/%{appid}-symbolic.svg \
+install -Dm644 data/icons/hicolor/symbolic/apps/%{appid}-symbolic.svg \
     %{buildroot}%{_hicolordir}/symbolic/apps/%{appid}-symbolic.svg
 
-for mo in locale/*/LC_MESSAGES/hylki.mo; do
-    [ -e "$mo" ] || continue
-    install -Dm644 "$mo" %{buildroot}%{_datadir}/"$mo"
+for po in po/*.po; do
+    lang=$(basename "$po" .po)
+    install -d %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES
+    msgfmt -o %{buildroot}%{_datadir}/locale/$lang/LC_MESSAGES/hylki.mo "$po"
 done
 
 %find_lang %{name}
