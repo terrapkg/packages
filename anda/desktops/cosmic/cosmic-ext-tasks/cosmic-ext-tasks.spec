@@ -10,6 +10,7 @@ URL:            https://github.com/cosmic-utils/tasks
 Source0:        %{url}/archive/refs/tags/%{version}.tar.gz
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(openssl)
 Requires:       cosmic-osd
 Requires:       hicolor-icon-theme
 Provides:       cosmic-tasks
