@@ -1,4 +1,4 @@
-%global repoversion 0.43.2
+%global repoversion 0.43.3
 
 Name:           libtrueforce
 Version:        1.3.11^%{repoversion}
