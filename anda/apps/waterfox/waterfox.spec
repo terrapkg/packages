@@ -55,8 +55,12 @@ BuildRequires:  llvm
 BuildRequires:  llvm-devel
 BuildRequires:  lld
 BuildRequires:  compiler-rt
+%if 0%{?rhel}
+BuildRequires:  rustup
+%else
 BuildRequires:  rust
 BuildRequires:  cargo
+%endif
 BuildRequires:  cbindgen
 BuildRequires:  nasm >= 2.14
 BuildRequires:  yasm
@@ -135,7 +139,16 @@ available in the settings.
 
 echo '%{version}' > browser/config/version_display.txt
 
+%if 0%{?rhel}
+%vendor_rust -t stable
+%endif
+
 %build
+%if 0%{?rhel}
+export CARGO_HOME="%{_cargo_home}"
+export RUSTUP_HOME="%{_rustup_home}"
+export PATH="%{_cargo_home}/bin:$PATH"
+%endif
 export MOZBUILD_STATE_PATH="%{_builddir}/mozbuild"
 export MOZ_NOSPAM=1
 export MOZILLA_OFFICIAL=1
