@@ -8,7 +8,7 @@ URL:            https://hylki.app/
 Source0:        https://github.com/hyprlab/hylki/archive/refs/tags/v%{version}.tar.gz
 
 SourceLicense:  AGPL-3.0-or-later
-License:        %{sourcelicense}
+License:        %{sourcelicense} AND Unlicense AND (Apache-2.0 OR ISC OR MIT) AND (Apache-2.0 OR MIT) AND (MIT OR Zlib OR Apache-2.0) AND AGPL-3.0-or-later AND (0BSD OR MIT OR Apache-2.0) AND CDLA-Permissive-2.0 AND Zlib AND MIT AND (Apache-2.0 OR GPL-2.0-only) AND ((MIT OR Apache-2.0) AND Unicode-3.0) AND (Apache-2.0 WITH LLVM-exception OR Apache-2.0 OR MIT) AND Apache-2.0 AND MPL-2.0 AND Unicode-3.0 AND (BSD-2-Clause OR Apache-2.0 OR MIT) AND Apache-2.0 AND ISC AND ISC AND ((Apache-2.0 OR MIT) AND BSD-3-Clause) AND 0BSD AND BSD-3-Clause AND (MIT OR Apache-2.0 OR LGPL-2.1-or-later) AND (Unlicense OR MIT)
 
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  terra-appstream-helper
@@ -28,10 +28,16 @@ BuildRequires:  pkgconfig(poppler-glib)
 BuildRequires:  pkgconfig(wayland-client)
 BuildRequires:  pkgconfig(webkitgtk-6.0)
 
+Recommends:     gnome-keyring
+Recommends:     gnupg2
+Recommends:     nautilus-python
+
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
-%{summary}.
+Hylki is a desktop email client for Wayland that feels at home in GNOME. It
+talks IMAP/SMTP directly, keeps your mail and credentials on your machine,
+and blocks trackers by default - no telemetry, no analytics.
 
 %prep
 %autosetup
