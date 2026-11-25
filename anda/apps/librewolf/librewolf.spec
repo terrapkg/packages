@@ -25,7 +25,7 @@
 %endif
 
 Name:           librewolf
-Version:        160.0.1
+Version:        161.0
 Release:        1%{?dist}
 Summary:        Custom version of Firefox focused on privacy, security and freedom
 
