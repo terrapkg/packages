@@ -109,6 +109,7 @@ install -d %buildroot%{_sharedstatedir}/taidan
 %{_datadir}/taidan/avatars/
 %{_datadir}/taidan/po/
 %{_datadir}/taidan/session-config/
+%{_datadir}/taidan/wallpaper.png
 
 %changelog
 * Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.3-2
