@@ -33,7 +33,7 @@ for KDE Plasma 6 Wayland: a KWin plugin with its own System Settings page.
 %doc README.md
 %{_qt6_plugindir}/kwin/plugins/winlikegestures.so
 %{_qt6_plugindir}/plasma/kcms/systemsettings/kcm_winlikegestures.so
-%{_kf6_datadir}/applications/kcm_winlikegestures.desktop
+%{_kf6_appsdir}/kcm_winlikegestures.desktop
 %{_kf6_datadir}/qlogging-categories6/kwin_winlike_gestures.categories
 
 %changelog
