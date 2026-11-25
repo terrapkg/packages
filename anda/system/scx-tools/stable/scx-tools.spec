@@ -53,6 +53,8 @@ find target/rpm \
 
 install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir} || :
 
+rm -rf %{buildroot}%{_bindir}/scxtui
+
 %{cargo_license_online} > LICENSE.dependencies
 
 %terra_appstream
@@ -71,7 +73,6 @@ install -Dm755 target/rpm/*.so -t %{buildroot}%{_libdir} || :
 %license LICENSE.dependencies
 %doc README.md
 %{_bindir}/scx*
-%ghost %{_bindir}/scxtui
 %{_unitdir}/scx_loader.service
 %{_datadir}/dbus-1/interfaces/org.scx.Loader.xml
 %{_datadir}/dbus-1/system-services/org.scx.Loader.service
