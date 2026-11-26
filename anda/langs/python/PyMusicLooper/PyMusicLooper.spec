@@ -2,7 +2,7 @@
 %global _desc A python program for repeating music endlessly and creating seamless music loops, with play/export/tagging support.
 
 Name:			python-%{pypi_name}
-Version:		3.7.0
+Version:		3.8.0
 Release:		1%{?dist}
 Summary:		A python program for repeating music endlessly and creating seamless music loops, with play/export/tagging support
 License:		MIT
