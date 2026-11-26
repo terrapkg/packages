@@ -1,0 +1,10 @@
+--- a/LINUX/io.github.horsicq.detect-it-easy.metainfo.xml	2026-11-25 18:00:00.000000000 -0600
++++ b/LINUX/io.github.horsicq.detect-it-easy.metainfo.xml	2026-11-25 23:37:39.200138216 -0600
+@@ -5,6 +5,7 @@
+   <launchable type="desktop-id">io.github.horsicq.detect-it-easy.desktop</launchable>
+   <metadata_license>CC0-1.0</metadata_license>
+   <project_license>MIT</project_license>
++  <icon type="stock">io.github.horsicq.detect-it-easy</icon>
+   <name>Detect It Easy</name>
+   <developer id="io.github.horsicq">
+     <name>horsicq</name>
