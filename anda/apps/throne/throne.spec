@@ -35,7 +35,7 @@ BuildRequires: rpm_macro(gobuildflags)
 BuildRequires: protobuf-compiler
 BuildRequires: desktop-file-utils
 Requires: %{name}-core
-%define core Core
+%define core ThroneCore
 
 %package core
 Summary: %{summary}
@@ -54,11 +54,11 @@ sed -i 's~add_library(qhotkey 3rdparty/QHotkey/qhotkey.cpp)~add_library(qhotkey 
 pushd core/server
 export GOBIN=$(pwd)/gobin
 export PATH="${PATH}:${GOBIN}"
-go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-go install github.com/chai2010/protorpc/protoc-gen-protorpc@latest
-
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.36.11
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.6.2
 cd gen
-protoc -I . --go_out=. --protorpc_out=. libcore.proto
+protoc -I . --go_out=. --go-grpc_out=. libcore.proto
+
 
 %build
 mkdir -p %__cmake_builddir
@@ -69,12 +69,14 @@ DEST=$PWD/%{__cmake_builddir}/%{core}
 pushd core/server
 export GOBIN=$(pwd)/gobin
 export PATH="${PATH}:${GOBIN}"
-%define currentgoldflags -w -s -X github.com/sagernet/sing-box/constant.Version=%{singbox_version}
-%define gomodulesmode GO111MODULE=on
+# https://github.com/throneproj/Throne/blob/dev/script/build_go.sh
+%define currentgoldflags -w -s -X github.com/sagernet/sing-box/constant.Version=%{singbox_version} -X 'internal/godebug.defaultGODEBUG=multipathtcp=0' -checklinkname=0
 %define build_ldflags %nil
 export GO_LDFLAGS=' '
-export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale"
-%gobuild -o $DEST -mod=readonly -modcacherw
+%define gomodulesmode GO111MODULE=on
+export GO_BUILDTAGS="with_clash_api with_gvisor with_quic with_wireguard with_utls with_dhcp with_tailscale badlinkname tfogo_checklinkname0 with_naive_outbound"
+go mod tidy
+%gobuild -o $DEST -modcacherw
 popd
 
 %install
