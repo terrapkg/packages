@@ -14,8 +14,10 @@
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        PlayStation 3 emulator and debugger
+# Submodule hell
+SourceLicense:  Apache-2.0 AND (Apache-2.0 WITH LLVM-exception OR NCSA) AND (BSD-2-Clause AND BSD-3-Clause AND GPL-3.0-or-later AND Apache-2.0) AND BSD-3-Clause AND (BSD-3-Clause OR GPL-2.0-only) AND curl AND GPL-2.0-only AND GPL-3.0-only AND (GPL-3.0-only OR BSD-3-Clause) AND GPL-3.0-or-later AND (ISC AND LicenseRef-Callaway-BSD AND LicenseRef-Callaway-MIT) AND (LGPL-2.0-or-later AND BSD-3-Clause AND GPL-2.0-or-later AND Apache-2.0 AND (LGPL-2.0-or-later AND BSD-3-Clause) AND (MIT WITH fmt-exception) AND NCL AND MIT AND LicenseRef-Fedora-Public-Domain) AND LGPL-2.1-or-later AND LicenseRef-Callaway-BSD AND MIT AND (MIT AND BSD-3-Clause) AND ((MIT OR Unlicense) AND (LicenseRef-Fedora-Public-Domain OR LicenseRef-Fedora-UltraPermissive)) AND Zlib AND (Zlib and Apache-2.0 and MIT and BSD-3-Clause)
 License:        GPL-2.0-only
 URL:            https://github.com/RPCS3/rpcs3
 Source0:        %{url}/archive/%{commit}/%{name}-%{commit}.tar.gz
