@@ -1,4 +1,4 @@
-%global ver brush-shell-v0.4.0
+%global ver brush-shell-v0.5.0
 
 Name:           brush-shell
 Version:        %(echo %ver | sed 's/brush-shell-v//')
