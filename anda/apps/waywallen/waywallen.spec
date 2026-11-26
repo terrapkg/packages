@@ -1,7 +1,7 @@
 %global appid org.waywallen.waywallen
 
 Name:           waywallen
-Version:        0.6.2
+Version:        0.6.3
 Release:        1%{?dist}
 License:        MIT
 Summary:        Wallpaper Manager for Linux
