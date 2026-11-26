@@ -1,7 +1,7 @@
 %global appid co.hyprlab.Hylki
 
 Name:           hylki
-Version:        1.49.2
+Version:        1.50.0
 Release:        1%{?dist}
 Summary:        A GNOME-native email client built with Rust and libadwaita
 URL:            https://hylki.app/
