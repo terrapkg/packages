@@ -92,6 +92,7 @@ rmdir %{buildroot}%{_prefix}/lib
 %{_bindir}/waywallen-gltf-renderer
 %{_bindir}/waywallen-probe
 %{_bindir}/waywallen-web-helper
+%{_bindir}/waywallen-switch
 %{_appsdir}/%{appid}.desktop
 %{_scalableiconsdir}/%{appid}.svg
 %{_datadir}/metainfo/%{appid}.metainfo.xml
