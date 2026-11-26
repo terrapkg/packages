@@ -46,9 +46,13 @@ supporting both compact signatures and multi-stage static analysis across Window
 %{_libdir}/die/
 %{_appsdir}/die.desktop
 %{_hicolordir}/16x16/apps/%{appid}.png
-%{_hicolordir}/20x10/apps/%{appid}.png
+%{_hicolordir}/20x20/apps/%{appid}.png
 %{_hicolordir}/24x24/apps/%{appid}.png
 %{_hicolordir}/32x32/apps/%{appid}.png
 %{_hicolordir}/48x48/apps/%{appid}.png
 %{_hicolordir}/256x256/apps/%{appid}.png
 %{_metainfodir}/%{appid}.metainfo.xml
+
+%changelog
+* Thu Nov 26 2026 Gilver E. <roachy@fyralabs.com> - 4.0.0-1
+- Initial package
