@@ -35,10 +35,12 @@ supporting both compact signatures and multi-stage static analysis across Window
 %autopatch -p1
 
 %conf
+PATH="$PATH:%{_qt6_bindir}" ; export PATH
 %cmake \
   -DCMAKE_BUILD_TYPE="Release"
 
 %build
+PATH="$PATH:%{_qt6_bindir}" ; export PATH
 %cmake_build
 
 %install
