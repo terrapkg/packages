@@ -42,6 +42,10 @@ supporting both compact signatures and multi-stage static analysis across Window
 %files
 %license %{_defaultdocdir}/DetectItEasy/detect-it-easy/LICENSE
 %doc %{_defaultdocdir}/DetectItEasy/detect-it-easy/README.md
+%{_bindir}/die
+%{_bindir}/die-update
+%{_bindir}/diec
+%{_bindir}/diel
 %{_prefix}/lib/die/
 %{_libdir}/die/
 %{_appsdir}/die.desktop
