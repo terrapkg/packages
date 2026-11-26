@@ -1,5 +1,5 @@
 Name:           msm-firmware-loader
-Version:        1.9.0
+Version:        1.10.0
 Release:        1%{?dist}
 Summary:        Loads DSP/modem/WiFi firmware from Qualcomm firmware partitions
 
