@@ -7,6 +7,7 @@ Summary:       Program for determining types of files for Windows, Linux and Mac
 License:       MIT
 URL:           https://ntinfo.biz/#detect-it-easydie
 Source0:       https://github.com/horsicq/DIE-engine/archive/refs/tags/%{version}.tar.gz
+Patch0:        metainfo.patch
 BuildRequires: anda-srpm-macros
 BuildRequires: cmake
 BuildRequires: cmake-rpm-macros
@@ -29,6 +30,7 @@ supporting both compact signatures and multi-stage static analysis across Window
 
 %prep
 %git_clone https://github.com/horsicq/DIE-engine.git %{version}
+%autopatch -p1
 
 %conf
 %cmake
