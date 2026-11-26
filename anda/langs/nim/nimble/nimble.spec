@@ -1,5 +1,5 @@
 Name:           nimble
-Version:        0.26.2
+Version:        0.28.0
 Release:        1%{?dist}
 Summary:        Package manager for the Nim programming language
 License:        BSD
