@@ -4,7 +4,7 @@
 
 # https://github.com/evilmartians/lefthook
 %global goipath         github.com/evilmartians/lefthook
-Version:                2.2.3
+Version:                2.2.4
 
 %gometa -f
 
