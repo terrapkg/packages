@@ -40,8 +40,8 @@ supporting both compact signatures and multi-stage static analysis across Window
 %cmake_install
 
 %files
-%license %{buildroot}%{_defaultdocdir}/DetectItEasy/detect-it-easy/LICENSE
-%doc %{buildroot}%{_defaultdocdir}/DetectItEasy/detect-it-easy/README.md
+%license %{_defaultdocdir}/DetectItEasy/detect-it-easy/LICENSE
+%doc %{_defaultdocdir}/DetectItEasy/detect-it-easy/README.md
 %{_prefix}/lib/die/
 %{_libdir}/die/
 %{_appsdir}/die.desktop
