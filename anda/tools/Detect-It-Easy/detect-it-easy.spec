@@ -35,7 +35,8 @@ supporting both compact signatures and multi-stage static analysis across Window
 %autopatch -p1
 
 %conf
-%cmake_qt6
+%cmake \
+  -DCMAKE_BUILD_TYPE="Release"
 
 %build
 %cmake_build
