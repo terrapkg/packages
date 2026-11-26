@@ -1,5 +1,5 @@
 Name:          klassik
-Version:       1.0.0
+Version:       1.0.1
 Release:       1%{?dist}
 Summary:       A modern recreation of the classic KDE 3 desktop experience for KDE Plasma 6
 License:       GPL-3.0-or-later
