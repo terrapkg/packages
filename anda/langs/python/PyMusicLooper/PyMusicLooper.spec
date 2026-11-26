@@ -9,7 +9,6 @@ License:		MIT
 URL:			https://github.com/arkrow/PyMusicLooper
 Source0:		%{pypi_source}
 # Fedora doesn't yet carry pytaglib >=3.0.0
-Patch0:         make-dep-installable.patch
 BuildArch:      noarch
 
 BuildRequires:  python3-devel
@@ -34,6 +33,8 @@ Provides:       python3-pymusiclooper
 
 %prep
 %autosetup -n pymusiclooper-%{version}
+
+%pyproject_patch_dependency pytaglib:drop_constraints
 
 %build
 %pyproject_wheel
