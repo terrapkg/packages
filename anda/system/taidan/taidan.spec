@@ -4,7 +4,7 @@
 %global proc_macros_commit 7306a90996eaa89284f3e271dbb04152e3eedf96
 
 Name:           taidan
-Version:        1.0.7
+Version:        1.0.8
 Release:        2%{?dist}
 Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 # https://scancode-licensedb.aboutcode.org/unsplash
