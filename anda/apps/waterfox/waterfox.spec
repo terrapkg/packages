@@ -234,7 +234,11 @@ ac_add_options --without-wasm-sandboxed-libraries
 ac_add_options --without-sysroot
 
 ac_add_options --enable-linker=lld
+%if %{defined rhel}
+ac_add_options --enable-lto=thin
+%else
 ac_add_options --enable-lto=cross,thin
+%endif
 ac_add_options --disable-elf-hack
 ac_add_options --enable-strip
 ac_add_options --enable-install-strip
