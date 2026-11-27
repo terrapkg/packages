@@ -172,6 +172,11 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 %obsolete_ticket https://github.com/terrapkg/packages/pull/14943
 %obsolete dkms-mediatek-mt7927 2.13.1-2
 
+%obsolete_ticket https://github.com/terrapkg/packages/pull/14037
+%obsolete eza-bash-completion 0.23.4-2
+%obsolete eza-fish-completion 0.23.4-2
+%obsolete eza-zsh-completion 0.23.4-2
+
 %description
 Currently obsoleted packages:
 
