@@ -4,8 +4,8 @@
 %global arctis_sound_manager_services arctis-manager.service arctis-video-router.service arctis-stream-guard.service app-ArctisManager.service
 
 Name:			python-%{pypi_name}
-Version:		1.7.10
-Release:		2%{?dist}
+Version:		1.7.11
+Release:		1%{?dist}
 Summary:		GUI for SteelSeries Arctis headsets
 License:		GPL-3.0-or-later
 # GitHub pages URL 404s
