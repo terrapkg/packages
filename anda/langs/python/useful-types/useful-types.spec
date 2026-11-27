@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.2.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A collection of useful types
 License:		MIT
 URL:			https://github.com/hauntsaninja/useful_types

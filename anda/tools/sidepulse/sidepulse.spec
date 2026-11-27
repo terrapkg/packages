@@ -9,7 +9,7 @@
 
 Name:			python-%{real_name}
 Version:		0~%{commit_date}git.%{shortcommit}
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		CLI for sidepulse
 License:		MIT
 URL:			https://github.com/inteliwear/sidepulse

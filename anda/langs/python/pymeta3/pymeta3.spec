@@ -4,7 +4,7 @@
 
 Name:           python-pymeta3
 Version:        0.5.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Pattern-matching language based on OMeta for Python 3 and 2
 License:        MIT
 URL:            https://github.com/wbond/pymeta3

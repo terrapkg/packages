@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.01
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        2D and 3D vector, matrix, quaternion and geometry module
 License:        LGPL-2.1-or-later
 URL:            https://pypi.org/project/euclid3

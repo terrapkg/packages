@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.2.6
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Print in ascii art a table with a tree-like structure
 License:		Unlicense
 URL:			https://github.com/adefossez/treetable

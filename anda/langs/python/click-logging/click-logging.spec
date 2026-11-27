@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.0.1
-Release:		2%?dist
+Release:		3%?dist
 Summary:		Simple and beautiful logging for click applications
 License:		MIT
 URL:			https://github.com/Toilal/click-logging

@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		8.7.4
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Create standalone executables from Python scripts
 License:		PSF-2.0
 URL:			https://marcelotduarte.github.io/cx_Freeze

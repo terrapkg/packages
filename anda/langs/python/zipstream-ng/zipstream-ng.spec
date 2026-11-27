@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.9.3
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A modern and easy to use streamable zip file generator
 License:		LGPL-3.0-only
 URL:			https://github.com/pR0Ps/zipstream-ng

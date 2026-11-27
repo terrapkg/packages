@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        2.8.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Fast OpenGL Mathematics (GLM) for Python
 License:        Zlib
 URL:            https://github.com/jared-hughes/isosurfaces

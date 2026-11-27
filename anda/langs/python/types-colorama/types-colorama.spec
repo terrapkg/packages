@@ -7,7 +7,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0~%{commit_date}git.%shortcommit
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Typing stubs for colorama
 License:		Apache-2.0
 URL:			https://github.com/python/typeshed

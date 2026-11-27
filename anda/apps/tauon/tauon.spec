@@ -6,7 +6,7 @@
 
 Name:			python-tauon
 Version:		14.0.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A music player for the desktop. Designed to be powerful and streamlined
 License:		GPL-3.0-or-later
 URL:			https://tauonmusicbox.rocks/

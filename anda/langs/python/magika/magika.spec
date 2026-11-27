@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A tool to determine the content type of a file with deep learning
 License:		Apache-2.0
 URL:			https://securityresearch.google/magika/introduction/overview

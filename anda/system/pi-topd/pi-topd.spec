@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        %{sanitized_ver}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Daemon for managing pi-top functionality by managing the pi-top hub connection
 
 License:        Apache-2.0
