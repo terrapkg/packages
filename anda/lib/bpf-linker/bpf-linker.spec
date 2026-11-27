@@ -1,8 +1,8 @@
-%global llvm_version 23.1.5
+%global llvm_version 23.1.6
 
 Name:           bpf-linker
 Version:        0.13.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        BPF static linker
 URL:            https://github.com/aya-rs/bpf-linker
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
