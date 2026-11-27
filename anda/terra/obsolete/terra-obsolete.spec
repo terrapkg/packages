@@ -4,7 +4,7 @@ Version:    %{?fedora:%{fedora}}%{?rhel:%{rhel}}
 # The dist number is the version here, it is intentionally not repeated in the release
 %global dist %nil
 
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    A package to obsolete retired packages, based on Fedora's equivalent package
 
 License:    LicenseRef-Fedora-Public-Domain
@@ -168,6 +168,11 @@ Packager:   Terra Packaging Team <terra@fyralabs.com>
 
 %obsolete_ticket https://github.com/terrapkg/packages/pull/14943
 %obsolete dkms-mediatek-mt7927 2.13.1-2
+
+%obsolete_ticket https://github.com/terrapkg/packages/pull/14037
+%obsolete eza-bash-completion 0.23.4-2
+%obsolete eza-fish-completion 0.23.4-2
+%obsolete eza-zsh-completion 0.23.4-2
 
 %description
 Currently obsoleted packages:
