@@ -7,7 +7,7 @@
 
 Name:           python-jupyter-sphinx
 Version:        0.5.3
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Jupyter Sphinx extensions
 License:        BSD-3-Clause
 URL:            https://jupyter-sphinx.readthedocs.io/

@@ -6,7 +6,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.17.0
-Release:		2%{?dist}
+Release:		3%{?dist}
 Summary:		Python binding for curl-impersonate fork via cffi
 License:		MIT
 URL:			https://github.com/lexiforest/curl_cffi

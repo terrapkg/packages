@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.0.8
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		BCJ(Branch-Call-Jump) filter for python
 License:		LGPL-2.1-or-later
 URL:			https://github.com/miurahr/pybcj

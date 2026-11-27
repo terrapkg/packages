@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.7.0.7
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python interface to Ngspice and Xyce circuit simulators (forked from InSpice)
 License:		GPL-3.0-or-later OR AGPL-3.0-or-later
 URL:			https://github.com/insim-ai/InSpice

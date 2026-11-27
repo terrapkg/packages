@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.2.4
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Convert HTML to Markdown
 License:		MIT
 URL:			https://github.com/matthewwithanm/python-markdownify

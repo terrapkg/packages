@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.10.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python Library for Tom's Obvious, Minimal Language
 License:		MIT
 URL:			https://github.com/uiri/toml

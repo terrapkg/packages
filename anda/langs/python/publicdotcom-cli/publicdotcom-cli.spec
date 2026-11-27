@@ -4,7 +4,7 @@
 
 Name:			python-%{real_name}
 Version:		1.3.8
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Command-line client for the Public.com Trading API
 License:		Apache-2.0
 URL:			https://github.com/PublicDotCom/publicdotcom-cli

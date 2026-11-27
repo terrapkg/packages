@@ -2,7 +2,7 @@
 
 Name:           python-jellyfin-mpv-shim
 Version:        3.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Cast media from Jellyfin Mobile and Web apps to MPV
 
 License:        GPL-3.0-or-later

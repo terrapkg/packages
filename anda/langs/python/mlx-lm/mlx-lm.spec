@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.32.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Run LLMs with MLX
 License:		MIT
 URL:			https://github.com/ml-explore/mlx-lm

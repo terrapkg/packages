@@ -1,6 +1,6 @@
 Name:           codecheck-sarif
 Version:        0.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        C/C++ coding-rule checker that emits SARIF
 License:        MIT
 URL:            https://github.com/kotaronowwell/codecheck-sarif

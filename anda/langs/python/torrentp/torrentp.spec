@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.2.7
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python torrent downloader - Download from torrent with .torrent file or magnet link, with just 3 lines of python code
 License:		BSD-2-Clause
 URL:			https://github.com/iw4p/torrentp

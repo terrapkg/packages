@@ -4,7 +4,7 @@
 
 Name:			python-%{pkg_name}
 Version:		0.15
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Validity fingerprint sensor prototype
 License:		MIT
 URL:			https://github.com/uunicorn/python-validity

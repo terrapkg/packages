@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.9.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Handlebars.js templating for Python 3 and 2
 License:        LGPL-3.0-only
 URL:            https://github.com/wbond/pybars3

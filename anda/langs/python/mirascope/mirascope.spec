@@ -3,7 +3,7 @@
 
 Name:			    python-%{pypi_name}
 Version:		    2.8.2
-Release:		    1%{?dist}
+Release:		    2%{?dist}
 Summary:		    Use any frontier LLM with one unified interface
 License:		    MIT
 URL:			    https://mirascope.com/

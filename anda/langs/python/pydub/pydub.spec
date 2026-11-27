@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.25.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Manipulate audio with an simple and easy high level interface
 License:		MIT
 URL:			https://www.pydub.com/

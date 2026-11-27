@@ -20,7 +20,7 @@ Snitch.}
                         utils/packaging/ui/deb/debian/changelog
 
 Name:           opensnitch
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        OpenSnitch is a GNU/Linux interactive application firewall inspired by Little Snitch
 
 License:        GPL-3.0-only AND LGPL-2.1-or-later

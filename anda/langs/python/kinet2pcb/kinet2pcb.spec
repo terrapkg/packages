@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.4
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Convert KiCad netlist into a PCBNEW .kicad_pcb file
 License:		MIT
 URL:			https://github.com/devbisme/kinet2pcb
