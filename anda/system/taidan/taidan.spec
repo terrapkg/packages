@@ -24,11 +24,9 @@ Requires:       shadow-utils
 Requires:       glibc-common
 Requires:       util-linux
 Requires:       systemd
-Requires:       systemd-udev
 Requires:       kbd
 Requires:       bash
-Requires:       (dnf5 and dnf5-command(copr) and dnf5-command(config-manager))
-Requires:       flatpak
+Requires:       dnf5
 Recommends:     systemd-homed
 Requires:       pciutils
 Requires:       mokutil
@@ -51,10 +49,13 @@ Requires:       libwayland-client
 Requires:       libwayland-cursor
 Requires:       libwayland-egl
 Requires:       libglvnd-egl
+Requires:       libcamera-ipa
 BuildRequires:  anda-srpm-macros lld cargo rust-packaging perl systemd-rpm-macros
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(libxcrypt)
+BuildRequires:  pkgconfig(libcamera)
+BuildRequires:  gcc-c++
 # read by taidan_proc_macros at build time
 BuildRequires:  glibc-all-langpacks
 BuildRequires:  xkeyboard-config
