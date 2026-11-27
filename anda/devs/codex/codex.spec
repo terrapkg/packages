@@ -48,7 +48,7 @@ export CODEX_SKIP_BWRAP_BUILD=1
     | sed -e '/.*(\*).*/d'                                               \
     | sort -u                                                            \
 > ../LICENSE.dependencies
-%cargo_build -- --package codex-cli
+%cargo_build -- --package codex-cli --package codex-code-mode-host
 
 for sh in bash zsh fish; do
     target/rpm/codex completion $sh > ../codex.$sh
@@ -56,6 +56,8 @@ done
 
 %install
 install -Dm755 codex-rs/target/rpm/codex %{buildroot}%{_bindir}/codex
+install -Dm755 codex-rs/target/rpm/codex-code-mode-host \
+                %{buildroot}%{_bindir}/codex-code-mode-host
 install -Dm644 codex.bash %{buildroot}%{bash_completions_dir}/codex
 install -Dm644 codex.zsh  %{buildroot}%{zsh_completions_dir}/_codex
 install -Dm644 codex.fish %{buildroot}%{fish_completions_dir}/codex.fish
@@ -64,6 +66,7 @@ install -Dm644 codex.fish %{buildroot}%{fish_completions_dir}/codex.fish
 %license LICENSE NOTICE LICENSE.dependencies
 %doc README.md
 %{_bindir}/codex
+%{_bindir}/codex-code-mode-host
 
 %pkg_completion -Bzf
 
