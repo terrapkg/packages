@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		%{sanitized_ver}
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		pi-top's Python SDK pitop package
 License:		Apache-2.0
 URL:			https://github.com/pi-top/pi-top-Python-SDK

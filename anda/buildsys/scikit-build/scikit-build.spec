@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.19.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Improved build system generator for Python C/C++/Fortran/Cython extensions
 License:		MIT
 URL:			https://scikit-build.readthedocs.io/

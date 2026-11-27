@@ -6,7 +6,7 @@ use. Quickly update your personal profile and sync your updates across applicati
 
 Name:           python-mugshot
 Version:        0.4.3
-Release:        1%?dist
+Release:        2%?dist
 Summary:        User Management Utility for Linux
 License:        GPL-3.0
 URL:            https://github.com/bluesabre/mugshot

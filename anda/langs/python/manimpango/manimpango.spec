@@ -5,7 +5,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.7.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        ManimPango is a C binding for Pango using Cython
 License:        MIT
 URL:            https://www.manim.community/

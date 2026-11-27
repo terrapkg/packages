@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.1.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Construct isolines/isosurfaces of a 2D/3D scalar field defined by a function
 License:        MIT
 URL:            https://github.com/jared-hughes/isosurfaces

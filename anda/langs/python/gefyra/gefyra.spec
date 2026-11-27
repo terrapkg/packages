@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.5.9
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Blazingly-fast, rock-solid, local application development with Kubernetes.
 License:		Apache-2.0
 URL:			https://github.com/gefyrahq/gefyra

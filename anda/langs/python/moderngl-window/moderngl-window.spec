@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        3.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        utility library for ModernGL making window creation and resource loading simple
 License:        MIT
 URL:            https://github.com/moderngl/moderngl-window

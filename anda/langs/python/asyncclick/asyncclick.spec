@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		8.4.2.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python composable command line utility, trio-compatible version
 License:		BSD-3-Clause
 URL:			https://github.com/python-trio/asyncclick/

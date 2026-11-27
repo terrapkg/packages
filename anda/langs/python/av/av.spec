@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		19.0.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Pythonic bindings for FFmpeg's libraries
 License:		BSD-3-Clause
 URL:			https://pyav.basswood-io.com/docs/stable/

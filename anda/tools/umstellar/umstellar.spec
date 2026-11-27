@@ -4,7 +4,7 @@
 
 Name:           %{pypi_name}
 Version:        %{pypi_version}
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Ultramarine Quickstart Tool
 
 Obsoletes:      python3-%{pypi_name} < 0.2.0-2

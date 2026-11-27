@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.8.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Automation for KiCAD boards
 License:        MIT
 URL:            https://github.com/yaqwsx/KiKit
