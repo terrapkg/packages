@@ -70,8 +70,7 @@ done
 
 %install
 install -Dm755 codex-rs/target/rpm/codex %{buildroot}%{_bindir}/codex
-install -Dm755 codex-rs/target/rpm/codex-code-mode-host \
-                %{buildroot}%{_bindir}/codex-code-mode-host
+install -Dm755 codex-rs/target/rpm/codex-code-mode-host %{buildroot}%{_bindir}/codex-code-mode-host
 install -Dm644 codex.bash %{buildroot}%{bash_completions_dir}/codex
 install -Dm644 codex.zsh  %{buildroot}%{zsh_completions_dir}/_codex
 install -Dm644 codex.fish %{buildroot}%{fish_completions_dir}/codex.fish
