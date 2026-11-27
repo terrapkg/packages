@@ -4,7 +4,7 @@
 
 Name:			python-%{pkg_name}
 Version:		0.7
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Fprintd replacement which allows you to have your own backend as a standalone service
 License:		GPL-2.0-or-later
 URL:			https://github.com/uunicorn/open-fprintd

@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		13.5.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Pathfinder for CUDA components
 License:		Apache-2.0
 URL:			https://nvidia.github.io/cuda-python/latest/

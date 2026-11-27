@@ -1,6 +1,6 @@
 Name:           python-nmcli
 Version:        1.8.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A python wrapper library for the network-manager cli client
 
 License:        MIT

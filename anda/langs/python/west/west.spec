@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.5.0
-Release:		3%?dist
+Release:		4%?dist
 Summary:		West, Zephyr's meta-tool
 License:		Apache-2.0
 URL:			https://github.com/zephyrproject-rtos/west

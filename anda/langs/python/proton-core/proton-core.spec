@@ -4,7 +4,7 @@
 
 Name:       python-proton-core
 Version:    0.7.4
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    %{unmangled_name} library
 License:    GPL-3.0-or-later
 URL:        https://github.com/ProtonVPN/%{github_repo_name}

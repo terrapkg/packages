@@ -4,7 +4,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.9.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Add Python and JavaScript style comments in your JSON files
 License:        MIT
 URL:            https://github.com/vaidik/commentjson

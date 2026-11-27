@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.3.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		A Python package for textually describing electronic circuit schematics
 License:		MIT
 URL:			https://devbisme.github.io/skidl/

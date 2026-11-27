@@ -4,7 +4,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.2.3
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Multi-volume file wrapper library
 License:		LGPL-2.1-or-later
 URL:			https://github.com/miurahr/multivolume

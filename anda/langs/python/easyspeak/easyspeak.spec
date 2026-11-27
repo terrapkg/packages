@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.15.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Voice control for Linux desktops. Fully local, no cloud, Wayland-native
 License:		GPL-3.0-or-later
 URL:			https://github.com/ctsdownloads/easyspeak

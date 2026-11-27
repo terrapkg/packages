@@ -4,7 +4,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.8.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Core dependency for cx_Freeze
 License:		MIT
 URL:			https://marcelotduarte.github.io/cx_Freeze/

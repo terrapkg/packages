@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.32.5
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		MLX: An array framework for Apple silicon
 License:		MIT
 URL:			https://ml-explore.github.io/mlx/build/html/index.html

@@ -2,7 +2,7 @@
 
 Name:           oversteer
 Version:        0.8.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Steering Wheel Manager for GNU/Linux
 Packager:       Jan200101 <sentrycraft123@gmail.com>
 

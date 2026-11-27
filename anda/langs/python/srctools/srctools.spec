@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.7.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Modules for working with Valve's Source Engine file formats
 License:		MIT
 URL:			https://srctools.readthedocs.io/en/stable/

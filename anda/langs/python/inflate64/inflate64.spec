@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.0.4
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		deflate64 compression/decompression library
 License:		LGPL-2.1-or-later
 URL:			https://inflate64.readthedocs.io/

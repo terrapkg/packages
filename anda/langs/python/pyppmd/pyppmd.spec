@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.3.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		PPMd compression/decompression library
 License:		LGPL-2.1-or-later
 URL:			https://pyppmd.readthedocs.io/
