@@ -3,7 +3,7 @@
 
 Name:			    python-%{pypi_name}
 Version:		    2.14.0
-Release:		    1%{?dist}
+Release:		    2%{?dist}
 Summary:		    The Claude SDK for Python provides access to the Claude API from Python applications
 License:		    Apache-2.0 AND MIT
 URL:			    https://github.com/anthropics/anthropic-sdk-python

@@ -4,7 +4,7 @@
 
 Name:           compiz9
 Version:        0.9.14.2
-Release:        3%?dist
+Release:        4%?dist
 Summary:        OpenGL window and compositing manager 0.9.X.X series
 
 License:        GPL-2.0-or-later AND LGPL-2.0-or-later AND MIT

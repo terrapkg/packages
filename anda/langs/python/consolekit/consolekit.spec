@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.0.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Additional utilities for click
 License:		MIT
 URL:			https://consolekit.readthedocs.io/en/latest/

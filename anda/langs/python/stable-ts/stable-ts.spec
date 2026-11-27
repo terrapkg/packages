@@ -4,7 +4,7 @@
 
 Name:			python-%{real_name}
 Version:		2.19.1
-Release:		3%{?dist}
+Release:		4%{?dist}
 Summary:		Transcription, forced alignment, and audio indexing with OpenAI's Whisper
 License:		MIT
 URL:			https://github.com/jianfch/stable-ts

@@ -6,7 +6,7 @@
 
 Name:			%{pypi_name}
 Version:		%sanitized_ver
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		The code of the Arduino App Lab Bricks
 License:		MPL-2.0
 URL:			https://github.com/arduino/app-bricks-py

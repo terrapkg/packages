@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        5.13.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Modern OpenGL binding for Python
 License:        MIT
 URL:            https://github.com/moderngl/moderngl

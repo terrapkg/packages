@@ -2,7 +2,7 @@
 
 Name:			%{pypi_name}
 Version:		1.3.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Tool that cleans the given RPM spec file according to the style guide
 License:		BSD-3-Clause
 URL:			https://github.com/rpm-software-management/spec-cleaner

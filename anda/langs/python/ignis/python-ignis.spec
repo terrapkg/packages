@@ -2,7 +2,7 @@
 
 Name:           python-ignis
 Version:        0.6.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A widget framework for building desktop shells, written and configurable in Python
 
 License:        LGPL-2.1-or-later

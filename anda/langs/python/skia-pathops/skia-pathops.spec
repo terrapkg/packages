@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.9.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Python bindings for the Skia library's Path Ops
 License:        BSD-3-Clause
 URL:            https://github.com/jared-hughes/isosurfaces
