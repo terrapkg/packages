@@ -2,11 +2,11 @@
 
 %global appid gg.ping.T3Code-nightly
 
-%global ver 0.1.13
+%global ver 0.1.14
 %global commit 0fcd5f90611451cca842689faea53b5450c022da
-%global date 20261126
-%global run 5305
-%global tag 0.1.13-nightly.20261126.5305
+%global date 20261127
+%global run 5332
+%global tag 0.1.14-nightly.20261127.5332
 %global electron_version %{ver}-nightly.%{date}.%{run}
 
 Name:           t3code-nightly
