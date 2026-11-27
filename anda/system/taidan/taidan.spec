@@ -74,6 +74,7 @@ tar -xzf %{SOURCE1} -C taidan_proc_macros --strip-components=1
 %cargo_prep_online
 
 %build
+%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 %cargo_build -- -p taidan -p libtaidan --bin taidan --bin taidan-helper
 
