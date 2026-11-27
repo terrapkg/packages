@@ -2,7 +2,7 @@
 
 Name:		unity-shell
 Version:	7.7.1
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Unity is a shell that sings
 
 License:	GPL-3.0-or-later

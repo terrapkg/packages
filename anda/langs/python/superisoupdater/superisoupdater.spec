@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.5.2
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		%{_desc}
 License:		GPL-3.0-or-later
 URL:			https://github.com/JoshuaVandaele/SuperISOUpdater

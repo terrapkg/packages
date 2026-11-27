@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        3.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        a library providing OpenGL implementation for ModernGL on multiple platforms.
 License:        MIT
 URL:            https://github.com/jared-hughes/isosurfaces

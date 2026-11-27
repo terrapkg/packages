@@ -5,7 +5,7 @@
 
 Name:           python-%{pypi_name}
 Version:        0.22.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Manim is an animation engine for explanatory math videos
 License:        MIT
 URL:            https://www.manim.community/

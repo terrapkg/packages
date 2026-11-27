@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.0.30.1
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		installation vehicle for libusb shared libraries
 License:		Apache-2.0
 URL:			https://github.com/pyocd/libusb-package

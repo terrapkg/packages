@@ -3,7 +3,7 @@
 
 Name:           nmgui
 Version:        1.0.0
-Release:        1%?dist
+Release:        2%?dist
 Summary:        A simple and lightweight GTK4-based GUI for managing Wi-Fi using NetworkManager (nmcli) under the hood
 License:        GPL-3.0-only
 URL:            https://github.com/s-adi-dev/nmgui

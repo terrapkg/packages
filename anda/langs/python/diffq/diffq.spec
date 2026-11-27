@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.2.4
-Release:		2%?dist
+Release:		3%?dist
 Summary:		DiffQ performs differentiable quantization using pseudo quantization noise
 License:		CC-BY-NC-4.0
 URL:			https://github.com/facebookresearch/diffq

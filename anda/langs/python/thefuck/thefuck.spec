@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		3.34
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Magnificent app which corrects your previous console command
 License:		MIT
 URL:			https://github.com/C14147/thefuck

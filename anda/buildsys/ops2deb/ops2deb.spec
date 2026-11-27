@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.8.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Generate Debian packages for common devops tools such as kubectl, kustomize, helm
 License:		MIT
 URL:			https://github.com/upciti/ops2deb

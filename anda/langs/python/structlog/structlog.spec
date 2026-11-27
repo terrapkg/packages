@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		26.1.0
-Release:		1%?dist
+Release:		2%?dist
 Summary:		Structured Logging for Python
 License:		Apache-2.0 AND MIT
 URL:			https://github.com/hynek/structlog

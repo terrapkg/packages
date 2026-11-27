@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.1.3
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python library for requesting root privileges
 License:		MIT
 URL:			https://github.com/barneygale/elevate

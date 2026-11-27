@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.3.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Some handy archive helpers for Python
 License:		MIT
 URL:			https://handy-archives.readthedocs.io/en/latest/

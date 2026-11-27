@@ -12,7 +12,7 @@ the best option for high-fidelity document conversions for human consumption.
 
 Name:			python-%{pypi_name}
 Version:		0.1.9
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Python tool for converting files to Markdown
 License:		MIT
 URL:			https://github.com/microsoft/markitdown

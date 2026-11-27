@@ -3,7 +3,7 @@
 
 Name:			    python-%{pypi_name}
 Version:		    0.18.24
-Release:		    1%{?dist}
+Release:		    2%{?dist}
 Summary:		    Currency converter that uses historical rates against a reference currency
 License:		    Apache-2.0
 URL:			    https://github.com/alexprengere/currencyconverter

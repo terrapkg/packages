@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.4
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Pure python 7-zip library
 License:		LGPL-2.1-or-later
 URL:			https://py7zr.readthedocs.io/

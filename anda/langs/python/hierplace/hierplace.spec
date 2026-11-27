@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.1.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		KiCad PCBNEW plugin that arranges parts into groups that reflect the design hierarchy
 License:		MIT
 URL:			https://github.com/devbisme/HierPlace

@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		5.1.0.95
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Wrapper package for OpenCV python bindings
 License:		MIT
 URL:			https://pypi.org/project/opencv-python/

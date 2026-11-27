@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		2.9
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		GUI wallpaper manager for Wayland and Xorg Linux systems
 License:		GPL-3.0-only
 URL:			https://github.com/anufrievroman/waypaper

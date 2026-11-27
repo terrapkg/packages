@@ -5,7 +5,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Python interface to the OpenSCAD declarative geometry language
 License:        LGPL-2.1-or-later
 URL:            https://github.com/SolidCode/SolidPython

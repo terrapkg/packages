@@ -3,7 +3,7 @@
 
 Name:			python-%{pypi_name}
 Version:		0.2.0
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		Parse docker image as distribution does
 License:		Apache-2.0
 URL:			https://github.com/realityone/docker-image-py

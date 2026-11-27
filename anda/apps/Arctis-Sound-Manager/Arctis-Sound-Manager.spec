@@ -5,7 +5,7 @@
 
 Name:			python-%{pypi_name}
 Version:		1.7.10
-Release:		1%{?dist}
+Release:		2%{?dist}
 Summary:		GUI for SteelSeries Arctis headsets
 License:		GPL-3.0-or-later
 # GitHub pages URL 404s
