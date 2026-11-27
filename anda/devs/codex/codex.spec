@@ -14,6 +14,7 @@ Source0:        %{url}/archive/refs/tags/rust-v%{version}.tar.gz
 Packager:       Jaiden Riordan <jade@fyralabs.com>
 
 BuildRequires:  anda-srpm-macros cargo-rpm-macros gcc gcc-c++ pkgconfig(openssl) pkgconfig(dbus-1)
+BuildRequires:  python3 >= 3.11
 Requires:       bubblewrap
 Recommends:     ripgrep git
 
@@ -22,6 +23,18 @@ Recommends:     ripgrep git
 
 %prep
 %autosetup -n codex-rust-v%{version}
+# Use the V8 archive and bindings pinned by this Codex release.
+CODEX_REPO_ROOT="$PWD" PYTHONPATH="$PWD/scripts" python3 - <<'PY' > v8-env.sh
+from pathlib import Path
+from shlex import quote
+
+from codex_package.targets import TARGET_SPECS
+from codex_package.v8 import resolve_codex_v8_cargo_env
+
+target = TARGET_SPECS["%{_target_cpu}-unknown-linux-gnu"]
+for key, value in resolve_codex_v8_cargo_env(target, cache_root=Path.cwd() / "v8-cache").items():
+    print(f"export {key}={quote(value)}")
+PY
 cd codex-rs
 sed -i 's/^version = "0\.0\.0"$/version = "%{version}"/' Cargo.lock
 # this disables the daemon and agents functionality, see upstream #51961
@@ -33,6 +46,7 @@ EOF
 %cargo_prep_online
 
 %build
+. ./v8-env.sh
 cd codex-rs
 export CODEX_SKIP_BWRAP_BUILD=1
 # we had to do this for zed too
