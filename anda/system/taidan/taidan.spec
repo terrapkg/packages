@@ -5,7 +5,7 @@
 
 Name:           taidan
 Version:        1.0.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 # https://scancode-licensedb.aboutcode.org/unsplash
 SourceLicense:  GPL-3.0-or-later AND GPL-2.0-or-later AND MIT AND LicenseRef-scancode-unsplash
@@ -113,6 +113,9 @@ install -d %buildroot%{_sharedstatedir}/taidan
 %{_datadir}/taidan/wallpaper.png
 
 %changelog
+* Fri Nov 27 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.7-1
+- cleanup deps and add libcamera
+
 * Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.3-2
 - Update packaging for slint rewrite
 
