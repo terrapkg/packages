@@ -2,7 +2,7 @@
 
 Name:          detect-it-easy
 Version:       4.0.0
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       Program for determining types of files for Windows, Linux and MacOS
 License:       MIT
 URL:           https://ntinfo.biz/#detect-it-easydie
@@ -14,10 +14,12 @@ BuildRequires: cmake-rpm-macros
 BuildRequires: gcc
 BuildRequires: gcc-c++
 BuildRequires: git-core
+BuildRequires: qt6-rpm-macros
 BuildRequires: cmake(Qt6)
 BuildRequires: cmake(Qt6LinguistTools)
 BuildRequires: cmake(Qt6Qml)
 BuildRequires: cmake(Qt6Svg)
+BuildRequires: pkgconfig(cups)
 Requires:      hicolor-icon-theme
 Packager:      Gilver E. <roachy@fyralabs.com>
 
@@ -33,9 +35,12 @@ supporting both compact signatures and multi-stage static analysis across Window
 %autopatch -p1
 
 %conf
-%cmake
+PATH="$PATH:%{_qt6_bindir}" ; export PATH
+%cmake \
+  -DCMAKE_BUILD_TYPE="Release"
 
 %build
+PATH="$PATH:%{_qt6_bindir}" ; export PATH
 %cmake_build
 
 %install
