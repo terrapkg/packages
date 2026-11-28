@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.leksah.Leksah</id>
+  <metadata_license>CC0-1.0</metadata_license>
+
+  <name>Leksah</name>
+  <summary>Haskell IDE written in Haskell</summary>
+
+  <developer id="io.github.leksah">
+    <name>Hamish Mackenzie</name>
+  </developer>
+
+  <description>
+    <p>
+      Leksah is a fast, hackable development environment written in Haskell.
+      Its interface runs in a native GTK and WebKitGTK window, and it can also
+      serve itself to a web browser.
+    </p>
+    <p>
+      It has deep Haskell tooling, including cabal workspaces,
+      haskell-language-server integration and GHCi debugging. It also supports
+      other languages through LSP, and comes with tmux-backed terminals and
+      built-in git panes.
+    </p>
+  </description>
+
+  <icon type="stock">leksah</icon>
+  <launchable type="desktop-id">leksah.desktop</launchable>
+  <provides>
+    <binary>leksah</binary>
+    <binary>leksah-cmd</binary>
+    <binary>leksah-warp</binary>
+  </provides>
+
+  <categories>
+    <category>Development</category>
+    <category>IDE</category>
+  </categories>
+
+  <keywords>
+    <keyword>Haskell</keyword>
+    <keyword>IDE</keyword>
+    <keyword>editor</keyword>
+    <keyword>GHC</keyword>
+    <keyword>cabal</keyword>
+    <keyword>LSP</keyword>
+  </keywords>
+
+  <url type="homepage">https://leksah.github.io</url>
+  <url type="bugtracker">https://github.com/leksah/leksah/issues</url>
+  <url type="vcs-browser">https://github.com/leksah/leksah</url>
+
+  <content_rating type="oars-1.1" />
+</component>
