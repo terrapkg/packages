@@ -7,10 +7,46 @@ concurrency:
   cancel-in-progress: false
 
 on:
+  schedule:
+    - cron: "0 3,9,15,21 * * *"
   workflow_dispatch:
 
 jobs:
+  recent-dispatch:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+    outputs:
+      found: ${{ steps.check.outputs.found }}
+    steps:
+      - name: Check for a recent dispatched run
+        id: check
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const windowHours = 5;
+            const since = new Date(Date.now() - windowHours * 60 * 60 * 1000).toISOString();
+            const { data: thisRun } = await github.rest.actions.getWorkflowRun({
+              ...context.repo,
+              run_id: context.runId,
+            });
+            const { data: dispatched } = await github.rest.actions.listWorkflowRuns({
+              ...context.repo,
+              workflow_id: thisRun.workflow_id,
+              event: 'workflow_dispatch',
+              created: `>=${since}`,
+              per_page: 1,
+            });
+            const found = dispatched.total_count > 0;
+            if (found) {
+              core.notice(`skipping, already dispatched at ${dispatched.workflow_runs[0].created_at}`);
+            }
+            core.setOutput('found', found);
+
   autoupdate-quaterdaily:
+    needs: recent-dispatch
+    if: ${{ !cancelled() && needs.recent-dispatch.outputs.found != 'true' }}
     runs-on: arc-runner-set
     container:
       image: ghcr.io/terrapkg/builder:frawhide
