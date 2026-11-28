@@ -43,6 +43,7 @@ ln -s "$llvm_config" .cargo/bin/llvm-config
 %build
 export PATH="$PWD/.cargo/bin:%{_bindir}:$PATH"
 export LLVM_CONFIG_PATH="$PWD/.cargo/bin/llvm-config"
+export LLVM_PREFIX="$(llvm-config --prefix)"
 %cargo_build
 
 %install
