@@ -99,5 +99,8 @@ rm %{buildroot}%{_defaultlicensedir}/luciole/LICENSE
 %{_metainfodir}/%{appid}.metainfo.xml
 
 %changelog
+* Fri Nov 27 2026 Cypress Reed <cypress@fyralabs.com>
+- update reqs and files
+
 * Mon Nov 16 2026 Cypress Reed <cypress@fyralabs.com>
 - initial package
