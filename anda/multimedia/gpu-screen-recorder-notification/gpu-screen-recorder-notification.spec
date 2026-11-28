@@ -1,5 +1,5 @@
 Name:           gpu-screen-recorder-notification
-Version:        1.3.9
+Version:        1.3.10
 Release:        1%{?dist}
 Summary:        Notification in the style of ShadowPlay
 
