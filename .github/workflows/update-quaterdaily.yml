@@ -7,8 +7,6 @@ concurrency:
   cancel-in-progress: false
 
 on:
-  schedule:
-    - cron: "0 3,9,15,21 * * *"
   workflow_dispatch:
 
 jobs:
