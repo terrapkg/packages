@@ -24,7 +24,7 @@ bpf-linker is a bitcode linker for statically linking BPF object files and
 performing optimizations needed to target older kernels.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n bpf-linker-%{version}
 %cargo_prep_online
 
 # Select the LLVM major version provided by the buildroot. Fedora installs
