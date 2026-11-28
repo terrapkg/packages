@@ -51,14 +51,13 @@ Recommends:     adwaita-icon-theme
 Recommends:     hicolor-icon-theme
 Recommends:     glycin-loaders
 Recommends:     glib-networking
-
-Suggests:       (ffmpeg-free or ffmpeg)
-Suggests:       ffmpegthumbnailer
-Suggests:       poppler-utils
-Suggests:       7zip
-Suggests:       gvfs-smb
-Suggests:       xdg-terminal-exec
-Suggests:       xdg-desktop-portal
+Recommends:     (ffmpeg-free or ffmpeg)
+Recommends:     ffmpegthumbnailer
+Recommends:     poppler-utils
+Recommends:     7zip
+Recommends:     gvfs-smb
+Recommends:     xdg-terminal-exec
+Recommends:     xdg-desktop-portal
 
 BuildSystem:    meson
 BuildOption:    --buildtype=release
