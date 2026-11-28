@@ -258,7 +258,7 @@ sed -i -e 's|libGLX_nvidia|%{_libdir}/libGLX_nvidia|g' %{buildroot}%{_datadir}/v
 install -Dpm644 %{name}.pp.* -t %{buildroot}%{_datadir}/selinux/packages/%{selinuxtype}
 %endif
 
-%ifarch x86_64
+%ifarch x86_64 aarch64
 # Vulkan SC loader and compiler
 install -p -m 0644 -D nvidia_icd_vksc.json %{buildroot}%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
 sed -i -e 's|libnvidia-vksc-core|%{_libdir}/libnvidia-vksc-core|g' %{buildroot}%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
@@ -279,8 +279,9 @@ ln -sf ../libnvidia-allocator.so.%{version} %{buildroot}%{_libdir}/gbm/nvidia-dr
 %ifarch x86_64
 
 # NGX Proton/Wine library
-mkdir -p %{buildroot}%{_libdir}/nvidia/wine/
-cp -a *.dll %{buildroot}%{_libdir}/nvidia/wine/
+mkdir -p %{buildroot}%{_libdir}/nvidia/wine/ngx-builtins/
+cp -a *.dll *.exe %{buildroot}%{_libdir}/nvidia/wine/
+cp -a ngx-builtins/*.dll %{buildroot}%{_libdir}/nvidia/wine/ngx-builtins/
 
 %endif
 
@@ -385,7 +386,7 @@ fi
 %doc NVIDIA_Changelog README.txt html supported-gpus/supported-gpus.json
 %dir %{_sysconfdir}/nvidia
 %{_bindir}/nvidia-ngx-updater
-%ifarch x86_64
+%ifarch x86_64 aarch64
 %{_bindir}/nvidia-pcc
 %endif
 %{_metainfodir}/com.nvidia.driver.metainfo.xml
@@ -471,23 +472,28 @@ fi
 %ifarch x86_64 aarch64
 %{_datadir}/nvidia/nvoptix.bin
 %{_datadir}/vulkan/implicit_layer.d/nvidia_layers.json
+%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
 %{_libdir}/libnvidia-api.so.1
 %{_libdir}/libnvidia-ngx.so.1
 %{_libdir}/libnvidia-ngx.so.%{version}
+# Versioned independently of the driver (e.g. .so.310.9.0)
+%{_libdir}/libnvidia-ngx-builtin-dlssd.so.*
 %{_libdir}/libnvidia-present.so.%{version}
 %{_libdir}/libnvidia-rtcore.so.%{version}
+%{_libdir}/libnvidia-vksc-core.so.1
+%{_libdir}/libnvidia-vksc-core.so.%{version}
 %{_libdir}/libnvoptix.so.1
 %{_libdir}/libnvoptix.so.%{version}
 %endif
 %ifarch x86_64
-%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
-%{_libdir}/libnvidia-vksc-core.so.1
-%{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
 %dir %{_libdir}/nvidia/wine
+%dir %{_libdir}/nvidia/wine/ngx-builtins
+%{_libdir}/nvidia/wine/ngx-builtins/nvngx_dlssd.dll
 %{_libdir}/nvidia/wine/_nvngx.dll
 %{_libdir}/nvidia/wine/nvngx.dll
 %{_libdir}/nvidia/wine/nvngx_dlssg.dll
+%{_libdir}/nvidia/wine/nvngx_update.exe
 %endif
 
 %files cuda-libs
@@ -512,6 +518,7 @@ fi
 %{_libdir}/libnvidia-opticalflow.so.%{version}
 %{_libdir}/libnvidia-ptxjitcompiler.so.1
 %{_libdir}/libnvidia-ptxjitcompiler.so.%{version}
+%{_libdir}/libnvidia-tileiras.so.1
 %{_libdir}/libnvidia-tileiras.so.%{version}
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
