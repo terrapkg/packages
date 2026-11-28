@@ -2,7 +2,7 @@
 %global llvm_version 22.1.8
 %bcond check 0
 
-Name:           bpf-linker-nightly
+Name:           bpf-linker-rust-nightly
 Version:        0.13.0
 Release:        2%{?dist}
 Summary:        BPF static linker built with Rust nightly
@@ -16,7 +16,8 @@ BuildRequires:  rustup
 BuildRequires:  llvm-devel
 BuildRequires:  clang-devel
 
-Conflicts:      bpf-linker
+Conflicts:      bpf-linker-rust-stable
+Obsoletes:      bpf-linker-nightly < 0.13.0-2%{?dist}
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
@@ -56,6 +57,7 @@ ln -s "$llvm_config" .cargo/bin/llvm-config
 %build
 export PATH="$PWD/.cargo/bin:%{_bindir}:$PATH"
 export LLVM_CONFIG_PATH="$PWD/.cargo/bin/llvm-config"
+export LLVM_PREFIX="$(llvm-config --prefix)"
 %cargo_build
 
 %install

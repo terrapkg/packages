@@ -1,6 +1,6 @@
 %global llvm_version 22.1.8
 
-Name:           bpf-linker
+Name:           bpf-linker-rust-stable
 Version:        0.13.0
 Release:        2%{?dist}
 Summary:        BPF static linker
@@ -13,6 +13,10 @@ BuildRequires:  cargo-rpm-macros
 BuildRequires:  llvm-devel
 BuildRequires:  clang-devel
 
+Conflicts:      bpf-linker-rust-nightly
+Obsoletes:      bpf-linker < 0.13.0-1%{?dist}
+Provides:       bpf-linker = %{evr}
+
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
 %description
@@ -20,7 +24,7 @@ bpf-linker is a bitcode linker for statically linking BPF object files and
 performing optimizations needed to target older kernels.
 
 %prep
-%autosetup -n %{name}-%{version}
+%autosetup -n bpf-linker-%{version}
 %cargo_prep_online
 
 # Select the LLVM major version provided by the buildroot. Fedora installs
@@ -43,6 +47,7 @@ ln -s "$llvm_config" .cargo/bin/llvm-config
 %build
 export PATH="$PWD/.cargo/bin:%{_bindir}:$PATH"
 export LLVM_CONFIG_PATH="$PWD/.cargo/bin/llvm-config"
+export LLVM_PREFIX="$(llvm-config --prefix)"
 %cargo_build
 
 %install
