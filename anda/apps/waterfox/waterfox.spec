@@ -20,6 +20,17 @@
 
 %global toolchain clang
 
+%if %{defined rhel}
+%global _wf_cargo_home  %{_builddir}/.waterfox-cargo
+%global _wf_rustup_home %{_builddir}/.waterfox-rustup
+%endif
+
+%if %{defined rhel}
+%bcond system_nss 0
+%else
+%bcond system_nss 1
+%endif
+
 Name:           waterfox
 Version:        6.7.9
 Release:        1%{?dist}
@@ -49,8 +60,12 @@ BuildRequires:  llvm
 BuildRequires:  llvm-devel
 BuildRequires:  lld
 BuildRequires:  compiler-rt
+%if %{defined rhel}
+BuildRequires:  rustup
+%else
 BuildRequires:  rust
 BuildRequires:  cargo
+%endif
 BuildRequires:  cbindgen
 BuildRequires:  nasm >= 2.14
 BuildRequires:  yasm
@@ -72,8 +87,10 @@ BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(libpng)
 BuildRequires:  pkgconfig(nspr)
+%if %{with system_nss}
 BuildRequires:  pkgconfig(nss)
 BuildRequires:  nss-static
+%endif
 BuildRequires:  pkgconfig(libevent)
 BuildRequires:  pkgconfig(libffi)
 BuildRequires:  pkgconfig(libwebp)
@@ -127,7 +144,19 @@ available in the settings.
 
 echo '%{version}' > browser/config/version_display.txt
 
+%if %{defined rhel}
+%{__rm} -rf %{_wf_cargo_home} %{_wf_rustup_home}
+/usr/bin/env CARGO_HOME=%{_wf_cargo_home} RUSTUP_HOME=%{_wf_rustup_home} \
+    RUSTUP_INIT_SKIP_PATH_CHECK=yes RUSTUP_TERM_PROGRESS_WHEN=never \
+    rustup-init --default-toolchain stable --profile minimal -y --no-modify-path
+%endif
+
 %build
+%if %{defined rhel}
+export CARGO_HOME="%{_wf_cargo_home}"
+export RUSTUP_HOME="%{_wf_rustup_home}"
+export PATH="%{_wf_cargo_home}/bin:$PATH"
+%endif
 export MOZBUILD_STATE_PATH="%{_builddir}/mozbuild"
 export MOZ_NOSPAM=1
 export MOZILLA_OFFICIAL=1
@@ -185,7 +214,9 @@ ac_add_options --allow-addon-sideload
 export MOZ_REQUIRE_SIGNING=
 
 ac_add_options --with-system-nspr
+%if %{with system_nss}
 ac_add_options --with-system-nss
+%endif
 ac_add_options --with-system-zlib
 ac_add_options --with-system-jpeg
 ac_add_options --with-system-libvpx
@@ -203,7 +234,11 @@ ac_add_options --without-wasm-sandboxed-libraries
 ac_add_options --without-sysroot
 
 ac_add_options --enable-linker=lld
+%if %{defined rhel}
+ac_add_options --enable-lto=thin
+%else
 ac_add_options --enable-lto=cross,thin
+%endif
 ac_add_options --disable-elf-hack
 ac_add_options --enable-strip
 ac_add_options --enable-install-strip
