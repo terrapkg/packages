@@ -340,12 +340,14 @@ cp %{SOURCE42} %{buildroot}%{_datadir}/pixmaps/
 # nvsandboxutils configuration
 install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/files.d/sandboxutils-filelist.json
 
-# dnf needs-restarting plugin
-# dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
 %if 0%{?fedora} < 42 || 0%{?rhel}
 mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
 echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%else
+mkdir -p %{buildroot}%{_datadir}/dnf5/suggest-reboot.d/
+echo %{name} > %{buildroot}%{_datadir}/dnf5/suggest-reboot.d/%{name}.conf
+echo %{name}-cuda > %{buildroot}%{_datadir}/dnf5/suggest-reboot.d/%{name}-cuda.conf
 %endif
 
 %endif
@@ -402,6 +404,8 @@ fi
 %{_unitdir}/systemd-hybrid-sleep.service.d/nvidia-suspend-nofreeze.conf
 %if 0%{?fedora} < 42 || 0%{?rhel}
 %{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+%else
+%{_datadir}/dnf5/suggest-reboot.d/%{name}.conf
 %endif
 
 %if 0%{?fedora} || 0%{?rhel} < 10
@@ -423,6 +427,8 @@ fi
 %{_prefix}/lib/nvidia/alternate-install-present
 %if 0%{?fedora} < 42 || 0%{?rhel}
 %{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%else
+%{_datadir}/dnf5/suggest-reboot.d/%{name}-cuda.conf
 %endif
 
 %endif
@@ -556,6 +562,8 @@ fi
 %endif
 
 %changelog
+* Sat Nov 28 2026 Caleb Jones <caleb@fyralabs.com> - 3:620.73.04-1
+- Add dnf5 suggest-reboot
 * Wed Sep 23 2026 Dmytro Loiko <49129010+hilltty@users.noreply.github.com> - 3:615.71.09-2
 - Package new libnvidia-fmdrv, libnvidia-imex and libnvidia-rmapi-tegra libraries
 * Thu Jul 16 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
