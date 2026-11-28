@@ -1,8 +1,8 @@
 %global llvm_version 23.1.6
 
-Name:           bpf-linker
+Name:           bpf-linker-rust-stable
 Version:        0.13.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        BPF static linker
 URL:            https://github.com/aya-rs/bpf-linker
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
@@ -12,6 +12,10 @@ License:        (Apache-2.0 OR MIT) AND MIT AND (MIT OR Apache-2.0)
 BuildRequires:  cargo-rpm-macros
 BuildRequires:  llvm-devel
 BuildRequires:  clang-devel
+
+Conflicts:      bpf-linker-rust-nightly
+Obsoletes:      bpf-linker < 0.13.0-1%{?dist}
+Provides:       bpf-linker = %{evr}
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 

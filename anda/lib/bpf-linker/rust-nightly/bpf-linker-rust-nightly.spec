@@ -16,8 +16,8 @@ BuildRequires:  rustup
 BuildRequires:  llvm-devel
 BuildRequires:  clang-devel
 
-Conflicts:      bpf-linker
-Obsoletes:      bpf-linker-nightly < 0.13.0-2
+Conflicts:      bpf-linker-rust-stable
+Obsoletes:      bpf-linker-nightly < 0.13.0-2%{?dist}
 
 Packager:       Cypress Reed <cypress@fyralabs.com>
 
