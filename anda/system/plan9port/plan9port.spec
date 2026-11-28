@@ -1,5 +1,5 @@
-%global commit 1f1396913fb5372408f442ed26933f5ae4b399cd
-%global commit_date 20261021
+%global commit d24644de9760ccebcbefad65b99ce32cde18646f
+%global commit_date 20261128
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Name:           plan9port
