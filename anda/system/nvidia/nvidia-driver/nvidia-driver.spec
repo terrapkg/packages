@@ -258,7 +258,7 @@ sed -i -e 's|libGLX_nvidia|%{_libdir}/libGLX_nvidia|g' %{buildroot}%{_datadir}/v
 install -Dpm644 %{name}.pp.* -t %{buildroot}%{_datadir}/selinux/packages/%{selinuxtype}
 %endif
 
-%ifarch x86_64
+%ifarch x86_64 aarch64
 # Vulkan SC loader and compiler
 install -p -m 0644 -D nvidia_icd_vksc.json %{buildroot}%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
 sed -i -e 's|libnvidia-vksc-core|%{_libdir}/libnvidia-vksc-core|g' %{buildroot}%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
@@ -279,8 +279,9 @@ ln -sf ../libnvidia-allocator.so.%{version} %{buildroot}%{_libdir}/gbm/nvidia-dr
 %ifarch x86_64
 
 # NGX Proton/Wine library
-mkdir -p %{buildroot}%{_libdir}/nvidia/wine/
-cp -a *.dll %{buildroot}%{_libdir}/nvidia/wine/
+mkdir -p %{buildroot}%{_libdir}/nvidia/wine/ngx-builtins/
+cp -a *.dll *.exe %{buildroot}%{_libdir}/nvidia/wine/
+cp -a ngx-builtins/*.dll %{buildroot}%{_libdir}/nvidia/wine/ngx-builtins/
 
 %endif
 
@@ -339,12 +340,14 @@ cp %{SOURCE42} %{buildroot}%{_datadir}/pixmaps/
 # nvsandboxutils configuration
 install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/files.d/sandboxutils-filelist.json
 
-# dnf needs-restarting plugin
-# dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
 %if 0%{?fedora} < 42 || 0%{?rhel}
 mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
 echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
 echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%else
+mkdir -p %{buildroot}%{_datadir}/dnf5/suggest-reboot.d/
+echo %{name} > %{buildroot}%{_datadir}/dnf5/suggest-reboot.d/%{name}.conf
+echo %{name}-cuda > %{buildroot}%{_datadir}/dnf5/suggest-reboot.d/%{name}-cuda.conf
 %endif
 
 %endif
@@ -385,7 +388,7 @@ fi
 %doc NVIDIA_Changelog README.txt html supported-gpus/supported-gpus.json
 %dir %{_sysconfdir}/nvidia
 %{_bindir}/nvidia-ngx-updater
-%ifarch x86_64
+%ifarch x86_64 aarch64
 %{_bindir}/nvidia-pcc
 %endif
 %{_metainfodir}/com.nvidia.driver.metainfo.xml
@@ -401,6 +404,8 @@ fi
 %{_unitdir}/systemd-hybrid-sleep.service.d/nvidia-suspend-nofreeze.conf
 %if 0%{?fedora} < 42 || 0%{?rhel}
 %{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+%else
+%{_datadir}/dnf5/suggest-reboot.d/%{name}.conf
 %endif
 
 %if 0%{?fedora} || 0%{?rhel} < 10
@@ -422,6 +427,8 @@ fi
 %{_prefix}/lib/nvidia/alternate-install-present
 %if 0%{?fedora} < 42 || 0%{?rhel}
 %{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%else
+%{_datadir}/dnf5/suggest-reboot.d/%{name}-cuda.conf
 %endif
 
 %endif
@@ -471,23 +478,28 @@ fi
 %ifarch x86_64 aarch64
 %{_datadir}/nvidia/nvoptix.bin
 %{_datadir}/vulkan/implicit_layer.d/nvidia_layers.json
+%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
 %{_libdir}/libnvidia-api.so.1
 %{_libdir}/libnvidia-ngx.so.1
 %{_libdir}/libnvidia-ngx.so.%{version}
+# Versioned independently of the driver (e.g. .so.310.9.0)
+%{_libdir}/libnvidia-ngx-builtin-dlssd.so.*
 %{_libdir}/libnvidia-present.so.%{version}
 %{_libdir}/libnvidia-rtcore.so.%{version}
+%{_libdir}/libnvidia-vksc-core.so.1
+%{_libdir}/libnvidia-vksc-core.so.%{version}
 %{_libdir}/libnvoptix.so.1
 %{_libdir}/libnvoptix.so.%{version}
 %endif
 %ifarch x86_64
-%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
-%{_libdir}/libnvidia-vksc-core.so.1
-%{_libdir}/libnvidia-vksc-core.so.%{version}
 %dir %{_libdir}/nvidia
 %dir %{_libdir}/nvidia/wine
+%dir %{_libdir}/nvidia/wine/ngx-builtins
+%{_libdir}/nvidia/wine/ngx-builtins/nvngx_dlssd.dll
 %{_libdir}/nvidia/wine/_nvngx.dll
 %{_libdir}/nvidia/wine/nvngx.dll
 %{_libdir}/nvidia/wine/nvngx_dlssg.dll
+%{_libdir}/nvidia/wine/nvngx_update.exe
 %endif
 
 %files cuda-libs
@@ -512,6 +524,7 @@ fi
 %{_libdir}/libnvidia-opticalflow.so.%{version}
 %{_libdir}/libnvidia-ptxjitcompiler.so.1
 %{_libdir}/libnvidia-ptxjitcompiler.so.%{version}
+%{_libdir}/libnvidia-tileiras.so.1
 %{_libdir}/libnvidia-tileiras.so.%{version}
 %ifarch x86_64 aarch64
 %{_libdir}/libcudadebugger.so.1
@@ -549,6 +562,8 @@ fi
 %endif
 
 %changelog
+* Sat Nov 28 2026 Caleb Jones <caleb@fyralabs.com> - 3:620.73.04-1
+- Add dnf5 suggest-reboot
 * Wed Sep 23 2026 Dmytro Loiko <49129010+hilltty@users.noreply.github.com> - 3:615.71.09-2
 - Package new libnvidia-fmdrv, libnvidia-imex and libnvidia-rmapi-tegra libraries
 * Thu Jul 16 2026 Gilver E. <roachy@fyralabs.com> - 3:610.43.03-2
