@@ -1,6 +1,6 @@
 project pkg {
   rpm {
-    spec = "bpf-linker-nightly.spec"
+    spec = "bpf-linker-rust-stable.spec"
   }
   labels {
     updbranch = 1
