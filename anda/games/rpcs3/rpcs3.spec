@@ -9,12 +9,12 @@
 # GLIBCXX_ASSERTIONS is known to break RPCS3
 %global build_cflags %(echo "%{__build_flags_lang_c}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
 %global build_cxxflags %(echo "%{__build_flags_lang_cxx}" | sed 's|-Wp,-D_GLIBCXX_ASSERTIONS ||g') %{?_distro_extra_cflags}
-%global commit 0ca5eb0efe50ec4e8aa07892ab86d57842246eb4
-%global ver 0.0.43-20663
+%global commit 6ecaa5607ad51159291a82ba78d54fae2fcb8f35
+%global ver 0.0.43-20664
 
 Name:           rpcs3
 Version:        %(echo %{ver} | sed 's/-/^/g')
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        PlayStation 3 emulator and debugger
 # Submodule hell
 SourceLicense:  Apache-2.0 AND (Apache-2.0 WITH LLVM-exception OR NCSA) AND (BSD-2-Clause AND BSD-3-Clause AND GPL-3.0-or-later AND Apache-2.0) AND BSD-3-Clause AND (BSD-3-Clause OR GPL-2.0-only) AND curl AND GPL-2.0-only AND GPL-3.0-only AND (GPL-3.0-only OR BSD-3-Clause) AND GPL-3.0-or-later AND (ISC AND LicenseRef-Callaway-BSD AND LicenseRef-Callaway-MIT) AND (LGPL-2.0-or-later AND BSD-3-Clause AND GPL-2.0-or-later AND Apache-2.0 AND (LGPL-2.0-or-later AND BSD-3-Clause) AND (MIT WITH fmt-exception) AND NCL AND MIT AND LicenseRef-Fedora-Public-Domain) AND LGPL-2.1-or-later AND LicenseRef-Callaway-BSD AND MIT AND (MIT AND BSD-3-Clause) AND ((MIT OR Unlicense) AND (LicenseRef-Fedora-Public-Domain OR LicenseRef-Fedora-UltraPermissive)) AND Zlib AND (Zlib and Apache-2.0 and MIT and BSD-3-Clause)
