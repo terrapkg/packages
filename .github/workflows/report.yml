@@ -3,8 +3,6 @@ name: Report
 # a nightly oglyad health report on every maintained release branch, posted
 # to the run's job summary and kept as an artifact
 on:
-  schedule:
-    - cron: "17 6 * * *"
   workflow_dispatch:
 
 permissions:
