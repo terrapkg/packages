@@ -4,8 +4,8 @@
 %global proc_macros_commit 7306a90996eaa89284f3e271dbb04152e3eedf96
 
 Name:           taidan
-Version:        1.0.6
-Release:        1%{?dist}
+Version:        1.0.8
+Release:        2%{?dist}
 Summary:        Out-Of-Box-Experience (OOBE) and Welcome App
 # https://scancode-licensedb.aboutcode.org/unsplash
 SourceLicense:  GPL-3.0-or-later AND GPL-2.0-or-later AND MIT AND LicenseRef-scancode-unsplash
@@ -24,11 +24,9 @@ Requires:       shadow-utils
 Requires:       glibc-common
 Requires:       util-linux
 Requires:       systemd
-Requires:       systemd-udev
 Requires:       kbd
 Requires:       bash
-Requires:       (dnf5 and dnf5-command(copr) and dnf5-command(config-manager))
-Requires:       flatpak
+Requires:       dnf5
 Recommends:     systemd-homed
 Requires:       pciutils
 Requires:       mokutil
@@ -51,10 +49,13 @@ Requires:       libwayland-client
 Requires:       libwayland-cursor
 Requires:       libwayland-egl
 Requires:       libglvnd-egl
+Requires:       libcamera-ipa
 BuildRequires:  anda-srpm-macros lld cargo rust-packaging perl systemd-rpm-macros
 BuildRequires:  pkgconfig(openssl)
 BuildRequires:  pkgconfig(fontconfig)
 BuildRequires:  pkgconfig(libxcrypt)
+BuildRequires:  pkgconfig(libcamera)
+BuildRequires:  gcc-c++
 # read by taidan_proc_macros at build time
 BuildRequires:  glibc-all-langpacks
 BuildRequires:  xkeyboard-config
@@ -73,6 +74,7 @@ tar -xzf %{SOURCE1} -C taidan_proc_macros --strip-components=1
 %cargo_prep_online
 
 %build
+%cargo_license_summary_online
 %{cargo_license_online} > LICENSE.dependencies
 %cargo_build -- -p taidan -p libtaidan --bin taidan --bin taidan-helper
 
@@ -112,6 +114,9 @@ install -d %buildroot%{_sharedstatedir}/taidan
 %{_datadir}/taidan/wallpaper.png
 
 %changelog
+* Fri Nov 27 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.7-1
+- cleanup deps and add libcamera
+
 * Sun Nov 15 2026 Cypress Reed <cypress@fyralabs.com> - 1.0.3-2
 - Update packaging for slint rewrite
 
