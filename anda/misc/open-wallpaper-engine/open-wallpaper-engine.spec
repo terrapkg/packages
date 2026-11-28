@@ -5,7 +5,7 @@ Name:           open-wallpaper-engine
 Version:        0.4.1
 Release:        1%{?dist}
 License:        GPL-2.0-only
-Summary:        Open source wallpaper engine implement mostly for linux (waywallen plugin)
+Summary:        Open source wallpaper engine implement mostly for linux
 URL:            https://github.com/waywallen/open-wallpaper-engine
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
 
