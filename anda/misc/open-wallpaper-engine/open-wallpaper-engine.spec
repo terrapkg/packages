@@ -31,13 +31,20 @@ BuildRequires:  waywallen-devel
 BuildRequires:  waywallen-libs
 BuildRequires:  glslang
 
-Requires:       waywallen
 Requires:       cef
 
 Packager:       L1oly <lid2011@ukr.net>
 
 %description
 %{summary}.
+
+%package -n      waywallen-%{name}
+Summary:         %{summary} (waywallen plugin)
+Requires:        %{name}%{?_isa} = %{version}-%{release}
+Requires:        waywallen
+Supplements:     (%{name} and waywallen)
+%description -n  waywallen-%{name}
+%{description}
 
 %prep
 %autosetup
@@ -57,25 +64,26 @@ source = "installed"
 EOF
 
 %build
-lito build --profile release --package owe-sceneviewer --package owe-webviewer --package owe-waywallen-scene-renderer --package owe-waywallen-web-renderer
+OWE_WAYWALLEN_PLUGIN_BUNDLE_LAYOUT=ON
+lito build -p owe-waywallen-plugin --prefix %{buildroot}%{_prefix} --profile release
 
 %install
-lito install --prefix %{buildroot}%{_prefix} --profile release
-lito install --prefix %{buildroot}%{_prefix} --profile release --package owe-waywallen-plugin
-rm -rf %{buildroot}%{_prefix}/lib
-rm -rf %{buildroot}%{_bindir}
-install -Dm 755 build/release/bin/owe-sceneviewer/SceneViewer                             %{buildroot}%{_libdir}/open-wallpaper-engine/SceneViewer
-install -Dm 755 build/release/bin/owe-webviewer/WebViewer                                 %{buildroot}%{_libdir}/open-wallpaper-engine/WebViewer
-install -Dm 755 build/release/bin/owe-waywallen-scene-renderer/waywallen-wescene-renderer %{buildroot}%{_bindir}/waywallen-wescene-renderer
-install -Dm 755 build/release/bin/owe-waywallen-web-renderer/waywallen-weweb-renderer     %{buildroot}%{_bindir}/waywallen-weweb-renderer
+lito install -p owe-waywallen-plugin --prefix %{buildroot}%{_prefix} --profile release
+ln -sf ./weweb/owe-web %{buildroot}%{_bindir}/owe-web
 
 %files
 %license LICENSE
 %doc README.md
-%{_bindir}/*
-%{_libdir}/*
+%{_bindir}/owe-web
+%{_bindir}/owe-scene
+%{_bindir}/weweb/owe-web
+
+%files -n waywallen-%{name}
 %{_datadir}/waywallen/plugins/org.waywallen.open-wallpaper-engine
 
 %changelog
+* Sat Nov 28 2026 L1oly <lid2011@ukr.net>
+- Spilt packages cuz standalone binaries where added
+
 * Thu Oct 29 2026 L1oly <lid2011@ukr.net>
 - Initial commit
