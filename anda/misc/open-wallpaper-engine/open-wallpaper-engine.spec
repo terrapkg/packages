@@ -65,7 +65,7 @@ EOF
 
 %build
 OWE_WAYWALLEN_PLUGIN_BUNDLE_LAYOUT=ON
-lito build -p owe-waywallen-plugin --profile release
+lito build --profile release --features waywallen
 
 %install
 lito install -p owe-waywallen-plugin --prefix %{buildroot}%{_prefix} --profile release
