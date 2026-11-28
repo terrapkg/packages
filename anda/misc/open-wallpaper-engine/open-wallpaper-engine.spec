@@ -78,7 +78,7 @@ ln -sf ./weweb/owe-web %{buildroot}%{_bindir}/owe-web
 %doc README.md
 %{_bindir}/owe-web
 %{_bindir}/owe-scene
-%{_bindir}/weweb/owe-web
+%{_bindir}/weweb
 
 %files -n waywallen-%{name}
 %{_datadir}/waywallen/plugins/org.waywallen.open-wallpaper-engine
